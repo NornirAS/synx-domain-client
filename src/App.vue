@@ -21,3 +21,9 @@ export default {
   })
 };
 </script>
+
+<style>
+v-main {
+  background-color: rgb(235, 240, 244);
+}
+</style>
