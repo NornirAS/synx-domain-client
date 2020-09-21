@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style>
-v-main {
+.v-main {
   background-color: rgb(235, 240, 244);
 }
 </style>
