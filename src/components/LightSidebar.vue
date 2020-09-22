@@ -44,12 +44,12 @@ export default {
       headerStyle: {
         fontSize: "20px",
         color: "#58595b",
-        paddingLeft: "0.5em"
+        paddingLeft: "0.9em"
       },
       listItemStyle: {
         fontSize: "16px",
         color: "#9b9b9b",
-        paddingLeft: "1em"
+        paddingLeft: "1.5em"
       },
       permanent: true
     };
@@ -58,7 +58,10 @@ export default {
 </script>
 
 <style scope>
-#app > div > main > div > div > div > aside {
+#app > div > main > div > div > aside {
   padding-top: 0.5em;
+}
+.v-list {
+  padding: 0;
 }
 </style>
