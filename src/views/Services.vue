@@ -5,9 +5,17 @@
         Services
         <v-icon :color="colorBlue">{{ mdiInformationOutline }}</v-icon>
       </span>
-      <v-btn :color="colorBlue" depressed rounded medium dark>
+      <v-btn
+        :color="colorBlue"
+        depressed
+        rounded
+        medium
+        dark
+        link
+        :to="createService"
+      >
         <v-icon>{{ mdiPlus }}</v-icon>
-        New Service
+        Service
       </v-btn>
     </v-row>
     <br />
@@ -113,7 +121,8 @@ export default {
       },
       colorBlue: "#27AAE1",
       colorRed: "#FF6666",
-      colorGrey: "#404B5F"
+      colorGrey: "#404B5F",
+      createService: "/create-service"
     };
   }
 };

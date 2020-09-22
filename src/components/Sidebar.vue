@@ -1,5 +1,11 @@
 <template>
-  <v-navigation-drawer v-model="drawer" :color="mainBgColor" dark absolute>
+  <v-navigation-drawer
+    v-model="drawer"
+    :color="mainBgColor"
+    dark
+    absolute
+    permament
+  >
     <v-list dense nav class="py-0">
       <v-list-item two-line>
         <v-list-item-content>
@@ -13,7 +19,7 @@
 
       <v-divider></v-divider>
 
-      <v-list-item v-for="item in items" :key="item.title" link>
+      <v-list-item v-for="item in items" :key="item.title" :to="item.path" link>
         <v-list-item-icon>
           <v-icon>{{ item.icon }}</v-icon>
         </v-list-item-icon>
@@ -34,11 +40,10 @@ export default {
       mdiEarth,
       drawer: true,
       items: [
-        { title: "Services", icon: mdiAntenna },
-        { title: "Notifications", icon: mdiBell }
+        { title: "Services", icon: mdiAntenna, path: "/services" },
+        { title: "Notifications", icon: mdiBell, path: "/" }
       ],
       mainBgColor: "#404B5F",
-      right: false,
       permanent: true
     };
   }
