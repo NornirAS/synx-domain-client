@@ -1,6 +1,14 @@
 <template>
   <div>
-    <h2>Create service</h2>
-    
+    <LightSidebar />
   </div>
 </template>
+
+<script>
+import LightSidebar from "../components/LightSidebar.vue";
+export default {
+  components: {
+    LightSidebar
+  }
+};
+</script>

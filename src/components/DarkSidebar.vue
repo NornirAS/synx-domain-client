@@ -49,9 +49,3 @@ export default {
   }
 };
 </script>
-
-<style>
-#app > div > aside {
-  padding-top: 64px;
-}
-</style>
