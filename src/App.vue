@@ -1,19 +1,26 @@
 <template>
   <v-app>
+    <Header />
+    <Sidebar />
     <v-main>
-      <Home />
+      <v-container fluid>
+        <router-view><Services /></router-view>
+      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Home from "./views/Home";
-
+import Header from "./components/Header.vue";
+import Sidebar from "./components/Sidebar.vue";
+import Services from "./views/Services.vue";
 export default {
   name: "App",
 
   components: {
-    Home
+    Header,
+    Sidebar,
+    Services
   },
 
   data: () => ({
