@@ -1,5 +1,5 @@
 <template>
-  <div :style="divStyle">
+  <div>
     <v-row justify="space-between">
       <span style="font-size: 24px">
         Services
@@ -100,9 +100,6 @@ export default {
       mdiInformationOutline,
       mdiPlus,
       mdiChevronDown,
-      divStyle: {
-        margin: "1.5em 10em 0 20em"
-      },
       checkboxStyle: {
         marginTop: "0",
         paddingTop: "0.5em"
