@@ -3,6 +3,8 @@
     <Header />
     <v-main>
       <v-container fluid>
+        <router-view name="dark-sidebar"></router-view>
+        <router-view name="light-sidebar"></router-view>
         <router-view></router-view>
       </v-container>
     </v-main>

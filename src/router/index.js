@@ -2,6 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Services from "../views/Services.vue";
 import CreateService from "../views/CreateService";
+import DarkSidebar from "../components/DarkSidebar.vue";
+import LightSidebar from "../components/LightSidebar.vue";
 
 Vue.use(VueRouter);
 
@@ -14,12 +16,18 @@ const routes = [
   {
     path: "/services",
     name: "services",
-    component: Services
+    components: {
+      default: Services,
+      "dark-sidebar": DarkSidebar
+    }
   },
   {
     path: "/create-service",
-    name: "createServiceUrl",
-    component: CreateService
+    name: "createService",
+    components: {
+      default: CreateService,
+      "light-sidebar": LightSidebar
+    }
   }
 ];
 

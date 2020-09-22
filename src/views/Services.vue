@@ -1,6 +1,5 @@
 <template>
   <div>
-    <DarkSidebar />
     <v-row justify="space-between">
       <h2>
         Services
@@ -100,11 +99,8 @@
 
 <script>
 import { mdiInformationOutline, mdiPlus, mdiChevronDown } from "@mdi/js";
-import DarkSidebar from "../components/DarkSidebar.vue";
+
 export default {
-  components: {
-    DarkSidebar
-  },
   data() {
     return {
       search: "",
