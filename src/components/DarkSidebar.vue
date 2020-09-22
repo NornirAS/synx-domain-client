@@ -19,7 +19,13 @@
 
       <v-divider></v-divider>
 
-      <v-list-item v-for="item in items" :key="item.title" :to="item.path" link>
+      <v-list-item
+        v-for="item in items"
+        :key="item.title"
+        :to="item.path"
+        exact
+        link
+      >
         <v-list-item-icon>
           <v-icon>{{ item.icon }}</v-icon>
         </v-list-item-icon>
@@ -40,8 +46,8 @@ export default {
       mdiEarth,
       drawer: true,
       items: [
-        { title: "Services", icon: mdiAntenna, path: "/services" },
-        { title: "Notifications", icon: mdiBell, path: "/" }
+        { title: "Services", icon: mdiAntenna, path: { name: "services" } },
+        { title: "Notifications", icon: mdiBell, path: { name: "home" } }
       ],
       mainBgColor: "#404B5F",
       permanent: true

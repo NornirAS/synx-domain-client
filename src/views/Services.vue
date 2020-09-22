@@ -13,7 +13,7 @@
         medium
         dark
         link
-        :to="createService"
+        :to="{ name: 'createService' }"
       >
         <v-icon>{{ mdiPlus }}</v-icon>
         Create Service
@@ -126,8 +126,7 @@ export default {
       },
       colorBlue: "#27AAE1",
       colorRed: "#FF6666",
-      colorGrey: "#404B5F",
-      createService: "/create-service"
+      colorGrey: "#404B5F"
     };
   }
 };
