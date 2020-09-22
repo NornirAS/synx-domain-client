@@ -1,10 +1,11 @@
 <template>
   <div>
+    <DarkSidebar />
     <v-row justify="space-between">
-      <span style="font-size: 24px">
+      <h2>
         Services
         <v-icon :color="colorBlue">{{ mdiInformationOutline }}</v-icon>
-      </span>
+      </h2>
       <v-btn
         :color="colorBlue"
         depressed
@@ -15,7 +16,7 @@
         :to="createService"
       >
         <v-icon>{{ mdiPlus }}</v-icon>
-        Service
+        Create Service
       </v-btn>
     </v-row>
     <br />
@@ -99,7 +100,11 @@
 
 <script>
 import { mdiInformationOutline, mdiPlus, mdiChevronDown } from "@mdi/js";
+import DarkSidebar from "../components/DarkSidebar.vue";
 export default {
+  components: {
+    DarkSidebar
+  },
   data() {
     return {
       search: "",

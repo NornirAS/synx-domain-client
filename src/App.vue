@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <Header />
-    <Sidebar />
     <v-main>
       <v-container fluid>
         <router-view></router-view>
@@ -12,13 +11,11 @@
 
 <script>
 import Header from "./components/Header.vue";
-import Sidebar from "./components/Sidebar.vue";
 export default {
   name: "App",
 
   components: {
-    Header,
-    Sidebar
+    Header
   },
 
   data: () => ({

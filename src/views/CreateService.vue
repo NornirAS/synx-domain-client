@@ -1,5 +1,6 @@
 <template>
   <div>
-    <h1>Create service</h1>
+    <h2>Create service</h2>
+    
   </div>
 </template>
