@@ -4,11 +4,11 @@
     <p>{{ description }}</p>
     <v-row justify="center" align="center">
       <v-col sm="4">
-        <div style="height: 45px">
-          <span class="available-instances">{{ availableInstances }}</span>
-          <span class="limit-instances">/{{ limitInstances }}</span>
-        </div>
-        <p class="p-margin" :style="pStyle">Available Instances</p>
+        <CurrentValue
+          :primaryValue="primaryValue"
+          :secondaryValue="secondaryValue"
+          :helper="helper"
+        />
       </v-col>
       <v-col sm="4">
         <v-text-field
@@ -34,33 +34,17 @@
 
 <script>
 import { mdiPlus } from "@mdi/js";
+import CurrentValue from "./CurrentValue.vue";
 export default {
-  props: ["title", "description", "availableInstances", "limitInstances"],
+  props: ["title", "description", "primaryValue", "secondaryValue", "helper"],
   data() {
     return {
       mdiPlus,
-      colorBlue: "#27AAE1",
-      pStyle: {
-        color: "#58595b",
-        fontSize: "14px"
-      }
+      colorBlue: "#27AAE1"
     };
+  },
+  components: {
+    CurrentValue
   }
 };
 </script>
-
-<style scoped>
-.p-margin {
-  margin: 0;
-}
-.available-instances {
-  color: #27aae1;
-  font-size: 40px;
-  font-weight: 500;
-}
-.limit-instances {
-  color: #58595b;
-  font-size: 30px;
-  font-weight: 500;
-}
-</style>

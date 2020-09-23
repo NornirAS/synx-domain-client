@@ -2,8 +2,9 @@
   <NumericTemplate
     :title="title"
     :description="description"
-    :availableInstances="availableInstances"
-    :limitInstances="limitInstances"
+    :primaryValue="primaryValue"
+    :secondaryValue="secondaryValue"
+    :helper="helper"
   />
 </template>
 
@@ -14,8 +15,9 @@ export default {
     return {
       title: "Instances",
       description: "Some description fro instances.",
-      availableInstances: "100",
-      limitInstances: "100"
+      primaryValue: "100",
+      secondaryValue: "/100",
+      helper: "Available Instances"
     };
   },
   components: {
