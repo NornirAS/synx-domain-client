@@ -5,6 +5,7 @@
     :primaryValue="primaryValue"
     :secondaryValue="secondaryValue"
     :helper="helper"
+    :addButtonName="addButtonName"
   />
 </template>
 
@@ -17,7 +18,8 @@ export default {
       description: "Some description fro instances.",
       primaryValue: "100",
       secondaryValue: "/100",
-      helper: "Available Instances"
+      helper: "Available Instances",
+      addButtonName: "Add Instance"
     };
   },
   components: {

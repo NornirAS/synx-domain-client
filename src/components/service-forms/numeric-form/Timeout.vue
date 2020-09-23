@@ -5,6 +5,7 @@
     :primaryValue="primaryValue"
     :secondaryValue="secondaryValue"
     :helper="helper"
+    :addButtonName="addButtonName"
   />
 </template>
 
@@ -13,11 +14,13 @@ import NumericTemplate from "./NumericTemplate.vue";
 export default {
   data() {
     return {
-      title: "Instances",
-      description: "Some description fro instances.",
+      title: "Timeout",
+      description:
+        "Time for inactive channelrequest before it closes(in seconds). Default 30.",
       primaryValue: "30",
       secondaryValue: "'s",
-      helper: "Current Timeout"
+      helper: "Current Timeout",
+      addButtonName: "Set Timeout"
     };
   },
   components: {

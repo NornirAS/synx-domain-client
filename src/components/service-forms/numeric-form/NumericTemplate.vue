@@ -23,28 +23,27 @@
         ></v-text-field>
       </v-col>
       <v-col sm="4">
-        <v-btn :color="colorBlue" depressed rounded medium dark>
-          <v-icon>{{ mdiPlus }}</v-icon>
-          Add Instances
-        </v-btn>
+        <AddButton :addButtonName="addButtonName" />
       </v-col>
     </v-row>
   </v-card>
 </template>
 
 <script>
-import { mdiPlus } from "@mdi/js";
 import CurrentValue from "./CurrentValue.vue";
+import AddButton from "../../buttons/AddButton.vue";
 export default {
-  props: ["title", "description", "primaryValue", "secondaryValue", "helper"],
-  data() {
-    return {
-      mdiPlus,
-      colorBlue: "#27AAE1"
-    };
-  },
+  props: [
+    "title",
+    "description",
+    "primaryValue",
+    "secondaryValue",
+    "helper",
+    "addButtonName"
+  ],
   components: {
-    CurrentValue
+    CurrentValue,
+    AddButton
   }
 };
 </script>

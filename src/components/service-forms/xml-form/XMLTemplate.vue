@@ -13,10 +13,7 @@
         ></v-text-field>
       </v-col>
       <v-col md="6">
-        <v-btn :color="colorBlue" depressed rounded medium dark>
-          <v-icon>{{ mdiPlus }}</v-icon>
-          Add Schema
-        </v-btn>
+        <AddButton :addButtonName="addButtonName" />
       </v-col>
     </v-row>
     <TableForXML />
@@ -24,18 +21,13 @@
 </template>
 
 <script>
-import { mdiPlus } from "@mdi/js";
 import TableForXML from "./TableForXML.vue";
+import AddButton from "../../buttons/AddButton.vue";
 export default {
-  data() {
-    return {
-      mdiPlus,
-      colorBlue: "#27AAE1"
-    };
-  },
-  props: ["title", "description"],
+  props: ["title", "description", "addButtonName"],
   components: {
-    TableForXML
+    TableForXML,
+    AddButton
   }
 };
 </script>
