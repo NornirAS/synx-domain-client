@@ -5,6 +5,7 @@
     <Keywords />
     <ServiceXML />
     <CommandXML />
+    <Instances />
   </div>
 </template>
 
@@ -14,18 +15,20 @@ import ServiceDescription from "./ServiceDescription.vue";
 import Keywords from "./single-line-form/Keywords.vue";
 import ServiceXML from "./xml-form/ServiceXML.vue";
 import CommandXML from "./xml-form/CommandXML.vue";
+import Instances from "./numeric-form/Instances.vue";
 export default {
   components: {
     ServiceName,
     ServiceDescription,
     Keywords,
     ServiceXML,
-    CommandXML
+    CommandXML,
+    Instances
   }
 };
 </script>
 
-<style scoped>
+<style>
 .v-card {
   padding: 0.5em 2em 1em 2em;
   width: 75%;
