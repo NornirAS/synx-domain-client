@@ -10,6 +10,7 @@
     <WebJS />
     <PostMasterScript />
     <PreMasterScript />
+    <Micropage />
   </div>
 </template>
 
@@ -24,6 +25,7 @@ import Timeout from "./numberfield/Timeout.vue";
 import WebJS from "./textarea/WebJS.vue";
 import PostMasterScript from "./textarea/PostMasterScript.vue";
 import PreMasterScript from "./textarea/PreMasterScript.vue";
+import Micropage from "./Micropage.vue";
 export default {
   components: {
     ServiceName,
@@ -35,7 +37,8 @@ export default {
     Timeout,
     WebJS,
     PostMasterScript,
-    PreMasterScript
+    PreMasterScript,
+    Micropage
   }
 };
 </script>
