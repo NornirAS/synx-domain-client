@@ -1,22 +1,15 @@
 <template>
   <div>
+    <DarkSidebar />
     <v-row justify="space-between">
       <h2>
         Services
         <v-icon :color="colorBlue">{{ mdiInformationOutline }}</v-icon>
       </h2>
-      <v-btn
-        :color="colorBlue"
-        depressed
-        rounded
-        medium
-        dark
-        link
-        :to="{ name: 'createService' }"
-      >
-        <v-icon>{{ mdiPlus }}</v-icon>
-        Create Service
-      </v-btn>
+      <PrimaryActionBtn
+        :primaryActionBtnName="primaryActionBtnName"
+        :path="createServicePath"
+      />
     </v-row>
     <br />
     <v-row>
@@ -98,16 +91,20 @@
 </template>
 
 <script>
-import { mdiInformationOutline, mdiPlus, mdiChevronDown } from "@mdi/js";
-
+import { mdiInformationOutline, mdiChevronDown } from "@mdi/js";
+import DarkSidebar from "../components/DarkSidebar.vue";
+import PrimaryActionBtn from "../components/buttons/PrimaryActionBtn.vue";
 export default {
+  components: {
+    DarkSidebar,
+    PrimaryActionBtn
+  },
   data() {
     return {
       search: "",
       groups: ["test1", "test2"],
       sortList: ["newest", "oldest"],
       mdiInformationOutline,
-      mdiPlus,
       mdiChevronDown,
       checkboxStyle: {
         marginTop: "0",
@@ -115,14 +112,16 @@ export default {
       },
       searchBarStyle: {
         marginTop: "0",
-        padding: "0 0.5em"
+        padding: "0 0.5em 0 0.5em"
       },
       filterBtnStyle: {
         margin: "0 0.75em"
       },
       colorBlue: "#27AAE1",
       colorRed: "#FF6666",
-      colorGrey: "#404B5F"
+      colorGrey: "#404B5F",
+      primaryActionBtnName: "Create Service",
+      createServicePath: { name: "createService" }
     };
   }
 };

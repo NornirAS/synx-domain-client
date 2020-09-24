@@ -5,7 +5,7 @@
     :primaryValue="primaryValue"
     :secondaryValue="secondaryValue"
     :helper="helper"
-    :addButtonName="addButtonName"
+    :primaryActionBtnName="primaryActionBtnName"
   />
 </template>
 
@@ -19,7 +19,7 @@ export default {
       primaryValue: "100",
       secondaryValue: "/100",
       helper: "Available Instances",
-      addButtonName: "Add Instance"
+      primaryActionBtnName: "Add Instance"
     };
   },
   components: {

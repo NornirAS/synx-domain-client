@@ -23,7 +23,7 @@
         ></v-text-field>
       </v-col>
       <v-col sm="4">
-        <AddButton :addButtonName="addButtonName" />
+        <PrimaryActionBtn :primaryActionBtnName="primaryActionBtnName" />
       </v-col>
     </v-row>
   </v-card>
@@ -31,7 +31,7 @@
 
 <script>
 import CurrentValue from "./CurrentValue.vue";
-import AddButton from "../../buttons/AddButton.vue";
+import PrimaryActionBtn from "../../buttons/PrimaryActionBtn.vue";
 export default {
   props: [
     "title",
@@ -39,11 +39,11 @@ export default {
     "primaryValue",
     "secondaryValue",
     "helper",
-    "addButtonName"
+    "primaryActionBtnName"
   ],
   components: {
     CurrentValue,
-    AddButton
+    PrimaryActionBtn
   }
 };
 </script>

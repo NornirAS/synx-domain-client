@@ -2,7 +2,7 @@
   <XMLTemplate
     :title="title"
     :description="description"
-    :addButtonName="addButtonName"
+    :primaryActionBtnName="primaryActionBtnName"
   />
 </template>
 
@@ -14,7 +14,7 @@ export default {
       title: "Command XML",
       description:
         "This is the message format or API for this service command XML. Put XML on a single line to make it easier to parse on the client. You may link to variables in other services by using @domain/servicename#variable@ notation. Include links in link section below.",
-      addButtonName: "Add Schema"
+      primaryActionBtnName: "Add Schema"
     };
   },
   components: {

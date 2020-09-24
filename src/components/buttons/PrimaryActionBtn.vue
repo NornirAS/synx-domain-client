@@ -1,14 +1,14 @@
 <template>
-  <v-btn :color="colorBlue" depressed rounded medium dark>
+  <v-btn :color="colorBlue" depressed rounded medium dark :to="path">
     <v-icon>{{ mdiPlus }}</v-icon>
-    {{ addButtonName }}
+    {{ primaryActionBtnName }}
   </v-btn>
 </template>
 
 <script>
 import { mdiPlus } from "@mdi/js";
 export default {
-  props: ["addButtonName"],
+  props: ["primaryActionBtnName", "path"],
   data() {
     return {
       mdiPlus,

@@ -13,7 +13,7 @@
         ></v-text-field>
       </v-col>
       <v-col md="6">
-        <AddButton :addButtonName="addButtonName" />
+        <PrimaryActionBtn :primaryActionBtnName="primaryActionBtnName" />
       </v-col>
     </v-row>
     <TableForXML />
@@ -22,12 +22,12 @@
 
 <script>
 import TableForXML from "./TableForXML.vue";
-import AddButton from "../../buttons/AddButton.vue";
+import PrimaryActionBtn from "../../buttons/PrimaryActionBtn.vue";
 export default {
-  props: ["title", "description", "addButtonName"],
+  props: ["title", "description", "primaryActionBtnName"],
   components: {
     TableForXML,
-    AddButton
+    PrimaryActionBtn
   }
 };
 </script>

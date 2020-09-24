@@ -5,7 +5,7 @@
     :primaryValue="primaryValue"
     :secondaryValue="secondaryValue"
     :helper="helper"
-    :addButtonName="addButtonName"
+    :primaryActionBtnName="primaryActionBtnName"
   />
 </template>
 
@@ -20,7 +20,7 @@ export default {
       primaryValue: "30",
       secondaryValue: "'s",
       helper: "Current Timeout",
-      addButtonName: "Set Timeout"
+      primaryActionBtnName: "Set Timeout"
     };
   },
   components: {
