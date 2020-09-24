@@ -10,6 +10,7 @@
     <WebJS />
     <PostMasterScript />
     <PreMasterScript />
+    <ServiceImage />
     <Micropage />
   </div>
 </template>
@@ -26,6 +27,7 @@ import WebJS from "./textarea/WebJS.vue";
 import PostMasterScript from "./textarea/PostMasterScript.vue";
 import PreMasterScript from "./textarea/PreMasterScript.vue";
 import Micropage from "./Micropage.vue";
+import ServiceImage from "./textfield/ServiceImage";
 export default {
   components: {
     ServiceName,
@@ -38,7 +40,8 @@ export default {
     WebJS,
     PostMasterScript,
     PreMasterScript,
-    Micropage
+    Micropage,
+    ServiceImage
   }
 };
 </script>
