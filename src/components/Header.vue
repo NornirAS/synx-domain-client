@@ -3,12 +3,12 @@
     <div class="d-flex align-center">
       <router-link :to="{ name: 'services' }">
         <v-img
-          alt="Vuetify Logo"
+          alt="Cioty"
           class="shrink mr-2"
           contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          src="../assets/CIOTY-final-Logo.png"
           transition="scale-transition"
-          width="40"
+          width="50"
         />
       </router-link>
     </div>

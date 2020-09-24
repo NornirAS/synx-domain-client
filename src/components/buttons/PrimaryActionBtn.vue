@@ -1,5 +1,5 @@
 <template>
-  <v-btn :color="colorBlue" depressed rounded medium dark :to="path">
+  <v-btn :color="colorBlue" rounded medium dark :to="path">
     <v-icon>{{ mdiPlus }}</v-icon>
     {{ primaryActionBtnName }}
   </v-btn>
