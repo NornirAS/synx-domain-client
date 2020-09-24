@@ -7,6 +7,9 @@
     <CommandXML />
     <Instances />
     <Timeout />
+    <WebJS />
+    <PostMasterScript />
+    <PreMasterScript />
   </div>
 </template>
 
@@ -18,6 +21,9 @@ import ServiceXML from "./xml/ServiceXML.vue";
 import CommandXML from "./xml/CommandXML.vue";
 import Instances from "./numberfield/Instances.vue";
 import Timeout from "./numberfield/Timeout.vue";
+import WebJS from "./textarea/WebJS.vue";
+import PostMasterScript from "./textarea/PostMasterScript.vue";
+import PreMasterScript from "./textarea/PreMasterScript.vue";
 export default {
   components: {
     ServiceName,
@@ -26,7 +32,10 @@ export default {
     ServiceXML,
     CommandXML,
     Instances,
-    Timeout
+    Timeout,
+    WebJS,
+    PostMasterScript,
+    PreMasterScript
   }
 };
 </script>
