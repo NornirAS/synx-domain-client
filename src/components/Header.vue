@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app color="white" dark>
     <div class="d-flex align-center">
-      <router-link :to="{ name: 'home' }">
+      <router-link :to="{ name: 'services' }">
         <v-img
           alt="Vuetify Logo"
           class="shrink mr-2"

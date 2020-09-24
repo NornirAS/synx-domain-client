@@ -47,7 +47,11 @@ export default {
       drawer: true,
       items: [
         { title: "Services", icon: mdiAntenna, path: { name: "services" } },
-        { title: "Notifications", icon: mdiBell, path: { name: "home" } }
+        {
+          title: "Notifications",
+          icon: mdiBell,
+          path: { name: "notifications" }
+        }
       ],
       mainBgColor: "#404B5F",
       permanent: true

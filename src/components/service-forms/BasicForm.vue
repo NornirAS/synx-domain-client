@@ -17,7 +17,7 @@ import Keywords from "./single-line-form/Keywords.vue";
 import ServiceXML from "./xml-form/ServiceXML.vue";
 import CommandXML from "./xml-form/CommandXML.vue";
 import Instances from "./numeric-form/Instances.vue";
-import Timeout  from "./numeric-form/Timeout.vue";
+import Timeout from "./numeric-form/Timeout.vue";
 export default {
   components: {
     ServiceName,
