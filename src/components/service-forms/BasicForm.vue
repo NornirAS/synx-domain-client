@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import ServiceName from "./single-line-form/ServiceName.vue";
+import ServiceName from "./textfield/ServiceName.vue";
 import ServiceDescription from "./textarea/ServiceDescription.vue";
-import Keywords from "./single-line-form/Keywords.vue";
-import ServiceXML from "./xml-form/ServiceXML.vue";
-import CommandXML from "./xml-form/CommandXML.vue";
-import Instances from "./numeric-form/Instances.vue";
-import Timeout from "./numeric-form/Timeout.vue";
+import Keywords from "./textfield/Keywords.vue";
+import ServiceXML from "./xml/ServiceXML.vue";
+import CommandXML from "./xml/CommandXML.vue";
+import Instances from "./numberfield/Instances.vue";
+import Timeout from "./numberfield/Timeout.vue";
 export default {
   components: {
     ServiceName,
