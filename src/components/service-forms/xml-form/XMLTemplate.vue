@@ -1,7 +1,6 @@
 <template>
   <v-card outlined>
-    <h2>{{ title }}</h2>
-    <p>{{ description }}</p>
+    <FormHeader :title="title" :description="description" />
     <v-row>
       <v-col md="6">
         <v-text-field
@@ -23,11 +22,13 @@
 <script>
 import TableForXML from "./TableForXML.vue";
 import PrimaryActionBtn from "../../buttons/PrimaryActionBtn.vue";
+import FormHeader from "../FormHeader.vue";
 export default {
   props: ["title", "description", "primaryActionBtnName"],
   components: {
     TableForXML,
-    PrimaryActionBtn
+    PrimaryActionBtn,
+    FormHeader
   }
 };
 </script>

@@ -1,13 +1,13 @@
 <template>
   <v-card outlined>
     <FormHeader :title="title" :description="description" />
-    <v-text-field
-      :label="title"
-      single-line
-      dense
+    <v-textarea
       outlined
       hide-details
-    ></v-text-field>
+      name="input-7-4"
+      label="Description"
+      value=""
+    ></v-textarea>
   </v-card>
 </template>
 

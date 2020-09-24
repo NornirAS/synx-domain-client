@@ -1,7 +1,6 @@
 <template>
   <v-card outlined>
-    <h2>{{ title }}</h2>
-    <p>{{ description }}</p>
+    <FormHeader :title="title" :description="description" />
     <v-row justify="center" align="center">
       <v-col sm="4">
         <CurrentValue
@@ -32,6 +31,7 @@
 <script>
 import CurrentValue from "./CurrentValue.vue";
 import PrimaryActionBtn from "../../buttons/PrimaryActionBtn.vue";
+import FormHeader from "../FormHeader.vue";
 export default {
   props: [
     "title",
@@ -43,7 +43,14 @@ export default {
   ],
   components: {
     CurrentValue,
-    PrimaryActionBtn
+    PrimaryActionBtn,
+    FormHeader
   }
 };
 </script>
+
+<style scoped>
+.col-sm-4 {
+  padding: 0 12px;
+}
+</style>
