@@ -1,13 +1,16 @@
 <template>
   <v-app>
     <Header />
+    <router-view name="dark-sidebar"></router-view>
+    <router-view name="light-sidebar"></router-view>
     <v-main>
       <v-container fluid>
-        <router-view name="dark-sidebar"></router-view>
-        <router-view name="light-sidebar"></router-view>
         <router-view></router-view>
       </v-container>
     </v-main>
+    <v-footer app>
+      <!-- -->
+    </v-footer>
   </v-app>
 </template>
 
@@ -30,8 +33,8 @@ export default {
 .v-main {
   background-color: rgb(235, 240, 244);
 }
-.container {
-  padding: 1.5em 20em 0 20em;
+.v-navigation-drawer {
+  top: 64px;
 }
 .v-card {
   margin: 1em 0 1em 0;

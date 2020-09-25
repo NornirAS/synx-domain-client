@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="white" dark>
+  <v-app-bar app dark :style="appBarStyle">
     <div class="d-flex align-center">
       <router-link :to="{ name: 'services' }">
         <v-img
@@ -33,7 +33,12 @@ export default {
   data() {
     return {
       account: mdiAccount,
-      bell: mdiBell
+      bell: mdiBell,
+      appBarStyle: {
+        backgroundColor: "#ffffff",
+        width: "100%",
+        left: "0"
+      }
     };
   }
 };

@@ -1,11 +1,13 @@
 <template>
   <v-navigation-drawer
-    v-model="drawer"
+    :permanent="permanent"
+    :drawer="drawer"
     :color="color"
     :light="light"
     :dark="dark"
+    :style="navStyle"
     absolute
-    :permanent="permanent"
+    app
   >
     <v-list dense nav class="py-0">
       <v-list-item two-line>
@@ -48,14 +50,18 @@ export default {
     "listItemStyle",
     "light",
     "dark"
-  ]
+  ],
+  data() {
+    return {
+      navStyle: {
+        top: "64px"
+      }
+    };
+  }
 };
 </script>
 
 <style scoped>
-#app > div > main > div > div > aside {
-  padding-top: 0.5em;
-}
 .v-list {
   padding: 0;
 }

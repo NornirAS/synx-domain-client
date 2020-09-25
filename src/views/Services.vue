@@ -1,93 +1,95 @@
 <template>
-  <div>
-    <v-row justify="space-between">
-      <h2>
-        Services
-        <v-icon :color="colorBlue">{{ mdiInformationOutline }}</v-icon>
-      </h2>
-      <PrimaryActionBtn
-        :primaryActionBtnName="primaryActionBtnName"
-        :path="createServicePath"
-      />
-    </v-row>
-    <br />
-    <v-row>
-      <Checkbox :style="checkBoxStyle" />
-      <v-menu offset-y>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            :color="colorGrey"
-            :style="filterBtnStyle"
-            rounded
-            dark
-            v-bind="attrs"
-            v-on="on"
-          >
-            Groups
-            <v-icon>{{ mdiChevronDown }}</v-icon>
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item v-for="item in groups" :key="item">
-            <v-list-item-title>{{ item }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-      <v-menu offset-y>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            :color="colorGrey"
-            :style="filterBtnStyle"
-            rounded
-            dark
-            v-bind="attrs"
-            v-on="on"
-          >
-            Sort By
-            <v-icon>{{ mdiChevronDown }}</v-icon>
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item v-for="item in sortList" :key="item">
-            <v-list-item-title>{{ item }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-        :style="searchBarStyle"
-      ></v-text-field>
-      <v-btn :color="colorRed" :style="filterBtnStyle" rounded dark>
-        Delete
-      </v-btn>
-      <v-menu offset-y>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            :color="colorGrey"
-            :style="filterBtnStyle"
-            rounded
-            dark
-            v-bind="attrs"
-            v-on="on"
-          >
-            Move To
-            <v-icon>{{ mdiChevronDown }}</v-icon>
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item v-for="item in sortList" :key="item">
-            <v-list-item-title>{{ item }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-    </v-row>
-    <hr />
-    <Service />
-  </div>
+  <v-row justify="center">
+    <v-col xs="12" md="6" lg="7">
+      <v-row justify="space-between">
+        <h2>
+          Services
+          <v-icon :color="colorBlue">{{ mdiInformationOutline }}</v-icon>
+        </h2>
+        <PrimaryActionBtn
+          :primaryActionBtnName="primaryActionBtnName"
+          :path="createServicePath"
+        />
+      </v-row>
+      <br />
+      <v-row>
+        <Checkbox :style="checkBoxStyle" />
+        <v-menu offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              :color="colorGrey"
+              :style="filterBtnStyle"
+              rounded
+              dark
+              v-bind="attrs"
+              v-on="on"
+            >
+              Groups
+              <v-icon>{{ mdiChevronDown }}</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item v-for="item in groups" :key="item">
+              <v-list-item-title>{{ item }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              :color="colorGrey"
+              :style="filterBtnStyle"
+              rounded
+              dark
+              v-bind="attrs"
+              v-on="on"
+            >
+              Sort By
+              <v-icon>{{ mdiChevronDown }}</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item v-for="item in sortList" :key="item">
+              <v-list-item-title>{{ item }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify"
+          label="Search"
+          single-line
+          hide-details
+          :style="searchBarStyle"
+        ></v-text-field>
+        <v-btn :color="colorRed" :style="filterBtnStyle" rounded dark>
+          Delete
+        </v-btn>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              :color="colorGrey"
+              :style="filterBtnStyle"
+              rounded
+              dark
+              v-bind="attrs"
+              v-on="on"
+            >
+              Move To
+              <v-icon>{{ mdiChevronDown }}</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item v-for="item in sortList" :key="item">
+              <v-list-item-title>{{ item }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-row>
+      <hr />
+      <Service />
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -118,7 +120,7 @@ export default {
       colorRed: "#FF6666",
       colorGrey: "#404B5F",
       primaryActionBtnName: "Create Service",
-      createServicePath: { name: "createService" },
+      createServicePath: { name: "createService" }
     };
   },
   components: {
