@@ -3,8 +3,8 @@ import VueRouter from "vue-router";
 import Services from "../views/Services.vue";
 import CreateService from "../views/CreateService";
 import Notifications from "../views/Notifications.vue";
-import DarkSidebar from "../components/DarkSidebar.vue";
-import LightSidebar from "../components/LightSidebar.vue";
+import DarkSidebar from "../components/sidebars/DarkSidebar.vue";
+import LightSidebar from "../components/sidebars/LightSidebar.vue";
 
 Vue.use(VueRouter);
 

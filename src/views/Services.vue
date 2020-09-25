@@ -1,6 +1,5 @@
 <template>
   <div>
-    <DarkSidebar />
     <v-row justify="space-between">
       <h2>
         Services
@@ -92,11 +91,9 @@
 
 <script>
 import { mdiInformationOutline, mdiChevronDown } from "@mdi/js";
-import DarkSidebar from "../components/DarkSidebar.vue";
 import PrimaryActionBtn from "../components/buttons/PrimaryActionBtn.vue";
 export default {
   components: {
-    DarkSidebar,
     PrimaryActionBtn
   },
   data() {
