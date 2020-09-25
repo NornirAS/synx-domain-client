@@ -12,7 +12,7 @@
     </v-row>
     <br />
     <v-row>
-      <v-checkbox :style="checkboxStyle"></v-checkbox>
+      <Checkbox />
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
@@ -86,16 +86,16 @@
       </v-menu>
     </v-row>
     <hr />
+    <Service />
   </div>
 </template>
 
 <script>
 import { mdiInformationOutline, mdiChevronDown } from "@mdi/js";
 import PrimaryActionBtn from "../components/buttons/PrimaryActionBtn.vue";
+import Service from "../components/service/Service.vue";
+import Checkbox from "../components/controls/Checkbox.vue";
 export default {
-  components: {
-    PrimaryActionBtn
-  },
   data() {
     return {
       search: "",
@@ -103,10 +103,6 @@ export default {
       sortList: ["newest", "oldest"],
       mdiInformationOutline,
       mdiChevronDown,
-      checkboxStyle: {
-        marginTop: "0",
-        paddingTop: "0.5em"
-      },
       searchBarStyle: {
         marginTop: "0",
         padding: "0 0.5em 0 0.5em"
@@ -120,6 +116,11 @@ export default {
       primaryActionBtnName: "Create Service",
       createServicePath: { name: "createService" }
     };
+  },
+  components: {
+    PrimaryActionBtn,
+    Service,
+    Checkbox
   }
 };
 </script>

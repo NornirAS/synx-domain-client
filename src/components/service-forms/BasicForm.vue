@@ -50,6 +50,6 @@ export default {
 .v-card {
   margin: 0 0 1em 0;
   padding: 0.5em 2em 1em 2em;
-  width: 75%;
+  width: 80%;
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div style="height: 45px">
-      <span class="primary-value">{{ primaryValue }}</span>
-      <span class="secondary-value">{{ secondaryValue }}</span>
+    <div :style="divHeight">
+      <span :style="primaryStyle">{{ primaryValue }}</span>
+      <span :style="secondaryStyle">{{ secondaryValue }}</span>
     </div>
     <p>{{ helper }}</p>
   </div>
@@ -10,24 +10,21 @@
 
 <script>
 export default {
-  props: ["primaryValue", "secondaryValue", "helper"]
+  props: [
+    "primaryValue",
+    "secondaryValue",
+    "helper",
+    "primaryStyle",
+    "secondaryStyle",
+    "divHeight"
+  ]
 };
 </script>
 
 <style scoped>
-.p {
+p {
   margin: 0;
   color: #58595b;
   font-size: 14px;
-}
-.primary-value {
-  color: #27aae1;
-  font-size: 40px;
-  font-weight: 500;
-}
-.secondary-value {
-  color: #58595b;
-  font-size: 30px;
-  font-weight: 500;
 }
 </style>

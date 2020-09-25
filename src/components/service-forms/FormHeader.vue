@@ -1,13 +1,15 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <p>{{ description }}</p>
+    <p>
+      {{ description }} <a :href="url" target="_blank">{{ url }}</a>
+    </p>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["title", "description"]
+  props: ["title", "description", "url"]
 };
 </script>
 
@@ -21,5 +23,8 @@ p {
   color: #58595b;
   font-size: 14px;
   margin-bottom: 0.3em;
+}
+a {
+  color: #27aae1;
 }
 </style>
