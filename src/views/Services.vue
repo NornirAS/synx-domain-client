@@ -12,7 +12,7 @@
     </v-row>
     <br />
     <v-row>
-      <Checkbox />
+      <Checkbox :style="checkBoxStyle" />
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
@@ -107,6 +107,10 @@ export default {
         marginTop: "0",
         padding: "0 0.5em 0 0.5em"
       },
+      checkBoxStyle: {
+        margin: "0",
+        paddingTop: "0.5em"
+      },
       filterBtnStyle: {
         margin: "0 0.75em"
       },
@@ -114,7 +118,7 @@ export default {
       colorRed: "#FF6666",
       colorGrey: "#404B5F",
       primaryActionBtnName: "Create Service",
-      createServicePath: { name: "createService" }
+      createServicePath: { name: "createService" },
     };
   },
   components: {

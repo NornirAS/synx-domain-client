@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <Checkbox />
+    <Checkbox :style="checkBoxStyle" />
     <v-card outlined>
       <v-row>
         <v-col md="3">
@@ -56,6 +56,10 @@ export default {
       },
       divHeight: {
         height: "30px"
+      },
+      checkBoxStyle: {
+        margin: "0",
+        paddingTop: "1em"
       }
     };
   },
@@ -68,7 +72,5 @@ export default {
 </script>
 
 <style>
-.primary-value {
-  font-size: 26px;
-}
+
 </style>

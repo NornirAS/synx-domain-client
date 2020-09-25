@@ -45,11 +45,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.v-card {
-  margin: 0 0 1em 0;
-  padding: 0.5em 2em 1em 2em;
-  width: 80%;
-}
-</style>
