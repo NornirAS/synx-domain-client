@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <BasicForm />
-  </div>
+  <v-row justify="center">
+    <v-col xs="12" md="10">
+      <BasicForm />
+    </v-col>
+  </v-row>
 </template>
 
 <script>

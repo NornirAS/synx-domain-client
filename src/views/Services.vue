@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-col xs="12" md="6" lg="7">
+    <v-col xs="12" md="10">
       <v-row justify="space-between">
         <h2>
           Services
