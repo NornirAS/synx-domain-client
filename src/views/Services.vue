@@ -2,13 +2,16 @@
   <v-row justify="center">
     <v-col xs="12" md="10">
       <v-row justify="space-between">
-        <Header :title="title" :color="colorBlue" />
-        <PrimaryActionBtn
-          :primaryActionBtnName="primaryActionBtnName"
-          :path="createServicePath"
-        />
+        <v-col>
+          <Header :title="title" :color="colorBlue" />
+        </v-col>
+        <v-col align="right">
+          <PrimaryActionBtn
+            :primaryActionBtnName="primaryActionBtnName"
+            :path="createServicePath"
+          />
+        </v-col>
       </v-row>
-      <br />
       <v-row>
         <Checkbox />
         <v-menu offset-y>
