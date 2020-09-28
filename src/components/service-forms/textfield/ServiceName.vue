@@ -1,5 +1,7 @@
 <template>
-  <SingleLineTemplate :title="title" :description="description" />
+  <div>
+    <SingleLineTemplate :title="title" :description="description" />
+  </div>
 </template>
 
 <script>

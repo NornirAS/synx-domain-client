@@ -10,14 +10,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in schemas" :key="item.name">
+        <tr v-for="(item, index) in serviceXML" :key="item.name">
           <td>{{ index }}</td>
           <td>{{ item.name }}</td>
-          <td><Dialog /></td>
+          <td><Dialog :index="getIndex(index)" /></td>
           <td>{{ item.linkingFrom }}</td>
         </tr>
       </tbody>
     </template>
+    <p></p>
   </v-simple-table>
 </template>
 
@@ -26,23 +27,21 @@ import Dialog from "./DialogForXML.vue";
 export default {
   data() {
     return {
-      colorBlue: "#27AAE1",
-      schemas: [
-        {
-          name: "light",
-          linkingTo: "Add Link",
-          linkingFrom: "View Links"
-        },
-        {
-          name: "sun",
-          linkingTo: "Add Link",
-          linkingFrom: "View Links"
-        }
-      ]
+      colorBlue: "#27AAE1"
     };
   },
   components: {
     Dialog
+  },
+  methods: {
+    getIndex(index) {
+      return index;
+    }
+  },
+  computed: {
+    serviceXML() {
+      return this.$store.state.serviceXML;
+    }
   }
 };
 </script>

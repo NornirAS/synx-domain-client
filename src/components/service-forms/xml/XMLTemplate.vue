@@ -9,11 +9,17 @@
           dense
           outlined
           hide-details
+          v-model="schema.name"
         ></v-text-field>
       </v-col>
       <v-col md="6">
-        <PrimaryActionBtn :primaryActionBtnName="primaryActionBtnName" />
+        <!-- <PrimaryActionBtn
+          :primaryActionBtnName="primaryActionBtnName"
+          @click="addToString({ test })"
+        /> -->
+        <v-btn @click="addToArray()"></v-btn>
       </v-col>
+      <p>{{ schema.name }}</p>
     </v-row>
     <TableForXML />
   </v-card>
@@ -21,14 +27,28 @@
 
 <script>
 import TableForXML from "./TableForXML.vue";
-import PrimaryActionBtn from "../../buttons/PrimaryActionBtn.vue";
+// import PrimaryActionBtn from "../../buttons/PrimaryActionBtn.vue";
 import FormHeader from "../FormHeader.vue";
 export default {
   props: ["title", "description", "primaryActionBtnName"],
+  data() {
+    return {
+      schema: {
+        name: "",
+        linkTo: ""
+      }
+    };
+  },
   components: {
     TableForXML,
-    PrimaryActionBtn,
+    // PrimaryActionBtn,
     FormHeader
+  },
+  methods: {
+    addToArray() {
+      this.$store.state.serviceXML.push(this.schema);
+      this.schema = {};
+    }
   }
 };
 </script>

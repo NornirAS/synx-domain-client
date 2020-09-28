@@ -7,7 +7,9 @@
       dense
       outlined
       hide-details
+      v-model="test"
     ></v-text-field>
+    <p>{{ test }}</p>
   </v-card>
 </template>
 
@@ -15,6 +17,11 @@
 import FormHeader from "../FormHeader.vue";
 export default {
   props: ["title", "description"],
+  data() {
+    return {
+      test: ""
+    };
+  },
   components: {
     FormHeader
   }
