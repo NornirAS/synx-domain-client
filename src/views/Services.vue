@@ -13,7 +13,7 @@
       </v-row>
       <br />
       <v-row>
-        <Checkbox :style="checkBoxStyle" />
+        <Checkbox />
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -108,10 +108,6 @@ export default {
       searchBarStyle: {
         marginTop: "0",
         padding: "0 0.5em 0 0.5em"
-      },
-      checkBoxStyle: {
-        margin: "0",
-        paddingTop: "0.5em"
       },
       filterBtnStyle: {
         margin: "0 0.75em"
