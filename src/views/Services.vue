@@ -2,10 +2,7 @@
   <v-row justify="center">
     <v-col xs="12" md="10">
       <v-row justify="space-between">
-        <h2>
-          Services
-          <v-icon :color="colorBlue">{{ mdiInformationOutline }}</v-icon>
-        </h2>
+        <Header :title="title" :color="colorBlue" />
         <PrimaryActionBtn
           :primaryActionBtnName="primaryActionBtnName"
           :path="createServicePath"
@@ -93,17 +90,18 @@
 </template>
 
 <script>
-import { mdiInformationOutline, mdiChevronDown } from "@mdi/js";
+import { mdiChevronDown } from "@mdi/js";
 import PrimaryActionBtn from "../components/buttons/PrimaryActionBtn.vue";
 import Service from "../components/service/Service.vue";
 import Checkbox from "../components/controls/Checkbox.vue";
+import Header from "../components/Header.vue";
 export default {
   data() {
     return {
+      title: "Services",
       search: "",
       groups: ["test1", "test2"],
       sortList: ["newest", "oldest"],
-      mdiInformationOutline,
       mdiChevronDown,
       searchBarStyle: {
         marginTop: "0",
@@ -122,7 +120,8 @@ export default {
   components: {
     PrimaryActionBtn,
     Service,
-    Checkbox
+    Checkbox,
+    Header
   }
 };
 </script>

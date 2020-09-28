@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Header />
+    <Appbar />
     <router-view name="dark-sidebar"></router-view>
     <router-view name="light-sidebar"></router-view>
     <v-main>
@@ -15,12 +15,12 @@
 </template>
 
 <script>
-import Header from "./components/Header.vue";
+import Appbar from "./components/Appbar.vue";
 export default {
   name: "App",
 
   components: {
-    Header
+    Appbar
   },
 
   data: () => ({
