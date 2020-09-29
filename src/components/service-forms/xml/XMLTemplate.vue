@@ -13,13 +13,10 @@
         ></v-text-field>
       </v-col>
       <v-col md="6">
-        <!-- <PrimaryActionBtn
-          :primaryActionBtnName="primaryActionBtnName"
-          @click="addToString({ test })"
-        /> -->
-        <v-btn @click="addToArray()"></v-btn>
+        <v-btn @click="addToArray()" :color="colorBlue" rounded medium dark>
+          Add
+        </v-btn>
       </v-col>
-      <p>{{ schema.name }}</p>
     </v-row>
     <TableForXML />
   </v-card>
@@ -27,7 +24,6 @@
 
 <script>
 import TableForXML from "./TableForXML.vue";
-// import PrimaryActionBtn from "../../buttons/PrimaryActionBtn.vue";
 import FormHeader from "../FormHeader.vue";
 export default {
   props: ["title", "description", "primaryActionBtnName"],
@@ -35,13 +31,13 @@ export default {
     return {
       schema: {
         name: "",
-        linkTo: ""
-      }
+        linkTo: {}
+      },
+      colorBlue: "#27AAE1"
     };
   },
   components: {
     TableForXML,
-    // PrimaryActionBtn,
     FormHeader
   },
   methods: {

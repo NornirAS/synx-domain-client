@@ -2,7 +2,26 @@
   <div class="text-left">
     <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn :color="colorBlue" dark v-bind="attrs" v-on="on" xSmall text>
+        <v-btn
+          v-if="isLink"
+          :color="colorBlue"
+          dark
+          v-bind="attrs"
+          v-on="on"
+          xSmall
+          text
+        >
+          {{ linkingString() }}
+        </v-btn>
+        <v-btn
+          v-else
+          :color="colorBlue"
+          dark
+          v-bind="attrs"
+          v-on="on"
+          xSmall
+          text
+        >
           {{ linkName }}
         </v-btn>
       </template>
@@ -49,7 +68,7 @@
                 <v-btn
                   :color="colorGreen"
                   fab
-                  @click="(dialog = false), addLinking()"
+                  @click="(dialog = false), (isLink = true), addLinking()"
                   small
                 >
                   <v-icon>{{ mdiCheck }}</v-icon>
@@ -73,6 +92,7 @@ export default {
   data() {
     return {
       linkName: "Add Link",
+      isLink: false,
       linkTo: {
         domain: "",
         service: "",
@@ -87,9 +107,13 @@ export default {
   },
   methods: {
     addLinking() {
-      this.$store.commit("setAge", {
+      this.$store.commit("addLinks", {
         name: this.serviceXML[this.index].name,
-        linkTo: this.linkingString()
+        linkTo: {
+          domain: this.linkTo.domain,
+          service: this.linkTo.service,
+          variable: this.linkTo.variable
+        }
       });
     },
     linkingString() {

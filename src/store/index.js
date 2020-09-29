@@ -5,10 +5,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    serviceXML: []
+    serviceXML: [],
+    commandXML: []
   },
   mutations: {
-    setAge: (state, payload) => {
+    addLinks: (state, payload) => {
       const { name, linkTo } = payload;
       const schema = state.serviceXML.find(s => s.name === name);
       schema.linkTo = linkTo;
