@@ -6,7 +6,7 @@
           <th class="text-left">#</th>
           <th class="text-left">Schema</th>
           <th class="text-left">Linking to</th>
-          <th class="text-left">Linking from</th>
+          <th class="text-center">Remove Schema</th>
         </tr>
       </thead>
       <tbody v-if="title === 'Service XML'">
@@ -14,7 +14,11 @@
           <td>{{ index }}</td>
           <td>{{ item.name }}</td>
           <td><Dialog :index="getIndex(index)" :title="title" /></td>
-          <td>{{ item.linkingFrom }}</td>
+          <td class="text-center">
+            <v-btn @click="removeSchema(index)" :color="colorRed" icon x-small>
+              <v-icon>{{ mdiDelete }}</v-icon>
+            </v-btn>
+          </td>
         </tr>
       </tbody>
       <tbody v-else>
@@ -22,7 +26,11 @@
           <td>{{ index }}</td>
           <td>{{ item.name }}</td>
           <td><Dialog :index="getIndex(index)" :title="title" /></td>
-          <td>{{ item.linkingFrom }}</td>
+          <td class="text-center">
+            <v-btn @click="removeSchema(index)" :color="colorRed" icon x-small>
+              <v-icon>{{ mdiDelete }}</v-icon>
+            </v-btn>
+          </td>
         </tr>
       </tbody>
     </template>
@@ -30,11 +38,14 @@
 </template>
 
 <script>
+import { mdiDelete } from "@mdi/js";
 import Dialog from "./DialogForXML.vue";
 export default {
   props: ["title"],
   data() {
     return {
+      mdiDelete,
+      colorRed: "#FF6666",
       colorBlue: "#27AAE1"
     };
   },
@@ -44,6 +55,13 @@ export default {
   methods: {
     getIndex(index) {
       return index;
+    },
+    removeSchema(index) {
+      if (this.title === "Service XML") {
+        this.$store.commit("serviceXMLRemoveSchema", index);
+      } else {
+        this.$store.commit("commandXMLRemoveSchema", index);
+      }
     }
   },
   computed: {
