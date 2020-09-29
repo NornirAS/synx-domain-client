@@ -1,18 +1,30 @@
 <template>
-  <SingleLineTemplate :title="title" :description="description" />
+  <v-card outlined>
+    <FormHeader :title="title" :description="description" />
+    <v-text-field
+      :label="title"
+      single-line
+      dense
+      outlined
+      hide-details
+      v-model="serviceImageURL"
+    ></v-text-field>
+    <p>{{ serviceImageURL }}</p>
+  </v-card>
 </template>
 
 <script>
-import SingleLineTemplate from "./SingleLineTemplate.vue";
+import FormHeader from "../FormHeader.vue";
 export default {
   data() {
     return {
       title: "Image",
-      description: "Optional. URL to an image for your service."
+      description: "Optional. URL to an image for your service.",
+      serviceImageURL: ""
     };
   },
   components: {
-    SingleLineTemplate
+    FormHeader
   }
 };
 </script>

@@ -66,10 +66,10 @@ export default {
   },
   computed: {
     serviceXML() {
-      return this.$store.state.serviceXML;
+      return this.$store.state.serviceForm.serviceXML;
     },
     commandXML() {
-      return this.$store.state.commandXML;
+      return this.$store.state.serviceForm.commandXML;
     }
   }
 };

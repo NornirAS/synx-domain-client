@@ -43,10 +43,10 @@ export default {
   methods: {
     addToArray() {
       if (this.title === "Service XML") {
-        this.$store.state.serviceXML.push(this.schema);
+        this.$store.state.serviceForm.serviceXML.push(this.schema);
         this.schema = {};
       } else {
-        this.$store.state.commandXML.push(this.schema);
+        this.$store.state.serviceForm.commandXML.push(this.schema);
         this.schema = {};
       }
     }

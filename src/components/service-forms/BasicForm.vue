@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <form>
     <ServiceName />
     <ServiceDescription />
     <Keywords />
@@ -12,7 +12,8 @@
     <PreMasterScript />
     <ServiceImage />
     <Micropage />
-  </div>
+    <v-btn></v-btn>
+  </form>
 </template>
 
 <script>
@@ -29,6 +30,11 @@ import PreMasterScript from "./textarea/PreMasterScript.vue";
 import Micropage from "./Micropage.vue";
 import ServiceImage from "./textfield/ServiceImage";
 export default {
+  data() {
+    return {
+      
+    }
+  },
   components: {
     ServiceName,
     ServiceDescription,
