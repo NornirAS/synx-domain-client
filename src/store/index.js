@@ -9,9 +9,14 @@ export default new Vuex.Store({
     commandXML: []
   },
   mutations: {
-    addLinks: (state, payload) => {
+    serviceXMLAddLink: (state, payload) => {
       const { name, linkTo } = payload;
       const schema = state.serviceXML.find(s => s.name === name);
+      schema.linkTo = linkTo;
+    },
+    commandXMLAddLink: (state, payload) => {
+      const { name, linkTo } = payload;
+      const schema = state.commandXML.find(s => s.name === name);
       schema.linkTo = linkTo;
     }
   },

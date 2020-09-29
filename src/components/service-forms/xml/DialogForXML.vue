@@ -88,7 +88,7 @@
 <script>
 import { mdiCheck, mdiClose } from "@mdi/js";
 export default {
-  props: ["index"],
+  props: ["index", "title"],
   data() {
     return {
       linkName: "Add Link",
@@ -107,14 +107,25 @@ export default {
   },
   methods: {
     addLinking() {
-      this.$store.commit("addLinks", {
-        name: this.serviceXML[this.index].name,
-        linkTo: {
-          domain: this.linkTo.domain,
-          service: this.linkTo.service,
-          variable: this.linkTo.variable
-        }
-      });
+      if (this.title === "Service XML") {
+        this.$store.commit("serviceXMLAddLink", {
+          name: this.serviceXML[this.index].name,
+          linkTo: {
+            domain: this.linkTo.domain,
+            service: this.linkTo.service,
+            variable: this.linkTo.variable
+          }
+        });
+      } else {
+        this.$store.commit("commandXMLAddLink", {
+          name: this.commandXML[this.index].name,
+          linkTo: {
+            domain: this.linkTo.domain,
+            service: this.linkTo.service,
+            variable: this.linkTo.variable
+          }
+        });
+      }
     },
     linkingString() {
       return (
@@ -129,6 +140,9 @@ export default {
   computed: {
     serviceXML() {
       return this.$store.state.serviceXML;
+    },
+    commandXML() {
+      return this.$store.state.commandXML;
     }
   }
 };

@@ -18,7 +18,7 @@
         </v-btn>
       </v-col>
     </v-row>
-    <TableForXML />
+    <TableForXML :title="title" />
   </v-card>
 </template>
 
@@ -42,8 +42,13 @@ export default {
   },
   methods: {
     addToArray() {
-      this.$store.state.serviceXML.push(this.schema);
-      this.schema = {};
+      if (this.title === "Service XML") {
+        this.$store.state.serviceXML.push(this.schema);
+        this.schema = {};
+      } else {
+        this.$store.state.commandXML.push(this.schema);
+        this.schema = {};
+      }
     }
   }
 };

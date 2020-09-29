@@ -9,22 +9,30 @@
           <th class="text-left">Linking from</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-if="title === 'Service XML'">
         <tr v-for="(item, index) in serviceXML" :key="item.name">
           <td>{{ index }}</td>
           <td>{{ item.name }}</td>
-          <td><Dialog :index="getIndex(index)" /></td>
+          <td><Dialog :index="getIndex(index)" :title="title" /></td>
+          <td>{{ item.linkingFrom }}</td>
+        </tr>
+      </tbody>
+      <tbody v-else>
+        <tr v-for="(item, index) in commandXML" :key="item.name">
+          <td>{{ index }}</td>
+          <td>{{ item.name }}</td>
+          <td><Dialog :index="getIndex(index)" :title="title" /></td>
           <td>{{ item.linkingFrom }}</td>
         </tr>
       </tbody>
     </template>
-    <p></p>
   </v-simple-table>
 </template>
 
 <script>
 import Dialog from "./DialogForXML.vue";
 export default {
+  props: ["title"],
   data() {
     return {
       colorBlue: "#27AAE1"
@@ -41,6 +49,9 @@ export default {
   computed: {
     serviceXML() {
       return this.$store.state.serviceXML;
+    },
+    commandXML() {
+      return this.$store.state.commandXML;
     }
   }
 };
