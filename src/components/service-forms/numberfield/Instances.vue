@@ -21,7 +21,7 @@
           hide-details
           type="number"
           min="1"
-          :max="totalInstances - instances"
+          :max="availableInstances()"
           v-model.number="serviceInstances"
         ></v-text-field>
       </v-col>
@@ -55,7 +55,6 @@ export default {
       totalInstances: 1000,
       helper: "Available Instances",
       serviceInstances: 0,
-      disabled: false,
       colorBlue: "#27AAE1",
       primaryStyle: {
         color: "#27aae1",

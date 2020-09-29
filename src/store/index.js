@@ -12,7 +12,7 @@ export default new Vuex.Store({
       serviceXML: [],
       commandXML: [],
       instances: 0,
-      timeout: ""
+      timeout: "30"
     }
   },
   mutations: {

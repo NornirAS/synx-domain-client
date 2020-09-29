@@ -1,10 +1,10 @@
 <template>
   <v-card outlined>
     <FormHeader :title="title" :description="description" />
-    <v-row justify="center" align="center">
-      <v-col sm="4">
+    <v-row justify="start" align="center">
+      <v-col sm="2">
         <CurrentValue
-          :primaryValue="primaryValue"
+          :primaryValue="timeout"
           :secondaryValue="secondaryValue"
           :helper="helper"
           :primaryStyle="primaryStyle"
@@ -12,7 +12,7 @@
           :divHeight="divHeight"
         />
       </v-col>
-      <v-col sm="4">
+      <v-col sm="3">
         <v-text-field
           :label="title"
           single-line
@@ -20,12 +20,15 @@
           outlined
           hide-details
           type="number"
-          min="0"
-          max="100"
+          min="10"
+          max="10000"
+          v-model="serviceTimeout"
         ></v-text-field>
       </v-col>
       <v-col sm="4">
-        <PrimaryActionBtn :primaryActionBtnName="primaryActionBtnName" />
+        <v-btn @click="setTimeout" :color="colorBlue" rounded medium dark>
+          Set
+        </v-btn>
       </v-col>
     </v-row>
   </v-card>
@@ -33,7 +36,6 @@
 
 <script>
 import CurrentValue from "./CurrentValue.vue";
-import PrimaryActionBtn from "../../buttons/PrimaryActionBtn.vue";
 import FormHeader from "../FormHeader.vue";
 export default {
   data() {
@@ -41,10 +43,11 @@ export default {
       title: "Timeout",
       description:
         "Time for inactive channelrequest before it closes(in seconds). Default 30.",
-      primaryValue: "30",
+      serviceTimeout: "30",
       secondaryValue: "s",
       helper: "Current Timeout",
       primaryActionBtnName: "Set Timeout",
+      colorBlue: "#27AAE1",
       primaryStyle: {
         color: "#27aae1",
         fontSize: "40px",
@@ -62,8 +65,18 @@ export default {
   },
   components: {
     CurrentValue,
-    PrimaryActionBtn,
     FormHeader
+  },
+  methods: {
+    setTimeout() {
+      this.$store.state.serviceForm.timeout = this.serviceTimeout;
+      this.serviceTimeout = "";
+    }
+  },
+  computed: {
+    timeout() {
+      return this.$store.state.serviceForm.timeout;
+    }
   }
 };
 </script>
