@@ -30,11 +30,6 @@ export default {
     addServiceName() {
       this.$store.state.serviceForm.name = this.serviceName;
     }
-  },
-  computed: {
-    name() {
-      return this.$store.state.serviceForm.name;
-    }
   }
 };
 </script>

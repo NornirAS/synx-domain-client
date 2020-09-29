@@ -10,6 +10,7 @@
           outlined
           hide-details
           v-model="schema.name"
+          @keypress.enter="addToArray"
         ></v-text-field>
       </v-col>
       <v-col md="6">
