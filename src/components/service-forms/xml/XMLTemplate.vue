@@ -19,7 +19,7 @@
         </v-btn>
       </v-col>
     </v-row>
-    <TableForXML :title="title" />
+    <TableForXML v-if="isSchema" :title="title" />
   </v-card>
 </template>
 
@@ -27,7 +27,7 @@
 import TableForXML from "./TableForXML.vue";
 import FormHeader from "../FormHeader.vue";
 export default {
-  props: ["title", "description", "primaryActionBtnName"],
+  props: ["title", "description", "isSchema"],
   data() {
     return {
       schema: {

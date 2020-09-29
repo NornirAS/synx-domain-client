@@ -2,7 +2,7 @@
   <XMLTemplate
     :title="title"
     :description="description"
-    :primaryActionBtnName="primaryActionBtnName"
+    :isSchema="ifServiceXML"
   />
 </template>
 
@@ -13,12 +13,16 @@ export default {
     return {
       title: "Service XML",
       description:
-        "This is the message format or API for this service. Put XML on a single line to make it easier to parse on the client. You may link to variables in other services by using @domain/servicename#variable@ notation. Include links in link section below.",
-      primaryActionBtnName: "Add Schema"
+        "This is the message format or API for this service. Put XML on a single line to make it easier to parse on the client. You may link to variables in other services by using @domain/servicename#variable@ notation. Include links in link section below."
     };
   },
   components: {
     XMLTemplate
+  },
+  computed: {
+    ifServiceXML() {
+      return this.$store.state.serviceForm.serviceXML.length > 0;
+    }
   }
 };
 </script>
