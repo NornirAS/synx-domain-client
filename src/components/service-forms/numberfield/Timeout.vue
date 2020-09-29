@@ -1,16 +1,40 @@
 <template>
-  <NumericTemplate
-    :title="title"
-    :description="description"
-    :primaryValue="primaryValue"
-    :secondaryValue="secondaryValue"
-    :helper="helper"
-    :primaryActionBtnName="primaryActionBtnName"
-  />
+  <v-card outlined>
+    <FormHeader :title="title" :description="description" />
+    <v-row justify="center" align="center">
+      <v-col sm="4">
+        <CurrentValue
+          :primaryValue="primaryValue"
+          :secondaryValue="secondaryValue"
+          :helper="helper"
+          :primaryStyle="primaryStyle"
+          :secondaryStyle="secondaryStyle"
+          :divHeight="divHeight"
+        />
+      </v-col>
+      <v-col sm="4">
+        <v-text-field
+          :label="title"
+          single-line
+          dense
+          outlined
+          hide-details
+          type="number"
+          min="0"
+          max="100"
+        ></v-text-field>
+      </v-col>
+      <v-col sm="4">
+        <PrimaryActionBtn :primaryActionBtnName="primaryActionBtnName" />
+      </v-col>
+    </v-row>
+  </v-card>
 </template>
 
 <script>
-import NumericTemplate from "./NumericTemplate.vue";
+import CurrentValue from "./CurrentValue.vue";
+import PrimaryActionBtn from "../../buttons/PrimaryActionBtn.vue";
+import FormHeader from "../FormHeader.vue";
 export default {
   data() {
     return {
@@ -18,13 +42,34 @@ export default {
       description:
         "Time for inactive channelrequest before it closes(in seconds). Default 30.",
       primaryValue: "30",
-      secondaryValue: "'s",
+      secondaryValue: "s",
       helper: "Current Timeout",
-      primaryActionBtnName: "Set Timeout"
+      primaryActionBtnName: "Set Timeout",
+      primaryStyle: {
+        color: "#27aae1",
+        fontSize: "40px",
+        fontWeight: "500"
+      },
+      secondaryStyle: {
+        color: "#58595b",
+        fontSize: "30px",
+        fontWeight: "500"
+      },
+      divHeight: {
+        height: "45px"
+      }
     };
   },
   components: {
-    NumericTemplate
+    CurrentValue,
+    PrimaryActionBtn,
+    FormHeader
   }
 };
 </script>
+
+<style scoped>
+.col-sm-4 {
+  padding: 0 12px;
+}
+</style>

@@ -2,6 +2,7 @@
   <div>
     <div :style="divHeight">
       <span :style="primaryStyle">{{ primaryValue }}</span>
+      <span :style="secondaryStyle">/</span>
       <span :style="secondaryStyle">{{ secondaryValue }}</span>
     </div>
     <p>{{ helper }}</p>
