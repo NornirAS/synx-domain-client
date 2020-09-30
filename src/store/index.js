@@ -13,7 +13,8 @@ export default new Vuex.Store({
       commandXML: [],
       instances: 0,
       timeout: "30"
-    }
+    },
+    token: ""
   },
   mutations: {
     serviceXMLAddLink: (state, payload) => {
@@ -41,8 +42,15 @@ export default new Vuex.Store({
     },
     commandXMLRemoveSchema: (state, index) => {
       state.serviceForm.commandXML.splice(index, 1);
+    },
+    getToken: (state, payload) => {
+      state.token = payload.ActiveToken;
     }
   },
-  actions: {},
+  actions: {
+    SOCKET_GET_TOKEN: ({ commit }, payload) => {
+      commit("getToken", payload);
+    }
+  },
   modules: {}
 });

@@ -14,12 +14,12 @@
           <v-container>
             <v-form @submit="submitForm">
               <v-text-field
-                v-model="username"
+                v-model="userData.username"
                 label="Username*"
                 required
               ></v-text-field>
               <v-text-field
-                v-model="password"
+                v-model="userData.password"
                 label="Password*"
                 type="password"
                 required
@@ -50,8 +50,10 @@
 export default {
   data() {
     return {
-      username: "",
-      password: "",
+      userData: {
+        username: "",
+        password: ""
+      },
       dialog: false,
       colorBlue: "#27AAE1"
     };
@@ -59,6 +61,7 @@ export default {
   methods: {
     submitForm(e) {
       e.preventDefault();
+      this.$socket.emit("auth", this.userData);
     }
   }
 };
