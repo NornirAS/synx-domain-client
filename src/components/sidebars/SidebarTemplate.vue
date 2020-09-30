@@ -54,7 +54,8 @@ export default {
   data() {
     return {
       navStyle: {
-        top: "64px"
+        top: "64px",
+        height: "100%"
       }
     };
   }
