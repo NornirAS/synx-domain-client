@@ -1,8 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import Homepage from "../views/Homepage.vue";
 import Services from "../views/Services.vue";
 import CreateService from "../views/CreateService";
 import Notifications from "../views/Notifications.vue";
+import Appbar from "../components/Appbar.vue";
 import DarkSidebar from "../components/sidebars/DarkSidebar.vue";
 import LightSidebar from "../components/sidebars/LightSidebar.vue";
 
@@ -12,13 +14,16 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: Services
+    components: {
+      default: Homepage
+    }
   },
   {
     path: "/services",
     name: "services",
     components: {
       default: Services,
+      "app-bar": Appbar,
       "dark-sidebar": DarkSidebar
     }
   },
@@ -27,6 +32,7 @@ const routes = [
     name: "createService",
     components: {
       default: CreateService,
+      "app-bar": Appbar,
       "light-sidebar": LightSidebar
     }
   },
@@ -35,6 +41,7 @@ const routes = [
     name: "notifications",
     components: {
       default: Notifications,
+      "app-bar": Appbar,
       "dark-sidebar": DarkSidebar
     }
   }
