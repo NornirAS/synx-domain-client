@@ -14,12 +14,12 @@
           <v-container>
             <v-form @submit="submitForm">
               <v-text-field
-                v-model="userData.username"
+                v-model="authData.username"
                 label="Username*"
                 required
               ></v-text-field>
               <v-text-field
-                v-model="userData.password"
+                v-model="authData.password"
                 label="Password*"
                 type="password"
                 required
@@ -28,7 +28,6 @@
                 Go back
               </v-btn>
               <v-btn
-                @click="dialog = false"
                 :color="colorBlue"
                 style="float: right"
                 type="submit"
@@ -39,6 +38,9 @@
               </v-btn>
             </v-form>
           </v-container>
+          <ul v-if="errors.length">
+            <li v-for="error in errors" :key="error">{{ error }}</li>
+          </ul>
           <small>*indicates required field</small>
         </v-card-text>
       </v-card>
@@ -50,7 +52,8 @@
 export default {
   data() {
     return {
-      userData: {
+      errors: [],
+      authData: {
         username: "",
         password: ""
       },
@@ -61,7 +64,20 @@ export default {
   methods: {
     submitForm(e) {
       e.preventDefault();
-      this.$socket.emit("auth", this.userData);
+      // this.errors = [];
+      // if (!this.username) {
+      //   this.errors.push("Username must be provided");
+      // }
+      // if (!this.password) {
+      //   this.errors.push("password must be provided");
+      // }
+      // if (this.username.length < 5) {
+      //   this.errors.push("Username require minimum 6 characters");
+      // }
+      // if (this.password.length < 8) {
+      //   this.errors.push("Password require minimum 8 characters");
+      // }
+      this.$store.dispatch("signin", this.authData);
     }
   }
 };

@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import axios from "axios";
 
 Vue.use(Vuex);
 
@@ -14,7 +15,7 @@ export default new Vuex.Store({
       instances: 0,
       timeout: "30"
     },
-    token: ""
+    idToken: null
   },
   mutations: {
     serviceXMLAddLink: (state, payload) => {
@@ -43,14 +44,30 @@ export default new Vuex.Store({
     commandXMLRemoveSchema: (state, index) => {
       state.serviceForm.commandXML.splice(index, 1);
     },
-    getToken: (state, payload) => {
-      state.token = payload.ActiveToken;
+    authUser(state, userData) {
+      state.idToken = userData.token;
     }
   },
   actions: {
-    SOCKET_GET_TOKEN: ({ commit }, payload) => {
-      commit("getToken", payload);
+    signin({ commit }, authData) {
+      axios
+        .post(
+          "https://synxpass.cioty.com/token/GetToken.php",
+          `username=${authData.username}&password=${authData.password}`
+        )
+        .then(res => {
+          console.log(res);
+          commit("authUser", {
+            token: res.data.ActiveToken
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
+    // SOCKET_GET_TOKEN: ({ commit }, payload) => {
+    //   commit("getToken", payload);
+    // }
   },
   modules: {}
 });

@@ -1,21 +1,15 @@
 <template>
   <div>
     <h1>Welcome to CIOTY domain service</h1>
-    <LoginForm />
-    <p>{{ getToken }}</p>
+    <SignIn />
   </div>
 </template>
 
 <script>
-import LoginForm from "./LoginForm";
+import SignIn from "./SignIn.vue";
 export default {
   components: {
-    LoginForm
-  },
-  computed: {
-    getToken() {
-      return this.$store.state.token;
-    }
+    SignIn
   }
 };
 </script>
