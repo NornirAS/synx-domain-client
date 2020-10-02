@@ -46,10 +46,6 @@
           </v-list-item>
         </v-list>
       </v-menu>
-
-      <!-- <v-btn class="nav-buttons" color="#58595B" icon rounded outlined small>
-        <v-icon rounded outlined> {{ account }} </v-icon>
-      </v-btn> -->
     </div>
   </v-app-bar>
 </template>

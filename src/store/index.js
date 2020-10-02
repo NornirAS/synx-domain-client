@@ -19,48 +19,44 @@ export default new Vuex.Store({
     authError: null
   },
   mutations: {
-    serviceXMLAddLink: (state, payload) => {
-      const { name, linkTo } = payload;
+    serviceXMLAddLink(state, { name, linkTo }) {
       const schema = state.serviceForm.serviceXML.find(s => s.name === name);
       schema.linkTo = linkTo;
     },
-    commandXMLAddLink: (state, payload) => {
-      const { name, linkTo } = payload;
+    commandXMLAddLink(state, { name, linkTo }) {
       const schema = state.serviceForm.commandXML.find(s => s.name === name);
       schema.linkTo = linkTo;
     },
-    serviceXMLRemoveLink: (state, payload) => {
-      const { name, linkTo } = payload;
+    serviceXMLRemoveLink(state, { name, linkTo }) {
       const schema = state.serviceFormserviceXML.find(s => s.name === name);
       schema.linkTo = linkTo;
     },
-    commandXMLRemoveLink: (state, payload) => {
-      const { name, linkTo } = payload;
+    commandXMLRemoveLink(state, { name, linkTo }) {
       const schema = state.serviceForm.commandXML.find(s => s.name === name);
       schema.linkTo = linkTo;
     },
-    serviceXMLRemoveSchema: (state, index) => {
+    serviceXMLRemoveSchema(state, index) {
       state.serviceForm.serviceXML.splice(index, 1);
     },
-    commandXMLRemoveSchema: (state, index) => {
+    commandXMLRemoveSchema(state, index) {
       state.serviceForm.commandXML.splice(index, 1);
     },
-    authUser(state, userData) {
-      state.idToken = userData.token;
+    authUser(state, { token }) {
+      state.idToken = token;
     },
-    authError(state, errorMsg) {
-      state.authError = errorMsg.error;
+    authError(state, { error }) {
+      state.authError = error;
     },
     logOut(state, { token }) {
       state.idToken = token;
     }
   },
   actions: {
-    signin({ commit }, authData) {
+    signin({ commit }, { username, password }) {
       axios
         .post(
           "https://synxpass.cioty.com/token/GetToken.php",
-          `username=${authData.username}&password=${authData.password}`
+          `username=${username}&password=${password}`
         )
         .then(res => {
           if (res.data.ActiveToken) {
@@ -88,8 +84,8 @@ export default new Vuex.Store({
   },
   modules: {},
   getters: {
-    isAuthenticated(state) {
-      return state.idToken !== null;
+    isAuthenticated({ idToken }) {
+      return idToken !== null;
     }
   }
 });
