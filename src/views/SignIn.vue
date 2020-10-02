@@ -58,20 +58,43 @@ export default {
   methods: {
     submitForm(e) {
       e.preventDefault();
-      // this.errors = [];
-      // if (!this.username) {
-      //   this.errors.push("Username must be provided");
-      // }
-      // if (!this.password) {
-      //   this.errors.push("password must be provided");
-      // }
-      // if (this.username.length < 5) {
-      //   this.errors.push("Username require minimum 6 characters");
-      // }
-      // if (this.password.length < 8) {
-      //   this.errors.push("Password require minimum 8 characters");
-      // }
+      this.errors = [];
+      if (!this.authData.username) {
+        this.errors.push("Username must be provided");
+      }
+      if (!this.authData.password) {
+        this.errors.push("password must be provided");
+      }
+      if (this.authData.username.length < 5) {
+        this.errors.push("Username require minimum 6 characters");
+      }
+      if (this.authData.password.length < 8) {
+        this.errors.push("Password require minimum 8 characters");
+      }
       this.$store.dispatch("signin", this.authData);
+    }
+  },
+  computed: {
+    isAuth() {
+      return this.$store.state.idToken;
+    },
+    authError() {
+      return this.$store.state.authError;
+    }
+  },
+  watch: {
+    isAuth(newValue) {
+      if (newValue) {
+        console.log(this.$store.state.authError);
+        this.$store.state.authError = null;
+        console.log(this.$store.state.authError);
+        this.$router.push("services");
+      }
+    },
+    authError(newValue) {
+      if (newValue) {
+        this.errors.push(newValue);
+      }
     }
   }
 };

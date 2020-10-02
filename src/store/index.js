@@ -7,15 +7,16 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     serviceForm: {
-      name: "",
-      description: "",
+      name: null,
+      description: null,
       keywords: [],
       serviceXML: [],
       commandXML: [],
       instances: 0,
       timeout: "30"
     },
-    idToken: null
+    idToken: null,
+    authError: null
   },
   mutations: {
     serviceXMLAddLink: (state, payload) => {
@@ -46,6 +47,9 @@ export default new Vuex.Store({
     },
     authUser(state, userData) {
       state.idToken = userData.token;
+    },
+    authError(state, errorMsg) {
+      state.authError = errorMsg.error;
     }
   },
   actions: {
@@ -56,10 +60,15 @@ export default new Vuex.Store({
           `username=${authData.username}&password=${authData.password}`
         )
         .then(res => {
-          console.log(res);
-          commit("authUser", {
-            token: res.data.ActiveToken
-          });
+          if (res.data.ActiveToken) {
+            commit("authUser", {
+              token: res.data.ActiveToken
+            });
+          } else {
+            commit("authError", {
+              error: "Wrong username or password!"
+            });
+          }
         })
         .catch(error => {
           console.log(error);

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Welcome to CIOTY domain service</h1>
-    <v-btn :to="path" link></v-btn>
+    <v-btn :to="path" :color="colorBlue" link rounded dark>Sign In</v-btn>
   </div>
 </template>
 
@@ -9,7 +9,8 @@
 export default {
   data() {
     return {
-      path: { name: "signin" }
+      path: { name: "signin" },
+      colorBlue: "#27AAE1"
     };
   }
 };
