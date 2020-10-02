@@ -15,7 +15,7 @@ export default new Vuex.Store({
       instances: 0,
       timeout: "30"
     },
-    idToken: null || localStorage.getItem("token"),
+    idToken: null,
     authError: null
   },
   mutations: {
@@ -91,7 +91,9 @@ export default new Vuex.Store({
       if (now >= expirationDate) {
         return;
       }
-      commit("authUser", { token });
+      commit("authUser", {
+        token: token
+      });
     },
     signOut({ commit }) {
       commit("signOut");

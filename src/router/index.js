@@ -8,12 +8,11 @@ import Appbar from "../components/Appbar.vue";
 import DarkSidebar from "../components/sidebars/DarkSidebar.vue";
 import LightSidebar from "../components/sidebars/LightSidebar.vue";
 import SignIn from "../views/SignIn.vue";
-import store from "../store/index";
 
 Vue.use(VueRouter);
 
 const authGuard = (to, from, next) => {
-  if (store.state.idToken) {
+  if (localStorage.getItem("token")) {
     next();
   } else {
     next("signin");
