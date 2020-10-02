@@ -7,6 +7,7 @@ import Notifications from "../views/Notifications.vue";
 import Appbar from "../components/Appbar.vue";
 import DarkSidebar from "../components/sidebars/DarkSidebar.vue";
 import LightSidebar from "../components/sidebars/LightSidebar.vue";
+import SignIn from "../views/SignIn.vue";
 
 Vue.use(VueRouter);
 
@@ -17,6 +18,11 @@ const routes = [
     components: {
       default: Homepage
     }
+  },
+  {
+    path: "/signin",
+    name: "signin",
+    component: SignIn
   },
   {
     path: "/services",

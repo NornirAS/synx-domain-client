@@ -4,7 +4,7 @@
     <router-view name="dark-sidebar"></router-view>
     <router-view name="light-sidebar"></router-view>
     <v-main>
-      <v-container fluid>
+      <v-container style="height: 100%" fluid>
         <router-view></router-view>
       </v-container>
     </v-main>

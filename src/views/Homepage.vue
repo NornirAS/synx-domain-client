@@ -1,15 +1,16 @@
 <template>
   <div>
     <h1>Welcome to CIOTY domain service</h1>
-    <SignIn />
+    <v-btn :to="path" link></v-btn>
   </div>
 </template>
 
 <script>
-import SignIn from "./SignIn.vue";
 export default {
-  components: {
-    SignIn
+  data() {
+    return {
+      path: { name: "signin" }
+    };
   }
 };
 </script>

@@ -1,11 +1,6 @@
 <template>
-  <v-row justify="center">
-    <v-dialog v-model="dialog" persistent max-width="600px">
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn color="primary" dark v-bind="attrs" v-on="on">
-          Open Dialog
-        </v-btn>
-      </template>
+  <v-row style="height: 100%" justify="center" align="center">
+    <v-col md="4">
       <v-card>
         <v-card-title>
           <span class="headline">Login</span>
@@ -24,7 +19,7 @@
                 type="password"
                 required
               ></v-text-field>
-              <v-btn @click="dialog = false" :color="colorBlue" text>
+              <v-btn :color="colorBlue" text>
                 Go back
               </v-btn>
               <v-btn
@@ -44,7 +39,7 @@
           <small>*indicates required field</small>
         </v-card-text>
       </v-card>
-    </v-dialog>
+    </v-col>
   </v-row>
 </template>
 
@@ -57,7 +52,6 @@ export default {
         username: "",
         password: ""
       },
-      dialog: false,
       colorBlue: "#27AAE1"
     };
   },
