@@ -50,6 +50,9 @@ export default new Vuex.Store({
     },
     authError(state, errorMsg) {
       state.authError = errorMsg.error;
+    },
+    logOut(state, { token }) {
+      state.idToken = token;
     }
   },
   actions: {
@@ -73,10 +76,20 @@ export default new Vuex.Store({
         .catch(error => {
           console.log(error);
         });
+    },
+    logout({ commit }, data) {
+      commit("logOut", {
+        token: data
+      });
     }
     // SOCKET_GET_TOKEN: ({ commit }, payload) => {
     //   commit("getToken", payload);
     // }
   },
-  modules: {}
+  modules: {},
+  getters: {
+    isAuthenticated(state) {
+      return state.idToken !== null;
+    }
+  }
 });
