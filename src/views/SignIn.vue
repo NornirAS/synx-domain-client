@@ -49,8 +49,8 @@ export default {
     return {
       errors: [],
       authData: {
-        username: "",
-        password: ""
+        username: null,
+        password: null
       },
       colorBlue: "#27AAE1"
     };
@@ -85,9 +85,7 @@ export default {
   watch: {
     isAuth(newValue) {
       if (newValue) {
-        console.log(this.$store.state.authError);
         this.$store.state.authError = null;
-        console.log(this.$store.state.authError);
         this.$router.push("services");
       }
     },

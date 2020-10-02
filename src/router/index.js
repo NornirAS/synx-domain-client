@@ -8,8 +8,17 @@ import Appbar from "../components/Appbar.vue";
 import DarkSidebar from "../components/sidebars/DarkSidebar.vue";
 import LightSidebar from "../components/sidebars/LightSidebar.vue";
 import SignIn from "../views/SignIn.vue";
+import store from "../store/index";
 
 Vue.use(VueRouter);
+
+const authGuard = (to, from, next) => {
+  if (store.state.idToken) {
+    next();
+  } else {
+    next("signin");
+  }
+};
 
 const routes = [
   {
@@ -31,7 +40,8 @@ const routes = [
       default: Services,
       "app-bar": Appbar,
       "dark-sidebar": DarkSidebar
-    }
+    },
+    beforeEnter: authGuard
   },
   {
     path: "/services/create-service",
@@ -40,7 +50,8 @@ const routes = [
       default: CreateService,
       "app-bar": Appbar,
       "light-sidebar": LightSidebar
-    }
+    },
+    beforeEnter: authGuard
   },
   {
     path: "/notifications",
@@ -49,7 +60,8 @@ const routes = [
       default: Notifications,
       "app-bar": Appbar,
       "dark-sidebar": DarkSidebar
-    }
+    },
+    beforeEnter: authGuard
   }
 ];
 
