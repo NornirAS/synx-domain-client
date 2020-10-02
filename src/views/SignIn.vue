@@ -3,7 +3,7 @@
     <v-col md="4">
       <v-card>
         <v-card-title>
-          <span class="headline">Login</span>
+          <span class="headline">Sign In</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -19,8 +19,14 @@
                 type="password"
                 required
               ></v-text-field>
-              <v-btn :color="colorBlue" text>
-                Go back
+              <v-btn
+                :color="colorBlue"
+                :to="{ name: 'home' }"
+                text
+                rounded
+                link
+              >
+                Back Home
               </v-btn>
               <v-btn
                 :color="colorBlue"
@@ -29,7 +35,7 @@
                 rounded
                 dark
               >
-                Login
+                Sign In
               </v-btn>
             </v-form>
           </v-container>
