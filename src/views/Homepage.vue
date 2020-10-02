@@ -24,7 +24,7 @@
       </v-btn>
       <v-btn
         v-if="auth"
-        @click="logOut"
+        @click="signOut"
         :to="{ name: 'home' }"
         :color="colorBlue"
         link
@@ -45,8 +45,8 @@ export default {
     };
   },
   methods: {
-    logOut() {
-      this.$store.dispatch("logout", null);
+    signOut() {
+      this.$store.dispatch("signOut");
     }
   },
   computed: {

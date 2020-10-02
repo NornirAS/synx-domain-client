@@ -77,7 +77,7 @@ export default {
       if (this.authData.password.length < 8) {
         this.errors.push("Password require minimum 8 characters");
       }
-      this.$store.dispatch("signin", this.authData);
+      this.$store.dispatch("signIn", this.authData);
     }
   },
   computed: {

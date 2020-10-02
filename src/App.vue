@@ -20,7 +20,10 @@ export default {
 
   data: () => ({
     //
-  })
+  }),
+  created() {
+    this.$store.dispatch("tryAutoSignIn");
+  }
 };
 </script>
 

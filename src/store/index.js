@@ -15,7 +15,7 @@ export default new Vuex.Store({
       instances: 0,
       timeout: "30"
     },
-    idToken: null,
+    idToken: null || localStorage.getItem("token"),
     authError: null
   },
   mutations: {
@@ -47,12 +47,14 @@ export default new Vuex.Store({
     authError(state, { error }) {
       state.authError = error;
     },
-    logOut(state, { token }) {
-      state.idToken = token;
+    signOut(state) {
+      state.idToken = null;
+      localStorage.removeItem("token");
+      localStorage.removeItem("expirationDate");
     }
   },
   actions: {
-    signin({ commit }, { username, password }) {
+    signIn({ commit, dispatch }, { username, password }) {
       axios
         .post(
           "https://synxpass.cioty.com/token/GetToken.php",
@@ -63,6 +65,12 @@ export default new Vuex.Store({
             commit("authUser", {
               token: res.data.ActiveToken
             });
+            const now = new Date();
+            const expirationTime = 3600 * 1000;
+            const expirationDate = new Date(now.getTime() + expirationTime);
+            localStorage.setItem("token", res.data.ActiveToken);
+            localStorage.setItem("expirationDate", expirationDate);
+            dispatch("setSignOutTimer", expirationTime);
           } else {
             commit("authError", {
               error: "Wrong username or password!"
@@ -73,10 +81,25 @@ export default new Vuex.Store({
           console.log(error);
         });
     },
-    logout({ commit }, data) {
-      commit("logOut", {
-        token: data
-      });
+    tryAutoSignIn({ commit }) {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        return;
+      }
+      const expirationDate = localStorage.getItem("expirationDate");
+      const now = new Date();
+      if (now >= expirationDate) {
+        return;
+      }
+      commit("authUser", { token });
+    },
+    signOut({ commit }) {
+      commit("signOut");
+    },
+    setSignOutTimer({ commit }, expirationTime) {
+      setTimeout(() => {
+        commit("signOut");
+      }, expirationTime);
     }
     // SOCKET_GET_TOKEN: ({ commit }, payload) => {
     //   commit("getToken", payload);

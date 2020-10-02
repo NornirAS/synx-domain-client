@@ -65,14 +65,14 @@ export default {
       items: [
         {
           title: "Logout",
-          action: this.logOut
+          action: this.signOut
         }
       ]
     };
   },
   methods: {
-    logOut() {
-      this.$store.dispatch("logout", null);
+    signOut() {
+      this.$store.dispatch("signOut");
     }
   },
   computed: {
