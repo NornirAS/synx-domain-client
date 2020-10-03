@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import axios from "axios";
 
 Vue.use(Vuex);
 
@@ -54,33 +53,6 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    signIn({ commit, dispatch }, { username, password }) {
-      axios
-        .post(
-          "https://synxpass.cioty.com/token/GetToken.php",
-          `username=${username}&password=${password}`
-        )
-        .then(res => {
-          if (res.data.ActiveToken) {
-            commit("authUser", {
-              token: res.data.ActiveToken
-            });
-            const now = new Date();
-            const expirationTime = 3600 * 1000;
-            const expirationDate = new Date(now.getTime() + expirationTime);
-            localStorage.setItem("token", res.data.ActiveToken);
-            localStorage.setItem("expirationDate", expirationDate);
-            dispatch("setSignOutTimer", expirationTime);
-          } else {
-            commit("authError", {
-              error: "Wrong username or password!"
-            });
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
     tryAutoSignIn({ commit }) {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -102,10 +74,24 @@ export default new Vuex.Store({
       setTimeout(() => {
         commit("signOut");
       }, expirationTime);
+    },
+    SOCKET_authentication: ({ commit, dispatch }, data) => {
+      if (data.ActiveToken) {
+        commit("authUser", {
+          token: data.ActiveToken
+        });
+        const now = new Date();
+        const expirationTime = 3600 * 1000;
+        const expirationDate = new Date(now.getTime() + expirationTime);
+        localStorage.setItem("token", data.ActiveToken);
+        localStorage.setItem("expirationDate", expirationDate);
+        dispatch("setSignOutTimer", expirationTime);
+      } else {
+        commit("authError", {
+          error: "Wrong username or password!"
+        });
+      }
     }
-    // SOCKET_GET_TOKEN: ({ commit }, payload) => {
-    //   commit("getToken", payload);
-    // }
   },
   modules: {},
   getters: {
