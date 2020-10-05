@@ -11,7 +11,7 @@ export default new Vuex.Store({
       keywords: [],
       serviceXML: [],
       commandXML: [],
-      instances: 0,
+      instances: null,
       timeout: "30"
     },
     idToken: null,

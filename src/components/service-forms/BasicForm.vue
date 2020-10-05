@@ -12,7 +12,14 @@
     <PreMasterScript />
     <ServiceImage />
     <Micropage />
-    <v-btn></v-btn>
+    <v-btn
+      @click="submitForm"
+      :color="colorBlue"
+      style="float: right"
+      rounded
+      dark
+      >Submit</v-btn
+    >
   </form>
 </template>
 
@@ -32,7 +39,26 @@ import ServiceImage from "./textfield/ServiceImage";
 export default {
   data() {
     return {
-      
+      colorBlue: "#27AAE1"
+    };
+  },
+  methods: {
+    submitForm() {
+      this.$socket.emit("regiter-service", this.formData);
+      this.$store.state.serviceForm = {
+        name: null,
+        description: null,
+        keywords: [],
+        serviceXML: [],
+        commandXML: [],
+        instances: null,
+        timeout: "30"
+      };
+    }
+  },
+  computed: {
+    formData() {
+      return this.$store.state.serviceForm;
     }
   },
   components: {
