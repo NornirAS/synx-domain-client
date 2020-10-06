@@ -41,18 +41,17 @@ export default new Vuex.Store({
     commandXMLRemoveSchema(state, index) {
       state.serviceForm.commandXML.splice(index, 1);
     },
-    removeUsername(state) {
-      state.username = null;
-      console.log(state.username);
-    },
-    authUser(state, { token }) {
+    authUser(state, { token, username }) {
       state.idToken = token;
+      state.username = username;
     },
     authError(state, { error }) {
       state.authError = error;
     },
     signOut(state) {
       state.idToken = null;
+      state.username = null;
+      localStorage.removeItem("username");
       localStorage.removeItem("token");
       localStorage.removeItem("expirationDate");
     }
@@ -60,6 +59,7 @@ export default new Vuex.Store({
   actions: {
     tryAutoSignIn({ commit }) {
       const token = localStorage.getItem("token");
+      const username = localStorage.getItem("username");
       if (!token) {
         return;
       }
@@ -69,7 +69,8 @@ export default new Vuex.Store({
         return;
       }
       commit("authUser", {
-        token: token
+        token: token,
+        username: username
       });
     },
     signOut({ commit }) {
@@ -83,7 +84,8 @@ export default new Vuex.Store({
     SOCKET_authentication: ({ commit, dispatch }, data) => {
       if (data.ActiveToken) {
         commit("authUser", {
-          token: data.ActiveToken
+          token: data.ActiveToken,
+          username: localStorage.getItem("username")
         });
         const now = new Date();
         const expirationTime = 3600000;
@@ -92,7 +94,6 @@ export default new Vuex.Store({
         localStorage.setItem("expirationDate", expirationDate);
         dispatch("setSignOutTimer", expirationTime);
       } else {
-        commit("removeUsername");
         commit("authError", {
           error: "Wrong username or password!"
         });

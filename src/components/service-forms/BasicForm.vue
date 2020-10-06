@@ -44,7 +44,12 @@ export default {
   },
   methods: {
     submitForm() {
-      this.$socket.emit("regiter-service", this.formData);
+      this.$socket.emit(
+        "regiter-service",
+        this.formData,
+        this.username,
+        this.token
+      );
       this.$store.state.serviceForm = {
         name: null,
         description: null,
@@ -59,6 +64,12 @@ export default {
   computed: {
     formData() {
       return this.$store.state.serviceForm;
+    },
+    username() {
+      return this.$store.state.username;
+    },
+    token() {
+      return this.$store.state.idToken;
     }
   },
   components: {
