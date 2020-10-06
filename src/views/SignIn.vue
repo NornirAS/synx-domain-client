@@ -77,7 +77,9 @@ export default {
       if (this.authData.password.length < 8) {
         this.errors.push("Password require minimum 8 characters");
       }
+      this.$store.state.username = this.authData.username;
       this.$socket.emit("authenticate", this.authData);
+      console.log(this.$store.state.username);
     }
   },
   computed: {

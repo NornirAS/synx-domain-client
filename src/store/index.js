@@ -14,6 +14,7 @@ export default new Vuex.Store({
       instances: null,
       timeout: "30"
     },
+    username: null,
     idToken: null,
     authError: null
   },
@@ -39,6 +40,10 @@ export default new Vuex.Store({
     },
     commandXMLRemoveSchema(state, index) {
       state.serviceForm.commandXML.splice(index, 1);
+    },
+    removeUsername(state) {
+      state.username = null;
+      console.log(state.username);
     },
     authUser(state, { token }) {
       state.idToken = token;
@@ -87,6 +92,7 @@ export default new Vuex.Store({
         localStorage.setItem("expirationDate", expirationDate);
         dispatch("setSignOutTimer", expirationTime);
       } else {
+        commit("removeUsername");
         commit("authError", {
           error: "Wrong username or password!"
         });
