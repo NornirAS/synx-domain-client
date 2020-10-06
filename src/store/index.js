@@ -86,7 +86,7 @@ export default new Vuex.Store({
           token: data.ActiveToken
         });
         const now = new Date();
-        const expirationTime = 3600 * 1000;
+        const expirationTime = 3600000;
         const expirationDate = new Date(now.getTime() + expirationTime);
         localStorage.setItem("token", data.ActiveToken);
         localStorage.setItem("expirationDate", expirationDate);
