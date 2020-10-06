@@ -16,7 +16,9 @@ export default new Vuex.Store({
     },
     username: null,
     idToken: null,
-    authError: null
+    authError: null,
+    serviceCreated: false,
+    serviceRegistrationError: null
   },
   mutations: {
     serviceXMLAddLink(state, { name, linkTo }) {
@@ -40,6 +42,14 @@ export default new Vuex.Store({
     },
     commandXMLRemoveSchema(state, index) {
       state.serviceForm.commandXML.splice(index, 1);
+    },
+    serviceRegistrationSuccess(state) {
+      state.serviceCreated = true;
+    },
+    serviceRegistrationError(state) {
+      state.serviceCreated = false;
+      state.serviceRegistrationError =
+        "Something went wrong. Try one more time";
     },
     authUser(state, { token, username }) {
       state.idToken = token;
@@ -81,7 +91,7 @@ export default new Vuex.Store({
         commit("signOut");
       }, expirationTime);
     },
-    SOCKET_authentication: ({ commit, dispatch }, data) => {
+    SOCKET_authentication({ commit, dispatch }, data) {
       if (data.ActiveToken) {
         commit("authUser", {
           token: data.ActiveToken,
@@ -98,6 +108,12 @@ export default new Vuex.Store({
           error: "Wrong username or password!"
         });
       }
+    },
+    SOCKET_service_registration_success({ commit }) {
+      commit("serviceRegistrationSuccess");
+    },
+    SOCKET_service_registration_error({ commit }) {
+      commit("serviceRegistrationError");
     }
   },
   modules: {},
