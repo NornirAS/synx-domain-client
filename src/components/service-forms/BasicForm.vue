@@ -45,7 +45,7 @@ export default {
   methods: {
     submitForm() {
       this.$socket.emit(
-        "regiter-service",
+        "register-service",
         this.formData,
         this.username,
         this.token

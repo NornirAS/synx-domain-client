@@ -120,6 +120,14 @@ export default {
       createServicePath: { name: "createService" }
     };
   },
+  created() {
+    this.$socket.emit("fetch_all_services", this.token);
+  },
+  computed: {
+    token() {
+      return this.$store.state.idToken;
+    }
+  },
   components: {
     PrimaryActionBtn,
     Service,
