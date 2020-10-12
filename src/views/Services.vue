@@ -87,16 +87,14 @@
         </v-menu>
       </v-row>
       <hr />
-      <v-row
+      <Service
         v-for="({ domain, serviceName, instances }, index) in services"
         :key="index"
-      >
-        <Service
-          :title="serviceName"
-          :primaryValue="availableInstances(instances)"
-          :url="url(domain, serviceName)"
-        />
-      </v-row>
+        :title="serviceName"
+        :availableInstances="availableInstances(instances, limitInstances)"
+        :limitInstances="limitInstances"
+        :url="url(domain, serviceName)"
+      />
     </v-col>
   </v-row>
 </template>
@@ -112,6 +110,7 @@ export default {
     return {
       title: "Services",
       search: "",
+      limitInstances: "1000",
       groups: ["test1", "test2"],
       sortList: ["newest", "oldest"],
       mdiChevronDown,
@@ -130,11 +129,11 @@ export default {
     };
   },
   created() {
-    this.$socket.emit("fetch_all_services", this.token);
+    this.$socket.emit("get_all_services", this.token);
   },
   methods: {
-    availableInstances(instances) {
-      return 1000 - instances;
+    availableInstances(instances, limitInstances) {
+      return limitInstances - instances;
     },
     url(domain, service) {
       return `https://${domain}.cioty.com/${service}`;

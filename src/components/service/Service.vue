@@ -18,8 +18,8 @@
         </v-col>
         <v-col md="6" align="right">
           <CurrentValue
-            :primaryValue="primaryValue"
-            :secondaryValue="secondaryValue"
+            :primaryValue="availableInstances"
+            :secondaryValue="limitInstances"
             :helper="helper"
             :primaryStyle="primaryStyle"
             :secondaryStyle="secondaryStyle"
@@ -36,11 +36,10 @@ import Checkbox from "../controls/Checkbox.vue";
 import FormHeader from "../service-forms/FormHeader.vue";
 import CurrentValue from "../service-forms/numberfield/CurrentValue.vue";
 export default {
-  props: ["title", "primaryValue", "url"],
+  props: ["title", "availableInstances", "limitInstances", "url"],
   data() {
     return {
       micropage: "Micropage: ",
-      secondaryValue: "1000",
       helper: "Available Instances",
       primaryStyle: {
         color: "#27aae1",
