@@ -1,6 +1,7 @@
 <template>
   <v-row>
-    <Checkbox :style="checkBoxStyle" />
+    <!-- <Checkbox :style="checkBoxStyle" :event="check" /> -->
+    <v-checkbox :style="checkBoxStyle" @change="check(index)"></v-checkbox>
     <v-card outlined>
       <v-row>
         <!-- <v-col md="3">
@@ -32,11 +33,10 @@
 </template>
 
 <script>
-import Checkbox from "../controls/Checkbox.vue";
 import FormHeader from "../service-forms/FormHeader.vue";
 import CurrentValue from "../service-forms/numberfield/CurrentValue.vue";
 export default {
-  props: ["title", "availableInstances", "limitInstances", "url"],
+  props: ["title", "availableInstances", "limitInstances", "index", "url"],
   data() {
     return {
       micropage: "Micropage: ",
@@ -60,8 +60,12 @@ export default {
       }
     };
   },
+  methods: {
+    check(index) {
+      this.$store.dispatch("selectService", index);
+    }
+  },
   components: {
-    Checkbox,
     FormHeader,
     CurrentValue
   }

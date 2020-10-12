@@ -55,6 +55,9 @@ export default new Vuex.Store({
     allServices(state, payload) {
       state.services = payload;
     },
+    selectService(state, index) {
+      state.services[index].isSelected = !state.services[index].isSelected;
+    },
     authUser(state, { token, username }) {
       state.idToken = token;
       state.username = username;
@@ -95,6 +98,9 @@ export default new Vuex.Store({
         commit("signOut");
       }, expirationTime);
     },
+    selectService({ commit }, index) {
+      commit("selectService", index);
+    },
     SOCKET_authentication({ commit, dispatch }, data) {
       if (data.ActiveToken) {
         commit("authUser", {
@@ -123,7 +129,12 @@ export default new Vuex.Store({
       const services = [];
       data.forEach(item => {
         const object = JSON.parse(item);
-        services.push(object);
+        const isSelected = object => {
+          object.isSelected = false;
+          return object;
+        };
+        const newObject = isSelected(object);
+        services.push(newObject);
       });
       commit("allServices", services);
     }

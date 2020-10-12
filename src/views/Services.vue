@@ -94,6 +94,7 @@
         :availableInstances="availableInstances(instances, limitInstances)"
         :limitInstances="limitInstances"
         :url="url(domain, serviceName)"
+        :index="index"
       />
     </v-col>
   </v-row>
@@ -145,6 +146,11 @@ export default {
     },
     services() {
       return this.$store.state.services;
+    },
+    isSelected() {
+      return this.$store.state.services.filter(
+        service => service.isSelected === true
+      );
     }
   },
   components: {
