@@ -87,7 +87,16 @@
         </v-menu>
       </v-row>
       <hr />
-      <Service />
+      <v-row
+        v-for="({ domain, serviceName, instances }, index) in services"
+        :key="index"
+      >
+        <Service
+          :title="serviceName"
+          :primaryValue="availableInstances(instances)"
+          :url="url(domain, serviceName)"
+        />
+      </v-row>
     </v-col>
   </v-row>
 </template>
@@ -123,9 +132,20 @@ export default {
   created() {
     this.$socket.emit("fetch_all_services", this.token);
   },
+  methods: {
+    availableInstances(instances) {
+      return 1000 - instances;
+    },
+    url(domain, service) {
+      return `https://${domain}.cioty.com/${service}`;
+    }
+  },
   computed: {
     token() {
       return this.$store.state.idToken;
+    },
+    services() {
+      return this.$store.state.services;
     }
   },
   components: {

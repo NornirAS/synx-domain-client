@@ -3,11 +3,11 @@
     <Checkbox :style="checkBoxStyle" />
     <v-card outlined>
       <v-row>
-        <v-col md="3">
+        <!-- <v-col md="3">
           <v-img
             src="https://upload.wikimedia.org/wikipedia/commons/0/05/Favicon_250x250.png"
           ></v-img>
-        </v-col>
+        </v-col> -->
         <v-col md="6">
           <FormHeader
             :title="title"
@@ -16,7 +16,7 @@
             :href="url"
           />
         </v-col>
-        <v-col md="3" align="right">
+        <v-col md="6" align="right">
           <CurrentValue
             :primaryValue="primaryValue"
             :secondaryValue="secondaryValue"
@@ -36,13 +36,11 @@ import Checkbox from "../controls/Checkbox.vue";
 import FormHeader from "../service-forms/FormHeader.vue";
 import CurrentValue from "../service-forms/numberfield/CurrentValue.vue";
 export default {
+  props: ["title", "primaryValue", "url"],
   data() {
     return {
-      title: "Service name",
       micropage: "Micropage: ",
-      url: "https://domain.cioty.com/service",
-      primaryValue: "1000",
-      secondaryValue: "/1000",
+      secondaryValue: "1000",
       helper: "Available Instances",
       primaryStyle: {
         color: "#27aae1",

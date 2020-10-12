@@ -14,6 +14,7 @@ export default new Vuex.Store({
       instances: null,
       timeout: "30"
     },
+    services: [],
     username: null,
     idToken: null,
     authError: null,
@@ -50,6 +51,9 @@ export default new Vuex.Store({
       state.serviceCreated = false;
       state.serviceRegistrationError =
         "Something went wrong. Try one more time";
+    },
+    allServices(state, payload) {
+      state.services = payload;
     },
     authUser(state, { token, username }) {
       state.idToken = token;
@@ -114,6 +118,14 @@ export default new Vuex.Store({
     },
     SOCKET_service_registration_error({ commit }) {
       commit("serviceRegistrationError");
+    },
+    SOCKET_all_services({ commit }, data) {
+      const services = [];
+      data.forEach(item => {
+        const object = JSON.parse(item);
+        services.push(object);
+      });
+      commit("allServices", services);
     }
   },
   modules: {},
