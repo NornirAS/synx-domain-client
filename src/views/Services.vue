@@ -13,7 +13,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <Checkbox />
+        <v-checkbox :style="checkBoxStyle"></v-checkbox>
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -104,7 +104,6 @@
 import { mdiChevronDown } from "@mdi/js";
 import PrimaryActionBtn from "../components/buttons/PrimaryActionBtn.vue";
 import Service from "../components/service/Service.vue";
-import Checkbox from "../components/controls/Checkbox.vue";
 import Header from "../components/Header.vue";
 export default {
   data() {
@@ -121,6 +120,10 @@ export default {
       },
       filterBtnStyle: {
         margin: "0 0.75em"
+      },
+      checkBoxStyle: {
+        margin: "0",
+        paddingTop: "0.5em"
       },
       colorBlue: "#27AAE1",
       colorRed: "#FF6666",
@@ -156,7 +159,6 @@ export default {
   components: {
     PrimaryActionBtn,
     Service,
-    Checkbox,
     Header
   }
 };
