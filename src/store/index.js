@@ -6,13 +6,15 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     serviceForm: {
-      name: null,
+      serviceName: null,
       description: null,
       keywords: [],
-      serviceXML: [],
-      commandXML: [],
+      serviceSchema: [],
+      commandSchema: [],
       instances: null,
-      timeout: "30"
+      timeOut: "30",
+      masterScript: "YWFhYWFhYWFhYQo=",
+      webJS: "Hello"
     },
     services: [],
     username: null,
@@ -22,27 +24,27 @@ export default new Vuex.Store({
     serviceRegistrationError: null
   },
   mutations: {
-    serviceXMLAddLink(state, { name, linkTo }) {
-      const schema = state.serviceForm.serviceXML.find(s => s.name === name);
+    serviceSchemaAddLink(state, { name, linkTo }) {
+      const schema = state.serviceForm.serviceSchema.find(s => s.name === name);
       schema.linkTo = linkTo;
     },
-    commandXMLAddLink(state, { name, linkTo }) {
-      const schema = state.serviceForm.commandXML.find(s => s.name === name);
+    commandSchemaAddLink(state, { name, linkTo }) {
+      const schema = state.serviceForm.commandSchema.find(s => s.name === name);
       schema.linkTo = linkTo;
     },
-    serviceXMLRemoveLink(state, { name, linkTo }) {
-      const schema = state.serviceFormserviceXML.find(s => s.name === name);
+    serviceSchemaRemoveLink(state, { name, linkTo }) {
+      const schema = state.serviceFormserviceSchema.find(s => s.name === name);
       schema.linkTo = linkTo;
     },
-    commandXMLRemoveLink(state, { name, linkTo }) {
-      const schema = state.serviceForm.commandXML.find(s => s.name === name);
+    commandSchemaRemoveLink(state, { name, linkTo }) {
+      const schema = state.serviceForm.commandSchema.find(s => s.name === name);
       schema.linkTo = linkTo;
     },
-    serviceXMLRemoveSchema(state, index) {
-      state.serviceForm.serviceXML.splice(index, 1);
+    serviceSchemaRemoveSchema(state, index) {
+      state.serviceForm.serviceSchema.splice(index, 1);
     },
-    commandXMLRemoveSchema(state, index) {
-      state.serviceForm.commandXML.splice(index, 1);
+    commandSchemaRemoveSchema(state, index) {
+      state.serviceForm.commandSchema.splice(index, 1);
     },
     serviceRegistrationSuccess(state) {
       state.serviceCreated = true;

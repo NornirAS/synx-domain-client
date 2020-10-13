@@ -3,13 +3,13 @@
     <ServiceName />
     <ServiceDescription />
     <Keywords />
-    <ServiceXML />
-    <CommandXML />
+    <ServiceSchema />
+    <CommandSchema />
     <Instances />
     <Timeout />
     <WebJS />
-    <PostMasterScript />
-    <PreMasterScript />
+    <PostInlineScript />
+    <PreInlineScript />
     <ServiceImage />
     <Micropage />
     <v-btn
@@ -27,13 +27,13 @@
 import ServiceName from "./textfield/ServiceName.vue";
 import ServiceDescription from "./textarea/ServiceDescription.vue";
 import Keywords from "./textfield/Keywords.vue";
-import ServiceXML from "./xml/ServiceXML.vue";
-import CommandXML from "./xml/CommandXML.vue";
+import ServiceSchema from "./xml/ServiceSchema.vue";
+import CommandSchema from "./xml/CommandSchema.vue";
 import Instances from "./numberfield/Instances.vue";
 import Timeout from "./numberfield/Timeout.vue";
 import WebJS from "./textarea/WebJS.vue";
-import PostMasterScript from "./textarea/PostMasterScript.vue";
-import PreMasterScript from "./textarea/PreMasterScript.vue";
+import PostInlineScript from "./textarea/PostInlineScript.vue";
+import PreInlineScript from "./textarea/PreInlineScript.vue";
 import Micropage from "./Micropage.vue";
 import ServiceImage from "./textfield/ServiceImage";
 export default {
@@ -54,8 +54,8 @@ export default {
         name: null,
         description: null,
         keywords: [],
-        serviceXML: [],
-        commandXML: [],
+        serviceSchema: [],
+        commandSchema: [],
         instances: null,
         timeout: "30"
       };
@@ -76,13 +76,13 @@ export default {
     ServiceName,
     ServiceDescription,
     Keywords,
-    ServiceXML,
-    CommandXML,
+    ServiceSchema,
+    CommandSchema,
     Instances,
     Timeout,
     WebJS,
-    PostMasterScript,
-    PreMasterScript,
+    PostInlineScript,
+    PreInlineScript,
     Micropage,
     ServiceImage
   }

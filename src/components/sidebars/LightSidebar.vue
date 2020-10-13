@@ -29,12 +29,12 @@ export default {
           path: { name: "home" }
         },
         {
-          title: "Post MasterScript",
+          title: "Post Inline Script",
           icon: mdiCircleSmall,
           path: { name: "home" }
         },
         {
-          title: "Pre MasterScript",
+          title: "Pre Inline Script",
           icon: mdiCircleSmall,
           path: { name: "home" }
         },
