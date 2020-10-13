@@ -51,7 +51,7 @@ export default {
         this.token
       );
       this.$store.state.serviceForm = {
-        name: null,
+        serviceName: null,
         description: null,
         keywords: [],
         serviceSchema: [],

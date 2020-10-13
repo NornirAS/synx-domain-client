@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     addServiceName() {
-      this.$store.state.serviceForm.name = this.serviceName;
+      this.$store.state.serviceForm.serviceName = this.serviceName;
     }
   }
 };
