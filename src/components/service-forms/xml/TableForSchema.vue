@@ -5,14 +5,16 @@
         <tr>
           <th class="text-left">#</th>
           <th class="text-left">Schema</th>
-          <th class="text-left">Linking to</th>
+          <th v-if="title === 'Service Schema'" class="text-left">
+            Linking to
+          </th>
           <th class="text-center">Remove Schema</th>
         </tr>
       </thead>
-      <tbody v-if="title === 'Service XML'">
-        <tr v-for="(item, index) in serviceXML" :key="item.name">
+      <tbody v-if="title === 'Service Schema'">
+        <tr v-for="(item, index) in serviceSchema" :key="item.name">
           <td>{{ index }}</td>
-          <td>{{ item.name }}</td>
+          <td>{{ item.tagName }}</td>
           <td><Dialog :index="getIndex(index)" :title="title" /></td>
           <td class="text-center">
             <v-btn @click="removeSchema(index)" :color="colorRed" icon x-small>
@@ -22,10 +24,9 @@
         </tr>
       </tbody>
       <tbody v-else>
-        <tr v-for="(item, index) in commandXML" :key="item.name">
+        <tr v-for="(item, index) in commandSchema" :key="item.name">
           <td>{{ index }}</td>
-          <td>{{ item.name }}</td>
-          <td><Dialog :index="getIndex(index)" :title="title" /></td>
+          <td>{{ item }}</td>
           <td class="text-center">
             <v-btn @click="removeSchema(index)" :color="colorRed" icon x-small>
               <v-icon>{{ mdiDelete }}</v-icon>
@@ -39,7 +40,7 @@
 
 <script>
 import { mdiDelete } from "@mdi/js";
-import Dialog from "./DialogForXML.vue";
+import Dialog from "./DialogForSchema.vue";
 export default {
   props: ["title"],
   data() {
@@ -57,19 +58,19 @@ export default {
       return index;
     },
     removeSchema(index) {
-      if (this.title === "Service XML") {
-        this.$store.commit("serviceXMLRemoveSchema", index);
+      if (this.title === "Service Schema") {
+        this.$store.commit("removeServiceSchema", index);
       } else {
-        this.$store.commit("commandXMLRemoveSchema", index);
+        this.$store.commit("removeCommandSchema", index);
       }
     }
   },
   computed: {
-    serviceXML() {
-      return this.$store.state.serviceForm.serviceXML;
+    serviceSchema() {
+      return this.$store.state.serviceForm.serviceSchema;
     },
-    commandXML() {
-      return this.$store.state.serviceForm.commandXML;
+    commandSchema() {
+      return this.$store.state.serviceForm.commandSchema;
     }
   }
 };

@@ -40,10 +40,10 @@ export default new Vuex.Store({
       const schema = state.serviceForm.commandSchema.find(s => s.name === name);
       schema.linkTo = linkTo;
     },
-    serviceSchemaRemoveSchema(state, index) {
+    removeServiceSchema(state, index) {
       state.serviceForm.serviceSchema.splice(index, 1);
     },
-    commandSchemaRemoveSchema(state, index) {
+    removeCommandSchema(state, index) {
       state.serviceForm.commandSchema.splice(index, 1);
     },
     serviceRegistrationSuccess(state) {

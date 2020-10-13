@@ -123,9 +123,9 @@ export default {
   },
   methods: {
     addLink() {
-      if (this.title === "Service XML") {
-        this.$store.commit("serviceXMLAddLink", {
-          name: this.serviceXML[this.index].name,
+      if (this.title === "Service Schema") {
+        this.$store.commit("serviceSchemaAddLink", {
+          name: this.serviceSchema[this.index].name,
           linkTo: {
             domain: this.linkTo.domain,
             service: this.linkTo.service,
@@ -133,8 +133,8 @@ export default {
           }
         });
       } else {
-        this.$store.commit("commandXMLAddLink", {
-          name: this.commandXML[this.index].name,
+        this.$store.commit("commandSchemaAddLink", {
+          name: this.commandSchema[this.index].name,
           linkTo: {
             domain: this.linkTo.domain,
             service: this.linkTo.service,
@@ -144,17 +144,17 @@ export default {
       }
     },
     removeLink() {
-      if (this.title === "Service XML") {
-        this.$store.commit("serviceXMLAddLink", {
-          name: this.serviceXML[this.index].name,
+      if (this.title === "Service Schema") {
+        this.$store.commit("serviceSchemaAddLink", {
+          name: this.serviceSchema[this.index].name,
           linkTo: {}
         });
         this.linkTo = {};
         this.isLink = false;
         this.dialog = false;
       } else {
-        this.$store.commit("commandXMLAddLink", {
-          name: this.commandXML[this.index].name,
+        this.$store.commit("commandSchemaAddLink", {
+          name: this.commandSchema[this.index].name,
           linkTo: {}
         });
         this.linkTo = {};
@@ -173,11 +173,11 @@ export default {
     }
   },
   computed: {
-    serviceXML() {
-      return this.$store.state.serviceForm.serviceXML;
+    serviceSchema() {
+      return this.$store.state.serviceForm.serviceSchema;
     },
-    commandXML() {
-      return this.$store.state.serviceForm.commandXML;
+    commandSchema() {
+      return this.$store.state.serviceForm.commandSchema;
     }
   }
 };
