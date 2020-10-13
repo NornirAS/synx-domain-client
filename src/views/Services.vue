@@ -13,7 +13,10 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-checkbox :style="checkBoxStyle"></v-checkbox>
+        <v-checkbox
+          :style="checkBoxStyle"
+          @change="selectAllServices"
+        ></v-checkbox>
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -97,6 +100,7 @@
         :index="index"
       />
     </v-col>
+    <p>{{ isSelected }}</p>
   </v-row>
 </template>
 
@@ -141,6 +145,9 @@ export default {
     },
     url(domain, service) {
       return `https://${domain}.cioty.com/${service}`;
+    },
+    selectAllServices() {
+      this.$store.dispatch("selectAllServices");
     }
   },
   computed: {

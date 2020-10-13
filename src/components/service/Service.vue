@@ -1,7 +1,10 @@
 <template>
   <v-row>
     <!-- <Checkbox :style="checkBoxStyle" :event="check" /> -->
-    <v-checkbox :style="checkBoxStyle" @change="check(index)"></v-checkbox>
+    <v-checkbox
+      :style="checkBoxStyle"
+      @change="selectService(index)"
+    ></v-checkbox>
     <v-card outlined>
       <v-row>
         <!-- <v-col md="3">
@@ -61,7 +64,7 @@ export default {
     };
   },
   methods: {
-    check(index) {
+    selectService(index) {
       this.$store.dispatch("selectService", index);
     }
   },

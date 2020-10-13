@@ -58,6 +58,11 @@ export default new Vuex.Store({
     selectService(state, index) {
       state.services[index].isSelected = !state.services[index].isSelected;
     },
+    selectAllServices(state) {
+      state.services.forEach(service => {
+        service.isSelected = !service.isSelected;
+      });
+    },
     authUser(state, { token, username }) {
       state.idToken = token;
       state.username = username;
@@ -100,6 +105,9 @@ export default new Vuex.Store({
     },
     selectService({ commit }, index) {
       commit("selectService", index);
+    },
+    selectAllServices({ commit }) {
+      commit("selectAllServices");
     },
     SOCKET_authentication({ commit, dispatch }, data) {
       if (data.ActiveToken) {
