@@ -65,7 +65,7 @@
           hide-details
           :style="searchBarStyle"
         ></v-text-field>
-        <v-btn :color="colorRed" :style="filterBtnStyle" rounded dark>
+        <v-btn :disabled="isSelected" :color="colorRed" :style="filterBtnStyle" rounded dark>
           Delete
         </v-btn>
         <v-menu offset-y>
@@ -98,10 +98,9 @@
         :limitInstances="limitInstances"
         :url="url(domain, serviceName)"
         :index="index"
-        :isSelected="isSelected"
       />
     </v-col>
-    <p>{{ isSelected }}</p>
+    {{ isSelected }}
   </v-row>
 </template>
 
@@ -158,10 +157,13 @@ export default {
     services() {
       return this.$store.state.services;
     },
-    isSelected() {
+    selectedServices() {
       return this.$store.state.services.filter(
         service => service.isSelected === true
       );
+    },
+    isSelected() {
+      return !this.selectedServices.length > 0 ? true : false;
     }
   },
   components: {

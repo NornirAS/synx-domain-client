@@ -72,9 +72,6 @@ export default {
   },
   computed: {
     isSelected() {
-      // return this.$store.state.services.filter(
-      //   service => service.isSelected === true
-      // );
       return this.$store.state.services[this.index].isSelected === true;
     }
   },
