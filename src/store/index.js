@@ -21,7 +21,8 @@ export default new Vuex.Store({
     idToken: null,
     authError: null,
     serviceCreated: false,
-    serviceRegistrationError: null
+    serviceRegistrationError: null,
+    selectAll: false
   },
   mutations: {
     serviceSchemaAddLink(state, { name, linkTo }) {
@@ -53,6 +54,16 @@ export default new Vuex.Store({
       state.services[index].isSelected = !state.services[index].isSelected;
     },
     selectAllServices(state) {
+      state.selectAll = !state.selectAll;
+      if (!state.selectAll) {
+        state.services.forEach(service => {
+          service.isSelected = true;
+        });
+      } else {
+        state.services.forEach(service => {
+          service.isSelected = false;
+        });
+      }
       state.services.forEach(service => {
         service.isSelected = !service.isSelected;
       });

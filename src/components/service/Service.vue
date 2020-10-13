@@ -3,6 +3,7 @@
     <!-- <Checkbox :style="checkBoxStyle" :event="check" /> -->
     <v-checkbox
       :style="checkBoxStyle"
+      :value="isSelected"
       @change="selectService(index)"
     ></v-checkbox>
     <v-card outlined>
@@ -30,6 +31,7 @@
             :divHeight="divHeight"
           />
         </v-col>
+        <p></p>
       </v-row>
     </v-card>
   </v-row>
@@ -66,6 +68,14 @@ export default {
   methods: {
     selectService(index) {
       this.$store.dispatch("selectService", index);
+    }
+  },
+  computed: {
+    isSelected() {
+      // return this.$store.state.services.filter(
+      //   service => service.isSelected === true
+      // );
+      return this.$store.state.services[this.index].isSelected === true;
     }
   },
   components: {

@@ -98,6 +98,7 @@
         :limitInstances="limitInstances"
         :url="url(domain, serviceName)"
         :index="index"
+        :isSelected="isSelected"
       />
     </v-col>
     <p>{{ isSelected }}</p>
