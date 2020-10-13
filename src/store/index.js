@@ -28,16 +28,8 @@ export default new Vuex.Store({
       const schema = state.serviceForm.serviceSchema.find(s => s.name === name);
       schema.linkTo = linkTo;
     },
-    commandSchemaAddLink(state, { name, linkTo }) {
-      const schema = state.serviceForm.commandSchema.find(s => s.name === name);
-      schema.linkTo = linkTo;
-    },
     serviceSchemaRemoveLink(state, { name, linkTo }) {
       const schema = state.serviceFormserviceSchema.find(s => s.name === name);
-      schema.linkTo = linkTo;
-    },
-    commandSchemaRemoveLink(state, { name, linkTo }) {
-      const schema = state.serviceForm.commandSchema.find(s => s.name === name);
       schema.linkTo = linkTo;
     },
     removeServiceSchema(state, index) {

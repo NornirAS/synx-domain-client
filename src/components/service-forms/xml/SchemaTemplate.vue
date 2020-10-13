@@ -61,10 +61,10 @@ export default {
     addToArray() {
       if (this.title === "Service Schema") {
         this.$store.state.serviceForm.serviceSchema.push(this.serviceSchema);
-        this.schema = {};
+        this.serviceSchema = {};
       } else {
         this.$store.state.serviceForm.commandSchema.push(this.commandSchema);
-        this.schema = "";
+        this.commandSchema = "";
       }
     }
   }

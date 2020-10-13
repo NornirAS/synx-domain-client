@@ -123,44 +123,23 @@ export default {
   },
   methods: {
     addLink() {
-      if (this.title === "Service Schema") {
-        this.$store.commit("serviceSchemaAddLink", {
-          name: this.serviceSchema[this.index].name,
-          linkTo: {
-            domain: this.linkTo.domain,
-            service: this.linkTo.service,
-            variable: this.linkTo.variable
-          }
-        });
-      } else {
-        this.$store.commit("commandSchemaAddLink", {
-          name: this.commandSchema[this.index].name,
-          linkTo: {
-            domain: this.linkTo.domain,
-            service: this.linkTo.service,
-            variable: this.linkTo.variable
-          }
-        });
-      }
+      this.$store.commit("serviceSchemaAddLink", {
+        name: this.serviceSchema[this.index].name,
+        linkTo: {
+          domain: this.linkTo.domain,
+          service: this.linkTo.service,
+          variable: this.linkTo.variable
+        }
+      });
     },
     removeLink() {
-      if (this.title === "Service Schema") {
-        this.$store.commit("serviceSchemaAddLink", {
-          name: this.serviceSchema[this.index].name,
-          linkTo: {}
-        });
-        this.linkTo = {};
-        this.isLink = false;
-        this.dialog = false;
-      } else {
-        this.$store.commit("commandSchemaAddLink", {
-          name: this.commandSchema[this.index].name,
-          linkTo: {}
-        });
-        this.linkTo = {};
-        this.isLink = false;
-        this.dialog = false;
-      }
+      this.$store.commit("serviceSchemaAddLink", {
+        name: this.serviceSchema[this.index].name,
+        linkTo: {}
+      });
+      this.linkTo = {};
+      this.isLink = false;
+      this.dialog = false;
     },
     linkingString() {
       return (
@@ -175,9 +154,6 @@ export default {
   computed: {
     serviceSchema() {
       return this.$store.state.serviceForm.serviceSchema;
-    },
-    commandSchema() {
-      return this.$store.state.serviceForm.commandSchema;
     }
   }
 };
