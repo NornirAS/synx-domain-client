@@ -1,13 +1,13 @@
 <template>
-  <XMLTemplate
+  <SchemaTemplate
     :title="title"
     :description="description"
-    :isSchema="ifCommandXML"
+    :isSchema="isCommandSchema"
   />
 </template>
 
 <script>
-import XMLTemplate from "./SchemaTemplate.vue";
+import SchemaTemplate from "./SchemaTemplate.vue";
 export default {
   data() {
     return {
@@ -17,11 +17,11 @@ export default {
     };
   },
   components: {
-    XMLTemplate
+    SchemaTemplate
   },
   computed: {
-    ifCommandXML() {
-      return this.$store.state.serviceForm.commandXML.length > 0;
+    isCommandSchema() {
+      return this.$store.state.serviceForm.commandSchema.length > 0;
     }
   }
 };

@@ -57,7 +57,7 @@ export default {
         serviceSchema: [],
         commandSchema: [],
         instances: null,
-        timeout: "30"
+        timeOut: "30"
       };
     }
   },

@@ -4,7 +4,7 @@
     <v-row justify="start" align="center">
       <v-col sm="2">
         <CurrentValue
-          :primaryValue="timeout"
+          :primaryValue="timeOut"
           :secondaryValue="secondaryValue"
           :helper="helper"
           :primaryStyle="primaryStyle"
@@ -22,11 +22,11 @@
           type="number"
           min="10"
           max="10000"
-          v-model="serviceTimeout"
+          v-model="serviceTimeOut"
         ></v-text-field>
       </v-col>
       <v-col sm="4">
-        <v-btn @click="setTimeout" :color="colorBlue" rounded medium dark>
+        <v-btn @click="setTimeOut" :color="colorBlue" rounded medium dark>
           Set
         </v-btn>
       </v-col>
@@ -43,7 +43,7 @@ export default {
       title: "Timeout",
       description:
         "Time for inactive channelrequest before it closes(in seconds). Default 30.",
-      serviceTimeout: "30",
+      serviceTimeOut: "30",
       secondaryValue: "s",
       helper: "Current Timeout",
       primaryActionBtnName: "Set Timeout",
@@ -68,14 +68,14 @@ export default {
     FormHeader
   },
   methods: {
-    setTimeout() {
-      this.$store.state.serviceForm.timeout = this.serviceTimeout;
-      this.serviceTimeout = "";
+    setTimeOut() {
+      this.$store.state.serviceForm.timeOut = this.serviceTimeOut;
+      this.serviceTimeOut = "";
     }
   },
   computed: {
-    timeout() {
-      return this.$store.state.serviceForm.timeout;
+    timeOut() {
+      return this.$store.state.serviceForm.timeOut;
     }
   }
 };
