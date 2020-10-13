@@ -65,7 +65,14 @@
           hide-details
           :style="searchBarStyle"
         ></v-text-field>
-        <v-btn :disabled="isSelected" :color="colorRed" :style="filterBtnStyle" rounded dark>
+        <v-btn
+          @click="deleteService(selectedServices)"
+          :disabled="isSelected"
+          :color="colorRed"
+          :style="filterBtnStyle"
+          rounded
+          dark
+        >
           Delete
         </v-btn>
         <v-menu offset-y>
@@ -100,7 +107,6 @@
         :index="index"
       />
     </v-col>
-    {{ isSelected }}
   </v-row>
 </template>
 
@@ -148,6 +154,20 @@ export default {
     },
     selectAllServices() {
       this.$store.dispatch("selectAllServices");
+    },
+    deleteService(data) {
+      console.log(data);
+      const services = [];
+      data.forEach(item => {
+        let service = {
+          serviceName: null,
+          instances: null
+        };
+        service.serviceName = item.serviceName;
+        service.instances = "0";
+        services.push(service);
+      });
+      this.$socket.emit("delete_service", services, this.token);
     }
   },
   computed: {
