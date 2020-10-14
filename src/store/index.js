@@ -104,19 +104,25 @@ export default new Vuex.Store({
         return;
       }
       const expirationDate = localStorage.getItem("expirationDate");
+      const expiredIn = new Date(expirationDate);
       const now = new Date();
-      if (now >= expirationDate) {
-        return;
+      if (now >= expiredIn) {
+        commit("signOut");
+      } else {
+        commit("authUser", {
+          token: token,
+          username: username
+        });
       }
-      commit("authUser", {
-        token: token,
-        username: username
-      });
     },
     signOut({ commit }) {
       commit("signOut");
     },
-    setSignOutTimer({ commit }, expirationTime) {
+    setSignOutTimer({ commit }) {
+      const expirationDate = localStorage.getItem("expirationDate");
+      const expiredIn = new Date(expirationDate).getTime();
+      const now = new Date().getTime();
+      const expirationTime = expiredIn - now;
       setTimeout(() => {
         commit("signOut");
       }, expirationTime);
@@ -127,18 +133,17 @@ export default new Vuex.Store({
     selectAllServices({ commit }) {
       commit("selectAllServices");
     },
-    SOCKET_authentication({ commit, dispatch }, data) {
+    SOCKET_authentication({ commit }, data) {
       if (data.ActiveToken) {
         commit("authUser", {
           token: data.ActiveToken,
           username: localStorage.getItem("username")
         });
         const now = new Date();
-        const expirationTime = 3600000;
+        const expirationTime = 3600 * 1000 * 9;
         const expirationDate = new Date(now.getTime() + expirationTime);
         localStorage.setItem("token", data.ActiveToken);
         localStorage.setItem("expirationDate", expirationDate);
-        dispatch("setSignOutTimer", expirationTime);
       } else {
         commit("authError", {
           error: "Wrong username or password!"

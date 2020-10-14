@@ -23,6 +23,9 @@ export default {
   }),
   created() {
     this.$store.dispatch("tryAutoSignIn");
+    if (localStorage.getItem("expirationDate")) {
+      this.$store.dispatch("setSignOutTimer");
+    }
   }
 };
 </script>
