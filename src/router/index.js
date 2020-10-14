@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Homepage from "../views/Homepage.vue";
 import Services from "../views/Services.vue";
 import CreateService from "../views/CreateService";
+import UpdateService from "../views/UpdateService";
 import Notifications from "../views/Notifications.vue";
 import Appbar from "../components/Appbar.vue";
 import DarkSidebar from "../components/sidebars/DarkSidebar.vue";
@@ -47,6 +48,16 @@ const routes = [
     name: "createService",
     components: {
       default: CreateService,
+      "app-bar": Appbar,
+      "light-sidebar": LightSidebar
+    },
+    beforeEnter: authGuard
+  },
+  {
+    path: "/services/update-service",
+    name: "updateService",
+    components: {
+      default: UpdateService,
       "app-bar": Appbar,
       "light-sidebar": LightSidebar
     },

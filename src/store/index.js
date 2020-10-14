@@ -6,21 +6,12 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     serviceForm: {
-      serviceName: "Valera",
-      description: "description",
-      keywords: ["hi", "there"],
-      serviceSchema: [
-        {
-          tagName: "test",
-          linkTo: {
-            domain: "home",
-            service: "sun",
-            variable: "light"
-          }
-        }
-      ],
+      serviceName: null,
+      description: null,
+      keywords: null,
+      serviceSchema: [],
       commandSchema: [],
-      instances: 300,
+      instances: null,
       timeOut: "30",
       masterScript: "YWFhYWFhYWFhYQo=",
       webJS: "Hello"
@@ -31,7 +22,8 @@ export default new Vuex.Store({
     authError: null,
     serviceCreated: false,
     serviceRegistrationError: null,
-    selectAll: false
+    selectAll: false,
+    sideBarTitle: null
   },
   mutations: {
     serviceSchemaAddLink(state, { tagName, linkTo }) {

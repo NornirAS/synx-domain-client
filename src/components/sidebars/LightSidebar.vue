@@ -16,7 +16,6 @@ import SidebarTemplate from "./SidebarTemplate.vue";
 export default {
   data() {
     return {
-      title: "New Service",
       items: [
         {
           title: "Basic",
@@ -58,6 +57,11 @@ export default {
       permanent: true,
       light: true
     };
+  },
+  computed: {
+    title() {
+      return this.$store.state.sideBarTitle;
+    }
   },
   components: {
     SidebarTemplate

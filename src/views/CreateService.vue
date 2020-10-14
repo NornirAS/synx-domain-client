@@ -9,6 +9,9 @@
 <script>
 import BasicForm from "../components/service-forms/BasicForm.vue";
 export default {
+  created() {
+    this.$store.state.sideBarTitle = "Create Service";
+  },
   computed: {
     isCreated() {
       return this.$store.state.serviceCreated;
