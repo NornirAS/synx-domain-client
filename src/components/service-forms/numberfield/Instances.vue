@@ -71,10 +71,6 @@ export default {
       }
     };
   },
-  components: {
-    CurrentValue,
-    FormHeader
-  },
   methods: {
     addInstances() {
       this.$store.state.serviceForm.instances += this.serviceInstances;
@@ -88,6 +84,10 @@ export default {
     instances() {
       return this.$store.state.serviceForm.instances;
     }
+  },
+  components: {
+    CurrentValue,
+    FormHeader
   }
 };
 </script>

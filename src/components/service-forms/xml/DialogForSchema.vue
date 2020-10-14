@@ -24,7 +24,7 @@
           xSmall
           text
         >
-          {{ linkName }}
+          Add Link
         </v-btn>
       </template>
       <v-card>
@@ -66,12 +66,7 @@
           </v-col>
           <v-col xs="3">
             <v-row class="justify-space-around">
-              <v-btn
-                :color="colorGreen"
-                fab
-                @click="(dialog = false), (isLink = true), addLink()"
-                small
-              >
+              <v-btn :color="colorGreen" fab @click="addLink()" small>
                 <v-icon>{{ mdiCheck }}</v-icon>
               </v-btn>
               <v-btn color="default" fab @click="dialog = false" small>
@@ -101,12 +96,12 @@
 
 <script>
 import { mdiCheck, mdiClose, mdiDelete } from "@mdi/js";
+import _ from "underscore";
 export default {
   props: ["index", "title"],
   data() {
     return {
-      linkName: "Add Link",
-      isLink: false,
+      isLink: null,
       linkTo: {
         domain: "",
         service: "",
@@ -121,20 +116,31 @@ export default {
       dialog: false
     };
   },
+  created() {
+    const links = this.serviceSchema[this.index].linkTo;
+    this.isLink = !_.isEmpty(links);
+    if (!_.isEmpty(links)) {
+      this.linkTo.domain = links.domain;
+      this.linkTo.service = links.service;
+      this.linkTo.variable = links.variable;
+    }
+  },
   methods: {
     addLink() {
       this.$store.commit("serviceSchemaAddLink", {
-        name: this.serviceSchema[this.index].name,
+        tagName: this.serviceSchema[this.index].tagName,
         linkTo: {
           domain: this.linkTo.domain,
           service: this.linkTo.service,
           variable: this.linkTo.variable
         }
       });
+      this.isLink = true;
+      this.dialog = false;
     },
     removeLink() {
       this.$store.commit("serviceSchemaAddLink", {
-        name: this.serviceSchema[this.index].name,
+        tagName: this.serviceSchema[this.index].tagName,
         linkTo: {}
       });
       this.linkTo = {};
@@ -143,17 +149,21 @@ export default {
     },
     linkingString() {
       return (
-        this.linkTo.domain +
+        this.serviceSchema[this.index].linkTo.domain +
         "/" +
-        this.linkTo.service +
+        this.serviceSchema[this.index].linkTo.service +
         "#" +
-        this.linkTo.variable
+        this.serviceSchema[this.index].linkTo.variable
       );
     }
   },
   computed: {
     serviceSchema() {
       return this.$store.state.serviceForm.serviceSchema;
+    },
+    serviceTest() {
+      return this.$store.state.serviceForm.serviceSchema[this.index].linkTo
+        .domain;
     }
   }
 };

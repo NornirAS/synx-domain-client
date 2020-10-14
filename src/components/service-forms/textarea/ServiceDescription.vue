@@ -6,7 +6,7 @@
       hide-details
       name="input-7-4"
       label="Description"
-      value=""
+      :value="getServiceDescription"
       v-model="serviceDescription"
       @blur="addServiceDescription"
     ></v-textarea>
@@ -24,13 +24,18 @@ export default {
       serviceDescription: ""
     };
   },
-  components: {
-    FormHeader
-  },
   methods: {
     addServiceDescription() {
       this.$store.state.serviceForm.description = this.serviceDescription;
     }
+  },
+  computed: {
+    getServiceDescription() {
+      return this.$store.state.serviceForm.description;
+    }
+  },
+  components: {
+    FormHeader
   }
 };
 </script>

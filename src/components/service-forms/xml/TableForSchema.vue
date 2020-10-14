@@ -50,9 +50,6 @@ export default {
       colorBlue: "#27AAE1"
     };
   },
-  components: {
-    Dialog
-  },
   methods: {
     getIndex(index) {
       return index;
@@ -72,6 +69,9 @@ export default {
     commandSchema() {
       return this.$store.state.serviceForm.commandSchema;
     }
+  },
+  components: {
+    Dialog
   }
 };
 </script>

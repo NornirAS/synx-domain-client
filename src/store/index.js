@@ -6,12 +6,21 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     serviceForm: {
-      serviceName: null,
-      description: null,
-      keywords: [],
-      serviceSchema: [],
+      serviceName: "Valera",
+      description: "description",
+      keywords: ["hi", "there"],
+      serviceSchema: [
+        {
+          tagName: "test",
+          linkTo: {
+            domain: "home",
+            service: "sun",
+            variable: "light"
+          }
+        }
+      ],
       commandSchema: [],
-      instances: null,
+      instances: 300,
       timeOut: "30",
       masterScript: "YWFhYWFhYWFhYQo=",
       webJS: "Hello"
@@ -25,12 +34,16 @@ export default new Vuex.Store({
     selectAll: false
   },
   mutations: {
-    serviceSchemaAddLink(state, { name, linkTo }) {
-      const schema = state.serviceForm.serviceSchema.find(s => s.name === name);
+    serviceSchemaAddLink(state, { tagName, linkTo }) {
+      const schema = state.serviceForm.serviceSchema.find(
+        s => s.tagName === tagName
+      );
       schema.linkTo = linkTo;
     },
-    serviceSchemaRemoveLink(state, { name, linkTo }) {
-      const schema = state.serviceFormserviceSchema.find(s => s.name === name);
+    serviceSchemaRemoveLink(state, { tagName, linkTo }) {
+      const schema = state.serviceFormserviceSchema.find(
+        s => s.tagName === tagName
+      );
       schema.linkTo = linkTo;
     },
     removeServiceSchema(state, index) {

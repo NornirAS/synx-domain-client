@@ -43,9 +43,6 @@ export default {
       colorBlue: "#27AAE1"
     };
   },
-  components: {
-    FormHeader
-  },
   methods: {
     addKeyword() {
       this.$store.state.serviceForm.keywords.push(this.serviceKeyword);
@@ -59,6 +56,9 @@ export default {
     keywords() {
       return this.$store.state.serviceForm.keywords;
     }
+  },
+  components: {
+    FormHeader
   }
 };
 </script>

@@ -22,6 +22,7 @@
           type="number"
           min="10"
           max="10000"
+          :value="timeOut"
           v-model="serviceTimeOut"
         ></v-text-field>
       </v-col>

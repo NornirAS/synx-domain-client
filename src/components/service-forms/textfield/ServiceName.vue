@@ -7,6 +7,7 @@
       dense
       outlined
       hide-details
+      :value="getServiceName"
       v-model="serviceName"
       @blur="addServiceName"
     ></v-text-field>
@@ -23,13 +24,18 @@ export default {
       serviceName: ""
     };
   },
-  components: {
-    FormHeader
-  },
   methods: {
     addServiceName() {
       this.$store.state.serviceForm.serviceName = this.serviceName;
     }
+  },
+  computed: {
+    getServiceName() {
+      return this.$store.state.serviceForm.serviceName;
+    }
+  },
+  components: {
+    FormHeader
   }
 };
 </script>
