@@ -54,12 +54,7 @@ export default {
           this.token
         );
       } else {
-        this.$socket.emit(
-          "update_service",
-          this.formData,
-          this.username,
-          this.token
-        );
+        this.$socket.emit("update_service", this.formData, this.token);
       }
       this.$store.dispatch("resetServiceForm");
     }

@@ -22,6 +22,31 @@ export default {
   beforeDestroy() {
     this.$store.dispatch("resetServiceForm");
   },
+  computed: {
+    isCreated() {
+      return this.$store.state.formSubmited;
+    },
+    isError() {
+      return this.$store.state.formError;
+    }
+  },
+  watch: {
+    isCreated(newValue) {
+      if (newValue) {
+        this.$router.push({ name: "services" });
+        this.$store.state.formSubmited = false;
+        console.log("updated");
+        if (this.isError !== null) {
+          this.$store.state.formError = null;
+        }
+      }
+    },
+    isError(newValue) {
+      if (newValue) {
+        console.log(newValue);
+      }
+    }
+  },
   components: {
     BasicForm
   }

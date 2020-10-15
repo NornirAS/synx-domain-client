@@ -20,8 +20,8 @@ export default new Vuex.Store({
     username: null,
     idToken: null,
     authError: null,
-    serviceCreated: false,
-    serviceRegistrationError: null,
+    formSubmited: false,
+    formError: null,
     selectAll: false,
     sideBarTitle: null
   },
@@ -45,12 +45,19 @@ export default new Vuex.Store({
       state.serviceForm.commandSchema.splice(index, 1);
     },
     serviceRegistrationSuccess(state) {
-      state.serviceCreated = true;
+      state.formSubmited = true;
     },
     serviceRegistrationError(state) {
-      state.serviceCreated = false;
-      state.serviceRegistrationError =
-        "Something went wrong. Try one more time";
+      state.formSubmited = false;
+      state.formError =
+        "Registration Error. Something went wrong. Try one more time";
+    },
+    serviceUpdateSuccess(state) {
+      state.formSubmited = true;
+    },
+    serviceUpdatedError(state) {
+      state.formSubmited = false;
+      state.formError = "Update Error. Something went wrong. Try one more time";
     },
     allServices(state, payload) {
       state.services = payload;
@@ -80,7 +87,7 @@ export default new Vuex.Store({
       form.keywords = service.searchTerms;
       form.serviceSchema = service.schema;
       form.commandSchema = service.cmdXML;
-      form.instances = service.instances;
+      form.instances = parseInt(service.instances);
     },
     resetServiceForm(state) {
       console.log(state.serviceForm);
@@ -172,6 +179,12 @@ export default new Vuex.Store({
     },
     SOCKET_service_registration_error({ commit }) {
       commit("serviceRegistrationError");
+    },
+    SOCKET_service_update_success({ commit }) {
+      commit("serviceUpdateSuccess");
+    },
+    SOCKET_service_update_error({ commit }) {
+      commit("serviceUpdateError");
     },
     SOCKET_all_services({ commit }, data) {
       const services = [];

@@ -19,19 +19,19 @@ export default {
   },
   computed: {
     isCreated() {
-      return this.$store.state.serviceCreated;
+      return this.$store.state.formSubmited;
     },
     isError() {
-      return this.$store.state.serviceRegistrationError;
+      return this.$store.state.formError;
     }
   },
   watch: {
     isCreated(newValue) {
       if (newValue) {
         this.$router.push({ name: "services" });
-        this.$store.state.serviceCreated = false;
+        this.$store.state.formSubmited = false;
         if (this.isError !== null) {
-          this.$store.state.serviceRegistrationError = null;
+          this.$store.state.formError = null;
         }
       }
     },
