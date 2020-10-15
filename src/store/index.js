@@ -8,7 +8,7 @@ export default new Vuex.Store({
     serviceForm: {
       serviceName: null,
       description: null,
-      keywords: null,
+      keywords: [],
       serviceSchema: [],
       commandSchema: [],
       instances: null,
@@ -82,6 +82,15 @@ export default new Vuex.Store({
       form.commandSchema = service.cmdXML;
       form.instances = service.instances;
     },
+    resetServiceForm(state) {
+      console.log(state.serviceForm);
+      state.serviceForm.serviceName = null;
+      state.serviceForm.description = null;
+      state.serviceForm.keywords = [];
+      state.serviceForm.serviceSchema = [];
+      state.serviceForm.commandSchema = [];
+      state.serviceForm.instances = null;
+    },
     authUser(state, { token, username }) {
       state.idToken = token;
       state.username = username;
@@ -137,6 +146,9 @@ export default new Vuex.Store({
     editService({ commit }, index) {
       const service = this.state.services[index];
       commit("editService", service);
+    },
+    resetServiceForm({ commit }) {
+      commit("resetServiceForm");
     },
     SOCKET_authentication({ commit }, data) {
       if (data.ActiveToken) {

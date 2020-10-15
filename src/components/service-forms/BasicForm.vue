@@ -18,7 +18,7 @@
       style="float: right"
       rounded
       dark
-      >Submit</v-btn
+      >{{ btnName }}</v-btn
     >
   </form>
 </template>
@@ -37,28 +37,31 @@ import PreInlineScript from "./textarea/PreInlineScript.vue";
 import Micropage from "./Micropage.vue";
 import ServiceImage from "./textfield/ServiceImage";
 export default {
+  props: ["btnName"],
   data() {
     return {
+      title: this.$store.state.sideBarTitle,
       colorBlue: "#27AAE1"
     };
   },
   methods: {
     submitForm() {
-      this.$socket.emit(
-        "register-service",
-        this.formData,
-        this.username,
-        this.token
-      );
-      this.$store.state.serviceForm = {
-        serviceName: null,
-        description: null,
-        keywords: [],
-        serviceSchema: [],
-        commandSchema: [],
-        instances: null,
-        timeOut: "30"
-      };
+      if (this.title === "Create Service") {
+        this.$socket.emit(
+          "register_service",
+          this.formData,
+          this.username,
+          this.token
+        );
+      } else {
+        this.$socket.emit(
+          "update_service",
+          this.formData,
+          this.username,
+          this.token
+        );
+      }
+      this.$store.dispatch("resetServiceForm");
     }
   },
   computed: {
