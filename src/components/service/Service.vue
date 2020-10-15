@@ -14,11 +14,12 @@
           ></v-img>
         </v-col> -->
         <v-col md="6">
-          <FormHeader
+          <Header
             :title="title"
             :description="micropage"
             :url="url"
             :href="url"
+            :icon="mdiCircleEditOutline"
           />
         </v-col>
         <v-col md="6" align="right">
@@ -38,12 +39,14 @@
 </template>
 
 <script>
-import FormHeader from "../service-forms/FormHeader.vue";
+import { mdiCircleEditOutline } from "@mdi/js";
+import Header from "./Header.vue";
 import CurrentValue from "../service-forms/numberfield/CurrentValue.vue";
 export default {
   props: ["title", "availableInstances", "limitInstances", "index", "url"],
   data() {
     return {
+      mdiCircleEditOutline,
       micropage: "Micropage: ",
       helper: "Available Instances",
       primaryStyle: {
@@ -76,7 +79,7 @@ export default {
     }
   },
   components: {
-    FormHeader,
+    Header,
     CurrentValue
   }
 };

@@ -156,7 +156,6 @@ export default {
       this.$store.dispatch("selectAllServices");
     },
     deleteService(data) {
-      console.log(data);
       const services = [];
       data.forEach(item => {
         let service = {

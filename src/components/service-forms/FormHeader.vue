@@ -2,14 +2,14 @@
   <div>
     <h1>{{ title }}</h1>
     <p>
-      {{ description }} <a :href="url" target="_blank">{{ url }}</a>
+      {{ description }}
     </p>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["title", "description", "url"]
+  props: ["title", "description"]
 };
 </script>
 
