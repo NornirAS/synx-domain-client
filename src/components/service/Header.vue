@@ -4,13 +4,13 @@
       {{ title }}
       <v-btn
         :style="btnStyle"
-        :to="{ name: 'updateService' }"
+        :to="{ name: 'editService', params: { index } }"
         outlined
         rounded
         x-small
         ligth
       >
-        Update <v-icon x-small>{{ icon }}</v-icon>
+        Edit <v-icon x-small>{{ icon }}</v-icon>
       </v-btn>
     </h1>
     <p>
@@ -21,15 +21,19 @@
 
 <script>
 export default {
-  props: ["title", "description", "url", "icon"],
+  props: ["title", "description", "index", "url", "icon"],
   data() {
     return {
       btnStyle: {
-        color: "#58595B",
-        marginBottom: "0.3em"
+        color: "#58595B"
       }
     };
   }
+  // methods: {
+  //   editService(index) {
+  //     this.$store.dispatch("editService", index);
+  //   }
+  // }
 };
 </script>
 

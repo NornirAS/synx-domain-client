@@ -73,6 +73,15 @@ export default new Vuex.Store({
         service.isSelected = !service.isSelected;
       });
     },
+    editService(state, service) {
+      const form = state.serviceForm;
+      form.serviceName = service.serviceName;
+      form.description = service.description;
+      form.keywords = service.searchTerms;
+      form.serviceSchema = service.schema;
+      form.commandSchema = service.cmdXML;
+      form.instances = service.instances;
+    },
     authUser(state, { token, username }) {
       state.idToken = token;
       state.username = username;
@@ -124,6 +133,10 @@ export default new Vuex.Store({
     },
     selectAllServices({ commit }) {
       commit("selectAllServices");
+    },
+    editService({ commit }, index) {
+      const service = this.state.services[index];
+      commit("editService", service);
     },
     SOCKET_authentication({ commit }, data) {
       if (data.ActiveToken) {

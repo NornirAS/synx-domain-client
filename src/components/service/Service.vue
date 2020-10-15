@@ -20,6 +20,7 @@
             :url="url"
             :href="url"
             :icon="mdiCircleEditOutline"
+            :index="index"
           />
         </v-col>
         <v-col md="6" align="right">

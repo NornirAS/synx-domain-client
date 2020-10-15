@@ -9,8 +9,14 @@
 <script>
 import BasicForm from "../components/service-forms/BasicForm.vue";
 export default {
+  data() {
+    return {
+      index: this.$route.params.index
+    };
+  },
   created() {
-    this.$store.state.sideBarTitle = "Update Service";
+    this.$store.state.sideBarTitle = "Edit Service";
+    this.$store.dispatch("editService", this.index);
   },
   components: {
     BasicForm

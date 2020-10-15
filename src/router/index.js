@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Homepage from "../views/Homepage.vue";
 import Services from "../views/Services.vue";
 import CreateService from "../views/CreateService";
-import UpdateService from "../views/UpdateService";
+import EditService from "../views/EditService";
 import Notifications from "../views/Notifications.vue";
 import Appbar from "../components/Appbar.vue";
 import DarkSidebar from "../components/sidebars/DarkSidebar.vue";
@@ -44,7 +44,7 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/services/create-service",
+    path: "/services/service/create",
     name: "createService",
     components: {
       default: CreateService,
@@ -54,10 +54,10 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/services/update-service",
-    name: "updateService",
+    path: "/services/service/:index/edit",
+    name: "editService",
     components: {
-      default: UpdateService,
+      default: EditService,
       "app-bar": Appbar,
       "light-sidebar": LightSidebar
     },
