@@ -1,23 +1,43 @@
 <template>
-  <SidebarTemplate
-    :drawer="drawer"
-    :permanent="permanent"
-    :items="items"
-    :title="title"
-    :headerStyle="headerStyle"
-    :listItemStyle="listItemStyle"
-    :dark="dark"
-    :color="bgColor"
-  />
+  <sidebar-template :dark="dark" :color="bgColor">
+    <v-list-item slot="title" two-line>
+      <v-list-item-content>
+        <v-list-item-title :style="headerStyle">
+          <v-icon small>{{ mdiAccountCircle }}</v-icon>
+          Username: <span class="font-italic">{{ username }}</span>
+        </v-list-item-title>
+        <v-list-item-title :style="headerStyle">
+          <v-icon small>{{ mdiEarth }}</v-icon>
+          Domain: <span class="font-italic">{{ domain }}</span>
+        </v-list-item-title>
+      </v-list-item-content>
+    </v-list-item>
+    <v-list-item
+      slot="list-items"
+      v-for="item in items"
+      :key="item.title"
+      :to="item.path"
+      exact
+      link
+    >
+      <v-icon>{{ item.icon }}</v-icon>
+      <v-list-item-content>
+        <v-list-item-title :style="listItemStyle">{{
+          item.title
+        }}</v-list-item-title>
+      </v-list-item-content>
+    </v-list-item>
+  </sidebar-template>
 </template>
 
 <script>
-import { mdiBell, mdiAntenna } from "@mdi/js";
+import { mdiBell, mdiAntenna, mdiAccountCircle, mdiEarth } from "@mdi/js";
 import SidebarTemplate from "./SidebarTemplate.vue";
 export default {
   data() {
     return {
-      title: "Username",
+      mdiAccountCircle,
+      mdiEarth,
       items: [
         { title: "Services", icon: mdiAntenna, path: { name: "services" } },
         {
@@ -27,9 +47,9 @@ export default {
         }
       ],
       headerStyle: {
-        fontSize: "20px",
+        fontSize: "16px",
         color: "#ffffff",
-        paddingLeft: "0.9em"
+        paddingTop: "0.2em"
       },
       listItemStyle: {
         fontSize: "16px",
@@ -37,10 +57,16 @@ export default {
         paddingLeft: "1.5em"
       },
       bgColor: "#404B5F",
-      drawer: true,
-      permanent: true,
       dark: true
     };
+  },
+  computed: {
+    username() {
+      return this.$store.state.username;
+    },
+    domain() {
+      return this.$store.state.domain;
+    }
   },
   components: {
     SidebarTemplate

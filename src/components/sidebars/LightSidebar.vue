@@ -1,13 +1,28 @@
 <template>
-  <SidebarTemplate
-    :drawer="drawer"
-    :permanent="permanent"
-    :items="items"
-    :title="title"
-    :headerStyle="headerStyle"
-    :listItemStyle="listItemStyle"
-    :light="light"
-  />
+  <sidebar-template :light="light">
+    <v-list-item slot="title" two-line>
+      <v-list-item-content>
+        <v-list-item-title :style="headerStyle">
+          {{ title }}
+        </v-list-item-title>
+      </v-list-item-content>
+    </v-list-item>
+    <v-list-item
+      slot="list-items"
+      v-for="item in items"
+      :key="item.title"
+      :to="item.path"
+      exact
+      link
+    >
+      <v-icon>{{ item.icon }}</v-icon>
+      <v-list-item-content>
+        <v-list-item-title :style="listItemStyle">{{
+          item.title
+        }}</v-list-item-title>
+      </v-list-item-content>
+    </v-list-item>
+  </sidebar-template>
 </template>
 
 <script>
@@ -53,8 +68,6 @@ export default {
         color: "#9b9b9b",
         paddingLeft: "1.5em"
       },
-      drawer: true,
-      permanent: true,
       light: true
     };
   },

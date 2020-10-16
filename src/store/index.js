@@ -17,6 +17,7 @@ export default new Vuex.Store({
       webJS: "Hello"
     },
     services: [],
+    domain: "nornir",
     username: null,
     idToken: null,
     authError: null,
