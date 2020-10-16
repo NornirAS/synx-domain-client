@@ -2,14 +2,14 @@
   <v-card outlined>
     <FormHeader :title="title" :description="description" />
     <v-text-field
+      v-model="serviceName"
+      @blur="addServiceName"
       :label="title"
+      :disabled="isEditPage"
       single-line
       dense
       outlined
       hide-details
-      :value="getServiceName"
-      v-model="serviceName"
-      @blur="addServiceName"
     ></v-text-field>
   </v-card>
 </template>
@@ -24,14 +24,17 @@ export default {
       serviceName: ""
     };
   },
+  mounted() {
+    this.serviceName = this.$store.state.serviceForm.serviceName;
+  },
+  computed: {
+    isEditPage() {
+      return this.$store.state.sideBarTitle === "Edit Service" ? true : false;
+    }
+  },
   methods: {
     addServiceName() {
       this.$store.state.serviceForm.serviceName = this.serviceName;
-    }
-  },
-  computed: {
-    getServiceName() {
-      return this.$store.state.serviceForm.serviceName;
     }
   },
   components: {
