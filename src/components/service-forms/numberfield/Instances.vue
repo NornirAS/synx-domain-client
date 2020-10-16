@@ -4,7 +4,7 @@
     <v-row justify="start" align="center">
       <v-col sm="3">
         <CurrentValue
-          :primaryValue="availableInstances()"
+          :primaryValue="availableInstances"
           :secondaryValue="totalInstances"
           :helper="helper"
           :primaryStyle="primaryStyle"
@@ -21,7 +21,7 @@
           hide-details
           type="number"
           min="1"
-          :max="availableInstances()"
+          :max="availableInstances"
           v-model.number="serviceInstances"
         ></v-text-field>
       </v-col>
@@ -29,15 +29,22 @@
         <v-btn
           @click="addInstances"
           :color="colorBlue"
-          :disabled="
-            availableInstances() < serviceInstances ||
-              availableInstances() === 0
-          "
+          :disabled="isExceedsLimit"
+          :dark="!isExceedsLimit"
           rounded
           medium
-          :dark="availableInstances() != 0"
         >
           Add
+        </v-btn>
+        <v-btn
+          @click="removeInstances"
+          :color="colorBlue"
+          :disabled="!isInstances"
+          :dark="isInstances"
+          rounded
+          medium
+        >
+          Remove
         </v-btn>
       </v-col>
     </v-row>
@@ -51,7 +58,7 @@ export default {
   data() {
     return {
       title: "Instances",
-      description: "Some description fro instances.",
+      description: "Some description for instances.",
       totalInstances: 1000,
       helper: "Available Instances",
       serviceInstances: 0,
@@ -76,13 +83,26 @@ export default {
       this.$store.state.serviceForm.instances += this.serviceInstances;
       this.serviceInstances = 0;
     },
-    availableInstances() {
-      return this.totalInstances - this.instances;
+    removeInstances() {
+      this.$store.state.serviceForm.instances -= this.serviceInstances;
+      this.serviceInstances = 0;
     }
   },
   computed: {
     instances() {
       return this.$store.state.serviceForm.instances;
+    },
+    availableInstances() {
+      return this.totalInstances - this.instances;
+    },
+    isExceedsLimit() {
+      return this.availableInstances < this.serviceInstances ||
+        this.availableInstances <= 0
+        ? true
+        : false;
+    },
+    isInstances() {
+      return this.instances > 1 && this.instances > this.serviceInstances;
     }
   },
   components: {
