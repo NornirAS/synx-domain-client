@@ -54,6 +54,7 @@ export default {
           this.token
         );
       } else {
+        this.$store.state.serviceForm.instances = this.instancesBalance;
         this.$socket.emit("update_service", this.formData, this.token);
       }
       this.$store.dispatch("resetServiceForm");
@@ -68,6 +69,9 @@ export default {
     },
     token() {
       return this.$store.state.idToken;
+    },
+    instancesBalance() {
+      return this.$store.getters.instancesBalance;
     }
   },
   components: {

@@ -16,6 +16,7 @@ export default new Vuex.Store({
       masterScript: "YWFhYWFhYWFhYQo=",
       webJS: "Hello"
     },
+    serviceInstances: null,
     services: [],
     domain: "nornir",
     username: null,
@@ -89,6 +90,7 @@ export default new Vuex.Store({
       form.serviceSchema = service.schema;
       form.commandSchema = service.cmdXML;
       form.instances = parseInt(service.instances);
+      state.serviceInstances = parseInt(service.instances);
     },
     resetServiceForm(state) {
       console.log(state.serviceForm);
@@ -98,6 +100,7 @@ export default new Vuex.Store({
       state.serviceForm.serviceSchema = [];
       state.serviceForm.commandSchema = [];
       state.serviceForm.instances = null;
+      state.serviceInstances = null;
     },
     authUser(state, { token, username }) {
       state.idToken = token;
@@ -205,6 +208,9 @@ export default new Vuex.Store({
   getters: {
     isAuthenticated({ idToken }) {
       return idToken !== null;
+    },
+    instancesBalance({ serviceForm, serviceInstances }) {
+      return serviceForm.instances - serviceInstances;
     }
   }
 });

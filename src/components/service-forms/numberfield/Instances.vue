@@ -46,6 +46,7 @@
         >
           Remove
         </v-btn>
+        {{ instances }}
       </v-col>
     </v-row>
   </v-card>
