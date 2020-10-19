@@ -3,6 +3,7 @@
     <ServiceName />
     <ServiceDescription />
     <Keywords />
+    <ServiceImage />
     <ServiceSchema />
     <CommandSchema />
     <Instances />
@@ -10,8 +11,6 @@
     <WebJS />
     <PostInlineScript />
     <PreInlineScript />
-    <ServiceImage />
-    <Micropage />
     <v-btn
       @click="submitForm"
       :color="colorBlue"
@@ -34,7 +33,6 @@ import Timeout from "./numberfield/Timeout.vue";
 import WebJS from "./textarea/WebJS.vue";
 import PostInlineScript from "./textarea/PostInlineScript.vue";
 import PreInlineScript from "./textarea/PreInlineScript.vue";
-import Micropage from "./Micropage.vue";
 import ServiceImage from "./textfield/ServiceImage";
 export default {
   props: ["btnName"],
@@ -85,7 +83,6 @@ export default {
     WebJS,
     PostInlineScript,
     PreInlineScript,
-    Micropage,
     ServiceImage
   }
 };
