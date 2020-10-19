@@ -47,18 +47,27 @@ export default {
       if (this.title === "Create Service") {
         this.$socket.emit(
           "register_service",
+          this.domain,
           this.formData,
           this.username,
           this.token
         );
       } else {
         this.$store.state.serviceForm.instances = this.instancesBalance;
-        this.$socket.emit("update_service", this.formData, this.token);
+        this.$socket.emit(
+          "update_service",
+          this.domain,
+          this.formData,
+          this.token
+        );
       }
       this.$store.dispatch("resetServiceForm");
     }
   },
   computed: {
+    domain() {
+      return this.$store.state.domain;
+    },
     formData() {
       return this.$store.state.serviceForm;
     },

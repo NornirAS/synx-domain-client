@@ -143,7 +143,7 @@ export default {
     };
   },
   created() {
-    this.$socket.emit("get_all_services", this.token);
+    this.$socket.emit("get_all_services", this.domain, this.token);
   },
   methods: {
     availableInstances(instances, limitInstances) {
@@ -166,10 +166,13 @@ export default {
         service.instances = "0";
         services.push(service);
       });
-      this.$socket.emit("delete_service", services, this.token);
+      this.$socket.emit("delete_service", this.domain, services, this.token);
     }
   },
   computed: {
+    domain() {
+      return this.$store.state.domain;
+    },
     token() {
       return this.$store.state.idToken;
     },
