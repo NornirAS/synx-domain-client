@@ -9,6 +9,8 @@ import Appbar from "../components/Appbar.vue";
 import DarkSidebar from "../components/sidebars/DarkSidebar.vue";
 import LightSidebar from "../components/sidebars/LightSidebar.vue";
 import SignIn from "../views/SignIn.vue";
+import DomainPromo from "../views/DomainPromo.vue";
+import DomainPurchase from "../views/DomainPurchase.vue";
 
 Vue.use(VueRouter);
 
@@ -70,6 +72,24 @@ const routes = [
       default: Notifications,
       "app-bar": Appbar,
       "dark-sidebar": DarkSidebar
+    },
+    beforeEnter: authGuard
+  },
+  {
+    path: "/domain-promo",
+    name: "domain-promo",
+    components: {
+      default: DomainPromo,
+      "app-bar": Appbar
+    },
+    beforeEnter: authGuard
+  },
+  {
+    path: "/domain-purchase",
+    name: "domain-purchase",
+    components: {
+      default: DomainPurchase,
+      "app-bar": Appbar
     },
     beforeEnter: authGuard
   }
