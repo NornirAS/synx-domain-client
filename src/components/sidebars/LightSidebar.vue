@@ -51,11 +51,6 @@ export default {
           title: "Pre Inline Script",
           icon: mdiCircleSmall,
           path: { name: "home" }
-        },
-        {
-          title: "Micro Page",
-          icon: mdiCircleSmall,
-          path: { name: "home" }
         }
       ],
       headerStyle: {

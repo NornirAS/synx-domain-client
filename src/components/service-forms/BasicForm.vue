@@ -8,9 +8,9 @@
     <CommandSchema />
     <Instances />
     <Timeout />
-    <WebJS />
-    <PostInlineScript />
     <PreInlineScript />
+    <PostInlineScript />
+    <WebJS />
     <v-btn
       @click="submitForm"
       :color="colorBlue"
