@@ -42,4 +42,7 @@ export default {
   padding: 0.5em 2em 1em 2em;
   flex-grow: 1;
 }
+.theme--light.v-label {
+  color: #58595b !important;
+}
 </style>

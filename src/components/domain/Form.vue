@@ -42,7 +42,7 @@
       </v-stepper-content>
 
       <v-stepper-content step="2">
-        <slot name="cicle"></slot>
+        <Cycle />
 
         <v-row justify="center" align="center">
           <v-col cols="6" md="3">
@@ -97,12 +97,13 @@
 
 <script>
 import Search from "./Search.vue";
+import Cycle from "./Cycle.vue";
 export default {
   data() {
     return {
       e1: 1,
       actionBtnStyle: {
-        backgroundColor: "#27AAE1",
+        backgroundColor: "#71b663",
         float: "right"
       },
       cancelBtnStyle: {
@@ -111,7 +112,8 @@ export default {
     };
   },
   components: {
-    Search
+    Search,
+    Cycle
   }
 };
 </script>
@@ -119,7 +121,7 @@ export default {
 <style>
 .theme--light.v-stepper .v-stepper__step__step {
   color: white;
-  background-color: #27aae1;
+  background-color: #71b663;
 }
 .theme--light.v-stepper .v-stepper__step--active .v-stepper__label {
   text-shadow: 0px 0px 0px #58595b !important;
