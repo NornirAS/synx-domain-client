@@ -25,72 +25,79 @@
     </v-stepper-header>
 
     <v-stepper-items>
-      <v-stepper-content step="1">
-        <Search />
-        <v-row justify="center" align="center">
-          <v-col cols="6" md="3">
-            <v-btn :style="cancelBtnStyle" text>
-              Cancel
-            </v-btn>
-          </v-col>
-          <v-col cols="6" md="3">
-            <v-btn :style="actionBtnStyle" @click="e1 = 2" rounded dark>
-              Continue
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-stepper-content>
+      <v-row>
+        <v-col cols="12" md="8">
+          <v-stepper-content step="1">
+            <Search />
+            <v-row justify="space-between" align="center">
+              <v-col cols="6" md="3">
+                <v-btn text>
+                  Cancel
+                </v-btn>
+              </v-col>
+              <v-col cols="6" md="3">
+                <v-btn :style="actionBtnStyle" @click="e1 = 2" rounded dark>
+                  Continue
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-stepper-content>
 
-      <v-stepper-content step="2">
-        <Cycle />
+          <v-stepper-content step="2">
+            <Cycle />
 
-        <v-row justify="center" align="center">
-          <v-col cols="6" md="3">
-            <v-btn :style="cancelBtnStyle" text>
-              Cancel
-            </v-btn>
-          </v-col>
-          <v-col cols="6" md="3">
-            <v-btn :style="actionBtnStyle" @click="e1 = 3" rounded dark>
-              Continue
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-stepper-content>
+            <v-row justify="space-between" align="center">
+              <v-col cols="6" md="3">
+                <v-btn text>
+                  Cancel
+                </v-btn>
+              </v-col>
+              <v-col cols="6" md="3">
+                <v-btn :style="actionBtnStyle" @click="e1 = 3" rounded dark>
+                  Continue
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-stepper-content>
 
-      <v-stepper-content step="3">
-        <slot name="form"></slot>
+          <v-stepper-content step="3">
+            <slot name="form"></slot>
 
-        <v-row justify="center" align="center">
-          <v-col cols="6" md="3">
-            <v-btn :style="cancelBtnStyle" text>
-              Cancel
-            </v-btn>
-          </v-col>
-          <v-col cols="6" md="3">
-            <v-btn :style="actionBtnStyle" @click="e1 = 4" rounded dark>
-              Continue
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-stepper-content>
+            <v-row justify="center" align="center">
+              <v-col cols="6" md="3">
+                <v-btn text>
+                  Cancel
+                </v-btn>
+              </v-col>
+              <v-col cols="6" md="3">
+                <v-btn :style="actionBtnStyle" @click="e1 = 4" rounded dark>
+                  Continue
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-stepper-content>
 
-      <v-stepper-content step="4">
-        <slot name="confirm"></slot>
+          <v-stepper-content step="4">
+            <slot name="confirm"></slot>
 
-        <v-row justify="center" align="center">
-          <v-col cols="6" md="3">
-            <v-btn :style="cancelBtnStyle" text>
-              Cancel
-            </v-btn>
-          </v-col>
-          <v-col cols="6" md="3">
-            <v-btn :style="actionBtnStyle" @click="e1 = 1" rounded dark>
-              Continue
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-stepper-content>
+            <v-row justify="center" align="center">
+              <v-col cols="6" md="3">
+                <v-btn text>
+                  Cancel
+                </v-btn>
+              </v-col>
+              <v-col cols="6" md="3">
+                <v-btn :style="actionBtnStyle" @click="e1 = 1" rounded dark>
+                  Continue
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-stepper-content>
+        </v-col>
+        <v-col cols="12" md="4">
+
+        </v-col>
+      </v-row>
     </v-stepper-items>
   </v-stepper>
 </template>
@@ -105,9 +112,6 @@ export default {
       actionBtnStyle: {
         backgroundColor: "#71b663",
         float: "right"
-      },
-      cancelBtnStyle: {
-        padding: "0"
       }
     };
   },

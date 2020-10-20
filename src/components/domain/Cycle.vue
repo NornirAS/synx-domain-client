@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1 align="center">{{ title.toUpperCase() }}</h1>
+    <h1>{{ title.toUpperCase() }}</h1>
     <v-row>
-      <v-col cols="6" md="4">
+      <v-col cols="6" md="7">
         <v-radio-group v-model="selected">
           <v-radio
             v-for="({ period }, index) in cycles"
@@ -13,7 +13,7 @@
           ></v-radio>
         </v-radio-group>
       </v-col>
-      <v-col cols="6" md="3">
+      <v-col cols="6" md="5">
         <p v-for="({ price, discount }, index) in cycles" :key="index">
           {{ price }}$/year
           <span :style="discountStyle" v-if="discount">
@@ -68,6 +68,7 @@ h1 {
   font-size: 20px;
   color: #58595b;
   font-weight: 500;
+  margin-bottom: 18px;
 }
 p {
   margin-bottom: 8px;

@@ -1,22 +1,22 @@
 <template>
   <div>
-    <h1 align="center">{{ title.toUpperCase() }}</h1>
-    <v-row justify="center" align="center">
-      <v-col cols="12" md="4">
+    <h1>{{ title.toUpperCase() }}</h1>
+    <v-row justify="space-between" align="center">
+      <v-col cols="12" md="8">
         <v-text-field
           label="Domain Name"
           prefix="https://"
           suffix=".cioty.com"
         ></v-text-field>
       </v-col>
-      <v-col cols="12" md="2">
+      <v-col cols="12" md="4">
         <v-btn small outlined rounded dark>
           <v-icon left>{{ mdiMagnify }}</v-icon>
           Search
         </v-btn>
       </v-col>
     </v-row>
-    <v-row justify="center" align="center">
+    <v-row>
       <v-col cols="12" md="6">
         <p>Success</p>
       </v-col>
