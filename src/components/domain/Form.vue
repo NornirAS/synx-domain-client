@@ -26,62 +26,92 @@
 
     <v-stepper-items>
       <v-stepper-content step="1">
-        <slot name="search"></slot>
-
-        <v-btn color="primary" @click="e1 = 2" dark>
-          Continue
-        </v-btn>
-
-        <v-btn text>
-          Cancel
-        </v-btn>
+        <Search />
+        <v-row justify="center" align="center">
+          <v-col cols="6" md="3">
+            <v-btn :style="cancelBtnStyle" text>
+              Cancel
+            </v-btn>
+          </v-col>
+          <v-col cols="6" md="3">
+            <v-btn :style="actionBtnStyle" @click="e1 = 2" rounded dark>
+              Continue
+            </v-btn>
+          </v-col>
+        </v-row>
       </v-stepper-content>
 
       <v-stepper-content step="2">
         <slot name="cicle"></slot>
 
-        <v-btn color="primary" @click="e1 = 3" dark>
-          Continue
-        </v-btn>
-
-        <v-btn text>
-          Cancel
-        </v-btn>
+        <v-row justify="center" align="center">
+          <v-col cols="6" md="3">
+            <v-btn :style="cancelBtnStyle" text>
+              Cancel
+            </v-btn>
+          </v-col>
+          <v-col cols="6" md="3">
+            <v-btn :style="actionBtnStyle" @click="e1 = 3" rounded dark>
+              Continue
+            </v-btn>
+          </v-col>
+        </v-row>
       </v-stepper-content>
 
       <v-stepper-content step="3">
         <slot name="form"></slot>
 
-        <v-btn color="primary" @click="e1 = 4" dark>
-          Continue
-        </v-btn>
-
-        <v-btn text>
-          Cancel
-        </v-btn>
+        <v-row justify="center" align="center">
+          <v-col cols="6" md="3">
+            <v-btn :style="cancelBtnStyle" text>
+              Cancel
+            </v-btn>
+          </v-col>
+          <v-col cols="6" md="3">
+            <v-btn :style="actionBtnStyle" @click="e1 = 4" rounded dark>
+              Continue
+            </v-btn>
+          </v-col>
+        </v-row>
       </v-stepper-content>
 
       <v-stepper-content step="4">
         <slot name="confirm"></slot>
 
-        <v-btn color="primary" @click="e1 = 1" dark>
-          Continue
-        </v-btn>
-
-        <v-btn text>
-          Cancel
-        </v-btn>
+        <v-row justify="center" align="center">
+          <v-col cols="6" md="3">
+            <v-btn :style="cancelBtnStyle" text>
+              Cancel
+            </v-btn>
+          </v-col>
+          <v-col cols="6" md="3">
+            <v-btn :style="actionBtnStyle" @click="e1 = 1" rounded dark>
+              Continue
+            </v-btn>
+          </v-col>
+        </v-row>
       </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
 </template>
 
 <script>
+import Search from "./Search.vue";
 export default {
   data() {
     return {
-      e1: 1
+      e1: 1,
+      actionBtnStyle: {
+        backgroundColor: "#27AAE1",
+        float: "right"
+      },
+      cancelBtnStyle: {
+        padding: "0"
+      }
     };
+  },
+  components: {
+    Search
   }
 };
 </script>
@@ -89,7 +119,7 @@ export default {
 <style>
 .theme--light.v-stepper .v-stepper__step__step {
   color: white;
-  background-color: #71b663;
+  background-color: #27aae1;
 }
 .theme--light.v-stepper .v-stepper__step--active .v-stepper__label {
   text-shadow: 0px 0px 0px #58595b !important;
