@@ -9,6 +9,7 @@ import Appbar from "../components/Appbar.vue";
 import DarkSidebar from "../components/sidebars/DarkSidebar.vue";
 import LightSidebar from "../components/sidebars/LightSidebar.vue";
 import SignIn from "../views/SignIn.vue";
+import Domains from "../views/Domains.vue";
 import DomainPromo from "../views/DomainPromo.vue";
 import DomainPurchase from "../views/DomainPurchase.vue";
 
@@ -74,6 +75,14 @@ const routes = [
       "dark-sidebar": DarkSidebar
     },
     beforeEnter: authGuard
+  },
+  {
+    path: "/domains",
+    name: "domains",
+    components: {
+      default: Domains,
+      "app-bar": Appbar
+    }
   },
   {
     path: "/domain-promo",

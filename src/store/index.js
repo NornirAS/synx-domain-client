@@ -18,6 +18,7 @@ export default new Vuex.Store({
     },
     serviceInstances: null,
     services: [],
+    ownedDomains: [],
     domain: "nornir",
     username: null,
     idToken: null,
@@ -93,7 +94,6 @@ export default new Vuex.Store({
       state.serviceInstances = parseInt(service.instances);
     },
     resetServiceForm(state) {
-      console.log(state.serviceForm);
       state.serviceForm.serviceName = null;
       state.serviceForm.description = null;
       state.serviceForm.keywords = [];
@@ -101,6 +101,9 @@ export default new Vuex.Store({
       state.serviceForm.commandSchema = [];
       state.serviceForm.instances = null;
       state.serviceInstances = null;
+    },
+    allDomains(state, payload) {
+      state.ownedDomains = payload;
     },
     authUser(state, { token, username }) {
       state.idToken = token;
@@ -202,6 +205,9 @@ export default new Vuex.Store({
         services.push(newObject);
       });
       commit("allServices", services);
+    },
+    SOCKET_all_domains({ commit }, data) {
+      commit("allDomains", data);
     }
   },
   modules: {},
