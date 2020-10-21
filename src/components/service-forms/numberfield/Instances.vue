@@ -36,17 +36,6 @@
         >
           Add
         </v-btn>
-        <v-btn
-          @click="removeInstances"
-          :color="colorBlue"
-          :disabled="!isInstances"
-          :dark="isInstances"
-          rounded
-          medium
-        >
-          Remove
-        </v-btn>
-        {{ instances }}
       </v-col>
     </v-row>
   </v-card>
@@ -83,10 +72,6 @@ export default {
     addInstances() {
       this.$store.state.serviceForm.instances += this.serviceInstances;
       this.serviceInstances = 0;
-    },
-    removeInstances() {
-      this.$store.state.serviceForm.instances -= this.serviceInstances;
-      this.serviceInstances = 0;
     }
   },
   computed: {
@@ -101,9 +86,6 @@ export default {
         this.availableInstances <= 0
         ? true
         : false;
-    },
-    isInstances() {
-      return this.instances > 1 && this.instances > this.serviceInstances;
     }
   },
   components: {

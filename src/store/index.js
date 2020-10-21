@@ -16,7 +16,6 @@ export default new Vuex.Store({
       masterScript: "YWFhYWFhYWFhYQo=",
       webJS: "Hello"
     },
-    serviceInstances: null,
     services: [],
     domain: "nornir",
     username: null,
@@ -208,9 +207,6 @@ export default new Vuex.Store({
   getters: {
     isAuthenticated({ idToken }) {
       return idToken !== null;
-    },
-    instancesBalance({ serviceForm, serviceInstances }) {
-      return serviceForm.instances - serviceInstances;
     }
   }
 });
