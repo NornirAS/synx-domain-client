@@ -45,6 +45,7 @@ export default {
   methods: {
     submitForm() {
       if (this.title === "Create Service") {
+        this.$store.state.serviceForm.instances - 1; // -1 because RTW add 1 instance by default
         this.$socket.emit(
           "register_service",
           this.domain,
@@ -53,6 +54,7 @@ export default {
           this.token
         );
       } else {
+        this.$store.state.serviceForm.instances = this.instancesBalance;
         this.$socket.emit(
           "update_service",
           this.domain,
@@ -75,6 +77,9 @@ export default {
     },
     token() {
       return this.$store.state.idToken;
+    },
+    instancesBalance() {
+      return this.$store.getters.instancesBalance;
     }
   },
   components: {

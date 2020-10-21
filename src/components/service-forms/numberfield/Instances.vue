@@ -36,6 +36,7 @@
         >
           Add
         </v-btn>
+        {{ instancesBalance }}
       </v-col>
     </v-row>
   </v-card>
@@ -72,6 +73,10 @@ export default {
     addInstances() {
       this.$store.state.serviceForm.instances += this.serviceInstances;
       this.serviceInstances = 0;
+    },
+    removeInstances() {
+      this.$store.state.serviceForm.instances -= this.serviceInstances;
+      this.serviceInstances = 0;
     }
   },
   computed: {
@@ -86,6 +91,9 @@ export default {
         this.availableInstances <= 0
         ? true
         : false;
+    },
+    instancesBalance() {
+      return this.$store.getters.instancesBalance;
     }
   },
   components: {
