@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-col xs="12" sm="10" md="8">
+    <v-col xs="12" sm="10" md="6">
       <Form />
     </v-col>
   </v-row>

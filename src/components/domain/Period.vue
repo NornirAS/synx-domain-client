@@ -29,7 +29,7 @@
 export default {
   data() {
     return {
-      title: "Choose your billing cycle",
+      title: "Choose your billing period",
       selected: 1,
       cycles: [
         {
@@ -54,11 +54,6 @@ export default {
       },
       colorGreen: "#71b663"
     };
-  },
-  computed: {
-    billingPlan() {
-      return this.cycles[this.selected];
-    }
   }
 };
 </script>

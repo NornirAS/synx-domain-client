@@ -16,11 +16,6 @@
         </v-btn>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col cols="12" md="6">
-        <p>Success</p>
-      </v-col>
-    </v-row>
   </div>
 </template>
 

@@ -2,13 +2,13 @@
   <v-stepper v-model="e1">
     <v-stepper-header>
       <v-stepper-step :complete="e1 > 1" step="1">
-        Search Domain
+        Domain
       </v-stepper-step>
 
       <v-divider></v-divider>
 
       <v-stepper-step :complete="e1 > 2" step="2">
-        Cycle
+        Period
       </v-stepper-step>
 
       <v-divider></v-divider>
@@ -25,86 +25,79 @@
     </v-stepper-header>
 
     <v-stepper-items>
-      <v-row>
-        <v-col cols="12" md="8">
-          <v-stepper-content step="1">
-            <Search />
-            <v-row justify="space-between" align="center">
-              <v-col cols="6" md="3">
-                <v-btn text>
-                  Cancel
-                </v-btn>
-              </v-col>
-              <v-col cols="6" md="3">
-                <v-btn :style="actionBtnStyle" @click="e1 = 2" rounded dark>
-                  Continue
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-stepper-content>
+      <v-stepper-content step="1">
+        <Domain />
+        <v-row justify="space-between" align="center">
+          <v-col cols="6" md="3">
+            <v-btn text>
+              Cancel
+            </v-btn>
+          </v-col>
+          <v-col cols="6" md="3">
+            <v-btn :style="actionBtnStyle" @click="e1 = 2" rounded dark>
+              Continue
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-stepper-content>
 
-          <v-stepper-content step="2">
-            <Cycle />
+      <v-stepper-content step="2">
+        <Period />
 
-            <v-row justify="space-between" align="center">
-              <v-col cols="6" md="3">
-                <v-btn text>
-                  Cancel
-                </v-btn>
-              </v-col>
-              <v-col cols="6" md="3">
-                <v-btn :style="actionBtnStyle" @click="e1 = 3" rounded dark>
-                  Continue
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-stepper-content>
+        <v-row justify="space-between" align="center">
+          <v-col cols="6" md="3">
+            <v-btn text>
+              Cancel
+            </v-btn>
+          </v-col>
+          <v-col cols="6" md="3">
+            <v-btn :style="actionBtnStyle" @click="e1 = 3" rounded dark>
+              Continue
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-stepper-content>
 
-          <v-stepper-content step="3">
-            <slot name="form"></slot>
+      <v-stepper-content step="3">
+        <slot name="form"></slot>
 
-            <v-row justify="center" align="center">
-              <v-col cols="6" md="3">
-                <v-btn text>
-                  Cancel
-                </v-btn>
-              </v-col>
-              <v-col cols="6" md="3">
-                <v-btn :style="actionBtnStyle" @click="e1 = 4" rounded dark>
-                  Continue
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-stepper-content>
+        <v-row justify="center" align="center">
+          <v-col cols="6" md="3">
+            <v-btn text>
+              Cancel
+            </v-btn>
+          </v-col>
+          <v-col cols="6" md="3">
+            <v-btn :style="actionBtnStyle" @click="e1 = 4" rounded dark>
+              Continue
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-stepper-content>
 
-          <v-stepper-content step="4">
-            <slot name="confirm"></slot>
+      <v-stepper-content step="4">
+        <slot name="confirm"></slot>
 
-            <v-row justify="center" align="center">
-              <v-col cols="6" md="3">
-                <v-btn text>
-                  Cancel
-                </v-btn>
-              </v-col>
-              <v-col cols="6" md="3">
-                <v-btn :style="actionBtnStyle" @click="e1 = 1" rounded dark>
-                  Continue
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-stepper-content>
-        </v-col>
-        <v-col cols="12" md="4">
-
-        </v-col>
-      </v-row>
+        <v-row justify="center" align="center">
+          <v-col cols="6" md="3">
+            <v-btn text>
+              Cancel
+            </v-btn>
+          </v-col>
+          <v-col cols="6" md="3">
+            <v-btn :style="actionBtnStyle" @click="e1 = 1" rounded dark>
+              Continue
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
 </template>
 
 <script>
-import Search from "./Search.vue";
-import Cycle from "./Cycle.vue";
+import Domain from "./Domain.vue";
+import Period from "./Period.vue";
 export default {
   data() {
     return {
@@ -116,8 +109,8 @@ export default {
     };
   },
   components: {
-    Search,
-    Cycle
+    Domain,
+    Period
   }
 };
 </script>
