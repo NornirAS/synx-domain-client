@@ -5,7 +5,7 @@ import Services from "../views/Services.vue";
 import CreateService from "../views/CreateService";
 import EditService from "../views/EditService";
 import Notifications from "../views/Notifications.vue";
-import Appbar from "../components/Appbar.vue";
+import AppBar from "../components/AppBar.vue";
 import DarkSidebar from "../components/sidebars/DarkSidebar.vue";
 import LightSidebar from "../components/sidebars/LightSidebar.vue";
 import SignIn from "../views/SignIn.vue";
@@ -41,7 +41,7 @@ const routes = [
     name: "domains",
     components: {
       default: Domains,
-      "app-bar": Appbar
+      "app-bar": AppBar
     },
     beforeEnter: authGuard
   },
@@ -50,7 +50,7 @@ const routes = [
     name: "domain-promo",
     components: {
       default: DomainPromo,
-      "app-bar": Appbar
+      "app-bar": AppBar
     },
     beforeEnter: authGuard
   },
@@ -59,7 +59,7 @@ const routes = [
     name: "domain-purchase",
     components: {
       default: DomainPurchase,
-      "app-bar": Appbar
+      "app-bar": AppBar
     },
     beforeEnter: authGuard
   },
@@ -68,7 +68,7 @@ const routes = [
     name: "services",
     components: {
       default: Services,
-      "app-bar": Appbar,
+      "app-bar": AppBar,
       "dark-sidebar": DarkSidebar
     },
     beforeEnter: authGuard
@@ -78,7 +78,7 @@ const routes = [
     name: "createService",
     components: {
       default: CreateService,
-      "app-bar": Appbar,
+      "app-bar": AppBar,
       "light-sidebar": LightSidebar
     },
     beforeEnter: authGuard
@@ -88,7 +88,7 @@ const routes = [
     name: "editService",
     components: {
       default: EditService,
-      "app-bar": Appbar,
+      "app-bar": AppBar,
       "light-sidebar": LightSidebar
     },
     beforeEnter: authGuard
@@ -98,7 +98,7 @@ const routes = [
     name: "notifications",
     components: {
       default: Notifications,
-      "app-bar": Appbar,
+      "app-bar": AppBar,
       "dark-sidebar": DarkSidebar
     },
     beforeEnter: authGuard
