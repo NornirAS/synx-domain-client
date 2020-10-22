@@ -143,7 +143,8 @@ export default {
     };
   },
   created() {
-    this.$socket.emit("get_all_services", this.domain, this.token);
+    this.$store.state.domain = this.$route.params.name;
+    this.$socket.emit("get_all_services", this.$route.params.name, this.token);
   },
   methods: {
     availableInstances(instances, limitInstances) {

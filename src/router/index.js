@@ -37,7 +37,7 @@ const routes = [
     component: SignIn
   },
   {
-    path: "/services",
+    path: "/domains/domain/:name/services",
     name: "services",
     components: {
       default: Services,

@@ -20,7 +20,7 @@
       <v-card
         v-for="({ name, active }, index) in domains"
         :key="index"
-        :to="{ name: 'services' }"
+        :to="{ name: 'services', params: { name: name } }"
       >
         <v-row>
           <v-col cols="12" sm="6">
