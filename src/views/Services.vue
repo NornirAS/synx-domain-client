@@ -3,12 +3,18 @@
     <v-col xs="12" md="10">
       <v-row justify="space-between" align="center">
         <v-col>
-          <Header :title="title" :color="colorBlue" />
+          <h1>Services</h1>
         </v-col>
         <v-col align="right">
-          <v-btn :color="colorBlue" rounded medium dark :to="path">
+          <v-btn
+            :to="{ name: 'createService' }"
+            :color="colorBlue"
+            rounded
+            medium
+            dark
+          >
             <v-icon>{{ mdiPlus }}</v-icon>
-            {{ primaryActionBtnName }}
+            Create Service
           </v-btn>
         </v-col>
       </v-row>
@@ -113,7 +119,6 @@
 <script>
 import { mdiChevronDown, mdiPlus } from "@mdi/js";
 import Service from "../components/service/Service.vue";
-import Header from "../components/Header.vue";
 export default {
   data() {
     return {
@@ -137,9 +142,7 @@ export default {
       },
       colorBlue: "#27AAE1",
       colorRed: "#FF6666",
-      colorGrey: "#404B5F",
-      primaryActionBtnName: "Create Service",
-      createServicePath: { name: "createService" }
+      colorGrey: "#404B5F"
     };
   },
   created() {
@@ -193,8 +196,7 @@ export default {
     }
   },
   components: {
-    Service,
-    Header
+    Service
   }
 };
 </script>
