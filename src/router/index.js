@@ -37,6 +37,33 @@ const routes = [
     component: SignIn
   },
   {
+    path: "/domains",
+    name: "domains",
+    components: {
+      default: Domains,
+      "app-bar": Appbar
+    },
+    beforeEnter: authGuard
+  },
+  {
+    path: "/domains/promo",
+    name: "domain-promo",
+    components: {
+      default: DomainPromo,
+      "app-bar": Appbar
+    },
+    beforeEnter: authGuard
+  },
+  {
+    path: "/domains/purchase",
+    name: "domain-purchase",
+    components: {
+      default: DomainPurchase,
+      "app-bar": Appbar
+    },
+    beforeEnter: authGuard
+  },
+  {
     path: "/domains/domain/:name/services",
     name: "services",
     components: {
@@ -47,7 +74,7 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/services/service/create",
+    path: "/domains/domain/:name/services/service/create",
     name: "createService",
     components: {
       default: CreateService,
@@ -57,7 +84,7 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/services/service/:index/edit",
+    path: "/domains/domain/:name/services/service/:index/edit",
     name: "editService",
     components: {
       default: EditService,
@@ -67,39 +94,12 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/notifications",
+    path: "/domains/domain/:name/notifications",
     name: "notifications",
     components: {
       default: Notifications,
       "app-bar": Appbar,
       "dark-sidebar": DarkSidebar
-    },
-    beforeEnter: authGuard
-  },
-  {
-    path: "/domains",
-    name: "domains",
-    components: {
-      default: Domains,
-      "app-bar": Appbar
-    },
-    beforeEnter: authGuard
-  },
-  {
-    path: "/domain-promo",
-    name: "domain-promo",
-    components: {
-      default: DomainPromo,
-      "app-bar": Appbar
-    },
-    beforeEnter: authGuard
-  },
-  {
-    path: "/domain-purchase",
-    name: "domain-purchase",
-    components: {
-      default: DomainPurchase,
-      "app-bar": Appbar
     },
     beforeEnter: authGuard
   }
