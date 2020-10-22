@@ -144,7 +144,7 @@ export default {
   },
   created() {
     this.$store.state.domain = this.$route.params.name;
-    this.$socket.emit("get_all_services", this.$route.params.name, this.token);
+    this.$socket.emit("get_all_services", this.domain, this.token);
   },
   methods: {
     availableInstances(instances, limitInstances) {
@@ -178,7 +178,10 @@ export default {
       return this.$store.state.idToken;
     },
     services() {
-      return this.$store.state.services;
+      const services = this.$store.state.services;
+      const domain = this.$store.state.domain;
+      const result = services.filter(service => service.domain === domain);
+      return result;
     },
     selectedServices() {
       return this.$store.state.services.filter(
