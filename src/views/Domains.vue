@@ -22,7 +22,6 @@
         v-for="({ name, active }, index) in domains"
         :key="index"
         :to="{ name: 'services', params: { name: name } }"
-        :style="domainCardStyle"
       >
         <v-row justify="space-between" align="center">
           <v-col cols="6">
@@ -54,10 +53,7 @@ export default {
     return {
       mdiCircle,
       colorGreen: "#71b663",
-      colorRed: "#ff6666",
-      domainCardStyle: {
-        padding: "0 2em"
-      }
+      colorRed: "#ff6666"
     };
   },
   created() {
@@ -77,7 +73,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 h1 {
   color: #58595b;
   font-size: 20px;
@@ -88,9 +84,12 @@ h3 {
   font-size: 16px;
   font-weight: 500;
 }
-.v-application p {
+p {
   margin: 0;
   color: #58595b;
   font-size: 16px;
+}
+a {
+  padding: 0 2em;
 }
 </style>
