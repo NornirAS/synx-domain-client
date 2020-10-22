@@ -1,15 +1,15 @@
 <template>
   <v-row justify="center">
     <v-col xs="12" md="10">
-      <v-row justify="space-between">
+      <v-row justify="space-between" align="center">
         <v-col>
           <Header :title="title" :color="colorBlue" />
         </v-col>
         <v-col align="right">
-          <PrimaryActionBtn
-            :primaryActionBtnName="primaryActionBtnName"
-            :path="createServicePath"
-          />
+          <v-btn :color="colorBlue" rounded medium dark :to="path">
+            <v-icon>{{ mdiPlus }}</v-icon>
+            {{ primaryActionBtnName }}
+          </v-btn>
         </v-col>
       </v-row>
       <v-row>
@@ -111,8 +111,7 @@
 </template>
 
 <script>
-import { mdiChevronDown } from "@mdi/js";
-import PrimaryActionBtn from "../components/buttons/PrimaryActionBtn.vue";
+import { mdiChevronDown, mdiPlus } from "@mdi/js";
 import Service from "../components/service/Service.vue";
 import Header from "../components/Header.vue";
 export default {
@@ -124,6 +123,7 @@ export default {
       groups: ["test1", "test2"],
       sortList: ["newest", "oldest"],
       mdiChevronDown,
+      mdiPlus,
       searchBarStyle: {
         marginTop: "0",
         padding: "0 0.5em 0 0.5em"
@@ -193,7 +193,6 @@ export default {
     }
   },
   components: {
-    PrimaryActionBtn,
     Service,
     Header
   }
