@@ -36,7 +36,6 @@
         >
           Add
         </v-btn>
-        {{ instancesBalance }}
       </v-col>
     </v-row>
   </v-card>
@@ -91,9 +90,6 @@ export default {
         this.availableInstances <= 0
         ? true
         : false;
-    },
-    instancesBalance() {
-      return this.$store.getters.instancesBalance;
     }
   },
   components: {

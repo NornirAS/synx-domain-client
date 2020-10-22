@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-col xs="12" sm="10" md="8">
+    <v-col cols="12" sm="10" md="6">
       <h1 align="center">Hey looks like you have no domains.</h1>
       <h1 align="center">Buy one to start develop.</h1>
       <h1 align="center">There is 30 days FREE TRIAL!!</h1>

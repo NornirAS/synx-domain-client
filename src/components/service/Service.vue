@@ -33,7 +33,6 @@
             :divHeight="divHeight"
           />
         </v-col>
-        <p></p>
       </v-row>
     </v-card>
   </v-row>

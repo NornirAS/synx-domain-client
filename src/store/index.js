@@ -19,7 +19,7 @@ export default new Vuex.Store({
     serviceInstances: null,
     services: [],
     ownedDomains: [],
-    domain: "nornir",
+    domain: null,
     username: null,
     idToken: null,
     authError: null,

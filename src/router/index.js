@@ -82,7 +82,8 @@ const routes = [
     components: {
       default: Domains,
       "app-bar": Appbar
-    }
+    },
+    beforeEnter: authGuard
   },
   {
     path: "/domain-promo",
