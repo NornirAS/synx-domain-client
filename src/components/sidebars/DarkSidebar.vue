@@ -31,20 +31,28 @@
 </template>
 
 <script>
-import { mdiBell, mdiAntenna, mdiAccountCircle, mdiEarth } from "@mdi/js";
+import {
+  mdiBell,
+  mdiAntenna,
+  mdiAccountCircle,
+  mdiEarth,
+  mdiAtom
+} from "@mdi/js";
 import SidebarTemplate from "./SidebarTemplate.vue";
 export default {
   data() {
     return {
       mdiAccountCircle,
       mdiEarth,
+      mdiAtom,
       items: [
         { title: "Services", icon: mdiAntenna, path: { name: "services" } },
         {
           title: "Notifications",
           icon: mdiBell,
           path: { name: "notifications" }
-        }
+        },
+        { title: "Domains", icon: mdiAtom, path: { name: "domains" } }
       ],
       headerStyle: {
         fontSize: "16px",

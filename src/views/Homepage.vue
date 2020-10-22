@@ -14,13 +14,13 @@
       </v-btn>
       <v-btn
         v-if="auth"
-        :to="{ name: 'services' }"
+        :to="{ name: 'domains' }"
         :color="colorBlue"
         link
         rounded
         dark
       >
-        Services
+        Domains
       </v-btn>
       <v-btn
         v-if="auth"
