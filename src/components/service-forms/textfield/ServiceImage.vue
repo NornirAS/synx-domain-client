@@ -9,7 +9,6 @@
       hide-details
       v-model="serviceImageURL"
     ></v-text-field>
-    <p>{{ serviceImageURL }}</p>
   </v-card>
 </template>
 

@@ -9,6 +9,7 @@
           <v-btn
             :color="colorGreen"
             :to="{ name: 'domain-purchase' }"
+            small
             rounded
             dark
           >
@@ -21,18 +22,23 @@
         v-for="({ name, active }, index) in domains"
         :key="index"
         :to="{ name: 'services', params: { name: name } }"
+        :style="domainCardStyle"
       >
-        <v-row>
-          <v-col cols="12" sm="6">
-            {{ name }}
+        <v-row justify="space-between" align="center">
+          <v-col cols="6">
+            <h3>{{ name }}</h3>
           </v-col>
-          <v-col cols="12" sm="6">
+          <v-col cols="6">
             <div align="right">
-              <span>Status </span>
-              <v-icon v-if="active === true" :color="colorGreen" x-small>
-                {{ mdiCircle }}
-              </v-icon>
-              <v-icon v-else :color="colorRed" x-small>{{ mdiCircle }}</v-icon>
+              <p>
+                status
+                <v-icon v-if="active === true" :color="colorGreen" x-small>
+                  {{ mdiCircle }}
+                </v-icon>
+                <v-icon v-else :color="colorRed" x-small>{{
+                  mdiCircle
+                }}</v-icon>
+              </p>
             </div>
           </v-col>
         </v-row>
@@ -48,7 +54,10 @@ export default {
     return {
       mdiCircle,
       colorGreen: "#71b663",
-      colorRed: "#ff6666"
+      colorRed: "#ff6666",
+      domainCardStyle: {
+        padding: "0 2em"
+      }
     };
   },
   created() {
@@ -67,3 +76,21 @@ export default {
   }
 };
 </script>
+
+<style>
+h1 {
+  color: #58595b;
+  font-size: 20px;
+  font-weight: 500;
+}
+h3 {
+  color: #58595b;
+  font-size: 16px;
+  font-weight: 500;
+}
+.v-application p {
+  margin: 0;
+  color: #58595b;
+  font-size: 16px;
+}
+</style>

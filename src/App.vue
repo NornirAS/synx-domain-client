@@ -39,7 +39,7 @@ export default {
 }
 .v-card {
   margin: 1em 0 1em 0;
-  padding: 0 2em;
+  padding: 0.5em 2em 1em 2em;
   flex-grow: 1;
 }
 .theme--light.v-label {
