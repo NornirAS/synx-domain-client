@@ -107,12 +107,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.col-sm-4 {
-  padding: 0 12px;
-}
-.disabled {
-  background-color: red;
-}
-</style>

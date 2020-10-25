@@ -90,9 +90,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.col-sm-4 {
-  padding: 0 12px;
-}
-</style>
