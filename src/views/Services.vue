@@ -103,7 +103,7 @@
         </v-menu>
       </v-row>
       <hr />
-      <Service
+      <ServiceCard
         v-for="({ domain, serviceName, instances }, index) in services"
         :key="index"
         :title="serviceName"
@@ -118,7 +118,7 @@
 
 <script>
 import { mdiChevronDown, mdiPlus } from "@mdi/js";
-import Service from "../components/service/Service.vue";
+import ServiceCard from "../components/service/ServiceCard.vue";
 export default {
   data() {
     return {
@@ -196,7 +196,7 @@ export default {
     }
   },
   components: {
-    Service
+    ServiceCard
   }
 };
 </script>

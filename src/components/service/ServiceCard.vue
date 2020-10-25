@@ -14,7 +14,7 @@
           ></v-img>
         </v-col> -->
         <v-col md="6">
-          <Header
+          <ServiceHeader
             :title="title"
             :description="micropage"
             :url="url"
@@ -40,7 +40,7 @@
 
 <script>
 import { mdiCircleEditOutline } from "@mdi/js";
-import Header from "./Header.vue";
+import ServiceHeader from "./ServiceHeader.vue";
 import CurrentValue from "../service-forms/numberfield/CurrentValue.vue";
 export default {
   props: ["title", "availableInstances", "limitInstances", "index", "url"],
@@ -79,7 +79,7 @@ export default {
     }
   },
   components: {
-    Header,
+    ServiceHeader,
     CurrentValue
   }
 };
