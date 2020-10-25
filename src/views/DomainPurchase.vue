@@ -1,16 +1,16 @@
 <template>
   <v-row justify="center">
     <v-col cols="12" sm="10" md="6">
-      <Form />
+      <PurchaseForm />
     </v-col>
   </v-row>
 </template>
 
 <script>
-import Form from "../components/domain/Form.vue";
+import PurchaseForm from "../components/domain/PurchaseForm.vue";
 export default {
   components: {
-    Form
+    PurchaseForm
   }
 };
 </script>

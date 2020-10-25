@@ -26,7 +26,7 @@
 
     <v-stepper-items>
       <v-stepper-content step="1">
-        <Domain />
+        <DomainSearch />
         <v-row justify="space-between" align="center">
           <v-col cols="6" md="3">
             <v-btn text>
@@ -42,7 +42,7 @@
       </v-stepper-content>
 
       <v-stepper-content step="2">
-        <Period />
+        <BillingPeriod />
 
         <v-row justify="space-between" align="center">
           <v-col cols="6" md="3">
@@ -96,8 +96,8 @@
 </template>
 
 <script>
-import Domain from "./Domain.vue";
-import Period from "./Period.vue";
+import DomainSearch from "./DomainSearch.vue";
+import BillingPeriod from "./BillingPeriod.vue";
 export default {
   data() {
     return {
@@ -109,8 +109,8 @@ export default {
     };
   },
   components: {
-    Domain,
-    Period
+    DomainSearch,
+    BillingPeriod
   }
 };
 </script>
