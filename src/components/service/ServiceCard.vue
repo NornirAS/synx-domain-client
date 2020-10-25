@@ -1,6 +1,5 @@
 <template>
   <v-row>
-    <!-- <Checkbox :style="checkBoxStyle" :event="check" /> -->
     <v-checkbox
       :style="checkBoxStyle"
       :value="isSelected"
@@ -24,14 +23,14 @@
           />
         </v-col>
         <v-col md="6" align="right">
-          <DisplayCurrentValue
-            :primaryValue="availableInstances"
-            :secondaryValue="limitInstances"
-            :helper="helper"
-            :primaryStyle="primaryStyle"
-            :secondaryStyle="secondaryStyle"
-            :divHeight="divHeight"
-          />
+          <display-current-value>
+            <div slot="currentValue" :style="divHeight">
+              <span :style="primaryStyle">{{ availableInstances }}</span>
+              <span :style="secondaryStyle">/</span>
+              <span :style="secondaryStyle">{{ totalInstances }}</span>
+            </div>
+            <p slot="helper" :style="helperStyle">{{ helper }}</p>
+          </display-current-value>
         </v-col>
       </v-row>
     </v-card>
@@ -43,7 +42,7 @@ import { mdiCircleEditOutline } from "@mdi/js";
 import ServiceHeader from "./ServiceHeader.vue";
 import DisplayCurrentValue from "../DisplayCurrentValue.vue";
 export default {
-  props: ["title", "availableInstances", "limitInstances", "index", "url"],
+  props: ["title", "availableInstances", "totalInstances", "index", "url"],
   data() {
     return {
       mdiCircleEditOutline,
@@ -58,6 +57,11 @@ export default {
         color: "#58595b",
         fontSize: "16px",
         fontWeight: "500"
+      },
+      helperStyle: {
+        margin: "0",
+        color: "#58595b",
+        fontSize: "14px"
       },
       divHeight: {
         height: "30px"

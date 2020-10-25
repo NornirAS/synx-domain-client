@@ -107,8 +107,8 @@
         v-for="({ domain, serviceName, instances }, index) in services"
         :key="index"
         :title="serviceName"
-        :availableInstances="availableInstances(instances, limitInstances)"
-        :limitInstances="limitInstances"
+        :availableInstances="availableInstances(instances, totalInstances)"
+        :totalInstances="totalInstances"
         :url="url(domain, serviceName)"
         :index="index"
       />
@@ -124,7 +124,7 @@ export default {
     return {
       title: "Services",
       search: "",
-      limitInstances: "1000",
+      totalInstances: "1000",
       groups: ["test1", "test2"],
       sortList: ["newest", "oldest"],
       mdiChevronDown,
@@ -150,8 +150,8 @@ export default {
     this.$socket.emit("get_all_services", this.domain, this.token);
   },
   methods: {
-    availableInstances(instances, limitInstances) {
-      return limitInstances - instances;
+    availableInstances(instances, totalInstances) {
+      return totalInstances - instances;
     },
     url(domain, service) {
       return `https://${domain}.cioty.com/${service}`;
