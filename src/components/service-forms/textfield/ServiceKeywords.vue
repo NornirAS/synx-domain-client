@@ -1,6 +1,10 @@
 <template>
   <v-card outlined>
-    <FormHeader :title="title" :description="description" />
+    <v-row>
+      <v-col>
+        <FormHeader :title="title" :description="description" />
+      </v-col>
+    </v-row>
     <v-row>
       <v-col>
         <v-text-field

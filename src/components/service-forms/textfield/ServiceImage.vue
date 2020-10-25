@@ -1,14 +1,22 @@
 <template>
   <v-card outlined>
-    <FormHeader :title="title" :description="description" />
-    <v-text-field
-      :label="title"
-      single-line
-      dense
-      outlined
-      hide-details
-      v-model="serviceImageURL"
-    ></v-text-field>
+    <v-row>
+      <v-col>
+        <FormHeader :title="title" :description="description" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-text-field
+          :label="title"
+          single-line
+          dense
+          outlined
+          hide-details
+          v-model="serviceImageURL"
+        ></v-text-field>
+      </v-col>
+    </v-row>
   </v-card>
 </template>
 

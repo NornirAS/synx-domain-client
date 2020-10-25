@@ -1,6 +1,10 @@
 <template>
   <v-card outlined>
-    <FormHeader :title="title" :description="description" />
+    <v-row>
+      <v-col>
+        <FormHeader :title="title" :description="description" />
+      </v-col>
+    </v-row>
     <v-row>
       <v-col md="6">
         <v-text-field
@@ -30,9 +34,9 @@
         </v-btn>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row v-if="isSchema">
       <v-col md="7">
-        <TableForSchema v-if="isSchema" :title="title" />
+        <TableForSchema :title="title" />
       </v-col>
     </v-row>
   </v-card>

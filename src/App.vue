@@ -38,8 +38,8 @@ export default {
   top: 64px;
 }
 .v-card {
-  margin: 1em 0 1em 0;
-  padding: 0.5em 2em 1em 2em;
+  margin-top: 0.5em;
+  padding: 0 1em;
   flex-grow: 1;
 }
 .theme--light.v-label {

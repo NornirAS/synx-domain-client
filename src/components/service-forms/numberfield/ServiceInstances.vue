@@ -1,6 +1,10 @@
 <template>
   <v-card outlined>
-    <FormHeader :title="title" :description="description" />
+    <v-row>
+      <v-col>
+        <FormHeader :title="title" :description="description" />
+      </v-col>
+    </v-row>
     <v-row justify="start" align="center">
       <v-col sm="3">
         <display-current-value>

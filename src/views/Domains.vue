@@ -89,7 +89,4 @@ p {
   color: #58595b;
   font-size: 16px;
 }
-a {
-  padding: 0 2em;
-}
 </style>
