@@ -2,12 +2,12 @@
   <form>
     <ServiceName />
     <ServiceDescription />
-    <Keywords />
+    <ServiceKeywords />
     <ServiceImage />
     <ServiceSchema />
     <CommandSchema />
-    <Instances />
-    <Timeout />
+    <ServiceInstances />
+    <ServiceTimeout />
     <PreInlineScript />
     <PostInlineScript />
     <WebJS />
@@ -25,11 +25,11 @@
 <script>
 import ServiceName from "./textfield/ServiceName.vue";
 import ServiceDescription from "./textarea/ServiceDescription.vue";
-import Keywords from "./textfield/Keywords.vue";
+import ServiceKeywords from "./textfield/ServiceKeywords.vue";
 import ServiceSchema from "./xml/ServiceSchema.vue";
 import CommandSchema from "./xml/CommandSchema.vue";
-import Instances from "./numberfield/Instances.vue";
-import Timeout from "./numberfield/Timeout.vue";
+import ServiceInstances from "./numberfield/ServiceInstances.vue";
+import ServiceTimeout from "./numberfield/ServiceTimeout.vue";
 import WebJS from "./textarea/WebJS.vue";
 import PostInlineScript from "./textarea/PostInlineScript.vue";
 import PreInlineScript from "./textarea/PreInlineScript.vue";
@@ -85,11 +85,11 @@ export default {
   components: {
     ServiceName,
     ServiceDescription,
-    Keywords,
+    ServiceKeywords,
     ServiceSchema,
     CommandSchema,
-    Instances,
-    Timeout,
+    ServiceInstances,
+    ServiceTimeout,
     WebJS,
     PostInlineScript,
     PreInlineScript,

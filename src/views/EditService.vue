@@ -1,13 +1,13 @@
 <template>
   <v-row justify="center">
     <v-col xs="12" md="10">
-      <BasicForm :btnName="btnName" />
+      <ServiceForm :btnName="btnName" />
     </v-col>
   </v-row>
 </template>
 
 <script>
-import BasicForm from "../components/service-forms/BasicForm.vue";
+import ServiceForm from "../components/service-forms/ServiceForm.vue";
 export default {
   data() {
     return {
@@ -48,7 +48,7 @@ export default {
     }
   },
   components: {
-    BasicForm
+    ServiceForm
   }
 };
 </script>
