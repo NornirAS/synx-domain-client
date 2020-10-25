@@ -3,14 +3,14 @@
     <FormHeader :title="title" :description="description" />
     <v-row justify="start" align="center">
       <v-col sm="2">
-        <CurrentValue
-          :primaryValue="timeOut"
-          :secondaryValue="secondaryValue"
-          :helper="helper"
-          :primaryStyle="primaryStyle"
-          :secondaryStyle="secondaryStyle"
-          :divHeight="divHeight"
-        />
+        <display-current-value>
+          <div slot="currentValue" :style="divHeight">
+            <span :style="primaryStyle">{{ timeOut }}</span>
+            <span :style="secondaryStyle">/</span>
+            <span :style="secondaryStyle">{{ secondaryValue }}</span>
+          </div>
+          <p slot="helper" :style="helperStyle">{{ helper }}</p>
+        </display-current-value>
       </v-col>
       <v-col sm="3">
         <v-text-field
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import CurrentValue from "./CurrentValue.vue";
+import DisplayCurrentValue from "../../DisplayCurrentValue.vue";
 import FormHeader from "../FormHeader.vue";
 export default {
   data() {
@@ -59,13 +59,18 @@ export default {
         fontSize: "30px",
         fontWeight: "500"
       },
+      helperStyle: {
+        margin: "0",
+        color: "#58595b",
+        fontSize: "14px"
+      },
       divHeight: {
         height: "45px"
       }
     };
   },
   components: {
-    CurrentValue,
+    DisplayCurrentValue,
     FormHeader
   },
   methods: {

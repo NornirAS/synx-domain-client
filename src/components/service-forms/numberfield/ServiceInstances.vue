@@ -3,14 +3,14 @@
     <FormHeader :title="title" :description="description" />
     <v-row justify="start" align="center">
       <v-col sm="3">
-        <CurrentValue
-          :primaryValue="availableInstances"
-          :secondaryValue="totalInstances"
-          :helper="helper"
-          :primaryStyle="primaryStyle"
-          :secondaryStyle="secondaryStyle"
-          :divHeight="divHeight"
-        />
+        <display-current-value>
+          <div slot="currentValue" :style="divHeight">
+            <span :style="primaryStyle">{{ availableInstances }}</span>
+            <span :style="secondaryStyle">/</span>
+            <span :style="secondaryStyle">{{ totalInstances }}</span>
+          </div>
+          <p slot="helper" :style="helperStyle">{{ helper }}</p>
+        </display-current-value>
       </v-col>
       <v-col sm="2">
         <v-text-field
@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import CurrentValue from "./CurrentValue.vue";
+import DisplayCurrentValue from "../../DisplayCurrentValue.vue";
 import FormHeader from "../FormHeader.vue";
 export default {
   data() {
@@ -62,6 +62,11 @@ export default {
         color: "#58595b",
         fontSize: "30px",
         fontWeight: "500"
+      },
+      helperStyle: {
+        margin: "0",
+        color: "#58595b",
+        fontSize: "14px"
       },
       divHeight: {
         height: "45px"
@@ -93,7 +98,7 @@ export default {
     }
   },
   components: {
-    CurrentValue,
+    DisplayCurrentValue,
     FormHeader
   }
 };

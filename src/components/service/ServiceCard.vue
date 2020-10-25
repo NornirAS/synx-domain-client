@@ -24,7 +24,7 @@
           />
         </v-col>
         <v-col md="6" align="right">
-          <CurrentValue
+          <DisplayCurrentValue
             :primaryValue="availableInstances"
             :secondaryValue="limitInstances"
             :helper="helper"
@@ -41,7 +41,7 @@
 <script>
 import { mdiCircleEditOutline } from "@mdi/js";
 import ServiceHeader from "./ServiceHeader.vue";
-import CurrentValue from "../service-forms/numberfield/CurrentValue.vue";
+import DisplayCurrentValue from "../DisplayCurrentValue.vue";
 export default {
   props: ["title", "availableInstances", "limitInstances", "index", "url"],
   data() {
@@ -80,7 +80,7 @@ export default {
   },
   components: {
     ServiceHeader,
-    CurrentValue
+    DisplayCurrentValue
   }
 };
 </script>
