@@ -200,3 +200,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+h1 {
+  color: #58595b;
+  font-size: 20px;
+  font-weight: 500;
+}
+</style>

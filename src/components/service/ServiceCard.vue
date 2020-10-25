@@ -1,40 +1,40 @@
 <template>
-  <v-row>
-    <v-checkbox
-      :style="checkBoxStyle"
-      :value="isSelected"
-      @change="selectService(index)"
-    ></v-checkbox>
-    <v-card outlined>
-      <v-row>
-        <!-- <v-col md="3">
-          <v-img
-            src="https://upload.wikimedia.org/wikipedia/commons/0/05/Favicon_250x250.png"
-          ></v-img>
-        </v-col> -->
-        <v-col md="6">
-          <ServiceHeader
-            :title="title"
-            :description="micropage"
-            :url="url"
-            :href="url"
-            :icon="mdiCircleEditOutline"
-            :index="index"
-          />
-        </v-col>
-        <v-col md="6" align="right">
-          <display-current-value>
-            <div slot="currentValue" :style="divHeight">
-              <span :style="primaryStyle">{{ availableInstances }}</span>
-              <span :style="secondaryStyle">/</span>
-              <span :style="secondaryStyle">{{ totalInstances }}</span>
-            </div>
-            <p slot="helper" :style="helperStyle">{{ helper }}</p>
-          </display-current-value>
-        </v-col>
-      </v-row>
-    </v-card>
-  </v-row>
+  <v-card outlined>
+    <v-row align="center">
+      <!-- <v-col md="3">
+        <v-img
+          src="https://upload.wikimedia.org/wikipedia/commons/0/05/Favicon_250x250.png"
+        ></v-img>
+      </v-col> -->
+      <v-col md="1">
+        <v-checkbox
+          :style="checkBoxStyle"
+          :value="isSelected"
+          @change="selectService(index)"
+        ></v-checkbox>
+      </v-col>
+      <v-col md="5">
+        <ServiceHeader
+          :title="title"
+          :description="micropage"
+          :url="url"
+          :href="url"
+          :icon="mdiCircleEditOutline"
+          :index="index"
+        />
+      </v-col>
+      <v-col md="6" align="right">
+        <display-current-value>
+          <div slot="currentValue" :style="divHeight">
+            <span :style="primaryStyle">{{ availableInstances }}</span>
+            <span :style="secondaryStyle">/</span>
+            <span :style="secondaryStyle">{{ totalInstances }}</span>
+          </div>
+          <p slot="helper" :style="helperStyle">{{ helper }}</p>
+        </display-current-value>
+      </v-col>
+    </v-row>
+  </v-card>
 </template>
 
 <script>
