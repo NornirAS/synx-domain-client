@@ -11,6 +11,7 @@
           :style="checkBoxStyle"
           :value="isSelected"
           @change="selectService(index)"
+          hide-details
         ></v-checkbox>
       </v-col>
       <v-col md="5">
@@ -67,8 +68,7 @@ export default {
         height: "30px"
       },
       checkBoxStyle: {
-        margin: "0",
-        paddingTop: "1em"
+        margin: "0"
       }
     };
   },

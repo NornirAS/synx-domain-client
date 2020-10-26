@@ -109,7 +109,6 @@ export default {
       },
       checkBoxStyle: {
         margin: "0",
-        paddingTop: "0.5em",
         paddingLeft: "1.1em"
       },
       colorBlue: "#27AAE1",
