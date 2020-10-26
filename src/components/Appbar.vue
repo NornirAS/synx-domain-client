@@ -1,6 +1,15 @@
 <template>
   <v-app-bar app dark :style="appBarStyle">
-    <div class="d-flex align-center">
+    <v-app-bar-nav-icon
+      @click="openDrawerOnMobile()"
+      v-if="isMobile"
+      :color="colorGrey"
+      light
+    ></v-app-bar-nav-icon>
+
+    <v-spacer v-if="isMobile"></v-spacer>
+
+    <div>
       <router-link :to="{ name: 'home' }">
         <v-img
           alt="Cioty"
@@ -16,17 +25,13 @@
     <v-spacer></v-spacer>
 
     <div>
-      <v-btn class="nav-buttons" color="#58595B" icon rounded outlined small>
-        <v-icon small> {{ bell }} </v-icon>
-      </v-btn>
-
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             v-bind="attrs"
             v-on="on"
             class="nav-buttons"
-            color="#58595B"
+            :color="colorGrey"
             icon
             rounded
             outlined
@@ -55,6 +60,7 @@ import { mdiAccount, mdiBell } from "@mdi/js";
 export default {
   data() {
     return {
+      drawer: false,
       account: mdiAccount,
       bell: mdiBell,
       appBarStyle: {
@@ -67,17 +73,28 @@ export default {
           title: "Logout",
           action: this.signOut
         }
-      ]
+      ],
+      colorGrey: "#58595b"
     };
   },
   methods: {
     signOut() {
       this.$store.dispatch("signOut");
+    },
+    openDrawerOnMobile() {
+      this.drawer = !this.drawer;
+      this.$store.state.showDrawerOnMobile = this.drawer;
     }
   },
   computed: {
     notAuth() {
       return this.$store.getters.isAuthenticated;
+    },
+    isMobile() {
+      return this.$vuetify.breakpoint.smAndDown;
+    },
+    test() {
+      return this.$store.state.showDrawerOnMobile;
     }
   },
   watch: {

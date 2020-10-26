@@ -76,7 +76,7 @@ export default {
 <style scoped>
 h1 {
   color: #58595b;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 500;
 }
 h3 {

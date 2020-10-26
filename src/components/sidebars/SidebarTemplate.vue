@@ -1,12 +1,15 @@
 <template>
   <v-navigation-drawer
-    :permanent="permanent"
-    :drawer="drawer"
+    :permanent="showDrawerOnDesktop"
     :light="light"
     :dark="dark"
     :style="navStyle"
     :color="color"
+    v-model="drawer"
+    :temporary="drawer"
+    :bottom="drawer"
     absolute
+    hide-overlay
     app
   >
     <v-list dense nav class="py-0">
@@ -22,13 +25,25 @@ export default {
   props: ["light", "dark", "color"],
   data() {
     return {
+      drawer: null,
       navStyle: {
         top: "64px",
         height: "100%"
-      },
-      drawer: true,
-      permanent: true
+      }
     };
+  },
+  computed: {
+    showDrawerOnDesktop() {
+      return this.$vuetify.breakpoint.mdAndUp;
+    },
+    showDrawerOnMobile() {
+      return this.$store.state.showDrawerOnMobile;
+    }
+  },
+  watch: {
+    showDrawerOnMobile(NewValue) {
+      this.drawer = NewValue;
+    }
   }
 };
 </script>

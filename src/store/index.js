@@ -26,7 +26,8 @@ export default new Vuex.Store({
     formSubmited: false,
     formError: null,
     selectAll: false,
-    sideBarTitle: null
+    sideBarTitle: null,
+    showDrawerOnMobile: false
   },
   mutations: {
     serviceSchemaAddLink(state, { tagName, linkTo }) {
