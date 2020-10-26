@@ -6,7 +6,7 @@
           src="https://upload.wikimedia.org/wikipedia/commons/0/05/Favicon_250x250.png"
         ></v-img>
       </v-col> -->
-      <v-col md="1">
+      <v-col cols="2" md="1">
         <v-checkbox
           :style="checkBoxStyle"
           :value="isSelected"
@@ -14,7 +14,7 @@
           hide-details
         ></v-checkbox>
       </v-col>
-      <v-col md="5">
+      <v-col cols="10" md="5">
         <ServiceHeader
           :title="title"
           :description="micropage"
@@ -24,7 +24,7 @@
           :index="index"
         />
       </v-col>
-      <v-col md="6" align="right">
+      <v-col col="12" md="6" align="right">
         <display-current-value>
           <div slot="currentValue" :style="divHeight">
             <span :style="primaryStyle">{{ availableInstances }}</span>

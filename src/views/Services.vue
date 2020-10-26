@@ -19,14 +19,14 @@
         </v-col>
       </v-row>
       <v-row justify="space-between" align="center">
-        <v-col cols="12" sm="4" md="1">
+        <v-col cols="4" sm="2" md="1">
           <v-checkbox
             :style="checkBoxStyle"
             @change="selectAllServices"
             hide-details
           ></v-checkbox>
         </v-col>
-        <v-col cols="12" sm="4" md="2">
+        <v-col cols="4" sm="2" md="2">
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
               <v-btn
@@ -49,7 +49,7 @@
             </v-list>
           </v-menu>
         </v-col>
-        <v-col cols="12" sm="4" md="2">
+        <v-col cols="4" sm="2" md="2">
           <v-btn
             @click="deleteService(selectedServices)"
             :disabled="isSelected"
@@ -62,7 +62,7 @@
             Delete
           </v-btn>
         </v-col>
-        <v-col cols="12" md="7">
+        <v-col cols="12" sm="6" md="7">
           <v-text-field
             v-model="search"
             append-icon="mdi-magnify"
