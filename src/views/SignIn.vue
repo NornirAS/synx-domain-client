@@ -93,7 +93,7 @@ export default {
     isAuth(newValue) {
       if (newValue) {
         this.$store.state.authError = null;
-        this.$router.push({ name: "services" });
+        this.$router.push({ name: "domains" });
       }
     },
     authError(newValue) {
