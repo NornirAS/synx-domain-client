@@ -6,8 +6,8 @@
     :style="navStyle"
     :color="color"
     v-model="drawer"
-    :temporary="drawer"
-    :bottom="drawer"
+    :temporary="showDrawer"
+    :bottom="showDrawer"
     absolute
     hide-overlay
     app
@@ -36,13 +36,14 @@ export default {
     showDrawerOnDesktop() {
       return this.$vuetify.breakpoint.mdAndUp;
     },
-    showDrawerOnMobile() {
+    showDrawer() {
+      console.log(this.$store.state.showDrawerOnMobile);
       return this.$store.state.showDrawerOnMobile;
     }
   },
   watch: {
-    showDrawerOnMobile(NewValue) {
-      this.drawer = NewValue;
+    showDrawer(newValue) {
+      this.drawer = newValue;
     }
   }
 };
