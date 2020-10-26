@@ -10,7 +10,7 @@
             :to="{ name: 'createService' }"
             :color="colorBlue"
             rounded
-            medium
+            small
             dark
           >
             <v-icon>{{ mdiPlus }}</v-icon>
@@ -18,89 +18,60 @@
           </v-btn>
         </v-col>
       </v-row>
-      <v-row>
-        <v-checkbox
-          :style="checkBoxStyle"
-          @change="selectAllServices"
-        ></v-checkbox>
-        <v-menu offset-y>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              :color="colorGrey"
-              :style="filterBtnStyle"
-              rounded
-              dark
-              v-bind="attrs"
-              v-on="on"
-            >
-              Groups
-              <v-icon>{{ mdiChevronDown }}</v-icon>
-            </v-btn>
-          </template>
-          <v-list>
-            <v-list-item v-for="item in groups" :key="item">
-              <v-list-item-title>{{ item }}</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-        <v-menu offset-y>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              :color="colorGrey"
-              :style="filterBtnStyle"
-              rounded
-              dark
-              v-bind="attrs"
-              v-on="on"
-            >
-              Sort By
-              <v-icon>{{ mdiChevronDown }}</v-icon>
-            </v-btn>
-          </template>
-          <v-list>
-            <v-list-item v-for="item in sortList" :key="item">
-              <v-list-item-title>{{ item }}</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-        <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify"
-          label="Search"
-          single-line
-          hide-details
-          :style="searchBarStyle"
-        ></v-text-field>
-        <v-btn
-          @click="deleteService(selectedServices)"
-          :disabled="isSelected"
-          :color="colorRed"
-          :style="filterBtnStyle"
-          rounded
-          dark
-        >
-          Delete
-        </v-btn>
-        <v-menu offset-y>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              :color="colorGrey"
-              :style="filterBtnStyle"
-              rounded
-              dark
-              v-bind="attrs"
-              v-on="on"
-            >
-              Move To
-              <v-icon>{{ mdiChevronDown }}</v-icon>
-            </v-btn>
-          </template>
-          <v-list>
-            <v-list-item v-for="item in sortList" :key="item">
-              <v-list-item-title>{{ item }}</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
+      <v-row justify="space-between" align="center">
+        <v-col cols="12" sm="4" md="1">
+          <v-checkbox
+            :style="checkBoxStyle"
+            @change="selectAllServices"
+            hide-details
+          ></v-checkbox>
+        </v-col>
+        <v-col cols="12" sm="4" md="2">
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                :color="colorGrey"
+                :style="filterBtnStyle"
+                v-bind="attrs"
+                v-on="on"
+                rounded
+                dark
+                small
+              >
+                Sort By
+                <v-icon>{{ mdiChevronDown }}</v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item v-for="item in sortList" :key="item">
+                <v-list-item-title>{{ item }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </v-col>
+        <v-col cols="12" sm="4" md="2">
+          <v-btn
+            @click="deleteService(selectedServices)"
+            :disabled="isSelected"
+            :color="colorRed"
+            :style="filterBtnStyle"
+            :dark="!isSelected"
+            rounded
+            small
+          >
+            Delete
+          </v-btn>
+        </v-col>
+        <v-col cols="12" md="7">
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+            :style="searchBarStyle"
+          ></v-text-field>
+        </v-col>
       </v-row>
       <hr />
       <ServiceCard
@@ -138,7 +109,8 @@ export default {
       },
       checkBoxStyle: {
         margin: "0",
-        paddingTop: "0.5em"
+        paddingTop: "0.5em",
+        paddingLeft: "1.1em"
       },
       colorBlue: "#27AAE1",
       colorRed: "#FF6666",
