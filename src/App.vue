@@ -29,6 +29,17 @@ export default {
     if (localStorage.getItem("expirationDate")) {
       this.$store.dispatch("setSignOutTimer");
     }
+    this.$store.commit("isMobile", this.isMobile);
+  },
+  computed: {
+    isMobile() {
+      return this.$vuetify.breakpoint.smAndDown;
+    }
+  },
+  watch: {
+    isMobile() {
+      this.$store.commit("isMobile", this.isMobile);
+    }
   }
 };
 </script>

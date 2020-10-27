@@ -38,7 +38,6 @@ export default {
       return this.$vuetify.breakpoint.mdAndUp;
     },
     showDrawer() {
-      console.log(this.$store.state.showDrawerOnMobile);
       return this.$store.state.showDrawerOnMobile;
     }
   },

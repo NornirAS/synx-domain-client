@@ -60,7 +60,7 @@ import { mdiAccount, mdiBell } from "@mdi/js";
 export default {
   data() {
     return {
-      drawer: false,
+      drawer: null,
       account: mdiAccount,
       bell: mdiBell,
       appBarStyle: {
@@ -87,17 +87,18 @@ export default {
       return this.$store.getters.isAuthenticated;
     },
     isMobile() {
-      return this.$store.getters.isMobile;
+      return this.$store.state.isMobile;
+    },
+    showDrawer() {
+      return this.$store.state.showDrawerOnMobile;
     }
   },
   watch: {
-    isMobile(newValue) {
-      if (newValue) {
-        this.drawer = !newValue;
-      }
+    drawer(newValue) {
+      this.$store.commit("showDrawerOnMobile", newValue);
     },
-    drawer() {
-      this.$store.state.showDrawerOnMobile = this.drawer;
+    showDrawer(newValue) {
+      this.drawer = newValue;
     },
     notAuth(newValue) {
       if (newValue === false) {

@@ -27,9 +27,16 @@ export default new Vuex.Store({
     formError: null,
     selectAll: false,
     sideBarTitle: null,
-    showDrawerOnMobile: null
+    showDrawerOnMobile: null,
+    isMobile: null
   },
   mutations: {
+    isMobile(state, payload) {
+      state.isMobile = payload;
+    },
+    showDrawerOnMobile(state, payload) {
+      state.showDrawerOnMobile = payload;
+    },
     serviceSchemaAddLink(state, { tagName, linkTo }) {
       const schema = state.serviceForm.serviceSchema.find(
         s => s.tagName === tagName
