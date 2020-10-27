@@ -4,7 +4,7 @@
     <router-view name="dark-sidebar"></router-view>
     <router-view name="light-sidebar"></router-view>
     <v-main>
-      <v-container style="height: 100%" fluid>
+      <v-container :style="mainContainerStyle" fluid>
         <router-view></router-view>
       </v-container>
     </v-main>
@@ -16,9 +16,14 @@
 export default {
   name: "App",
 
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      mainContainerStyle: {
+        height: "100%",
+        overflow: "scroll"
+      }
+    };
+  },
   created() {
     this.$store.dispatch("tryAutoSignIn");
     if (localStorage.getItem("expirationDate")) {
@@ -30,10 +35,8 @@ export default {
 
 <style>
 .v-main {
+  height: 100vh;
   background-color: rgb(235, 240, 244);
-}
-.v-navigation-drawer {
-  top: 64px;
 }
 .v-card {
   margin-top: 0.5em;
