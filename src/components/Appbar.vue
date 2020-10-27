@@ -1,7 +1,7 @@
 <template>
-  <v-app-bar app dark :style="appBarStyle">
+  <v-app-bar :style="appBarStyle" app dark>
     <v-app-bar-nav-icon
-      @click="openDrawerOnMobile()"
+      @click="drawer = !drawer"
       v-if="isMobile"
       :color="colorGrey"
       light
@@ -60,7 +60,7 @@ import { mdiAccount, mdiBell } from "@mdi/js";
 export default {
   data() {
     return {
-      drawer: null,
+      drawer: false,
       account: mdiAccount,
       bell: mdiBell,
       appBarStyle: {
@@ -80,10 +80,6 @@ export default {
   methods: {
     signOut() {
       this.$store.dispatch("signOut");
-    },
-    openDrawerOnMobile() {
-      this.drawer = !this.drawer;
-      this.$store.state.showDrawerOnMobile = this.drawer;
     }
   },
   computed: {
@@ -91,18 +87,17 @@ export default {
       return this.$store.getters.isAuthenticated;
     },
     isMobile() {
-      return this.$vuetify.breakpoint.smAndDown;
+      return this.$store.getters.isMobile;
     }
   },
   watch: {
     isMobile(newValue) {
-      if (newValue === true) {
+      if (newValue) {
         this.drawer = !newValue;
-        this.$store.state.showDrawerOnMobile = this.drawer;
-      } else {
-        this.drawer = newValue;
-        this.$store.state.showDrawerOnMobile = this.drawer;
       }
+    },
+    drawer() {
+      this.$store.state.showDrawerOnMobile = this.drawer;
     },
     notAuth(newValue) {
       if (newValue === false) {
