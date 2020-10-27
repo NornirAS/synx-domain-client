@@ -1,6 +1,6 @@
 <template>
-  <v-footer :style="footerStyle" absolute :padless="padless" app>
-    <v-card :style="footerCardStyle" class="text-center" flat tile light>
+  <v-footer :style="footerStyle" padless absolute app>
+    <v-card :style="footerCardStyle" align="center" flat tile light>
       <v-card-text>
         {{ new Date().getFullYear() }} — <strong>Domain service</strong>
       </v-card-text>
@@ -12,9 +12,6 @@
 export default {
   data() {
     return {
-      icons: ["mdi-home", "mdi-email", "mdi-calendar", "mdi-delete"],
-      padless: true,
-      localAttrs: "absolute",
       footerCardStyle: {
         width: "100%",
         margin: "0"
