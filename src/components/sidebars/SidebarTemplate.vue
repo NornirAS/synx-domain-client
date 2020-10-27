@@ -28,7 +28,7 @@ export default {
       drawer: null,
       navStyle: {
         top: "64px",
-        height: "100%"
+        height: "calc(100% - 64px)"
       }
     };
   },

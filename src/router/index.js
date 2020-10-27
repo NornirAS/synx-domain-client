@@ -8,6 +8,7 @@ import Notifications from "../views/Notifications.vue";
 import AppBar from "../components/AppBar.vue";
 import DarkSidebar from "../components/sidebars/DarkSidebar.vue";
 import LightSidebar from "../components/sidebars/LightSidebar.vue";
+import FooterBar from "../components/FooterBar.vue";
 import SignIn from "../views/SignIn.vue";
 import Domains from "../views/Domains.vue";
 import DomainPromo from "../views/DomainPromo.vue";
@@ -41,7 +42,8 @@ const routes = [
     name: "domains",
     components: {
       default: Domains,
-      "app-bar": AppBar
+      "app-bar": AppBar,
+      "footer-bar": FooterBar
     },
     beforeEnter: authGuard
   },
@@ -50,7 +52,8 @@ const routes = [
     name: "domain-promo",
     components: {
       default: DomainPromo,
-      "app-bar": AppBar
+      "app-bar": AppBar,
+      "footer-bar": FooterBar
     },
     beforeEnter: authGuard
   },
@@ -59,7 +62,8 @@ const routes = [
     name: "domain-purchase",
     components: {
       default: DomainPurchase,
-      "app-bar": AppBar
+      "app-bar": AppBar,
+      "footer-bar": FooterBar
     },
     beforeEnter: authGuard
   },
@@ -69,7 +73,8 @@ const routes = [
     components: {
       default: Services,
       "app-bar": AppBar,
-      "dark-sidebar": DarkSidebar
+      "dark-sidebar": DarkSidebar,
+      "footer-bar": FooterBar
     },
     beforeEnter: authGuard
   },
@@ -79,7 +84,8 @@ const routes = [
     components: {
       default: CreateService,
       "app-bar": AppBar,
-      "light-sidebar": LightSidebar
+      "light-sidebar": LightSidebar,
+      "footer-bar": FooterBar
     },
     beforeEnter: authGuard
   },
@@ -89,7 +95,8 @@ const routes = [
     components: {
       default: EditService,
       "app-bar": AppBar,
-      "light-sidebar": LightSidebar
+      "light-sidebar": LightSidebar,
+      "footer-bar": FooterBar
     },
     beforeEnter: authGuard
   },
@@ -99,7 +106,8 @@ const routes = [
     components: {
       default: Notifications,
       "app-bar": AppBar,
-      "dark-sidebar": DarkSidebar
+      "dark-sidebar": DarkSidebar,
+      "footer-bar": FooterBar
     },
     beforeEnter: authGuard
   }
