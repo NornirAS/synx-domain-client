@@ -1,14 +1,15 @@
 <template>
   <v-navigation-drawer
+    v-model="drawer"
     :permanent="showDrawerOnDesktop"
+    :absolute="showDrawerOnDesktop"
+    :temporary="showDrawer"
+    :bottom="showDrawer"
+    :fixed="showDrawer"
     :light="light"
     :dark="dark"
     :style="navStyle"
     :color="color"
-    v-model="drawer"
-    :temporary="showDrawer"
-    :bottom="showDrawer"
-    absolute
     hide-overlay
     app
   >
