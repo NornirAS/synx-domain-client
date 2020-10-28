@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import servicesModule from "./modules/services";
 
 Vue.use(Vuex);
 
@@ -17,7 +18,6 @@ export default new Vuex.Store({
       webJS: "Hello"
     },
     serviceInstances: null,
-    services: [],
     ownedDomains: [],
     domain: null,
     username: null,
@@ -25,7 +25,6 @@ export default new Vuex.Store({
     authError: null,
     formSubmited: false,
     formError: null,
-    selectAll: false,
     sideBarTitle: null,
     showDrawerOnMobile: null,
     isMobile: null
@@ -69,27 +68,6 @@ export default new Vuex.Store({
     serviceUpdatedError(state) {
       state.formSubmited = false;
       state.formError = "Update Error. Something went wrong. Try one more time";
-    },
-    allServices(state, payload) {
-      state.services = payload;
-    },
-    selectService(state, index) {
-      state.services[index].isSelected = !state.services[index].isSelected;
-    },
-    selectAllServices(state) {
-      state.selectAll = !state.selectAll;
-      if (!state.selectAll) {
-        state.services.forEach(service => {
-          service.isSelected = true;
-        });
-      } else {
-        state.services.forEach(service => {
-          service.isSelected = false;
-        });
-      }
-      state.services.forEach(service => {
-        service.isSelected = !service.isSelected;
-      });
     },
     editService(state, service) {
       const form = state.serviceForm;
@@ -159,12 +137,6 @@ export default new Vuex.Store({
         commit("signOut");
       }, expirationTime);
     },
-    selectService({ commit }, index) {
-      commit("selectService", index);
-    },
-    selectAllServices({ commit }) {
-      commit("selectAllServices");
-    },
     editService({ commit }, index) {
       const service = this.state.services[index];
       commit("editService", service);
@@ -201,24 +173,13 @@ export default new Vuex.Store({
     SOCKET_service_update_error({ commit }) {
       commit("serviceUpdateError");
     },
-    SOCKET_all_services({ commit }, data) {
-      const services = [];
-      data.forEach(item => {
-        const object = JSON.parse(item);
-        const isSelected = object => {
-          object.isSelected = false;
-          return object;
-        };
-        const newObject = isSelected(object);
-        services.push(newObject);
-      });
-      commit("allServices", services);
-    },
     SOCKET_all_domains({ commit }, data) {
       commit("allDomains", data);
     }
   },
-  modules: {},
+  modules: {
+    servicesModule
+  },
   getters: {
     isAuthenticated({ idToken }) {
       return idToken !== null;

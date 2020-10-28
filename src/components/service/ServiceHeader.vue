@@ -28,12 +28,12 @@ export default {
         color: "#58595B"
       }
     };
+  },
+  methods: {
+    editService(index) {
+      this.$store.commit("editService", index);
+    }
   }
-  // methods: {
-  //   editService(index) {
-  //     this.$store.dispatch("editService", index);
-  //   }
-  // }
 };
 </script>
 

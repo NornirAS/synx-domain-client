@@ -128,7 +128,7 @@ export default {
       return `https://${domain}.cioty.com/${service}`;
     },
     selectAllServices() {
-      this.$store.dispatch("selectAllServices");
+      this.$store.commit("servicesModule/selectAllServices");
     },
     deleteService(data) {
       const services = [];
@@ -152,13 +152,13 @@ export default {
       return this.$store.state.idToken;
     },
     services() {
-      const services = this.$store.state.services;
+      const services = this.$store.state.servicesModule.services;
       const domain = this.$store.state.domain;
       const result = services.filter(service => service.domain === domain);
       return result;
     },
     selectedServices() {
-      return this.$store.state.services.filter(
+      return this.$store.state.servicesModule.services.filter(
         service => service.isSelected === true
       );
     },

@@ -74,12 +74,14 @@ export default {
   },
   methods: {
     selectService(index) {
-      this.$store.dispatch("selectService", index);
+      this.$store.commit("servicesModule/selectService", index);
     }
   },
   computed: {
     isSelected() {
-      return this.$store.state.services[this.index].isSelected === true;
+      return (
+        this.$store.state.servicesModule.services[this.index].isSelected === true
+      );
     }
   },
   components: {
