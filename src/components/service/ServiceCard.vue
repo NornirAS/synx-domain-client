@@ -79,9 +79,8 @@ export default {
   },
   computed: {
     isSelected() {
-      return (
-        this.$store.state.servicesModule.services[this.index].isSelected === true
-      );
+      const service = this.$store.state.servicesModule.services[this.index];
+      return service.isSelected === true;
     }
   },
   components: {

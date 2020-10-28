@@ -24,7 +24,7 @@ const mutations = {
     state.services.forEach(service => {
       service.isSelected = !service.isSelected;
     });
-  },
+  }
 };
 
 const actions = {
@@ -40,7 +40,7 @@ const actions = {
       services.push(newObject);
     });
     commit("allServices", services);
-  },
+  }
 };
 
 export default {
