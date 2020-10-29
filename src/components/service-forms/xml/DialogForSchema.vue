@@ -127,7 +127,7 @@ export default {
   },
   methods: {
     addLink() {
-      this.$store.commit("serviceModule/serviceSchemaAddLink", {
+      this.$store.commit("serviceModule/serviceSchemaUpdateLink", {
         tagName: this.serviceSchema.tagName,
         linkTo: {
           domain: this.linkTo.domain,
@@ -139,7 +139,7 @@ export default {
       this.dialog = false;
     },
     removeLink() {
-      this.$store.commit("serviceModule/serviceSchemaRemoveLink", {
+      this.$store.commit("serviceModule/serviceSchemaUpdateLink", {
         tagName: this.serviceSchema.tagName,
         linkTo: {}
       });
@@ -175,7 +175,7 @@ export default {
       },
       deep: true
     }
-  },
+  }
 };
 </script>
 

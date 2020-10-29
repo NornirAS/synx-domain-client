@@ -16,18 +16,11 @@ const state = {
 };
 
 const mutations = {
-  serviceSchemaAddLink(state, { tagName, linkTo }) {
+  serviceSchemaUpdateLink(state, { tagName, linkTo }) {
     const schema = state.serviceForm.serviceSchema.find(
       s => s.tagName === tagName
     );
-    schema.linkTo = Object.assign({}, schema.linkTo, linkTo)
-    console.log(schema)
-  },
-  serviceSchemaRemoveLink(state, { tagName, linkTo }) {
-    const schema = state.serviceForm.serviceSchema.find(
-      s => s.tagName === tagName
-    );
-    schema.linkTo = linkTo;
+    schema.linkTo = Object.assign({}, schema.linkTo, linkTo);
   },
   removeServiceSchema(state, index) {
     state.serviceForm.serviceSchema.splice(index, 1);
