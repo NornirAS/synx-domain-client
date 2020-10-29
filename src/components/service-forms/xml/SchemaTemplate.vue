@@ -64,12 +64,22 @@ export default {
   methods: {
     addToArray() {
       if (this.title === "Service Schema") {
-        this.$store.state.serviceForm.serviceSchema.push(this.serviceSchema);
+        this.serviceSchema.linkTo = Object.assign(
+          {},
+          this.serviceSchema.linkTo,
+          {}
+        );
+        this.serviceModule.serviceForm.serviceSchema.push(this.serviceSchema);
         this.serviceSchema = {};
       } else {
-        this.$store.state.serviceForm.commandSchema.push(this.commandSchema);
+        this.serviceModule.serviceForm.commandSchema.push(this.commandSchema);
         this.commandSchema = "";
       }
+    }
+  },
+  computed: {
+    serviceModule() {
+      return this.$store.state.serviceModule;
     }
   }
 };

@@ -18,24 +18,24 @@ export default {
     this.$store.state.sideBarTitle = "Create Service";
   },
   computed: {
-    isCreated() {
-      return this.$store.state.formSubmited;
+    serviceModule() {
+      return this.$store.state.serviceModule;
     },
-    isError() {
-      return this.$store.state.formError;
+    formSuccess() {
+      return this.serviceModule.formSuccess;
+    },
+    formError() {
+      return this.serviceModule.formError;
     }
   },
   watch: {
-    isCreated(newValue) {
+    formSuccess(newValue) {
       if (newValue) {
         this.$router.push({ name: "services" });
-        this.$store.state.formSubmited = false;
-        if (this.isError !== null) {
-          this.$store.state.formError = null;
-        }
+        this.$store.commit("serviceModule/resetServiceFormStatus");
       }
     },
-    isError(newValue) {
+    formError(newValue) {
       if (newValue) {
         console.log(newValue);
       }

@@ -20,8 +20,11 @@ export default {
     SchemaTemplate
   },
   computed: {
+    serviceModule() {
+      return this.$store.state.serviceModule;
+    },
     isCommandSchema() {
-      return this.$store.state.serviceForm.commandSchema.length > 0;
+      return this.serviceModule.serviceForm.commandSchema.length > 0;
     }
   }
 };

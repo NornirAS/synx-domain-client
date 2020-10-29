@@ -49,16 +49,19 @@ export default {
   },
   methods: {
     addKeyword() {
-      this.$store.state.serviceForm.keywords.push(this.serviceKeyword);
+      this.serviceModule.serviceForm.keywords.push(this.serviceKeyword);
       this.serviceKeyword = "";
     },
     removeKeyword(index) {
-      this.$store.state.serviceForm.keywords.splice(index, 1);
+      this.serviceModule.serviceForm.keywords.splice(index, 1);
     }
   },
   computed: {
+    serviceModule() {
+      return this.$store.state.serviceModule;
+    },
     keywords() {
-      return this.$store.state.serviceForm.keywords;
+      return this.serviceModule.serviceForm.keywords;
     }
   },
   components: {

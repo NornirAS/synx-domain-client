@@ -12,7 +12,7 @@
           xSmall
           text
         >
-          {{ linkingString() }}
+          {{ linkingString }}
         </v-btn>
         <v-btn
           v-else
@@ -98,7 +98,7 @@
 import { mdiCheck, mdiClose, mdiDelete } from "@mdi/js";
 import _ from "underscore";
 export default {
-  props: ["index", "title"],
+  props: ["index", "title", "linkTest"],
   data() {
     return {
       isLink: null,
@@ -117,7 +117,7 @@ export default {
     };
   },
   created() {
-    const links = this.serviceSchema[this.index].linkTo;
+    const links = this.serviceSchema.linkTo;
     this.isLink = !_.isEmpty(links);
     if (!_.isEmpty(links)) {
       this.linkTo.domain = links.domain;
@@ -127,8 +127,8 @@ export default {
   },
   methods: {
     addLink() {
-      this.$store.commit("serviceSchemaAddLink", {
-        tagName: this.serviceSchema[this.index].tagName,
+      this.$store.commit("serviceModule/serviceSchemaAddLink", {
+        tagName: this.serviceSchema.tagName,
         linkTo: {
           domain: this.linkTo.domain,
           service: this.linkTo.service,
@@ -139,33 +139,43 @@ export default {
       this.dialog = false;
     },
     removeLink() {
-      this.$store.commit("serviceSchemaAddLink", {
-        tagName: this.serviceSchema[this.index].tagName,
+      this.$store.commit("serviceModule/serviceSchemaRemoveLink", {
+        tagName: this.serviceSchema.tagName,
         linkTo: {}
       });
       this.linkTo = {};
       this.isLink = false;
       this.dialog = false;
-    },
-    linkingString() {
-      return (
-        this.serviceSchema[this.index].linkTo.domain +
-        "/" +
-        this.serviceSchema[this.index].linkTo.service +
-        "#" +
-        this.serviceSchema[this.index].linkTo.variable
-      );
     }
   },
   computed: {
-    serviceSchema() {
-      return this.$store.state.serviceForm.serviceSchema;
+    serviceModule() {
+      return this.$store.state.serviceModule;
     },
-    serviceTest() {
-      return this.$store.state.serviceForm.serviceSchema[this.index].linkTo
-        .domain;
+    serviceSchema() {
+      return this.serviceModule.serviceForm.serviceSchema[this.index];
+    },
+    checkLinks() {
+      return this.serviceSchema.linkTo;
+    },
+    linkingString() {
+      return (
+        this.serviceSchema.linkTo.domain +
+        "/" +
+        this.serviceSchema.linkTo.service +
+        "#" +
+        this.serviceSchema.linkTo.variable
+      );
     }
-  }
+  },
+  watch: {
+    checkLinks: {
+      handler(nv) {
+        this.isLink = !_.isEmpty(nv);
+      },
+      deep: true
+    }
+  },
 };
 </script>
 

@@ -12,10 +12,12 @@
         </tr>
       </thead>
       <tbody v-if="title === 'Service Schema'">
-        <tr v-for="(item, index) in serviceSchema" :key="item.name">
+        <tr v-for="(item, index) in serviceSchema" :key="index">
           <td>{{ index }}</td>
           <td>{{ item.tagName }}</td>
-          <td><Dialog :index="getIndex(index)" :title="title" /></td>
+          <td>
+            <Dialog :index="index" :title="title" :linkTest="item.linkTo" />
+          </td>
           <td class="text-center">
             <v-btn @click="removeSchema(index)" :color="colorRed" icon x-small>
               <v-icon>{{ mdiDelete }}</v-icon>
@@ -51,23 +53,23 @@ export default {
     };
   },
   methods: {
-    getIndex(index) {
-      return index;
-    },
     removeSchema(index) {
       if (this.title === "Service Schema") {
-        this.$store.commit("removeServiceSchema", index);
+        this.$store.commit("serviceModule/removeServiceSchema", index);
       } else {
-        this.$store.commit("removeCommandSchema", index);
+        this.$store.commit("serviceModule/removeCommandSchema", index);
       }
     }
   },
   computed: {
+    serviceModule() {
+      return this.$store.state.serviceModule;
+    },
     serviceSchema() {
-      return this.$store.state.serviceForm.serviceSchema;
+      return this.serviceModule.serviceForm.serviceSchema;
     },
     commandSchema() {
-      return this.$store.state.serviceForm.commandSchema;
+      return this.serviceModule.serviceForm.commandSchema;
     }
   },
   components: {

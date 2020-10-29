@@ -79,17 +79,16 @@ export default {
   },
   methods: {
     addInstances() {
-      this.$store.state.serviceForm.instances += this.serviceInstances;
-      this.serviceInstances = 0;
-    },
-    removeInstances() {
-      this.$store.state.serviceForm.instances -= this.serviceInstances;
+      this.serviceModule.serviceForm.instances += this.serviceInstances;
       this.serviceInstances = 0;
     }
   },
   computed: {
+    serviceModule() {
+      return this.$store.state.serviceModule;
+    },
     instances() {
-      return this.$store.state.serviceForm.instances;
+      return this.serviceModule.serviceForm.instances;
     },
     availableInstances() {
       return this.totalInstances - this.instances;

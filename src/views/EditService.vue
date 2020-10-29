@@ -11,18 +11,24 @@ import ServiceForm from "../components/service-forms/ServiceForm.vue";
 export default {
   data() {
     return {
-      index: this.$route.params.index,
       btnName: "Update"
     };
   },
   created() {
     this.$store.state.sideBarTitle = "Edit Service";
-    this.$store.dispatch("editService", this.index);
+    this.$store.commit("servicesModule/serviceIndex", this.index);
+    this.$store.commit("serviceModule/editService", this.service);
   },
   beforeDestroy() {
-    this.$store.dispatch("resetServiceForm");
+    this.$store.commit("serviceModule/resetServiceForm");
   },
   computed: {
+    service() {
+      return this.$store.getters["servicesModule/serviceToEdit"];
+    },
+    index() {
+      return this.$route.params.index;
+    },
     isCreated() {
       return this.$store.state.formSubmited;
     },
@@ -34,7 +40,7 @@ export default {
     isCreated(newValue) {
       if (newValue) {
         this.$router.push({ name: "services" });
-        this.$store.state.formSubmited = false;
+        this.$store.state.formSuccess = false;
         console.log("updated");
         if (this.isError !== null) {
           this.$store.state.formError = null;

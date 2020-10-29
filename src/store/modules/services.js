@@ -1,6 +1,7 @@
 const state = {
   services: [],
-  selectAll: false
+  selectAll: false,
+  selectedServiceIndex: null
 };
 
 const mutations = {
@@ -24,6 +25,9 @@ const mutations = {
     state.services.forEach(service => {
       service.isSelected = !service.isSelected;
     });
+  },
+  serviceIndex(state, index) {
+    state.selectedServiceIndex = index;
   }
 };
 
@@ -43,9 +47,16 @@ const actions = {
   }
 };
 
+const getters = {
+  serviceToEdit({ services, selectedServiceIndex }) {
+    return services[selectedServiceIndex];
+  }
+};
+
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
+  getters
 };

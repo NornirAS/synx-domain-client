@@ -34,12 +34,15 @@ export default {
   },
   methods: {
     addServiceDescription() {
-      this.$store.state.serviceForm.description = this.serviceDescription;
+      this.serviceModule.serviceForm.description = this.serviceDescription;
     }
   },
   computed: {
+    serviceModule() {
+      return this.$store.state.serviceModule;
+    },
     getServiceDescription() {
-      return this.$store.state.serviceForm.description;
+      return this.serviceModule.serviceForm.description;
     }
   },
   components: {

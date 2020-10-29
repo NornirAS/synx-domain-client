@@ -79,13 +79,16 @@ export default {
   },
   methods: {
     setTimeOut() {
-      this.$store.state.serviceForm.timeOut = this.serviceTimeOut;
+      this.serviceModule.serviceForm.timeOut = this.serviceTimeOut;
       this.serviceTimeOut = "";
     }
   },
   computed: {
+    serviceModule() {
+      return this.$store.state.serviceModule;
+    },
     timeOut() {
-      return this.$store.state.serviceForm.timeOut;
+      return this.serviceModule.serviceForm.timeOut;
     }
   }
 };

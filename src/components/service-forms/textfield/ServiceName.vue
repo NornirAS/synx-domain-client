@@ -33,16 +33,19 @@ export default {
     };
   },
   mounted() {
-    this.serviceName = this.$store.state.serviceForm.serviceName;
+    this.serviceName = this.serviceModule.serviceForm.serviceName;
   },
   computed: {
+    serviceModule() {
+      return this.$store.state.serviceModule;
+    },
     isEditPage() {
       return this.$store.state.sideBarTitle === "Edit Service" ? true : false;
     }
   },
   methods: {
     addServiceName() {
-      this.$store.state.serviceForm.serviceName = this.serviceName;
+      this.serviceModule.serviceForm.serviceName = this.serviceName;
     }
   },
   components: {
