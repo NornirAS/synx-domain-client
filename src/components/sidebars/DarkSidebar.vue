@@ -70,7 +70,7 @@ export default {
   },
   computed: {
     username() {
-      return this.$store.state.username;
+      return this.$store.state.authModule.username;
     },
     domain() {
       return this.$store.state.domainsModule.currentDomain;

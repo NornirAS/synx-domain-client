@@ -25,9 +25,9 @@ export default {
     };
   },
   created() {
-    this.$store.dispatch("tryAutoSignIn");
+    this.$store.dispatch("authModule/tryAutoSignIn");
     if (localStorage.getItem("expirationDate")) {
-      this.$store.dispatch("setSignOutTimer");
+      this.$store.dispatch("authModule/setSignOutTimer");
     }
     this.$store.commit("isMobile", this.isMobile);
   },

@@ -21,7 +21,7 @@
       <v-card
         v-for="({ name, active }, index) in domains"
         :key="index"
-        :to="{ name: 'services', params: { name: name } }"
+        :to="{ name: 'services', params: { domainName: name } }"
       >
         <v-row justify="space-between" align="center">
           <v-col cols="6">
@@ -61,10 +61,10 @@ export default {
   },
   computed: {
     token() {
-      return this.$store.state.idToken;
+      return this.$store.state.authModule.idToken;
     },
     username() {
-      return this.$store.state.username;
+      return this.$store.state.authModule.username;
     },
     domains() {
       return this.$store.state.domainsModule.ownedDomains;

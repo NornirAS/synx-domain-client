@@ -152,7 +152,7 @@ export default {
       return this.$store.state.domainsModule.currentDomain;
     },
     token() {
-      return this.$store.state.idToken;
+      return this.$store.state.authModule.idToken;
     },
     services() {
       const services = this.$store.state.servicesModule.services;

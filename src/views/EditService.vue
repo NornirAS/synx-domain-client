@@ -30,24 +30,20 @@ export default {
       return this.$route.params.index;
     },
     isCreated() {
-      return this.$store.state.formSubmited;
+      return this.$store.state.serviceModule.formSuccess;
     },
     isError() {
-      return this.$store.state.formError;
+      return this.$store.state.serviceModule.formError;
     }
   },
   watch: {
-    isCreated(newValue) {
+    formSuccess(newValue) {
       if (newValue) {
         this.$router.push({ name: "services" });
-        this.$store.state.formSuccess = false;
-        console.log("updated");
-        if (this.isError !== null) {
-          this.$store.state.formError = null;
-        }
+        this.$store.commit("serviceModule/resetServiceFormStatus");
       }
     },
-    isError(newValue) {
+    formError(newValue) {
       if (newValue) {
         console.log(newValue);
       }
