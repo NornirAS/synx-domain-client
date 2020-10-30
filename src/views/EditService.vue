@@ -15,7 +15,7 @@ export default {
     };
   },
   created() {
-    this.$store.state.sideBarTitle = "Edit Service";
+    this.$store.commit("sideBarTitle", "Edit Service");
     this.$store.commit("servicesModule/serviceIndex", this.index);
     this.$store.commit("serviceModule/editService", this.service);
   },
@@ -29,10 +29,10 @@ export default {
     index() {
       return this.$route.params.index;
     },
-    isCreated() {
+    formSuccess() {
       return this.$store.state.serviceModule.formSuccess;
     },
-    isError() {
+    formError() {
       return this.$store.state.serviceModule.formError;
     }
   },

@@ -15,17 +15,14 @@ export default {
     };
   },
   created() {
-    this.$store.state.sideBarTitle = "Create Service";
+    this.$store.commit("sideBarTitle", "Create Service");
   },
   computed: {
-    serviceModule() {
-      return this.$store.state.serviceModule;
-    },
     formSuccess() {
-      return this.serviceModule.formSuccess;
+      return this.$store.state.serviceModule.formSuccess;
     },
     formError() {
-      return this.serviceModule.formError;
+      return this.$store.state.serviceModule.formError;
     }
   },
   watch: {

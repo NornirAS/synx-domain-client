@@ -19,6 +19,9 @@ export default new Vuex.Store({
     },
     showDrawerOnMobile(state, payload) {
       state.showDrawerOnMobile = payload;
+    },
+    sideBarTitle(state, payload) {
+      state.sideBarTitle = payload;
     }
   },
   modules: {
