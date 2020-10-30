@@ -83,9 +83,16 @@ const actions = {
   }
 };
 
+const getters = {
+  instancesBalance({ serviceForm, serviceInstances }) {
+    return serviceForm.instances - serviceInstances;
+  }
+};
+
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
+  getters
 };

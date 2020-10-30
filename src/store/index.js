@@ -26,13 +26,5 @@ export default new Vuex.Store({
     serviceModule,
     domainsModule,
     authModule
-  },
-  getters: {
-    isAuthenticated({ idToken }) {
-      return idToken !== null;
-    },
-    instancesBalance({ serviceForm, serviceInstances }) {
-      return serviceForm.instances - serviceInstances;
-    }
   }
 });

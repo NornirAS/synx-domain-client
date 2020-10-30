@@ -40,9 +40,6 @@ const actions = {
       });
     }
   },
-  signOut({ commit }) {
-    commit("signOut");
-  },
   setSignOutTimer({ commit }) {
     const expirationDate = localStorage.getItem("expirationDate");
     const expiredIn = new Date(expirationDate).getTime();
@@ -71,9 +68,16 @@ const actions = {
   }
 };
 
+const getters = {
+  isAuthenticated({ idToken }) {
+    return idToken !== null;
+  }
+};
+
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
+  getters
 };

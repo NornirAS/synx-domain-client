@@ -70,19 +70,19 @@ export default {
       return this.$store.state.serviceModule;
     },
     domain() {
-      return this.$store.state.domain;
+      return this.$store.state.domainsModule.currentDomain;
     },
     formData() {
-      return this.$store.state.serviceForm;
+      return this.serviceModule.serviceForm;
     },
     username() {
-      return this.$store.state.username;
+      return this.$store.state.authModule.username;
     },
     token() {
-      return this.$store.state.idToken;
+      return this.$store.state.authModule.idToken;
     },
     instancesBalance() {
-      return this.$store.getters.instancesBalance;
+      return this.$store.getters["serviceModule/instancesBalance"];
     }
   },
   components: {

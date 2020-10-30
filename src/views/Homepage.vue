@@ -46,12 +46,12 @@ export default {
   },
   methods: {
     signOut() {
-      this.$store.dispatch("signOut");
+      this.$store.commit("authModule/signOut");
     }
   },
   computed: {
     auth() {
-      return this.$store.getters.isAuthenticated;
+      return this.$store.getters["authModule/isAuthenticated"];
     }
   }
 };

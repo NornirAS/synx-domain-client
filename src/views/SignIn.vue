@@ -83,16 +83,16 @@ export default {
   },
   computed: {
     isAuth() {
-      return this.$store.state.idToken;
+      return this.$store.state.authModule.idToken;
     },
     authError() {
-      return this.$store.state.authError;
+      return this.$store.state.authModule.authError;
     }
   },
   watch: {
     isAuth(newValue) {
       if (newValue) {
-        this.$store.state.authError = null;
+        this.$store.state.authModule.authError = null;
         this.$router.push({ name: "domains" });
       }
     },
