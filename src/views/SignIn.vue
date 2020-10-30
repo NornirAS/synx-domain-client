@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import _ from "underscore";
 export default {
   data() {
     return {
@@ -72,13 +73,17 @@ export default {
         this.errors.push("password must be provided");
       }
       if (this.authData.username.length < 5) {
-        this.errors.push("Username require minimum 6 characters");
+        this.errors.push("Username require minimum 5 characters");
       }
       if (this.authData.password.length < 8) {
         this.errors.push("Password require minimum 8 characters");
       }
-      localStorage.setItem("username", this.authData.username);
-      this.$socket.emit("authenticate", this.authData);
+      if (_.isEmpty(this.errors)) {
+        localStorage.setItem("username", this.authData.username);
+        this.$socket.emit("authenticate", this.authData);
+        this.authData.username = null;
+        this.authData.password = null;
+      }
     }
   },
   computed: {
@@ -90,16 +95,12 @@ export default {
     }
   },
   watch: {
-    isAuth(newValue) {
-      if (newValue) {
-        this.$store.state.authModule.authError = null;
-        this.$router.push({ name: "domains" });
-      }
+    isAuth() {
+      this.$store.commit("authModule/resetError");
+      this.$router.push({ name: "domains" });
     },
     authError(newValue) {
-      if (newValue) {
-        this.errors.push(newValue);
-      }
+      this.errors.push(newValue);
     }
   }
 };

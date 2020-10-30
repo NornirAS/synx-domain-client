@@ -18,6 +18,9 @@ const mutations = {
     localStorage.removeItem("username");
     localStorage.removeItem("token");
     localStorage.removeItem("expirationDate");
+  },
+  resetError(state) {
+    state.authError = null;
   }
 };
 
