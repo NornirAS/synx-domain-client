@@ -50,6 +50,12 @@ const actions = {
 const getters = {
   serviceToEdit({ services, selectedServiceIndex }) {
     return services[selectedServiceIndex];
+  },
+  // eslint-disable-next-line no-unused-vars
+  servicesForDomain({ services }, getters, rootState, rootGetters) {
+    const domain = rootState.domainsModule.currentDomain;
+    const result = services.filter(service => service.domain === domain);
+    return result;
   }
 };
 

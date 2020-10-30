@@ -155,9 +155,7 @@ export default {
       return this.$store.state.authModule.idToken;
     },
     services() {
-      const services = this.$store.state.servicesModule.services;
-      const result = services.filter(service => service.domain === this.domain);
-      return result;
+      return this.$store.getters["servicesModule/servicesForDomain"];
     },
     selectedServices() {
       return this.services.filter(service => service.isSelected === true);
