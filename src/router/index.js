@@ -68,7 +68,7 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/domains/domain/:name/services",
+    path: "/domains/domain/:domainName/services",
     name: "services",
     components: {
       default: Services,
@@ -79,7 +79,7 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/domains/domain/:name/services/service/create",
+    path: "/domains/domain/:domainName/services/service/create",
     name: "createService",
     components: {
       default: CreateService,
@@ -90,7 +90,7 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/domains/domain/:name/services/service/:index/edit",
+    path: "/domains/domain/:domainName/services/service/:index/edit",
     name: "editService",
     components: {
       default: EditService,
@@ -101,7 +101,7 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/domains/domain/:name/notifications",
+    path: "/domains/domain/:domainName/notifications",
     name: "notifications",
     components: {
       default: Notifications,

@@ -73,7 +73,7 @@ export default {
       return this.$store.state.username;
     },
     domain() {
-      return this.$store.state.domain;
+      return this.$store.state.domainsModule.currentDomain;
     }
   },
   components: {

@@ -117,7 +117,10 @@ export default {
     };
   },
   created() {
-    this.$store.state.domain = this.$route.params.name;
+    this.$store.commit(
+      "domainsModule/currentDomain",
+      this.$route.params.domainName
+    );
     this.$socket.emit("get_all_services", this.domain, this.token);
   },
   methods: {
@@ -146,21 +149,18 @@ export default {
   },
   computed: {
     domain() {
-      return this.$store.state.domain;
+      return this.$store.state.domainsModule.currentDomain;
     },
     token() {
       return this.$store.state.idToken;
     },
     services() {
       const services = this.$store.state.servicesModule.services;
-      const domain = this.$store.state.domain;
-      const result = services.filter(service => service.domain === domain);
+      const result = services.filter(service => service.domain === this.domain);
       return result;
     },
     selectedServices() {
-      return this.$store.state.servicesModule.services.filter(
-        service => service.isSelected === true
-      );
+      return this.services.filter(service => service.isSelected === true);
     },
     isSelected() {
       return !this.selectedServices.length > 0 ? true : false;

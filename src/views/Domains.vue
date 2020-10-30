@@ -67,7 +67,7 @@ export default {
       return this.$store.state.username;
     },
     domains() {
-      return this.$store.state.ownedDomains;
+      return this.$store.state.domainsModule.ownedDomains;
     }
   }
 };
