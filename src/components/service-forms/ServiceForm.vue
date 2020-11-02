@@ -4,10 +4,16 @@
     <ServiceDescription />
     <ServiceKeywords />
     <ServiceImage />
+    <v-row>
+      <v-col cols="12" sm="6">
+        <ServiceInstances />
+      </v-col>
+      <v-col cols="12" sm="6">
+        <ServiceTimeout />
+      </v-col>
+    </v-row>
     <ServiceSchema />
     <CommandSchema />
-    <ServiceInstances />
-    <ServiceTimeout />
     <PreInlineScript />
     <PostInlineScript />
     <WebJS />

@@ -6,7 +6,7 @@
       </v-col>
     </v-row>
     <v-row justify="start" align="center">
-      <v-col cols="12" sm="3">
+      <v-col cols="12">
         <display-current-value>
           <div slot="currentValue" :style="divHeight">
             <span :style="primaryStyle">{{ availableInstances }}</span>
@@ -16,7 +16,7 @@
           <p slot="helper" :style="helperStyle">{{ helper }}</p>
         </display-current-value>
       </v-col>
-      <v-col cols="8" sm="2">
+      <v-col cols="8">
         <v-text-field
           :label="title"
           dense
@@ -51,7 +51,7 @@ export default {
   data() {
     return {
       title: "Instances",
-      description: "Some description for instances.",
+      description: "Instance represent an object/client conected to a service",
       helper: "Available Instances",
       instancesToAdd: 0,
       colorBlue: "#27AAE1",

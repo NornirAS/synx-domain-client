@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-col xs="12" md="10">
+    <v-col cols="12" md="10">
       <v-row justify="space-between" align="center">
         <v-col>
           <h1>Services</h1>
@@ -67,7 +67,6 @@
             v-model="search"
             append-icon="mdi-magnify"
             label="Search"
-            single-line
             hide-details
             :style="searchBarStyle"
           ></v-text-field>

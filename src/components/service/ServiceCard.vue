@@ -1,7 +1,7 @@
 <template>
   <v-card outlined>
     <v-row align="center">
-      <v-col cols="2" md="1">
+      <v-col cols="2" sm="1">
         <v-checkbox
           :style="checkBoxStyle"
           :value="isSelected"
@@ -9,7 +9,7 @@
           hide-details
         ></v-checkbox>
       </v-col>
-      <v-col cols="10" md="8">
+      <v-col cols="10" sm="8">
         <ServiceHeader
           :title="title"
           :description="micropage"
@@ -19,7 +19,7 @@
           :index="index"
         />
       </v-col>
-      <v-col col="12" md="3" align="right">
+      <v-col col="12" sm="3" align="right">
         <display-current-value>
           <div slot="currentValue" :style="divHeight">
             <span :style="primaryStyle">{{ availableInstances }}</span>
