@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <v-form>
     <ServiceName />
     <ServiceDescription />
     <ServiceKeywords />
@@ -11,15 +11,13 @@
     <PreInlineScript />
     <PostInlineScript />
     <WebJS />
-    <v-btn
-      @click="submitForm"
-      :color="colorBlue"
-      style="float: right"
-      rounded
-      dark
-      >{{ btnName }}</v-btn
-    >
-  </form>
+    <v-btn :to="{ name: 'services' }" :style="backBtnStyle" rounded dark>
+      Go back
+    </v-btn>
+    <v-btn @click="submitForm" :style="actionBtnStyle" rounded dark>
+      {{ btnName }}
+    </v-btn>
+  </v-form>
 </template>
 
 <script>
@@ -39,7 +37,15 @@ export default {
   data() {
     return {
       title: this.$store.state.sideBarTitle,
-      colorBlue: "#27AAE1"
+      actionBtnStyle: {
+        backgroundColor: "#27AAE1",
+        float: "right",
+        marginTop: "24px"
+      },
+      backBtnStyle: {
+        backgroundColor: "#404B5F",
+        marginTop: "24px"
+      }
     };
   },
   methods: {
