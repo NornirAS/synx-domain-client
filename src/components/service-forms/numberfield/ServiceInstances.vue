@@ -6,7 +6,7 @@
       </v-col>
     </v-row>
     <v-row justify="start" align="center">
-      <v-col sm="3">
+      <v-col cols="12" sm="3">
         <display-current-value>
           <div slot="currentValue" :style="divHeight">
             <span :style="primaryStyle">{{ availableInstances }}</span>
@@ -16,7 +16,7 @@
           <p slot="helper" :style="helperStyle">{{ helper }}</p>
         </display-current-value>
       </v-col>
-      <v-col sm="2">
+      <v-col cols="8" sm="2">
         <v-text-field
           :label="title"
           dense
@@ -28,7 +28,7 @@
           v-model.number="instancesToAdd"
         ></v-text-field>
       </v-col>
-      <v-col sm="4">
+      <v-col cols="4">
         <v-btn
           @click="addInstances"
           :color="colorBlue"
