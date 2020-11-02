@@ -12,7 +12,6 @@
           hide-details
           name="input-7-4"
           label="Description"
-          :value="getServiceDescription"
           v-model="serviceDescription"
           @blur="addServiceDescription"
         ></v-textarea>
@@ -29,20 +28,23 @@ export default {
       title: "Description",
       description:
         "In order for the service to be found with Draape and used by others, agood description is recommended. What kind of data does the service provide?",
-      serviceDescription: ""
+      serviceDescription: null
     };
+  },
+  mounted() {
+    this.serviceDescription = this.serviceModule.serviceForm.description;
   },
   methods: {
     addServiceDescription() {
-      this.serviceModule.serviceForm.description = this.serviceDescription;
+      this.$store.commit(
+        "serviceModule/addDescription",
+        this.serviceDescription
+      );
     }
   },
   computed: {
     serviceModule() {
       return this.$store.state.serviceModule;
-    },
-    getServiceDescription() {
-      return this.serviceModule.serviceForm.description;
     }
   },
   components: {

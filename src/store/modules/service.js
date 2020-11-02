@@ -17,6 +17,9 @@ const state = {
 };
 
 const mutations = {
+  addDescription(state, description) {
+    state.serviceForm.description = description;
+  },
   serviceSchemaUpdateLink(state, { tagName, linkTo }) {
     const schema = state.serviceForm.serviceSchema.find(
       s => s.tagName === tagName
