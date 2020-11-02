@@ -26,7 +26,6 @@
           type="number"
           min="10"
           max="10000"
-          :value="timeOut"
           v-model="serviceTimeOut"
         ></v-text-field>
       </v-col>
@@ -48,7 +47,7 @@ export default {
       title: "Timeout",
       description:
         "Time for inactive channelrequest before it closes(in seconds). Default 30.",
-      serviceTimeOut: "30",
+      serviceTimeOut: null,
       secondaryValue: "s",
       helper: "Current Timeout",
       primaryActionBtnName: "Set Timeout",
@@ -79,8 +78,8 @@ export default {
   },
   methods: {
     setTimeOut() {
-      this.serviceModule.serviceForm.timeOut = this.serviceTimeOut;
-      this.serviceTimeOut = "";
+      this.$store.commit("serviceModule/setTimeout", this.serviceTimeOut);
+      this.serviceTimeOut = null;
     }
   },
   computed: {

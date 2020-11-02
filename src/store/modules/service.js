@@ -32,6 +32,9 @@ const mutations = {
   addInstance(state, instances) {
     state.serviceForm.instances += instances;
   },
+  setTimeout(state, newTimeout) {
+    state.serviceForm.timeOut = newTimeout;
+  },
   serviceRegistrationSuccess(state) {
     state.formSuccess = true;
   },
