@@ -10,7 +10,6 @@
         <v-text-field
           v-if="title === 'Service Schema'"
           label="Schema"
-          single-line
           dense
           outlined
           hide-details
@@ -20,7 +19,6 @@
         <v-text-field
           v-else
           label="Schema"
-          single-line
           dense
           outlined
           hide-details

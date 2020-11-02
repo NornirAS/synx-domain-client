@@ -12,7 +12,6 @@
           @blur="addServiceName"
           :label="title"
           :disabled="isEditPage"
-          single-line
           dense
           outlined
           hide-details

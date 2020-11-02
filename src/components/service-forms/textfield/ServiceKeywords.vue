@@ -9,7 +9,6 @@
       <v-col>
         <v-text-field
           :label="title"
-          single-line
           dense
           outlined
           hide-details
