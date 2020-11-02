@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     addServiceName() {
-      this.$store.commit("serviceModule/addServiceName", this.serviceName);
+      this.$store.commit("serviceModule/addServiceName", this.name);
     }
   },
   computed: {

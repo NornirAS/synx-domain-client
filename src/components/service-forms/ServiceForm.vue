@@ -45,7 +45,7 @@ export default {
   methods: {
     submitForm() {
       if (this.title === "Create Service") {
-        this.serviceModule.serviceForm.instances - 1; // -1 because RTW add 1 instance by default
+        this.$store.commit("serviceModule/removeInstanceOnCreate"); // -1 because RTW add 1 instance by default
         this.$socket.emit(
           "register_service",
           this.domain,
@@ -62,7 +62,6 @@ export default {
           this.token
         );
       }
-      this.$store.dispatch("serviceModule/resetServiceForm");
     }
   },
   computed: {

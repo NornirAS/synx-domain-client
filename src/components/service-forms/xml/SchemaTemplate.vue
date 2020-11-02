@@ -29,7 +29,7 @@
         ></v-text-field>
       </v-col>
       <v-col md="6">
-        <v-btn @click="addToArray()" :color="colorBlue" rounded medium dark>
+        <v-btn @click="addToArray" :color="colorBlue" rounded medium dark>
           Add
         </v-btn>
       </v-col>
@@ -50,10 +50,10 @@ export default {
   data() {
     return {
       serviceSchema: {
-        tagName: "",
+        tagName: null,
         linkTo: {}
       },
-      commandSchema: "",
+      commandSchema: null,
       colorBlue: "#27AAE1"
     };
   },
@@ -69,17 +69,18 @@ export default {
           this.serviceSchema.linkTo,
           {}
         );
-        this.serviceModule.serviceForm.serviceSchema.push(this.serviceSchema);
+        this.$store.commit(
+          "serviceModule/addServiceSchema",
+          this.serviceSchema
+        );
         this.serviceSchema = {};
       } else {
-        this.serviceModule.serviceForm.commandSchema.push(this.commandSchema);
-        this.commandSchema = "";
+        this.$store.commit(
+          "serviceModule/addCommandSchema",
+          this.commandSchema
+        );
+        this.commandSchema = null;
       }
-    }
-  },
-  computed: {
-    serviceModule() {
-      return this.$store.state.serviceModule;
     }
   }
 };

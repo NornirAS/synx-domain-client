@@ -35,6 +35,12 @@ const mutations = {
     );
     schema.linkTo = Object.assign({}, schema.linkTo, linkTo);
   },
+  addServiceSchema(state, schema) {
+    state.serviceForm.serviceSchema.push(schema);
+  },
+  addCommandSchema(state, schema) {
+    state.serviceForm.commandSchema.push(schema);
+  },
   removeServiceSchema(state, index) {
     state.serviceForm.serviceSchema.splice(index, 1);
   },
@@ -84,6 +90,9 @@ const mutations = {
   resetServiceFormStatus(state) {
     state.formSuccess = false;
     state.formError = null;
+  },
+  removeInstanceOnCreate(state) {
+    state.serviceForm.instances = state.serviceForm.instances - 1;
   }
 };
 
@@ -113,6 +122,12 @@ const getters = {
     return availableInstances < serviceInstances || availableInstances <= 0
       ? true
       : false;
+  },
+  isServiceSchema({ serviceForm }) {
+    return serviceForm.serviceSchema.length > 0;
+  },
+  isCommandSchema({ serviceForm }) {
+    return serviceForm.commandSchema.length > 0;
   }
 };
 

@@ -20,11 +20,8 @@ export default {
     SchemaTemplate
   },
   computed: {
-    serviceModule() {
-      return this.$store.state.serviceModule;
-    },
     isServiceSchema() {
-      return this.serviceModule.serviceForm.serviceSchema.length > 0;
+      return this.$store.getters["serviceModule/isServiceSchema"];
     }
   }
 };
