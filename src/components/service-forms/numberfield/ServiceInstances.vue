@@ -26,15 +26,15 @@
           type="number"
           min="1"
           :max="availableInstances"
-          v-model.number="serviceInstances"
+          v-model.number="instancesToAdd"
         ></v-text-field>
       </v-col>
       <v-col sm="4">
         <v-btn
           @click="addInstances"
           :color="colorBlue"
-          :disabled="isExceedsLimit"
-          :dark="!isExceedsLimit"
+          :disabled="instancesLimitReached"
+          :dark="!instancesLimitReached"
           rounded
           medium
         >
@@ -53,9 +53,8 @@ export default {
     return {
       title: "Instances",
       description: "Some description for instances.",
-      totalInstances: 1000,
       helper: "Available Instances",
-      serviceInstances: 0,
+      instancesToAdd: 0,
       colorBlue: "#27AAE1",
       primaryStyle: {
         color: "#27aae1",
@@ -79,8 +78,8 @@ export default {
   },
   methods: {
     addInstances() {
-      this.serviceModule.serviceForm.instances += this.serviceInstances;
-      this.serviceInstances = 0;
+      this.$store.commit("serviceModule/addInstance", this.instancesToAdd);
+      this.instancesToAdd = 0;
     }
   },
   computed: {
@@ -90,14 +89,14 @@ export default {
     instances() {
       return this.serviceModule.serviceForm.instances;
     },
-    availableInstances() {
-      return this.totalInstances - this.instances;
+    totalInstances() {
+      return this.serviceModule.totalInstances;
     },
-    isExceedsLimit() {
-      return this.availableInstances < this.serviceInstances ||
-        this.availableInstances <= 0
-        ? true
-        : false;
+    availableInstances() {
+      return this.$store.getters["serviceModule/availableInstances"];
+    },
+    instancesLimitReached() {
+      return this.$store.getters["serviceModule/instancesLimitReached"];
     }
   },
   components: {

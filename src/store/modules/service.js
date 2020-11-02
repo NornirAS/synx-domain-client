@@ -10,6 +10,7 @@ const state = {
     masterScript: "YWFhYWFhYWFhYQo=",
     webJS: "Hello"
   },
+  totalInstances: 1000,
   serviceInstances: null, // instances of selected service
   formSuccess: false,
   formError: null
@@ -27,6 +28,9 @@ const mutations = {
   },
   removeCommandSchema(state, index) {
     state.serviceForm.commandSchema.splice(index, 1);
+  },
+  addInstance(state, instances) {
+    state.serviceForm.instances += instances;
   },
   serviceRegistrationSuccess(state) {
     state.formSuccess = true;
@@ -86,6 +90,14 @@ const actions = {
 const getters = {
   instancesBalance({ serviceForm, serviceInstances }) {
     return serviceForm.instances - serviceInstances;
+  },
+  availableInstances({ serviceForm, totalInstances }) {
+    return totalInstances - serviceForm.instances;
+  },
+  instancesLimitReached({ serviceInstances }, { availableInstances }) {
+    return availableInstances < serviceInstances || availableInstances <= 0
+      ? true
+      : false;
   }
 };
 
