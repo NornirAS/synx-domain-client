@@ -6,7 +6,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col>
+      <v-col cols="8" sm="6">
         <v-text-field
           :label="title"
           dense
@@ -16,7 +16,7 @@
           @keypress.enter="addKeyword"
         ></v-text-field>
       </v-col>
-      <v-col>
+      <v-col cols="4" sm="6">
         <v-btn @click="addKeyword" :color="colorBlue" rounded medium dark>
           Add
         </v-btn>
@@ -26,8 +26,7 @@
       v-for="(item, index) in keywords"
       :key="item"
       @click="removeKeyword(index)"
-      :color="colorBlue"
-      class="ma-2"
+      :style="chipStyle"
       outlined
     >
       {{ item }}
@@ -43,7 +42,12 @@ export default {
       title: "Keywords",
       description: "Search keywords to easily discover your service.",
       serviceKeyword: null,
-      colorBlue: "#27AAE1"
+      colorBlue: "#27AAE1",
+      chipStyle: {
+        color: "#27AAE1",
+        borderColor: "#27AAE1",
+        margin: "0 4px 10px 4px"
+      }
     };
   },
   methods: {
