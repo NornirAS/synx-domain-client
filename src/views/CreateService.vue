@@ -17,6 +17,9 @@ export default {
   created() {
     this.$store.commit("sideBarTitle", "Create Service");
   },
+  beforeDestroy() {
+    this.$store.commit("serviceModule/resetServiceForm");
+  },
   computed: {
     formSuccess() {
       return this.$store.state.serviceModule.formSuccess;

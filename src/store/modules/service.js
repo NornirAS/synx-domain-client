@@ -17,8 +17,17 @@ const state = {
 };
 
 const mutations = {
+  addServiceName(state, name) {
+    state.serviceForm.serviceName = name;
+  },
   addDescription(state, description) {
     state.serviceForm.description = description;
+  },
+  addKeyword(state, keyword) {
+    state.serviceForm.keywords.push(keyword);
+  },
+  removeKeyword(state, index) {
+    state.serviceForm.keywords.splice(index, 1);
   },
   serviceSchemaUpdateLink(state, { tagName, linkTo }) {
     const schema = state.serviceForm.serviceSchema.find(

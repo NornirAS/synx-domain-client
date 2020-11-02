@@ -8,7 +8,7 @@
     <v-row>
       <v-col>
         <v-text-field
-          v-model="serviceName"
+          v-model="name"
           @blur="addServiceName"
           :label="title"
           :disabled="isEditPage"
@@ -29,23 +29,26 @@ export default {
     return {
       title: "Service Name",
       description: "Typically what the service/object do.",
-      serviceName: ""
+      name: null
     };
   },
   mounted() {
-    this.serviceName = this.serviceModule.serviceForm.serviceName;
+    this.name = this.serviceName;
+  },
+  methods: {
+    addServiceName() {
+      this.$store.commit("serviceModule/addServiceName", this.serviceName);
+    }
   },
   computed: {
     serviceModule() {
       return this.$store.state.serviceModule;
     },
+    serviceName() {
+      return this.serviceModule.serviceForm.serviceName;
+    },
     isEditPage() {
-      return this.$store.state.sideBarTitle === "Edit Service" ? true : false;
-    }
-  },
-  methods: {
-    addServiceName() {
-      this.serviceModule.serviceForm.serviceName = this.serviceName;
+      return this.$store.getters.isEditPage;
     }
   },
   components: {

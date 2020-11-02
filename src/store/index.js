@@ -24,6 +24,11 @@ export default new Vuex.Store({
       state.sideBarTitle = payload;
     }
   },
+  getters: {
+    isEditPage({ sideBarTitle }) {
+      return sideBarTitle === "Edit Service" ? true : false;
+    }
+  },
   modules: {
     servicesModule,
     serviceModule,

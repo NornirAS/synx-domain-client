@@ -43,17 +43,17 @@ export default {
     return {
       title: "Keywords",
       description: "Search keywords to easily discover your service.",
-      serviceKeyword: "",
+      serviceKeyword: null,
       colorBlue: "#27AAE1"
     };
   },
   methods: {
     addKeyword() {
-      this.serviceModule.serviceForm.keywords.push(this.serviceKeyword);
-      this.serviceKeyword = "";
+      this.$store.commit("serviceModule/addKeyword", this.serviceKeyword);
+      this.serviceKeyword = null;
     },
     removeKeyword(index) {
-      this.serviceModule.serviceForm.keywords.splice(index, 1);
+      this.$store.commit("serviceModule/removeKeyword", index);
     }
   },
   computed: {

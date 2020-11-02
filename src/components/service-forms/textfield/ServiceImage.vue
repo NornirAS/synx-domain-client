@@ -27,7 +27,7 @@ export default {
     return {
       title: "Image",
       description: "Optional. URL to an image for your service.",
-      serviceImageURL: ""
+      serviceImageURL: null
     };
   },
   components: {
