@@ -1,17 +1,16 @@
 <template>
-  <div>
-    <v-btn
-      @click="showActiveChannels"
-      :style="btnStyle"
-      outlined
-      rounded
-      x-small
-      ligth
-    >
-      Show active channels
-    </v-btn>
-    <v-badge>{{ activeChannels }}</v-badge>
-  </div>
+  <v-btn
+    @click="showActiveChannels"
+    :style="btnStyle"
+    :outlined="outlined"
+    :text="text"
+    :disabled="disabled"
+    rounded
+    x-small
+    ligth
+  >
+    {{ btnTitle }}
+  </v-btn>
 </template>
 
 <script>
@@ -19,10 +18,13 @@ export default {
   props: ["title", "index"],
   data() {
     return {
-      test: null,
+      btnTitle: "Show active channels",
       btnStyle: {
         color: "#58595B"
-      }
+      },
+      outlined: true,
+      text: false,
+      disabled: false
     };
   },
   methods: {
@@ -50,6 +52,22 @@ export default {
       return this.$store.state.servicesModule.services[this.index]
         .activeChannels;
     }
+  },
+  watch: {
+    activeChannels(newValue) {
+      if (newValue !== null) {
+        this.btnTitle = `Active Channels: ${newValue}`;
+        this.outlined = false;
+        this.text = true;
+        this.disabled = true;
+      }
+    }
   }
 };
 </script>
+
+<style>
+.theme--light.v-btn.v-btn--disabled {
+  color: #58595b !important;
+}
+</style>
