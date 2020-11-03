@@ -12,6 +12,7 @@
       >
         Edit <v-icon x-small>{{ icon }}</v-icon>
       </v-btn>
+      <ActiveChannels :title="title" />
     </h1>
     <p>
       {{ description }} <a :href="url" target="_blank">{{ url }}</a>
@@ -20,6 +21,7 @@
 </template>
 
 <script>
+import ActiveChannels from "./ActiveChannels";
 export default {
   props: ["title", "description", "index", "url", "icon"],
   data() {
@@ -28,6 +30,9 @@ export default {
         color: "#58595B"
       }
     };
+  },
+  components: {
+    ActiveChannels
   }
 };
 </script>
