@@ -12,7 +12,7 @@
       >
         Edit <v-icon x-small>{{ icon }}</v-icon>
       </v-btn>
-      <ActiveChannels :title="title" />
+      <ActiveChannels :title="title" :index="index" />
     </h1>
     <p>
       {{ description }} <a :href="url" target="_blank">{{ url }}</a>

@@ -28,6 +28,9 @@ const mutations = {
   },
   serviceIndex(state, index) {
     state.selectedServiceIndex = index;
+  },
+  activeChannelsSuccess(state, { channels, index }) {
+    state.services[index].activeChannels = channels;
   }
 };
 
@@ -38,12 +41,16 @@ const actions = {
       const object = JSON.parse(item);
       const isSelected = object => {
         object.isSelected = false;
+        object.activeChannels = null;
         return object;
       };
       const newObject = isSelected(object);
       services.push(newObject);
     });
     commit("allServices", services);
+  },
+  SOCKET_show_active_channels_success({ commit }, { channels, index }) {
+    commit("activeChannelsSuccess", { channels, index });
   }
 };
 
