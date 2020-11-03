@@ -36,7 +36,8 @@ import {
   mdiAntenna,
   mdiAccountCircle,
   mdiEarth,
-  mdiAtom
+  mdiAtom,
+  mdiArrangeSendBackward
 } from "@mdi/js";
 import SidebarTemplate from "./SidebarTemplate.vue";
 export default {
@@ -45,14 +46,20 @@ export default {
       mdiAccountCircle,
       mdiEarth,
       mdiAtom,
+      mdiArrangeSendBackward,
       items: [
+        { title: "Domains", icon: mdiAtom, path: { name: "domains" } },
         { title: "Services", icon: mdiAntenna, path: { name: "services" } },
+        {
+          title: "Instances",
+          icon: mdiArrangeSendBackward,
+          path: { name: "instances" }
+        },
         {
           title: "Notifications",
           icon: mdiBell,
           path: { name: "notifications" }
-        },
-        { title: "Domains", icon: mdiAtom, path: { name: "domains" } }
+        }
       ],
       headerStyle: {
         fontSize: "16px",
