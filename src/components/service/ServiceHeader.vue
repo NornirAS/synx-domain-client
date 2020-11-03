@@ -2,20 +2,20 @@
   <div>
     <h1>
       {{ title }}
-      <v-btn
-        :style="btnStyle"
-        :to="{ name: 'editService', params: { index } }"
-        outlined
-        rounded
-        x-small
-        ligth
-      >
-        Edit <v-icon x-small>{{ icon }}</v-icon>
-      </v-btn>
-      <ActiveChannels :title="title" :index="index" />
     </h1>
+    <v-btn
+      :style="btnStyle"
+      :to="{ name: 'editService', params: { index } }"
+      outlined
+      rounded
+      x-small
+      ligth
+    >
+      Edit <v-icon x-small>{{ icon }}</v-icon>
+    </v-btn>
+    <ActiveChannels :title="title" :index="index" :btnStyle="btnStyle" />
     <p>
-      {{ description }} <a :href="url" target="_blank">{{ url }}</a>
+      {{ description }} <a :href="url" target="_blank">{{ urlToLoweCase }}</a>
     </p>
   </div>
 </template>
@@ -27,9 +27,15 @@ export default {
   data() {
     return {
       btnStyle: {
-        color: "#58595B"
+        color: "#58595B",
+        margin: "0.3em 1em 0.3em 0"
       }
     };
+  },
+  computed: {
+    urlToLoweCase() {
+      return this.url.toLowerCase();
+    }
   },
   components: {
     ActiveChannels

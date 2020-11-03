@@ -15,13 +15,10 @@
 
 <script>
 export default {
-  props: ["title", "index"],
+  props: ["title", "index", "btnStyle"],
   data() {
     return {
       btnTitle: "Show active channels",
-      btnStyle: {
-        color: "#58595B"
-      },
       outlined: true,
       text: false,
       disabled: false
