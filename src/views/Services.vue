@@ -140,7 +140,7 @@ export default {
           instances: null
         };
         service.serviceName = item.serviceName;
-        service.instances = "0";
+        service.instanceToDelete = "0";
         services.push(service);
       });
       this.$socket.emit("delete_service", this.domain, services, this.token);

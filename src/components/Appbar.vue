@@ -79,7 +79,7 @@ export default {
   },
   methods: {
     signOut() {
-      this.$store.dispatch("signOut");
+      this.$store.commit("authModule/signOut");
     }
   },
   computed: {
