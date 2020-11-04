@@ -1,21 +1,27 @@
 <template>
-  <div>
-    <h1>
-      Instances
-    </h1>
-    <v-btn @click="getInstances">Get Instances</v-btn>
-    <p v-for="(instance, index) in instances" :key="index">
-      {{ instance }}
-    </p>
-  </div>
+  <v-row justify="center">
+    <v-col cols="12" md="10">
+      <v-row justify="space-between" align="center">
+        <v-col cols="12">
+          <h1>
+            Instances
+          </h1>
+        </v-col>
+      </v-row>
+      <v-row justify="space-between" align="center">
+        <v-col cols="12">
+          <InstancesTable :instances="instances" />
+        </v-col>
+      </v-row>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
+import InstancesTable from "../components/instance/InstancesTable";
 export default {
-  methods: {
-    getInstances() {
-      this.$socket.emit("get_all_instances", this.token);
-    }
+  created() {
+    this.$socket.emit("get_all_instances", this.token);
   },
   computed: {
     token() {
@@ -24,6 +30,17 @@ export default {
     instances() {
       return this.$store.state.instancesModule.instances;
     }
+  },
+  components: {
+    InstancesTable
   }
 };
 </script>
+
+<style scoped>
+h1 {
+  color: #58595b;
+  font-size: 24px;
+  font-weight: 500;
+}
+</style>
