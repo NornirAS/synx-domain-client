@@ -4,6 +4,9 @@
       Instances
     </h1>
     <v-btn @click="getInstances">Get Instances</v-btn>
+    <p v-for="(instance, index) in instances" :key="index">
+      {{ instance }}
+    </p>
   </div>
 </template>
 
@@ -17,6 +20,9 @@ export default {
   computed: {
     token() {
       return this.$store.state.authModule.idToken;
+    },
+    instances() {
+      return this.$store.state.instancesModule.instances;
     }
   }
 };

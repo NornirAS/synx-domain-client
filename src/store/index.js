@@ -4,6 +4,7 @@ import authModule from "./modules/authentication";
 import servicesModule from "./modules/services";
 import serviceModule from "./modules/service";
 import domainsModule from "./modules/domains";
+import instancesModule from "./modules/instances";
 
 Vue.use(Vuex);
 
@@ -33,6 +34,7 @@ export default new Vuex.Store({
     servicesModule,
     serviceModule,
     domainsModule,
-    authModule
+    authModule,
+    instancesModule
   }
 });
