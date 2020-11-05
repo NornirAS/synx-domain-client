@@ -80,6 +80,7 @@ export default {
         },
         { text: "Remove", align: "center", value: "remove", sortable: false }
       ],
+      dialogTitle: null,
       dialogChangeOwner: false,
       dialogMapId: false,
       dialogKillSession: false,
@@ -87,45 +88,45 @@ export default {
     };
   },
   methods: {
+    // actionButton(item) {
+    //   this.hideAllDialogs();
+    //   this.dialogChangeOwner = true;
+    //   this.openDialogWithSelecetdData(item);
+    // },
     changeOwner(item) {
+      this.hideAllDialogs();
       this.dialogChangeOwner = true;
-      this.dialogMapId = false;
-      this.dialogKillSession = false;
-      this.dialogRemoveInstance = false;
-      const dialogTitle = `Change Owner of an instances: ${item.instance}`;
-      this.$store.commit("instancesModule/dialogTitle", dialogTitle);
-      this.$store.commit("instancesModule/selectInstance", item.instance);
-      this.$store.commit("instancesModule/openDialog");
+      this.dialogTitle = `Change Owner of an instances: ${item.instance}`;
+      this.openDialogWithSelecetdData(item);
     },
     mapID(item) {
-      this.dialogChangeOwner = false;
+      this.hideAllDialogs();
       this.dialogMapId = true;
-      this.dialogKillSession = false;
-      this.dialogRemoveInstance = false;
-      const dialogTitle = `Change objectID to mapID of an instance: ${item.instance}`;
-      this.$store.commit("instancesModule/dialogTitle", dialogTitle);
-      this.$store.commit("instancesModule/selectInstance", item.instance);
-      this.$store.commit("instancesModule/openDialog");
+      this.dialogTitle = `Change objectID to mapID of an instance: ${item.instance}`;
+      this.openDialogWithSelecetdData(item);
     },
     killSession(item) {
-      this.dialogChangeOwner = false;
-      this.dialogMapId = false;
+      this.hideAllDialogs();
       this.dialogKillSession = true;
-      this.dialogRemoveInstance = false;
-      const dialogTitle = `Kill session for an instance: ${item.instance}`;
-      this.$store.commit("instancesModule/dialogTitle", dialogTitle);
+      this.dialogTitle = `Kill session for an instance: ${item.instance}`;
+      this.openDialogWithSelecetdData(item);
+    },
+    removeInstance(item) {
+      this.hideAllDialogs();
+      this.dialogRemoveInstance = true;
+      this.dialogTitle = `Remove instance: ${item.instance}`;
+      this.openDialogWithSelecetdData(item);
+    },
+    openDialogWithSelecetdData(item) {
+      this.$store.commit("instancesModule/dialogTitle", this.dialogTitle);
       this.$store.commit("instancesModule/selectInstance", item.instance);
       this.$store.commit("instancesModule/openDialog");
     },
-    removeInstance(item) {
+    hideAllDialogs() {
       this.dialogChangeOwner = false;
       this.dialogMapId = false;
       this.dialogKillSession = false;
-      this.dialogRemoveInstance = true;
-      const dialogTitle = `Remove instance: ${item.instance}`;
-      this.$store.commit("instancesModule/dialogTitle", dialogTitle);
-      this.$store.commit("instancesModule/selectInstance", item.instance);
-      this.$store.commit("instancesModule/openDialog");
+      this.dialogRemoveInstance = false;
     }
   },
   components: {
