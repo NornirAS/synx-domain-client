@@ -2,7 +2,7 @@
   <v-dialog v-model="dialog" persistent max-width="500px">
     <v-card>
       <v-card-title>
-        <slot name="title"></slot>
+        <h1 slot="title">{{ dialogTitle }}</h1>
       </v-card-title>
       <v-card-text>
         <slot name="body"></slot>
@@ -28,7 +28,18 @@ export default {
   computed: {
     dialog() {
       return this.$store.state.instancesModule.dialog;
+    },
+    dialogTitle() {
+      return this.$store.state.instancesModule.dialogTitle;
     }
   }
 };
 </script>
+
+<style scoped>
+h1 {
+  color: #58595b;
+  font-size: 24px;
+  font-weight: 500;
+}
+</style>

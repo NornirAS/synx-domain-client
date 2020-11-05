@@ -1,6 +1,5 @@
 <template>
   <dialog-template>
-    <h1 slot="title">{{ dialogTitle }}</h1>
     <v-text-field
       label="New Owner Username"
       slot="body"
@@ -41,21 +40,8 @@ export default {
       this.$store.commit("instancesModule/toggleDialog");
     }
   },
-  computed: {
-    dialogTitle() {
-      return this.$store.state.instancesModule.dialogTitle;
-    }
-  },
   components: {
     DialogTemplate
   }
 };
 </script>
-
-<style scoped>
-h1 {
-  color: #58595b;
-  font-size: 24px;
-  font-weight: 500;
-}
-</style>
