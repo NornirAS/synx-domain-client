@@ -10,8 +10,11 @@ const mutations = {
   allInstances(state, payload) {
     state.instances = payload;
   },
-  toggleDialog(state) {
-    state.dialog = !state.dialog;
+  openDialog(state) {
+    state.dialog = true;
+  },
+  closeDialog(state) {
+    state.dialog = false;
   },
   selectInstance(state, payload) {
     state.selectedInstance = payload;

@@ -1,12 +1,5 @@
 <template>
   <dialog-template>
-    <v-text-field
-      label="New Owner Username"
-      slot="body"
-      outlined
-      dense
-      hide-details
-    ></v-text-field>
     <v-btn
       @click="closeDialog"
       :style="backBtnStyle"

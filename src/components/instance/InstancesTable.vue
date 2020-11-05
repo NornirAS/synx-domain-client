@@ -8,7 +8,10 @@
         hide-details
       ></v-text-field>
     </v-card-title>
-    <ChangeOwner />
+    <ChangeOwner v-if="dialogChangeOwner" />
+    <MapId v-if="dialogMapId" />
+    <KillSession v-if="dialogKillSession" />
+    <RemoveInstance v-if="dialogRemoveInstance" />
     <v-data-table :headers="headers" :items="instances" :search="search">
       <template v-slot:[`item.changeOwner`]="{ item }">
         <v-icon small @click="changeOwner(item)">
@@ -42,6 +45,9 @@ import {
   mdiPencilOutline
 } from "@mdi/js";
 import ChangeOwner from "./dialogs/ChangeOwner";
+import MapId from "./dialogs/MapId";
+import KillSession from "./dialogs/KillSession";
+import RemoveInstance from "./dialogs/RemoveInstance";
 export default {
   props: ["instances"],
   data() {
@@ -73,31 +79,60 @@ export default {
           sortable: false
         },
         { text: "Remove", align: "center", value: "remove", sortable: false }
-      ]
+      ],
+      dialogChangeOwner: false,
+      dialogMapId: false,
+      dialogKillSession: false,
+      dialogRemoveInstance: false
     };
   },
   methods: {
     changeOwner(item) {
+      this.dialogChangeOwner = true;
+      this.dialogMapId = false;
+      this.dialogKillSession = false;
+      this.dialogRemoveInstance = false;
       const dialogTitle = `Change Owner of an instances: ${item.instance}`;
       this.$store.commit("instancesModule/dialogTitle", dialogTitle);
       this.$store.commit("instancesModule/selectInstance", item.instance);
-      this.$store.commit("instancesModule/toggleDialog");
+      this.$store.commit("instancesModule/openDialog");
     },
     mapID(item) {
-      this.formTitle = `Change objectID to mapID of an instances: ${item.instance}`;
-      this.$store.commit("instancesModule/toggleDialog");
+      this.dialogChangeOwner = false;
+      this.dialogMapId = true;
+      this.dialogKillSession = false;
+      this.dialogRemoveInstance = false;
+      const dialogTitle = `Change objectID to mapID of an instance: ${item.instance}`;
+      this.$store.commit("instancesModule/dialogTitle", dialogTitle);
+      this.$store.commit("instancesModule/selectInstance", item.instance);
+      this.$store.commit("instancesModule/openDialog");
     },
     killSession(item) {
-      this.formTitle = `Kill session of an instances:  ${item.instance}`;
-      this.$store.commit("instancesModule/toggleDialog");
+      this.dialogChangeOwner = false;
+      this.dialogMapId = false;
+      this.dialogKillSession = true;
+      this.dialogRemoveInstance = false;
+      const dialogTitle = `Kill session for an instance: ${item.instance}`;
+      this.$store.commit("instancesModule/dialogTitle", dialogTitle);
+      this.$store.commit("instancesModule/selectInstance", item.instance);
+      this.$store.commit("instancesModule/openDialog");
     },
     removeInstance(item) {
-      this.formTitle = `Remove an instances: ${item.instance}`;
-      this.$store.commit("instancesModule/toggleDialog");
+      this.dialogChangeOwner = false;
+      this.dialogMapId = false;
+      this.dialogKillSession = false;
+      this.dialogRemoveInstance = true;
+      const dialogTitle = `Remove instance: ${item.instance}`;
+      this.$store.commit("instancesModule/dialogTitle", dialogTitle);
+      this.$store.commit("instancesModule/selectInstance", item.instance);
+      this.$store.commit("instancesModule/openDialog");
     }
   },
   components: {
-    ChangeOwner
+    ChangeOwner,
+    MapId,
+    KillSession,
+    RemoveInstance
   }
 };
 </script>

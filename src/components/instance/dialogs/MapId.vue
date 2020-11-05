@@ -1,7 +1,7 @@
 <template>
   <dialog-template>
     <v-text-field
-      label="New Owner Username"
+      label="Custom map ID"
       slot="body"
       outlined
       dense
