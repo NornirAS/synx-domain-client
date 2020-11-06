@@ -9,7 +9,13 @@
     >
       Cancel
     </v-btn>
-    <v-btn :style="actionBtnStyle" slot="action" rounded dark>
+    <v-btn
+      @click="killSession"
+      :style="actionBtnStyle"
+      slot="action"
+      rounded
+      dark
+    >
       Confirm
     </v-btn>
   </dialog-template>
@@ -29,8 +35,32 @@ export default {
     };
   },
   methods: {
+    killSession() {
+      this.$socket.emit(
+        "kill_session",
+        this.token,
+        this.domain,
+        this.service,
+        this.instance
+      );
+      this.closeDialog();
+    },
     closeDialog() {
       this.$store.commit("instancesModule/closeDialog");
+    }
+  },
+  computed: {
+    token() {
+      return this.$store.state.authModule.idToken;
+    },
+    domain() {
+      return this.$store.state.instancesModule.selectedDomain;
+    },
+    service() {
+      return this.$store.state.instancesModule.selectedService;
+    },
+    instance() {
+      return this.$store.state.instancesModule.selectedInstance;
     }
   },
   components: {
