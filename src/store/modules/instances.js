@@ -44,7 +44,7 @@ const actions = {
     });
     commit("allInstances", instances);
   },
-  SOCKET_change_instance_owner_success({ commit }, data) {
+  SOCKET_action_success({ commit }, data) {
     commit("successMessage", data);
   }
 };

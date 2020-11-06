@@ -52,6 +52,7 @@ export default {
     closeDialog() {
       this.$store.commit("instancesModule/closeDialog");
       this.mapId = "";
+      this.generate = true;
     }
   },
   computed: {
