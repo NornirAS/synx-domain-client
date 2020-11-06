@@ -88,11 +88,6 @@ export default {
     };
   },
   methods: {
-    // actionButton(item) {
-    //   this.hideAllDialogs();
-    //   this.dialogChangeOwner = true;
-    //   this.openDialogWithSelecetdData(item);
-    // },
     changeOwner(item) {
       this.hideAllDialogs();
       this.dialogChangeOwner = true;

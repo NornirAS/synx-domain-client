@@ -1,6 +1,7 @@
 <template>
   <dialog-template>
     <v-text-field
+      v-model="newOwnerUsername"
       label="New Owner Username"
       slot="body"
       outlined
@@ -16,7 +17,13 @@
     >
       Cancel
     </v-btn>
-    <v-btn :style="actionBtnStyle" slot="action" rounded dark>
+    <v-btn
+      @click="changeOwner"
+      :style="actionBtnStyle"
+      slot="action"
+      rounded
+      dark
+    >
       Confirm
     </v-btn>
   </dialog-template>
@@ -27,6 +34,7 @@ import DialogTemplate from "./DialogTemplate";
 export default {
   data() {
     return {
+      newOwnerUsername: "",
       actionBtnStyle: {
         backgroundColor: "#27AAE1"
       },
@@ -36,8 +44,29 @@ export default {
     };
   },
   methods: {
+    changeOwner() {
+      this.$socket.emit(
+        "change_instance_owner",
+        this.username,
+        this.token,
+        this.instance,
+        this.newOwnerUsername
+      );
+      this.closeDialog();
+    },
     closeDialog() {
       this.$store.commit("instancesModule/closeDialog");
+    }
+  },
+  computed: {
+    username() {
+      return this.$store.state.authModule.username;
+    },
+    token() {
+      return this.$store.state.authModule.idToken;
+    },
+    instance() {
+      return this.$store.state.instancesModule.selectedInstance;
     }
   },
   components: {
