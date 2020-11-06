@@ -1,6 +1,7 @@
 <template>
   <dialog-template>
     <v-text-field
+      v-model="mapId"
       label="Custom map ID"
       slot="body"
       outlined
@@ -16,7 +17,13 @@
     >
       Cancel
     </v-btn>
-    <v-btn :style="actionBtnStyle" slot="action" rounded dark>
+    <v-btn
+      @click="updateToMapId"
+      :style="actionBtnStyle"
+      slot="action"
+      rounded
+      dark
+    >
       Confirm
     </v-btn>
   </dialog-template>
@@ -27,6 +34,7 @@ import DialogTemplate from "./DialogTemplate";
 export default {
   data() {
     return {
+      mapId: "",
       actionBtnStyle: {
         backgroundColor: "#27AAE1"
       },
@@ -36,8 +44,26 @@ export default {
     };
   },
   methods: {
+    updateToMapId() {
+      this.$socket.emit(
+        "update_objectId_to_mapId",
+        this.token,
+        this.instance,
+        this.mapId
+      );
+      this.closeDialog();
+    },
     closeDialog() {
       this.$store.commit("instancesModule/closeDialog");
+      this.mapId = "";
+    }
+  },
+  computed: {
+    token() {
+      return this.$store.state.authModule.idToken;
+    },
+    instance() {
+      return this.$store.state.instancesModule.selectedInstance;
     }
   },
   components: {
