@@ -2,8 +2,8 @@ const state = {
   instances: [],
   dialog: false,
   selectedInstance: null,
-  newOwnerUsername: null,
-  dialogTitle: null
+  dialogTitle: null,
+  successMessage: null
 };
 
 const mutations = {
@@ -19,11 +19,11 @@ const mutations = {
   selectInstance(state, payload) {
     state.selectedInstance = payload;
   },
-  newOwnerUsername(state, payload) {
-    state.selectedInstance = payload;
-  },
   dialogTitle(state, payload) {
     state.dialogTitle = payload;
+  },
+  successMessage(state, payload) {
+    state.successMessage = payload;
   }
 };
 
@@ -35,6 +35,9 @@ const actions = {
       instances.push(object);
     });
     commit("allInstances", instances);
+  },
+  SOCKET_change_instance_owner_success({ commit }, data) {
+    commit("successMessage", data);
   }
 };
 

@@ -56,6 +56,7 @@ export default {
     },
     closeDialog() {
       this.$store.commit("instancesModule/closeDialog");
+      this.newOwnerUsername = "";
     }
   },
   computed: {
