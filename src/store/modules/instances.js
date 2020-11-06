@@ -1,6 +1,8 @@
 const state = {
   instances: [],
   dialog: false,
+  selectedDomain: null,
+  selectedService: null,
   selectedInstance: null,
   dialogTitle: null,
   successMessage: null
@@ -15,6 +17,12 @@ const mutations = {
   },
   closeDialog(state) {
     state.dialog = false;
+  },
+  selectDomain(state, payload) {
+    state.selectedDomain = payload;
+  },
+  selectService(state, payload) {
+    state.selectedService = payload;
   },
   selectInstance(state, payload) {
     state.selectedInstance = payload;

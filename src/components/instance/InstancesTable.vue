@@ -114,6 +114,8 @@ export default {
     },
     openDialogWithSelecetdData(item) {
       this.$store.commit("instancesModule/dialogTitle", this.dialogTitle);
+      this.$store.commit("instancesModule/selectDomain", item.domain);
+      this.$store.commit("instancesModule/selectService", item.service);
       this.$store.commit("instancesModule/selectInstance", item.instance);
       this.$store.commit("instancesModule/openDialog");
     },
