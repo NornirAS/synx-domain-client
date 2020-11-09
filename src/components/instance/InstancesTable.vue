@@ -117,7 +117,7 @@ export default {
       this.$store.commit("instancesModule/selectDomain", item.domain);
       this.$store.commit("instancesModule/selectService", item.service);
       this.$store.commit("instancesModule/selectInstance", item.instance);
-      this.$store.commit("instancesModule/openDialog");
+      this.$store.commit("instancesModule/toggleDialog");
     },
     hideAllDialogs() {
       this.dialogChangeOwner = false;

@@ -55,7 +55,7 @@ export default {
       this.closeDialog();
     },
     closeDialog() {
-      this.$store.commit("instancesModule/closeDialog");
+      this.$store.commit("instancesModule/toggleDialog");
       this.newOwnerUsername = "";
     }
   },
