@@ -14,6 +14,7 @@ import Domains from "../views/Domains.vue";
 import DomainPromo from "../views/DomainPromo.vue";
 import DomainPurchase from "../views/DomainPurchase.vue";
 import Instances from "../views/Instances.vue";
+import LookForNewInstances from "../views/LookForNewInstances.vue";
 
 Vue.use(VueRouter);
 
@@ -117,6 +118,17 @@ const routes = [
     name: "instances",
     components: {
       default: Instances,
+      "app-bar": AppBar,
+      "dark-sidebar": DarkSidebar,
+      "footer-bar": FooterBar
+    },
+    beforeEnter: authGuard
+  },
+  {
+    path: "/domains/domain/:domainName/instances/new-instances",
+    name: "new-instances",
+    components: {
+      default: LookForNewInstances,
       "app-bar": AppBar,
       "dark-sidebar": DarkSidebar,
       "footer-bar": FooterBar

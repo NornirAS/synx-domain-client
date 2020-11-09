@@ -2,10 +2,21 @@
   <v-row justify="center">
     <v-col cols="12" md="10">
       <v-row justify="space-between" align="center">
-        <v-col cols="12">
+        <v-col>
           <h1>
             Instances
           </h1>
+        </v-col>
+        <v-col align="right">
+          <v-btn
+            :to="{ name: 'new-instances' }"
+            :color="colorBlue"
+            small
+            rounded
+            dark
+          >
+            Look for new instances
+          </v-btn>
         </v-col>
       </v-row>
       <v-row justify="space-between" align="center">
@@ -20,6 +31,11 @@
 <script>
 import InstancesTable from "../components/instance/InstancesTable";
 export default {
+  data() {
+    return {
+      colorBlue: "#27AAE1"
+    };
+  },
   created() {
     this.$socket.emit("get_all_instances", this.token);
     this.$store.commit(
