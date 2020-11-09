@@ -15,9 +15,7 @@ const mutations = {
   signOut(state) {
     state.idToken = null;
     state.username = null;
-    localStorage.removeItem("username");
-    localStorage.removeItem("token");
-    localStorage.removeItem("expirationDate");
+    localStorage.clear();
   },
   resetError(state) {
     state.authError = null;
