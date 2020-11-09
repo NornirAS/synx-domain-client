@@ -80,6 +80,7 @@ export default {
   methods: {
     signOut() {
       this.$store.commit("authModule/signOut");
+      this.$router.push({ name: "home" });
     }
   },
   computed: {
