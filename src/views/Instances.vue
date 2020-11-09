@@ -22,6 +22,10 @@ import InstancesTable from "../components/instance/InstancesTable";
 export default {
   created() {
     this.$socket.emit("get_all_instances", this.token);
+    this.$store.commit(
+      "domainsModule/currentDomain",
+      this.$route.params.domainName
+    );
   },
   computed: {
     token() {
