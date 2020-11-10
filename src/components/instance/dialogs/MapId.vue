@@ -40,9 +40,9 @@ export default {
     updateToMapId() {
       this.$socket.emit(
         "update_objectId_to_mapId",
-        this.token,
         this.domain,
         this.service,
+        this.token,
         this.instance,
         this.mapId,
         this.generate

@@ -38,9 +38,9 @@ export default {
     removeInstance() {
       this.$socket.emit(
         "remove_instance",
-        this.token,
         this.domain,
         this.service,
+        this.token,
         this.instance
       );
       this.closeDialog();

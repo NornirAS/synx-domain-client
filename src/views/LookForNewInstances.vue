@@ -11,6 +11,7 @@
           <v-data-table
             @page-count="pageCount = $event"
             :headers="headers"
+            :items="instances"
             :page.sync="page"
             hide-default-footer
           >
@@ -27,6 +28,7 @@
           </v-data-table>
           <v-pagination v-model="page" :length="pageCount"></v-pagination>
         </v-col>
+        {{ instances }}
       </v-row>
     </v-col>
   </v-row>
@@ -98,6 +100,9 @@ export default {
     },
     username() {
       return this.$store.state.authModule.username;
+    },
+    instances() {
+      return this.$store.state.instancesModule.instancesToAprove;
     }
   }
 };

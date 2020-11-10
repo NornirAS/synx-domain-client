@@ -5,7 +5,8 @@ const state = {
   selectedService: null,
   selectedInstance: null,
   dialogTitle: null,
-  successMessage: null
+  successMessage: null,
+  instancesToAprove: []
 };
 
 const mutations = {
@@ -29,6 +30,9 @@ const mutations = {
   },
   successMessage(state, payload) {
     state.successMessage = payload;
+  },
+  instancesToAprove(state, payload) {
+    state.instancesToAprove = payload;
   }
 };
 
@@ -43,6 +47,14 @@ const actions = {
   },
   SOCKET_action_success({ commit }, data) {
     commit("successMessage", data);
+  },
+  SOCKET_new_instances({ commit }, data) {
+    const instances = [];
+    data.forEach(item => {
+      const object = JSON.parse(item);
+      instances.push(object);
+    });
+    commit("instancesToAprove", instances);
   }
 };
 

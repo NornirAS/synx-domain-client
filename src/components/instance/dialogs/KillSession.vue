@@ -38,9 +38,9 @@ export default {
     killSession() {
       this.$socket.emit(
         "kill_session",
-        this.token,
         this.domain,
         this.service,
+        this.token,
         this.instance
       );
       this.closeDialog();
