@@ -72,8 +72,8 @@ export default {
       if (!this.authData.password) {
         this.errors.push("password must be provided");
       }
-      if (this.authData.username.length < 5) {
-        this.errors.push("Username require minimum 5 characters");
+      if (this.authData.username.length < 4) {
+        this.errors.push("Username require minimum 4 characters");
       }
       if (this.authData.password.length < 8) {
         this.errors.push("Password require minimum 8 characters");
