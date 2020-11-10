@@ -61,7 +61,9 @@ const getters = {
   // eslint-disable-next-line no-unused-vars
   servicesForDomain({ services }, getters, rootState, rootGetters) {
     const domain = rootState.domainsModule.currentDomain;
-    const result = services.filter(service => service.domain === domain);
+    const result = services.filter(
+      service => service.domain === domain.toLowerCase()
+    );
     return result;
   }
 };
