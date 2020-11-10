@@ -47,6 +47,8 @@ export default {
     changeOwner() {
       this.$socket.emit(
         "change_instance_owner",
+        this.domain,
+        this.service,
         this.username,
         this.token,
         this.instance,
@@ -60,6 +62,12 @@ export default {
     }
   },
   computed: {
+    domain() {
+      return this.$store.state.instancesModule.selectedDomain;
+    },
+    service() {
+      return this.$store.state.instancesModule.selectedService;
+    },
     username() {
       return this.$store.state.authModule.username;
     },
