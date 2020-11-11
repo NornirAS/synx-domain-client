@@ -51,18 +51,28 @@ export default {
       itemsPerPage: 10,
       headers: [
         {
-          text: "Instance",
+          text: "Domain",
           align: "start",
+          value: "domain"
+        },
+        {
+          text: "Service",
+          align: "start",
+          value: "service"
+        },
+        {
+          text: "Instance",
+          align: "center",
           value: "instance"
         },
         {
           text: "Confirm",
-          align: "end",
+          align: "center",
           value: "confirm"
         },
         {
           text: "Deny",
-          align: "end",
+          align: "center",
           value: "deny"
         }
       ],

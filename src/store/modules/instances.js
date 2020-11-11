@@ -54,6 +54,8 @@ const actions = {
     const instances = [];
     data.forEach(item => {
       const object = JSON.parse(item);
+      object.domain = object.domain.toLowerCase();
+      object.service = object.service.toLowerCase();
       instances.push(object);
     });
     commit("instancesToAprove", instances);
