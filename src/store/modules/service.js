@@ -50,6 +50,9 @@ const mutations = {
   addInstance(state, instances) {
     state.serviceForm.instances += instances;
   },
+  updateInstances(state, instances) {
+    state.serviceForm.instances = instances;
+  },
   setTimeout(state, newTimeout) {
     state.serviceForm.timeOut = newTimeout;
   },
@@ -118,10 +121,8 @@ const getters = {
   availableInstances({ serviceForm, totalInstances }) {
     return totalInstances - serviceForm.instances;
   },
-  instancesLimitReached({ serviceInstances }, { availableInstances }) {
-    return availableInstances < serviceInstances || availableInstances <= 0
-      ? true
-      : false;
+  instancesLimitReached(state, { availableInstances }) {
+    return availableInstances <= 0 ? true : false;
   },
   isServiceSchema({ serviceForm }) {
     return serviceForm.serviceSchema.length > 0;
