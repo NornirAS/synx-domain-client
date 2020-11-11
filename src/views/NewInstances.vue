@@ -13,6 +13,7 @@
             :headers="headers"
             :items="instances"
             :page.sync="page"
+            :items-per-page="itemsPerPage"
             hide-default-footer
           >
             <template v-slot:[`item.confirm`]="{ item }">
@@ -26,9 +27,13 @@
               </v-icon>
             </template>
           </v-data-table>
-          <v-pagination v-model="page" :length="pageCount"></v-pagination>
+          <v-pagination
+            v-model="page"
+            :color="colorBlue"
+            :length="pageCount"
+            light
+          ></v-pagination>
         </v-col>
-        {{ instances }}
       </v-row>
     </v-col>
   </v-row>
@@ -60,7 +65,8 @@ export default {
           align: "end",
           value: "deny"
         }
-      ]
+      ],
+      colorBlue: "#27AAE1"
     };
   },
   created() {
