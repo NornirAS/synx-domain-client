@@ -75,6 +75,12 @@ export default {
       dark: true
     };
   },
+  created() {
+    this.$store.commit(
+      "domainsModule/currentDomain",
+      this.$route.params.domainName
+    );
+  },
   computed: {
     username() {
       return this.$store.state.authModule.username;

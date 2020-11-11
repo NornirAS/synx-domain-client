@@ -80,10 +80,6 @@ export default {
     };
   },
   created() {
-    this.$store.commit(
-      "domainsModule/currentDomain",
-      this.$route.params.domainName
-    );
     this.$socket.emit(
       "look_for_new_instances",
       this.domain,
