@@ -3,6 +3,7 @@ const state = {
     serviceName: null,
     description: null,
     schemaDescription: null,
+    pictureURL: null,
     keywords: [],
     serviceSchema: [],
     commandSchema: [],
@@ -26,6 +27,9 @@ const mutations = {
   },
   addSchemaDescription(state, description) {
     state.serviceForm.schemaDescription = description;
+  },
+  addPictureURL(state, payload) {
+    state.serviceForm.pictureURL = payload;
   },
   addKeyword(state, keyword) {
     state.serviceForm.keywords.push(keyword);
@@ -88,6 +92,8 @@ const mutations = {
   resetServiceForm(state) {
     state.serviceForm.serviceName = null;
     state.serviceForm.description = null;
+    state.serviceForm.schemaDescription = null;
+    state.serviceForm.pictureURL = null;
     state.serviceForm.keywords = [];
     state.serviceForm.serviceSchema = [];
     state.serviceForm.commandSchema = [];

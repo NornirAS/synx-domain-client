@@ -8,11 +8,12 @@
     <v-row>
       <v-col>
         <v-text-field
+          v-model="pictureURL"
+          @blur="addPictureURL"
           :label="title"
           dense
           outlined
           hide-details
-          v-model="serviceImageURL"
         ></v-text-field>
       </v-col>
     </v-row>
@@ -26,8 +27,13 @@ export default {
     return {
       title: "Image",
       description: "Optional. URL to an image for your service.",
-      serviceImageURL: null
+      pictureURL: null
     };
+  },
+  methods: {
+    addPictureURL() {
+      this.$store.commit("serviceModule/addPictureURL", this.pictureURL);
+    }
   },
   components: {
     FormHeader
