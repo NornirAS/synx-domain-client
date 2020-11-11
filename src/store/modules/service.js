@@ -2,6 +2,7 @@ const state = {
   serviceForm: {
     serviceName: null,
     description: null,
+    schemaDescription: null,
     keywords: [],
     serviceSchema: [],
     commandSchema: [],
@@ -22,6 +23,9 @@ const mutations = {
   },
   addDescription(state, description) {
     state.serviceForm.description = description;
+  },
+  addSchemaDescription(state, description) {
+    state.serviceForm.schemaDescription = description;
   },
   addKeyword(state, keyword) {
     state.serviceForm.keywords.push(keyword);

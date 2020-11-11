@@ -14,6 +14,7 @@
     </v-row>
     <ServiceSchema />
     <CommandSchema />
+    <SchemaDescription />
     <PreInlineScript />
     <PostInlineScript />
     <WebJS />
@@ -38,6 +39,7 @@ import WebJS from "./textarea/WebJS.vue";
 import PostInlineScript from "./textarea/PostInlineScript.vue";
 import PreInlineScript from "./textarea/PreInlineScript.vue";
 import ServiceImage from "./textfield/ServiceImage";
+import SchemaDescription from "./textarea/SchemaDescription";
 export default {
   props: ["btnName"],
   data() {
@@ -110,7 +112,8 @@ export default {
     WebJS,
     PostInlineScript,
     PreInlineScript,
-    ServiceImage
+    ServiceImage,
+    SchemaDescription
   }
 };
 </script>
