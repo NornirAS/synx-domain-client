@@ -9,6 +9,7 @@ const state = {
     commandSchema: [],
     instances: null, // instances to add
     timeOut: "30",
+    premasterscript: "YWFhYWFhYWFhYQo=",
     masterScript: "YWFhYWFhYWFhYQo=",
     webJS: "Hello"
   },
