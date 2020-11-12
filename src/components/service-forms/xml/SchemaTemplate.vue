@@ -22,7 +22,7 @@
           dense
           outlined
           hide-details
-          v-model="commandSchema"
+          v-model="commandSchema.tagName"
           @keypress.enter="addToArray"
         ></v-text-field>
       </v-col>
@@ -51,7 +51,9 @@ export default {
         tagName: null,
         linkTo: {}
       },
-      commandSchema: null,
+      commandSchema: {
+        tagName: null
+      },
       colorBlue: "#27AAE1"
     };
   },
@@ -77,7 +79,7 @@ export default {
           "serviceModule/addCommandSchema",
           this.commandSchema
         );
-        this.commandSchema = null;
+        this.commandSchema = {};
       }
     }
   }

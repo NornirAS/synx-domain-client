@@ -28,7 +28,7 @@
       <tbody v-else>
         <tr v-for="(item, index) in commandSchema" :key="item.name">
           <td>{{ index }}</td>
-          <td>{{ item }}</td>
+          <td>{{ item.tagName }}</td>
           <td class="text-center">
             <v-btn @click="removeSchema(index)" :color="colorRed" icon x-small>
               <v-icon>{{ mdiDelete }}</v-icon>

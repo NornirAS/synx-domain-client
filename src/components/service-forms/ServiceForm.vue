@@ -67,7 +67,6 @@ export default {
           this.token
         );
       } else {
-        console.log(this.instancesBalance);
         this.$store.commit(
           "serviceModule/updateInstances",
           this.instancesBalance
