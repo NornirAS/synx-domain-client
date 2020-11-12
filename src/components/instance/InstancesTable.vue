@@ -13,6 +13,7 @@
     <KillSession v-if="dialogKillSession" />
     <RemoveInstance v-if="dialogRemoveInstance" />
     <LinkableInstance v-if="dialogLinking" />
+    <SecondaryService v-if="dialogSecondaryService" />
     <v-data-table :headers="headers" :items="instances" :search="search">
       <template v-slot:[`item.changeOwner`]="{ item }">
         <v-icon small @click="changeOwner(item)">
@@ -44,7 +45,7 @@
             </template>
             <v-list>
               <v-list-item v-for="(action, index) in moreActions" :key="index">
-                <v-btn @click="action.method(item)" small text>
+                <v-btn @click="action.method(item)" small text block>
                   {{ action.title }}
                 </v-btn>
               </v-list-item>
@@ -69,6 +70,7 @@ import MapId from "./dialogs/MapId";
 import KillSession from "./dialogs/KillSession";
 import RemoveInstance from "./dialogs/RemoveInstance";
 import LinkableInstance from "./dialogs/LinkableInstance";
+import SecondaryService from "./dialogs/SecondaryService";
 export default {
   props: ["instances"],
   data() {
@@ -192,7 +194,8 @@ export default {
     MapId,
     KillSession,
     RemoveInstance,
-    LinkableInstance
+    LinkableInstance,
+    SecondaryService
   }
 };
 </script>

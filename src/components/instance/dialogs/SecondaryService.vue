@@ -2,18 +2,42 @@
   <dialog-template>
     <div slot="body">
       <v-switch
-        v-model="status"
+        v-model="action"
         :color="colorBlue"
-        :label="getStatus(this.status)"
+        :label="getStatus(this.action)"
         inset
       ></v-switch>
-      <v-text-field
-        v-model="linkTo"
-        label="Link to domain/service"
-        outlined
-        dense
-        hide-details
-      ></v-text-field>
+      <v-row justify="space-between">
+        <v-col cols="12" md="4">
+          <v-text-field
+            v-model="refObjectID"
+            label="Ref. ObjectID"
+            type="number"
+            min="1"
+            outlined
+            dense
+            hide-details
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" md="4">
+          <v-text-field
+            v-model="refDomain"
+            label="Ref. Domain"
+            outlined
+            dense
+            hide-details
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" md="4">
+          <v-text-field
+            v-model="refService"
+            label="Ref. Service"
+            outlined
+            dense
+            hide-details
+          ></v-text-field>
+        </v-col>
+      </v-row>
     </div>
     <v-btn
       @click="closeDialog"
@@ -41,8 +65,10 @@ import DialogTemplate from "./DialogTemplate";
 export default {
   data() {
     return {
-      linkTo: null,
-      status: false,
+      refObjectID: null,
+      refDomain: null,
+      refService: null,
+      action: true,
       actionBtnStyle: {
         backgroundColor: "#27AAE1"
       },
@@ -54,24 +80,28 @@ export default {
   },
   methods: {
     getStatus(status) {
-      return status === false ? "Deny" : "Allow";
+      return status === false ? "Remove" : "Add";
     },
     linkableInstance() {
       this.$socket.emit(
-        "linkable_instance",
+        "secondary_service",
         this.domain,
         this.service,
         this.token,
         this.instance,
-        this.linkTo,
-        this.status
+        this.refObjectID,
+        this.refDomain,
+        this.refService,
+        this.action
       );
       this.closeDialog();
     },
     closeDialog() {
       this.$store.commit("instancesModule/toggleDialog");
-      this.linkTo = null;
-      this.status = false;
+      this.refObjectID = null;
+      this.refDomain = null;
+      this.refService = null;
+      this.action = true;
     }
   },
   computed: {
