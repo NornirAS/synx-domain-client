@@ -80,18 +80,14 @@ export default {
     };
   },
   created() {
-    this.$socket.emit(
-      "look_for_new_instances",
-      this.domain,
-      this.token,
-      this.username
-    );
+    this.$socket.emit("look_for_new_instances", this.token, this.username);
   },
   methods: {
     confirm(item) {
       this.$socket.emit(
         "confirm_instance",
-        this.domain,
+        item.domain,
+        item.service,
         this.token,
         this.username,
         item.instance
@@ -100,7 +96,8 @@ export default {
     deny(item) {
       this.$socket.emit(
         "deny_instance",
-        this.domain,
+        item.domain,
+        item.service,
         this.token,
         this.username,
         item.instance
@@ -108,9 +105,6 @@ export default {
     }
   },
   computed: {
-    domain() {
-      return this.$store.state.instancesModule.selectedDomain;
-    },
     token() {
       return this.$store.state.authModule.idToken;
     },
