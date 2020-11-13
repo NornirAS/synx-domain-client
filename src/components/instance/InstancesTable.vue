@@ -14,6 +14,7 @@
     <RemoveInstance v-if="dialogRemoveInstance" />
     <LinkableInstance v-if="dialogLinking" />
     <SecondaryService v-if="dialogSecondaryService" />
+    <ReadAccess v-if="dialogReadAccess" />
     <v-data-table :headers="headers" :items="instances" :search="search">
       <template v-slot:[`item.changeOwner`]="{ item }">
         <v-icon small @click="changeOwner(item)">
@@ -71,6 +72,7 @@ import KillSession from "./dialogs/KillSession";
 import RemoveInstance from "./dialogs/RemoveInstance";
 import LinkableInstance from "./dialogs/LinkableInstance";
 import SecondaryService from "./dialogs/SecondaryService";
+import ReadAccess from "./dialogs/ReadAccess";
 export default {
   props: ["instances"],
   data() {
@@ -195,7 +197,8 @@ export default {
     KillSession,
     RemoveInstance,
     LinkableInstance,
-    SecondaryService
+    SecondaryService,
+    ReadAccess
   }
 };
 </script>
