@@ -34,11 +34,19 @@ export default {
   computed: {
     isMobile() {
       return this.$vuetify.breakpoint.smAndDown;
+    },
+    successMessage() {
+      return this.$store.state.alarmModule.successMessage;
     }
   },
   watch: {
     isMobile() {
       this.$store.commit("isMobile", this.isMobile);
+    },
+    successMessage(newValue) {
+      if (newValue !== "") {
+        alert(newValue);
+      }
     }
   }
 };

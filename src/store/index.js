@@ -5,6 +5,7 @@ import servicesModule from "./modules/services";
 import serviceModule from "./modules/service";
 import domainsModule from "./modules/domains";
 import instancesModule from "./modules/instances";
+import alarmModule from "./modules/alarm";
 
 Vue.use(Vuex);
 
@@ -35,6 +36,7 @@ export default new Vuex.Store({
     serviceModule,
     domainsModule,
     authModule,
-    instancesModule
+    instancesModule,
+    alarmModule
   }
 });

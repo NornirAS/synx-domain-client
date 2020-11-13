@@ -45,16 +45,6 @@ export default {
     },
     instances() {
       return this.$store.state.instancesModule.instances;
-    },
-    successMessage() {
-      return this.$store.state.instancesModule.successMessage;
-    }
-  },
-  watch: {
-    successMessage(newValue) {
-      if (newValue !== null) {
-        alert(newValue);
-      }
     }
   },
   components: {

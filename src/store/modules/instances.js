@@ -1,3 +1,5 @@
+const _ = require("underscore");
+
 const state = {
   instances: [],
   dialog: false,
@@ -5,7 +7,6 @@ const state = {
   selectedService: null,
   selectedInstance: null,
   dialogTitle: null,
-  successMessage: null,
   instancesToAprove: []
 };
 
@@ -28,9 +29,6 @@ const mutations = {
   dialogTitle(state, payload) {
     state.dialogTitle = payload;
   },
-  successMessage(state, payload) {
-    state.successMessage = payload;
-  },
   instancesToAprove(state, payload) {
     state.instancesToAprove = payload;
   }
@@ -39,26 +37,31 @@ const mutations = {
 const actions = {
   SOCKET_all_instances({ commit }, data) {
     const instances = [];
-    data.forEach(item => {
-      const object = JSON.parse(item);
-      object.domain = object.domain.toLowerCase();
-      object.service = object.service.toLowerCase();
-      instances.push(object);
-    });
-    commit("allInstances", instances);
-  },
-  SOCKET_action_success({ commit }, data) {
-    commit("successMessage", data);
+    if (_.isEmpty(data)) {
+      commit("allInstances", instances);
+    } else {
+      data.forEach(item => {
+        const object = JSON.parse(item);
+        object.domain = object.domain.toLowerCase();
+        object.service = object.service.toLowerCase();
+        instances.push(object);
+      });
+      commit("allInstances", instances);
+    }
   },
   SOCKET_new_instances({ commit }, data) {
     const instances = [];
-    data.forEach(item => {
-      const object = JSON.parse(item);
-      object.domain = object.domain.toLowerCase();
-      object.service = object.service.toLowerCase();
-      instances.push(object);
-    });
-    commit("instancesToAprove", instances);
+    if (_.isEmpty(data)) {
+      commit("instancesToAprove", instances);
+    } else {
+      data.forEach(item => {
+        const object = JSON.parse(item);
+        object.domain = object.domain.toLowerCase();
+        object.service = object.service.toLowerCase();
+        instances.push(object);
+      });
+      commit("instancesToAprove", instances);
+    }
   }
 };
 
