@@ -68,12 +68,14 @@ export default {
         {
           text: "Confirm",
           align: "center",
-          value: "confirm"
+          value: "confirm",
+          sortable: false
         },
         {
           text: "Deny",
           align: "center",
-          value: "deny"
+          value: "deny",
+          sortable: false
         }
       ],
       colorBlue: "#27AAE1"
