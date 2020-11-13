@@ -11,13 +11,22 @@ import ServiceForm from "../components/service-forms/ServiceForm.vue";
 export default {
   data() {
     return {
-      btnName: "Update"
+      title: "",
+      btnName: ""
     };
   },
   created() {
-    this.$store.commit("sideBarTitle", "Edit Service");
-    this.$store.commit("servicesModule/serviceIndex", this.index);
-    this.$store.commit("serviceModule/editService", this.service);
+    if (this.index >= 0) {
+      this.$store.commit("sidebarsModule/lightSideBarTitle", "Update Service");
+      this.$store.commit("servicesModule/serviceIndex", this.index);
+      this.$store.commit("serviceModule/editService", this.service);
+      this.title = "Update Service";
+      this.btnName = "Update";
+    } else {
+      this.$store.commit("sidebarsModule/lightSideBarTitle", "Create Service");
+      this.title = "Create Service";
+      this.btnName = "Create";
+    }
   },
   beforeDestroy() {
     this.$store.commit("serviceModule/resetServiceForm");
@@ -31,9 +40,6 @@ export default {
     },
     formSuccess() {
       return this.$store.state.serviceModule.formSuccess;
-    },
-    formError() {
-      return this.$store.state.serviceModule.formError;
     }
   },
   watch: {
@@ -41,11 +47,6 @@ export default {
       if (newValue) {
         this.$router.push({ name: "services" });
         this.$store.commit("serviceModule/resetServiceFormStatus");
-      }
-    },
-    formError(newValue) {
-      if (newValue) {
-        console.log(newValue);
       }
     }
   },

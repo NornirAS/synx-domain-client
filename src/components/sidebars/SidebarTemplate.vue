@@ -26,7 +26,7 @@ export default {
   props: ["light", "dark", "color"],
   data() {
     return {
-      drawer: null,
+      drawer: true,
       navStyle: {
         top: "64px",
         height: "calc(100% - 64px)"

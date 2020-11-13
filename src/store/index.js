@@ -6,12 +6,12 @@ import serviceModule from "./modules/service";
 import domainsModule from "./modules/domains";
 import instancesModule from "./modules/instances";
 import alarmModule from "./modules/alarm";
+import sidebarsModule from "./modules/sidebars";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    sideBarTitle: null,
     showDrawerOnMobile: null,
     isMobile: null
   },
@@ -21,14 +21,6 @@ export default new Vuex.Store({
     },
     showDrawerOnMobile(state, payload) {
       state.showDrawerOnMobile = payload;
-    },
-    sideBarTitle(state, payload) {
-      state.sideBarTitle = payload;
-    }
-  },
-  getters: {
-    isEditPage({ sideBarTitle }) {
-      return sideBarTitle === "Edit Service" ? true : false;
     }
   },
   modules: {
@@ -37,6 +29,7 @@ export default new Vuex.Store({
     domainsModule,
     authModule,
     instancesModule,
-    alarmModule
+    alarmModule,
+    sidebarsModule
   }
 });

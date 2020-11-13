@@ -5,7 +5,7 @@
     </h1>
     <v-btn
       :style="btnStyle"
-      :to="{ name: 'editService', params: { index } }"
+      :to="{ name: 'serviceUpdate', params: { index } }"
       outlined
       rounded
       x-small

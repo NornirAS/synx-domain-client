@@ -41,10 +41,9 @@ import PreInlineScript from "./textarea/PreInlineScript.vue";
 import ServiceImage from "./textfield/ServiceImage";
 import SchemaDescription from "./textarea/SchemaDescription";
 export default {
-  props: ["btnName"],
+  props: ["title", "btnName"],
   data() {
     return {
-      title: this.$store.state.sideBarTitle,
       actionBtnStyle: {
         backgroundColor: "#27AAE1",
         float: "right",

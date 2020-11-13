@@ -7,7 +7,7 @@
         </v-col>
         <v-col align="right">
           <v-btn
-            :to="{ name: 'createService' }"
+            :to="{ name: 'serviceCreate' }"
             :color="colorBlue"
             rounded
             small

@@ -11,7 +11,7 @@
           v-model="name"
           @blur="addServiceName"
           :label="title"
-          :disabled="isEditPage"
+          :disabled="isUpdatePage"
           dense
           outlined
           hide-details
@@ -28,7 +28,7 @@ export default {
     return {
       title: "Service Name",
       description: "Typically what the service/object do.",
-      name: null
+      name: ""
     };
   },
   mounted() {
@@ -46,8 +46,8 @@ export default {
     serviceName() {
       return this.serviceModule.serviceForm.serviceName;
     },
-    isEditPage() {
-      return this.$store.getters.isEditPage;
+    isUpdatePage() {
+      return this.$store.getters["sidebarsModule/isUpdatePage"];
     }
   },
   components: {

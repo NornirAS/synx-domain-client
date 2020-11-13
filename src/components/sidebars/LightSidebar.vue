@@ -68,7 +68,7 @@ export default {
   },
   computed: {
     title() {
-      return this.$store.state.sideBarTitle;
+      return this.$store.state.sidebarsModule.lightSideBarTitle;
     }
   },
   components: {
