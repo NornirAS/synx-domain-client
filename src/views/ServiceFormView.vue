@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center">
     <v-col xs="12" md="10">
-      <ServiceForm :btnName="btnName" />
+      <ServiceForm :title="title" :btnName="btnName" />
     </v-col>
   </v-row>
 </template>
