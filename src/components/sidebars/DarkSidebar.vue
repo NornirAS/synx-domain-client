@@ -32,7 +32,6 @@
 
 <script>
 import {
-  mdiBell,
   mdiAntenna,
   mdiAccountCircle,
   mdiEarth,
@@ -54,11 +53,6 @@ export default {
           title: "Instances",
           icon: mdiArrangeSendBackward,
           path: { name: "instances" }
-        },
-        {
-          title: "Notifications",
-          icon: mdiBell,
-          path: { name: "notifications" }
         }
       ],
       headerStyle: {

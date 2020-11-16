@@ -3,7 +3,6 @@ import VueRouter from "vue-router";
 import Homepage from "../views/Homepage.vue";
 import Services from "../views/Services.vue";
 import ServiceFormView from "../views/ServiceFormView";
-import Notifications from "../views/Notifications.vue";
 import AppBar from "../components/AppBar.vue";
 import DarkSidebar from "../components/sidebars/DarkSidebar.vue";
 import LightSidebar from "../components/sidebars/LightSidebar.vue";
@@ -86,17 +85,6 @@ const routes = [
         name: "serviceUpdate"
       }
     ],
-    beforeEnter: authGuard
-  },
-  {
-    path: "/domains/domain/:domainName/notifications",
-    name: "notifications",
-    components: {
-      default: Notifications,
-      "app-bar": AppBar,
-      "dark-sidebar": DarkSidebar,
-      "footer-bar": FooterBar
-    },
     beforeEnter: authGuard
   },
   {
