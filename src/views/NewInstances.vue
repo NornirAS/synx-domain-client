@@ -115,6 +115,14 @@ export default {
     },
     instances() {
       return this.$store.state.instancesModule.instancesToAprove;
+    },
+    successMessage() {
+      return this.$store.state.alarmModule.successMessage;
+    }
+  },
+  watch: {
+    successMessage() {
+      this.$socket.emit("look_for_new_instances", this.token, this.username);
     }
   }
 };

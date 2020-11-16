@@ -45,6 +45,14 @@ export default {
     },
     instances() {
       return this.$store.state.instancesModule.instances;
+    },
+    successMessage() {
+      return this.$store.state.alarmModule.successMessage;
+    }
+  },
+  watch: {
+    successMessage() {
+      this.$socket.emit("get_all_instances", this.token);
     }
   },
   components: {

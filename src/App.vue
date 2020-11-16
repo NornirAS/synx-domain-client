@@ -45,7 +45,7 @@ export default {
     },
     successMessage(newValue) {
       if (newValue !== "") {
-        alert(newValue);
+        console.log(newValue);
       }
     }
   }
