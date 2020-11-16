@@ -1,22 +1,22 @@
 const state = {
   serviceForm: {
-    serviceName: null,
-    description: null,
-    schemaDescription: null,
-    pictureURL: null,
+    serviceName: "",
+    description: "",
+    schemaDescription: "",
+    pictureURL: "",
     keywords: [],
     serviceSchema: [],
     commandSchema: [],
-    instances: null, // instances to add
+    instances: 0, // instances to add
     timeOut: "30",
     premasterscript: "YWFhYWFhYWFhYQo=",
     masterScript: "YWFhYWFhYWFhYQo=",
     webJS: "Hello"
   },
   totalInstances: 1000,
-  serviceInstances: null, // instances of selected service
+  serviceInstances: 0, // instances of selected service
   formSuccess: false,
-  formError: null
+  formError: ""
 };
 
 const mutations = {
@@ -91,19 +91,19 @@ const mutations = {
     state.serviceInstances = parseInt(service.instances);
   },
   resetServiceForm(state) {
-    state.serviceForm.serviceName = null;
-    state.serviceForm.description = null;
-    state.serviceForm.schemaDescription = null;
-    state.serviceForm.pictureURL = null;
+    state.serviceForm.serviceName = "";
+    state.serviceForm.description = "";
+    state.serviceForm.schemaDescription = "";
+    state.serviceForm.pictureURL = "";
     state.serviceForm.keywords = [];
     state.serviceForm.serviceSchema = [];
     state.serviceForm.commandSchema = [];
-    state.serviceForm.instances = null;
-    state.serviceInstances = null;
+    state.serviceForm.instances = 0;
+    state.serviceInstances = 0;
   },
   resetServiceFormStatus(state) {
     state.formSuccess = false;
-    state.formError = null;
+    state.formError = "";
   },
   removeInstanceOnCreate(state) {
     state.serviceForm.instances = state.serviceForm.instances - 1;

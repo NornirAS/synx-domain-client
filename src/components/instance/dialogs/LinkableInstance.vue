@@ -41,7 +41,7 @@ import DialogTemplate from "./DialogTemplate";
 export default {
   data() {
     return {
-      linkTo: null,
+      linkTo: "",
       status: false,
       actionBtnStyle: {
         backgroundColor: "#27AAE1"
@@ -70,7 +70,7 @@ export default {
     },
     closeDialog() {
       this.$store.commit("instancesModule/toggleDialog");
-      this.linkTo = null;
+      this.linkTo = "";
       this.status = false;
     }
   },

@@ -56,8 +56,8 @@ export default {
     return {
       errors: [],
       authData: {
-        username: null,
-        password: null
+        username: "",
+        password: ""
       },
       colorBlue: "#27AAE1"
     };
@@ -81,8 +81,8 @@ export default {
       if (_.isEmpty(this.errors)) {
         localStorage.setItem("username", this.authData.username);
         this.$socket.emit("authenticate", this.authData);
-        this.authData.username = null;
-        this.authData.password = null;
+        this.authData.username = "";
+        this.authData.password = "";
       }
     }
   },

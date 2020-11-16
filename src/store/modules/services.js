@@ -1,7 +1,7 @@
 const state = {
   services: [],
   selectAll: false,
-  selectedServiceIndex: null
+  selectedServiceIndex: ""
 };
 
 const mutations = {
@@ -41,7 +41,7 @@ const actions = {
       const object = JSON.parse(item);
       const isSelected = object => {
         object.isSelected = false;
-        object.activeChannels = null;
+        object.activeChannels = "";
         return object;
       };
       const newObject = isSelected(object);

@@ -27,7 +27,7 @@ export default {
     return {
       title: "Schema Description",
       description: "Describe your service and command schema",
-      schemaDescription: null
+      schemaDescription: ""
     };
   },
   mounted() {

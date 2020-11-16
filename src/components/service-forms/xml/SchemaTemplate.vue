@@ -48,11 +48,11 @@ export default {
   data() {
     return {
       serviceSchema: {
-        tagName: null,
+        tagName: "",
         linkTo: {}
       },
       commandSchema: {
-        tagName: null
+        tagName: ""
       },
       colorBlue: "#27AAE1"
     };

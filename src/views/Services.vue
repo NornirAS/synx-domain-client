@@ -132,8 +132,8 @@ export default {
       const services = [];
       data.forEach(item => {
         let service = {
-          serviceName: null,
-          instanceToDelete: null
+          serviceName: "",
+          instanceToDelete: ""
         };
         service.serviceName = item.serviceName;
         service.instanceToDelete = "0";

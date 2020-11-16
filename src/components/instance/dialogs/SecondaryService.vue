@@ -65,9 +65,9 @@ import DialogTemplate from "./DialogTemplate";
 export default {
   data() {
     return {
-      refObjectID: null,
-      refDomain: null,
-      refService: null,
+      refObjectID: "",
+      refDomain: "",
+      refService: "",
       action: true,
       actionBtnStyle: {
         backgroundColor: "#27AAE1"
@@ -98,9 +98,9 @@ export default {
     },
     closeDialog() {
       this.$store.commit("instancesModule/toggleDialog");
-      this.refObjectID = null;
-      this.refDomain = null;
-      this.refService = null;
+      this.refObjectID = "";
+      this.refDomain = "";
+      this.refService = "";
       this.action = true;
     }
   },

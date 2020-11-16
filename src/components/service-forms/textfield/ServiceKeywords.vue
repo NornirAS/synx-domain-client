@@ -41,7 +41,7 @@ export default {
     return {
       title: "Keywords",
       description: "Search keywords to easily discover your service.",
-      serviceKeyword: null,
+      serviceKeyword: "",
       colorBlue: "#27AAE1",
       chipStyle: {
         color: "#27AAE1",
@@ -53,7 +53,7 @@ export default {
   methods: {
     addKeyword() {
       this.$store.commit("serviceModule/addKeyword", this.serviceKeyword);
-      this.serviceKeyword = null;
+      this.serviceKeyword = "";
     },
     removeKeyword(index) {
       this.$store.commit("serviceModule/removeKeyword", index);

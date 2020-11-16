@@ -121,7 +121,7 @@ export default {
           method: this.readAccess
         }
       ],
-      dialogTitle: null,
+      dialogTitle: "",
       dialogChangeOwner: false,
       dialogMapId: false,
       dialogKillSession: false,

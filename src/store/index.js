@@ -12,8 +12,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    showDrawerOnMobile: null,
-    isMobile: null
+    showDrawerOnMobile: false,
+    isMobile: false
   },
   mutations: {
     isMobile(state, payload) {

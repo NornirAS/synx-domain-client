@@ -101,7 +101,7 @@ export default {
   props: ["index", "title", "linkTest"],
   data() {
     return {
-      isLink: null,
+      isLink: false,
       linkTo: {
         domain: "",
         service: "",

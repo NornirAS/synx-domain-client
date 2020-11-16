@@ -1,6 +1,6 @@
 const state = {
   ownedDomains: [],
-  currentDomain: null
+  currentDomain: ""
 };
 
 const mutations = {

@@ -60,7 +60,7 @@ import { mdiAccount, mdiBell } from "@mdi/js";
 export default {
   data() {
     return {
-      drawer: null,
+      drawer: false,
       account: mdiAccount,
       bell: mdiBell,
       appBarStyle: {

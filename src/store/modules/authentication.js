@@ -1,7 +1,7 @@
 const state = {
-  username: null,
-  idToken: null,
-  authError: null
+  username: "",
+  idToken: "",
+  authError: ""
 };
 
 const mutations = {
@@ -13,12 +13,12 @@ const mutations = {
     state.authError = error;
   },
   signOut(state) {
-    state.idToken = null;
-    state.username = null;
+    state.idToken = "";
+    state.username = "";
     localStorage.clear();
   },
   resetError(state) {
-    state.authError = null;
+    state.authError = "";
   }
 };
 
@@ -71,7 +71,7 @@ const actions = {
 
 const getters = {
   isAuthenticated({ idToken }) {
-    return idToken !== null;
+    return idToken !== "";
   }
 };
 

@@ -3,10 +3,10 @@ const _ = require("underscore");
 const state = {
   instances: [],
   dialog: false,
-  selectedDomain: null,
-  selectedService: null,
-  selectedInstance: null,
-  dialogTitle: null,
+  selectedDomain: "",
+  selectedService: "",
+  selectedInstance: "",
+  dialogTitle: "",
   instancesToAprove: []
 };
 

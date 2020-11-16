@@ -46,7 +46,7 @@ export default {
       title: "Timeout",
       description:
         "Time for inactive channelrequest before it closes(in seconds). Default 30.",
-      serviceTimeOut: null,
+      serviceTimeOut: "",
       secondaryValue: "s",
       helper: "Current Timeout",
       primaryActionBtnName: "Set Timeout",
@@ -78,7 +78,7 @@ export default {
   methods: {
     setTimeOut() {
       this.$store.commit("serviceModule/setTimeout", this.serviceTimeOut);
-      this.serviceTimeOut = null;
+      this.serviceTimeOut = "";
     }
   },
   computed: {

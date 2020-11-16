@@ -28,7 +28,7 @@ export default {
       title: "Description",
       description:
         "In order for the service to be found with Draape and used by others, agood description is recommended. What kind of data does the service provide?",
-      serviceDescription: null
+      serviceDescription: ""
     };
   },
   mounted() {

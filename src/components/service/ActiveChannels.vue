@@ -52,7 +52,7 @@ export default {
   },
   watch: {
     activeChannels(newValue) {
-      if (newValue !== null) {
+      if (newValue !== "") {
         this.btnTitle = `Active Channels: ${newValue}`;
         this.outlined = false;
         this.text = true;
