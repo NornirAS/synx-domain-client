@@ -38,16 +38,14 @@ export default {
     index() {
       return this.$route.params.index;
     },
-    formSuccess() {
-      return this.$store.state.serviceModule.formSuccess;
+    successMessage() {
+      return this.$store.state.alarmModule.successMessage;
     }
   },
   watch: {
-    formSuccess(newValue) {
-      if (newValue) {
-        this.$router.push({ name: "services" });
-        this.$store.commit("serviceModule/resetServiceFormStatus");
-      }
+    successMessage() {
+      this.$router.push({ name: "services" });
+      this.$store.commit("serviceModule/resetServiceFormStatus");
     }
   },
   components: {

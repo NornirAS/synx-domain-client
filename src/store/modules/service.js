@@ -14,9 +14,7 @@ const state = {
     webJS: "Hello"
   },
   totalInstances: 1000,
-  serviceInstances: 0, // instances of selected service
-  formSuccess: false,
-  formError: ""
+  serviceInstances: 0 // instances of selected service
 };
 
 const mutations = {
@@ -65,21 +63,6 @@ const mutations = {
   setTimeout(state, newTimeout) {
     state.serviceForm.timeOut = newTimeout;
   },
-  serviceRegistrationSuccess(state) {
-    state.formSuccess = true;
-  },
-  serviceRegistrationError(state) {
-    state.formSuccess = false;
-    state.formError =
-      "Registration Error. Something went wrong. Try one more time";
-  },
-  serviceUpdateSuccess(state) {
-    state.formSuccess = true;
-  },
-  serviceUpdatedError(state) {
-    state.formSuccess = false;
-    state.formError = "Update Error. Something went wrong. Try one more time";
-  },
   editService(state, service) {
     const form = state.serviceForm;
     form.serviceName = service.serviceName;
@@ -110,21 +93,6 @@ const mutations = {
   }
 };
 
-const actions = {
-  SOCKET_service_registration_success({ commit }) {
-    commit("serviceRegistrationSuccess");
-  },
-  SOCKET_service_registration_error({ commit }) {
-    commit("serviceRegistrationError");
-  },
-  SOCKET_service_update_success({ commit }) {
-    commit("serviceUpdateSuccess");
-  },
-  SOCKET_service_update_error({ commit }) {
-    commit("serviceUpdateError");
-  }
-};
-
 const getters = {
   instancesBalance({ serviceForm, serviceInstances }) {
     return serviceForm.instances - serviceInstances;
@@ -147,6 +115,5 @@ export default {
   namespaced: true,
   state,
   mutations,
-  actions,
   getters
 };
