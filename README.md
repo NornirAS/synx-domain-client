@@ -1,4 +1,4 @@
-# synx-domain
+# synx-domain [![Build Status](https://travis-ci.com/NornirAS/synx-domain-client.svg?token=sSwVNsksQEMmZYKRCfyq&branch=main)](https://travis-ci.com/NornirAS/synx-domain-client)
 
 ## Project setup
 ```
