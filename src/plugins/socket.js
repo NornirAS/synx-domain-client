@@ -6,7 +6,7 @@ import VueSocketIO from "vue-socket.io";
 Vue.use(
   new VueSocketIO({
     debug: false,
-    connection: io("https://synx-domain-server.herokuapp.com:8080"),
+    connection: io("https://synx-domain-server.herokuapp.com"),
     vuex: {
       store,
       actionPrefix: "SOCKET_",
