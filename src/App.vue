@@ -20,6 +20,7 @@ export default {
     return {
       mainContainerStyle: {
         height: "100%",
+        padding: "0 1em",
         overflow: "scroll"
       }
     };
@@ -63,6 +64,12 @@ export default {
   flex-grow: 1;
 }
 .theme--light.v-label {
-  color: #58595b !important;
+  color: #58595b;
+  padding-left: 0.3em;
+}
+.theme--dark.v-label {
+  font-style: italic;
+  padding-left: 0.5em;
+  padding-right: 0.1em;
 }
 </style>
