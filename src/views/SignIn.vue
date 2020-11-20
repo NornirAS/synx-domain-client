@@ -1,13 +1,14 @@
 <template>
   <v-row class="bg" style="height: 100%" justify="center">
-    <v-col cols="12" align="center">
+    <v-col cols="12" md="10" :align="isMobile">
+      <br />
       <v-img
         alt="Cioty"
         class="shrink mr-2"
         contain
-        src="../assets/CIOTY-final-Logo.png"
+        src="../assets/cioty-logo-white.png"
         transition="scale-transition"
-        width="50"
+        width="60"
       />
     </v-col>
     <v-col cols="12">
@@ -15,7 +16,12 @@
       <br />
       <p justify="center" align="center">
         Sign In with your Synx ID and password. Not registered yet?
-        <a href="#" class="text-decoration-none synxpass-link">Sign Up!</a>
+        <a
+          href="https://synxpass.com/"
+          class="text-decoration-none synxpass-link"
+          target="_blank"
+          >Sign Up!
+        </a>
       </p>
       <SignInForm />
     </v-col>
@@ -25,6 +31,11 @@
 <script>
 import SignInForm from "../components/SignInForm.vue";
 export default {
+  computed: {
+    isMobile() {
+      return this.$store.state.isMobile ? "center" : "left";
+    }
+  },
   components: {
     SignInForm
   }
@@ -35,7 +46,7 @@ export default {
 h1 {
   font-size: 30px;
   font-family: sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   color: #ffffff;
 }
 p {
