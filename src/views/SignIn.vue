@@ -12,9 +12,9 @@
       />
     </v-col>
     <v-col cols="12">
-      <h1 justify="center" align="center">Welcome to CIOTY domain service</h1>
+      <h1 align="center">Welcome to CIOTY domain service</h1>
       <br />
-      <p justify="center" align="center">
+      <p align="center">
         Sign In with your Synx ID and password. Not registered yet?
         <a
           href="https://synxpass.com/"

@@ -1,7 +1,7 @@
 <template>
   <v-form ref="form" v-model="valid" @submit="submitForm" lazy-validation>
     <v-container>
-      <v-row justify="center" align="center">
+      <v-row justify="center">
         <v-col cols="12" md="4">
           <v-text-field
             v-model="authData.username"
