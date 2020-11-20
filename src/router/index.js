@@ -7,7 +7,6 @@ import AppBar from "../components/AppBar.vue";
 import DarkSidebar from "../components/sidebars/DarkSidebar.vue";
 import LightSidebar from "../components/sidebars/LightSidebar.vue";
 import FooterBar from "../components/FooterBar.vue";
-import SignIn from "../views/SignIn.vue";
 import Domains from "../views/Domains.vue";
 import DomainPurchase from "../views/DomainPurchase.vue";
 import Instances from "../views/Instances.vue";
@@ -19,7 +18,15 @@ const authGuard = (to, from, next) => {
   if (localStorage.getItem("token")) {
     next();
   } else {
-    next("signin");
+    next("/");
+  }
+};
+
+const skipHomeIfAuth = (to, from, next) => {
+  if (localStorage.getItem("token")) {
+    next("domains");
+  } else {
+    next();
   }
 };
 
@@ -29,12 +36,8 @@ const routes = [
     name: "home",
     components: {
       default: Homepage
-    }
-  },
-  {
-    path: "/signin",
-    name: "signin",
-    component: SignIn
+    },
+    beforeEnter: skipHomeIfAuth
   },
   {
     path: "/domains",

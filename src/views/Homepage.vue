@@ -1,58 +1,65 @@
 <template>
-  <div>
-    <h1>Welcome to CIOTY domain service</h1>
-    <div>
-      <v-btn
-        v-if="!auth"
-        :to="{ name: 'signin' }"
-        :color="colorBlue"
-        link
-        rounded
-        dark
-      >
-        Sign In
-      </v-btn>
-      <v-btn
-        v-if="auth"
-        :to="{ name: 'domains' }"
-        :color="colorBlue"
-        link
-        rounded
-        dark
-      >
-        Domains
-      </v-btn>
-      <v-btn
-        v-if="auth"
-        @click="signOut"
-        :to="{ name: 'home' }"
-        :color="colorBlue"
-        link
-        rounded
-        dark
-      >
-        Log Out
-      </v-btn>
-    </div>
-  </div>
+  <v-row class="bg" style="height: 100%" justify="center">
+    <v-col cols="12" md="10" :align="isMobile">
+      <br />
+      <v-img
+        alt="Cioty"
+        class="shrink mr-2"
+        contain
+        src="../assets/cioty-logo-white.png"
+        transition="scale-transition"
+        width="60"
+      />
+    </v-col>
+    <v-col cols="12">
+      <h1 align="center">Welcome to CIOTY domain service</h1>
+      <br />
+      <p align="center">
+        Sign In with your Synx ID and password. Not registered yet?
+        <a
+          href="https://synxpass.com/"
+          class="text-decoration-none synxpass-link"
+          target="_blank"
+          >Sign Up!
+        </a>
+      </p>
+      <SignInForm />
+    </v-col>
+  </v-row>
 </template>
 
 <script>
+import SignInForm from "../components/SignInForm.vue";
 export default {
-  data() {
-    return {
-      colorBlue: "#27AAE1"
-    };
-  },
-  methods: {
-    signOut() {
-      this.$store.commit("authModule/signOut");
-    }
-  },
   computed: {
-    auth() {
-      return this.$store.getters["authModule/isAuthenticated"];
+    isMobile() {
+      return this.$store.state.isMobile ? "center" : "left";
     }
+  },
+  components: {
+    SignInForm
   }
 };
 </script>
+
+<style scoped>
+h1 {
+  font-size: 30px;
+  font-family: sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+}
+p {
+  font-size: 16px;
+  font-family: sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+}
+.bg {
+  background: url("../assets/cioty-background.png") no-repeat center fixed;
+  background-size: cover;
+}
+.synxpass-link {
+  color: #00afab;
+}
+</style>
