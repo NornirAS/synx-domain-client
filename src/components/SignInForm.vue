@@ -27,10 +27,10 @@
           <p align="center">{{ error }}</p>
         </v-col>
       </v-row>
-      <br />
-      <br />
-      <br />
-      <br />
+      <br v-if="!isMobile" />
+      <br v-if="!isMobile" />
+      <br v-if="!isMobile" />
+      <br v-if="!isMobile" />
       <v-row justify="center">
         <v-col cols="12" md="4" align="center">
           <v-btn :color="colorWhite" type="submit" rounded outlined dark>
@@ -71,6 +71,9 @@ export default {
     },
     authError() {
       return this.$store.state.authModule.authError;
+    },
+    isMobile() {
+      return this.$store.state.isMobile;
     }
   },
   watch: {
