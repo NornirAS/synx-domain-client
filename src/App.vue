@@ -23,6 +23,9 @@ export default {
     this.$store.commit("isMobile", this.isMobile);
   },
   computed: {
+    notAuth() {
+      return this.$store.getters.isAuthenticated;
+    },
     isMobile() {
       return this.$vuetify.breakpoint.smAndDown;
     },
@@ -31,6 +34,11 @@ export default {
     }
   },
   watch: {
+    notAuth(newValue) {
+      if (newValue === false) {
+        this.$router.push({ name: "home" });
+      }
+    },
     isMobile() {
       this.$store.commit("isMobile", this.isMobile);
     },
@@ -47,6 +55,12 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 .v-application {
   font-family: "Open Sans", sans-serif !important;
+}
+.v-toolbar__content {
+  margin: 0 1em;
+}
+.nav-buttons {
+  margin: 0 1em;
 }
 .v-main {
   height: 100vh;

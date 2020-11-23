@@ -84,9 +84,6 @@ export default {
     }
   },
   computed: {
-    notAuth() {
-      return this.$store.getters.isAuthenticated;
-    },
     isMobile() {
       return this.$store.state.isMobile;
     },
@@ -100,21 +97,7 @@ export default {
     },
     showDrawer(newValue) {
       this.drawer = newValue;
-    },
-    notAuth(newValue) {
-      if (newValue === false) {
-        this.$router.push({ name: "home" });
-      }
     }
   }
 };
 </script>
-
-<style>
-.v-toolbar__content {
-  margin: 0 1em;
-}
-.nav-buttons {
-  margin: 0 1em;
-}
-</style>
