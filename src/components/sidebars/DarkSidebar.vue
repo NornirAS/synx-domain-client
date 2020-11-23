@@ -3,11 +3,11 @@
     <v-list-item slot="title" two-line>
       <v-list-item-content>
         <v-list-item-title :style="headerStyle">
-          <v-icon small>{{ mdiAccountCircle }}</v-icon>
+          <v-icon medium>{{ mdiAccountCircle }}</v-icon>
           Username: <span class="font-italic">{{ username }}</span>
         </v-list-item-title>
         <v-list-item-title :style="headerStyle">
-          <v-icon small>{{ mdiEarth }}</v-icon>
+          <v-icon medium>{{ mdiEarth }}</v-icon>
           Domain: <span class="font-italic">{{ domain }}</span>
         </v-list-item-title>
       </v-list-item-content>
@@ -17,14 +17,17 @@
       v-for="item in items"
       :key="item.title"
       :to="item.path"
+      :style="listItemStyle"
       exact
       link
     >
-      <v-icon>{{ item.icon }}</v-icon>
+      <v-list-item-icon>
+        <v-icon>{{ item.icon }}</v-icon>
+      </v-list-item-icon>
       <v-list-item-content>
-        <v-list-item-title :style="listItemStyle">{{
-          item.title
-        }}</v-list-item-title>
+        <v-list-item-title :style="listItemTitleStyle">
+          {{ item.title }}
+        </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
   </sidebar-template>
@@ -56,14 +59,17 @@ export default {
         }
       ],
       headerStyle: {
-        fontSize: "16px",
+        fontSize: "20px",
         color: "#ffffff",
-        paddingTop: "0.2em"
+        paddingTop: "0.2em",
+        paddingLeft: "0.9em"
       },
       listItemStyle: {
-        fontSize: "16px",
-        color: "#ffffff",
         paddingLeft: "1.5em"
+      },
+      listItemTitleStyle: {
+        fontSize: "16px",
+        color: "#ffffff"
       },
       bgColor: "#404B5F",
       dark: true

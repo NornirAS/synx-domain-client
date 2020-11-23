@@ -12,12 +12,15 @@
       v-for="item in items"
       :key="item.title"
       :to="item.path"
+      :style="listItemStyle"
       exact
       link
     >
-      <v-icon>{{ item.icon }}</v-icon>
+      <v-list-item-icon>
+        <v-icon>{{ item.icon }}</v-icon>
+      </v-list-item-icon>
       <v-list-item-content>
-        <v-list-item-title :style="listItemStyle">{{
+        <v-list-item-title :style="listItemTitleStyle">{{
           item.title
         }}</v-list-item-title>
       </v-list-item-content>
@@ -56,12 +59,15 @@ export default {
       headerStyle: {
         fontSize: "20px",
         color: "#58595b",
+        paddingTop: "0.2em",
         paddingLeft: "0.9em"
       },
       listItemStyle: {
-        fontSize: "16px",
-        color: "#9b9b9b",
         paddingLeft: "1.5em"
+      },
+      listItemTitleStyle: {
+        fontSize: "16px",
+        color: "#9b9b9b"
       },
       light: true
     };

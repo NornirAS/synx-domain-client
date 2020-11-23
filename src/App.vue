@@ -66,6 +66,9 @@ export default {
   color: #58595b;
   padding-left: 0.3em;
 }
+.theme--light.v-input {
+  color: #58595b !important;
+}
 .theme--dark.v-label {
   font-style: italic;
   padding-left: 0.5em;
