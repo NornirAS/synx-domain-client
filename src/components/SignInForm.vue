@@ -24,7 +24,7 @@
       </v-row>
       <v-row justify="center">
         <v-col cols="12" md="4">
-          <p align="center">{{ error }}</p>
+          <p :color="colorWhite" align="center">{{ error }}</p>
         </v-col>
       </v-row>
       <br v-if="!isMobile" />
@@ -87,3 +87,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #ffffff;
+}
+</style>
