@@ -24,7 +24,7 @@ const authGuard = (to, from, next) => {
 
 const skipHomeIfAuth = (to, from, next) => {
   if (localStorage.getItem("token")) {
-    next("domains");
+    next("/domains");
   } else {
     next();
   }
