@@ -4,7 +4,7 @@
     <router-view name="dark-sidebar"></router-view>
     <router-view name="light-sidebar"></router-view>
     <v-main>
-      <v-container :style="mainContainerStyle" fluid>
+      <v-container fluid>
         <router-view></router-view>
       </v-container>
     </v-main>
@@ -15,16 +15,6 @@
 <script>
 export default {
   name: "App",
-
-  data() {
-    return {
-      mainContainerStyle: {
-        height: "100%",
-        padding: "0 1em",
-        overflow: "scroll"
-      }
-    };
-  },
   created() {
     this.$store.dispatch("authModule/tryAutoSignIn");
     if (localStorage.getItem("expirationDate")) {
@@ -54,9 +44,18 @@ export default {
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+.v-application {
+  font-family: "Open Sans", sans-serif !important;
+}
 .v-main {
   height: 100vh;
   background-color: rgb(235, 240, 244);
+}
+.container.container--fluid {
+  height: 100%;
+  padding: 0 12px;
+  overflow: scroll;
 }
 .v-card {
   margin-top: 0.5em;
@@ -71,5 +70,10 @@ export default {
   font-style: italic;
   padding-left: 0.5em;
   padding-right: 0.1em;
+}
+@media screen and (max-width: 960px) {
+  .v-main {
+    height: 100%;
+  }
 }
 </style>

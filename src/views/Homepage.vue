@@ -1,5 +1,5 @@
 <template>
-  <v-row class="bg" style="height: 100%" justify="center">
+  <v-row class="bg" justify="center">
     <v-col cols="12" md="10" :align="isMobile">
       <br />
       <v-img
@@ -45,19 +45,18 @@ export default {
 <style scoped>
 h1 {
   font-size: 30px;
-  font-family: sans-serif;
   font-weight: 300;
   color: #ffffff;
 }
 p {
   font-size: 16px;
-  font-family: sans-serif;
   font-weight: 300;
   color: #ffffff;
 }
 .bg {
   background: url("../assets/cioty-background.png") no-repeat center fixed;
   background-size: cover;
+  height: 100%;
 }
 .synxpass-link {
   color: #00afab;
