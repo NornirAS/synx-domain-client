@@ -1,35 +1,56 @@
 <template>
   <v-row justify="center">
-    <v-col xs="12" md="10">
-      <ServiceForm :title="title" :btnName="btnName" />
+    <v-col cols="12" md="10">
+      <v-row justify="space-between" align="center">
+        <v-col>
+          <h1>{{ title }}</h1>
+        </v-col>
+        <v-col align="right">
+          <v-btn
+            :to="{ name: 'services' }"
+            :color="colorGrey"
+            rounded
+            small
+            dark
+          >
+            <v-icon></v-icon>
+            Back
+          </v-btn>
+        </v-col>
+      </v-row>
+      <v-row justify="center">
+        <v-col xs="12">
+          <ServiceForm :btnName="btnName" />
+        </v-col>
+      </v-row>
     </v-col>
   </v-row>
 </template>
 
 <script>
-import ServiceForm from "../components/service-forms/ServiceForm.vue";
+// import ServiceForm from "../components/service-forms/ServiceForm.vue";
+import ServiceForm from "../components/ServiceForm.vue";
 export default {
   data() {
     return {
       title: "",
-      btnName: ""
+      btnName: "",
+      colorGrey: "#404B5F"
     };
   },
   created() {
     if (this.index >= 0) {
-      this.$store.commit("sidebarsModule/lightSideBarTitle", "Update Service");
       this.$store.commit("servicesModule/serviceIndex", this.index);
-      this.$store.commit("serviceModule/editService", this.service);
+      this.$store.commit("serviceFormModule/editService", this.service);
       this.title = "Update Service";
       this.btnName = "Update";
     } else {
-      this.$store.commit("sidebarsModule/lightSideBarTitle", "Create Service");
       this.title = "Create Service";
       this.btnName = "Create";
     }
   },
   beforeDestroy() {
-    this.$store.commit("serviceModule/resetServiceForm");
+    this.$store.commit("serviceFormModule/resetServiceForm");
   },
   computed: {
     service() {
@@ -53,3 +74,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+h1 {
+  color: #58595b;
+  font-size: 24px;
+  font-weight: 500;
+}
+</style>

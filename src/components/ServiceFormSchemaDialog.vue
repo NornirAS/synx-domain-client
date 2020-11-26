@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <v-dialog v-model="dialog" width="500">
+    <v-dialog v-model="dialog" width="300">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           v-if="isLink"
@@ -31,52 +31,87 @@
         <v-card-title class="justify-center">
           Add Link
         </v-card-title>
-        <v-row style="padding: 0 1em">
-          <v-col xs="3">
-            <v-text-field
-              label="Domain"
-              single-line
-              dense
-              outlined
-              hide-details
-              v-model="linkTo.domain"
-            ></v-text-field>
-          </v-col>
-          <p>/</p>
-          <v-col xs="3">
-            <v-text-field
-              label="Service"
-              single-line
-              dense
-              outlined
-              hide-details
-              v-model="linkTo.service"
-            ></v-text-field>
-          </v-col>
-          <p>#</p>
-          <v-col xs="3">
-            <v-text-field
-              label="Variable"
-              single-line
-              dense
-              outlined
-              hide-details
-              v-model="linkTo.variable"
-            ></v-text-field>
-          </v-col>
-          <v-col xs="3">
-            <v-row class="justify-space-around">
-              <v-btn :color="colorGreen" fab @click="addLink()" small>
-                <v-icon>{{ mdiCheck }}</v-icon>
-              </v-btn>
-              <v-btn color="default" fab @click="dialog = false" small>
-                <v-icon>{{ mdiClose }}</v-icon>
-              </v-btn>
+        <v-card-actions>
+          <v-form
+            ref="linkForm"
+            v-model="valid"
+            @submit.prevent="submitLinkForm"
+            lazy-validation
+          >
+            <v-row style="padding: 0 1em">
+              <v-col cols="12">
+                <v-text-field
+                  v-model="linkTo.domain"
+                  :rules="formRules"
+                  :counter="15"
+                  label="Domain"
+                  form="service-form"
+                  name="domain"
+                  type="text"
+                  error-count="2"
+                  required
+                  dense
+                  outlined
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="linkTo.service"
+                  :rules="formRules"
+                  :counter="15"
+                  label="Service"
+                  form="service-form"
+                  name="service"
+                  type="text"
+                  error-count="2"
+                  required
+                  dense
+                  outlined
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="linkTo.variable"
+                  :rules="formRules"
+                  :counter="15"
+                  label="Variable"
+                  form="service-form"
+                  name="variable"
+                  type="text"
+                  error-count="2"
+                  required
+                  dense
+                  outlined
+                ></v-text-field>
+              </v-col>
+              <v-col>
+                <v-btn
+                  class="text-capitalize"
+                  @click="dialog = false"
+                  :style="cancelBtnStyle"
+                  dark
+                  rounded
+                  small
+                >
+                  Cancel
+                </v-btn>
+                <v-btn
+                  class="text-capitalize"
+                  :style="actionBtnStyle"
+                  type="submit"
+                  dark
+                  rounded
+                  small
+                >
+                  Add Link
+                </v-btn>
+              </v-col>
             </v-row>
-          </v-col>
-        </v-row>
+          </v-form>
+        </v-card-actions>
+
         <v-row>
-          <v-col align="right" style="padding-top: 0">
+          <v-col align="center" style="padding-top: 0">
             <v-btn
               v-if="isLink"
               @click="removeLink()"
@@ -101,17 +136,31 @@ export default {
   props: ["index"],
   data() {
     return {
+      mdiCheck,
+      mdiClose,
+      mdiDelete,
+      valid: false,
       isLink: false,
       linkTo: {
         domain: "",
         service: "",
         variable: ""
       },
-      mdiCheck,
-      mdiClose,
-      mdiDelete,
+      actionBtnStyle: {
+        backgroundColor: "#27AAE1",
+        float: "right"
+      },
+      cancelBtnStyle: {
+        backgroundColor: "#404B5F"
+      },
+      formRules: [
+        v => !!v || "Name is required",
+        v => (v && v.length) <= 15 || "Name must be maximum 15 character",
+        v =>
+          /^[A-Za-z\d]+$/.test(v) ||
+          "Only alphabet characters and numbers are allowed"
+      ],
       colorBlue: "#27AAE1",
-      colorGreen: "#71B663",
       colorRed: "#FF6666",
       dialog: false
     };
@@ -145,6 +194,12 @@ export default {
       this.linkTo = {};
       this.isLink = false;
       this.dialog = false;
+    },
+    submitLinkForm() {
+      if (this.$refs.linkForm.validate()) {
+        this.addLink();
+        this.$refs.linkForm.reset();
+      }
     }
   },
   computed: {
