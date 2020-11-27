@@ -19,14 +19,14 @@
         </v-col>
       </v-row>
       <v-row justify="space-between" align="center">
-        <v-col cols="4" sm="2" md="1">
+        <!-- <v-col cols="4" sm="2" md="1">
           <v-checkbox
             :style="checkBoxStyle"
             @change="selectAllServices"
             hide-details
           ></v-checkbox>
-        </v-col>
-        <v-col cols="4" sm="2" md="2">
+        </v-col> -->
+        <!-- <v-col cols="4" sm="2" md="2">
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
               <v-btn
@@ -61,8 +61,8 @@
           >
             Delete
           </v-btn>
-        </v-col>
-        <v-col cols="12" sm="6" md="7">
+        </v-col> -->
+        <v-col cols="12" md="6">
           <v-text-field
             v-model="search"
             append-icon="mdi-magnify"
@@ -95,24 +95,24 @@ export default {
       title: "Services",
       search: "",
       totalInstances: "1000",
-      groups: ["test1", "test2"],
-      sortList: ["newest", "oldest"],
+      // groups: ["test1", "test2"],
+      // sortList: ["newest", "oldest"],
       mdiChevronDown,
       mdiPlus,
       searchBarStyle: {
         marginTop: "0",
         padding: "0 0.5em 0 0.5em"
       },
-      filterBtnStyle: {
-        margin: "0 0.75em"
-      },
-      checkBoxStyle: {
-        margin: "0",
-        paddingLeft: "1.1em"
-      },
+      // filterBtnStyle: {
+      //   margin: "0 0.75em"
+      // },
+      // checkBoxStyle: {
+      //   margin: "0",
+      //   paddingLeft: "1.1em"
+      // },
       colorBlue: "#27AAE1",
-      colorRed: "#FF6666",
-      colorGrey: "#404B5F"
+      // colorRed: "#FF6666",
+      // colorGrey: "#404B5F"
     };
   },
   created() {
@@ -125,22 +125,22 @@ export default {
     url(domain, service) {
       return `https://${domain}.cioty.com/${service}`;
     },
-    selectAllServices() {
-      this.$store.commit("servicesModule/selectAllServices");
-    },
-    deleteService(data) {
-      const services = [];
-      data.forEach(item => {
-        let service = {
-          serviceName: "",
-          instanceToDelete: ""
-        };
-        service.serviceName = item.serviceName;
-        service.instanceToDelete = "0";
-        services.push(service);
-      });
-      this.$socket.emit("delete_service", this.domain, services, this.token);
-    }
+    // selectAllServices() {
+    //   this.$store.commit("servicesModule/selectAllServices");
+    // },
+    // deleteService(data) {
+    //   const services = [];
+    //   data.forEach(item => {
+    //     let service = {
+    //       serviceName: "",
+    //       instanceToDelete: ""
+    //     };
+    //     service.serviceName = item.serviceName;
+    //     service.instanceToDelete = "0";
+    //     services.push(service);
+    //   });
+    //   this.$socket.emit("delete_service", this.domain, services, this.token);
+    // }
   },
   computed: {
     domain() {
@@ -152,12 +152,12 @@ export default {
     services() {
       return this.$store.getters["servicesModule/servicesForDomain"];
     },
-    selectedServices() {
-      return this.services.filter(service => service.isSelected === true);
-    },
-    isSelected() {
-      return !this.selectedServices.length > 0 ? true : false;
-    }
+    // selectedServices() {
+    //   return this.services.filter(service => service.isSelected === true);
+    // },
+    // isSelected() {
+    //   return !this.selectedServices.length > 0 ? true : false;
+    // }
   },
   components: {
     ServiceCard
