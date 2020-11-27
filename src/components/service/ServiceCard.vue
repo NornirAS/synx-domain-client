@@ -33,7 +33,11 @@
         >
           Update Micropage <v-icon x-small>{{ mdiCircleEditOutline }}</v-icon>
         </v-btn>
-        <AddInstances :index="index" :btnStyle="btnStyle" />
+        <AddInstances
+          :index="index"
+          :availableInstances="availableInstances"
+          :btnStyle="btnStyle"
+        />
         <ActiveChannels
           :serviceName="serviceName"
           :index="index"
@@ -67,7 +71,7 @@ export default {
   props: ["service", "index"],
   data() {
     return {
-      totalInstances: 1000,
+      totalInstances: 100,
       mdiCircleEditOutline,
       helper: "Available Instances",
       primaryStyle: {
