@@ -1,15 +1,15 @@
 <template>
   <v-card outlined>
     <v-row align="center">
-      <v-col cols="2" sm="1">
+      <!-- <v-col cols="2" sm="1">
         <v-checkbox
           :style="checkBoxStyle"
           :value="isSelected"
           @change="selectService(index)"
           hide-details
         ></v-checkbox>
-      </v-col>
-      <v-col cols="10" sm="8">
+      </v-col> -->
+      <v-col cols="10" sm="9">
         <ServiceHeader
           :title="title"
           :description="micropage"
@@ -68,15 +68,15 @@ export default {
     };
   },
   methods: {
-    selectService(index) {
-      this.$store.commit("servicesModule/selectService", index);
-    }
+    // selectService(index) {
+    //   this.$store.commit("servicesModule/selectService", index);
+    // }
   },
   computed: {
-    isSelected() {
-      const service = this.$store.state.servicesModule.services[this.index];
-      return service.isSelected === true;
-    }
+    // isSelected() {
+    //   const service = this.$store.state.servicesModule.services[this.index];
+    //   return service.isSelected === true;
+    // }
   },
   components: {
     ServiceHeader,
