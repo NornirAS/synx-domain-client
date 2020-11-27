@@ -74,13 +74,10 @@
       </v-row>
       <hr />
       <ServiceCard
-        v-for="({ domain, serviceName, instances }, index) in services"
+        v-for="(service, index) in services"
         :key="index"
-        :title="serviceName"
-        :availableInstances="availableInstances(instances, totalInstances)"
-        :totalInstances="totalInstances"
-        :url="url(domain, serviceName)"
         :index="index"
+        :service="service"
       />
     </v-col>
   </v-row>
@@ -94,7 +91,7 @@ export default {
     return {
       title: "Services",
       search: "",
-      totalInstances: "1000",
+      // totalInstances: "1000",
       // groups: ["test1", "test2"],
       // sortList: ["newest", "oldest"],
       mdiChevronDown,
@@ -119,12 +116,6 @@ export default {
     this.$socket.emit("get_all_services", this.domain, this.token);
   },
   methods: {
-    availableInstances(instances, totalInstances) {
-      return totalInstances - instances;
-    },
-    url(domain, service) {
-      return `https://${domain}.cioty.com/${service}`;
-    }
     // selectAllServices() {
     //   this.$store.commit("servicesModule/selectAllServices");
     // },

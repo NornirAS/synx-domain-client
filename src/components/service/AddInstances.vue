@@ -23,13 +23,11 @@
           type="number"
           error-count="2"
           slot="action"
-          :max="availableInstances"
           required
           outlined
           dense
         ></v-text-field>
       </v-card-text>
-      {{ availableInstances }}
       <v-card-actions>
         <v-btn @click="dialog = false" :color="colorGrey" small rounded dark>
           Cances
