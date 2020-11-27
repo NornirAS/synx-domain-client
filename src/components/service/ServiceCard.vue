@@ -35,6 +35,8 @@
         </v-btn>
         <AddInstances
           :index="index"
+          :domain="domain"
+          :service="serviceName"
           :availableInstances="availableInstances"
           :btnStyle="btnStyle"
         />

@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  props: ["availableInstances"],
+  props: ["domain", "service", "availableInstances"],
   data() {
     return {
       valid: false,
@@ -75,8 +75,20 @@ export default {
     addInstances() {
       this.$refs.validateInstances.validate();
       if (this.$refs.validateInstances.validate()) {
+        this.$socket.emit(
+          "add_instances",
+          this.domain,
+          this.service,
+          this.instancesToAdd,
+          this.token
+        );
         this.dialog = false;
       }
+    }
+  },
+  computed: {
+    token() {
+      return this.$store.state.authModule.idToken;
     }
   }
 };
