@@ -110,7 +110,7 @@ export default {
       //   margin: "0",
       //   paddingLeft: "1.1em"
       // },
-      colorBlue: "#27AAE1",
+      colorBlue: "#27AAE1"
       // colorRed: "#FF6666",
       // colorGrey: "#404B5F"
     };
@@ -124,7 +124,7 @@ export default {
     },
     url(domain, service) {
       return `https://${domain}.cioty.com/${service}`;
-    },
+    }
     // selectAllServices() {
     //   this.$store.commit("servicesModule/selectAllServices");
     // },
@@ -151,7 +151,7 @@ export default {
     },
     services() {
       return this.$store.getters["servicesModule/servicesForDomain"];
-    },
+    }
     // selectedServices() {
     //   return this.services.filter(service => service.isSelected === true);
     // },
