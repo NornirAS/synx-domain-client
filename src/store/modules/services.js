@@ -36,16 +36,10 @@ const mutations = {
 
 const actions = {
   SOCKET_all_services({ commit }, data) {
-    const services = [];
-    data.forEach(item => {
-      const object = JSON.parse(item);
-      const isSelected = object => {
-        object.isSelected = false;
-        object.activeChannels = "";
-        return object;
-      };
-      const newObject = isSelected(object);
-      services.push(newObject);
+    const services = data.map(service => {
+      service = JSON.parse(service);
+      service.activeChannels = "";
+      return service;
     });
     commit("allServices", services);
   },
