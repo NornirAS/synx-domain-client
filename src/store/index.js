@@ -8,6 +8,7 @@ import instancesModule from "./modules/instances";
 import alarmModule from "./modules/alarm";
 import sidebarsModule from "./modules/sidebars";
 import serviceFormModule from "./modules/service-form";
+import addInstancesModule from "./modules/service-form";
 
 Vue.use(Vuex);
 
@@ -32,6 +33,7 @@ export default new Vuex.Store({
     instancesModule,
     alarmModule,
     sidebarsModule,
-    serviceFormModule
+    serviceFormModule,
+    addInstancesModule
   }
 });

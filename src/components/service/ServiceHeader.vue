@@ -13,6 +13,17 @@
     >
       Edit <v-icon x-small>{{ icon }}</v-icon>
     </v-btn>
+    <v-btn
+      :style="btnStyle"
+      :to="{ name: 'serviceUpdate', params: { index } }"
+      outlined
+      rounded
+      x-small
+      ligth
+    >
+      Update Micropage <v-icon x-small>{{ icon }}</v-icon>
+    </v-btn>
+    <AddInstances :index="index" :btnStyle="btnStyle" />
     <ActiveChannels :title="title" :index="index" :btnStyle="btnStyle" />
     <p>
       {{ description }} <a :href="url" target="_blank">{{ urlToLoweCase }}</a>
@@ -22,6 +33,7 @@
 
 <script>
 import ActiveChannels from "./ActiveChannels";
+import AddInstances from "./AddInstances";
 export default {
   props: ["title", "description", "index", "url", "icon"],
   data() {
@@ -38,7 +50,8 @@ export default {
     }
   },
   components: {
-    ActiveChannels
+    ActiveChannels,
+    AddInstances
   }
 };
 </script>
