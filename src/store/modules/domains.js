@@ -14,10 +14,11 @@ const mutations = {
 
 const actions = {
   SOCKET_all_domains({ commit }, data) {
-    data.forEach(domain => {
-      domain.name = domain.name.toLowerCase();
+    const domains = data.map(domain => {
+      domain.name.toLowerCase();
+      return domain;
     });
-    commit("allDomains", data);
+    commit("allDomains", domains);
   }
 };
 
