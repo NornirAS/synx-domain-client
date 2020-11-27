@@ -66,7 +66,7 @@ export default {
   watch: {
     successMessage() {
       this.$router.push({ name: "services" });
-      this.$store.commit("serviceModule/resetServiceFormStatus");
+      this.$store.commit("serviceFormModule/resetServiceFormStatus");
     }
   },
   components: {
