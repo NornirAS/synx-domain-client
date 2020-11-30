@@ -2,12 +2,12 @@
   <v-dialog v-model="dialog" persistent max-width="290">
     <template v-slot:activator="{ on, attrs }">
       <v-btn
-        :style="btnStyle"
+        :color="colorLightGrey"
+        class="text-capitalize"
         dark
         v-bind="attrs"
         v-on="on"
         x-small
-        outlined
         rounded
       >
         Add Instances
@@ -34,7 +34,13 @@
         ></v-text-field>
       </v-card-text>
       <v-card-actions :style="cardActionStyle">
-        <v-btn @click="dialog = false" :color="colorGrey" small rounded dark>
+        <v-btn
+          @click="dialog = false"
+          :color="colorLightGrey"
+          small
+          rounded
+          dark
+        >
           Cances
         </v-btn>
         <v-spacer></v-spacer>
@@ -54,15 +60,11 @@ export default {
       valid: false,
       dialog: false,
       instancesToAdd: "",
-      btnStyle: {
-        color: "#58595B",
-        margin: "0.3em 1em 0.3em 0"
-      },
       cardActionStyle: {
         padding: "0 24px 20px"
       },
       colorBlue: "#27AAE1",
-      colorGrey: "#404B5F",
+      colorLightGrey: "#404B5F",
       instancesRules: [
         v => !!v || "Required",
         v => v > 0 || "You should Add at least one instance",
@@ -97,5 +99,8 @@ export default {
 <style scoped>
 .v-dialog > .v-card > .v-card__text {
   padding-bottom: 0;
+}
+.v-btn {
+  margin: 0.3em 1em 0.3em 0;
 }
 </style>

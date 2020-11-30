@@ -1,54 +1,35 @@
 <template>
   <v-card outlined>
     <v-row align="center">
-      <!-- <v-col cols="2" sm="1">
-        <v-checkbox
-          :style="checkBoxStyle"
-          :value="isSelected"
-          @change="selectService(index)"
-          hide-details
-        ></v-checkbox>
-      </v-col> -->
       <v-col cols="10" sm="9">
         <h1>
           {{ serviceName }}
+          <v-btn
+            :color="colorGrey"
+            :to="{ name: 'serviceUpdate', params: { index } }"
+            outlined
+            rounded
+            x-small
+            icon
+          >
+            <v-icon x-small>{{ mdiCircleEditOutline }}</v-icon>
+          </v-btn>
         </h1>
-        <v-btn
-          :style="btnStyle"
-          :to="{ name: 'serviceUpdate', params: { index } }"
-          outlined
-          rounded
-          x-small
-          ligth
-        >
-          Update <v-icon x-small>{{ mdiCircleEditOutline }}</v-icon>
-        </v-btn>
-        <v-btn
-          :style="btnStyle"
-          :to="{ name: 'micropageUpdate', params: { index } }"
-          outlined
-          rounded
-          x-small
-          ligth
-        >
-          Update Micropage <v-icon x-small>{{ mdiCircleEditOutline }}</v-icon>
-        </v-btn>
-        <AddInstances
-          :index="index"
-          :domain="domain"
-          :service="serviceName"
-          :availableInstances="availableInstances"
-          :btnStyle="btnStyle"
-        />
-        <ActiveChannels
-          :serviceName="serviceName"
-          :index="index"
-          :btnStyle="btnStyle"
-        />
         <p>
           Micropage:
           <a :href="url" target="_blank">{{ urlToLoweCase }}</a>
         </p>
+        <v-btn
+          :color="colorLightGrey"
+          :to="{ name: 'micropageUpdate', params: { index } }"
+          class="text-capitalize"
+          rounded
+          x-small
+          dark
+        >
+          Update Micropage
+        </v-btn>
+        <ActiveChannels :serviceName="serviceName" :index="index" />
       </v-col>
       <v-col col="12" sm="3" align="right">
         <display-current-value>
@@ -59,6 +40,12 @@
           </div>
           <p slot="helper" :style="helperStyle">{{ helper }}</p>
         </display-current-value>
+        <AddInstances
+          :index="index"
+          :domain="domain"
+          :service="serviceName"
+          :availableInstances="availableInstances"
+        />
       </v-col>
     </v-row>
   </v-card>
@@ -94,19 +81,9 @@ export default {
       divHeight: {
         height: "30px"
       },
-      checkBoxStyle: {
-        margin: "0"
-      },
-      btnStyle: {
-        color: "#58595B",
-        margin: "0.3em 1em 0.3em 0"
-      }
+      colorGrey: "#58595B",
+      colorLightGrey: "#404B5F"
     };
-  },
-  methods: {
-    // selectService(index) {
-    //   this.$store.commit("servicesModule/selectService", index);
-    // }
   },
   computed: {
     domain() {
@@ -127,10 +104,6 @@ export default {
     urlToLoweCase() {
       return this.url.toLowerCase();
     }
-    // isSelected() {
-    //   const service = this.$store.state.servicesModule.services[this.index];
-    //   return service.isSelected === true;
-    // }
   },
   components: {
     DisplayCurrentValue,
@@ -153,5 +126,8 @@ p {
 }
 a {
   color: #27aae1;
+}
+.v-btn {
+  margin: 0.3em 1em 0.3em 0;
 }
 </style>

@@ -1,13 +1,13 @@
 <template>
   <v-btn
     @click="showActiveChannels"
-    :style="btnStyle"
-    :outlined="outlined"
+    :color="colorLightGrey"
     :text="text"
     :disabled="disabled"
+    :dark="dark"
+    class="text-capitalize"
     rounded
     x-small
-    ligth
   >
     {{ btnTitle }}
   </v-btn>
@@ -19,9 +19,10 @@ export default {
   data() {
     return {
       btnTitle: "Show active channels",
-      outlined: true,
       text: false,
-      disabled: false
+      disabled: false,
+      dark: true,
+      colorLightGrey: "#404B5F"
     };
   },
   methods: {
@@ -56,6 +57,7 @@ export default {
         this.btnTitle = `Active Channels: ${newValue}`;
         this.outlined = false;
         this.text = true;
+        this.dark = false;
         this.disabled = true;
       }
     }
@@ -66,5 +68,8 @@ export default {
 <style>
 .theme--light.v-btn.v-btn--disabled {
   color: #58595b !important;
+}
+.v-btn {
+  margin: 0.3em 1em 0.3em 0;
 }
 </style>
