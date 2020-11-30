@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       description: "",
-      descriptionRules: [
+      schemaDescriptionRules: [
         v => !!v || "Schema description is required",
         v =>
           (v && v.length) <= 254 ||

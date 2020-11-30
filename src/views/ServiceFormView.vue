@@ -20,7 +20,7 @@
       </v-row>
       <v-row justify="center">
         <v-col xs="12">
-          <ServiceForm :btnName="btnName" />
+          <router-view :btnName="btnName"></router-view>
         </v-col>
       </v-row>
     </v-col>
@@ -28,13 +28,11 @@
 </template>
 
 <script>
-// import ServiceForm from "../components/service-forms/ServiceForm.vue";
-import ServiceForm from "../components/service-form/ServiceForm";
 export default {
   data() {
     return {
       title: "",
-      btnName: "",
+      btnName: "Update",
       colorGrey: "#404B5F"
     };
   },
@@ -67,9 +65,6 @@ export default {
     successMessage() {
       this.$router.push({ name: "services" });
     }
-  },
-  components: {
-    ServiceForm
   }
 };
 </script>

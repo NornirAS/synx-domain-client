@@ -21,11 +21,11 @@
           x-small
           ligth
         >
-          Edit <v-icon x-small>{{ mdiCircleEditOutline }}</v-icon>
+          Update <v-icon x-small>{{ mdiCircleEditOutline }}</v-icon>
         </v-btn>
         <v-btn
           :style="btnStyle"
-          :to="{ name: 'serviceUpdate', params: { index } }"
+          :to="{ name: 'micropageUpdate', params: { index } }"
           outlined
           rounded
           x-small

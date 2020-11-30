@@ -25,7 +25,7 @@
 
 <script>
 import MicropageDescription from "./MicropageDescription";
-import MicropageSchemaDescription from "./MicropageDescription";
+import MicropageSchemaDescription from "./MicropageSchemaDescription";
 import MicropageImageUrl from "./MicropageImage";
 export default {
   data() {
