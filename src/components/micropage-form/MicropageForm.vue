@@ -38,6 +38,10 @@ export default {
       }
     };
   },
+  created() {
+    this.$store.commit("servicesModule/serviceIndex", this.index);
+    this.$store.commit("serviceFormModule/editService", this.service);
+  },
   methods: {
     submitMicropageForm() {
       this.$refs.micropageForm.validate();
@@ -45,7 +49,7 @@ export default {
         this.$socket.emit(
           "update_micropage",
           this.domain,
-          this.service,
+          this.service.serviceName,
           this.formData,
           this.token
         );
@@ -54,7 +58,7 @@ export default {
   },
   computed: {
     formData() {
-      return this.$store.state.serviceFormModule;
+      return this.$store.state.micropageFormModule;
     },
     domain() {
       return this.$store.state.domainsModule.currentDomain;
@@ -63,7 +67,10 @@ export default {
       return this.$store.state.authModule.idToken;
     },
     service() {
-      return this.formData.name;
+      return this.$store.getters["servicesModule/serviceToEdit"];
+    },
+    index() {
+      return this.$route.params.index;
     }
   },
   components: {

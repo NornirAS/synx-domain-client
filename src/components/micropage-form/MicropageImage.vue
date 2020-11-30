@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     addImageUrl() {
-      this.$store.commit("micropageFormModule/addImgeUrl", this.imageUrl);
+      this.$store.commit("micropageFormModule/addImageUrl", this.imageUrl);
     }
   },
   components: {

@@ -9,10 +9,10 @@ const mutations = {
     state.description = description;
   },
   addSchemaDescription(state, schemaDescription) {
-    state.description = schemaDescription;
+    state.schemaDescription = schemaDescription;
   },
   addImageUrl(state, imageUrl) {
-    state.description = imageUrl;
+    state.imageUrl = imageUrl;
   }
 };
 
