@@ -29,7 +29,7 @@
 
 <script>
 // import ServiceForm from "../components/service-forms/ServiceForm.vue";
-import ServiceForm from "../components/ServiceForm.vue";
+import ServiceForm from "../components/service-form/ServiceForm";
 export default {
   data() {
     return {
@@ -66,7 +66,6 @@ export default {
   watch: {
     successMessage() {
       this.$router.push({ name: "services" });
-      this.$store.commit("serviceFormModule/resetServiceFormStatus");
     }
   },
   components: {
