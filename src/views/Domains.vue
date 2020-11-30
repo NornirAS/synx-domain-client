@@ -9,11 +9,12 @@
           <v-btn
             :color="colorGreen"
             :to="{ name: 'domain-purchase' }"
+            class="text-capitalize"
             small
             rounded
             dark
           >
-            Add a domain
+            Create domain
           </v-btn>
         </v-col>
       </v-row>

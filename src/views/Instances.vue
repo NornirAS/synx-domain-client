@@ -11,6 +11,7 @@
           <v-btn
             :to="{ name: 'new-instances' }"
             :color="colorBlue"
+            class="text-capitalize"
             small
             rounded
             dark

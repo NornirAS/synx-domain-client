@@ -8,12 +8,13 @@
         <v-col align="right">
           <v-btn
             :to="{ name: 'services' }"
-            :color="colorGrey"
+            :color="colorLightGrey"
+            class="text-capitalize"
             rounded
             small
             dark
           >
-            <v-icon></v-icon>
+            <v-icon small>{{ mdiUndoVariant }}</v-icon>
             Back
           </v-btn>
         </v-col>
@@ -28,12 +29,14 @@
 </template>
 
 <script>
+import { mdiUndoVariant } from "@mdi/js";
 export default {
   data() {
     return {
+      mdiUndoVariant,
       title: "",
       btnName: "Update",
-      colorGrey: "#404B5F"
+      colorLightGrey: "#404B5F"
     };
   },
   created() {

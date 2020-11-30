@@ -9,11 +9,12 @@
           <v-btn
             :to="{ name: 'serviceCreate' }"
             :color="colorBlue"
+            class="text-capitalize"
             rounded
             small
             dark
           >
-            <v-icon>{{ mdiPlus }}</v-icon>
+            <v-icon small>{{ mdiPlus }}</v-icon>
             Create Service
           </v-btn>
         </v-col>
