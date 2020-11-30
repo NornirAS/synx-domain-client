@@ -49,7 +49,7 @@ export default {
         this.$socket.emit(
           "update_micropage",
           this.domain,
-          this.service.serviceName,
+          this.service,
           this.formData,
           this.token
         );
@@ -67,7 +67,7 @@ export default {
       return this.$store.state.authModule.idToken;
     },
     service() {
-      return this.$store.getters["servicesModule/serviceToEdit"];
+      return this.$store.getters["servicesModule/serviceToEdit"].serviceName;
     },
     index() {
       return this.$route.params.index;
