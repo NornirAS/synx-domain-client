@@ -2,8 +2,7 @@
   <input-card>
     <div slot="title">Description</div>
     <div slot="subtitle">
-      In order for the service to be found with Draape and used by others, agood
-      description is recommended. What kind of data does the service provide?
+      Service description that will be visible for everyone.
     </div>
     <v-textarea
       v-model="description"
@@ -11,7 +10,7 @@
       :rules="descriptionRules"
       :counter="254"
       name="description"
-      label="Sevice Description"
+      label="Description"
       type="text"
       error-count="2"
       slot="action"
@@ -23,7 +22,7 @@
 </template>
 
 <script>
-import InputCard from "./ServiceFormInputCard";
+import InputCard from "../FormInputCard";
 export default {
   data() {
     return {
@@ -35,12 +34,12 @@ export default {
       ]
     };
   },
-  mounted() {
-    this.description = this.$store.state.serviceFormModule.description;
-  },
   methods: {
     addDescription() {
-      this.$store.commit("serviceFormModule/addDescription", this.description);
+      this.$store.commit(
+        "micropageFormModule/addDescription",
+        this.description
+      );
     }
   },
   components: {

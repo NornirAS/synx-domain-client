@@ -8,19 +8,20 @@
         <v-col align="right">
           <v-btn
             :to="{ name: 'services' }"
-            :color="colorGrey"
+            :color="colorLightGrey"
+            class="text-capitalize"
             rounded
             small
             dark
           >
-            <v-icon></v-icon>
+            <v-icon small>{{ mdiUndoVariant }}</v-icon>
             Back
           </v-btn>
         </v-col>
       </v-row>
       <v-row justify="center">
         <v-col xs="12">
-          <ServiceForm :btnName="btnName" />
+          <router-view :btnName="btnName"></router-view>
         </v-col>
       </v-row>
     </v-col>
@@ -28,14 +29,14 @@
 </template>
 
 <script>
-// import ServiceForm from "../components/service-forms/ServiceForm.vue";
-import ServiceForm from "../components/ServiceForm.vue";
+import { mdiUndoVariant } from "@mdi/js";
 export default {
   data() {
     return {
+      mdiUndoVariant,
       title: "",
-      btnName: "",
-      colorGrey: "#404B5F"
+      btnName: "Update",
+      colorLightGrey: "#404B5F"
     };
   },
   created() {
@@ -66,11 +67,7 @@ export default {
   watch: {
     successMessage() {
       this.$router.push({ name: "services" });
-      this.$store.commit("serviceFormModule/resetServiceFormStatus");
     }
-  },
-  components: {
-    ServiceForm
   }
 };
 </script>

@@ -1,19 +1,19 @@
 <template>
   <input-card>
-    <div slot="title">Post Inline Script</div>
+    <div slot="title">Pre Inline Script</div>
     <div slot="subtitle">
       Optional. The masterscript allow you to transform your data both by using
       JavaScript but also by including. Examples will be added.
     </div>
     <v-textarea
-      v-model="postInlineScript"
-      @blur="addPostInlineScript"
-      :rules="postInlineScriptRules"
+      v-model="preInlineScript"
+      @blur="addPreInlineScript"
+      :rules="preInlineScriptRules"
       :counter="1024"
       error-count="2"
-      name="post-inline-script"
+      name="pre-inline-script"
       type="text"
-      label="Post Inline Script"
+      label="Pre Inline Script"
       slot="action"
       required
       outlined
@@ -23,27 +23,27 @@
 </template>
 
 <script>
-import InputCard from "./ServiceFormInputCard";
+import InputCard from "../FormInputCard";
 export default {
   data() {
     return {
-      postInlineScript: "",
-      postInlineScriptRules: [
-        v => !!v || "Post Inline Script is required",
+      preInlineScript: "",
+      preInlineScriptRules: [
+        v => !!v || "Pre Inline Script is required",
         v =>
           (v && v.length) <= 1024 ||
-          "Post Inline Script must be maximum 1024 character"
+          "Pre Inline Script must be maximum 1024 character"
       ]
     };
   },
   mounted() {
-    this.postInlineScript = this.$store.state.serviceFormModule.postInlineScript;
+    this.preInlineScript = this.$store.state.serviceFormModule.preInlineScript;
   },
   methods: {
-    addPostInlineScript() {
+    addPreInlineScript() {
       this.$store.commit(
-        "serviceFormModule/addPostInlineScript",
-        this.postInlineScript
+        "serviceFormModule/addPreInlineScript",
+        this.preInlineScript
       );
     }
   },

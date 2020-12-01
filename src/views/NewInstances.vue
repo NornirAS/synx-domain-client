@@ -1,13 +1,26 @@
 <template>
   <v-row justify="center">
     <v-col cols="12" md="10">
-      <v-row>
+      <v-row justify="space-between" align="center">
         <v-col>
           <h1>Look for new instances</h1>
         </v-col>
+        <v-col align="right">
+          <v-btn
+            :to="{ name: 'services' }"
+            :color="colorLightGrey"
+            class="text-capitalize"
+            rounded
+            small
+            dark
+          >
+            <v-icon small>{{ mdiUndoVariant }}</v-icon>
+            Back
+          </v-btn>
+        </v-col>
       </v-row>
       <v-row>
-        <v-col>
+        <v-col v-if="instances.length > 0">
           <v-data-table
             @page-count="pageCount = $event"
             :headers="headers"
@@ -34,18 +47,22 @@
             light
           ></v-pagination>
         </v-col>
+        <v-col v-if="instances.length === 0">
+          <p>You have no instances to approve or deny...</p>
+        </v-col>
       </v-row>
     </v-col>
   </v-row>
 </template>
 
 <script>
-import { mdiCheck, mdiClose } from "@mdi/js";
+import { mdiCheck, mdiClose, mdiUndoVariant } from "@mdi/js";
 export default {
   data() {
     return {
       mdiCheck,
       mdiClose,
+      mdiUndoVariant,
       page: 1,
       pageCount: 0,
       itemsPerPage: 10,
@@ -78,7 +95,8 @@ export default {
           sortable: false
         }
       ],
-      colorBlue: "#27AAE1"
+      colorBlue: "#27AAE1",
+      colorLightGrey: "#404B5F"
     };
   },
   created() {
@@ -133,5 +151,10 @@ h1 {
   color: #58595b;
   font-size: 24px;
   font-weight: 500;
+}
+p {
+  margin: 0;
+  color: #58595b;
+  font-size: 16px;
 }
 </style>

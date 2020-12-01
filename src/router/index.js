@@ -11,6 +11,8 @@ import Domains from "../views/Domains.vue";
 import DomainPurchase from "../views/DomainPurchase.vue";
 import Instances from "../views/Instances.vue";
 import NewInstances from "../views/NewInstances.vue";
+import ServiceForm from "../components/service-form/ServiceForm";
+import MicropageForm from "../components/micropage-form/MicropageForm";
 
 Vue.use(VueRouter);
 
@@ -81,11 +83,18 @@ const routes = [
     children: [
       {
         path: "create",
-        name: "serviceCreate"
+        name: "serviceCreate",
+        component: ServiceForm
       },
       {
-        path: ":index/edit",
-        name: "serviceUpdate"
+        path: ":index/update",
+        name: "serviceUpdate",
+        component: ServiceForm
+      },
+      {
+        path: ":index/micropage",
+        name: "micropageUpdate",
+        component: MicropageForm
       }
     ],
     beforeEnter: authGuard

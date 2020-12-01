@@ -2,13 +2,12 @@ import Vue from "vue";
 import Vuex from "vuex";
 import authModule from "./modules/authentication";
 import servicesModule from "./modules/services";
-import serviceModule from "./modules/service";
 import domainsModule from "./modules/domains";
 import instancesModule from "./modules/instances";
 import alarmModule from "./modules/alarm";
 import sidebarsModule from "./modules/sidebars";
 import serviceFormModule from "./modules/service-form";
-import addInstancesModule from "./modules/service-form";
+import micropageFormModule from "./modules/micropage-form";
 
 Vue.use(Vuex);
 
@@ -27,13 +26,12 @@ export default new Vuex.Store({
   },
   modules: {
     servicesModule,
-    serviceModule,
     domainsModule,
     authModule,
     instancesModule,
     alarmModule,
     sidebarsModule,
     serviceFormModule,
-    addInstancesModule
+    micropageFormModule
   }
 });

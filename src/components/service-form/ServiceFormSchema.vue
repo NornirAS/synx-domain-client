@@ -60,7 +60,7 @@
 <script>
 import { mdiDelete } from "@mdi/js";
 import Dialog from "./ServiceFormSchemaDialog";
-import InputCard from "./ServiceFormInputCard";
+import InputCard from "../FormInputCard";
 export default {
   data() {
     return {

@@ -9,59 +9,17 @@
           <v-btn
             :to="{ name: 'serviceCreate' }"
             :color="colorBlue"
+            class="text-capitalize"
             rounded
             small
             dark
           >
-            <v-icon>{{ mdiPlus }}</v-icon>
+            <v-icon small>{{ mdiPlus }}</v-icon>
             Create Service
           </v-btn>
         </v-col>
       </v-row>
       <v-row justify="space-between" align="center">
-        <!-- <v-col cols="4" sm="2" md="1">
-          <v-checkbox
-            :style="checkBoxStyle"
-            @change="selectAllServices"
-            hide-details
-          ></v-checkbox>
-        </v-col> -->
-        <!-- <v-col cols="4" sm="2" md="2">
-          <v-menu offset-y>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                :color="colorGrey"
-                :style="filterBtnStyle"
-                v-bind="attrs"
-                v-on="on"
-                rounded
-                dark
-                small
-              >
-                Sort By
-                <v-icon>{{ mdiChevronDown }}</v-icon>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item v-for="item in sortList" :key="item">
-                <v-list-item-title>{{ item }}</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </v-col>
-        <v-col cols="4" sm="2" md="2">
-          <v-btn
-            @click="deleteService(selectedServices)"
-            :disabled="isSelected"
-            :color="colorRed"
-            :style="filterBtnStyle"
-            :dark="!isSelected"
-            rounded
-            small
-          >
-            Delete
-          </v-btn>
-        </v-col> -->
         <v-col cols="12" md="6">
           <v-text-field
             v-model="search"
@@ -91,47 +49,17 @@ export default {
     return {
       title: "Services",
       search: "",
-      // totalInstances: "1000",
-      // groups: ["test1", "test2"],
-      // sortList: ["newest", "oldest"],
       mdiChevronDown,
       mdiPlus,
       searchBarStyle: {
         marginTop: "0",
         padding: "0 0.5em 0 0.5em"
       },
-      // filterBtnStyle: {
-      //   margin: "0 0.75em"
-      // },
-      // checkBoxStyle: {
-      //   margin: "0",
-      //   paddingLeft: "1.1em"
-      // },
       colorBlue: "#27AAE1"
-      // colorRed: "#FF6666",
-      // colorGrey: "#404B5F"
     };
   },
   created() {
     this.$socket.emit("get_all_services", this.domain, this.token);
-  },
-  methods: {
-    // selectAllServices() {
-    //   this.$store.commit("servicesModule/selectAllServices");
-    // },
-    // deleteService(data) {
-    //   const services = [];
-    //   data.forEach(item => {
-    //     let service = {
-    //       serviceName: "",
-    //       instanceToDelete: ""
-    //     };
-    //     service.serviceName = item.serviceName;
-    //     service.instanceToDelete = "0";
-    //     services.push(service);
-    //   });
-    //   this.$socket.emit("delete_service", this.domain, services, this.token);
-    // }
   },
   computed: {
     domain() {
@@ -143,12 +71,6 @@ export default {
     services() {
       return this.$store.getters["servicesModule/servicesForDomain"];
     }
-    // selectedServices() {
-    //   return this.services.filter(service => service.isSelected === true);
-    // },
-    // isSelected() {
-    //   return !this.selectedServices.length > 0 ? true : false;
-    // }
   },
   components: {
     ServiceCard

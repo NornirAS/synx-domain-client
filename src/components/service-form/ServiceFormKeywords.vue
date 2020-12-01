@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import InputCard from "./ServiceFormInputCard";
+import InputCard from "../FormInputCard";
 export default {
   data() {
     return {
