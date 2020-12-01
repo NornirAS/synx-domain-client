@@ -8,6 +8,7 @@ import alarmModule from "./modules/alarm";
 import sidebarsModule from "./modules/sidebars";
 import serviceFormModule from "./modules/service-form";
 import micropageFormModule from "./modules/micropage-form";
+import stripeModule from "./modules/stripe";
 
 Vue.use(Vuex);
 
@@ -32,6 +33,7 @@ export default new Vuex.Store({
     alarmModule,
     sidebarsModule,
     serviceFormModule,
-    micropageFormModule
+    micropageFormModule,
+    stripeModule
   }
 });

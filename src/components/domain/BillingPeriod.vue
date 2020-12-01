@@ -5,11 +5,12 @@
       <v-col cols="6" md="7">
         <v-radio-group v-model="selected">
           <v-radio
-            v-for="({ period }, index) in cycles"
+            v-for="({ period, price }, index) in cycles"
             :key="index"
             :label="period"
             :value="index"
             :color="colorGreen"
+            @change="addPlan(period, price)"
           ></v-radio>
         </v-radio-group>
       </v-col>
@@ -33,19 +34,14 @@ export default {
       selected: 1,
       cycles: [
         {
-          period: "1 Month subscription",
+          period: "1 Month plan",
           price: "60",
           discount: ""
         },
         {
-          period: "1 Year subscription",
+          period: "1 Year plan",
           price: "54",
           discount: "10"
-        },
-        {
-          period: "3 Years subscription",
-          price: "153",
-          discount: "15"
         }
       ],
       discountStyle: {
@@ -54,6 +50,11 @@ export default {
       },
       colorGreen: "#71b663"
     };
+  },
+  methods: {
+    addPlan(period, price) {
+      this.$store.commit("stripeModule/addPlan", { period, price });
+    }
   }
 };
 </script>

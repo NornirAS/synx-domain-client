@@ -14,12 +14,6 @@
       <v-divider></v-divider>
 
       <v-stepper-step :complete="e1 > 3" step="3">
-        Contact Details
-      </v-stepper-step>
-
-      <v-divider></v-divider>
-
-      <v-stepper-step step="4">
         Confirm
       </v-stepper-step>
     </v-stepper-header>
@@ -59,6 +53,8 @@
       </v-stepper-content>
 
       <v-stepper-content step="3">
+        <StripePayment />
+
         <slot name="form"></slot>
 
         <v-row justify="center" align="center">
@@ -68,24 +64,13 @@
             </v-btn>
           </v-col>
           <v-col cols="6" md="3">
-            <v-btn :style="actionBtnStyle" @click="e1 = 4" rounded dark>
-              Continue
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-stepper-content>
-
-      <v-stepper-content step="4">
-        <slot name="confirm"></slot>
-
-        <v-row justify="center" align="center">
-          <v-col cols="6" md="3">
-            <v-btn text>
-              Cancel
-            </v-btn>
-          </v-col>
-          <v-col cols="6" md="3">
-            <v-btn :style="actionBtnStyle" @click="e1 = 1" rounded dark>
+            <v-btn
+              id="checkout-button"
+              :style="actionBtnStyle"
+              @click="checkout"
+              rounded
+              dark
+            >
               Continue
             </v-btn>
           </v-col>
@@ -98,6 +83,7 @@
 <script>
 import DomainSearch from "./DomainSearch.vue";
 import BillingPeriod from "./BillingPeriod.vue";
+import StripePayment from "./StripePayment";
 export default {
   data() {
     return {
@@ -108,9 +94,24 @@ export default {
       }
     };
   },
+  methods: {
+    // Send data to stripe domain name and period.
+    checkout() {
+      this.$socket.emit("stripe", "newdomain", this.period, this.price);
+    }
+  },
+  computed: {
+    period() {
+      return this.$store.state.stripeModule.period;
+    },
+    price() {
+      return this.$store.state.stripeModule.price;
+    }
+  },
   components: {
     DomainSearch,
-    BillingPeriod
+    BillingPeriod,
+    StripePayment
   }
 };
 </script>
