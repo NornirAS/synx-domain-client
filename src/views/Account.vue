@@ -14,14 +14,23 @@
             small
             dark
           >
-            <v-icon small>{{ mdiUndoVariant }}</v-icon>
+            <v-icon left>{{ mdiUndoVariant }}</v-icon>
             Back
           </v-btn>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
-          <v-btn @click="customerPortal">Check Subscriptions</v-btn>
+          <v-btn
+            @click="customerPortal"
+            :color="colorLightGrey"
+            class="text-capitalize"
+            rounded
+            dark
+          >
+            <v-icon left>{{ mdiCreditCardOutline }}</v-icon>
+            Manage Subscriptions
+          </v-btn>
         </v-col>
       </v-row>
     </v-col>
@@ -29,11 +38,12 @@
 </template>
 
 <script>
-import { mdiUndoVariant } from "@mdi/js";
+import { mdiUndoVariant, mdiCreditCardOutline } from "@mdi/js";
 export default {
   data() {
     return {
       mdiUndoVariant,
+      mdiCreditCardOutline,
       colorLightGrey: "#404B5F"
     };
   },
