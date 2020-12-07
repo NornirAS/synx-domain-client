@@ -3,10 +3,6 @@
     <v-list-item slot="title" two-line>
       <v-list-item-content>
         <v-list-item-title :style="headerStyle">
-          <v-icon medium>{{ mdiAccountCircle }}</v-icon>
-          Username: <span class="font-italic">{{ username }}</span>
-        </v-list-item-title>
-        <v-list-item-title :style="headerStyle">
           <v-icon medium>{{ mdiEarth }}</v-icon>
           Domain: <span class="font-italic">{{ domain }}</span>
         </v-list-item-title>
@@ -59,7 +55,7 @@ export default {
         },
         {
           title: "Account",
-          icon: mdiArrangeSendBackward,
+          icon: mdiAccountCircle,
           path: { name: "account" }
         }
       ],
@@ -87,9 +83,6 @@ export default {
     );
   },
   computed: {
-    username() {
-      return this.$store.state.authModule.username;
-    },
     domain() {
       return this.$store.state.domainsModule.currentDomain;
     }
