@@ -14,6 +14,8 @@ import NewInstances from "../views/NewInstances.vue";
 import ServiceForm from "../components/service-form/ServiceForm";
 import MicropageForm from "../components/micropage-form/MicropageForm";
 import Account from "../views/Account";
+import CheckoutSuccess from "../views/CheckoutSuccess";
+import CheckoutCancel from "../views/CheckoutCancel";
 
 Vue.use(VueRouter);
 
@@ -50,6 +52,18 @@ const routes = [
       "app-bar": AppBar,
       "footer-bar": FooterBar
     },
+    beforeEnter: authGuard
+  },
+  {
+    path: "/domains/checkout-success",
+    name: "checkout-success",
+    component: CheckoutSuccess,
+    beforeEnter: authGuard
+  },
+  {
+    path: "/domains/checkout-cancel",
+    name: "checkout-cancel",
+    component: CheckoutCancel,
     beforeEnter: authGuard
   },
   {
