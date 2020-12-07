@@ -97,15 +97,12 @@ export default {
   methods: {
     // Send data to stripe domain name and period.
     checkout() {
-      this.$socket.emit("stripe", "newdomain", this.period, this.price);
+      this.$socket.emit("stripe", "newdomain", this.period);
     }
   },
   computed: {
     period() {
       return this.$store.state.stripeModule.period;
-    },
-    price() {
-      return this.$store.state.stripeModule.price;
     }
   },
   components: {

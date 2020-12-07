@@ -5,12 +5,12 @@
       <v-col cols="6" md="7">
         <v-radio-group v-model="selected">
           <v-radio
-            v-for="({ period, price }, index) in cycles"
+            v-for="({ period }, index) in cycles"
             :key="index"
             :label="period"
             :value="index"
             :color="colorGreen"
-            @change="addPlan(period, price)"
+            @change="addPlan(period)"
           ></v-radio>
         </v-radio-group>
       </v-col>
@@ -52,8 +52,8 @@ export default {
     };
   },
   methods: {
-    addPlan(period, price) {
-      this.$store.commit("stripeModule/addPlan", { period, price });
+    addPlan(period) {
+      this.$store.commit("stripeModule/addPlan", period);
     }
   }
 };
