@@ -56,6 +56,11 @@ export default {
           title: "Instances",
           icon: mdiArrangeSendBackward,
           path: { name: "instances" }
+        },
+        {
+          title: "Account",
+          icon: mdiArrangeSendBackward,
+          path: { name: "account" }
         }
       ],
       headerStyle: {

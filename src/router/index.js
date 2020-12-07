@@ -13,6 +13,7 @@ import Instances from "../views/Instances.vue";
 import NewInstances from "../views/NewInstances.vue";
 import ServiceForm from "../components/service-form/ServiceForm";
 import MicropageForm from "../components/micropage-form/MicropageForm";
+import Account from "../views/Account";
 
 Vue.use(VueRouter);
 
@@ -47,6 +48,17 @@ const routes = [
     components: {
       default: Domains,
       "app-bar": AppBar,
+      "footer-bar": FooterBar
+    },
+    beforeEnter: authGuard
+  },
+  {
+    path: "/domains/domain/:domainName/account",
+    name: "account",
+    components: {
+      default: Account,
+      "app-bar": AppBar,
+      "dark-sidebar": DarkSidebar,
       "footer-bar": FooterBar
     },
     beforeEnter: authGuard
