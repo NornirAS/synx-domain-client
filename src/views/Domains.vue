@@ -26,19 +26,42 @@
       >
         <v-row justify="space-between" align="center">
           <v-col cols="6">
-            <h3>{{ name }}</h3>
+            <h3>
+              {{ name }}
+              <v-chip
+                v-if="active === true"
+                :color="colorGreen"
+                align="center"
+                x-small
+                label
+                dark
+              >
+                Active
+              </v-chip>
+              <v-chip
+                v-if="active === false"
+                :color="colorRed"
+                align="center"
+                x-small
+                label
+                dark
+              >
+                Inactive
+              </v-chip>
+            </h3>
           </v-col>
           <v-col cols="6">
             <div align="right">
-              <p>
-                status
-                <v-icon v-if="active === true" :color="colorGreen" x-small>
-                  {{ mdiCircle }}
-                </v-icon>
-                <v-icon v-else :color="colorRed" x-small>{{
-                  mdiCircle
-                }}</v-icon>
-              </p>
+              <v-btn
+                v-if="active === false"
+                :color="colorLightGrey"
+                class="text-capitalize"
+                rounded
+                x-small
+                dark
+              >
+                Activate
+              </v-btn>
             </div>
           </v-col>
         </v-row>
@@ -54,7 +77,8 @@ export default {
     return {
       mdiCircle,
       colorGreen: "#71b663",
-      colorRed: "#ff6666"
+      colorRed: "#ff6666",
+      colorLightGrey: "#404B5F"
     };
   },
   created() {
