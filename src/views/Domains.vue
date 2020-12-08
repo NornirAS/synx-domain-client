@@ -8,7 +8,7 @@
         <v-col align="right">
           <v-btn
             :color="colorGreen"
-            :to="{ name: 'domain-purchase' }"
+            :to="{ name: 'create-domain' }"
             class="text-capitalize"
             small
             rounded

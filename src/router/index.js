@@ -15,6 +15,7 @@ import ServiceForm from "../components/service-form/ServiceForm";
 import MicropageForm from "../components/micropage-form/MicropageForm";
 import Account from "../views/Account";
 import CheckoutSuccess from "../views/CheckoutSuccess";
+import CreateDomain from "../views/CreateDomain";
 
 Vue.use(VueRouter);
 
@@ -52,6 +53,11 @@ const routes = [
       "footer-bar": FooterBar
     },
     beforeEnter: authGuard
+  },
+  {
+    path: "/domains/create-domain",
+    name: "create-domain",
+    component: CreateDomain
   },
   {
     path: "/domains/checkout-success",
