@@ -26,7 +26,6 @@
       :style="actionBtnStyle"
       class="text-capitalize"
       type="submit"
-      outlined
       rounded
       dark
     >
