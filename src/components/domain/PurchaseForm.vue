@@ -94,6 +94,12 @@ export default {
       colorLightGrey: "#404B5F"
     };
   },
+  created() {
+    this.$store.commit(
+      "domainsModule/currentDomain",
+      this.$route.params.domainName
+    );
+  },
   methods: {
     // Send data to stripe domain name and period.
     checkout() {
