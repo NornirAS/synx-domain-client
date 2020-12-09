@@ -1,29 +1,28 @@
 <template>
-  <div>
-    <h1>{{ title.toUpperCase() }}</h1>
-    <v-row>
-      <v-col cols="6" md="7">
-        <v-radio-group v-model="selected">
-          <v-radio
-            v-for="({ period }, index) in cycles"
-            :key="index"
-            :label="period"
-            :value="index"
-            :color="colorGreen"
-            @change="addPlan(period)"
-          ></v-radio>
-        </v-radio-group>
-      </v-col>
-      <v-col cols="6" md="5">
-        <p v-for="({ price, discount }, index) in cycles" :key="index">
-          {{ price }}$/year
-          <span :style="discountStyle" v-if="discount">
-            save {{ discount }}%
-          </span>
-        </p>
-      </v-col>
-    </v-row>
-  </div>
+  <v-row>
+    <v-col cols="12">
+      <h1>Choose your subscription plan</h1>
+    </v-col>
+    <v-col cols="8" md="6">
+      <v-radio-group v-model="selected">
+        <v-radio
+          v-for="({ name, period }, index) in cycles"
+          :key="index"
+          :label="name"
+          :value="period"
+          :color="colorGreen"
+        ></v-radio>
+      </v-radio-group>
+    </v-col>
+    <v-col cols="4" md="6">
+      <p v-for="({ price, discount }, index) in cycles" :key="index">
+        {{ price }}
+        <span v-if="discount && !isMobile" :style="discountStyle">
+          {{ discount }}
+        </span>
+      </p>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -31,17 +30,29 @@ export default {
   data() {
     return {
       title: "Choose your billing period",
-      selected: 1,
+      selected: "6",
       cycles: [
         {
-          period: "1 Month plan",
-          price: "60",
-          discount: ""
+          name: "1 Month",
+          period: "1",
+          price: "60$ / year"
         },
         {
-          period: "1 Year plan",
-          price: "54",
-          discount: "10"
+          name: "3 Months",
+          period: "3",
+          price: "60$ / year"
+        },
+        {
+          name: "6 Months",
+          period: "6",
+          price: "55$ / year",
+          discount: "1 Month FREE!"
+        },
+        {
+          name: "12 Month",
+          period: "12",
+          price: "50$ / year",
+          discount: "2 Months FREE!"
         }
       ],
       discountStyle: {
@@ -51,9 +62,17 @@ export default {
       colorGreen: "#71b663"
     };
   },
-  methods: {
-    addPlan(period) {
-      this.$store.commit("stripeModule/addPlan", period);
+  created() {
+    this.$store.commit("stripeModule/addPlan", this.selected);
+  },
+  computed: {
+    isMobile() {
+      return this.$store.state.isMobile;
+    }
+  },
+  watch: {
+    selected(newValue) {
+      this.$store.commit("stripeModule/addPlan", newValue);
     }
   }
 };
@@ -61,17 +80,13 @@ export default {
 
 <style scoped>
 h1 {
-  font-size: 20px;
+  font-size: 24px;
   color: #58595b;
   font-weight: 500;
-  margin-bottom: 18px;
 }
 p {
   margin-bottom: 8px;
   color: #58595b;
-}
-.v-btn {
-  color: #71b663;
 }
 .v-input--selection-controls {
   margin-top: 0;
