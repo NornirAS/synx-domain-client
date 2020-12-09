@@ -6,16 +6,16 @@
     <v-col cols="8" md="6">
       <v-radio-group v-model="selected">
         <v-radio
-          v-for="({ name, period }, index) in cycles"
+          v-for="({ name }, index) in subscriptionPlans"
           :key="index"
           :label="name"
-          :value="period"
+          :value="index"
           :color="colorGreen"
         ></v-radio>
       </v-radio-group>
     </v-col>
     <v-col cols="4" md="6">
-      <p v-for="({ price, discount }, index) in cycles" :key="index">
+      <p v-for="({ price, discount }, index) in subscriptionPlans" :key="index">
         {{ price }}
         <span v-if="discount && !isMobile" :style="discountStyle">
           {{ discount }}
@@ -30,31 +30,7 @@ export default {
   data() {
     return {
       title: "Choose your billing period",
-      selected: "6",
-      cycles: [
-        {
-          name: "1 Month",
-          period: "1",
-          price: "60$ / year"
-        },
-        {
-          name: "3 Months",
-          period: "3",
-          price: "60$ / year"
-        },
-        {
-          name: "6 Months",
-          period: "6",
-          price: "55$ / year",
-          discount: "1 Month FREE!"
-        },
-        {
-          name: "12 Month",
-          period: "12",
-          price: "50$ / year",
-          discount: "2 Months FREE!"
-        }
-      ],
+      selected: 2,
       discountStyle: {
         color: "#71b663",
         float: "right"
@@ -63,16 +39,19 @@ export default {
     };
   },
   created() {
-    this.$store.commit("stripeModule/addPlan", this.selected);
+    this.$store.commit("stripeModule/selectPlan", this.selected);
   },
   computed: {
     isMobile() {
       return this.$store.state.isMobile;
+    },
+    subscriptionPlans() {
+      return this.$store.state.stripeModule.subscriptionPlans;
     }
   },
   watch: {
     selected(newValue) {
-      this.$store.commit("stripeModule/addPlan", newValue);
+      this.$store.commit("stripeModule/selectPlan", newValue);
     }
   }
 };

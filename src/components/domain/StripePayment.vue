@@ -1,6 +1,13 @@
 <template>
   <div>
     <h1>Confirm</h1>
+    <div>
+      <span>Domain: </span><span align="right">{{ domain }}</span>
+    </div>
+    <div>Subscription plan: {{ selectedPlan.name }}</div>
+    <div>Price: {{ selectedPlan.price }}</div>
+    <hr />
+    <div align="right">Total: ${{ selectedPlan.total }}</div>
   </div>
 </template>
 
@@ -56,8 +63,14 @@ export default {
     }
   },
   computed: {
+    domain() {
+      return this.$store.state.domainsModule.currentDomain;
+    },
     session() {
       return this.$store.state.stripeModule.session;
+    },
+    selectedPlan() {
+      return this.$store.state.stripeModule.selectedPlan;
     }
   },
   watch: {
@@ -67,3 +80,12 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.title {
+  font-weight: 400;
+}
+.display-1 {
+  font-weight: 300;
+}
+</style>
