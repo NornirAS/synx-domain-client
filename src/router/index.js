@@ -9,7 +9,7 @@ import LightSidebar from "../components/sidebars/LightSidebar.vue";
 import FooterBar from "../components/FooterBar.vue";
 import Domains from "../views/Domains.vue";
 import DomainPurchase from "../views/DomainPurchase.vue";
-import Instances from "../views/Instances.vue";
+import Resources from "../views/Resources.vue";
 import NewInstances from "../views/NewInstances.vue";
 import ServiceForm from "../components/service-form/ServiceForm";
 import MicropageForm from "../components/micropage-form/MicropageForm";
@@ -125,10 +125,10 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/domains/domain/:domainName/instances",
-    name: "instances",
+    path: "/domains/domain/:domainName/resources",
+    name: "resources",
     components: {
-      default: Instances,
+      default: Resources,
       "app-bar": AppBar,
       "dark-sidebar": DarkSidebar,
       "footer-bar": FooterBar
@@ -136,7 +136,7 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/domains/domain/:domainName/instances/new-instances",
+    path: "/domains/domain/:domainName/resources/new-instances",
     name: "new-instances",
     components: {
       default: NewInstances,

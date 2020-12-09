@@ -49,9 +49,9 @@ export default {
         { title: "Domains", icon: mdiAtom, path: { name: "domains" } },
         { title: "Services", icon: mdiAntenna, path: { name: "services" } },
         {
-          title: "Instances",
+          title: "Resources",
           icon: mdiArrangeSendBackward,
-          path: { name: "instances" }
+          path: { name: "resources" }
         },
         {
           title: "Account",
