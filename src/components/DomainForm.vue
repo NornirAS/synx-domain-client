@@ -20,6 +20,7 @@
           prefix="https://"
           suffix=".cioty.com"
         ></v-text-field>
+        <p v-if="error" align="center">{{ error }}</p>
       </v-card-text>
     </v-card>
     <v-btn
@@ -39,6 +40,7 @@ export default {
   data() {
     return {
       domainName: "",
+      error: "",
       domainValid: false,
       actionBtnStyle: {
         backgroundColor: "#27AAE1",
@@ -71,6 +73,18 @@ export default {
     },
     token() {
       return this.$store.state.authModule.idToken;
+    },
+    errorMessage() {
+      return this.$store.state.alarmModule.errorMessage;
+    }
+  },
+  watch: {
+    errorMessage(newValue) {
+      this.error = newValue;
+    },
+    domainName() {
+      this.error = "";
+      this.$store.commit("alarmModule/resetErrorMessage");
     }
   }
 };
