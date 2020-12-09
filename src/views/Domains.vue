@@ -7,7 +7,7 @@
         </v-col>
         <v-col align="right">
           <v-btn
-            :color="colorGreen"
+            :color="colorBlue"
             :to="{ name: 'create-domain' }"
             class="text-capitalize"
             small
@@ -53,7 +53,8 @@
           <v-col cols="6">
             <div align="right">
               <v-btn
-                v-if="active === false"
+                v-if="active === true"
+                :to="{ name: 'domain-activate', params: { domainName: name } }"
                 :color="colorLightGrey"
                 class="text-capitalize"
                 rounded
@@ -78,7 +79,8 @@ export default {
       mdiCircle,
       colorGreen: "#71b663",
       colorRed: "#ff6666",
-      colorLightGrey: "#404B5F"
+      colorLightGrey: "#404B5F",
+      colorBlue: "#27AAE1"
     };
   },
   created() {

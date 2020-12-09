@@ -8,7 +8,7 @@ import DarkSidebar from "../components/sidebars/DarkSidebar.vue";
 import LightSidebar from "../components/sidebars/LightSidebar.vue";
 import FooterBar from "../components/FooterBar.vue";
 import Domains from "../views/Domains.vue";
-import DomainPurchase from "../views/DomainPurchase.vue";
+import DomainActivation from "../views/DomainActivation.vue";
 import Resources from "../views/Resources.vue";
 import NewInstances from "../views/NewInstances.vue";
 import ServiceForm from "../components/service-form/ServiceForm";
@@ -77,10 +77,10 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/domains/purchase",
-    name: "domain-purchase",
+    path: "/domains/:domainName/activate",
+    name: "domain-activate",
     components: {
-      default: DomainPurchase,
+      default: DomainActivation,
       "app-bar": AppBar,
       "footer-bar": FooterBar
     },

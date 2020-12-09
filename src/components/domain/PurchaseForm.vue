@@ -2,33 +2,40 @@
   <v-stepper v-model="e1">
     <v-stepper-header>
       <v-stepper-step :complete="e1 > 1" step="1">
-        Domain
-      </v-stepper-step>
-
-      <v-divider></v-divider>
-
-      <v-stepper-step :complete="e1 > 2" step="2">
         Period
       </v-stepper-step>
 
       <v-divider></v-divider>
 
-      <v-stepper-step :complete="e1 > 3" step="3">
+      <v-stepper-step :complete="e1 > 2" step="2">
         Confirm
       </v-stepper-step>
     </v-stepper-header>
 
     <v-stepper-items>
       <v-stepper-content step="1">
-        <DomainSearch />
+        <BillingPeriod />
+
         <v-row justify="space-between" align="center">
           <v-col cols="6" md="3">
-            <v-btn text>
+            <v-btn
+              :to="{ name: 'domains' }"
+              :color="colorLightGrey"
+              class="text-capitalize"
+              rounded
+              dark
+            >
               Cancel
             </v-btn>
           </v-col>
           <v-col cols="6" md="3">
-            <v-btn :style="actionBtnStyle" @click="e1 = 2" rounded dark>
+            <v-btn
+              :style="actionBtnStyle"
+              @click="e1 = 2"
+              class="text-capitalize"
+              rounded
+              dark
+            >
               Continue
             </v-btn>
           </v-col>
@@ -36,31 +43,21 @@
       </v-stepper-content>
 
       <v-stepper-content step="2">
-        <BillingPeriod />
-
-        <v-row justify="space-between" align="center">
-          <v-col cols="6" md="3">
-            <v-btn text>
-              Cancel
-            </v-btn>
-          </v-col>
-          <v-col cols="6" md="3">
-            <v-btn :style="actionBtnStyle" @click="e1 = 3" rounded dark>
-              Continue
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-stepper-content>
-
-      <v-stepper-content step="3">
         <StripePayment />
 
         <slot name="form"></slot>
 
-        <v-row justify="center" align="center">
+        <v-row justify="space-between" align="center">
           <v-col cols="6" md="3">
-            <v-btn text>
-              Cancel
+            <v-btn
+              @click="e1 = 1"
+              :color="colorLightGrey"
+              class="text-capitalize"
+              rounded
+              dark
+            >
+              <v-icon small>{{ mdiUndoVariant }}</v-icon>
+              Back
             </v-btn>
           </v-col>
           <v-col cols="6" md="3">
@@ -68,6 +65,7 @@
               id="checkout-button"
               :style="actionBtnStyle"
               @click="checkout"
+              class="text-capitalize"
               rounded
               dark
             >
@@ -81,17 +79,19 @@
 </template>
 
 <script>
-import DomainSearch from "./DomainSearch.vue";
+import { mdiUndoVariant } from "@mdi/js";
 import BillingPeriod from "./BillingPeriod.vue";
 import StripePayment from "./StripePayment";
 export default {
   data() {
     return {
+      mdiUndoVariant,
       e1: 1,
       actionBtnStyle: {
-        backgroundColor: "#71b663",
+        backgroundColor: "#27AAE1",
         float: "right"
-      }
+      },
+      colorLightGrey: "#404B5F"
     };
   },
   methods: {
@@ -106,7 +106,6 @@ export default {
     }
   },
   components: {
-    DomainSearch,
     BillingPeriod,
     StripePayment
   }
@@ -116,7 +115,7 @@ export default {
 <style>
 .theme--light.v-stepper .v-stepper__step__step {
   color: white;
-  background-color: #71b663;
+  background-color: #27aae1;
 }
 .theme--light.v-stepper .v-stepper__step--active .v-stepper__label {
   text-shadow: 0px 0px 0px #58595b !important;
