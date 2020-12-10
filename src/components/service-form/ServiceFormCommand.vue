@@ -38,7 +38,6 @@ export default {
     return {
       command: "",
       commandRules: [
-        v => (v && v.length) >= 1 || "Command is required",
         v => (v && v.length) <= 30 || "You can add maximum 30 keywords"
       ]
     };
