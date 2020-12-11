@@ -2,7 +2,13 @@
   <v-footer :style="footerStyle" padless absolute app>
     <v-card :style="footerCardStyle" align="center" flat tile light>
       <v-card-text>
-        {{ new Date().getFullYear() }} — <strong>Domain service</strong>
+        <v-img
+          max-height="30px"
+          max-width="30px"
+          src="../assets/SynxDomain_Icon.png"
+        >
+        </v-img>
+        <strong>Powered by Synx Domain</strong>
       </v-card-text>
     </v-card>
   </v-footer>

@@ -8,11 +8,14 @@ import DarkSidebar from "../components/sidebars/DarkSidebar.vue";
 import LightSidebar from "../components/sidebars/LightSidebar.vue";
 import FooterBar from "../components/FooterBar.vue";
 import Domains from "../views/Domains.vue";
-import DomainPurchase from "../views/DomainPurchase.vue";
-import Instances from "../views/Instances.vue";
+import DomainActivation from "../views/DomainActivation.vue";
+import Resources from "../views/Resources.vue";
 import NewInstances from "../views/NewInstances.vue";
 import ServiceForm from "../components/service-form/ServiceForm";
 import MicropageForm from "../components/micropage-form/MicropageForm";
+import Account from "../views/Account";
+import CheckoutSuccess from "../views/CheckoutSuccess";
+import CreateDomain from "../views/CreateDomain";
 
 Vue.use(VueRouter);
 
@@ -52,10 +55,32 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/domains/purchase",
-    name: "domain-purchase",
+    path: "/domains/create-domain",
+    name: "create-domain",
+    component: CreateDomain
+  },
+  {
+    path: "/domains/checkout-success",
+    name: "checkout-success",
+    component: CheckoutSuccess,
+    beforeEnter: authGuard
+  },
+  {
+    path: "/domains/domain/:domainName/account",
+    name: "account",
     components: {
-      default: DomainPurchase,
+      default: Account,
+      "app-bar": AppBar,
+      "dark-sidebar": DarkSidebar,
+      "footer-bar": FooterBar
+    },
+    beforeEnter: authGuard
+  },
+  {
+    path: "/domains/:domainName/activate",
+    name: "domain-activate",
+    components: {
+      default: DomainActivation,
       "app-bar": AppBar,
       "footer-bar": FooterBar
     },
@@ -100,10 +125,10 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/domains/domain/:domainName/instances",
-    name: "instances",
+    path: "/domains/domain/:domainName/resources",
+    name: "resources",
     components: {
-      default: Instances,
+      default: Resources,
       "app-bar": AppBar,
       "dark-sidebar": DarkSidebar,
       "footer-bar": FooterBar
@@ -111,7 +136,7 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/domains/domain/:domainName/instances/new-instances",
+    path: "/domains/domain/:domainName/resources/new-instances",
     name: "new-instances",
     components: {
       default: NewInstances,

@@ -20,7 +20,7 @@
         </v-col>
       </v-row>
       <v-row justify="center">
-        <v-col xs="12">
+        <v-col cols="12">
           <router-view :btnName="btnName"></router-view>
         </v-col>
       </v-row>

@@ -4,7 +4,7 @@
       <v-row justify="space-between" align="center">
         <v-col>
           <h1>
-            Instances
+            Network Resources
           </h1>
         </v-col>
         <v-col align="right">

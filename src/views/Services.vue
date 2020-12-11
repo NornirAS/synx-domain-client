@@ -14,7 +14,6 @@
             small
             dark
           >
-            <v-icon small>{{ mdiPlus }}</v-icon>
             Create Service
           </v-btn>
         </v-col>
@@ -42,15 +41,12 @@
 </template>
 
 <script>
-import { mdiChevronDown, mdiPlus } from "@mdi/js";
 import ServiceCard from "../components/service/ServiceCard.vue";
 export default {
   data() {
     return {
       title: "Services",
       search: "",
-      mdiChevronDown,
-      mdiPlus,
       searchBarStyle: {
         marginTop: "0",
         padding: "0 0.5em 0 0.5em"
@@ -59,6 +55,10 @@ export default {
     };
   },
   created() {
+    this.$store.commit(
+      "domainsModule/currentDomain",
+      this.$route.params.domainName
+    );
     this.$socket.emit("get_all_services", this.domain, this.token);
   },
   computed: {

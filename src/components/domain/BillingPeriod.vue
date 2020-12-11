@@ -1,28 +1,28 @@
 <template>
-  <div>
-    <h1>{{ title.toUpperCase() }}</h1>
-    <v-row>
-      <v-col cols="6" md="7">
-        <v-radio-group v-model="selected">
-          <v-radio
-            v-for="({ period }, index) in cycles"
-            :key="index"
-            :label="period"
-            :value="index"
-            :color="colorGreen"
-          ></v-radio>
-        </v-radio-group>
-      </v-col>
-      <v-col cols="6" md="5">
-        <p v-for="({ price, discount }, index) in cycles" :key="index">
-          {{ price }}$/year
-          <span :style="discountStyle" v-if="discount">
-            save {{ discount }}%
-          </span>
-        </p>
-      </v-col>
-    </v-row>
-  </div>
+  <v-row>
+    <v-col cols="12">
+      <h1>Choose your subscription plan</h1>
+    </v-col>
+    <v-col cols="8" md="6">
+      <v-radio-group v-model="selected">
+        <v-radio
+          v-for="({ name }, index) in subscriptionPlans"
+          :key="index"
+          :label="name"
+          :value="index"
+          :color="colorGreen"
+        ></v-radio>
+      </v-radio-group>
+    </v-col>
+    <v-col cols="4" md="6">
+      <p v-for="({ price, discount }, index) in subscriptionPlans" :key="index">
+        {{ price }}
+        <span v-if="discount && !isMobile" :style="discountStyle">
+          {{ discount }}
+        </span>
+      </p>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -30,47 +30,42 @@ export default {
   data() {
     return {
       title: "Choose your billing period",
-      selected: 1,
-      cycles: [
-        {
-          period: "1 Month subscription",
-          price: "60",
-          discount: ""
-        },
-        {
-          period: "1 Year subscription",
-          price: "54",
-          discount: "10"
-        },
-        {
-          period: "3 Years subscription",
-          price: "153",
-          discount: "15"
-        }
-      ],
+      selected: 2,
       discountStyle: {
         color: "#71b663",
         float: "right"
       },
       colorGreen: "#71b663"
     };
+  },
+  created() {
+    this.$store.commit("stripeModule/selectPlan", this.selected);
+  },
+  computed: {
+    isMobile() {
+      return this.$store.state.isMobile;
+    },
+    subscriptionPlans() {
+      return this.$store.state.stripeModule.subscriptionPlans;
+    }
+  },
+  watch: {
+    selected(newValue) {
+      this.$store.commit("stripeModule/selectPlan", newValue);
+    }
   }
 };
 </script>
 
 <style scoped>
 h1 {
-  font-size: 20px;
+  font-size: 24px;
   color: #58595b;
   font-weight: 500;
-  margin-bottom: 18px;
 }
 p {
   margin-bottom: 8px;
   color: #58595b;
-}
-.v-btn {
-  color: #71b663;
 }
 .v-input--selection-controls {
   margin-top: 0;

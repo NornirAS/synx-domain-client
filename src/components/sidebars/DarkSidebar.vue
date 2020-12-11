@@ -3,10 +3,6 @@
     <v-list-item slot="title" two-line>
       <v-list-item-content>
         <v-list-item-title :style="headerStyle">
-          <v-icon medium>{{ mdiAccountCircle }}</v-icon>
-          Username: <span class="font-italic">{{ username }}</span>
-        </v-list-item-title>
-        <v-list-item-title :style="headerStyle">
           <v-icon medium>{{ mdiEarth }}</v-icon>
           Domain: <span class="font-italic">{{ domain }}</span>
         </v-list-item-title>
@@ -53,9 +49,14 @@ export default {
         { title: "Domains", icon: mdiAtom, path: { name: "domains" } },
         { title: "Services", icon: mdiAntenna, path: { name: "services" } },
         {
-          title: "Instances",
+          title: "Resources",
           icon: mdiArrangeSendBackward,
-          path: { name: "instances" }
+          path: { name: "resources" }
+        },
+        {
+          title: "Account",
+          icon: mdiAccountCircle,
+          path: { name: "account" }
         }
       ],
       headerStyle: {
@@ -75,16 +76,7 @@ export default {
       dark: true
     };
   },
-  created() {
-    this.$store.commit(
-      "domainsModule/currentDomain",
-      this.$route.params.domainName
-    );
-  },
   computed: {
-    username() {
-      return this.$store.state.authModule.username;
-    },
     domain() {
       return this.$store.state.domainsModule.currentDomain;
     }
