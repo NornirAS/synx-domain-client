@@ -3,12 +3,12 @@
     <v-card :style="footerCardStyle" align="center" flat tile light>
       <v-card-text>
         <v-img
-          max-height="30px"
-          max-width="30px"
+          max-height="20px"
+          max-width="20px"
           src="../assets/SynxDomain_Icon.png"
         >
         </v-img>
-        <strong>Powered by Synx</strong>
+        <strong>Powered by Synx<span></span></strong>
       </v-card-text>
     </v-card>
   </v-footer>
