@@ -9,7 +9,7 @@
       v-model="description"
       @blur="addDescription"
       :rules="descriptionRules"
-      :counter="254"
+      :counter="512"
       name="description"
       label="Sevice Description"
       type="text"
@@ -31,7 +31,7 @@ export default {
       descriptionRules: [
         v => !!v || "Description is required",
         v =>
-          (v && v.length) <= 254 || "Description must be maximum 254 character"
+          (v && v.length) <= 512 || "Description must be maximum 512 character"
       ]
     };
   },

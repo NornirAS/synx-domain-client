@@ -10,7 +10,7 @@
       :rules="timeoutRules"
       :counter="10"
       name="timeout"
-      label="Timeout"
+      label="Set timeout"
       type="number"
       error-count="2"
       slot="action"

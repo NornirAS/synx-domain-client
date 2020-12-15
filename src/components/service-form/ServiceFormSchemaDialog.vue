@@ -42,8 +42,8 @@
               <v-col cols="12">
                 <v-text-field
                   v-model="linkTo.domain"
-                  :rules="formRules"
-                  :counter="15"
+                  :rules="domainRules"
+                  :counter="64"
                   label="Domain"
                   form="service-form"
                   name="domain"
@@ -57,8 +57,8 @@
               <v-col cols="12">
                 <v-text-field
                   v-model="linkTo.service"
-                  :rules="formRules"
-                  :counter="15"
+                  :rules="serviceRules"
+                  :counter="64"
                   label="Service"
                   form="service-form"
                   name="service"
@@ -72,8 +72,8 @@
               <v-col cols="12">
                 <v-text-field
                   v-model="linkTo.variable"
-                  :rules="formRules"
-                  :counter="15"
+                  :rules="variableRules"
+                  :counter="32"
                   label="Variable"
                   form="service-form"
                   name="variable"
@@ -153,9 +153,23 @@ export default {
       cancelBtnStyle: {
         backgroundColor: "#404B5F"
       },
-      formRules: [
-        v => !!v || "Name is required",
-        v => (v && v.length) <= 15 || "Name must be maximum 15 character",
+      domainRules: [
+        v => !!v || "Domain is required",
+        v => (v && v.length) <= 64 || "Domain must be maximum 64 character",
+        v =>
+          /^[A-Za-z\d]+$/.test(v) ||
+          "Only alphabet characters and numbers are allowed"
+      ],
+      serviceRules: [
+        v => !!v || "Service is required",
+        v => (v && v.length) <= 64 || "Service must be maximum 64 character",
+        v =>
+          /^[A-Za-z\d]+$/.test(v) ||
+          "Only alphabet characters and numbers are allowed"
+      ],
+      variableRules: [
+        v => !!v || "Variable is required",
+        v => (v && v.length) <= 32 || "Variable must be maximum 32 character",
         v =>
           /^[A-Za-z\d]+$/.test(v) ||
           "Only alphabet characters and numbers are allowed"

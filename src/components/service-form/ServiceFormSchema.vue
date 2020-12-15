@@ -1,6 +1,6 @@
 <template>
   <input-card>
-    <div slot="title">Servie Schema</div>
+    <div slot="title">Service Schema</div>
     <div slot="subtitle">
       This is the message format or API for this service. Put Schema on a single
       line to make it easier to parse on the client. You may link to variables
@@ -10,9 +10,9 @@
     <v-combobox
       v-model="tagName"
       :rules="tagNameRules"
-      :counter="30"
+      :counter="32"
       name="tag-name"
-      label="Schema"
+      label="Add elements"
       type="text"
       error-count="2"
       slot="action"
@@ -35,7 +35,7 @@
         <template v-slot:default>
           <thead>
             <tr>
-              <th class="text-left">Tag Name</th>
+              <th class="text-left">Element</th>
               <th class="text-center">Link To</th>
               <th class="text-right">Remove Schema</th>
             </tr>
@@ -71,8 +71,8 @@ export default {
       mounted: false,
       linkTo: {},
       tagNameRules: [
-        v => (v && v.length) >= 1 || "Keyword is required",
-        v => (v && v.length) <= 30 || "You can add maximum 30 keywords"
+        v => (v && v.length) >= 1 || "Element is required",
+        v => (v && v.length) <= 32 || "You can add maximum 32 elements"
       ],
       colorRed: "#FF6666"
     };

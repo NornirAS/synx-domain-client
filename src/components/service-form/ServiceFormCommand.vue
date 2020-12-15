@@ -8,9 +8,9 @@
     <v-combobox
       v-model="command"
       :rules="commandRules"
-      :counter="30"
+      :counter="10"
       name="commands"
-      label="Commands"
+      label="Add commands"
       type="text"
       error-count="2"
       slot="action"
@@ -38,7 +38,7 @@ export default {
     return {
       command: "",
       commandRules: [
-        v => (v && v.length) <= 30 || "You can add maximum 30 keywords"
+        v => (v && v.length) <= 10 || "You can add maximum 10 commands"
       ]
     };
   },

@@ -9,7 +9,7 @@
       :rules="keywordRules"
       :counter="30"
       name="keywords"
-      label="Keywords"
+      label="Add keywords"
       type="text"
       error-count="2"
       slot="action"

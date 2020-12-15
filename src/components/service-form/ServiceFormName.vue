@@ -7,9 +7,9 @@
       @blur="addName"
       :disabled="isEditPage"
       :rules="nameRules"
-      :counter="15"
+      :counter="64"
       name="name"
-      label="Service Name"
+      label="Add your service name"
       type="text"
       error-count="2"
       slot="action"
@@ -28,8 +28,10 @@ export default {
       name: "",
       nameRules: [
         v => !!v || "Name is required",
-        v => (v && v.length) <= 15 || "Name must be maximum 15 character",
-        v => /^[A-Za-z]+$/.test(v) || "Only alphabet characters are allowed"
+        v => (v && v.length) <= 64 || "Name must be maximum 64 character",
+        v =>
+          /^[A-Za-z\d-]+$/.test(v) ||
+          "Only alphabet characters, numbers and '-' are allowed"
       ]
     };
   },
