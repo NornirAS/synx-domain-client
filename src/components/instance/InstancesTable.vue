@@ -33,7 +33,7 @@
       </template>
       <template v-slot:[`item.remove`]="{ item }">
         <v-icon small @click="removeInstance(item)">
-          {{ mdiClose }}
+          {{ mdiDelete }}
         </v-icon>
       </template>
       <template v-slot:[`item.more`]="{ item }">
@@ -41,7 +41,7 @@
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
               <v-btn v-bind="attrs" v-on="on" icon>
-                <v-icon>{{ mdiChevronDown }}</v-icon>
+                <v-icon>{{ mdiDotsHorizontal }}</v-icon>
               </v-btn>
             </template>
             <v-list>
@@ -62,9 +62,9 @@
 import {
   mdiAccountSwitchOutline,
   mdiSkullCrossbones,
-  mdiClose,
+  mdiDelete,
   mdiPencilOutline,
-  mdiChevronDown
+  mdiDotsHorizontal
 } from "@mdi/js";
 import ChangeOwner from "./dialogs/ChangeOwner";
 import MapId from "./dialogs/MapId";
@@ -80,8 +80,8 @@ export default {
       mdiAccountSwitchOutline,
       mdiSkullCrossbones,
       mdiPencilOutline,
-      mdiChevronDown,
-      mdiClose,
+      mdiDotsHorizontal,
+      mdiDelete,
       search: "",
       headers: [
         {
