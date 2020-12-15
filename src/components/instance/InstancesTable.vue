@@ -90,7 +90,7 @@ export default {
           value: "domain"
         },
         { text: "Service", value: "service" },
-        { text: "Instance", align: "center", value: "instance" },
+        { text: "Object", align: "center", value: "instance" },
         {
           text: "Change owner",
           align: "center",
@@ -135,43 +135,43 @@ export default {
     changeOwner(item) {
       this.hideAllDialogs();
       this.dialogChangeOwner = true;
-      this.dialogTitle = `Change Owner of an instances: "${item.instance}"`;
+      this.dialogTitle = `Change owner of objectID ${item.instance}`;
       this.openDialogWithSelecetdData(item);
     },
     mapID(item) {
       this.hideAllDialogs();
       this.dialogMapId = true;
-      this.dialogTitle = `Change objectID to mapID of an instance: "${item.instance}"`;
+      this.dialogTitle = `Activate map ID for objectID ${item.instance}`;
       this.openDialogWithSelecetdData(item);
     },
     killSession(item) {
       this.hideAllDialogs();
       this.dialogKillSession = true;
-      this.dialogTitle = `Kill session for an instance: "${item.instance}"`;
+      this.dialogTitle = `Kill session for an objectID ${item.instance}`;
       this.openDialogWithSelecetdData(item);
     },
     removeInstance(item) {
       this.hideAllDialogs();
       this.dialogRemoveInstance = true;
-      this.dialogTitle = `Remove instance: "${item.instance}"`;
+      this.dialogTitle = `Remove objectID ${item.instance}`;
       this.openDialogWithSelecetdData(item);
     },
     linking(item) {
       this.hideAllDialogs();
       this.dialogLinking = true;
-      this.dialogTitle = `Allow/Deny instance "${item.instance}" to be linkable`;
+      this.dialogTitle = `Do you want the data from objectID ${item.instance} to be linkable?`;
       this.openDialogWithSelecetdData(item);
     },
     secondaryService(item) {
       this.hideAllDialogs();
       this.dialogSecondaryService = true;
-      this.dialogTitle = `Add/Remove object "${item.instance}" to/from secondary service`;
+      this.dialogTitle = `Activate or deactivate data from secondary object. You are editing objectID ${item.instance}`;
       this.openDialogWithSelecetdData(item);
     },
     readAccess(item) {
       this.hideAllDialogs();
       this.dialogReadAccess = true;
-      this.dialogTitle = `Give/Remove read access to instance "${item.instance}" to/from another user`;
+      this.dialogTitle = `Give or remove read access for object ${item.instance}`;
       this.openDialogWithSelecetdData(item);
     },
     openDialogWithSelecetdData(item) {

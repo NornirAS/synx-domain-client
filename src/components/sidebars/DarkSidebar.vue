@@ -47,14 +47,18 @@ export default {
       mdiArrangeSendBackward,
       items: [
         { title: "Domains", icon: mdiAtom, path: { name: "domains" } },
-        { title: "Services", icon: mdiAntenna, path: { name: "services" } },
         {
-          title: "Resources",
+          title: "Morphic Services",
+          icon: mdiAntenna,
+          path: { name: "services" }
+        },
+        {
+          title: "Network Resources",
           icon: mdiArrangeSendBackward,
           path: { name: "resources" }
         },
         {
-          title: "Account",
+          title: "My Account",
           icon: mdiAccountCircle,
           path: { name: "account" }
         }

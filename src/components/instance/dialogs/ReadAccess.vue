@@ -9,7 +9,7 @@
       ></v-switch>
       <v-text-field
         v-model="username"
-        label="Username"
+        label="Email of other user"
         outlined
         dense
         hide-details
@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     getStatus(status) {
-      return status === false ? "Remove" : "Give";
+      return status === false ? "Remove read access" : "Give read access";
     },
     readAccess() {
       this.$socket.emit(

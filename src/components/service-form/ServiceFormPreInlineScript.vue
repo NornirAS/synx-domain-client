@@ -13,7 +13,7 @@
       error-count="2"
       name="pre-inline-script"
       type="text"
-      label="Pre Inline Script"
+      label="Type or paste JS"
       slot="action"
       required
       outlined

@@ -2,7 +2,7 @@
   <dialog-template>
     <v-text-field
       v-model="newOwnerUsername"
-      label="New Owner Username"
+      label="Email of new owner"
       slot="body"
       outlined
       dense

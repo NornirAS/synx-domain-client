@@ -3,7 +3,7 @@
     <v-col cols="12" sm="10" md="6">
       <v-row justify="space-between" align="center">
         <v-col>
-          <h1>My Domains</h1>
+          <h1>My Cioty Domains</h1>
         </v-col>
         <v-col align="right">
           <v-btn

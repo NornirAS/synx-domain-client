@@ -13,7 +13,7 @@
       error-count="2"
       name="post-inline-script"
       type="text"
-      label="Post Inline Script"
+      label="Type or paste JS"
       slot="action"
       required
       outlined

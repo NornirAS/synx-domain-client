@@ -11,7 +11,7 @@
         <v-col cols="12" md="4">
           <v-text-field
             v-model="refObjectID"
-            label="Ref. ObjectID"
+            label="Secondary ObjectID"
             type="number"
             min="1"
             outlined
@@ -22,7 +22,7 @@
         <v-col cols="12" md="4">
           <v-text-field
             v-model="refDomain"
-            label="Ref. Domain"
+            label="Secondary Domain"
             outlined
             dense
             hide-details
@@ -31,7 +31,7 @@
         <v-col cols="12" md="4">
           <v-text-field
             v-model="refService"
-            label="Ref. Service"
+            label="Secondary Service"
             outlined
             dense
             hide-details
@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     getStatus(status) {
-      return status === false ? "Remove" : "Add";
+      return status === false ? "Deactivate data" : "Activate data";
     },
     linkableInstance() {
       this.$socket.emit(

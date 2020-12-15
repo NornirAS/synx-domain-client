@@ -46,7 +46,7 @@ export default {
       this.title = "Update Service";
       this.btnName = "Update";
     } else {
-      this.title = "Create Service";
+      this.title = "Create Morphic Service";
       this.btnName = "Create";
     }
   },

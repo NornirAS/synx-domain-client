@@ -16,7 +16,7 @@
             rounded
             dark
           >
-            Look for new instances
+            Look for new ghosts
           </v-btn>
         </v-col>
       </v-row>

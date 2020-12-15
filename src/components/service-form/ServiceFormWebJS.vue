@@ -1,6 +1,6 @@
 <template>
   <input-card>
-    <div slot="title">Web JS</div>
+    <div slot="title">Morphic WebHook</div>
     <div slot="subtitle">
       Optional. The WEBJS-feature allow you to push data to your clients when
       they connect to your service. All standard webcoding is supported such as
@@ -14,7 +14,7 @@
       error-count="2"
       name="web-js"
       type="text"
-      label="WebJS"
+      label="Type or paste HTML/JS"
       slot="action"
       required
       outlined
