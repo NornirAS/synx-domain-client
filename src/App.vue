@@ -68,6 +68,7 @@ export default {
 }
 .container.container--fluid {
   height: 100%;
+  padding: 0 12px;
   overflow: scroll;
 }
 .v-card {
