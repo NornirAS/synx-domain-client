@@ -38,7 +38,10 @@ export default {
       keywords: "",
       keywordRules: [
         v => (v && v.length) >= 1 || "Keyword is required",
-        v => (v && v.length) <= 30 || "You can add maximum 30 keywords"
+        v => (v && v.length) <= 30 || "You can add maximum 30 keywords",
+        v =>
+          (v && !/[^ \w]/.test(v.join(" "))) ||
+          "You can use only alpabetical characters and numbers"
       ]
     };
   },
