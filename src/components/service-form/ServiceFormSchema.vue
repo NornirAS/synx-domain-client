@@ -30,30 +30,32 @@
         </v-chip>
       </template>
     </v-combobox>
-    <v-simple-table v-if="serviceSchema.length !== 0" slot="table">
-      <template v-slot:default>
-        <thead>
-          <tr>
-            <th class="text-left">Tag Name</th>
-            <th class="text-center">Link To</th>
-            <th class="text-right">Remove Schema</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(item, index) in serviceSchema" :key="index">
-            <td>{{ item.tagName }}</td>
-            <td>
-              <Dialog :index="index" />
-            </td>
-            <td class="text-right">
-              <v-btn @click="remove(index)" :color="colorRed" icon x-small>
-                <v-icon>{{ mdiDelete }}</v-icon>
-              </v-btn>
-            </td>
-          </tr>
-        </tbody>
-      </template>
-    </v-simple-table>
+    <v-card-actions slot="table">
+      <v-simple-table v-if="serviceSchema.length !== 0">
+        <template v-slot:default>
+          <thead>
+            <tr>
+              <th class="text-left">Tag Name</th>
+              <th class="text-center">Link To</th>
+              <th class="text-right">Remove Schema</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in serviceSchema" :key="index">
+              <td>{{ item.tagName }}</td>
+              <td>
+                <Dialog :index="index" />
+              </td>
+              <td class="text-right">
+                <v-btn @click="remove(index)" :color="colorRed" icon x-small>
+                  <v-icon>{{ mdiDelete }}</v-icon>
+                </v-btn>
+              </td>
+            </tr>
+          </tbody>
+        </template>
+      </v-simple-table>
+    </v-card-actions>
   </input-card>
 </template>
 
