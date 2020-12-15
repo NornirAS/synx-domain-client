@@ -2,8 +2,12 @@
   <v-card>
     <v-card-title>
       <slot name="title"></slot>
-      <v-icon @mouseover="expand = true" @mouseleave="expand = false">
-        {{ mdiInformation }}
+      <v-icon
+        @mouseover="expand = true"
+        @mouseleave="expand = false"
+        :color="colorBlue"
+      >
+        {{ mdiInformationOutline }}
       </v-icon>
     </v-card-title>
     <v-expand-transition>
@@ -19,12 +23,13 @@
 </template>
 
 <script>
-import { mdiInformation } from "@mdi/js";
+import { mdiInformationOutline } from "@mdi/js";
 export default {
   data() {
     return {
       expand: false,
-      mdiInformation
+      mdiInformationOutline,
+      colorBlue: "#27AAE1"
     };
   }
 };
