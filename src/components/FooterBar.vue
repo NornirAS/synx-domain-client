@@ -8,7 +8,7 @@
           src="../assets/SynxDomain_Icon.png"
         >
         </v-img>
-        <strong>Powered by Synx Domain</strong>
+        <strong>Powered by Synx</strong>
       </v-card-text>
     </v-card>
   </v-footer>
