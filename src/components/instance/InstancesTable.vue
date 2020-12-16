@@ -165,7 +165,7 @@ export default {
     secondaryService(item) {
       this.hideAllDialogs();
       this.dialogSecondaryService = true;
-      this.dialogTitle = `Activate or deactivate data from secondary object. You are editing objectID ${item.instance}`;
+      this.dialogTitle = `Activate or deactivate data from shadow object. You are editing objectID ${item.instance}`;
       this.openDialogWithSelecetdData(item);
     },
     readAccess(item) {
