@@ -31,11 +31,16 @@ const mutations = {
   },
   serviceSchemaAddLink(state, { tagName, linkTo }) {
     const schema = state.serviceSchema.find(s => s.tagName === tagName);
-    schema.linkTo = Object.assign({}, schema.linkTo, linkTo);
+    schema.links.push(linkTo);
   },
-  serviceSchemaRemoveLink(state, { tagName }) {
+  serviceSchemaRemoveLink(state, { tagName, index }) {
     const schema = state.serviceSchema.find(s => s.tagName === tagName);
-    schema.linkTo = {};
+    schema.links.splice(index, 1);
+  },
+  serviceSchemaUpdateLink(state, { tagName, linkTo, index }) {
+    const schema = state.serviceSchema.find(s => s.tagName === tagName);
+    const obj = Object.assign({}, schema.links[index], linkTo);
+    schema.links.splice(index, 1, obj);
   },
   addCommand(state, command) {
     state.commandSchema = command;

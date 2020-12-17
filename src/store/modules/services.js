@@ -1,6 +1,5 @@
 const state = {
   services: [],
-  selectAll: false,
   selectedServiceIndex: ""
 };
 
@@ -8,24 +7,6 @@ const mutations = {
   allServices(state, payload) {
     state.services = payload;
   },
-  // selectService(state, index) {
-  //   state.services[index].isSelected = !state.services[index].isSelected;
-  // },
-  // selectAllServices(state) {
-  //   state.selectAll = !state.selectAll;
-  //   if (!state.selectAll) {
-  //     state.services.forEach(service => {
-  //       service.isSelected = true;
-  //     });
-  //   } else {
-  //     state.services.forEach(service => {
-  //       service.isSelected = false;
-  //     });
-  //   }
-  //   state.services.forEach(service => {
-  //     service.isSelected = !service.isSelected;
-  //   });
-  // },
   serviceIndex(state, index) {
     state.selectedServiceIndex = index;
   },

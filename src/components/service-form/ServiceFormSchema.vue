@@ -36,15 +36,19 @@
           <thead>
             <tr>
               <th class="text-left">Element</th>
-              <th class="text-center">Link To</th>
-              <th class="text-right">Remove Schema</th>
+              <th class="text-center">Links</th>
+              <th class="text-center">Add Link</th>
+              <th class="text-right">Remove Element</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(item, index) in serviceSchema" :key="index">
               <td>{{ item.tagName }}</td>
               <td>
-                <Dialog :index="index" />
+                <ViewLinksDialog :elementIndex="index" />
+              </td>
+              <td>
+                <AddLinksDialog :elementIndex="index" />
               </td>
               <td class="text-right">
                 <v-btn @click="remove(index)" :color="colorRed" icon x-small>
@@ -61,7 +65,8 @@
 
 <script>
 import { mdiDelete } from "@mdi/js";
-import Dialog from "./ServiceFormSchemaDialog";
+import AddLinksDialog from "./ServiceFormSchemaAddLinksDialog";
+import ViewLinksDialog from "./ServiceFormSchemaViewLinksDialog";
 import InputCard from "../FormInputCard";
 export default {
   data() {
@@ -105,10 +110,10 @@ export default {
       if (newValue.length > oldValue.length && !this.mounted) {
         const newAdded = newValue.slice(-1);
         const tagName = newAdded[0];
-        const linkTo = Object.assign({}, this.linkTo, {});
+        const links = [];
         this.$store.commit("serviceFormModule/addServiceSchema", {
           tagName,
-          linkTo
+          links
         });
       } else if (newValue.length > oldValue.length && this.mounted) {
         this.mounted = false;
@@ -118,7 +123,8 @@ export default {
     }
   },
   components: {
-    Dialog,
+    AddLinksDialog,
+    ViewLinksDialog,
     InputCard
   }
 };

@@ -3,33 +3,19 @@
     <v-dialog v-model="dialog" width="300">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-          v-if="isLink"
-          :color="colorBlue"
-          style="padding-left: 0"
+          :color="colorLightGrey"
           dark
           v-bind="attrs"
           v-on="on"
-          xSmall
-          text
+          x-small
+          rounded
         >
-          {{ linkingString }}
-        </v-btn>
-        <v-btn
-          v-else
-          :color="colorBlue"
-          style="padding-left: 0"
-          dark
-          v-bind="attrs"
-          v-on="on"
-          xSmall
-          text
-        >
-          Add Link
+          {{ activatorBtnName }}
         </v-btn>
       </template>
       <v-card>
         <v-card-title class="justify-center">
-          Add Link
+          {{ dialogTitle }}
         </v-card-title>
         <v-card-actions>
           <v-form
@@ -84,7 +70,7 @@
                   outlined
                 ></v-text-field>
               </v-col>
-              <v-col>
+              <v-col cols="12">
                 <v-btn
                   class="text-capitalize"
                   @click="dialog = false"
@@ -103,22 +89,15 @@
                   rounded
                   small
                 >
-                  Add Link
+                  {{ dialogBtnName }}
                 </v-btn>
               </v-col>
             </v-row>
           </v-form>
         </v-card-actions>
-
-        <v-row>
+        <v-row v-if="link">
           <v-col align="center" style="padding-top: 0">
-            <v-btn
-              v-if="isLink"
-              @click="removeLink()"
-              :color="colorRed"
-              text
-              small
-            >
+            <v-btn @click="removeLink()" :color="colorRed" text small>
               <v-icon>{{ mdiDelete }}</v-icon>
               Remove Link
             </v-btn>
@@ -131,16 +110,14 @@
 
 <script>
 import { mdiCheck, mdiClose, mdiDelete } from "@mdi/js";
-import _ from "underscore";
 export default {
-  props: ["index"],
+  props: ["elementIndex", "link", "linkIndex"],
   data() {
     return {
       mdiCheck,
       mdiClose,
       mdiDelete,
       valid: false,
-      isLink: false,
       linkTo: {
         domain: "",
         service: "",
@@ -174,18 +151,16 @@ export default {
           /^[A-Za-z\d]+$/.test(v) ||
           "Only alphabet characters and numbers are allowed"
       ],
-      colorBlue: "#27AAE1",
+      colorLightGrey: "#404B5F",
       colorRed: "#FF6666",
       dialog: false
     };
   },
   created() {
-    const links = this.serviceSchema.linkTo;
-    this.isLink = !_.isEmpty(links);
-    if (!_.isEmpty(links)) {
-      this.linkTo.domain = links.domain;
-      this.linkTo.service = links.service;
-      this.linkTo.variable = links.variable;
+    if (this.link) {
+      this.linkTo.domain = this.link.domain;
+      this.linkTo.service = this.link.service;
+      this.linkTo.variable = this.link.variable;
     }
   },
   methods: {
@@ -198,50 +173,53 @@ export default {
           variable: this.linkTo.variable
         }
       });
-      this.isLink = true;
       this.dialog = false;
     },
     removeLink() {
       this.$store.commit("serviceFormModule/serviceSchemaRemoveLink", {
-        tagName: this.serviceSchema.tagName
+        tagName: this.serviceSchema.tagName,
+        index: this.linkIndex
       });
-      this.linkTo = {};
-      this.isLink = false;
+      this.dialog = false;
+    },
+    updateLink() {
+      this.$store.commit("serviceFormModule/serviceSchemaUpdateLink", {
+        tagName: this.serviceSchema.tagName,
+        linkTo: {
+          domain: this.linkTo.domain,
+          service: this.linkTo.service,
+          variable: this.linkTo.variable
+        },
+        index: this.linkIndex
+      });
       this.dialog = false;
     },
     submitLinkForm() {
+      this.$refs.linkForm.validate();
       if (this.$refs.linkForm.validate()) {
-        this.addLink();
-        this.$refs.linkForm.reset();
+        if (this.link) {
+          this.updateLink();
+        } else {
+          this.addLink();
+          this.$refs.linkForm.reset();
+        }
       }
     }
   },
   computed: {
-    serviceFormModule() {
-      return this.$store.state.serviceFormModule;
-    },
     serviceSchema() {
-      return this.serviceFormModule.serviceSchema[this.index];
+      return this.$store.state.serviceFormModule.serviceSchema[
+        this.elementIndex
+      ];
     },
-    checkLinks() {
-      return this.serviceSchema.linkTo;
+    dialogTitle() {
+      return this.link ? "Update Link" : "Add Link";
     },
-    linkingString() {
-      return (
-        this.serviceSchema.linkTo.domain +
-        "/" +
-        this.serviceSchema.linkTo.service +
-        "#" +
-        this.serviceSchema.linkTo.variable
-      );
-    }
-  },
-  watch: {
-    checkLinks: {
-      handler(nv) {
-        this.isLink = !_.isEmpty(nv);
-      },
-      deep: true
+    dialogBtnName() {
+      return this.link ? "Update" : "Add";
+    },
+    activatorBtnName() {
+      return this.link ? "Update" : "Add";
     }
   }
 };
