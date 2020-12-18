@@ -56,11 +56,11 @@ export default {
       actionBtnStyle: {
         backgroundColor: "#27AAE1",
         float: "right",
-        marginTop: "20px"
+        marginTop: "12px"
       },
       deleteBtnStyle: {
         color: "#FF6666",
-        marginTop: "20px"
+        marginTop: "12px"
       }
     };
   },
