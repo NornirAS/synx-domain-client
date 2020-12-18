@@ -20,7 +20,7 @@
         </v-col>
       </v-row>
       <v-row justify="center">
-        <v-col cols="12">
+        <v-col cols="12" class="form-container">
           <router-view :btnName="btnName"></router-view>
         </v-col>
       </v-row>
@@ -77,5 +77,8 @@ h1 {
   color: #58595b;
   font-size: 24px;
   font-weight: 500;
+}
+.form-container {
+  padding: 0 12px 24px 12px;
 }
 </style>
