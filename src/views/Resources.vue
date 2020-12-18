@@ -22,7 +22,8 @@
       </v-row>
       <v-row justify="space-between" align="center">
         <v-col cols="12">
-          <InstancesTable :instances="instances" />
+          <InstancesTable v-if="!isInstances" :instances="instances" />
+          <p>You don't have any network resources...</p>
         </v-col>
       </v-row>
     </v-col>
@@ -49,6 +50,9 @@ export default {
     },
     successMessage() {
       return this.$store.state.alarmModule.successMessage;
+    },
+    isInstances() {
+      return this.instances.length === 0 ? true : false;
     }
   },
   watch: {
@@ -67,5 +71,10 @@ h1 {
   color: #58595b;
   font-size: 24px;
   font-weight: 500;
+}
+p {
+  margin: 0;
+  color: #58595b;
+  font-size: 16px;
 }
 </style>

@@ -3,7 +3,7 @@
     <v-col cols="12" md="10">
       <v-row justify="space-between" align="center">
         <v-col>
-          <h1>Look for new instances</h1>
+          <h1>Look for new ghosts</h1>
         </v-col>
         <v-col align="right">
           <v-btn
@@ -48,7 +48,7 @@
           ></v-pagination>
         </v-col>
         <v-col v-if="instances.length === 0">
-          <p>You have no instances to approve or deny...</p>
+          <p>You have no ghosts to approve or deny...</p>
         </v-col>
       </v-row>
     </v-col>
