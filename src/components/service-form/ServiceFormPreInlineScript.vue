@@ -37,14 +37,14 @@ export default {
     };
   },
   mounted() {
-    this.preInlineScript = this.$store.state.serviceFormModule.preInlineScript;
+    const base64String = this.$store.state.serviceFormModule.preInlineScript;
+    const decodedString = atob(base64String);
+    this.preInlineScript = decodedString;
   },
   methods: {
     addPreInlineScript() {
-      this.$store.commit(
-        "serviceFormModule/addPreInlineScript",
-        this.preInlineScript
-      );
+      const encodedScript = btoa(this.preInlineScript);
+      this.$store.commit("serviceFormModule/addPreInlineScript", encodedScript);
     }
   },
   components: {

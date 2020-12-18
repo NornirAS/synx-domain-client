@@ -5,9 +5,9 @@ const state = {
   serviceSchema: [],
   commandSchema: "",
   timeout: "30",
-  preInlineScript: "YWFhYWFhYWFhYQo=",
-  postInlineScript: "YWFhYWFhYWFhYQo=",
-  webJS: "Hello World"
+  preInlineScript: "",
+  postInlineScript: "",
+  webJS: "Hello World!"
 };
 
 const mutations = {
@@ -63,9 +63,9 @@ const mutations = {
     state.keywords = service.searchTerms;
     state.serviceSchema = service.schema;
     state.commandSchema = service.cmdXML;
-    // state.preInlineScript = service.preMasterScript;
-    // state.postInlineScript = service.masterScript;
-    // state.webJS = "Need VALUE";
+    state.preInlineScript = service.preMasterScript;
+    state.postInlineScript = service.masterScript;
+    state.webJS = "Hello World!";
   },
   resetServiceForm(state) {
     state.name = "";
@@ -73,9 +73,9 @@ const mutations = {
     state.keywords = "";
     state.serviceSchema = [];
     state.commandSchema = "";
-    // state.preInlineScript = "";
-    // state.postInlineScript = "";
-    // state.webJS = "";
+    state.preInlineScript = "";
+    state.postInlineScript = "";
+    state.webJS = "";
   }
 };
 
