@@ -72,7 +72,7 @@ export default {
   overflow: scroll;
 }
 .v-card {
-  margin-top: 0.5em;
+  margin: 0 0 12px 0;
   padding: 0 1em;
   flex-grow: 1;
 }

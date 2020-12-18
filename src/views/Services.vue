@@ -18,6 +18,7 @@
           </v-btn>
         </v-col>
       </v-row>
+      <hr />
       <v-row justify="space-between" align="center">
         <v-col cols="12" md="6">
           <v-text-field
@@ -25,17 +26,22 @@
             append-icon="mdi-magnify"
             label="Search"
             hide-details
-            :style="searchBarStyle"
+            outlined
+            dense
           ></v-text-field>
         </v-col>
       </v-row>
       <hr />
-      <ServiceCard
-        v-for="(service, index) in services"
-        :key="index"
-        :index="index"
-        :service="service"
-      />
+      <v-row justify="space-between" align="center">
+        <v-col cols="12">
+          <ServiceCard
+            v-for="(service, index) in services"
+            :key="index"
+            :index="index"
+            :service="service"
+          />
+        </v-col>
+      </v-row>
     </v-col>
   </v-row>
 </template>
@@ -47,10 +53,6 @@ export default {
     return {
       title: "Services",
       search: "",
-      searchBarStyle: {
-        marginTop: "0",
-        padding: "0 0.5em 0 0.5em"
-      },
       colorBlue: "#27AAE1"
     };
   },

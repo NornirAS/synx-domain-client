@@ -36,9 +36,6 @@ export default {
 </script>
 
 <style scoped>
-.v-card.v-sheet.theme--light {
-  margin-top: 16px;
-}
 .v-card__subtitle,
 .v-card__text,
 .v-card__title {

@@ -19,54 +19,61 @@
         </v-col>
       </v-row>
       <hr />
-      <v-card
-        v-for="({ name, active }, index) in domains"
-        :key="index"
-        :to="{ name: 'services', params: { domainName: name } }"
-      >
-        <v-row justify="space-between" align="center">
-          <v-col cols="6">
-            <h3>
-              {{ name }}
-              <v-chip
-                v-if="active === true"
-                :color="colorGreen"
-                align="center"
-                x-small
-                label
-                dark
-              >
-                Active
-              </v-chip>
-              <v-chip
-                v-if="active === false"
-                :color="colorRed"
-                align="center"
-                x-small
-                label
-                dark
-              >
-                Inactive
-              </v-chip>
-            </h3>
-          </v-col>
-          <v-col cols="6">
-            <div align="right">
-              <v-btn
-                v-if="active === true"
-                :to="{ name: 'domain-activate', params: { domainName: name } }"
-                :color="colorLightGrey"
-                class="text-capitalize"
-                rounded
-                x-small
-                dark
-              >
-                Activate
-              </v-btn>
-            </div>
-          </v-col>
-        </v-row>
-      </v-card>
+      <v-row>
+        <v-col col="12">
+          <v-card
+            v-for="({ name, active }, index) in domains"
+            :key="index"
+            :to="{ name: 'services', params: { domainName: name } }"
+          >
+            <v-row justify="space-between" align="center">
+              <v-col cols="6">
+                <h3>
+                  {{ name }}
+                  <v-chip
+                    v-if="active === true"
+                    :color="colorGreen"
+                    align="center"
+                    x-small
+                    label
+                    dark
+                  >
+                    Active
+                  </v-chip>
+                  <v-chip
+                    v-if="active === false"
+                    :color="colorRed"
+                    align="center"
+                    x-small
+                    label
+                    dark
+                  >
+                    Inactive
+                  </v-chip>
+                </h3>
+              </v-col>
+              <v-col cols="6">
+                <div align="right">
+                  <v-btn
+                    v-if="active === true"
+                    :to="{
+                      name: 'domain-activate',
+                      params: { domainName: name }
+                    }"
+                    :color="colorLightGrey"
+                    class="text-capitalize"
+                    rounded
+                    x-small
+                    dark
+                  >
+                    Activate
+                  </v-btn>
+                </div>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-col>
+      </v-row>
     </v-col>
   </v-row>
 </template>
