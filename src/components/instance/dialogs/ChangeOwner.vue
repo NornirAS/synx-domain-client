@@ -49,8 +49,8 @@ export default {
         "change_instance_owner",
         this.domain,
         this.service,
-        this.username,
         this.token,
+        this.username,
         this.instance,
         this.newOwnerUsername
       );

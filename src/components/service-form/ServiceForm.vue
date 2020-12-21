@@ -72,16 +72,16 @@ export default {
           this.$socket.emit(
             "register_service",
             this.domain,
-            this.formData,
+            this.token,
             this.username,
-            this.token
+            this.formData
           );
         } else {
           this.$socket.emit(
             "update_service",
             this.domain,
-            this.formData,
-            this.token
+            this.token,
+            this.formData
           );
         }
       }

@@ -23,7 +23,7 @@
       <v-row justify="space-between" align="center">
         <v-col cols="12">
           <InstancesTable v-if="!isInstances" :instances="instances" />
-          <p>You don't have any network resources...</p>
+          <p v-else>You don't have any network resources...</p>
         </v-col>
       </v-row>
     </v-col>

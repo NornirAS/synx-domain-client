@@ -50,8 +50,8 @@ export default {
           "update_micropage",
           this.domain,
           this.service,
-          this.formData,
-          this.token
+          this.token,
+          this.formData
         );
       }
     }

@@ -81,8 +81,8 @@ export default {
           "add_instances",
           this.domain,
           this.service,
-          this.instancesToAdd,
-          this.token
+          this.token,
+          this.instancesToAdd
         );
         this.dialog = false;
       }
