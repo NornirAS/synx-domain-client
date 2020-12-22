@@ -106,7 +106,7 @@ export default {
       this.$socket.emit(
         "stripe",
         this.domain,
-        this.selectedPlan.name,
+        this.selectedPlan.description,
         this.selectedPlan.period
       );
     }

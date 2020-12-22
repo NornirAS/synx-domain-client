@@ -1,26 +1,26 @@
 const state = {
   subscriptionPlans: [
     {
-      name: "1 Month",
+      description: "1 Month",
       period: "1",
       price: "60$ / year",
       total: "5"
     },
     {
-      name: "3 Months",
+      description: "3 Months",
       period: "3",
       price: "60$ / year",
       total: "15"
     },
     {
-      name: "6 Months",
+      description: "6 Months",
       period: "6",
       price: "55$ / year",
       discount: "1 Month FREE!",
       total: "22.5"
     },
     {
-      name: "12 Month",
+      description: "12 Month",
       period: "12",
       price: "50$ / year",
       discount: "2 Months FREE!",
