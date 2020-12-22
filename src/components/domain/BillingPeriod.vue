@@ -6,9 +6,9 @@
     <v-col cols="8" md="6">
       <v-radio-group v-model="selected">
         <v-radio
-          v-for="({ name }, index) in subscriptionPlans"
+          v-for="({ description }, index) in subscriptionPlans"
           :key="index"
-          :label="name"
+          :label="description"
           :value="index"
           :color="colorGreen"
         ></v-radio>

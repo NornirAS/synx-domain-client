@@ -104,8 +104,10 @@ export default {
     // Send data to stripe domain name and period.
     checkout() {
       this.$socket.emit(
-        "stripe",
+        "stripe_payment",
         this.domain,
+        this.token,
+        this.username,
         this.selectedPlan.description,
         this.selectedPlan.period
       );
@@ -117,6 +119,12 @@ export default {
     },
     selectedPlan() {
       return this.$store.state.stripeModule.selectedPlan;
+    },
+    username() {
+      return this.$store.state.authModule.username;
+    },
+    token() {
+      return this.$store.state.authModule.idToken;
     }
   },
   components: {
