@@ -4,9 +4,11 @@ import VueSocketIO from "vue-socket.io";
 
 export default Vue.use(
   new VueSocketIO({
-    debug: false,
-    connection: "https://synx-domain-server.herokuapp.com",
-    // connection: "http://localhost:3000",
+    debug: process.env.NODE_ENV === "production" ? false : true,
+    connection:
+      process.env.NODE_ENV === "production"
+        ? "https://synx-domain-server.herokuapp.com"
+        : "http://localhost:3000",
     vuex: {
       store,
       actionPrefix: "SOCKET_",
