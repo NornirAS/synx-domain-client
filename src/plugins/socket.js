@@ -13,6 +13,9 @@ export default Vue.use(
       store,
       actionPrefix: "SOCKET_",
       mutationPrefix: "SOCKET_"
+    },
+    options: {
+      transports: ["polling"]
     }
   })
 );
