@@ -1,21 +1,27 @@
 <template>
-  <v-form ref="form" v-model="valid" @submit="submitForm" lazy-validation>
+  <v-form
+    ref="form"
+    v-model="valid"
+    @submit.prevent="submitForm"
+    lazy-validation
+  >
     <v-container>
       <v-row justify="center">
         <v-col cols="12" md="4">
           <v-text-field
             v-model="authData.username"
             :rules="[v => !!v || 'Username is required']"
-            label="Synx ID"
+            type="email"
+            name="email"
+            label="Synx ID (email)"
             dark
             required
           ></v-text-field>
-        </v-col>
-        <v-col cols="12" md="4">
           <v-text-field
             v-model="authData.password"
             :rules="[v => !!v || 'Password is required']"
             type="password"
+            name="password"
             label="Password"
             dark
             required
@@ -27,8 +33,6 @@
           <p :color="colorWhite" align="center">{{ error }}</p>
         </v-col>
       </v-row>
-      <br v-if="!isMobile" />
-      <br v-if="!isMobile" />
       <br v-if="!isMobile" />
       <br v-if="!isMobile" />
       <v-row justify="center">
@@ -56,13 +60,9 @@ export default {
     };
   },
   methods: {
-    submitForm(e) {
-      e.preventDefault();
-      if (this.$refs.form.validate()) {
-        localStorage.setItem("username", this.authData.username);
-        this.$socket.emit("authenticate", this.authData);
-        this.$refs.form.reset();
-      }
+    submitForm() {
+      localStorage.setItem("username", this.authData.username);
+      this.$socket.emit("authenticate", this.authData);
     }
   },
   computed: {

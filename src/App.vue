@@ -88,6 +88,11 @@ export default {
   padding-left: 0.5em;
   padding-right: 0.1em;
 }
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  transition-delay: 3600s;
+}
 @media screen and (max-width: 960px) {
   .v-main {
     height: 100%;

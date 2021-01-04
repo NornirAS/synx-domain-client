@@ -12,12 +12,12 @@
       />
     </v-col>
     <v-col cols="12">
-      <h1 align="center">Welcome to CIOTY domain service</h1>
+      <h1 align="center">Sign In to CIOTY domain service</h1>
       <br />
       <p align="center">
-        Sign In with your Synx ID and password. Not registered yet?
+        Not registered yet?
         <a
-          href="https://synxpass.com/"
+          href="https://norniras.github.io/synx-pass-client/"
           class="text-decoration-none synxpass-link"
           target="_blank"
           >Sign Up!
