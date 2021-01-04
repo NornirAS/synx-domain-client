@@ -11,7 +11,7 @@
         width="60"
       />
     </v-col>
-    <v-col cols="12">
+    <v-col cols="12" sm="10">
       <h1 align="center">Sign In to CIOTY domain service</h1>
       <br />
       <p align="center">
