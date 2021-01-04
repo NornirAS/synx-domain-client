@@ -49,7 +49,8 @@ export default {
       },
       domainRules: [
         v => (v && v.length) >= 1 || "Domain Name is required",
-        v => (v && v.length) <= 16 || "You can add maximum 16 keywords",
+        v =>
+          (v && v.length) <= 16 || "Domain Name must be maximum 63 characters",
         v => /^[A-Za-z]+$/.test(v) || "Only alphabet characters are allowed"
       ]
     };
