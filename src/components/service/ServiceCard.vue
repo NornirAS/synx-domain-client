@@ -12,7 +12,7 @@
             x-small
             icon
           >
-            <v-icon x-small>{{ mdiCircleEditOutline }}</v-icon>
+            <v-icon x-small>{{ mdiPencil }}</v-icon>
           </v-btn>
         </h1>
         <p>
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { mdiCircleEditOutline } from "@mdi/js";
+import { mdiPencil } from "@mdi/js";
 import ActiveChannels from "./ActiveChannels";
 import AddInstances from "./AddInstances";
 import DisplayCurrentValue from "../DisplayCurrentValue.vue";
@@ -61,7 +61,7 @@ export default {
   data() {
     return {
       totalInstances: 100,
-      mdiCircleEditOutline,
+      mdiPencil,
       helper: "Available Instances",
       primaryStyle: {
         color: "#27aae1",
