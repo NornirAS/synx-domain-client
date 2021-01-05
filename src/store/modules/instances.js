@@ -36,18 +36,7 @@ const mutations = {
 
 const actions = {
   SOCKET_all_instances({ commit }, data) {
-    const instances = [];
-    if (_.isEmpty(data)) {
-      commit("allInstances", instances);
-    } else {
-      data.forEach(item => {
-        const object = JSON.parse(item);
-        object.domain = object.domain.toLowerCase();
-        object.service = object.service.toLowerCase();
-        instances.push(object);
-      });
-      commit("allInstances", instances);
-    }
+    commit("allInstances", data);
   },
   SOCKET_new_instances({ commit }, data) {
     const instances = [];
