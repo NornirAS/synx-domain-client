@@ -76,6 +76,10 @@ export default {
   padding: 0 1em;
   flex-grow: 1;
 }
+.v-card__title {
+  text-align: justify !important;
+  word-break: keep-all !important;
+}
 .theme--light.v-label {
   color: #58595b;
   padding-left: 0.3em;
