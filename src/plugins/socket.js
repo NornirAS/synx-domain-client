@@ -6,7 +6,7 @@ export default Vue.use(
   new VueSocketIO({
     debug: process.env.NODE_ENV === "production" ? false : true,
     connection:
-      process.env.NODE_ENV !== "production"
+      process.env.NODE_ENV === "production"
         ? "https://synx-domain-server.herokuapp.com"
         : "http://localhost:3000",
     vuex: {
