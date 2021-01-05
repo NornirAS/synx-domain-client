@@ -12,7 +12,7 @@
       :rules="tagNameRules"
       :counter="32"
       name="tag-name"
-      label="Add elements"
+      label="Press 'Enter' to insert"
       type="text"
       error-count="2"
       slot="action"

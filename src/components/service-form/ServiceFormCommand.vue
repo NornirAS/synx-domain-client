@@ -10,7 +10,7 @@
       :rules="commandRules"
       :counter="10"
       name="commands"
-      label="Add commands"
+      label="Press 'Enter' to insert"
       type="text"
       error-count="2"
       slot="action"
