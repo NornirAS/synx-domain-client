@@ -4,8 +4,7 @@ const state = {
   selectedDomain: "",
   selectedService: "",
   selectedInstance: "",
-  dialogTitle: "",
-  instancesToAprove: []
+  dialogTitle: ""
 };
 
 const mutations = {
@@ -26,18 +25,12 @@ const mutations = {
   },
   dialogTitle(state, payload) {
     state.dialogTitle = payload;
-  },
-  instancesToAprove(state, payload) {
-    state.instancesToAprove = payload;
   }
 };
 
 const actions = {
   SOCKET_all_instances({ commit }, data) {
     commit("allInstances", data);
-  },
-  SOCKET_new_instances({ commit }, data) {
-    commit("instancesToAprove", data);
   }
 };
 

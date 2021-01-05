@@ -132,7 +132,7 @@ export default {
       return this.$store.state.authModule.username;
     },
     instances() {
-      return this.$store.state.instancesModule.instancesToAprove;
+      return this.$store.state.instancesModule.instances;
     },
     successMessage() {
       return this.$store.state.alarmModule.successMessage;
