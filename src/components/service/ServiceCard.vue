@@ -7,12 +7,10 @@
           <v-btn
             :color="colorGrey"
             :to="{ name: 'serviceUpdate', params: { index } }"
-            outlined
-            rounded
             x-small
             icon
           >
-            <v-icon x-small>{{ mdiPencil }}</v-icon>
+            <v-icon small>{{ mdiPencil }}</v-icon>
           </v-btn>
         </h1>
         <p>
