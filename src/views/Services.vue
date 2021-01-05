@@ -28,6 +28,7 @@
             hide-details
             outlined
             dense
+            :disabled="servicesIsEmpty"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -47,6 +48,7 @@
 </template>
 
 <script>
+import _ from "underscore";
 import ServiceCard from "../components/service/ServiceCard.vue";
 export default {
   data() {
@@ -72,6 +74,9 @@ export default {
     },
     services() {
       return this.$store.getters["servicesModule/servicesForDomain"];
+    },
+    servicesIsEmpty() {
+      return _.isEmpty(this.services);
     }
   },
   components: {
