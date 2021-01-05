@@ -1,5 +1,3 @@
-const _ = require("underscore");
-
 const state = {
   instances: [],
   dialog: false,
@@ -39,18 +37,7 @@ const actions = {
     commit("allInstances", data);
   },
   SOCKET_new_instances({ commit }, data) {
-    const instances = [];
-    if (_.isEmpty(data)) {
-      commit("instancesToAprove", instances);
-    } else {
-      data.forEach(item => {
-        const object = JSON.parse(item);
-        object.domain = object.domain.toLowerCase();
-        object.service = object.service.toLowerCase();
-        instances.push(object);
-      });
-      commit("instancesToAprove", instances);
-    }
+    commit("instancesToAprove", data);
   }
 };
 
