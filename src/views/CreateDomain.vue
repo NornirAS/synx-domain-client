@@ -14,7 +14,7 @@
             small
             dark
           >
-            <v-icon small>{{ mdiUndoVariant }}</v-icon>
+            <v-icon left small>{{ mdiUndoVariant }}</v-icon>
             Back
           </v-btn>
         </v-col>
