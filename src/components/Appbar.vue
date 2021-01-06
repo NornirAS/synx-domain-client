@@ -25,55 +25,36 @@
     <v-spacer></v-spacer>
 
     <div>
-      <v-menu offset-y>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            v-bind="attrs"
-            v-on="on"
-            class="nav-buttons"
-            :color="colorGrey"
-            icon
-            rounded
-            outlined
-            small
-          >
-            <v-icon rounded outlined> {{ account }} </v-icon>
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item
-            v-for="(item, index) in items"
-            :key="index"
-            @click="item.action"
-            :to="item.path"
-          >
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
+      <v-btn
+        v-if="!isMobile"
+        :color="colorGrey"
+        @click="signOut"
+        class="text-capitalize"
+        small
+        text
+        dark
+      >
+        <v-icon left>{{ mdiLogout }}</v-icon> Log Out
+      </v-btn>
+      <v-btn v-else @click="signOut" :color="colorGrey" small icon dark>
+        <v-icon>{{ mdiLogout }}</v-icon>
+      </v-btn>
     </div>
   </v-app-bar>
 </template>
 
 <script>
-import { mdiAccount, mdiBell } from "@mdi/js";
+import { mdiLogout } from "@mdi/js";
 export default {
   data() {
     return {
       drawer: false,
-      account: mdiAccount,
-      bell: mdiBell,
+      mdiLogout,
       appBarStyle: {
         backgroundColor: "#ffffff",
         width: "100%",
         left: "0"
       },
-      items: [
-        {
-          title: "Logout",
-          action: this.signOut
-        }
-      ],
       colorGrey: "#58595b"
     };
   },
