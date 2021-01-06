@@ -80,6 +80,12 @@ export default {
       dark: true
     };
   },
+  created() {
+    this.$store.commit(
+      "domainsModule/currentDomain",
+      this.$route.params.domainName
+    );
+  },
   computed: {
     domain() {
       return this.$store.state.domainsModule.currentDomain;

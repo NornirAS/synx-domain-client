@@ -59,10 +59,6 @@ export default {
     };
   },
   created() {
-    this.$store.commit(
-      "domainsModule/currentDomain",
-      this.$route.params.domainName
-    );
     this.$socket.emit("get_all_services", this.domain, this.token);
   },
   computed: {
