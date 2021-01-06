@@ -19,6 +19,25 @@
           </v-btn>
         </v-col>
       </v-row>
+      <hr />
+      <v-row>
+        <v-col>
+          <p>
+            <span class="font-weight-black">Email:</span>
+            <span class="font-weight-bold font-italic float-right">
+              {{ username }}
+            </span>
+          </p>
+          <hr />
+          <p>
+            <span class="font-weight-black">Token:</span>
+            <span class="font-weight-bold font-italic float-right">
+              {{ token }}
+            </span>
+          </p>
+          <hr />
+        </v-col>
+      </v-row>
       <v-row>
         <v-col>
           <v-btn
@@ -84,5 +103,10 @@ h1 {
   color: #58595b;
   font-size: 24px;
   font-weight: 500;
+}
+p {
+  margin: 0;
+  color: #58595b;
+  font-size: 16px;
 }
 </style>
