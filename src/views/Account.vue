@@ -49,10 +49,18 @@ export default {
   },
   methods: {
     customerPortal() {
-      this.$socket.emit("customer_portal", this.token, this.username);
+      this.$socket.emit(
+        "customer_portal",
+        this.domain,
+        this.token,
+        this.username
+      );
     }
   },
   computed: {
+    domain() {
+      return this.$store.state.domainsModule.currentDomain;
+    },
     token() {
       return this.$store.state.authModule.idToken;
     },
