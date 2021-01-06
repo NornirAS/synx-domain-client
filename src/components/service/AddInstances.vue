@@ -4,14 +4,15 @@
       <v-btn
         :color="colorLightGrey"
         :disabled="instancesLimitReached"
+        :dark="dark"
+        :text="text"
         class="text-capitalize"
-        dark
         v-bind="attrs"
         v-on="on"
         x-small
         rounded
       >
-        Add Instances
+        {{ instancesBtnLabel }}
       </v-btn>
     </template>
     <v-card>
@@ -67,6 +68,9 @@ export default {
     return {
       valid: false,
       dialog: false,
+      text: false,
+      dark: true,
+      instancesBtnLabel: "Add Instances",
       instancesToAdd: "",
       cardActionStyle: {
         padding: "0 24px 20px"
@@ -80,6 +84,13 @@ export default {
         v => /^[\d]+$/.test(v) || "Only numbers are allowed"
       ]
     };
+  },
+  created() {
+    if (this.instancesLimitReached) {
+      this.text = true;
+      this.dark = false;
+      this.instancesBtnLabel = "Limit is reached";
+    }
   },
   methods: {
     addInstances() {
