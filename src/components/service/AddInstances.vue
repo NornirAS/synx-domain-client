@@ -3,6 +3,7 @@
     <template v-slot:activator="{ on, attrs }">
       <v-btn
         :color="colorLightGrey"
+        :disabled="instancesLimitReached"
         class="text-capitalize"
         dark
         v-bind="attrs"
@@ -44,7 +45,14 @@
           Cances
         </v-btn>
         <v-spacer></v-spacer>
-        <v-btn @click="addInstances" :color="colorBlue" small rounded dark>
+        <v-btn
+          @click="addInstances"
+          :color="colorBlue"
+          :disabled="cannotAddMoreInstances"
+          small
+          rounded
+          dark
+        >
           Add
         </v-btn>
       </v-card-actions>
@@ -91,6 +99,12 @@ export default {
   computed: {
     token() {
       return this.$store.state.authModule.idToken;
+    },
+    instancesLimitReached() {
+      return this.availableInstances === 0 ? true : false;
+    },
+    cannotAddMoreInstances() {
+      return this.availableInstances - this.instancesToAdd < 0 ? true : false;
     }
   }
 };
