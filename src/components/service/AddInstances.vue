@@ -4,15 +4,15 @@
       <v-btn
         :color="colorLightGrey"
         :disabled="instancesLimitReached"
-        :dark="dark"
-        :text="text"
+        :dark="!instancesLimitReached"
+        :rounded="!instancesLimitReached"
+        :text="instancesLimitReached"
         class="text-capitalize"
         v-bind="attrs"
         v-on="on"
         x-small
-        rounded
       >
-        {{ instancesBtnLabel }}
+        {{ instanceBtnLabel }}
       </v-btn>
     </template>
     <v-card>
@@ -68,9 +68,6 @@ export default {
     return {
       valid: false,
       dialog: false,
-      text: false,
-      dark: true,
-      instancesBtnLabel: "Add Instances",
       instancesToAdd: "",
       cardActionStyle: {
         padding: "0 24px 20px"
@@ -84,13 +81,6 @@ export default {
         v => /^[\d]+$/.test(v) || "Only numbers are allowed"
       ]
     };
-  },
-  created() {
-    if (this.instancesLimitReached) {
-      this.text = true;
-      this.dark = false;
-      this.instancesBtnLabel = "Limit is reached";
-    }
   },
   methods: {
     addInstances() {
@@ -116,6 +106,17 @@ export default {
     },
     cannotAddMoreInstances() {
       return this.availableInstances - this.instancesToAdd < 0 ? true : false;
+    },
+    successMessage() {
+      return this.$store.state.alarmModule.successMessage;
+    },
+    instanceBtnLabel() {
+      return this.instancesLimitReached ? "Limit is reached" : "Add instances";
+    }
+  },
+  watch: {
+    successMessage() {
+      this.$socket.emit("get_all_services", this.domain, this.token);
     }
   }
 };
