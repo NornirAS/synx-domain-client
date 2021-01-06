@@ -23,7 +23,18 @@
       <v-row justify="space-between" align="center">
         <v-col cols="12">
           <InstancesTable v-if="!isInstances" :instances="instances" />
-          <p v-else>You don't have any network resources...</p>
+          <v-img
+            v-else
+            alt="EmptyBox"
+            contain
+            src="../assets/empty-box.png"
+            transition="scale-transition"
+            height="300px"
+          >
+            <p class="font-weight-bold">
+              You don't have any network resources...
+            </p>
+          </v-img>
         </v-col>
       </v-row>
     </v-col>

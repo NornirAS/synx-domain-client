@@ -47,8 +47,18 @@
             light
           ></v-pagination>
         </v-col>
-        <v-col v-if="instances.length === 0">
-          <p>You have no ghosts to approve or deny...</p>
+        <v-col v-else>
+          <v-img
+            alt="EmptyBox"
+            contain
+            src="../assets/empty-box.png"
+            transition="scale-transition"
+            height="300px"
+          >
+            <p class="font-weight-bold">
+              You have no ghosts to approve or deny...
+            </p>
+          </v-img>
         </v-col>
       </v-row>
     </v-col>

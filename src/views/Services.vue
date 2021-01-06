@@ -34,13 +34,27 @@
       </v-row>
       <hr />
       <v-row justify="space-between" align="center">
-        <v-col cols="12">
-          <ServiceCard
+        <v-col cols="12" v-if="!servicesIsEmpty">
+          <service-card
             v-for="(service, index) in services"
             :key="index"
             :index="index"
             :service="service"
-          />
+          >
+          </service-card>
+        </v-col>
+        <v-col v-else>
+          <v-img
+            alt="EmptyBox"
+            contain
+            src="../assets/empty-box.png"
+            transition="scale-transition"
+            height="300px"
+          >
+            <p class="font-weight-bold">
+              You have no services available...
+            </p>
+          </v-img>
         </v-col>
       </v-row>
     </v-col>
@@ -86,5 +100,10 @@ h1 {
   color: #58595b;
   font-size: 24px;
   font-weight: 500;
+}
+p {
+  margin: 0;
+  color: #58595b;
+  font-size: 16px;
 }
 </style>
