@@ -103,7 +103,7 @@ export default {
     };
   },
   created() {
-    this.$socket.emit("get_all_services", this.domain, this.token);
+    this.$socket.emit("get_all_services", this.token);
   },
   methods: {
     selectedDomain(domain) {
@@ -111,14 +111,12 @@ export default {
     }
   },
   computed: {
-    domain() {
-      return this.$store.state.domainsModule.currentDomain;
-    },
     token() {
       return this.$store.state.authModule.idToken;
     },
     services() {
-      return this.$store.getters["servicesModule/servicesForDomain"];
+      // return this.$store.getters["servicesModule/servicesForDomain"];
+      return this.$store.state.servicesModule.services;
     },
     serviceSearchFilter() {
       return this.services.filter(
