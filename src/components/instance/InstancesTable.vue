@@ -37,16 +37,21 @@
         </v-icon>
       </template>
       <template v-slot:[`item.more`]="{ item }">
-        <div class="text-center">
+        <div>
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on" icon>
-                <v-icon>{{ mdiDotsHorizontal }}</v-icon>
-              </v-btn>
+              <v-icon v-bind="attrs" v-on="on">
+                {{ mdiDotsHorizontal }}
+              </v-icon>
             </template>
             <v-list>
               <v-list-item v-for="(action, index) in moreActions" :key="index">
-                <v-btn @click="action.method(item)" small text block>
+                <v-btn
+                  @click="action.method(item)"
+                  small
+                  text
+                  :block="isMobile"
+                >
                   {{ action.title }}
                 </v-btn>
               </v-list-item>
@@ -189,6 +194,11 @@ export default {
       this.dialogLinking = false;
       this.dialogSecondaryService = false;
       this.dialogReadAccess = false;
+    }
+  },
+  computed: {
+    isMobile() {
+      return this.$store.state.isMobile;
     }
   },
   components: {
