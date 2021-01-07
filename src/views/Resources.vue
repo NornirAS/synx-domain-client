@@ -20,6 +20,7 @@
           </v-btn>
         </v-col>
       </v-row>
+      <hr />
       <v-row justify="space-between" align="center">
         <v-col cols="12">
           <InstancesTable v-if="!isInstances" :instances="instances" />

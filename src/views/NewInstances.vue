@@ -19,6 +19,7 @@
           </v-btn>
         </v-col>
       </v-row>
+      <hr />
       <v-row>
         <v-col v-if="instances.length > 0">
           <v-data-table
