@@ -36,7 +36,7 @@
       <v-row justify="space-between" align="center">
         <v-col cols="12" v-if="!servicesIsEmpty">
           <service-card
-            v-for="(service, index) in services"
+            v-for="(service, index) in serviceFilter"
             :key="index"
             :index="index"
             :service="service"
@@ -84,6 +84,13 @@ export default {
     },
     services() {
       return this.$store.getters["servicesModule/servicesForDomain"];
+    },
+    serviceFilter() {
+      return this.services.filter(
+        service =>
+          service.serviceName.toLowerCase().indexOf(this.search.toLowerCase()) >
+          -1
+      );
     },
     servicesIsEmpty() {
       return _.isEmpty(this.services);
