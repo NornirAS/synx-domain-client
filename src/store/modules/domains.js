@@ -1,14 +1,10 @@
 const state = {
-  ownedDomains: [],
-  currentDomain: ""
+  ownedDomains: []
 };
 
 const mutations = {
   allDomains(state, payload) {
     state.ownedDomains = payload;
-  },
-  currentDomain(state, payload) {
-    state.currentDomain = payload;
   }
 };
 
