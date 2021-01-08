@@ -131,7 +131,7 @@ export default {
       );
     },
     servicesIsEmpty() {
-      return _.isEmpty(this.services);
+      return _.isEmpty(this.searchFilter);
     },
     domains() {
       const domains = localStorage.getItem("domains").split(",");
