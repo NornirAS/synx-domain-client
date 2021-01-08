@@ -116,6 +116,7 @@ export default {
   },
   watch: {
     successMessage() {
+      this.$store.commit("alarmModule/resetSuccessMessage");
       this.$socket.emit("get_all_services", this.token);
     }
   }

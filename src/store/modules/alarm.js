@@ -10,6 +10,9 @@ const mutations = {
   errorMessage(state, payload) {
     state.errorMessage = payload;
   },
+  resetSuccessMessage(state) {
+    state.successMessage = "";
+  },
   resetErrorMessage(state) {
     state.errorMessage = "";
   }
