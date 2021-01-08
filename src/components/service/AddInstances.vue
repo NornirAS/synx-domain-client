@@ -116,7 +116,7 @@ export default {
   },
   watch: {
     successMessage() {
-      this.$socket.emit("get_all_services", this.domain, this.token);
+      this.$socket.emit("get_all_services", this.token);
     }
   }
 };

@@ -43,7 +43,7 @@
                   v-on="on"
                   block
                 >
-                  Sort by domain
+                  {{ sortByDomain }}
                   <v-icon left large>{{ mdiMenuDown }}</v-icon>
                 </v-btn>
               </template>
@@ -62,7 +62,7 @@
       <v-row justify="space-between" align="center">
         <v-col cols="12" v-if="!servicesIsEmpty">
           <service-card
-            v-for="(service, index) in serviceSearchFilter"
+            v-for="(service, index) in searchFilter"
             :key="index"
             :index="index"
             :service="service"
@@ -97,7 +97,7 @@ export default {
       mdiMenuDown,
       title: "Services",
       search: "",
-      sortByDomain: "",
+      sortByDomain: "All",
       colorBlue: "#27AAE1",
       colorLightGrey: "#404B5F"
     };
@@ -118,21 +118,25 @@ export default {
       // return this.$store.getters["servicesModule/servicesForDomain"];
       return this.$store.state.servicesModule.services;
     },
-    serviceSearchFilter() {
-      return this.services.filter(
+    sortBy() {
+      return this.sortByDomain === "All"
+        ? this.services
+        : this.services.filter(service => service.domain === this.sortByDomain);
+    },
+    searchFilter() {
+      return this.sortBy.filter(
         service =>
           service.serviceName.toLowerCase().indexOf(this.search.toLowerCase()) >
-            -1 && service.domain === this.sortByDomain.toLowerCase()
+          -1
       );
     },
     servicesIsEmpty() {
       return _.isEmpty(this.services);
     },
     domains() {
-      return localStorage
-        .getItem("domains")
-        .toUpperCase()
-        .split(",");
+      const domains = localStorage.getItem("domains").split(",");
+      domains.unshift("All");
+      return domains;
     }
   },
   components: {
