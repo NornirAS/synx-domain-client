@@ -2,7 +2,7 @@
   <v-row justify="center" align="center" class="full-height">
     <v-col cols="12" md="6">
       <h1 align="center">
-        Congratulations! You become owner of a domain and can create services.
+        Congratulations! You are now the owner of {{ domain }}.cioty.com
       </h1>
       <v-row justify="center">
         <v-btn
@@ -25,6 +25,11 @@ export default {
     return {
       colorBlue: "#27AAE1"
     };
+  },
+  computed: {
+    domain() {
+      return this.$route.params.domainName;
+    }
   }
 };
 </script>

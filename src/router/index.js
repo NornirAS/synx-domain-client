@@ -61,7 +61,7 @@ const routes = [
     component: CreateDomain
   },
   {
-    path: "/domains/checkout-success",
+    path: "/domains/:domainName/checkout-success",
     name: "checkout-success",
     component: CheckoutSuccess,
     beforeEnter: authGuard

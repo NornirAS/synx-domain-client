@@ -78,7 +78,7 @@
             height="300px"
           >
             <p class="font-weight-bold">
-              You have no services available...
+              You have no services yet…
             </p>
           </v-img>
         </v-col>
