@@ -15,7 +15,6 @@
     <service-form-pre-inline-script></service-form-pre-inline-script>
     <service-form-post-inline-script></service-form-post-inline-script>
     <service-form-web-js></service-form-web-js>
-    {{ formData }}
     <v-btn
       v-if="isEditPage"
       @click="deleteService"

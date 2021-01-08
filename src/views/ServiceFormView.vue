@@ -19,6 +19,31 @@
           </v-btn>
         </v-col>
       </v-row>
+      <v-row>
+        <v-col class="form-container">
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                :color="colorLightGrey"
+                class="text-none"
+                dark
+                v-bind="attrs"
+                v-on="on"
+              >
+                For Domain: {{ selectedDomain }}.cioty.com
+                <v-icon left large>{{ mdiMenuDown }}</v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item v-for="(domain, index) in domains" :key="index">
+                <v-list-item-title @click="selectDomain(domain)">
+                  {{ domain }}.cioty.com
+                </v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </v-col>
+      </v-row>
       <v-row justify="center">
         <v-col cols="12" class="form-container">
           <router-view :btnName="btnName"></router-view>
@@ -29,12 +54,14 @@
 </template>
 
 <script>
-import { mdiUndoVariant } from "@mdi/js";
+import { mdiUndoVariant, mdiMenuDown } from "@mdi/js";
 export default {
   data() {
     return {
       mdiUndoVariant,
+      mdiMenuDown,
       title: "",
+      selectedDomain: "",
       btnName: "Update",
       colorLightGrey: "#404B5F"
     };
@@ -53,6 +80,16 @@ export default {
   beforeDestroy() {
     this.$store.commit("serviceFormModule/resetServiceForm");
   },
+  mounted() {
+    this.selectedDomain = this.domains[0];
+    this.$store.commit("serviceFormModule/addDomain", this.selectedDomain);
+  },
+  methods: {
+    selectDomain(domain) {
+      this.selectedDomain = domain;
+      this.$store.commit("serviceFormModule/addDomain", domain);
+    }
+  },
   computed: {
     service() {
       return this.$store.getters["servicesModule/serviceToEdit"];
@@ -62,6 +99,9 @@ export default {
     },
     successMessage() {
       return this.$store.state.alarmModule.successMessage;
+    },
+    domains() {
+      return localStorage.getItem("domains").split(",");
     }
   },
   watch: {
@@ -79,6 +119,6 @@ h1 {
   font-weight: 500;
 }
 .form-container {
-  padding: 0 12px 24px 12px;
+  padding: 0 12px 12px 12px;
 }
 </style>
