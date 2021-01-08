@@ -5,19 +5,6 @@
         <v-col>
           <h1>Account</h1>
         </v-col>
-        <v-col align="right">
-          <v-btn
-            :to="{ name: 'services' }"
-            :color="colorLightGrey"
-            class="text-capitalize"
-            rounded
-            small
-            dark
-          >
-            <v-icon left>{{ mdiUndoVariant }}</v-icon>
-            Back
-          </v-btn>
-        </v-col>
       </v-row>
       <hr />
       <v-row>
@@ -57,11 +44,10 @@
 </template>
 
 <script>
-import { mdiUndoVariant, mdiCreditCardOutline } from "@mdi/js";
+import { mdiCreditCardOutline } from "@mdi/js";
 export default {
   data() {
     return {
-      mdiUndoVariant,
       mdiCreditCardOutline,
       colorLightGrey: "#404B5F"
     };
