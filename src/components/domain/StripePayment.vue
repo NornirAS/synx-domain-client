@@ -64,7 +64,7 @@ export default {
   },
   computed: {
     domain() {
-      return this.$store.state.domainsModule.currentDomain;
+      return this.$route.params.domainName;
     },
     session() {
       return this.$store.state.stripeModule.session;

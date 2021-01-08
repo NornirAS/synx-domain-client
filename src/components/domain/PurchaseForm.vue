@@ -71,6 +71,7 @@
             >
               Continue
             </v-btn>
+            {{ domain }}
           </v-col>
         </v-row>
       </v-stepper-content>
@@ -94,12 +95,6 @@ export default {
       colorLightGrey: "#404B5F"
     };
   },
-  created() {
-    this.$store.commit(
-      "domainsModule/currentDomain",
-      this.$route.params.domainName
-    );
-  },
   methods: {
     // Send data to stripe domain name and period.
     checkout() {
@@ -115,7 +110,7 @@ export default {
   },
   computed: {
     domain() {
-      return this.$store.state.domainsModule.currentDomain;
+      return this.$route.params.domainName;
     },
     selectedPlan() {
       return this.$store.state.stripeModule.selectedPlan;

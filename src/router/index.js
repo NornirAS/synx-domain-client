@@ -50,6 +50,7 @@ const routes = [
     components: {
       default: Domains,
       "app-bar": AppBar,
+      "dark-sidebar": DarkSidebar,
       "footer-bar": FooterBar
     },
     beforeEnter: authGuard
@@ -66,7 +67,7 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/domains/domain/:domainName/account",
+    path: "/account",
     name: "account",
     components: {
       default: Account,
@@ -87,7 +88,7 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/domains/domain/:domainName/services",
+    path: "/services",
     name: "services",
     components: {
       default: Services,
@@ -98,7 +99,7 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/domains/domain/:domainName/services/service",
+    path: "/services/service",
     components: {
       default: ServiceFormView,
       "app-bar": AppBar,
@@ -112,12 +113,12 @@ const routes = [
         component: ServiceForm
       },
       {
-        path: ":index/update",
+        path: ":index/:serviceName/update",
         name: "serviceUpdate",
         component: ServiceForm
       },
       {
-        path: ":index/micropage",
+        path: ":index/:serviceName/micropage",
         name: "micropageUpdate",
         component: MicropageForm
       }
@@ -125,7 +126,7 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/domains/domain/:domainName/resources",
+    path: "/network-resources",
     name: "resources",
     components: {
       default: Resources,
@@ -136,7 +137,7 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/domains/domain/:domainName/resources/new-instances",
+    path: "/network-resources/ghosts",
     name: "new-instances",
     components: {
       default: NewInstances,

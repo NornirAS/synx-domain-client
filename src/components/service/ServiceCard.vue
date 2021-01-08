@@ -6,7 +6,7 @@
           {{ serviceName }}
           <v-btn
             :color="colorGrey"
-            :to="{ name: 'serviceUpdate', params: { index } }"
+            :to="{ name: 'serviceUpdate', params: { index, serviceName } }"
             x-small
             icon
           >
@@ -19,7 +19,7 @@
         </p>
         <v-btn
           :color="colorLightGrey"
-          :to="{ name: 'micropageUpdate', params: { index } }"
+          :to="{ name: 'micropageUpdate', params: { index, serviceName } }"
           class="text-capitalize"
           rounded
           x-small

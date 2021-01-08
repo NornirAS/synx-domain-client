@@ -61,7 +61,7 @@ export default {
       return this.$store.state.micropageFormModule;
     },
     domain() {
-      return this.$store.state.domainsModule.currentDomain;
+      return this.formData.domain;
     },
     token() {
       return this.$store.state.authModule.idToken;
