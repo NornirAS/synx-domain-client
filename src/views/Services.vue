@@ -28,7 +28,7 @@
             hide-details
             outlined
             dense
-            :disabled="servicesIsEmpty"
+            :disabled="!services"
           ></v-text-field>
         </v-col>
         <v-col cols="6" sm="3">
@@ -60,7 +60,7 @@
       </v-row>
       <hr />
       <v-row justify="space-between" align="center">
-        <v-col cols="12" v-if="!servicesIsEmpty">
+        <v-col cols="12" v-if="!searchFilterIsEmpty">
           <service-card
             v-for="(service, index) in searchFilter"
             :key="index"
@@ -115,7 +115,6 @@ export default {
       return this.$store.state.authModule.idToken;
     },
     services() {
-      // return this.$store.getters["servicesModule/servicesForDomain"];
       return this.$store.state.servicesModule.services;
     },
     sortBy() {
@@ -130,7 +129,7 @@ export default {
           -1
       );
     },
-    servicesIsEmpty() {
+    searchFilterIsEmpty() {
       return _.isEmpty(this.searchFilter);
     },
     domains() {

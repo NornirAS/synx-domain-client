@@ -1,4 +1,5 @@
 const state = {
+  domain: "",
   name: "",
   description: "",
   keywords: "",
@@ -11,6 +12,9 @@ const state = {
 };
 
 const mutations = {
+  addDomain(state, domain) {
+    state.domain = domain;
+  },
   addName(state, name) {
     state.name = name;
   },
@@ -58,6 +62,7 @@ const mutations = {
     state.webJS = webJS;
   },
   editService(state, service) {
+    state.domain = service.domain;
     state.name = service.serviceName;
     state.description = service.description;
     state.keywords = service.searchTerms;
@@ -68,6 +73,7 @@ const mutations = {
     state.webJS = "Hello World!";
   },
   resetServiceForm(state) {
+    state.domain = "";
     state.name = "";
     state.description = "";
     state.keywords = "";
@@ -79,11 +85,8 @@ const mutations = {
   }
 };
 
-const getters = {};
-
 export default {
   namespaced: true,
   state,
-  mutations,
-  getters
+  mutations
 };

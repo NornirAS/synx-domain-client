@@ -15,6 +15,7 @@
     <service-form-pre-inline-script></service-form-pre-inline-script>
     <service-form-post-inline-script></service-form-post-inline-script>
     <service-form-web-js></service-form-web-js>
+    {{ formData }}
     <v-btn
       v-if="isEditPage"
       @click="deleteService"
@@ -105,7 +106,7 @@ export default {
       return this.$route.params.index >= 0;
     },
     domain() {
-      return this.$store.state.domainsModule.currentDomain;
+      return this.formData.domain;
     },
     username() {
       return this.$store.state.authModule.username;
