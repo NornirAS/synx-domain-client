@@ -28,29 +28,10 @@
           >
             <v-row justify="space-between" align="center">
               <v-col cols="6">
-                <h3>
-                  {{ name }}
-                  <v-chip
-                    v-if="active === true"
-                    :color="colorGreen"
-                    align="center"
-                    x-small
-                    label
-                    dark
-                  >
-                    Active
-                  </v-chip>
-                  <v-chip
-                    v-if="active === false"
-                    :color="colorRed"
-                    align="center"
-                    x-small
-                    label
-                    dark
-                  >
-                    Inactive
-                  </v-chip>
-                </h3>
+                <p>
+                  <span class="font-weight-bold">{{ name }}</span>
+                  .cioty.com
+                </p>
               </v-col>
               <v-col cols="6">
                 <div align="right">
@@ -60,14 +41,23 @@
                       name: 'domain-activate',
                       params: { domainName: name }
                     }"
-                    :color="colorLightGrey"
-                    class="text-capitalize"
+                    :color="colorRed"
+                    class="text-capitalize activate-btn"
                     rounded
                     x-small
                     dark
                   >
                     Activate
                   </v-btn>
+                  <v-chip
+                    v-else
+                    :color="colorGreen"
+                    align="center"
+                    x-small
+                    dark
+                  >
+                    Active
+                  </v-chip>
                 </div>
               </v-col>
             </v-row>
@@ -113,14 +103,12 @@ h1 {
   font-size: 24px;
   font-weight: 500;
 }
-h3 {
-  color: #58595b;
-  font-size: 16px;
-  font-weight: 500;
-}
 p {
   margin: 0;
   color: #58595b;
   font-size: 16px;
+}
+.activate-btn {
+  margin: 0;
 }
 </style>
