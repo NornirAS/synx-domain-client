@@ -71,7 +71,6 @@
             >
               Continue
             </v-btn>
-            {{ domain }}
           </v-col>
         </v-row>
       </v-stepper-content>
