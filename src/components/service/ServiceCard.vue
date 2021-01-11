@@ -27,7 +27,11 @@
         >
           Update Micropage
         </v-btn>
-        <ActiveChannels :serviceName="serviceName" :index="index" />
+        <ActiveChannels
+          :domain="domain"
+          :service="serviceName"
+          :index="index"
+        />
       </v-col>
       <v-col col="12" sm="3" align="right">
         <display-current-value>

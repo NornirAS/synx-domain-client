@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  props: ["serviceName", "index", "btnStyle"],
+  props: ["domain", "service", "index"],
   data() {
     return {
       btnTitle: "Show active channels",
@@ -37,14 +37,8 @@ export default {
     }
   },
   computed: {
-    domain() {
-      return this.$store.state.domainsModule.currentDomain;
-    },
     token() {
       return this.$store.state.authModule.idToken;
-    },
-    service() {
-      return this.serviceName;
     },
     activeChannels() {
       return this.$store.state.servicesModule.services[this.index]
