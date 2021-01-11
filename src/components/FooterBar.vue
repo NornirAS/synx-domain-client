@@ -1,14 +1,8 @@
 <template>
-  <v-footer :style="footerStyle" padless absolute app>
+  <v-footer :style="footerStyle" padless app>
     <v-card :style="footerCardStyle" align="center" flat tile light>
       <v-card-text>
-        <v-img
-          max-height="20px"
-          max-width="20px"
-          src="../assets/SynxDomain_Icon.png"
-        >
-        </v-img>
-        <strong>Powered by Synx<span></span></strong>
+        <strong>Powered by Synx</strong>
       </v-card-text>
     </v-card>
   </v-footer>
