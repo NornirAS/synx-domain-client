@@ -14,7 +14,7 @@
         <v-text-field
           v-model="domainName"
           :rules="domainRules"
-          :counter="16"
+          :counter="63"
           slot="action"
           label="Domain Name"
           prefix="https://"
@@ -50,7 +50,7 @@ export default {
       domainRules: [
         v => (v && v.length) >= 1 || "Domain Name is required",
         v =>
-          (v && v.length) <= 16 || "Domain Name must be maximum 63 characters",
+          (v && v.length) <= 63 || "Domain Name must be maximum 63 characters",
         v => /^[A-Za-z]+$/.test(v) || "Only alphabet characters are allowed"
       ]
     };

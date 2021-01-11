@@ -19,6 +19,7 @@
           </v-btn>
         </v-col>
       </v-row>
+      <hr />
       <v-row justify="center">
         <v-col cols="12">
           <DomainForm />
