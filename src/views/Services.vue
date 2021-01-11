@@ -43,7 +43,7 @@
                   v-on="on"
                   block
                 >
-                  {{ sortByDomain }}
+                  Sort By: {{ sortByDomain }}
                   <v-icon left large>{{ mdiMenuDown }}</v-icon>
                 </v-btn>
               </template>
