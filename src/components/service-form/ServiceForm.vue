@@ -64,6 +64,11 @@ export default {
       }
     };
   },
+  created() {
+    if (this.isEditPage) {
+      this.$store.commit("serviceFormModule/editService", this.serviceToEdit);
+    }
+  },
   methods: {
     submitServiceForm() {
       this.$refs.serviceForm.validate();
@@ -98,6 +103,9 @@ export default {
     }
   },
   computed: {
+    serviceToEdit() {
+      return this.$store.getters["servicesModule/serviceToEdit"];
+    },
     formData() {
       return this.$store.state.serviceFormModule;
     },
