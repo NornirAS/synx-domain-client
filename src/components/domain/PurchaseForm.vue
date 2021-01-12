@@ -102,7 +102,6 @@ export default {
         this.domain,
         this.token,
         this.username,
-        this.selectedPlan.description,
         this.selectedPlan.period
       );
     }
