@@ -7,8 +7,8 @@ const mutations = {
   allServices(state, payload) {
     state.services = payload;
   },
-  serviceIndex(state, index) {
-    state.selectedServiceIndex = index;
+  serviceIndex(state, payload) {
+    state.selectedServiceIndex = payload;
   },
   activeChannelsSuccess(state, { channels, index }) {
     state.services[index].activeChannels = channels;
@@ -17,12 +17,7 @@ const mutations = {
 
 const actions = {
   SOCKET_all_services({ commit }, data) {
-    const services = data.map(service => {
-      service = JSON.parse(service);
-      service.activeChannels = "";
-      return service;
-    });
-    commit("allServices", services);
+    commit("allServices", data);
   },
   SOCKET_show_active_channels_success({ commit }, { channels, index }) {
     commit("activeChannelsSuccess", { channels, index });
