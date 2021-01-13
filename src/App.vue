@@ -23,8 +23,8 @@ export default {
     this.$store.commit("isMobile", this.isMobile);
   },
   computed: {
-    notAuth() {
-      return this.$store.getters.isAuthenticated;
+    isAuth() {
+      return this.$store.getters["authModule/isAuthenticated"];
     },
     isMobile() {
       return this.$vuetify.breakpoint.smAndDown;
@@ -34,8 +34,9 @@ export default {
     }
   },
   watch: {
-    notAuth(newValue) {
-      if (newValue === false) {
+    isAuth(newValue) {
+      const isHome = this.$route.name === "home";
+      if (newValue === false && !isHome) {
         this.$router.push({ name: "home" });
       }
     },
