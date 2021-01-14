@@ -36,7 +36,7 @@
               <v-col cols="6">
                 <div align="right">
                   <v-btn
-                    v-if="active === true"
+                    v-if="!active"
                     :to="{
                       name: 'domain-activate',
                       params: { domainName: name }
