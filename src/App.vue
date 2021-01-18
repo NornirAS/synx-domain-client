@@ -1,14 +1,11 @@
 <template>
   <v-app>
-    <router-view name="app-bar"></router-view>
-    <router-view name="dark-sidebar"></router-view>
-    <router-view name="light-sidebar"></router-view>
+    <router-view name="side-bar"></router-view>
     <v-main>
       <v-container fluid>
         <router-view></router-view>
       </v-container>
     </v-main>
-    <router-view name="footer-bar"></router-view>
   </v-app>
 </template>
 
@@ -56,12 +53,6 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 .v-application {
   font-family: "Open Sans", sans-serif !important;
-}
-.v-toolbar__content {
-  margin: 0 1em;
-}
-.nav-buttons {
-  margin: 0 1em;
 }
 .v-main {
   height: 100vh;

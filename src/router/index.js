@@ -3,10 +3,7 @@ import VueRouter from "vue-router";
 import Homepage from "../views/Homepage.vue";
 import Services from "../views/Services.vue";
 import ServiceFormView from "../views/ServiceFormView";
-import AppBar from "../components/AppBar.vue";
-import DarkSidebar from "../components/sidebars/DarkSidebar.vue";
-import LightSidebar from "../components/sidebars/LightSidebar.vue";
-import FooterBar from "../components/FooterBar.vue";
+import SideBar from "../components/sidebars/SideBar";
 import Domains from "../views/Domains.vue";
 import DomainActivation from "../views/DomainActivation.vue";
 import Resources from "../views/Resources.vue";
@@ -49,16 +46,17 @@ const routes = [
     name: "domains",
     components: {
       default: Domains,
-      "app-bar": AppBar,
-      "dark-sidebar": DarkSidebar,
-      "footer-bar": FooterBar
+      "side-bar": SideBar
     },
     beforeEnter: authGuard
   },
   {
     path: "/domains/create-domain",
     name: "create-domain",
-    component: CreateDomain
+    components: {
+      default: CreateDomain,
+      "side-bar": SideBar
+    }
   },
   {
     path: "/domains/:domainName/checkout-success",
@@ -71,9 +69,7 @@ const routes = [
     name: "account",
     components: {
       default: Account,
-      "app-bar": AppBar,
-      "dark-sidebar": DarkSidebar,
-      "footer-bar": FooterBar
+      "side-bar": SideBar
     },
     beforeEnter: authGuard
   },
@@ -82,8 +78,7 @@ const routes = [
     name: "domain-activate",
     components: {
       default: DomainActivation,
-      "app-bar": AppBar,
-      "footer-bar": FooterBar
+      "side-bar": SideBar
     },
     beforeEnter: authGuard
   },
@@ -92,9 +87,7 @@ const routes = [
     name: "services",
     components: {
       default: Services,
-      "app-bar": AppBar,
-      "dark-sidebar": DarkSidebar,
-      "footer-bar": FooterBar
+      "side-bar": SideBar
     },
     beforeEnter: authGuard
   },
@@ -102,9 +95,7 @@ const routes = [
     path: "/services/service",
     components: {
       default: ServiceFormView,
-      "app-bar": AppBar,
-      "light-sidebar": LightSidebar,
-      "footer-bar": FooterBar
+      "side-bar": SideBar
     },
     children: [
       {
@@ -130,9 +121,7 @@ const routes = [
     name: "resources",
     components: {
       default: Resources,
-      "app-bar": AppBar,
-      "dark-sidebar": DarkSidebar,
-      "footer-bar": FooterBar
+      "side-bar": SideBar
     },
     beforeEnter: authGuard
   },
@@ -141,9 +130,7 @@ const routes = [
     name: "new-instances",
     components: {
       default: NewInstances,
-      "app-bar": AppBar,
-      "dark-sidebar": DarkSidebar,
-      "footer-bar": FooterBar
+      "side-bar": SideBar
     },
     beforeEnter: authGuard
   }

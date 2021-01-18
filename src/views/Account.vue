@@ -1,9 +1,9 @@
 <template>
-  <v-row justify="center">
-    <v-col cols="12" md="10">
+  <v-row justify="start">
+    <v-col cols="12" md="6">
       <v-row justify="space-between" align="center">
         <v-col>
-          <h1>Account</h1>
+          <h1>My Account</h1>
         </v-col>
       </v-row>
       <hr />
