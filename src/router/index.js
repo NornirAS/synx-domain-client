@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Homepage from "../views/Homepage.vue";
 import Services from "../views/Services.vue";
 import ServiceFormView from "../views/ServiceFormView";
-import SideBar from "../components/sidebars/SideBar";
+import SideBar from "../components/SideBar";
 import Domains from "../views/Domains.vue";
 import DomainActivation from "../views/DomainActivation.vue";
 import Resources from "../views/Resources.vue";
