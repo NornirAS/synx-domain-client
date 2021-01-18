@@ -5,7 +5,7 @@
         <v-col>
           <h1>Services</h1>
         </v-col>
-        <v-col align="right">
+        <v-col align="end">
           <v-btn
             :to="{ name: 'serviceCreate' }"
             :color="colorBlue"

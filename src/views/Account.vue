@@ -1,37 +1,17 @@
 <template>
-  <v-row justify="start">
-    <v-col cols="12" md="6">
+  <page-layout>
+    <div slot="page-content">
       <v-row justify="space-between" align="center">
         <v-col>
           <h1>My Account</h1>
         </v-col>
-      </v-row>
-      <hr />
-      <v-row>
-        <v-col>
-          <p>
-            <span class="font-weight-black">Email:</span>
-            <span class="font-weight-bold font-italic float-right">
-              {{ username }}
-            </span>
-          </p>
-          <hr />
-          <p>
-            <span class="font-weight-black">Token:</span>
-            <span class="font-weight-bold font-italic float-right">
-              {{ token }}
-            </span>
-          </p>
-          <hr />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
+        <v-col align="end">
           <v-btn
             @click="customerPortal"
             :color="colorLightGrey"
             class="text-capitalize"
             rounded
+            small
             dark
           >
             <v-icon left>{{ mdiCreditCardOutline }}</v-icon>
@@ -39,12 +19,39 @@
           </v-btn>
         </v-col>
       </v-row>
-    </v-col>
-  </v-row>
+      <v-divider></v-divider>
+      <v-row>
+        <v-col>
+          <v-card outlined>
+            <v-card-text>
+              <v-row>
+                <v-col cols="4">
+                  <div class="font-weight-bold">Email</div>
+                </v-col>
+                <v-col cols="8" align="end">
+                  <div>{{ username }}</div>
+                </v-col>
+              </v-row>
+              <v-divider></v-divider>
+              <v-row>
+                <v-col cols="4">
+                  <div class="font-weight-bold">Token</div>
+                </v-col>
+                <v-col cols="8" align="end">
+                  <div>{{ token }}</div>
+                </v-col>
+              </v-row>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </div>
+  </page-layout>
 </template>
 
 <script>
 import { mdiCreditCardOutline } from "@mdi/js";
+import PageLayout from "../components/PageLayout";
 export default {
   data() {
     return {
@@ -72,6 +79,9 @@ export default {
     customerPortalUrl(newValue) {
       window.location.href = newValue;
     }
+  },
+  components: {
+    PageLayout
   }
 };
 </script>
@@ -80,11 +90,6 @@ export default {
 h1 {
   color: #58595b;
   font-size: 24px;
-  font-weight: 500;
-}
-p {
-  margin: 0;
-  color: #58595b;
-  font-size: 16px;
+  font-weight: 600;
 }
 </style>
