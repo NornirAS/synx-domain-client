@@ -28,39 +28,44 @@ const actions = {
     const username = localStorage.getItem("username");
     if (!token) {
       return;
-    }
-    const expirationDate = localStorage.getItem("expirationDate");
-    const expiredIn = new Date(expirationDate);
-    const now = new Date();
-    if (now >= expiredIn) {
-      commit("signOut");
     } else {
       commit("authUser", {
         token: token,
         username: username
       });
     }
+    // const expirationDate = localStorage.getItem("expirationDate");
+    // const expiredIn = new Date(expirationDate);
+    // const now = new Date();
+    // if (now >= expiredIn) {
+    //   commit("signOut");
+    // } else {
+    //   commit("authUser", {
+    //     token: token,
+    //     username: username
+    //   });
+    // }
   },
-  setSignOutTimer({ commit }) {
-    const expirationDate = localStorage.getItem("expirationDate");
-    const expiredIn = new Date(expirationDate).getTime();
-    const now = new Date().getTime();
-    const expirationTime = expiredIn - now;
-    setTimeout(() => {
-      commit("signOut");
-    }, expirationTime);
-  },
+  // setSignOutTimer({ commit }) {
+  //   const expirationDate = localStorage.getItem("expirationDate");
+  //   const expiredIn = new Date(expirationDate).getTime();
+  //   const now = new Date().getTime();
+  //   const expirationTime = expiredIn - now;
+  //   setTimeout(() => {
+  //     commit("signOut");
+  //   }, expirationTime);
+  // },
   SOCKET_authentication({ commit }, data) {
     if (data.ActiveToken) {
       commit("authUser", {
         token: data.ActiveToken,
         username: localStorage.getItem("username")
       });
-      const now = new Date();
-      const expirationTime = 60 * 60 * 24 * 1000;
-      const expirationDate = new Date(now.getTime() + expirationTime);
+      // const now = new Date();
+      // const expirationTime = 60 * 60 * 24 * 1000;
+      // const expirationDate = new Date(now.getTime() + expirationTime);
       localStorage.setItem("token", data.ActiveToken);
-      localStorage.setItem("expirationDate", expirationDate);
+      // localStorage.setItem("expirationDate", expirationDate);
     } else {
       commit("authError", {
         error: "Wrong username or password!"
