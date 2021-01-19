@@ -27,7 +27,13 @@
       </v-list-item>
       <v-list-item>
         <v-list-item-content>
-          <v-btn @click="signOut" class="text-capitalize" rounded small dark>
+          <v-btn
+            @click="signOut"
+            class="text-capitalize"
+            rounded
+            small
+            color="primary"
+          >
             <v-icon left>{{ mdiLogout }}</v-icon> Log Out
           </v-btn>
         </v-list-item-content>
@@ -110,13 +116,13 @@ export default {
   padding: 0 2em;
 }
 .v-list-item--active {
-  color: #404b5f;
+  color: var(--v-secondary-base);
 }
 .body-1 {
-  color: #404b5f;
+  color: var(--v-secondary-base);
 }
 .subtitle-2 {
-  color: #404b5f;
+  color: var(--v-secondary-base);
 }
 .sidebar-logo {
   width: 100px;
@@ -124,8 +130,5 @@ export default {
 }
 .synx-hive-power {
   margin-bottom: 3em;
-}
-.theme--dark.v-btn:not(.v-btn--flat):not(.v-btn--text) {
-  background-color: #27aae1;
 }
 </style>
