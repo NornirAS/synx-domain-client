@@ -14,42 +14,40 @@
         New domain
       </v-btn>
     </page-title>
-    <v-row slot="page-content">
-      <v-col col="12">
-        <domains-empty v-if="!isDomainsFetchProblem"></domains-empty>
-        <data-fetch-problem v-if="isDomainsFetchProblem"></data-fetch-problem>
-        <v-card v-for="({ name, active }, index) in domains" :key="index">
-          <v-row justify="space-between" align="center">
-            <v-col cols="6">
-              <p>
-                <span class="font-weight-bold">{{ name }}</span>
-                .cioty.com
-              </p>
-            </v-col>
-            <v-col cols="6">
-              <div align="right">
-                <v-btn
-                  v-if="!active"
-                  :to="{
-                    name: 'domain-activate',
-                    params: { domainName: name }
-                  }"
-                  color="error"
-                  class="text-capitalize activate-btn"
-                  rounded
-                  x-small
-                >
-                  Activate
-                </v-btn>
-                <v-chip v-else color="accent" align="center" x-small>
-                  Active
-                </v-chip>
-              </div>
-            </v-col>
-          </v-row>
-        </v-card>
-      </v-col>
-    </v-row>
+    <div slot="page-content">
+      <domains-empty v-if="!isDomainsFetchProblem"></domains-empty>
+      <data-fetch-problem v-if="isDomainsFetchProblem"></data-fetch-problem>
+      <v-card v-for="({ name, active }, index) in domains" :key="index">
+        <v-row justify="space-between" align="center">
+          <v-col cols="6">
+            <p>
+              <span class="font-weight-bold">{{ name }}</span>
+              .cioty.com
+            </p>
+          </v-col>
+          <v-col cols="6">
+            <div align="right">
+              <v-btn
+                v-if="!active"
+                :to="{
+                  name: 'domain-activate',
+                  params: { domainName: name }
+                }"
+                color="error"
+                class="text-capitalize activate-btn"
+                rounded
+                x-small
+              >
+                Activate
+              </v-btn>
+              <v-chip v-else color="accent" align="center" x-small>
+                Active
+              </v-chip>
+            </div>
+          </v-col>
+        </v-row>
+      </v-card>
+    </div>
   </page-layout>
 </template>
 

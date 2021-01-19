@@ -1,24 +1,21 @@
 <template>
-  <v-row justify="center">
-    <v-col cols="12" md="10">
-      <v-row justify="space-between" align="center">
-        <v-col>
-          <h1>Services</h1>
-        </v-col>
-        <v-col align="end">
-          <v-btn
-            :to="{ name: 'serviceCreate' }"
-            :color="colorBlue"
-            class="text-capitalize"
-            rounded
-            small
-            dark
-          >
-            Create Service
-          </v-btn>
-        </v-col>
-      </v-row>
-      <hr />
+  <page-layout>
+    <page-title slot="page-title">
+      <div slot="title">Services</div>
+      <v-btn
+        :to="{ name: 'serviceCreate' }"
+        slot="action"
+        class="text-capitalize"
+        rounded
+        outlined
+        small
+        color="primary"
+      >
+        Create Service
+      </v-btn>
+    </page-title>
+    <v-divider></v-divider>
+    <div slot="page-search">
       <v-row align="center">
         <v-col cols="12" sm="6">
           <v-text-field
@@ -31,12 +28,12 @@
             :disabled="!services"
           ></v-text-field>
         </v-col>
-        <v-col cols="6" sm="3">
+        <v-col cols="12" sm="6">
           <div class="text-center">
             <v-menu offset-y>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
-                  :color="colorLightGrey"
+                  color="secondary"
                   class="text-capitalize"
                   dark
                   v-bind="attrs"
@@ -58,48 +55,33 @@
           </div>
         </v-col>
       </v-row>
-      <hr />
-      <v-row justify="space-between" align="center">
-        <v-col cols="12" v-if="!searchFilterIsEmpty">
-          <service-card
-            v-for="(service, index) in searchFilter"
-            :key="index"
-            :index="index"
-            :service="service"
-          >
-          </service-card>
-        </v-col>
-        <v-col v-else>
-          <v-img
-            alt="EmptyBox"
-            contain
-            src="../assets/empty-box.png"
-            transition="scale-transition"
-            height="300px"
-          >
-            <p class="font-weight-bold">
-              You have no services yet…
-            </p>
-          </v-img>
-        </v-col>
-      </v-row>
-    </v-col>
-  </v-row>
+    </div>
+    <div slot="page-content">
+      <service-empty v-if="searchFilterIsEmpty"></service-empty>
+      <service-card
+        v-for="(service, index) in searchFilter"
+        :key="index"
+        :index="index"
+        :service="service"
+      >
+      </service-card>
+    </div>
+  </page-layout>
 </template>
 
 <script>
 import _ from "underscore";
 import { mdiMenuDown } from "@mdi/js";
-import ServiceCard from "../components/service/ServiceCard.vue";
+import PageTitle from "../components/PageTitle";
+import PageLayout from "../components/PageLayout";
+import ServiceCard from "../components/service/ServiceCard";
+import ServiceEmpty from "../components/empty-page/ServicesEmpty";
 export default {
   data() {
     return {
       mdiMenuDown,
-      title: "Services",
       search: "",
-      sortByDomain: "All",
-      colorBlue: "#27AAE1",
-      colorLightGrey: "#404B5F"
+      sortByDomain: "All"
     };
   },
   created() {
@@ -139,20 +121,10 @@ export default {
     }
   },
   components: {
-    ServiceCard
+    ServiceCard,
+    PageLayout,
+    PageTitle,
+    ServiceEmpty
   }
 };
 </script>
-
-<style scoped>
-h1 {
-  color: #58595b;
-  font-size: 24px;
-  font-weight: 500;
-}
-p {
-  margin: 0;
-  color: #58595b;
-  font-size: 16px;
-}
-</style>

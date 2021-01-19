@@ -3,6 +3,8 @@
     <v-col cols="12" md="5" offset-md="1">
       <slot name="page-title"></slot>
       <v-divider></v-divider>
+      <slot name="page-search"></slot>
+      <v-divider></v-divider>
       <slot name="page-content"></slot>
     </v-col>
   </v-row>
