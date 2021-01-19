@@ -1,18 +1,19 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Homepage from "../views/Homepage.vue";
-import Services from "../views/Services.vue";
+import Homepage from "../views/Homepage";
+import Services from "../views/Services";
 import ServiceFormView from "../views/ServiceFormView";
 import SideBar from "../components/SideBar";
-import Domains from "../views/Domains.vue";
-import DomainActivation from "../views/DomainActivation.vue";
-import Resources from "../views/Resources.vue";
-import NewInstances from "../views/NewInstances.vue";
+import Domains from "../views/Domains";
+import DomainActivation from "../views/DomainActivation";
+import Resources from "../views/Resources";
+import NewInstances from "../views/NewInstances";
 import ServiceForm from "../components/service-form/ServiceForm";
 import MicropageForm from "../components/micropage-form/MicropageForm";
 import Account from "../views/Account";
 import CheckoutSuccess from "../views/CheckoutSuccess";
 import CreateDomain from "../views/CreateDomain";
+import PageNotFound from "../components/empty-page/PageNotFound";
 
 Vue.use(VueRouter);
 
@@ -133,7 +134,8 @@ const routes = [
       "side-bar": SideBar
     },
     beforeEnter: authGuard
-  }
+  },
+  { path: "*", component: PageNotFound }
 ];
 
 const router = new VueRouter({

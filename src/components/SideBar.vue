@@ -2,7 +2,7 @@
   <v-navigation-drawer v-model="drawer" light hide-overlay app>
     <router-link :to="{ name: 'home' }">
       <v-img
-        alt="Cioty"
+        alt="cioty"
         src="../assets/CIOTY-final-Logo.png"
         transition="scale-transition"
         class="sidebar-logo"
