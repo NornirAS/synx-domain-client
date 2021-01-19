@@ -6,6 +6,7 @@
         @click="customerPortal"
         slot="action"
         class="text-capitalize"
+        outlined
         rounded
         small
         color="primary"
@@ -13,31 +14,27 @@
         Manage Subscriptions
       </v-btn>
     </page-title>
-    <v-row slot="page-content">
-      <v-col>
-        <v-card outlined>
-          <v-card-text>
-            <v-row>
-              <v-col cols="4">
-                <div class="font-weight-bold">Email</div>
-              </v-col>
-              <v-col cols="8" align="end">
-                <div>{{ username }}</div>
-              </v-col>
-            </v-row>
-            <v-divider></v-divider>
-            <v-row>
-              <v-col cols="4">
-                <div class="font-weight-bold">Token</div>
-              </v-col>
-              <v-col cols="8" align="end">
-                <div>{{ token }}</div>
-              </v-col>
-            </v-row>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
+    <v-card outlined slot="page-content">
+      <v-card-text>
+        <v-row>
+          <v-col cols="4">
+            <div class="font-weight-bold">Email</div>
+          </v-col>
+          <v-col cols="8" align="end">
+            <div>{{ username }}</div>
+          </v-col>
+        </v-row>
+        <v-divider></v-divider>
+        <v-row>
+          <v-col cols="4">
+            <div class="font-weight-bold">Token</div>
+          </v-col>
+          <v-col cols="8" align="end">
+            <div>{{ token }}</div>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
   </page-layout>
 </template>
 

@@ -5,12 +5,17 @@
       <v-divider></v-divider>
       <slot name="page-search"></slot>
       <v-divider></v-divider>
-      <slot name="page-content"></slot>
+      <div class="page-content-style">
+        <slot name="page-content"></slot>
+      </div>
     </v-col>
   </v-row>
 </template>
 
 <style scoped>
+.page-content-style {
+  margin-top: 1em;
+}
 .display-1 {
   color: var(--v-secondary-base);
 }

@@ -1,7 +1,6 @@
 <template>
   <empty-page-template>
-    <div slot="title">You have no services yet...</div>
-    <div slot="description">Create one</div>
+    <div slot="title">You don't have any services yet..</div>
     <div slot="action">
       <v-btn
         :to="{ name: 'serviceCreate' }"

@@ -29,11 +29,6 @@ import PageLayout from "../components/PageLayout";
 import GhostsEmpty from "../components/empty-page/GhostsEmpty";
 import InstancesTable from "../components/instance/InstancesTable";
 export default {
-  data() {
-    return {
-      colorBlue: "#27AAE1"
-    };
-  },
   created() {
     this.$socket.emit("get_all_instances", this.token);
   },

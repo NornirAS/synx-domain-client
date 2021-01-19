@@ -56,7 +56,7 @@
       </v-row>
     </div>
     <div slot="page-content">
-      <service-empty v-if="searchFilterIsEmpty"></service-empty>
+      <services-empty v-if="searchFilterIsEmpty"></services-empty>
       <service-card
         v-for="(service, index) in searchFilter"
         :key="index"
@@ -74,7 +74,7 @@ import { mdiMenuDown } from "@mdi/js";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import ServiceCard from "../components/service/ServiceCard";
-import ServiceEmpty from "../components/empty-page/ServicesEmpty";
+import ServicesEmpty from "../components/empty-page/ServicesEmpty";
 export default {
   data() {
     return {
@@ -123,7 +123,7 @@ export default {
     ServiceCard,
     PageLayout,
     PageTitle,
-    ServiceEmpty
+    ServicesEmpty
   }
 };
 </script>
