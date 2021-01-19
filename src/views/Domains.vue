@@ -1,83 +1,68 @@
 <template>
-  <v-row justify="center">
-    <v-col cols="12" sm="10" md="6">
-      <v-row justify="space-between" align="center">
-        <v-col>
-          <h1>My Cioty Domains</h1>
-        </v-col>
-        <v-col align="right">
-          <v-btn
-            :color="colorBlue"
-            :to="{ name: 'create-domain' }"
-            class="text-capitalize"
-            small
-            rounded
-            dark
-          >
-            Create domain
-          </v-btn>
-        </v-col>
-      </v-row>
-      <hr />
-      <v-row>
-        <v-col col="12">
-          <v-card
-            v-for="({ name, active }, index) in domains"
-            :key="index"
-            :to="{ name: 'services', params: { domainName: name } }"
-          >
-            <v-row justify="space-between" align="center">
-              <v-col cols="6">
-                <p>
-                  <span class="font-weight-bold">{{ name }}</span>
-                  .cioty.com
-                </p>
-              </v-col>
-              <v-col cols="6">
-                <div align="right">
-                  <v-btn
-                    v-if="!active"
-                    :to="{
-                      name: 'domain-activate',
-                      params: { domainName: name }
-                    }"
-                    :color="colorRed"
-                    class="text-capitalize activate-btn"
-                    rounded
-                    x-small
-                    dark
-                  >
-                    Activate
-                  </v-btn>
-                  <v-chip
-                    v-else
-                    :color="colorGreen"
-                    align="center"
-                    x-small
-                    dark
-                  >
-                    Active
-                  </v-chip>
-                </div>
-              </v-col>
-            </v-row>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-col>
-  </v-row>
+  <page-layout>
+    <page-title slot="page-title">
+      <div slot="title">Domains</div>
+      <v-btn
+        :to="{ name: 'create-domain' }"
+        slot="action"
+        class="text-capitalize"
+        small
+        rounded
+        outlined
+        color="primary"
+      >
+        New domain
+      </v-btn>
+    </page-title>
+    <v-row slot="page-content">
+      <v-col col="12">
+        <domains-empty v-if="!isDomainsFetchProblem"></domains-empty>
+        <data-fetch-problem v-if="isDomainsFetchProblem"></data-fetch-problem>
+        <v-card v-for="({ name, active }, index) in domains" :key="index">
+          <v-row justify="space-between" align="center">
+            <v-col cols="6">
+              <p>
+                <span class="font-weight-bold">{{ name }}</span>
+                .cioty.com
+              </p>
+            </v-col>
+            <v-col cols="6">
+              <div align="right">
+                <v-btn
+                  v-if="!active"
+                  :to="{
+                    name: 'domain-activate',
+                    params: { domainName: name }
+                  }"
+                  color="error"
+                  class="text-capitalize activate-btn"
+                  rounded
+                  x-small
+                >
+                  Activate
+                </v-btn>
+                <v-chip v-else color="accent" align="center" x-small>
+                  Active
+                </v-chip>
+              </div>
+            </v-col>
+          </v-row>
+        </v-card>
+      </v-col>
+    </v-row>
+  </page-layout>
 </template>
 
 <script>
+import PageTitle from "../components/PageTitle";
+import PageLayout from "../components/PageLayout";
+import DomainsEmpty from "../components/empty-page/DomainsEmpty";
+import DataFetchProblem from "../components/empty-page/DataFetchProblem";
 import { mdiCircle } from "@mdi/js";
 export default {
   data() {
     return {
-      mdiCircle,
-      colorGreen: "#71b663",
-      colorRed: "#ff6666",
-      colorLightGrey: "#404B5F",
-      colorBlue: "#27AAE1"
+      mdiCircle
     };
   },
   created() {
@@ -92,17 +77,21 @@ export default {
     },
     domains() {
       return this.$store.state.domainsModule.ownedDomains;
+    },
+    isDomainsFetchProblem() {
+      return this.domains === null;
     }
+  },
+  components: {
+    PageTitle,
+    PageLayout,
+    DomainsEmpty,
+    DataFetchProblem
   }
 };
 </script>
 
 <style scoped>
-h1 {
-  color: #58595b;
-  font-size: 24px;
-  font-weight: 500;
-}
 p {
   margin: 0;
   color: #58595b;
