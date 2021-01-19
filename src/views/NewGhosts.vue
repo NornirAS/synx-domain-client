@@ -7,7 +7,7 @@
         </v-col>
         <v-col align="right">
           <v-btn
-            :to="{ name: 'resources' }"
+            :to="{ name: 'ghosts' }"
             :color="colorLightGrey"
             class="text-capitalize"
             rounded

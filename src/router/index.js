@@ -6,8 +6,8 @@ import ServiceFormView from "../views/ServiceFormView";
 import SideBar from "../components/SideBar";
 import Domains from "../views/Domains";
 import DomainActivation from "../views/DomainActivation";
-import Resources from "../views/Resources";
-import NewInstances from "../views/NewInstances";
+import Ghosts from "../views/Ghosts";
+import NewGhosts from "../views/NewGhosts";
 import ServiceForm from "../components/service-form/ServiceForm";
 import MicropageForm from "../components/micropage-form/MicropageForm";
 import Account from "../views/Account";
@@ -118,19 +118,19 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/network-resources",
-    name: "resources",
+    path: "/ghosts",
+    name: "ghosts",
     components: {
-      default: Resources,
+      default: Ghosts,
       "side-bar": SideBar
     },
     beforeEnter: authGuard
   },
   {
-    path: "/network-resources/ghosts",
-    name: "new-instances",
+    path: "/ghosts/new-ghosts",
+    name: "new-ghosts",
     components: {
-      default: NewInstances,
+      default: NewGhosts,
       "side-bar": SideBar
     },
     beforeEnter: authGuard

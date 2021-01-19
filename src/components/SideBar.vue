@@ -77,7 +77,7 @@ export default {
         {
           title: "Ghosts",
           icon: mdiAntenna,
-          path: { name: "resources" }
+          path: { name: "ghosts" }
         },
         {
           title: "My Account",

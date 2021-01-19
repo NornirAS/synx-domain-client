@@ -9,7 +9,7 @@
         </v-col>
         <v-col align="right">
           <v-btn
-            :to="{ name: 'new-instances' }"
+            :to="{ name: 'new-ghosts' }"
             :color="colorBlue"
             class="text-capitalize"
             small
