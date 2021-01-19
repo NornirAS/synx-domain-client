@@ -8,7 +8,7 @@
         class="text-capitalize"
         rounded
         small
-        dark
+        color="primary"
       >
         Manage Subscriptions
       </v-btn>
@@ -72,9 +72,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.theme--dark.v-btn:not(.v-btn--flat):not(.v-btn--text) {
-  background-color: #27aae1;
-}
-</style>

@@ -11,6 +11,6 @@
 
 <style scoped>
 .display-1 {
-  color: #58595b;
+  color: var(--v-secondary-base);
 }
 </style>
