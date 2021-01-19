@@ -1,79 +1,51 @@
 <template>
-  <v-row justify="center">
-    <v-col cols="12" md="10">
-      <v-row justify="space-between" align="center">
-        <v-col>
-          <h1>Look for new ghosts</h1>
-        </v-col>
-        <v-col align="right">
-          <v-btn
-            :to="{ name: 'ghosts' }"
-            :color="colorLightGrey"
-            class="text-capitalize"
-            rounded
-            small
-            dark
-          >
-            <v-icon small>{{ mdiUndoVariant }}</v-icon>
-            Back
-          </v-btn>
-        </v-col>
-      </v-row>
-      <hr />
-      <v-row>
-        <v-col v-if="instances.length > 0">
-          <v-data-table
-            @page-count="pageCount = $event"
-            :headers="headers"
-            :items="instances"
-            :page.sync="page"
-            :items-per-page="itemsPerPage"
-            hide-default-footer
-          >
-            <template v-slot:[`item.confirm`]="{ item }">
-              <v-icon small @click="confirm(item)">
-                {{ mdiCheck }}
-              </v-icon>
-            </template>
-            <template v-slot:[`item.deny`]="{ item }">
-              <v-icon small @click="deny(item)">
-                {{ mdiClose }}
-              </v-icon>
-            </template>
-          </v-data-table>
-          <v-pagination
-            v-model="page"
-            :color="colorBlue"
-            :length="pageCount"
-            light
-          ></v-pagination>
-        </v-col>
-        <v-col v-else>
-          <v-img
-            alt="EmptyBox"
-            contain
-            src="../assets/empty-box.png"
-            transition="scale-transition"
-            height="300px"
-          >
-            <p class="font-weight-bold">
-              You have no ghosts to approve or deny...
-            </p>
-          </v-img>
-        </v-col>
-      </v-row>
-    </v-col>
-  </v-row>
+  <page-layout>
+    <page-title slot="page-title">
+      <div slot="title">Look for new ghosts</div>
+    </page-title>
+    <div slot="page-content">
+      <div v-if="isInstances">
+        <v-data-table
+          @page-count="pageCount = $event"
+          :headers="headers"
+          :items="instances"
+          :page.sync="page"
+          :items-per-page="itemsPerPage"
+          hide-default-footer
+        >
+          <template v-slot:[`item.confirm`]="{ item }">
+            <v-icon small @click="confirm(item)">
+              {{ mdiCheck }}
+            </v-icon>
+          </template>
+          <template v-slot:[`item.deny`]="{ item }">
+            <v-icon small @click="deny(item)">
+              {{ mdiClose }}
+            </v-icon>
+          </template>
+        </v-data-table>
+        <v-pagination
+          v-model="page"
+          :color="colorBlue"
+          :length="pageCount"
+          light
+        ></v-pagination>
+      </div>
+      <new-ghosts-empty v-else></new-ghosts-empty>
+    </div>
+  </page-layout>
 </template>
 
 <script>
-import { mdiCheck, mdiClose, mdiUndoVariant } from "@mdi/js";
+import { mdiCheck, mdiClose } from "@mdi/js";
+import PageTitle from "../components/PageTitle";
+import PageLayout from "../components/PageLayout";
+import NewGhostsEmpty from "../components/empty-page/NewGhostsEmpty";
 export default {
   data() {
     return {
       mdiCheck,
       mdiClose,
-      mdiUndoVariant,
       page: 1,
       pageCount: 0,
       itemsPerPage: 10,
@@ -105,9 +77,7 @@ export default {
           value: "deny",
           sortable: false
         }
-      ],
-      colorBlue: "#27AAE1",
-      colorLightGrey: "#404B5F"
+      ]
     };
   },
   created() {
@@ -147,25 +117,20 @@ export default {
     },
     successMessage() {
       return this.$store.state.alarmModule.successMessage;
+    },
+    isInstances() {
+      return this.instances.length !== 0 ? true : false;
     }
   },
   watch: {
     successMessage() {
       this.$socket.emit("look_for_new_instances", this.token, this.username);
     }
+  },
+  components: {
+    PageLayout,
+    PageTitle,
+    NewGhostsEmpty
   }
 };
 </script>
-
-<style scoped>
-h1 {
-  color: #58595b;
-  font-size: 24px;
-  font-weight: 500;
-}
-p {
-  margin: 0;
-  color: #58595b;
-  font-size: 16px;
-}
-</style>

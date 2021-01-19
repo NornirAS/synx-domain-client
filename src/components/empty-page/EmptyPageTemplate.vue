@@ -1,16 +1,16 @@
 <template>
   <div>
     <div align="center" class="title">
-      <slot name="title">Hui</slot>
+      <slot name="title"></slot>
     </div>
     <div align="center" class="body-1">
-      <slot name="description" align="center">Description</slot>
+      <slot name="description" align="center"></slot>
     </div>
     <div align="center">
-      <slot name="action" align="center">Action</slot>
+      <slot name="action" align="center"></slot>
     </div>
     <div align="center">
-      <slot name="image" align="center">Picture</slot>
+      <slot name="image" align="center"></slot>
     </div>
   </div>
 </template>

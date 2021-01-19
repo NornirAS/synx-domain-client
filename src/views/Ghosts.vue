@@ -1,48 +1,32 @@
 <template>
-  <v-row justify="center">
-    <v-col cols="12" md="10">
-      <v-row justify="space-between" align="center">
-        <v-col>
-          <h1>
-            Network Resources
-          </h1>
-        </v-col>
-        <v-col align="right">
-          <v-btn
-            :to="{ name: 'new-ghosts' }"
-            :color="colorBlue"
-            class="text-capitalize"
-            small
-            rounded
-            dark
-          >
-            Look for new ghosts
-          </v-btn>
-        </v-col>
-      </v-row>
-      <hr />
-      <v-row justify="space-between" align="center">
-        <v-col cols="12">
-          <InstancesTable v-if="!isInstances" :instances="instances" />
-          <v-img
-            v-else
-            alt="EmptyBox"
-            contain
-            src="../assets/empty-box.png"
-            transition="scale-transition"
-            height="300px"
-          >
-            <p class="font-weight-bold">
-              You don't have any network resources...
-            </p>
-          </v-img>
-        </v-col>
-      </v-row>
-    </v-col>
-  </v-row>
+  <page-layout>
+    <page-title slot="page-title">
+      <div slot="title">
+        Ghosts
+      </div>
+      <v-btn
+        :to="{ name: 'new-ghosts' }"
+        slot="action"
+        class="text-capitalize"
+        small
+        rounded
+        outlined
+        color="primary"
+      >
+        Look for new ghosts
+      </v-btn>
+    </page-title>
+    <div slot="page-content">
+      <InstancesTable v-if="isInstances" :instances="instances" />
+      <ghosts-empty v-else></ghosts-empty>
+    </div>
+  </page-layout>
 </template>
 
 <script>
+import PageTitle from "../components/PageTitle";
+import PageLayout from "../components/PageLayout";
+import GhostsEmpty from "../components/empty-page/GhostsEmpty";
 import InstancesTable from "../components/instance/InstancesTable";
 export default {
   data() {
@@ -64,7 +48,7 @@ export default {
       return this.$store.state.alarmModule.successMessage;
     },
     isInstances() {
-      return this.instances.length === 0 ? true : false;
+      return this.instances.length !== 0 ? true : false;
     }
   },
   watch: {
@@ -73,20 +57,10 @@ export default {
     }
   },
   components: {
-    InstancesTable
+    InstancesTable,
+    PageLayout,
+    PageTitle,
+    GhostsEmpty
   }
 };
 </script>
-
-<style scoped>
-h1 {
-  color: #58595b;
-  font-size: 24px;
-  font-weight: 500;
-}
-p {
-  margin: 0;
-  color: #58595b;
-  font-size: 16px;
-}
-</style>

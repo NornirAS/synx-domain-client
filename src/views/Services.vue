@@ -14,7 +14,6 @@
         Create Service
       </v-btn>
     </page-title>
-    <v-divider></v-divider>
     <div slot="page-search">
       <v-row align="center">
         <v-col cols="12" sm="6">
