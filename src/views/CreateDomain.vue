@@ -1,44 +1,17 @@
 <template>
-  <v-row justify="center">
-    <v-col cols="12" md="6">
-      <v-row justify="space-between" align="center">
-        <v-col>
-          <h1>Create a Domain</h1>
-        </v-col>
-        <v-col align="right">
-          <v-btn
-            :to="{ name: 'domains' }"
-            :color="colorLightGrey"
-            class="text-capitalize"
-            rounded
-            small
-            dark
-          >
-            <v-icon left small>{{ mdiUndoVariant }}</v-icon>
-            Back
-          </v-btn>
-        </v-col>
-      </v-row>
-      <hr />
-      <v-row justify="center">
-        <v-col cols="12">
-          <DomainForm />
-        </v-col>
-      </v-row>
-    </v-col>
-  </v-row>
+  <page-layout>
+    <page-title slot="page-title">
+      <div slot="title">Create a Domain</div>
+    </page-title>
+    <domain-form slot="page-content"></domain-form>
+  </page-layout>
 </template>
 
 <script>
+import PageTitle from "../components/PageTitle";
+import PageLayout from "../components/PageLayout";
 import DomainForm from "../components/DomainForm";
-import { mdiUndoVariant } from "@mdi/js";
 export default {
-  data() {
-    return {
-      mdiUndoVariant,
-      colorLightGrey: "#404B5F"
-    };
-  },
   computed: {
     successMessage() {
       return this.$store.state.alarmModule.successMessage;
@@ -50,7 +23,9 @@ export default {
     }
   },
   components: {
-    DomainForm
+    DomainForm,
+    PageLayout,
+    PageTitle
   }
 };
 </script>

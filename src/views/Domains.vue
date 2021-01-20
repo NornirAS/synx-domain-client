@@ -15,8 +15,7 @@
       </v-btn>
     </page-title>
     <div slot="page-content">
-      <domains-empty v-if="!isDomainsFetchProblem"></domains-empty>
-      <data-fetch-problem v-if="isDomainsFetchProblem"></data-fetch-problem>
+      <domains-empty v-if="!domains"></domains-empty>
       <v-card v-for="({ name, active }, index) in domains" :key="index">
         <v-row justify="space-between" align="center">
           <v-col cols="6">
@@ -55,7 +54,6 @@
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import DomainsEmpty from "../components/empty-page/DomainsEmpty";
-import DataFetchProblem from "../components/empty-page/DataFetchProblem";
 import { mdiCircle } from "@mdi/js";
 export default {
   data() {
@@ -75,16 +73,12 @@ export default {
     },
     domains() {
       return this.$store.state.domainsModule.ownedDomains;
-    },
-    isDomainsFetchProblem() {
-      return this.domains === null;
     }
   },
   components: {
     PageTitle,
     PageLayout,
-    DomainsEmpty,
-    DataFetchProblem
+    DomainsEmpty
   }
 };
 </script>

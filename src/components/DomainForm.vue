@@ -2,7 +2,7 @@
   <v-form
     id="domain-form"
     ref="domainForm"
-    v-model="domainValid"
+    v-model="valid"
     @submit.prevent="submitDomainForm"
     lazy-validation
   >
@@ -14,8 +14,7 @@
         <v-text-field
           v-model="domainName"
           :rules="domainRules"
-          :counter="63"
-          slot="action"
+          :counter="64"
           label="Domain Name"
           prefix="https://"
           suffix=".cioty.com"
@@ -23,15 +22,18 @@
         <p v-if="error" align="center">{{ error }}</p>
       </v-card-text>
     </v-card>
-    <v-btn
-      :style="actionBtnStyle"
-      class="text-capitalize"
-      type="submit"
-      rounded
-      dark
-    >
-      Create
-    </v-btn>
+    <div align="end">
+      <v-btn
+        align="end"
+        color="primary"
+        class="text-capitalize"
+        type="submit"
+        small
+        rounded
+      >
+        Create
+      </v-btn>
+    </div>
   </v-form>
 </template>
 
@@ -41,24 +43,19 @@ export default {
     return {
       domainName: "",
       error: "",
-      domainValid: false,
-      actionBtnStyle: {
-        backgroundColor: "#27AAE1",
-        float: "right",
-        marginTop: "20px"
-      },
+      valid: false,
       domainRules: [
         v => (v && v.length) >= 1 || "Domain Name is required",
         v =>
-          (v && v.length) <= 63 || "Domain Name must be maximum 63 characters",
+          (v && v.length) <= 64 || "Domain Name must be maximum 64 characters",
         v => /^[A-Za-z]+$/.test(v) || "Only alphabet characters are allowed"
       ]
     };
   },
   methods: {
     submitDomainForm() {
-      this.$refs.domainForm.validate();
-      if (this.$refs.domainForm.validate()) {
+      const isValid = this.$refs.domainForm.validate();
+      if (isValid) {
         this.$socket.emit(
           "create_domain",
           this.token,
