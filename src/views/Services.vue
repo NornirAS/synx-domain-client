@@ -114,9 +114,12 @@ export default {
       return _.isEmpty(this.searchFilter);
     },
     domains() {
-      const domains = localStorage.getItem("domains").split(",");
-      domains.unshift("All");
-      return domains;
+      const domains = localStorage.getItem("domains");
+      if (!domains) {
+        return ["All"];
+      } else {
+        return domains.split(",").unshift("All");
+      }
     }
   },
   components: {
