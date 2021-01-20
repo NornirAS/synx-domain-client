@@ -68,7 +68,6 @@ export default {
       mdiLogout,
       drawer: true,
       items: [
-        { title: "Domains", icon: mdiWeb, path: { name: "domains" } },
         {
           title: "Morphic Services",
           icon: mdiSourceFork,
@@ -79,6 +78,7 @@ export default {
           icon: mdiAntenna,
           path: { name: "ghosts" }
         },
+        { title: "Domains", icon: mdiWeb, path: { name: "domains" } },
         {
           title: "My Account",
           icon: mdiAccountCircle,
