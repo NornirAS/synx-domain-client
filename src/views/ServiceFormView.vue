@@ -75,6 +75,7 @@
           <v-stepper-content step="2">
             <div>
               <div class="title">Service Settings - for Machines</div>
+              <service-form-machines></service-form-machines>
             </div>
             <v-btn
               @click="e1 = 1"
@@ -87,7 +88,8 @@
             <v-btn
               class="text-capitalize"
               color="primary"
-              @click="e1 = 3"
+              type="submit"
+              form="service-form-machines"
               small
               rounded
             >
@@ -121,6 +123,7 @@
 import { mdiMenuDown } from "@mdi/js";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
+import ServiceFormMachines from "../components/service-form-machines/ServiceFormMachines";
 export default {
   data() {
     return {
@@ -199,7 +202,8 @@ export default {
   },
   components: {
     PageLayout,
-    PageTitle
+    PageTitle,
+    ServiceFormMachines
   }
 };
 </script>
