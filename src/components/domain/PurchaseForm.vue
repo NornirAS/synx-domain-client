@@ -4,9 +4,7 @@
       <v-stepper-step :complete="e1 > 1" step="1">
         Period
       </v-stepper-step>
-
       <v-divider></v-divider>
-
       <v-stepper-step :complete="e1 > 2" step="2">
         Confirm
       </v-stepper-step>
@@ -14,84 +12,53 @@
 
     <v-stepper-items>
       <v-stepper-content step="1">
-        <BillingPeriod />
-
-        <v-row justify="space-between" align="center">
-          <v-col cols="6" md="3">
-            <v-btn
-              :to="{ name: 'domains' }"
-              :color="colorLightGrey"
-              class="text-capitalize"
-              rounded
-              dark
-            >
-              Cancel
-            </v-btn>
-          </v-col>
-          <v-col cols="6" md="3">
-            <v-btn
-              :style="actionBtnStyle"
-              @click="e1 = 2"
-              class="text-capitalize"
-              rounded
-              dark
-            >
-              Continue
-            </v-btn>
-          </v-col>
-        </v-row>
+        <billing-period></billing-period>
+        <v-btn
+          @click="toDomainPage"
+          class="text-capitalize"
+          color="secondary"
+          rounded
+          outlined
+        >
+          Cancel
+        </v-btn>
+        <v-btn @click="e1 = 2" class="text-capitalize" color="primary" rounded>
+          Continue
+        </v-btn>
       </v-stepper-content>
 
       <v-stepper-content step="2">
-        <StripePayment />
-
-        <slot name="form"></slot>
-
-        <v-row justify="space-between" align="center">
-          <v-col cols="6" md="3">
-            <v-btn
-              @click="e1 = 1"
-              :color="colorLightGrey"
-              class="text-capitalize"
-              rounded
-              dark
-            >
-              <v-icon small>{{ mdiUndoVariant }}</v-icon>
-              Back
-            </v-btn>
-          </v-col>
-          <v-col cols="6" md="3">
-            <v-btn
-              id="checkout-button"
-              :style="actionBtnStyle"
-              @click="checkout"
-              class="text-capitalize"
-              rounded
-              dark
-            >
-              Continue
-            </v-btn>
-          </v-col>
-        </v-row>
+        <stripe-payment></stripe-payment>
+        <v-btn
+          @click="e1 = 1"
+          class="text-capitalize"
+          color="secondary"
+          rounded
+          outlined
+        >
+          Back
+        </v-btn>
+        <v-btn
+          id="checkout-button"
+          @click="checkout"
+          class="text-capitalize"
+          color="primary"
+          rounded
+        >
+          Continue
+        </v-btn>
       </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
 </template>
 
 <script>
-import { mdiUndoVariant } from "@mdi/js";
 import BillingPeriod from "./BillingPeriod.vue";
 import StripePayment from "./StripePayment";
 export default {
   data() {
     return {
-      mdiUndoVariant,
-      e1: 1,
-      actionBtnStyle: {
-        backgroundColor: "#27AAE1",
-        float: "right"
-      },
-      colorLightGrey: "#404B5F"
+      e1: 1
     };
   },
   methods: {
@@ -104,6 +71,9 @@ export default {
         this.username,
         this.selectedPlan.period
       );
+    },
+    toDomainPage() {
+      this.$router.push({ name: "domains" });
     }
   },
   computed: {
@@ -126,13 +96,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.theme--light.v-stepper .v-stepper__step__step {
-  color: white;
-  background-color: #27aae1;
-}
-.theme--light.v-stepper .v-stepper__step--active .v-stepper__label {
-  text-shadow: 0px 0px 0px #58595b !important;
-}
-</style>

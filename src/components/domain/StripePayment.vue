@@ -6,7 +6,7 @@
     </div>
     <div>Subscription plan: {{ selectedPlan.name }}</div>
     <div>Price: {{ selectedPlan.price }}</div>
-    <hr />
+    <v-divider></v-divider>
     <div align="right">Total: ${{ selectedPlan.total }}</div>
   </div>
 </template>
@@ -80,12 +80,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.title {
-  font-weight: 400;
-}
-.display-1 {
-  font-weight: 300;
-}
-</style>

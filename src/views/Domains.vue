@@ -54,13 +54,7 @@
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import DomainsEmpty from "../components/empty-page/DomainsEmpty";
-import { mdiCircle } from "@mdi/js";
 export default {
-  data() {
-    return {
-      mdiCircle
-    };
-  },
   created() {
     this.$socket.emit("get_all_domains", this.token, this.username);
   },
