@@ -24,7 +24,7 @@
             <div>
               <div class="title">Domain*</div>
               <div class="body-1">
-                Choose which domainyou want to add the service to.
+                Choose which domain you want to add the service to.
               </div>
               <v-menu offset-y>
                 <template v-slot:activator="{ on, attrs }">
@@ -73,18 +73,25 @@
           </v-stepper-content>
 
           <v-stepper-content step="2">
-            <v-card
-              class="mb-12"
-              color="grey lighten-1"
-              height="200px"
-            ></v-card>
-
-            <v-btn color="primary" @click="e1 = 3">
-              Continue
+            <div>
+              <div class="title">Service Settings - for Machines</div>
+            </div>
+            <v-btn
+              @click="e1 = 1"
+              class="text-capitalize"
+              color="secondary"
+              text
+            >
+              Previous
             </v-btn>
-
-            <v-btn text>
-              Cancel
+            <v-btn
+              class="text-capitalize"
+              color="primary"
+              @click="e1 = 3"
+              small
+              rounded
+            >
+              Next
             </v-btn>
           </v-stepper-content>
 
