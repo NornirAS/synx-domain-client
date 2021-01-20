@@ -1,70 +1,127 @@
 <template>
-  <v-row justify="center">
-    <v-col cols="12" md="10">
-      <v-row justify="space-between" align="center">
-        <v-col>
-          <h1>{{ title }}</h1>
-        </v-col>
-        <v-col align="right">
-          <v-btn
-            :to="{ name: 'services' }"
-            :color="colorLightGrey"
-            class="text-capitalize"
-            rounded
-            small
-            dark
-          >
-            <v-icon left small>{{ mdiUndoVariant }}</v-icon>
-            Back
-          </v-btn>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="form-container">
-          <v-menu offset-y>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                :color="colorLightGrey"
-                :disabled="hasIndex"
-                :dark="!hasIndex"
-                class="text-none"
-                v-bind="attrs"
-                v-on="on"
-              >
-                For Domain: {{ selectedDomain }}.cioty.com
-                <v-icon v-if="!hasIndex" left large>{{ mdiMenuDown }}</v-icon>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item v-for="(domain, index) in domainsArray" :key="index">
-                <v-list-item-title @click="selectDomain(domain)">
-                  {{ domain }}.cioty.com
-                </v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </v-col>
-      </v-row>
-      <v-row justify="center">
-        <v-col cols="12" class="form-container">
-          <router-view :btnName="btnName"></router-view>
-        </v-col>
-      </v-row>
-    </v-col>
-  </v-row>
+  <page-layout>
+    <page-title slot="page-title">
+      <div slot="title">{{ title }}</div>
+    </page-title>
+    <template slot="page-content">
+      <v-stepper v-model="e1">
+        <v-stepper-header>
+          <v-stepper-step :complete="e1 > 1" step="1">
+            Domain
+          </v-stepper-step>
+          <v-divider></v-divider>
+          <v-stepper-step :complete="e1 > 2" step="2">
+            Service Settings
+          </v-stepper-step>
+          <v-divider></v-divider>
+          <v-stepper-step step="3">
+            Micro Page
+          </v-stepper-step>
+        </v-stepper-header>
+
+        <v-stepper-items>
+          <v-stepper-content step="1">
+            <div>
+              <div class="title">Domain*</div>
+              <div class="body-1">
+                Choose which domainyou want to add the service to.
+              </div>
+              <v-menu offset-y>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    :disabled="hasIndex"
+                    :dark="!hasIndex"
+                    class="text-none domain-dropdown"
+                    color="secondary"
+                    small
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    <strong>{{ selectedDomain }}</strong>
+                    .cioty.com
+                    <v-icon v-if="!hasIndex" right large>{{
+                      mdiMenuDown
+                    }}</v-icon>
+                  </v-btn>
+                </template>
+                <v-list>
+                  <v-list-item v-for="(domain, index) in domains" :key="index">
+                    <v-list-item-title @click="selectDomain(domain)">
+                      {{ domain }}.cioty.com
+                    </v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </div>
+            <v-btn
+              @click="backToServices"
+              class="text-capitalize"
+              color="secondary"
+              text
+            >
+              Cancel
+            </v-btn>
+            <v-btn
+              class="text-capitalize"
+              color="primary"
+              @click="e1 = 2"
+              small
+              rounded
+            >
+              Next
+            </v-btn>
+          </v-stepper-content>
+
+          <v-stepper-content step="2">
+            <v-card
+              class="mb-12"
+              color="grey lighten-1"
+              height="200px"
+            ></v-card>
+
+            <v-btn color="primary" @click="e1 = 3">
+              Continue
+            </v-btn>
+
+            <v-btn text>
+              Cancel
+            </v-btn>
+          </v-stepper-content>
+
+          <v-stepper-content step="3">
+            <v-card
+              class="mb-12"
+              color="grey lighten-1"
+              height="200px"
+            ></v-card>
+
+            <v-btn color="primary" @click="e1 = 1">
+              Continue
+            </v-btn>
+
+            <v-btn text>
+              Cancel
+            </v-btn>
+          </v-stepper-content>
+        </v-stepper-items>
+      </v-stepper>
+    </template>
+    <router-view :btnName="btnName"></router-view>
+  </page-layout>
 </template>
 
 <script>
-import { mdiUndoVariant, mdiMenuDown } from "@mdi/js";
+import { mdiMenuDown } from "@mdi/js";
+import PageTitle from "../components/PageTitle";
+import PageLayout from "../components/PageLayout";
 export default {
   data() {
     return {
-      mdiUndoVariant,
       mdiMenuDown,
+      e1: 1,
       title: "",
       selectedDomain: "",
-      btnName: "",
-      colorLightGrey: "#404B5F"
+      btnName: ""
     };
   },
   created() {
@@ -77,7 +134,7 @@ export default {
       }
       this.btnName = "Update";
     } else {
-      this.title = "Create Morphic Service";
+      this.title = "New Morphic Service";
       this.btnName = "Create";
     }
   },
@@ -88,13 +145,16 @@ export default {
     if (this.hasIndex) {
       this.selectedDomain = this.serviceToEdit.domain;
     } else {
-      this.selectedDomain = this.domainsArray[0];
+      this.selectedDomain = this.domains[0];
     }
   },
   methods: {
     selectDomain(domain) {
       this.selectedDomain = domain;
       this.$store.commit("serviceFormModule/addDomain", domain);
+    },
+    backToServices() {
+      this.$router.push({ name: "services" });
     }
   },
   computed: {
@@ -116,25 +176,30 @@ export default {
     successMessage() {
       return this.$store.state.alarmModule.successMessage;
     },
-    domainsArray() {
-      return localStorage.getItem("domains").split(",");
+    domains() {
+      const domains = localStorage.getItem("domains");
+      if (!domains) {
+        return [];
+      } else {
+        return domains.split(",");
+      }
     }
   },
   watch: {
     successMessage() {
       this.$router.push({ name: "services" });
     }
+  },
+  components: {
+    PageLayout,
+    PageTitle
   }
 };
 </script>
 
 <style scoped>
-h1 {
-  color: #58595b;
-  font-size: 24px;
-  font-weight: 500;
-}
-.form-container {
-  padding: 0 12px 12px 12px;
+.domain-dropdown {
+  margin: 1em 0;
+  width: 70%;
 }
 </style>

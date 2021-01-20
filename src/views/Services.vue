@@ -10,6 +10,7 @@
         outlined
         small
         color="primary"
+        :disabled="!domains"
       >
         Create Service
       </v-btn>
@@ -24,7 +25,7 @@
             hide-details
             outlined
             dense
-            :disabled="!services"
+            :disabled="!domains && noServices"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6">
@@ -34,10 +35,10 @@
                 <v-btn
                   color="secondary"
                   class="text-capitalize"
-                  dark
                   v-bind="attrs"
                   v-on="on"
                   block
+                  :disabled="!domains && noServices"
                 >
                   Sort By: {{ sortByDomain }}
                   <v-icon left large>{{ mdiMenuDown }}</v-icon>
@@ -98,6 +99,9 @@ export default {
     services() {
       return this.$store.state.servicesModule.services;
     },
+    noServices() {
+      return _.isEmpty(this.services);
+    },
     sortBy() {
       return this.sortByDomain === "All"
         ? this.services
@@ -116,7 +120,7 @@ export default {
     domains() {
       const domains = localStorage.getItem("domains");
       if (!domains) {
-        return ["All"];
+        return false;
       } else {
         return domains.split(",").unshift("All");
       }
