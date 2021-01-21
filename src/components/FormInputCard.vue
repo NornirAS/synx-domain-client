@@ -1,19 +1,19 @@
 <template>
   <v-card>
-    <v-card-title>
+    <v-card-title class="body-1">
       <slot name="title"></slot>
       <v-icon
         @mouseover="expand = true"
         @mouseleave="expand = false"
-        :color="colorBlue"
+        color="primary"
       >
         {{ mdiInformationOutline }}
       </v-icon>
     </v-card-title>
     <v-expand-transition>
-      <v-card-text v-show="expand">
+      <v-card-subtitle v-show="expand">
         <slot name="subtitle"></slot>
-      </v-card-text>
+      </v-card-subtitle>
     </v-expand-transition>
     <v-card-actions>
       <slot name="action"></slot>
@@ -28,17 +28,24 @@ export default {
   data() {
     return {
       expand: false,
-      mdiInformationOutline,
-      colorBlue: "#27AAE1"
+      mdiInformationOutline
     };
   }
 };
 </script>
 
 <style scoped>
-.v-card__subtitle,
-.v-card__text,
-.v-card__title {
-  padding-bottom: 0;
+.v-card__title,
+.v-card__actions {
+  margin-top: 1em;
+  padding: 0;
+}
+.v-card,
+.v-card__subtitle {
+  padding: 0;
+  margin: 0;
+}
+.v-sheet.v-card:not(.v-sheet--outlined) {
+  box-shadow: none;
 }
 </style>
