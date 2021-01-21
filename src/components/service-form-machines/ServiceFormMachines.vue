@@ -7,11 +7,13 @@
     lazy-validation
   >
     <service-name></service-name>
+    <service-schema></service-schema>
   </v-form>
 </template>
 
 <script>
 import ServiceName from "./ServiceName";
+import ServiceSchema from "./ServiceSchema";
 export default {
   data() {
     return {
@@ -24,7 +26,8 @@ export default {
     }
   },
   components: {
-    ServiceName
+    ServiceName,
+    ServiceSchema
   }
 };
 </script>
