@@ -86,6 +86,7 @@
               Previous
             </v-btn>
             <v-btn
+              @click="e1 = 3"
               class="text-capitalize"
               color="primary"
               type="submit"

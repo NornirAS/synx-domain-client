@@ -3,71 +3,52 @@ const state = {
   name: "",
   description: "",
   keywords: "",
-  serviceSchema: [],
-  commandSchema: "",
+  schema: "",
+  command: "",
   timeout: "30",
   preInlineScript: "",
   postInlineScript: "",
-  webJS: "Hello World!"
+  webJS: ""
 };
 
 const mutations = {
-  addDomain(state, domain) {
-    state.domain = domain;
+  addDomain(state, payload) {
+    state.domain = payload;
   },
-  addName(state, name) {
-    state.name = name;
+  addName(state, payload) {
+    state.name = payload;
   },
-  addDescription(state, description) {
-    state.description = description;
+  addDescription(state, payload) {
+    state.description = payload;
   },
-  addKeywords(state, keywords) {
-    state.keywords = keywords;
+  addKeywords(state, payload) {
+    state.keywords = payload;
   },
-  addServiceSchema(state, schema) {
-    state.serviceSchema.push(schema);
+  addSchema(state, payload) {
+    state.schema = payload;
   },
-  removeSelectedServiceSchema(state, index) {
-    state.serviceSchema.splice(index, 1);
+  addCommand(state, payload) {
+    state.command = payload;
   },
-  removeLastServiceSchema(state) {
-    state.serviceSchema.pop();
+  setTimeout(state, payload) {
+    state.timeout = payload;
   },
-  serviceSchemaAddLink(state, { tagName, linkTo }) {
-    const schema = state.serviceSchema.find(s => s.tagName === tagName);
-    schema.links.push(linkTo);
+  addPreInlineScript(state, payload) {
+    state.preInlineScript = payload;
   },
-  serviceSchemaRemoveLink(state, { tagName, index }) {
-    const schema = state.serviceSchema.find(s => s.tagName === tagName);
-    schema.links.splice(index, 1);
+  addPostInlineScript(state, payload) {
+    state.postInlineScript = payload;
   },
-  serviceSchemaUpdateLink(state, { tagName, linkTo, index }) {
-    const schema = state.serviceSchema.find(s => s.tagName === tagName);
-    const obj = Object.assign({}, schema.links[index], linkTo);
-    schema.links.splice(index, 1, obj);
-  },
-  addCommand(state, command) {
-    state.commandSchema = command;
-  },
-  setTimeout(state, timeout) {
-    state.timeout = timeout;
-  },
-  addPreInlineScript(state, preInlineScript) {
-    state.preInlineScript = preInlineScript;
-  },
-  addPostInlineScript(state, postInlineScript) {
-    state.postInlineScript = postInlineScript;
-  },
-  addWebJS(state, webJS) {
-    state.webJS = webJS;
+  addWebJS(state, payload) {
+    state.webJS = payload;
   },
   editService(state, service) {
     state.domain = service.domain;
     state.name = service.serviceName;
     state.description = service.description;
     state.keywords = service.searchTerms;
-    state.serviceSchema = service.schema;
-    state.commandSchema = service.cmdXML;
+    state.schema = service.schema;
+    state.command = service.cmdXML;
     state.preInlineScript = service.preMasterScript;
     state.postInlineScript = service.masterScript;
     state.webJS = "Hello World!";
@@ -77,7 +58,7 @@ const mutations = {
     state.name = "";
     state.description = "";
     state.keywords = "";
-    state.serviceSchema = [];
+    state.serviceSchema = "";
     state.commandSchema = "";
     state.preInlineScript = "";
     state.postInlineScript = "";
