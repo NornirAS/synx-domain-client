@@ -1,13 +1,13 @@
 const state = {
   domain: "",
+  schema: "",
+  inlinePreScript: "",
+  inlinePostScript: "",
   name: "",
   description: "",
   keywords: "",
-  schema: "",
   command: "",
   timeout: "30",
-  preInlineScript: "",
-  postInlineScript: "",
   webJS: ""
 };
 
@@ -33,11 +33,11 @@ const mutations = {
   setTimeout(state, payload) {
     state.timeout = payload;
   },
-  addPreInlineScript(state, payload) {
-    state.preInlineScript = payload;
+  addInlinePreScript(state, payload) {
+    state.inlinePreScript = payload;
   },
-  addPostInlineScript(state, payload) {
-    state.postInlineScript = payload;
+  addInlinePostScript(state, payload) {
+    state.inlinePostScript = payload;
   },
   addWebJS(state, payload) {
     state.webJS = payload;
@@ -49,7 +49,7 @@ const mutations = {
     state.keywords = service.searchTerms;
     state.schema = service.schema;
     state.command = service.cmdXML;
-    state.preInlineScript = service.preMasterScript;
+    state.inlinePreScript = service.preMasterScript;
     state.postInlineScript = service.masterScript;
     state.webJS = "Hello World!";
   },
