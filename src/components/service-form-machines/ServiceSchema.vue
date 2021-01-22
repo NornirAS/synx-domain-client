@@ -102,36 +102,44 @@ export default {
       if (this.schemaContainsOnlyXml) {
         return this.removeNewLines
           .join("")
-          .match(/(?<=<(.*?)>)(.*?)(?=<(.*?)>)/g)
-          .map(str => {
-            return str;
-          });
-      } else {
-        return "";
-      }
-    },
-    validateLinks() {
-      if (this.schemaContainsOnlyXml) {
-        return this.getLinksFromXml
-          .join("")
-          .match(
-            /@([a-zA-Z0-9_]+?)(?=\/)\/([a-zA-Z0-9_]+?)(?=#)#([a-zA-Z0-9_]+?)@/g
-          )
-          .map(str => {
-            return str;
-          });
-      } else {
-        return "";
-      }
-    },
-    isValidLinks() {
-      if (this.schemaContainsOnlyXml) {
-        const notValidLinksString = this.getLinksFromXml.join("");
-        const validLinksString = this.validateLinks.join("");
-        return notValidLinksString.length === validLinksString.length;
+          .match(/(?<=<(.*?)>)(.*?)(?=<(.*?)>)/g);
       } else {
         return false;
       }
+    },
+    isLinks() {
+      if (this.getLinksFromXml) {
+        return this.getLinksFromXml.join("") !== "";
+      } else {
+        return false;
+      }
+    },
+    validateLinks() {
+      if (this.isLinks) {
+        return this.getLinksFromXml
+          .join("")
+          .match(
+            /@([a-zA-Z0-9_]+?)(?=\/)\/([a-zA-Z0-9_]+?)(?=#)#([a-zA-Z0-9_]+?)@/g || false
+          );
+      } else {
+        return false;
+      }
+    },
+    isValidLinks() {
+      if (this.validateLinks) {
+        const notValidLinksString = this.getLinksFromXml.join("");
+        const validLinksString = this.validateLinks.join("");
+        return notValidLinksString.length === validLinksString.length;
+      } else if (!this.isLinks) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
+  watch: {
+    validateLinks(newValue) {
+      this.$store.commit("serviceFormModule/isValidLinks", newValue);
     }
   },
   components: {

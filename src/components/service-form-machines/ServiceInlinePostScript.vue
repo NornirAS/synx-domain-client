@@ -10,7 +10,7 @@
       @blur="addInlinePostScript"
       :rules="inlinePostScriptRules"
       :counter="1024"
-      error-count="2"
+      error-count="1"
       name="inline-post-script"
       type="text"
       label="Type or paste JS"

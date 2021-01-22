@@ -8,8 +8,10 @@
   >
     <service-name></service-name>
     <service-schema></service-schema>
-    <service-inline-pre-script></service-inline-pre-script>
-    <service-inline-post-script></service-inline-post-script>
+    <service-inline-pre-script v-if="isValidLinks"></service-inline-pre-script>
+    <service-inline-post-script
+      v-if="isValidLinks"
+    ></service-inline-post-script>
   </v-form>
 </template>
 
@@ -27,6 +29,11 @@ export default {
   methods: {
     submitServiceForm() {
       console.log(this.$refs.serviceFormMachines.validate());
+    }
+  },
+  computed: {
+    isValidLinks() {
+      return this.$store.state.serviceFormModule.isValidLinks;
     }
   },
   components: {

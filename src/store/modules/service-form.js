@@ -8,7 +8,8 @@ const state = {
   keywords: "",
   command: "",
   timeout: "30",
-  webJS: ""
+  webJS: "",
+  isValidLinks: false
 };
 
 const mutations = {
@@ -17,6 +18,12 @@ const mutations = {
   },
   addName(state, payload) {
     state.name = payload;
+  },
+  addInlinePreScript(state, payload) {
+    state.inlinePreScript = payload;
+  },
+  addInlinePostScript(state, payload) {
+    state.inlinePostScript = payload;
   },
   addDescription(state, payload) {
     state.description = payload;
@@ -32,12 +39,6 @@ const mutations = {
   },
   setTimeout(state, payload) {
     state.timeout = payload;
-  },
-  addInlinePreScript(state, payload) {
-    state.inlinePreScript = payload;
-  },
-  addInlinePostScript(state, payload) {
-    state.inlinePostScript = payload;
   },
   addWebJS(state, payload) {
     state.webJS = payload;
@@ -63,6 +64,9 @@ const mutations = {
     state.preInlineScript = "";
     state.postInlineScript = "";
     state.webJS = "";
+  },
+  isValidLinks(state, payload) {
+    state.isValidLinks = payload;
   }
 };
 
