@@ -1,6 +1,6 @@
 <template>
   <input-card>
-    <div slot="title">Service Schema*{{ getLinks }}</div>
+    <div slot="title">Service Schema*{{ isValidLinks }}</div>
     <div slot="subtitle">
       Add key elements to your service schema.
     </div>
@@ -29,17 +29,19 @@ export default {
     return {
       schema: "",
       regExp: "",
-      test: "",
       schemaRules: [
         v => !!v || "Schema is required",
         v =>
           (v && v.length) <= 1024 || "Schema must be maximum 1024 characters",
         v =>
-          (v && this.schemaContainOnlyXml) ||
+          (v && this.schemaContainsOnlyXml) ||
           "You need to provide valid XML schema",
         v =>
           (v && this.isElementsMatch) ||
-          "Schema open and closing tags must match"
+          "Schema open and closing tags must match",
+        v =>
+          (v && this.isValidLinks) ||
+          "You must provide valid links in @domain/service#ghost@ format"
       ]
     };
   },
@@ -52,45 +54,83 @@ export default {
     matchXml() {
       return this.schema.match(/<(.*?)>(.*?)<\/(.*?)>|\n/g);
     },
-    schemaContainOnlyXml() {
+    schemaContainsOnlyXml() {
       if (this.matchXml) {
         return this.matchXml.join("") === this.schema;
       } else {
         return false;
       }
     },
-    mapXmlByTag() {
-      if (this.matchXml) {
-        return this.schema.match(/<(.*?)>(.*?)<\/(.*?)>/g).map(str => {
-          return str.replace(/\//g, "").match(/(?<=<)(.*?)(?=>)/g);
+    removeNewLines() {
+      if (this.schemaContainsOnlyXml) {
+        return this.schema.match(/<(.*?)>(.*?)<\/(.*?)>|\n/g).map(str => {
+          return str.replace(/\n/g, "");
         });
+      } else {
+        return "";
+      }
+    },
+    getXmlTagNames() {
+      if (this.schemaContainsOnlyXml) {
+        return this.removeNewLines
+          .join("")
+          .match(/<(.*?)>(.*?)<\/(.*?)>/g)
+          .map(str => {
+            return str.replace(/\//g, "").match(/(?<=<)(.*?)(?=>)/g);
+          });
       } else {
         return [];
       }
     },
-    mergeMapedArrays() {
-      return _.flattenDeep(this.mapXmlByTag);
+    mergeXmlTagNamesInSingleArray() {
+      return _.flattenDeep(this.getXmlTagNames);
     },
-    removeDuplicates() {
-      return _.sortedUniq(this.mergeMapedArrays);
+    removeDuplicateNames() {
+      return _.sortedUniq(this.mergeXmlTagNamesInSingleArray);
     },
     isElementsMatch() {
-      if (this.matchXml) {
-        console.log(this.mergeMapedArrays, this.removeDuplicates);
-        return this.mergeMapedArrays.length / 2 === this.removeDuplicates.length
+      if (this.schemaContainsOnlyXml) {
+        return this.mergeXmlTagNamesInSingleArray.length / 2 ===
+          this.removeDuplicateNames.length
           ? true
           : false;
       } else {
         return false;
       }
     },
-    getLinks() {
-      if (this.matchXml) {
-        return this.matchXml.map(str => {
-          return str.match(/(?<=<(.*?)>)(.*?)(?=<(.*?)>)/g);
-        });
+    getLinksFromXml() {
+      if (this.schemaContainsOnlyXml) {
+        return this.removeNewLines
+          .join("")
+          .match(/(?<=<(.*?)>)(.*?)(?=<(.*?)>)/g)
+          .map(str => {
+            return str;
+          });
       } else {
         return "";
+      }
+    },
+    validateLinks() {
+      if (this.schemaContainsOnlyXml) {
+        return this.getLinksFromXml
+          .join("")
+          .match(
+            /@([a-zA-Z0-9_]+?)(?=\/)\/([a-zA-Z0-9_]+?)(?=#)#([a-zA-Z0-9_]+?)@/g
+          )
+          .map(str => {
+            return str;
+          });
+      } else {
+        return "";
+      }
+    },
+    isValidLinks() {
+      if (this.schemaContainsOnlyXml) {
+        const notValidLinksString = this.getLinksFromXml.join("");
+        const validLinksString = this.validateLinks.join("");
+        return notValidLinksString.length === validLinksString.length;
+      } else {
+        return false;
       }
     }
   },
