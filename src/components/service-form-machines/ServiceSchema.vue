@@ -119,7 +119,8 @@ export default {
         return this.getLinksFromXml
           .join("")
           .match(
-            /@([a-zA-Z0-9_]+?)(?=\/)\/([a-zA-Z0-9_]+?)(?=#)#([a-zA-Z0-9_]+?)@/g || false
+            /@([a-zA-Z0-9_]+?)(?=\/)\/([a-zA-Z0-9_]+?)(?=#)#([a-zA-Z0-9_]+?)@/g ||
+              false
           );
       } else {
         return false;

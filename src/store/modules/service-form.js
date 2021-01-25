@@ -1,14 +1,14 @@
 const state = {
   domain: "",
+  name: "",
   schema: "",
   inlinePreScript: "",
   inlinePostScript: "",
-  name: "",
+  command: "",
+  webJS: "",
+  timeout: "30",
   description: "",
   keywords: "",
-  command: "",
-  timeout: "30",
-  webJS: "",
   isValidLinks: false
 };
 
@@ -19,29 +19,29 @@ const mutations = {
   addName(state, payload) {
     state.name = payload;
   },
+  addSchema(state, payload) {
+    state.schema = payload;
+  },
   addInlinePreScript(state, payload) {
     state.inlinePreScript = payload;
   },
   addInlinePostScript(state, payload) {
     state.inlinePostScript = payload;
   },
+  addCommand(state, payload) {
+    state.command = payload;
+  },
+  addWebJS(state, payload) {
+    state.webJS = payload;
+  },
+  setTimeout(state, payload) {
+    state.timeout = payload;
+  },
   addDescription(state, payload) {
     state.description = payload;
   },
   addKeywords(state, payload) {
     state.keywords = payload;
-  },
-  addSchema(state, payload) {
-    state.schema = payload;
-  },
-  addCommand(state, payload) {
-    state.command = payload;
-  },
-  setTimeout(state, payload) {
-    state.timeout = payload;
-  },
-  addWebJS(state, payload) {
-    state.webJS = payload;
   },
   editService(state, service) {
     state.domain = service.domain;

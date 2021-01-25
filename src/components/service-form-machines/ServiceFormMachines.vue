@@ -12,6 +12,7 @@
     <service-inline-post-script
       v-if="isValidLinks"
     ></service-inline-post-script>
+    <service-command></service-command>
   </v-form>
 </template>
 
@@ -20,6 +21,7 @@ import ServiceName from "./ServiceName";
 import ServiceSchema from "./ServiceSchema";
 import ServiceInlinePreScript from "./ServiceInlinePreScript";
 import ServiceInlinePostScript from "./ServiceInlinePostScript";
+import ServiceCommand from "./ServiceCommand";
 export default {
   data() {
     return {
@@ -40,7 +42,8 @@ export default {
     ServiceName,
     ServiceSchema,
     ServiceInlinePreScript,
-    ServiceInlinePostScript
+    ServiceInlinePostScript,
+    ServiceCommand
   }
 };
 </script>
