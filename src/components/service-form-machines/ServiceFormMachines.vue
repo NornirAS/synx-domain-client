@@ -13,6 +13,7 @@
       v-if="isValidLinks"
     ></service-inline-post-script>
     <service-command></service-command>
+    <service-timeout></service-timeout>
   </v-form>
 </template>
 
@@ -22,6 +23,7 @@ import ServiceSchema from "./ServiceSchema";
 import ServiceInlinePreScript from "./ServiceInlinePreScript";
 import ServiceInlinePostScript from "./ServiceInlinePostScript";
 import ServiceCommand from "./ServiceCommand";
+import ServiceTimeout from "./ServiceTimeout";
 export default {
   data() {
     return {
@@ -43,7 +45,8 @@ export default {
     ServiceSchema,
     ServiceInlinePreScript,
     ServiceInlinePostScript,
-    ServiceCommand
+    ServiceCommand,
+    ServiceTimeout
   }
 };
 </script>
