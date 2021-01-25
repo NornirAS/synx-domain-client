@@ -125,7 +125,7 @@
               small
               rounded
             >
-              Next
+              Complete
             </v-btn>
           </v-stepper-content>
         </v-stepper-items>

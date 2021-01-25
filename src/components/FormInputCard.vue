@@ -15,10 +15,12 @@
         <slot name="subtitle"></slot>
       </v-card-subtitle>
     </v-expand-transition>
-    <v-card-actions>
+    <v-card-actions class="align-start">
       <slot name="action"></slot>
     </v-card-actions>
-    <slot name="table"></slot>
+    <div>
+      <slot name="helper"></slot>
+    </div>
   </v-card>
 </template>
 

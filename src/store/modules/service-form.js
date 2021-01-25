@@ -1,4 +1,5 @@
 const state = {
+  // service
   domain: "",
   name: "",
   schema: "",
@@ -7,8 +8,12 @@ const state = {
   command: "",
   webJS: "",
   timeout: "30",
+  // micropage
   description: "",
-  keywords: "",
+  schemaDescription: "",
+  imageUrl: "",
+  keywords: [],
+  // other
   isValidLinks: false
 };
 
@@ -39,6 +44,12 @@ const mutations = {
   },
   addDescription(state, payload) {
     state.description = payload;
+  },
+  addSchemaDescription(state, payload) {
+    state.schemaDescription = payload;
+  },
+  addImageUrl(state, payload) {
+    state.imageUrl = payload;
   },
   addKeywords(state, payload) {
     state.keywords = payload;

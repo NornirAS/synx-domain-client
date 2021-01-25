@@ -1,0 +1,38 @@
+<template>
+  <input-card>
+    <div slot="title">Title*</div>
+    <div slot="subtitle">Keep it short and sweet!</div>
+    <v-text-field
+      v-model="name"
+      name="name"
+      label="Title for micropage"
+      type="text"
+      slot="action"
+      required
+      outlined
+      dense
+    ></v-text-field>
+  </input-card>
+</template>
+
+<script>
+import InputCard from "../FormInputCard";
+export default {
+  data() {
+    return {
+      name: ""
+    };
+  },
+  mounted() {
+    this.name = this.serviceName;
+  },
+  computed: {
+    serviceName() {
+      return this.$store.state.serviceFormModule.name;
+    }
+  },
+  components: {
+    InputCard
+  }
+};
+</script>
