@@ -15,7 +15,6 @@
       type="text"
       error-count="1"
       slot="action"
-      required
       outlined
       dense
     ></v-textarea>
@@ -34,10 +33,12 @@ export default {
           (v && v.length) <= 128 ||
           "Command schema must be maximum 128 characters",
         v =>
-          (v && this.commandContainsOnlyXml) ||
+          !v ||
+          this.commandContainsOnlyXml ||
           "You need to provide valid XML command schema",
         v =>
-          (v && this.isElementsMatch) ||
+          !v ||
+          this.isElementsMatch ||
           "Command schema open and closing tags must match"
       ]
     };
@@ -87,10 +88,10 @@ export default {
     },
     isElementsMatch() {
       if (this.commandContainsOnlyXml) {
-        return this.mergeXmlTagNamesInSingleArray.length / 2 ===
+        return (
+          this.mergeXmlTagNamesInSingleArray.length / 2 ===
           this.removeDuplicateNames.length
-          ? true
-          : false;
+        );
       } else {
         return false;
       }
