@@ -75,7 +75,7 @@
           <v-stepper-content step="2">
             <div>
               <div class="title">Service Settings - for Machines</div>
-              <service-form-machines></service-form-machines>
+              <service-form></service-form>
             </div>
             <v-btn
               @click="e1 = 1"
@@ -99,18 +99,33 @@
           </v-stepper-content>
 
           <v-stepper-content step="3">
-            <v-card
-              class="mb-12"
-              color="grey lighten-1"
-              height="200px"
-            ></v-card>
-
-            <v-btn color="primary" @click="e1 = 1">
-              Continue
+            <div>
+              <div class="title">Micropage - Information for Humans</div>
+              <div class="body-1">
+                The micropage tells yourself and other humans what your service
+                is all about. The page will be visible to everyone entering the
+                URL.
+              </div>
+              <micropage-form></micropage-form>
+            </div>
+            <v-btn
+              @click="e1 = 2"
+              class="text-capitalize"
+              color="secondary"
+              text
+            >
+              Previous
             </v-btn>
-
-            <v-btn text>
-              Cancel
+            <v-btn
+              @click="e1 = 3"
+              class="text-capitalize"
+              color="primary"
+              type="submit"
+              form="micropage-form"
+              small
+              rounded
+            >
+              Next
             </v-btn>
           </v-stepper-content>
         </v-stepper-items>
@@ -124,7 +139,8 @@
 import { mdiMenuDown } from "@mdi/js";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
-import ServiceFormMachines from "../components/service-form-machines/ServiceFormMachines";
+import ServiceForm from "../components/service-form/ServiceForm";
+import MicropageForm from "../components/micropage-form/MicropageForm";
 export default {
   data() {
     return {
@@ -204,7 +220,8 @@ export default {
   components: {
     PageLayout,
     PageTitle,
-    ServiceFormMachines
+    ServiceForm,
+    MicropageForm
   }
 };
 </script>

@@ -1,0 +1,82 @@
+<template>
+  <v-form
+    id="micropage-form"
+    ref="micropageForm"
+    v-model="valid"
+    @submit.prevent="submitMicropageForm"
+    lazy-validation
+  >
+    <micropage-description></micropage-description>
+    <micropage-schema-description></micropage-schema-description>
+    <micropage-image-url></micropage-image-url>
+    <v-btn
+      :style="actionBtnStyle"
+      class="text-capitalize"
+      type="submit"
+      name="micropage-form"
+      form="micropage-form"
+      rounded
+      dark
+    >
+      Update
+    </v-btn>
+  </v-form>
+</template>
+
+<script>
+import MicropageDescription from "./MicropageDescription";
+import MicropageSchemaDescription from "./MicropageSchemaDescription";
+import MicropageImageUrl from "./MicropageImage";
+export default {
+  data() {
+    return {
+      valid: false,
+      actionBtnStyle: {
+        backgroundColor: "#27AAE1",
+        float: "right",
+        marginTop: "12px"
+      }
+    };
+  },
+  created() {
+    this.$store.commit("servicesModule/serviceIndex", this.index);
+    this.$store.commit("serviceFormModule/editService", this.service);
+  },
+  methods: {
+    submitMicropageForm() {
+      this.$refs.micropageForm.validate();
+      if (this.$refs.micropageForm.validate()) {
+        this.$socket.emit(
+          "update_micropage",
+          this.domain,
+          this.service,
+          this.token,
+          this.formData
+        );
+      }
+    }
+  },
+  computed: {
+    formData() {
+      return this.$store.state.micropageFormModule;
+    },
+    domain() {
+      return this.formData.domain;
+    },
+    token() {
+      return this.$store.state.authModule.idToken;
+    },
+    service() {
+      return this.$store.getters["servicesModule/serviceToEdit"].serviceName;
+    },
+    index() {
+      return this.$route.params.index;
+    }
+  },
+  components: {
+    MicropageDescription,
+    MicropageSchemaDescription,
+    MicropageImageUrl
+  }
+};
+</script>
