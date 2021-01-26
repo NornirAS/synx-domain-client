@@ -15,12 +15,15 @@
       dense
       outlined
     >
-      <v-btn @click="add" slot="append" icon small>
-        <v-icon>
-          mdi-plus
-        </v-icon>
-      </v-btn>
     </v-text-field>
+    <v-btn
+      @click="add"
+      :disabled="!isUnderKeywordsLimit || !isUsingAllowedCharacters"
+      color="primary"
+      slot="action"
+    >
+      Add
+    </v-btn>
     <div slot="helper">
       <v-chip
         v-for="(keyword, index) in sortedUniqKeywords"
@@ -47,7 +50,9 @@ export default {
       keywords: [],
       keywordsRules: [
         v =>
-          !v || this.isUnderKeywordsLimit || "You can add maximum 20 keywords"
+          !v || this.isUnderKeywordsLimit || "You can add maximum 20 keywords",
+        v =>
+          !v || this.isUsingAllowedCharacters || "You can use only a-z and 0-9"
       ]
     };
   },
@@ -65,10 +70,13 @@ export default {
   },
   computed: {
     sortedUniqKeywords() {
-      return _.sortedUniq(this.keywords);
+      return _.uniq(this.keywords);
     },
     isUnderKeywordsLimit() {
       return this.sortedUniqKeywords.length <= 20;
+    },
+    isUsingAllowedCharacters() {
+      return /^[a-z0-9]+$/g.test(this.keyword);
     }
   },
   watch: {
@@ -84,11 +92,6 @@ export default {
 
 <style scoped>
 .v-btn {
-  margin: 0;
-}
-.v-icon.v-icon {
-  color: #ffffff;
-  background-color: var(--v-primary-base);
-  border-radius: 15px;
+  margin: 0.12em 0 0 0.5em;
 }
 </style>
