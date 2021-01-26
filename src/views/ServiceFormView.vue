@@ -116,7 +116,6 @@
               Previous
             </v-btn>
             <v-btn
-              @click="e1 = 3"
               class="text-capitalize"
               color="primary"
               type="submit"
@@ -185,11 +184,75 @@ export default {
     },
     backToServices() {
       this.$router.push({ name: "services" });
+    },
+    registerService() {
+      if (this.isServiceFormValid && this.isMicropageFormValid) {
+        this.$socket.emit("register_service", {
+          domain: this.domain,
+          token: this.token,
+          username: this.username,
+          serviceName: this.serviceName,
+          serviceSchema: this.serviceSchema,
+          inlinePreScript: this.inlinePreScript,
+          inlinePostScript: this.inlinePostScript,
+          commandSchema: this.commandSchema,
+          webJS: this.webJS,
+          timeout: this.timeout,
+          serviceDescription: this.serviceDescription,
+          keywords: this.keywordsString,
+          schemaDescription: this.schemaDescription
+        });
+      }
     }
   },
   computed: {
     isServiceFormValid() {
       return this.$store.state.serviceFormModule.isServiceFormValid;
+    },
+    isMicropageFormValid() {
+      return this.$store.state.serviceFormModule.isMicropageFormValid;
+    },
+    username() {
+      return this.$store.state.authModule.username;
+    },
+    token() {
+      return this.$store.state.authModule.idToken;
+    },
+    domain() {
+      return this.$store.state.serviceFormModule.domain;
+    },
+    serviceName() {
+      return this.$store.state.serviceFormModule.name;
+    },
+    serviceSchema() {
+      return this.$store.state.serviceFormModule.schema;
+    },
+    inlinePreScript() {
+      return this.$store.state.serviceFormModule.inlinePreScript;
+    },
+    inlinePostScript() {
+      return this.$store.state.serviceFormModule.inlinePostScript;
+    },
+    commandSchema() {
+      return this.$store.state.serviceFormModule.command;
+    },
+    webJS() {
+      return this.$store.state.serviceFormModule.webJS;
+    },
+    timeout() {
+      return this.$store.state.serviceFormModule.timeout;
+    },
+    serviceDescription() {
+      return this.$store.state.serviceFormModule.description;
+    },
+    schemaDescription() {
+      return this.$store.state.serviceFormModule.schemaDescription;
+    },
+    keywords() {
+      return this.$store.state.serviceFormModule.keywords;
+    },
+    keywordsString() {
+      return this.keywords.join(" ");
     },
     // serviceToEdit() {
     //   return this.$store.getters["servicesModule/serviceToEdit"];
@@ -230,6 +293,13 @@ export default {
         this.e1 = 3;
       } else {
         this.e1 = 2;
+      }
+    },
+    isMicropageFormValid(newValue) {
+      if (newValue === true) {
+        this.registerService();
+      } else {
+        this.e1 = 3;
       }
     }
   },

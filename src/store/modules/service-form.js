@@ -15,7 +15,8 @@ const state = {
   keywords: [],
   // other
   isValidLinks: false,
-  isServiceFormValid: false
+  isServiceFormValid: false,
+  isMicropageFormValid: false
 };
 
 const mutations = {
@@ -82,6 +83,9 @@ const mutations = {
   },
   isServiceFormValid(state, payload) {
     state.isServiceFormValid = payload;
+  },
+  isMicropageFormValid(state, payload) {
+    state.isMicropageFormValid = payload;
   }
 };
 

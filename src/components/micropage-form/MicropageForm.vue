@@ -26,7 +26,8 @@ export default {
   },
   methods: {
     submitMicropageForm() {
-      console.log(this.$refs.micropageForm.validate());
+      const isFormValid = this.$refs.micropageForm.validate();
+      this.$store.commit("serviceFormModule/isMicropageFormValid", isFormValid);
     }
   },
   computed: {},

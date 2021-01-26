@@ -35,9 +35,32 @@ export default {
       ]
     };
   },
+  mounted() {
+    this.description = this.mergeSchemas;
+  },
   methods: {
     addDescription() {
-      this.$store.commit("serviceFormModule/addDescription", this.description);
+      this.$store.commit(
+        "serviceFormModule/addSchemaDescription",
+        this.description
+      );
+    }
+  },
+  computed: {
+    serviceSchema() {
+      return this.$store.state.serviceFormModule.schema;
+    },
+    commandSchema() {
+      return this.$store.state.serviceFormModule.command;
+    },
+    mergeSchemas() {
+      return `Service Schema\n${this.serviceSchema}\nCommand Schema\n${this.commandSchema}`;
+    }
+  },
+  watch: {
+    mergeSchemas(newValue) {
+      this.description = newValue;
+      this.addDescription();
     }
   },
   components: {

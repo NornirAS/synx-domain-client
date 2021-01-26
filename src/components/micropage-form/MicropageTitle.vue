@@ -8,6 +8,7 @@
       label="Title for micropage"
       type="text"
       slot="action"
+      :disabled="disabled"
       required
       outlined
       dense
@@ -20,7 +21,8 @@ import InputCard from "../FormInputCard";
 export default {
   data() {
     return {
-      name: ""
+      name: "",
+      disabled: true
     };
   },
   mounted() {
@@ -29,6 +31,11 @@ export default {
   computed: {
     serviceName() {
       return this.$store.state.serviceFormModule.name;
+    }
+  },
+  watch: {
+    serviceName(newValue) {
+      this.name = newValue;
     }
   },
   components: {
