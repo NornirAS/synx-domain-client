@@ -18,7 +18,6 @@
             Micro Page
           </v-stepper-step>
         </v-stepper-header>
-
         <v-stepper-items>
           <v-stepper-content step="1">
             <div>
@@ -86,11 +85,11 @@
               Previous
             </v-btn>
             <v-btn
-              @click="e1 = 3"
+              @click="isServiceFormValid ? (e1 = 3) : (e1 = 2)"
               class="text-capitalize"
               color="primary"
               type="submit"
-              form="service-form-machines"
+              form="service-form"
               small
               rounded
             >
@@ -131,11 +130,11 @@
         </v-stepper-items>
       </v-stepper>
     </template>
-    <router-view :btnName="btnName"></router-view>
   </page-layout>
 </template>
 
 <script>
+import _ from "lodash";
 import { mdiMenuDown } from "@mdi/js";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
@@ -152,29 +151,33 @@ export default {
     };
   },
   created() {
-    if (this.hasIndex) {
-      this.$store.commit("servicesModule/serviceIndex", this.serviceIndex);
-      if (this.isServiceUpdate) {
-        this.title = "Update Service";
-      } else if (this.isMicropageUpdate) {
-        this.title = "Update Micropage";
-      }
-      this.btnName = "Update";
-    } else {
-      this.title = "New Morphic Service";
-      this.btnName = "Create";
-    }
-  },
-  beforeDestroy() {
-    this.$store.commit("serviceFormModule/resetServiceForm");
-  },
-  mounted() {
-    if (this.hasIndex) {
-      this.selectedDomain = this.serviceToEdit.domain;
-    } else {
+    if (this.hasDomains) {
       this.selectedDomain = this.domains[0];
+      this.$store.commit("serviceFormModule/addDomain", this.domains[0]);
     }
+    // if (this.hasIndex) {
+    //   this.$store.commit("servicesModule/serviceIndex", this.serviceIndex);
+    //   if (this.isServiceUpdate) {
+    //     this.title = "Update Service";
+    //   } else if (this.isMicropageUpdate) {
+    //     this.title = "Update Micropage";
+    //   }
+    //   this.btnName = "Update";
+    // } else {
+    //   this.title = "New Morphic Service";
+    //   this.btnName = "Create";
+    // }
   },
+  // beforeDestroy() {
+  //   this.$store.commit("serviceFormModule/resetServiceForm");
+  // },
+  // mounted() {
+  //   if (this.hasIndex) {
+  //     this.selectedDomain = this.serviceToEdit.domain;
+  //   } else {
+  //     this.selectedDomain = this.domains[0];
+  //   }
+  // },
   methods: {
     selectDomain(domain) {
       this.selectedDomain = domain;
@@ -185,21 +188,24 @@ export default {
     }
   },
   computed: {
-    serviceToEdit() {
-      return this.$store.getters["servicesModule/serviceToEdit"];
+    isServiceFormValid() {
+      return this.$store.state.serviceFormModule.isServiceFormValid;
     },
-    serviceIndex() {
-      return this.$route.params.index;
-    },
-    hasIndex() {
-      return this.serviceIndex >= 0 ? true : false;
-    },
-    isServiceUpdate() {
-      return this.$route.name === "serviceUpdate" ? true : false;
-    },
-    isMicropageUpdate() {
-      return this.$route.name === "micropageUpdate" ? true : false;
-    },
+    // serviceToEdit() {
+    //   return this.$store.getters["servicesModule/serviceToEdit"];
+    // },
+    // serviceIndex() {
+    //   return this.$route.params.index;
+    // },
+    // hasIndex() {
+    //   return this.serviceIndex >= 0 ? true : false;
+    // },
+    // isServiceUpdate() {
+    //   return this.$route.name === "serviceUpdate" ? true : false;
+    // },
+    // isMicropageUpdate() {
+    //   return this.$route.name === "micropageUpdate" ? true : false;
+    // },
     successMessage() {
       return this.$store.state.alarmModule.successMessage;
     },
@@ -210,11 +216,21 @@ export default {
       } else {
         return domains.split(",");
       }
+    },
+    hasDomains() {
+      return _.isEmpty(this.domains) ? false : true;
     }
   },
   watch: {
     successMessage() {
       this.$router.push({ name: "services" });
+    },
+    isServiceFormValid(newValue) {
+      if (newValue === true) {
+        this.e1 = 3;
+      } else {
+        this.e1 = 2;
+      }
     }
   },
   components: {

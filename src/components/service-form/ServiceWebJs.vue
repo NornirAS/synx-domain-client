@@ -10,7 +10,7 @@
       @blur="addWebJS"
       :rules="webJSRules"
       :counter="256"
-      error-count="2"
+      error-count="1"
       name="web-js"
       type="text"
       label="Type or paste HTML/JS"

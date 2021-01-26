@@ -14,7 +14,8 @@ const state = {
   imageUrl: "",
   keywords: [],
   // other
-  isValidLinks: false
+  isValidLinks: false,
+  isServiceFormValid: false
 };
 
 const mutations = {
@@ -78,6 +79,9 @@ const mutations = {
   },
   isValidLinks(state, payload) {
     state.isValidLinks = payload;
+  },
+  isServiceFormValid(state, payload) {
+    state.isServiceFormValid = payload;
   }
 };
 

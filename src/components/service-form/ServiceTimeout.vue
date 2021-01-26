@@ -12,7 +12,7 @@
       name="timeout"
       label="Set timeout"
       type="number"
-      error-count="2"
+      error-count="1"
       slot="action"
       required
       outlined

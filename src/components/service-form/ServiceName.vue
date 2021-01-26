@@ -39,6 +39,11 @@ export default {
       this.$store.commit("serviceFormModule/addName", this.name);
     }
   },
+  computed: {
+    serviceName() {
+      return this.$store.state.serviceFormModule.name;
+    }
+  },
   components: {
     InputCard
   }

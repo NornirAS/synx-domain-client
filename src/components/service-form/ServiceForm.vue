@@ -34,10 +34,48 @@ export default {
   },
   methods: {
     submitServiceForm() {
-      console.log(this.$refs.serviceForm.validate());
+      const isFormValid = this.$refs.serviceForm.validate();
+      if (isFormValid) {
+        this.$store.commit("serviceFormModule/isServiceFormValid", isFormValid);
+        console.log(this.domain);
+        console.log(this.serviceName);
+        console.log(this.serviceSchema);
+        console.log(this.inlinePreScript);
+        console.log(this.inlinePostScript);
+        console.log(this.commandSchema);
+        console.log(this.webJS);
+        console.log(this.timeout);
+      } else {
+        console.log(isFormValid)
+        this.$store.commit("serviceFormModule/isServiceFormValid", isFormValid);
+      }
     }
   },
   computed: {
+    domain() {
+      return this.$store.state.serviceFormModule.domain;
+    },
+    serviceName() {
+      return this.$store.state.serviceFormModule.name;
+    },
+    serviceSchema() {
+      return this.$store.state.serviceFormModule.schema;
+    },
+    inlinePreScript() {
+      return this.$store.state.serviceFormModule.inlinePreScript;
+    },
+    inlinePostScript() {
+      return this.$store.state.serviceFormModule.inlinePostScript;
+    },
+    commandSchema() {
+      return this.$store.state.serviceFormModule.command;
+    },
+    webJS() {
+      return this.$store.state.serviceFormModule.webJS;
+    },
+    timeout() {
+      return this.$store.state.serviceFormModule.timeout;
+    },
     isValidLinks() {
       return this.$store.state.serviceFormModule.isValidLinks;
     }

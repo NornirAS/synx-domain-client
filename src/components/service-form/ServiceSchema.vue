@@ -28,7 +28,6 @@ export default {
   data() {
     return {
       schema: "",
-      regExp: "",
       schemaRules: [
         v => !!v || "Schema is required",
         v =>
@@ -47,7 +46,7 @@ export default {
   },
   methods: {
     addSchema() {
-      this.$store.commit("serviceFormModule/addSchema", this.shema);
+      this.$store.commit("serviceFormModule/addSchema", this.schema);
     }
   },
   computed: {
