@@ -27,14 +27,14 @@ import InputCard from "../FormInputCard";
 export default {
   data() {
     return {
-      schema: "",
+      schema: "<rtw>\n</rtw>",
       schemaRules: [
         v => !!v || "Schema is required",
         v =>
           (v && v.length) <= 1024 || "Schema must be maximum 1024 characters",
         v =>
           (v && this.schemaContainsOnlyXml) ||
-          "You need to provide valid XML schema",
+          "You need to provide valid XML schema between <rtw></rtw>",
         v =>
           (v && this.isElementsMatch) ||
           "Schema open and closing tags must match",
@@ -50,33 +50,32 @@ export default {
     }
   },
   computed: {
+    removeNewLine() {
+      return this.schema.replace(/\n/g, "");
+    },
     matchXml() {
-      return this.schema.match(/<(.*?)>(.*?)<\/(.*?)>|\n/g);
+      return this.removeNewLine.match(
+        /(?<=<rtw>)<(.*?)>(.*?)<\/(.*?)>(?=<\/rtw>)/g
+      );
+    },
+    containsRtwTag() {
+      return this.removeNewLine.match(/<\/?rtw>/g) ? true : false;
+    },
+    schemaRemoveRtwTag() {
+      return this.removeNewLine.replace(/<\/?rtw>/gi, "");
     },
     schemaContainsOnlyXml() {
       if (this.matchXml) {
-        return this.matchXml.join("") === this.schema;
+        return this.matchXml.join("") === this.schemaRemoveRtwTag;
       } else {
         return false;
       }
     },
-    removeNewLines() {
-      if (this.schemaContainsOnlyXml) {
-        return this.schema.match(/<(.*?)>(.*?)<\/(.*?)>|\n/g).map(str => {
-          return str.replace(/\n/g, "");
-        });
-      } else {
-        return "";
-      }
-    },
     getXmlTagNames() {
       if (this.schemaContainsOnlyXml) {
-        return this.removeNewLines
-          .join("")
-          .match(/<(.*?)>(.*?)<\/(.*?)>/g)
-          .map(str => {
-            return str.replace(/\//g, "").match(/(?<=<)(.*?)(?=>)/g);
-          });
+        return this.removeNewLine.match(/<\/?(.*?)>/g).map(str => {
+          return str.replace(/\//g, "").match(/(?<=<)(.*?)(?=>)/g);
+        });
       } else {
         return [];
       }
@@ -85,7 +84,7 @@ export default {
       return _.flattenDeep(this.getXmlTagNames);
     },
     removeDuplicateNames() {
-      return _.sortedUniq(this.mergeXmlTagNamesInSingleArray);
+      return _.uniq(this.mergeXmlTagNamesInSingleArray);
     },
     isElementsMatch() {
       if (this.schemaContainsOnlyXml) {
@@ -99,9 +98,7 @@ export default {
     },
     getLinksFromXml() {
       if (this.schemaContainsOnlyXml) {
-        return this.removeNewLines
-          .join("")
-          .match(/(?<=<(.*?)>)(.*?)(?=<(.*?)>)/g);
+        return this.removeNewLine.match(/(?<=<(.*?)>)(.*?)(?=<(.*?)>)/g);
       } else {
         return false;
       }
