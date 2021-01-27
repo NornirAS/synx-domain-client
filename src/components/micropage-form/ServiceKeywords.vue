@@ -57,7 +57,7 @@ export default {
     };
   },
   mounted() {
-    this.keywords = this.serviceKeywords;
+    this.keywords = this.serviceKeywords.split(" ");
   },
   methods: {
     add() {

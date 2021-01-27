@@ -27,7 +27,7 @@ import InputCard from "../FormInputCard";
 export default {
   data() {
     return {
-      schema: "<rtw>\n</rtw>",
+      schema: "<RTW>\n</RTW>",
       schemaRules: [
         v => !!v || "Schema is required",
         v =>
@@ -61,14 +61,14 @@ export default {
     },
     matchXml() {
       return this.removeNewLine.match(
-        /(?<=<rtw>)<(.*?)>(.*?)<\/(.*?)>(?=<\/rtw>)/g
+        /(?<=<RTW>)<(.*?)>(.*?)<\/(.*?)>(?=<\/RTW)/g
       );
     },
     containsRtwTag() {
-      return this.removeNewLine.match(/<\/?rtw>/g) ? true : false;
+      return this.removeNewLine.match(/<\/?RTW>/g) ? true : false;
     },
     schemaRemoveRtwTag() {
-      return this.removeNewLine.replace(/<\/?rtw>/gi, "");
+      return this.removeNewLine.replace(/<\/?RTW>/gi, "");
     },
     schemaContainsOnlyXml() {
       if (this.matchXml) {

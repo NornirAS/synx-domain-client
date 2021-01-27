@@ -31,7 +31,7 @@ export default {
     };
   },
   mounted() {
-    this.timeot = this.serviceTimeout;
+    this.timeout = this.serviceTimeout;
   },
   methods: {
     addTimeout() {

@@ -162,9 +162,9 @@ export default {
       this.title = "New Morphic Service";
     }
   },
-  // beforeDestroy() {
-  //   this.$store.commit("serviceFormModule/resetServiceForm");
-  // },
+  beforeDestroy() {
+    this.$store.commit("serviceFormModule/resetServiceForm");
+  },
   mounted() {
     if (this.hasIndex) {
       this.selectedDomain = this.serviceToEdit.domain;
@@ -186,6 +186,24 @@ export default {
           domain: this.domain,
           token: this.token,
           username: this.username,
+          serviceName: this.serviceName,
+          serviceSchema: this.serviceSchema,
+          inlinePreScript: this.inlinePreScript,
+          inlinePostScript: this.inlinePostScript,
+          commandSchema: this.commandSchema,
+          webJS: this.webJS,
+          timeout: this.timeout,
+          serviceDescription: this.serviceDescription,
+          keywords: this.keywordsString,
+          schemaDescription: this.schemaDescription
+        });
+      }
+    },
+    updateService() {
+      if (this.isServiceFormValid && this.isMicropageFormValid) {
+        this.$socket.emit("update_service", {
+          domain: this.domain,
+          token: this.token,
           serviceName: this.serviceName,
           serviceSchema: this.serviceSchema,
           inlinePreScript: this.inlinePreScript,
@@ -288,7 +306,9 @@ export default {
       }
     },
     isMicropageFormValid(newValue) {
-      if (newValue === true) {
+      if (newValue === true && this.isServiceUpdate) {
+        this.updateService();
+      } else if (newValue === true) {
         this.registerService();
       } else {
         this.e1 = 3;

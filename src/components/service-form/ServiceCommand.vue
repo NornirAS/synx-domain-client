@@ -27,7 +27,7 @@ import InputCard from "../FormInputCard";
 export default {
   data() {
     return {
-      command: "<cmd>\n</cmd>",
+      command: "<CMD>\n</CMD>",
       commandRules: [
         v =>
           (v && v.length) <= 128 ||
@@ -44,7 +44,7 @@ export default {
     };
   },
   mounted() {
-    this.schema = this.commandSchema;
+    this.command = this.commandSchema;
   },
   methods: {
     addCommand() {
@@ -60,14 +60,14 @@ export default {
     },
     matchXml() {
       return this.removeNewLine.match(
-        /(?<=<cmd>)<(.*?)>(.*?)<\/(.*?)>(?=<\/cmd>)/g
+        /(?<=<CMD>)<(.*?)>(.*?)<\/(.*?)>(?=<\/CMD>)/g
       );
     },
     containsCmdTag() {
-      return this.removeNewLine.match(/<\/?cmd>/g) ? true : false;
+      return this.removeNewLine.match(/<\/?CMD>/g) ? true : false;
     },
     commandRemoveCmdTag() {
-      return this.removeNewLine.replace(/<\/?cmd>/gi, "");
+      return this.removeNewLine.replace(/<\/?CMD>/gi, "");
     },
     commandContainsOnlyXml() {
       if (this.matchXml) {

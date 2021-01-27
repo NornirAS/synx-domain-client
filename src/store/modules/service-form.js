@@ -2,10 +2,10 @@ const state = {
   // service
   domain: "",
   name: "",
-  schema: "<rtw>\n</rtw>",
+  schema: "<RTW>\n</RTW>",
   inlinePreScript: "",
   inlinePostScript: "",
-  command: "<cmd>\n</cmd>",
+  command: "<CMD>\n</CMD>",
   webJS: "",
   timeout: "30",
   // micropage
@@ -64,7 +64,7 @@ const mutations = {
     state.schema = service.schema;
     state.command = service.cmdXML;
     state.inlinePreScript = service.preMasterScript;
-    state.postInlineScript = service.masterScript;
+    state.inlinePostScript = service.masterScript;
     state.webJS = service.webjs;
     state.timeout = service.timeout;
   },
@@ -72,12 +72,14 @@ const mutations = {
     state.domain = "";
     state.name = "";
     state.description = "";
-    state.keywords = "";
-    state.serviceSchema = "";
-    state.commandSchema = "";
-    state.preInlineScript = "";
-    state.postInlineScript = "";
+    state.keywords = [];
+    state.schema = "<RTW>\n</RTW>";
+    state.command = "<CMD>\n</CMD>";
+    state.inlinePreScript = "";
+    state.inlinePostScript = "";
     state.webJS = "";
+    state.schemaDescription = "";
+    state.timeout = "30";
   },
   isValidLinks(state, payload) {
     state.isValidLinks = payload;
