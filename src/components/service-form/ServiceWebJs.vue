@@ -33,9 +33,17 @@ export default {
       ]
     };
   },
+  mounted() {
+    this.webJS = this.serviceWebJS;
+  },
   methods: {
     addWebJS() {
       this.$store.commit("serviceFormModule/addWebJS", this.webJS);
+    }
+  },
+  computed: {
+    serviceWebJS() {
+      return this.$store.state.serviceFormModule.webJS;
     }
   },
   components: {

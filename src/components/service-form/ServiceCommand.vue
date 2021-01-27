@@ -43,12 +43,18 @@ export default {
       ]
     };
   },
+  mounted() {
+    this.schema = this.commandSchema;
+  },
   methods: {
     addCommand() {
       this.$store.commit("serviceFormModule/addCommand", this.command);
     }
   },
   computed: {
+    commandSchema() {
+      return this.$store.state.serviceFormModule.command;
+    },
     removeNewLine() {
       return this.command.replace(/\n/g, "");
     },
@@ -66,6 +72,8 @@ export default {
     commandContainsOnlyXml() {
       if (this.matchXml) {
         return this.matchXml.join("") === this.commandRemoveCmdTag;
+      } else if (this.containsCmdTag) {
+        return true;
       } else {
         return false;
       }

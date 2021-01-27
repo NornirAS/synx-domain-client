@@ -57,7 +57,7 @@ export default {
     };
   },
   mounted() {
-    this.keywords = this.$store.state.serviceFormModule.keywords;
+    this.keywords = this.serviceKeywords;
   },
   methods: {
     add() {
@@ -69,6 +69,9 @@ export default {
     }
   },
   computed: {
+    serviceKeywords() {
+      return this.$store.state.serviceFormModule.keywords;
+    },
     sortedUniqKeywords() {
       return _.uniq(this.keywords);
     },

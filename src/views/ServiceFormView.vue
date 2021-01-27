@@ -154,29 +154,24 @@ export default {
       this.selectedDomain = this.domains[0];
       this.$store.commit("serviceFormModule/addDomain", this.domains[0]);
     }
-    // if (this.hasIndex) {
-    //   this.$store.commit("servicesModule/serviceIndex", this.serviceIndex);
-    //   if (this.isServiceUpdate) {
-    //     this.title = "Update Service";
-    //   } else if (this.isMicropageUpdate) {
-    //     this.title = "Update Micropage";
-    //   }
-    //   this.btnName = "Update";
-    // } else {
-    //   this.title = "New Morphic Service";
-    //   this.btnName = "Create";
-    // }
+    if (this.hasIndex) {
+      this.$store.commit("servicesModule/serviceIndex", this.serviceIndex);
+      this.$store.commit("serviceFormModule/editService", this.serviceToEdit);
+      this.title = "Update Morphic Service";
+    } else {
+      this.title = "New Morphic Service";
+    }
   },
   // beforeDestroy() {
   //   this.$store.commit("serviceFormModule/resetServiceForm");
   // },
-  // mounted() {
-  //   if (this.hasIndex) {
-  //     this.selectedDomain = this.serviceToEdit.domain;
-  //   } else {
-  //     this.selectedDomain = this.domains[0];
-  //   }
-  // },
+  mounted() {
+    if (this.hasIndex) {
+      this.selectedDomain = this.serviceToEdit.domain;
+    } else {
+      this.selectedDomain = this.domains[0];
+    }
+  },
   methods: {
     selectDomain(domain) {
       this.selectedDomain = domain;
@@ -254,21 +249,18 @@ export default {
     keywordsString() {
       return this.keywords.join(" ");
     },
-    // serviceToEdit() {
-    //   return this.$store.getters["servicesModule/serviceToEdit"];
-    // },
-    // serviceIndex() {
-    //   return this.$route.params.index;
-    // },
-    // hasIndex() {
-    //   return this.serviceIndex >= 0 ? true : false;
-    // },
-    // isServiceUpdate() {
-    //   return this.$route.name === "serviceUpdate" ? true : false;
-    // },
-    // isMicropageUpdate() {
-    //   return this.$route.name === "micropageUpdate" ? true : false;
-    // },
+    serviceToEdit() {
+      return this.$store.getters["servicesModule/serviceToEdit"];
+    },
+    serviceIndex() {
+      return this.$route.params.index;
+    },
+    hasIndex() {
+      return this.serviceIndex >= 0 ? true : false;
+    },
+    isServiceUpdate() {
+      return this.$route.name === "serviceUpdate" ? true : false;
+    },
     successMessage() {
       return this.$store.state.alarmModule.successMessage;
     },

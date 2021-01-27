@@ -36,9 +36,17 @@ export default {
       ]
     };
   },
+  mounted() {
+    this.description = this.serviceDescription;
+  },
   methods: {
     addDescription() {
       this.$store.commit("serviceFormModule/addDescription", this.description);
+    }
+  },
+  computed: {
+    serviceDescription() {
+      return this.$store.state.serviceFormModule.description;
     }
   },
   components: {

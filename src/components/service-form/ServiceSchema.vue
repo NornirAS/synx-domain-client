@@ -44,12 +44,18 @@ export default {
       ]
     };
   },
+  mounted() {
+    this.schema = this.serviceSchema;
+  },
   methods: {
     addSchema() {
       this.$store.commit("serviceFormModule/addSchema", this.schema);
     }
   },
   computed: {
+    serviceSchema() {
+      return this.$store.state.serviceFormModule.schema;
+    },
     removeNewLine() {
       return this.schema.replace(/\n/g, "");
     },

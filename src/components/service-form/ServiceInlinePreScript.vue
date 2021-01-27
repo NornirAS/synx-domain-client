@@ -36,7 +36,7 @@ export default {
     };
   },
   mounted() {
-    const base64String = this.$store.state.serviceFormModule.inlinePreScript;
+    const base64String = this.serviceInlinePreScript;
     const decodedString = atob(base64String);
     this.inlinePreScript = decodedString;
   },
@@ -44,6 +44,11 @@ export default {
     addinlinePreScript() {
       const encodedScript = btoa(this.inlinePreScript);
       this.$store.commit("serviceFormModule/addInlinePreScript", encodedScript);
+    }
+  },
+  computed: {
+    serviceInlinePreScript() {
+      return this.$store.state.serviceFormModule.inlinePreScript;
     }
   },
   components: {

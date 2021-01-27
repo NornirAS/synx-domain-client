@@ -30,9 +30,17 @@ export default {
       timeoutRules: [v => /^[\d]+$/.test(v) || "Only numbers are allowed"]
     };
   },
+  mounted() {
+    this.timeot = this.serviceTimeout;
+  },
   methods: {
     addTimeout() {
       this.$store.commit("serviceFormModule/setTimeout", this.timeout);
+    }
+  },
+  computed: {
+    serviceTimeout() {
+      return this.$store.state.serviceFormModule.timeout;
     }
   },
   components: {

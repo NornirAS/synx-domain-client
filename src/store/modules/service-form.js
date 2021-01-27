@@ -2,10 +2,10 @@ const state = {
   // service
   domain: "",
   name: "",
-  schema: "",
+  schema: "<rtw>\n</rtw>",
   inlinePreScript: "",
   inlinePostScript: "",
-  command: "",
+  command: "<cmd>\n</cmd>",
   webJS: "",
   timeout: "30",
   // micropage
@@ -65,7 +65,8 @@ const mutations = {
     state.command = service.cmdXML;
     state.inlinePreScript = service.preMasterScript;
     state.postInlineScript = service.masterScript;
-    state.webJS = "Hello World!";
+    state.webJS = service.webjs;
+    state.timeout = service.timeout;
   },
   resetServiceForm(state) {
     state.domain = "";
