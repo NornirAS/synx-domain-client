@@ -27,7 +27,7 @@ import InputCard from "../FormInputCard";
 export default {
   data() {
     return {
-      command: "",
+      command: "<cmd>\n</cmd>",
       commandRules: [
         v =>
           (v && v.length) <= 128 ||
@@ -49,33 +49,32 @@ export default {
     }
   },
   computed: {
+    removeNewLine() {
+      return this.command.replace(/\n/g, "");
+    },
     matchXml() {
-      return this.command.match(/<(.*?)><\/(.*?)>|\n/g);
+      return this.removeNewLine.match(
+        /(?<=<cmd>)<(.*?)>(.*?)<\/(.*?)>(?=<\/cmd>)/g
+      );
+    },
+    containsCmdTag() {
+      return this.removeNewLine.match(/<\/?cmd>/g) ? true : false;
+    },
+    commandRemoveCmdTag() {
+      return this.removeNewLine.replace(/<\/?cmd>/gi, "");
     },
     commandContainsOnlyXml() {
       if (this.matchXml) {
-        return this.matchXml.join("") === this.command;
+        return this.matchXml.join("") === this.commandRemoveCmdTag;
       } else {
         return false;
       }
     },
-    removeNewLines() {
-      if (this.commandContainsOnlyXml) {
-        return this.command.match(/<(.*?)><\/(.*?)>|\n/g).map(str => {
-          return str.replace(/\n/g, "");
-        });
-      } else {
-        return "";
-      }
-    },
     getXmlTagNames() {
       if (this.commandContainsOnlyXml) {
-        return this.removeNewLines
-          .join("")
-          .match(/<(.*?)><\/(.*?)>/g)
-          .map(str => {
-            return str.replace(/\//g, "").match(/(?<=<)(.*?)(?=>)/g);
-          });
+        return this.removeNewLine.match(/<\/?(.*?)>/g).map(str => {
+          return str.replace(/\//g, "").match(/(?<=<)(.*?)(?=>)/g);
+        });
       } else {
         return [];
       }
@@ -84,7 +83,7 @@ export default {
       return _.flattenDeep(this.getXmlTagNames);
     },
     removeDuplicateNames() {
-      return _.sortedUniq(this.mergeXmlTagNamesInSingleArray);
+      return _.uniq(this.mergeXmlTagNamesInSingleArray);
     },
     isElementsMatch() {
       if (this.commandContainsOnlyXml) {
