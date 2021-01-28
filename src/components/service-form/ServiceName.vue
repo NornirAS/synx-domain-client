@@ -1,6 +1,6 @@
 <template>
   <input-card>
-    <div slot="title">Name*{{serviceName}}</div>
+    <div slot="title">Name*</div>
     <div slot="subtitle">The name will also be visible in the URL/URI.</div>
     <v-text-field
       v-model="name"

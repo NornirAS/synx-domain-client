@@ -47,6 +47,9 @@ export default {
   padding: 0;
   margin: 0;
 }
+.v-card__title + .v-card__subtitle {
+  margin: 0;
+}
 .v-sheet.v-card:not(.v-sheet--outlined) {
   box-shadow: none;
 }
