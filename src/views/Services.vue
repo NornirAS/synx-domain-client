@@ -1,7 +1,7 @@
 <template>
   <page-layout>
     <page-title slot="page-title">
-      <div slot="title">Services</div>
+      <div slot="title">Morphic Services</div>
       <v-btn
         :to="{ name: 'serviceCreate' }"
         slot="action"
@@ -12,7 +12,7 @@
         color="primary"
         :disabled="!domains"
       >
-        Create Service
+        Add Service
       </v-btn>
     </page-title>
     <div slot="page-search">
@@ -58,30 +58,60 @@
     </div>
     <div slot="page-content">
       <services-empty v-if="searchFilterIsEmpty"></services-empty>
-      <service-card
-        v-for="(service, index) in searchFilter"
-        :key="index"
-        :index="index"
-        :service="service"
-      >
-      </service-card>
+      <template>
+        <v-data-table
+          @page-count="pageCount = $event"
+          :headers="headers"
+          :items="searchFilter"
+          :page.sync="page"
+          :items-per-page="itemsPerPage"
+          hide-default-footer
+        >
+          <template v-slot:[`item.serviceURL`]="{ item }">
+            <div class="body-1">
+              https://{{ item.domain }}.cioty.com/
+              <strong>{{ item.serviceName }}</strong>
+            </div>
+          </template>
+          <template v-slot:[`item.edit`]="{ item }">
+            <v-btn @click="serviceToEdit(item)" class="float-right" icon small>
+              <v-icon color="primary">
+                {{ mdiChevronRight }}
+              </v-icon>
+            </v-btn>
+          </template>
+        </v-data-table>
+      </template>
+      <v-pagination v-model="page" :length="pageCount" light></v-pagination>
     </div>
   </page-layout>
 </template>
 
 <script>
 import _ from "underscore";
-import { mdiMenuDown } from "@mdi/js";
+import { mdiMenuDown, mdiChevronRight } from "@mdi/js";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
-import ServiceCard from "../components/service/ServiceCard";
 import ServicesEmpty from "../components/empty-page/ServicesEmpty";
 export default {
   data() {
     return {
       mdiMenuDown,
+      mdiChevronRight,
       search: "",
-      sortByDomain: "All"
+      sortByDomain: "All",
+      page: 1,
+      pageCount: 0,
+      itemsPerPage: 10,
+      headers: [
+        {
+          text: "ServiceURL",
+          value: "serviceURL"
+        },
+        {
+          value: "edit"
+        }
+      ]
     };
   },
   created() {
@@ -90,6 +120,13 @@ export default {
   methods: {
     selectedDomain(domain) {
       this.sortByDomain = domain;
+    },
+    serviceToEdit(service) {
+      this.$store.commit("serviceFormModule/editService", service);
+      this.$router.push({
+        name: "serviceUpdate",
+        params: { serviceName: service.serviceName }
+      });
     }
   },
   computed: {
@@ -122,12 +159,13 @@ export default {
       if (!domains) {
         return false;
       } else {
-        return domains.split(",").unshift("All");
+        const domainsArray = domains.split(" ");
+        domainsArray.unshift("All");
+        return domainsArray;
       }
     }
   },
   components: {
-    ServiceCard,
     PageLayout,
     PageTitle,
     ServicesEmpty

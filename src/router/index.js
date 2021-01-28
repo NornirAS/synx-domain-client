@@ -105,7 +105,7 @@ const routes = [
         component: ServiceForm
       },
       {
-        path: ":index/:serviceName/update",
+        path: ":serviceName/update",
         name: "serviceUpdate",
         component: ServiceForm
       },
