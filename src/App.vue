@@ -56,7 +56,7 @@ export default {
 }
 .v-main {
   height: 100vh;
-  background-color: rgb(235, 240, 244);
+  background-color: var(--v-background-base);
 }
 .body-1 {
   color: var(--v-secondary-base);

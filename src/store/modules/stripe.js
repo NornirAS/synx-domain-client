@@ -1,29 +1,29 @@
 const state = {
   subscriptionPlans: [
     {
-      description: "1 Month",
+      title: "Monthly",
+      description: "Billed every 30 days",
+      annualCost: "Annual cost $60",
+      monthlyCost: "$5/mo",
       period: "1",
-      price: "60$ / year",
       total: "5"
     },
     {
-      description: "3 Months",
-      period: "3",
-      price: "60$ / year",
-      total: "15"
-    },
-    {
-      description: "6 Months",
+      title: "Half-yearly",
+      description: "Billed twice a year",
+      annualCost: "Annual cost $55",
+      monthlyCost: "$4.6/mo",
       period: "6",
-      price: "55$ / year",
-      discount: "1 Month FREE!",
+      discount: "Save $5",
       total: "22.5"
     },
     {
-      description: "12 Month",
+      title: "Yearly",
+      description: "Billed once a year",
+      annualCost: "Annual cost $50",
+      monthlyCost: "$4.2/mo",
       period: "12",
-      price: "50$ / year",
-      discount: "2 Months FREE!",
+      discount: "Save $10",
       total: "50"
     }
   ],
