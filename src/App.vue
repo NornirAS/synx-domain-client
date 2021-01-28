@@ -58,6 +58,15 @@ export default {
   height: 100vh;
   background-color: rgb(235, 240, 244);
 }
+.body-1 {
+  color: var(--v-secondary-base);
+}
+.subtitle-2 {
+  color: var(--v-secondary-base);
+}
+.v-list-item--active {
+  color: var(--v-secondary-base);
+}
 .container.container--fluid {
   height: 100%;
   padding: 0 12px;

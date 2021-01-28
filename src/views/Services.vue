@@ -98,7 +98,7 @@
 </template>
 
 <script>
-import _ from "underscore";
+import _ from "lodash";
 import { mdiMenuDown, mdiChevronRight } from "@mdi/js";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
@@ -118,10 +118,12 @@ export default {
       headers: [
         {
           text: "ServiceURL",
-          value: "serviceURL"
+          value: "serviceURL",
+          sortable: false
         },
         {
-          value: "edit"
+          value: "edit",
+          sortable: false
         }
       ]
     };

@@ -116,15 +116,6 @@ export default {
 .v-list-item {
   padding: 0 2em;
 }
-.v-list-item--active {
-  color: var(--v-secondary-base);
-}
-.body-1 {
-  color: var(--v-secondary-base);
-}
-.subtitle-2 {
-  color: var(--v-secondary-base);
-}
 .sidebar-logo {
   width: 100px;
   margin: 3em;

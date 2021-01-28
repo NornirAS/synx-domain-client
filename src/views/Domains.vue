@@ -11,50 +11,80 @@
         outlined
         color="primary"
       >
-        New domain
+        Add domain
       </v-btn>
     </page-title>
     <div slot="page-content">
-      <domains-empty v-if="!domains"></domains-empty>
-      <v-card v-for="({ name, active }, index) in domains" :key="index">
-        <v-row justify="space-between" align="center">
-          <v-col cols="6">
-            <p>
-              <span class="font-weight-bold">{{ name }}</span>
-              .cioty.com
-            </p>
-          </v-col>
-          <v-col cols="6">
-            <div align="right">
+      <domains-empty v-if="noDomains"></domains-empty>
+      <template v-if="!noDomains">
+        <v-data-table
+          @page-count="pageCount = $event"
+          :headers="headers"
+          :items="domains"
+          :page.sync="page"
+          :items-per-page="itemsPerPage"
+          hide-default-footer
+        >
+          <template v-slot:[`item.domain`]="{ item }">
+            <div class="body-1">
+              <strong>https://{{ item.name }}.cioty.com/</strong>
+            </div>
+          </template>
+          <template v-slot:[`item.activation`]="{ item }">
+            <div align="end">
               <v-btn
-                v-if="!active"
+                v-if="!item.active"
                 :to="{
                   name: 'domain-activate',
-                  params: { domainName: name }
+                  params: { domainName: item.name }
                 }"
-                color="error"
+                color="secondary"
                 class="text-capitalize activate-btn"
                 rounded
                 x-small
               >
                 Activate
               </v-btn>
-              <v-chip v-else color="accent" align="center" x-small>
+              <v-chip v-else color="accent" x-small>
                 Active
               </v-chip>
             </div>
-          </v-col>
-        </v-row>
-      </v-card>
+          </template>
+        </v-data-table>
+      </template>
+    </div>
+    <div v-if="!noDomains && !domainsLengthLessItemsPerPage" slot="pagination">
+      <v-pagination v-model="page" :length="pageCount" light></v-pagination>
     </div>
   </page-layout>
 </template>
 
 <script>
+import _ from "lodash";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import DomainsEmpty from "../components/empty-page/DomainsEmpty";
 export default {
+  data() {
+    return {
+      page: 1,
+      pageCount: 0,
+      itemsPerPage: 25,
+      headers: [
+        {
+          text: "Domain",
+          value: "domain",
+          sortable: false
+        },
+        {
+          text: "Status",
+          value: "activation",
+          align: "end",
+          sortable: false
+        }
+      ]
+    };
+  },
   created() {
     this.$socket.emit("get_all_domains", this.token, this.username);
   },
@@ -67,6 +97,12 @@ export default {
     },
     domains() {
       return this.$store.state.domainsModule.ownedDomains;
+    },
+    domainsLengthLessItemsPerPage() {
+      return this.domains.length <= this.itemsPerPage;
+    },
+    noDomains() {
+      return _.isEmpty(this.domains);
     }
   },
   components: {
@@ -78,11 +114,6 @@ export default {
 </script>
 
 <style scoped>
-p {
-  margin: 0;
-  color: #58595b;
-  font-size: 16px;
-}
 .activate-btn {
   margin: 0;
 }
