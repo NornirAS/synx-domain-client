@@ -82,6 +82,8 @@
           </template>
         </v-data-table>
       </template>
+    </div>
+    <div slot="pagination">
       <v-pagination v-model="page" :length="pageCount" light></v-pagination>
     </div>
   </page-layout>

@@ -5,15 +5,18 @@
       <v-divider></v-divider>
       <slot name="page-search"></slot>
       <v-divider></v-divider>
-      <div class="page-content-style">
+      <div class="margin-top">
         <slot name="page-content"></slot>
+      </div>
+      <div class="margin-top">
+        <slot name="pagination"></slot>
       </div>
     </v-col>
   </v-row>
 </template>
 
 <style scoped>
-.page-content-style {
+.margin-top {
   margin-top: 1em;
 }
 .display-1 {
