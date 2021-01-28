@@ -1,9 +1,9 @@
 <template>
   <v-row justify="start" align="center">
-    <v-col class="display-1">
+    <v-col lg="9" class="display-1">
       <slot name="title"></slot>
     </v-col>
-    <v-col align="end">
+    <v-col lg="3" align="end">
       <slot name="action"></slot>
     </v-col>
   </v-row>
