@@ -9,7 +9,6 @@ import DomainActivation from "../views/DomainActivation";
 import Ghosts from "../views/Ghosts";
 import NewGhosts from "../views/NewGhosts";
 import ServiceForm from "../components/service-form/ServiceForm";
-import MicropageForm from "../components/micropage-form/MicropageForm";
 import Account from "../views/Account";
 import CheckoutSuccess from "../views/CheckoutSuccess";
 import CreateDomain from "../views/CreateDomain";
@@ -108,11 +107,6 @@ const routes = [
         path: ":serviceName/update",
         name: "serviceUpdate",
         component: ServiceForm
-      },
-      {
-        path: ":index/:serviceName/micropage",
-        name: "micropageUpdate",
-        component: MicropageForm
       }
     ],
     beforeEnter: authGuard
