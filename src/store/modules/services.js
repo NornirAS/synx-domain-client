@@ -1,14 +1,10 @@
 const state = {
-  services: [],
-  selectedServiceIndex: ""
+  services: []
 };
 
 const mutations = {
   allServices(state, payload) {
     state.services = payload;
-  },
-  serviceIndex(state, payload) {
-    state.selectedServiceIndex = payload;
   },
   activeChannelsSuccess(state, { channels, index }) {
     state.services[index].activeChannels = channels;
@@ -24,16 +20,9 @@ const actions = {
   }
 };
 
-const getters = {
-  serviceToEdit({ services, selectedServiceIndex }) {
-    return services[selectedServiceIndex];
-  }
-};
-
 export default {
   namespaced: true,
   state,
   mutations,
-  actions,
-  getters
+  actions
 };

@@ -28,8 +28,8 @@
               <v-menu offset-y>
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
-                    :disabled="hasIndex"
-                    :dark="!hasIndex"
+                    :disabled="isServiceUpdate"
+                    :dark="!isServiceUpdate"
                     class="text-none domain-dropdown"
                     color="secondary"
                     small
@@ -38,7 +38,7 @@
                   >
                     <strong>{{ selectedDomain }}</strong>
                     .cioty.com
-                    <v-icon v-if="!hasIndex" right large>{{
+                    <v-icon v-if="!isServiceUpdate" right large>{{
                       mdiMenuDown
                     }}</v-icon>
                   </v-btn>
@@ -154,9 +154,7 @@ export default {
       this.selectedDomain = this.domains[0];
       this.$store.commit("serviceFormModule/addDomain", this.domains[0]);
     }
-    if (this.hasIndex) {
-      this.$store.commit("servicesModule/serviceIndex", this.serviceIndex);
-      this.$store.commit("serviceFormModule/editService", this.serviceToEdit);
+    if (this.isServiceUpdate) {
       this.title = "Update Morphic Service";
     } else {
       this.title = "New Morphic Service";
@@ -166,8 +164,8 @@ export default {
     this.$store.commit("serviceFormModule/resetServiceForm");
   },
   mounted() {
-    if (this.hasIndex) {
-      this.selectedDomain = this.serviceToEdit.domain;
+    if (this.isServiceUpdate) {
+      this.selectedDomain = this.domain;
     } else {
       this.selectedDomain = this.domains[0];
     }
@@ -266,15 +264,6 @@ export default {
     },
     keywordsString() {
       return this.keywords.join(" ");
-    },
-    serviceToEdit() {
-      return this.$store.getters["servicesModule/serviceToEdit"];
-    },
-    serviceIndex() {
-      return this.$route.params.index;
-    },
-    hasIndex() {
-      return this.serviceIndex >= 0 ? true : false;
     },
     isServiceUpdate() {
       return this.$route.name === "serviceUpdate" ? true : false;
