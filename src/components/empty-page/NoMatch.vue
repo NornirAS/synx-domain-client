@@ -1,22 +1,11 @@
 <template>
   <empty-page-template>
-    <div slot="description">You don't have any services yet..</div>
-    <div slot="action">
-      <v-btn
-        :to="{ name: 'serviceCreate' }"
-        class="text-capitalize"
-        rounded
-        small
-        color="primary"
-      >
-        Get Started
-      </v-btn>
-    </div>
+    <div slot="description">Oh snap! No match...</div>
     <div slot="image">
       <v-img
         alt="emptyBox"
         contain
-        src="../../assets/empty-box.png"
+        src="../../assets/blank-canvas.png"
         transition="scale-transition"
         height="300px"
       >

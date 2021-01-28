@@ -10,7 +10,7 @@
         outlined
         small
         color="primary"
-        :disabled="!domains"
+        :disabled="noDomains"
       >
         Add Service
       </v-btn>
@@ -25,7 +25,7 @@
             hide-details
             outlined
             dense
-            :disabled="!domains && noServices"
+            :disabled="noDomains && noServices"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6">
@@ -38,14 +38,17 @@
                   v-bind="attrs"
                   v-on="on"
                   block
-                  :disabled="!domains && noServices"
+                  :disabled="noDomains && noServices"
                 >
                   Sort By: {{ sortByDomain }}
                   <v-icon left large>{{ mdiMenuDown }}</v-icon>
                 </v-btn>
               </template>
               <v-list>
-                <v-list-item v-for="(domain, index) in domains" :key="index">
+                <v-list-item
+                  v-for="(domain, index) in domainArray"
+                  :key="index"
+                >
                   <v-list-item-title @click="selectedDomain(domain)">
                     {{ domain }}
                   </v-list-item-title>
@@ -57,8 +60,10 @@
       </v-row>
     </div>
     <div slot="page-content">
-      <services-empty v-if="searchFilterIsEmpty"></services-empty>
-      <template>
+      <services-empty v-if="!noDomains && noServices"></services-empty>
+      <domain-empty v-if="noDomains && noServices"></domain-empty>
+      <no-match v-if="noResultsFound"></no-match>
+      <template v-if="!noResultsFound">
         <v-data-table
           @page-count="pageCount = $event"
           :headers="headers"
@@ -83,7 +88,7 @@
         </v-data-table>
       </template>
     </div>
-    <div slot="pagination">
+    <div v-if="!noResultsFound" slot="pagination">
       <v-pagination v-model="page" :length="pageCount" light></v-pagination>
     </div>
   </page-layout>
@@ -95,6 +100,8 @@ import { mdiMenuDown, mdiChevronRight } from "@mdi/js";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import ServicesEmpty from "../components/empty-page/ServicesEmpty";
+import DomainEmpty from "../components/empty-page/DomainsEmpty";
+import NoMatch from "../components/empty-page/NoMatch";
 export default {
   data() {
     return {
@@ -153,15 +160,20 @@ export default {
           -1
       );
     },
-    searchFilterIsEmpty() {
+    noResultsFound() {
       return _.isEmpty(this.searchFilter);
     },
     domains() {
-      const domains = localStorage.getItem("domains");
-      if (!domains) {
+      return localStorage.getItem("domains");
+    },
+    noDomains() {
+      return _.isEmpty(this.domains);
+    },
+    domainArray() {
+      if (this.noDomains) {
         return false;
       } else {
-        const domainsArray = domains.split(" ");
+        const domainsArray = this.domains.split(" ");
         domainsArray.unshift("All");
         return domainsArray;
       }
@@ -170,7 +182,9 @@ export default {
   components: {
     PageLayout,
     PageTitle,
-    ServicesEmpty
+    ServicesEmpty,
+    DomainEmpty,
+    NoMatch
   }
 };
 </script>

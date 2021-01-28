@@ -1,7 +1,10 @@
 <template>
   <empty-page-template>
     <div slot="title">Welcome to Cioty!</div>
-    <div slot="description">30 days free trial on your first domain!</div>
+    <div slot="description">
+      You need a domain to get started. Get 30 days free trial on your first
+      domain!
+    </div>
     <div slot="action">
       <v-btn
         :to="{ name: 'create-domain' }"
