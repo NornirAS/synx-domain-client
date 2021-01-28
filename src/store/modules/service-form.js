@@ -12,7 +12,7 @@ const state = {
   description: "",
   schemaDescription: "",
   imageUrl: "",
-  keywords: [],
+  keywords: "",
   // other
   isValidLinks: false,
   isServiceFormValid: false,
@@ -72,7 +72,7 @@ const mutations = {
     state.domain = "";
     state.name = "";
     state.description = "";
-    state.keywords = [];
+    state.keywords = "";
     state.schema = "<RTW>\n</RTW>";
     state.command = "<CMD>\n</CMD>";
     state.inlinePreScript = "";
