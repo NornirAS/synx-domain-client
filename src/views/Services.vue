@@ -88,7 +88,10 @@
         </v-data-table>
       </template>
     </div>
-    <div v-if="!noResultsFound" slot="pagination">
+    <div
+      v-if="!noResultsFound && !servicesLengthLessItemsPerPage"
+      slot="pagination"
+    >
       <v-pagination v-model="page" :length="pageCount" light></v-pagination>
     </div>
   </page-layout>
@@ -111,7 +114,7 @@ export default {
       sortByDomain: "All",
       page: 1,
       pageCount: 0,
-      itemsPerPage: 10,
+      itemsPerPage: 25,
       headers: [
         {
           text: "ServiceURL",
@@ -177,6 +180,9 @@ export default {
         domainsArray.unshift("All");
         return domainsArray;
       }
+    },
+    servicesLengthLessItemsPerPage() {
+      return this.searchFilter.length <= this.itemsPerPage;
     }
   },
   components: {
