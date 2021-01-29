@@ -3,7 +3,7 @@
     <v-list-item>
       <v-list-item-title>Domain</v-list-item-title>
       <v-list-item-subtitle class="text-right font-weight-bold">
-        https://{{ domain }}.cioty.com
+        {{ domain }}.cioty.com
       </v-list-item-subtitle>
     </v-list-item>
     <v-list-item>
@@ -28,7 +28,7 @@
     <v-list-item>
       <v-list-item-title class="title">Total</v-list-item-title>
       <v-list-item-subtitle
-        v-if="!noDomains"
+        v-if="noDomains"
         class="title text-right font-weight-bold"
       >
         $0

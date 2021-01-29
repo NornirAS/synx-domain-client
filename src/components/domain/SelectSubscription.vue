@@ -9,9 +9,9 @@
     >
       <v-radio-group v-model="selected">
         <subscription-card
-          v-bind:class="{ 'selected-card': selected === index }"
+          :value="index"
+          :class="{ 'selected-card': selected === index }"
         >
-          :value="index">
           <div slot="title">{{ title }}</div>
           <div slot="radio-button" class="float-right">
             <v-radio :value="index" color="primary"></v-radio>
