@@ -1,17 +1,47 @@
 <template>
-  <div>
-    <h1>Confirm</h1>
-    <div>
-      <span>Domain: </span><span align="right">{{ domain }}</span>
-    </div>
-    <div>Subscription plan: {{ selectedPlan.name }}</div>
-    <div>Price: {{ selectedPlan.price }}</div>
+  <v-list>
+    <v-list-item>
+      <v-list-item-title>Domain</v-list-item-title>
+      <v-list-item-subtitle class="text-right font-weight-bold">
+        https://{{ domain }}.cioty.com
+      </v-list-item-subtitle>
+    </v-list-item>
+    <v-list-item>
+      <v-list-item-title>Subscription plan</v-list-item-title>
+      <v-list-item-subtitle class="text-right font-weight-bold">
+        {{ selectedPlan.title }}
+      </v-list-item-subtitle>
+    </v-list-item>
+    <v-list-item>
+      <v-list-item-title>Billing</v-list-item-title>
+      <v-list-item-subtitle class="text-right font-weight-bold">
+        {{ selectedPlan.description }}
+      </v-list-item-subtitle>
+    </v-list-item>
+    <v-list-item v-if="noDomains">
+      <v-list-item-title>Trial period</v-list-item-title>
+      <v-list-item-subtitle class="text-right font-weight-bold">
+        30 days free
+      </v-list-item-subtitle>
+    </v-list-item>
     <v-divider></v-divider>
-    <div align="right">Total: ${{ selectedPlan.total }}</div>
-  </div>
+    <v-list-item>
+      <v-list-item-title class="title">Total</v-list-item-title>
+      <v-list-item-subtitle
+        v-if="noDomains"
+        class="title text-right font-weight-bold"
+      >
+        $0
+      </v-list-item-subtitle>
+      <v-list-item-subtitle v-else class="title text-right font-weight-bold">
+        ${{ selectedPlan.total }}
+      </v-list-item-subtitle>
+    </v-list-item>
+  </v-list>
 </template>
 
 <script>
+import _ from "lodash";
 export default {
   data() {
     return {
@@ -71,6 +101,12 @@ export default {
     },
     selectedPlan() {
       return this.$store.state.stripeModule.selectedPlan;
+    },
+    domains() {
+      return this.$store.state.domainsModule.ownedDomains;
+    },
+    noDomains() {
+      return _.isEmpty(this.domains);
     }
   },
   watch: {

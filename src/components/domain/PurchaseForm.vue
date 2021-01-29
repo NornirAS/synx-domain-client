@@ -40,25 +40,23 @@
       </v-stepper-content>
 
       <v-stepper-content step="2">
-        <stripe-payment></stripe-payment>
-        <v-btn
-          @click="e1 = 1"
-          class="text-capitalize"
-          color="secondary"
-          rounded
-          outlined
-        >
-          Back
-        </v-btn>
-        <v-btn
-          id="checkout-button"
-          @click="checkout"
-          class="text-capitalize"
-          color="primary"
-          rounded
-        >
-          Continue
-        </v-btn>
+        <v-container>
+          <div class="title">Confirm your order</div>
+          <stripe-payment></stripe-payment>
+          <v-btn @click="e1 = 1" class="text-capitalize" color="secondary" text>
+            Back
+          </v-btn>
+          <v-btn
+            id="checkout-button"
+            @click="checkout"
+            class="text-capitalize"
+            color="primary"
+            rounded
+            small
+          >
+            Continue
+          </v-btn>
+        </v-container>
       </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
