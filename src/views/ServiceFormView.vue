@@ -20,7 +20,7 @@
         </v-stepper-header>
         <v-stepper-items>
           <v-stepper-content step="1">
-            <div>
+            <v-container>
               <div class="title">Domain*</div>
               <div class="body-1">
                 Choose which domain you want to add the service to.
@@ -51,54 +51,57 @@
                   </v-list-item>
                 </v-list>
               </v-menu>
-            </div>
-            <v-btn
-              @click="backToServices"
-              class="text-capitalize"
-              color="secondary"
-              text
-            >
-              Cancel
-            </v-btn>
-            <v-btn
-              class="text-capitalize"
-              color="primary"
-              @click="e1 = 2"
-              small
-              rounded
-            >
-              Next
-            </v-btn>
+              <div></div>
+              <v-btn
+                @click="backToServices"
+                class="text-capitalize"
+                color="secondary"
+                text
+              >
+                Cancel
+              </v-btn>
+              <v-btn
+                class="text-capitalize"
+                color="primary"
+                @click="e1 = 2"
+                small
+                rounded
+              >
+                Next
+              </v-btn>
+            </v-container>
           </v-stepper-content>
 
           <v-stepper-content step="2">
-            <div>
+            <v-container>
               <div class="title">Service Settings - for Machines</div>
               <service-form></service-form>
-            </div>
-            <v-btn
-              @click="e1 = 1"
-              class="text-capitalize"
-              color="secondary"
-              text
-            >
-              Previous
-            </v-btn>
-            <v-btn
-              @click="isServiceFormValid ? (e1 = 3) : (e1 = 2)"
-              class="text-capitalize"
-              color="primary"
-              type="submit"
-              form="service-form"
-              small
-              rounded
-            >
-              Next
-            </v-btn>
+              <div>
+                <v-btn
+                  @click="e1 = 1"
+                  class="text-capitalize"
+                  color="secondary"
+                  text
+                >
+                  Previous
+                </v-btn>
+                <v-btn
+                  @click="isServiceFormValid ? (e1 = 3) : (e1 = 2)"
+                  class="text-capitalize"
+                  color="primary"
+                  type="submit"
+                  form="service-form"
+                  small
+                  rounded
+                >
+                  Next
+                </v-btn>
+              </div>
+            </v-container>
           </v-stepper-content>
 
           <v-stepper-content step="3">
-            <div>
+            <v-container>
               <div class="title">Micropage - Information for Humans</div>
               <div class="body-1">
                 The micropage tells yourself and other humans what your service
@@ -106,25 +109,27 @@
                 URL.
               </div>
               <micropage-form></micropage-form>
-            </div>
-            <v-btn
-              @click="e1 = 2"
-              class="text-capitalize"
-              color="secondary"
-              text
-            >
-              Previous
-            </v-btn>
-            <v-btn
-              class="text-capitalize"
-              color="primary"
-              type="submit"
-              form="micropage-form"
-              small
-              rounded
-            >
-              Complete
-            </v-btn>
+              <div>
+                <v-btn
+                  @click="e1 = 2"
+                  class="text-capitalize"
+                  color="secondary"
+                  text
+                >
+                  Previous
+                </v-btn>
+                <v-btn
+                  class="text-capitalize"
+                  color="primary"
+                  type="submit"
+                  form="micropage-form"
+                  small
+                  rounded
+                >
+                  Complete
+                </v-btn>
+              </div>
+            </v-container>
           </v-stepper-content>
         </v-stepper-items>
       </v-stepper>
