@@ -74,13 +74,12 @@ export default {
   methods: {
     // Send data to stripe domain name and period.
     checkout() {
-      this.$socket.emit(
-        "stripe_payment",
-        this.domain,
-        this.token,
-        this.username,
-        this.selectedPlan.period
-      );
+      this.$socket.emit("stripe_payment", {
+        domain: this.domainURL,
+        token: this.token,
+        username: this.username,
+        subscription: this.selectedPlan
+      });
     },
     backToDomains() {
       this.$router.push({ name: "domains" });
@@ -89,6 +88,9 @@ export default {
   computed: {
     domain() {
       return this.$route.params.domainName;
+    },
+    domainURL() {
+      return `${this.domain}.cioty.com`;
     },
     selectedPlan() {
       return this.$store.state.stripeModule.selectedPlan;

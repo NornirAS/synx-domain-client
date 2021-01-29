@@ -56,12 +56,11 @@ export default {
     submitDomainForm() {
       const isValid = this.$refs.domainForm.validate();
       if (isValid) {
-        this.$socket.emit(
-          "create_domain",
-          this.token,
-          this.username,
-          this.domainName
-        );
+        this.$socket.emit("create_domain", {
+          token: this.token,
+          username: this.username,
+          domain: this.domainName
+        });
       }
     }
   },
