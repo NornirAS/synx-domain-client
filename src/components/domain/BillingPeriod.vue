@@ -10,15 +10,35 @@
         :value="index"
       >
         <v-radio-group v-model="selected">
-          <subscription-card>
+          <subscription-card
+            v-bind:class="{ 'selected-card': selected === index }"
+          >
+            :value="index">
             <div slot="title">{{ title }}</div>
             <div slot="radio-button" class="float-right">
               <v-radio :value="index" color="primary"></v-radio>
             </div>
+            <v-chip
+              v-if="noDomains"
+              slot="trial"
+              color="primary"
+              class="ml-n6 mt-2"
+              small
+              label
+              >Free Trial</v-chip
+            >
             <div slot="description">{{ description }}</div>
             <div slot="description">{{ annualCost }}</div>
             <div slot="monthlyCost">{{ monthlyCost }}</div>
-            <div slot="discount" class="font-weight-bold">{{ discount }}</div>
+            <v-chip
+              v-if="discount"
+              slot="discount"
+              color="accent"
+              class="mr-n6"
+              small
+              label
+              >{{ discount }}</v-chip
+            >
           </subscription-card>
         </v-radio-group>
       </v-col>
@@ -27,6 +47,7 @@
 </template>
 
 <script>
+import _ from "lodash";
 import SubscriptionCard from "./SubscriptionCard";
 export default {
   data() {
@@ -40,6 +61,12 @@ export default {
   computed: {
     subscriptionPlans() {
       return this.$store.state.stripeModule.subscriptionPlans;
+    },
+    domains() {
+      return this.$store.state.domainsModule.ownedDomains;
+    },
+    noDomains() {
+      return _.isEmpty(this.domains);
     }
   },
   watch: {
@@ -61,5 +88,8 @@ export default {
 }
 .font-weight-bold {
   color: var(--v-accent-base);
+}
+.selected-card {
+  background-color: var(--v-background-base);
 }
 </style>

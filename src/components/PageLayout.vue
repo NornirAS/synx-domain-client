@@ -1,6 +1,6 @@
 <template>
   <v-row justify="space-between" class="page-layout-style">
-    <v-col cols="12" md="8" lg="6" xl="4" offset-md="1">
+    <v-col cols="12" md="10" lg="8" xl="5" offset-md="1">
       <slot name="page-title"></slot>
       <v-divider></v-divider>
       <slot name="page-search"></slot>
