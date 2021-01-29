@@ -12,19 +12,31 @@
 
     <v-stepper-items>
       <v-stepper-content step="1">
-        <billing-period></billing-period>
-        <v-btn
-          @click="toDomainPage"
-          class="text-capitalize"
-          color="secondary"
-          rounded
-          outlined
-        >
-          Cancel
-        </v-btn>
-        <v-btn @click="e1 = 2" class="text-capitalize" color="primary" rounded>
-          Continue
-        </v-btn>
+        <v-container>
+          <div class="title">Choose subscription plan</div>
+          <select-subscription></select-subscription>
+          <div class="body-1 mb-6">
+            30 days free trial for all subscription plans. Payment will be done
+            after trial. Cancel anytime.
+          </div>
+          <v-btn
+            @click="backToDomains"
+            class="text-capitalize"
+            color="secondary"
+            text
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            @click="e1 = 2"
+            class="text-capitalize"
+            color="primary"
+            rounded
+            small
+          >
+            Continue
+          </v-btn>
+        </v-container>
       </v-stepper-content>
 
       <v-stepper-content step="2">
@@ -53,7 +65,7 @@
 </template>
 
 <script>
-import BillingPeriod from "./BillingPeriod.vue";
+import SelectSubscription from "./SelectSubscription.vue";
 import StripePayment from "./StripePayment";
 export default {
   data() {
@@ -72,7 +84,7 @@ export default {
         this.selectedPlan.period
       );
     },
-    toDomainPage() {
+    backToDomains() {
       this.$router.push({ name: "domains" });
     }
   },
@@ -91,7 +103,7 @@ export default {
     }
   },
   components: {
-    BillingPeriod,
+    SelectSubscription,
     StripePayment
   }
 };
