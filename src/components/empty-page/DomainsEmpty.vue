@@ -18,6 +18,16 @@
     </div>
     <div slot="image">
       <v-img
+        v-if="domainRoute"
+        alt="connectedWorld"
+        contain
+        src="../../assets/connected-world.png"
+        transition="scale-transition"
+        height="300px"
+      >
+      </v-img>
+      <v-img
+        v-if="serviceRoute"
         alt="addToCart"
         contain
         src="../../assets/add-to-cart.png"
@@ -32,6 +42,14 @@
 <script>
 import EmptyPageTemplate from "./EmptyPageTemplate";
 export default {
+  computed: {
+    domainRoute() {
+      return this.$route.name === "domains";
+    },
+    serviceRoute() {
+      return this.$route.name === "services";
+    }
+  },
   components: {
     EmptyPageTemplate
   }

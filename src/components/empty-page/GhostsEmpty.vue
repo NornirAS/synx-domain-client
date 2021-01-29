@@ -1,11 +1,25 @@
 <template>
   <empty-page-template>
-    <div slot="title">You don't have any ghosts</div>
+    <div slot="title">You Need a Service</div>
+    <div slot="description">
+      Ghosts will appear here once you create a morphic service
+    </div>
+    <div slot="action">
+      <v-btn
+        :to="{ name: 'serviceCreate' }"
+        class="text-capitalize"
+        rounded
+        small
+        color="primary"
+      >
+        Create Service
+      </v-btn>
+    </div>
     <div slot="image">
       <v-img
-        alt="emptyBox"
+        alt="productTeardown"
         contain
-        src="../../assets/empty-box.png"
+        src="../../assets/product-teardown.png"
         transition="scale-transition"
         height="300px"
       >
