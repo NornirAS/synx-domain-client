@@ -9,13 +9,14 @@
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             class="text-none domain-dropdown"
-            color="white"
+            color="secondary"
             v-bind="attrs"
             v-on="on"
+            outlined
           >
-            <strong>{{ firstService.domain }}</strong>
+            <strong>{{ domain }}</strong>
             .cioty.com/
-            <strong>{{ firstService.serviceName }}</strong>
+            <strong>{{ service }}</strong>
             <v-icon right large>{{ mdiMenuDown }}</v-icon>
           </v-btn>
         </template>
@@ -33,7 +34,7 @@
       <v-btn
         @click="addGhost"
         color="primary"
-        class="text-capitalize"
+        class="text-capitalize ml-4"
         slot="action"
       >
         Add ghost
@@ -60,7 +61,6 @@ export default {
   methods: {
     selectService(domain, service) {
       (this.domain = domain), (this.service = service);
-      // add to store
     },
     addGhost() {
       this.$socket.emit(
