@@ -20,8 +20,18 @@
       <domain-empty v-if="noDomains && noServices"></domain-empty>
       <ghosts-empty v-if="!noDomains && noServices"></ghosts-empty>
       <add-ghosts v-if="!noDomains && !noServices"></add-ghosts>
-      <v-card v-if="!noInstances">
+      <v-card v-if="!noDomains && !noServices">
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify"
+          label="Search for ghosts"
+          hide-details
+          outlined
+          dense
+          :disabled="noInstances"
+        ></v-text-field>
         <v-data-table
+          v-if="!noDomains && !noServices && !noInstances"
           @page-count="pageCount = $event"
           :headers="headers"
           :items="instances"

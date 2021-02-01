@@ -74,7 +74,7 @@ export default {
 }
 .v-card {
   margin: 0 0 1em 0;
-  padding: 0.5em 1em;
+  padding: 1.5em;
   flex-grow: 1;
 }
 .v-card__title {
