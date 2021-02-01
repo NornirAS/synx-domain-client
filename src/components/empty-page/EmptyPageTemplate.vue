@@ -1,19 +1,16 @@
 <template>
   <div align="center">
     <div class="empty-page-content">
-      <div align="center" class="title">
+      <div align="center" class="title mb-2">
         <slot name="title"></slot>
       </div>
-      <br />
-      <div align="center" class="body-1">
+      <div align="center" class="body-1 mb-4">
         <slot name="description" align="center"></slot>
       </div>
-      <br />
-      <div align="center">
+      <div align="center" class="mb-4">
         <slot name="action" align="center"></slot>
       </div>
     </div>
-    <br />
     <div align="center">
       <slot name="image" align="center"></slot>
     </div>

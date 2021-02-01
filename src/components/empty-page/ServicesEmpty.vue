@@ -1,6 +1,7 @@
 <template>
   <empty-page-template>
-    <div slot="description">You don't have any services yet..</div>
+    <div slot="title">You have no services yet</div>
+    <div slot="description">Services will appear here once you add them</div>
     <div slot="action">
       <v-btn
         :to="{ name: 'serviceCreate' }"
@@ -9,7 +10,7 @@
         small
         color="primary"
       >
-        Get Started
+        Create Service
       </v-btn>
     </div>
     <div slot="image">
