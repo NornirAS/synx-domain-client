@@ -32,7 +32,6 @@
                     :dark="!isServiceUpdate"
                     class="text-none domain-dropdown"
                     color="secondary"
-                    small
                     v-bind="attrs"
                     v-on="on"
                   >

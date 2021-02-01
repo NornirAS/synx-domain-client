@@ -19,59 +19,19 @@
     <div slot="page-content">
       <domain-empty v-if="noDomains && noServices"></domain-empty>
       <ghosts-empty v-if="!noDomains && noServices"></ghosts-empty>
-      <!-- <InstancesTable v-if="!noDomains && !noServices" /> -->
-      <v-card>
-        <v-container>
-          <div class="title">Add a ghost</div>
-          <div class="body-1">
-            Choose the morphic service you want to add the ghost to.
-          </div>
-          <v-menu offset-y>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                class="text-none domain-dropdown"
-                color="secondary"
-                small
-                v-bind="attrs"
-                v-on="on"
-              >
-                <strong>{{ firstService.domain }}</strong>
-                .cioty.com/
-                <strong>{{ firstService.serviceName }}</strong>
-                <v-icon right large>{{ mdiMenuDown }}</v-icon>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item
-                v-for="({ domain, serviceName }, index) in services"
-                :key="index"
-              >
-                <v-list-item-title @click="selectDomain(domain)">
-                  {{ domain }}.cioty.com/{{ serviceName }}
-                </v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </v-container>
-      </v-card>
+      <add-ghosts v-if="!noDomains && !noServices"></add-ghosts>
     </div>
   </page-layout>
 </template>
 
 <script>
 import _ from "lodash";
-import { mdiMenuDown } from "@mdi/js";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import DomainEmpty from "../components/empty-page/DomainsEmpty";
 import GhostsEmpty from "../components/empty-page/GhostsEmpty";
-// import InstancesTable from "../components/instance/InstancesTable";
+import AddGhosts from "../components/instance/AddGhosts";
 export default {
-  data() {
-    return {
-      mdiMenuDown
-    };
-  },
   created() {
     this.$socket.emit("get_all_instances", this.token);
   },
@@ -82,9 +42,6 @@ export default {
     services() {
       const services = localStorage.getItem("services");
       return JSON.parse(services);
-    },
-    firstService() {
-      return this.services[0];
     },
     noServices() {
       return _.isEmpty(this.services);
@@ -111,11 +68,11 @@ export default {
     }
   },
   components: {
-    // InstancesTable,
     PageLayout,
     PageTitle,
     DomainEmpty,
-    GhostsEmpty
+    GhostsEmpty,
+    AddGhosts
   }
 };
 </script>
