@@ -20,7 +20,36 @@
       <domain-empty v-if="noDomains && noServices"></domain-empty>
       <ghosts-empty v-if="!noDomains && noServices"></ghosts-empty>
       <add-ghosts v-if="!noDomains && !noServices"></add-ghosts>
-      {{ instances }}
+      <v-data-table
+        @page-count="pageCount = $event"
+        :headers="headers"
+        :items="instances"
+        :page.sync="page"
+        :items-per-page="itemsPerPage"
+        hide-default-footer
+      >
+        <template v-slot:[`item.ghosts`]="{ item }">
+          <div class="body-1 text-lowercase">
+            <span class="font-weight-bold">{{ item.domain }}</span>
+            .cioty.com/
+            <span class="font-weight-bold">{{ item.service }}</span>
+            <span class="font-weight-bold">#{{ item.instance }}</span>
+          </div>
+        </template>
+        <template v-slot:[`item.edit`]="{ item }">
+          <v-btn @click="serviceToEdit(item)" class="float-right" icon small>
+            <v-icon color="primary">
+              {{ mdiChevronRight }}
+            </v-icon>
+          </v-btn>
+        </template>
+      </v-data-table>
+    </div>
+    <div
+      v-if="!noInstances && !instancesLengthLessItemsPerPage"
+      slot="pagination"
+    >
+      <v-pagination v-model="page" :length="pageCount" light></v-pagination>
     </div>
   </page-layout>
 </template>
@@ -33,6 +62,25 @@ import DomainEmpty from "../components/empty-page/DomainsEmpty";
 import GhostsEmpty from "../components/empty-page/GhostsEmpty";
 import AddGhosts from "../components/instance/AddGhosts";
 export default {
+  data() {
+    return {
+      search: "",
+      page: 1,
+      pageCount: 0,
+      itemsPerPage: 25,
+      headers: [
+        {
+          text: "Ghosts",
+          value: "ghosts",
+          sortable: false
+        },
+        {
+          value: "edit",
+          sortable: false
+        }
+      ]
+    };
+  },
   created() {
     this.$socket.emit("get_all_instances", this.token);
   },
@@ -56,11 +104,14 @@ export default {
     instances() {
       return this.$store.state.instancesModule.instances;
     },
+    noInstances() {
+      return _.isEmpty(this.instances);
+    },
+    instancesLengthLessItemsPerPage() {
+      return this.instances.length <= this.itemsPerPage;
+    },
     successMessage() {
       return this.$store.state.alarmModule.successMessage;
-    },
-    isInstances() {
-      return this.instances.length !== 0 ? true : false;
     }
   },
   watch: {
