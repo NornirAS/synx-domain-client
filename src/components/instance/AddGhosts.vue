@@ -24,13 +24,18 @@
             v-for="({ domain, serviceName }, index) in services"
             :key="index"
           >
-            <v-list-item-title @click="selectDomain(domain)">
+            <v-list-item-title @click="selectService(domain, serviceName)">
               {{ domain }}.cioty.com/{{ serviceName }}
             </v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
-      <v-btn @click="add" color="primary" class="text-capitalize" slot="action">
+      <v-btn
+        @click="addGhost"
+        color="primary"
+        class="text-capitalize"
+        slot="action"
+      >
         Add ghost
       </v-btn>
     </v-container>
@@ -42,10 +47,35 @@ import { mdiMenuDown } from "@mdi/js";
 export default {
   data() {
     return {
-      mdiMenuDown
+      mdiMenuDown,
+      domain: "",
+      service: "",
+      instanceToAdd: "1"
     };
   },
+  mounted() {
+    this.domain = this.firstService.domain;
+    this.service = this.firstService.serviceName;
+  },
+  methods: {
+    selectService(domain, service) {
+      (this.domain = domain), (this.service = service);
+      // add to store
+    },
+    addGhost() {
+      this.$socket.emit(
+        "add_instances",
+        this.domain,
+        this.service,
+        this.token,
+        this.instanceToAdd
+      );
+    }
+  },
   computed: {
+    token() {
+      return this.$store.state.authModule.idToken;
+    },
     services() {
       const services = localStorage.getItem("services");
       return JSON.parse(services);

@@ -20,6 +20,7 @@
       <domain-empty v-if="noDomains && noServices"></domain-empty>
       <ghosts-empty v-if="!noDomains && noServices"></ghosts-empty>
       <add-ghosts v-if="!noDomains && !noServices"></add-ghosts>
+      {{ instances }}
     </div>
   </page-layout>
 </template>
