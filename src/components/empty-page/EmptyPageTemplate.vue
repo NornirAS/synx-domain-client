@@ -13,6 +13,7 @@
         <slot name="action" align="center"></slot>
       </div>
     </div>
+    <br />
     <div align="center">
       <slot name="image" align="center"></slot>
     </div>
