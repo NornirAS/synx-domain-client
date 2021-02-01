@@ -16,7 +16,7 @@
     </page-title>
     <div slot="page-content">
       <domains-empty v-if="noDomains"></domains-empty>
-      <template v-if="!noDomains">
+      <v-card v-if="!noDomains">
         <v-data-table
           @page-count="pageCount = $event"
           :headers="headers"
@@ -51,7 +51,7 @@
             </div>
           </template>
         </v-data-table>
-      </template>
+      </v-card>
     </div>
     <div v-if="!noDomains && !domainsLengthLessItemsPerPage" slot="pagination">
       <v-pagination v-model="page" :length="pageCount" light></v-pagination>

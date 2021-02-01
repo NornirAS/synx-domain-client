@@ -14,7 +14,7 @@
         Manage Subscriptions
       </v-btn>
     </page-title>
-    <v-card outlined slot="page-content">
+    <v-card slot="page-content">
       <v-card-text>
         <v-row>
           <v-col cols="4">

@@ -63,7 +63,7 @@
       <services-empty v-if="!noDomains && noServices"></services-empty>
       <domain-empty v-if="noDomains && noServices"></domain-empty>
       <no-match v-if="noResultsFound && !noServices"></no-match>
-      <template v-if="!noResultsFound">
+      <v-card v-if="!noResultsFound">
         <v-data-table
           @page-count="pageCount = $event"
           :headers="headers"
@@ -86,7 +86,7 @@
             </v-btn>
           </template>
         </v-data-table>
-      </template>
+      </v-card>
     </div>
     <div
       v-if="!noResultsFound && !servicesLengthLessItemsPerPage"
