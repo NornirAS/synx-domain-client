@@ -18,9 +18,10 @@
     </page-title>
     <div slot="page-content">
       <domain-empty v-if="noDomains && noServices"></domain-empty>
-      <ghosts-empty v-if="!noDomain && noServices"></ghosts-empty>
+      <ghosts-empty v-if="!noDomains && noServices"></ghosts-empty>
       <!-- <InstancesTable v-if="!noDomains && !noServices" /> -->
       <v-card></v-card>
+      {{ noServices }}{{ noDomains }}
     </div>
   </page-layout>
 </template>
@@ -41,7 +42,7 @@ export default {
       return this.$store.state.authModule.idToken;
     },
     services() {
-      return this.$store.state.servicesModule.services;
+      return localStorage.getItem("services");
     },
     noServices() {
       return _.isEmpty(this.services);

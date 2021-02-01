@@ -13,6 +13,7 @@ const mutations = {
 
 const actions = {
   SOCKET_all_services({ commit }, data) {
+    localStorage.setItem("services", data);
     commit("allServices", data);
   },
   SOCKET_show_active_channels_success({ commit }, { channels, index }) {

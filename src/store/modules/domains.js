@@ -10,10 +10,10 @@ const mutations = {
 
 const actions = {
   SOCKET_all_domains({ commit }, data) {
-    const domainNames = data.map(domain => {
+    const domains = data.map(domain => {
       return domain.name;
     });
-    localStorage.setItem("domains", domainNames);
+    localStorage.setItem("domains", domains);
     commit("allDomains", data);
   }
 };
