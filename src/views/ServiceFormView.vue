@@ -51,23 +51,25 @@
                   </v-list-item>
                 </v-list>
               </v-menu>
-              <v-btn
-                @click="backToServices"
-                class="text-capitalize"
-                color="secondary"
-                text
-              >
-                Cancel
-              </v-btn>
-              <v-btn
-                class="text-capitalize"
-                color="primary"
-                @click="e1 = 2"
-                small
-                rounded
-              >
-                Next
-              </v-btn>
+              <div>
+                <v-btn
+                  @click="backToServices"
+                  class="text-capitalize"
+                  color="secondary"
+                  text
+                >
+                  Cancel
+                </v-btn>
+                <v-btn
+                  class="text-capitalize"
+                  color="primary"
+                  @click="e1 = 2"
+                  small
+                  rounded
+                >
+                  Next
+                </v-btn>
+              </div>
             </v-container>
           </v-stepper-content>
 

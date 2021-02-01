@@ -119,3 +119,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.v-card {
+  padding: 24px 24px 16px 24px;
+}
+</style>
