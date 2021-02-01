@@ -51,7 +51,6 @@
                   </v-list-item>
                 </v-list>
               </v-menu>
-              <div></div>
               <v-btn
                 @click="backToServices"
                 class="text-capitalize"
