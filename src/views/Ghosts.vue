@@ -17,17 +17,21 @@
       </v-btn>
     </page-title>
     <div slot="page-content">
-      <InstancesTable v-if="isInstances" :instances="instances" />
-      <ghosts-empty v-else></ghosts-empty>
+      <domain-empty v-if="noDomains && noServices"></domain-empty>
+      <ghosts-empty v-if="!noDomain && noServices"></ghosts-empty>
+      <!-- <InstancesTable v-if="!noDomains && !noServices" /> -->
+      <v-card></v-card>
     </div>
   </page-layout>
 </template>
 
 <script>
+import _ from "lodash";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
+import DomainEmpty from "../components/empty-page/DomainsEmpty";
 import GhostsEmpty from "../components/empty-page/GhostsEmpty";
-import InstancesTable from "../components/instance/InstancesTable";
+// import InstancesTable from "../components/instance/InstancesTable";
 export default {
   created() {
     this.$socket.emit("get_all_instances", this.token);
@@ -35,6 +39,18 @@ export default {
   computed: {
     token() {
       return this.$store.state.authModule.idToken;
+    },
+    services() {
+      return this.$store.state.servicesModule.services;
+    },
+    noServices() {
+      return _.isEmpty(this.services);
+    },
+    domains() {
+      return localStorage.getItem("domains");
+    },
+    noDomains() {
+      return _.isEmpty(this.domains);
     },
     instances() {
       return this.$store.state.instancesModule.instances;
@@ -52,9 +68,10 @@ export default {
     }
   },
   components: {
-    InstancesTable,
+    // InstancesTable,
     PageLayout,
     PageTitle,
+    DomainEmpty,
     GhostsEmpty
   }
 };

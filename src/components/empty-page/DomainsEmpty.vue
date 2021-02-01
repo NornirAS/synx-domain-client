@@ -13,7 +13,7 @@
         small
         color="primary"
       >
-        Get Started
+        Start Free Trial
       </v-btn>
     </div>
     <div slot="image">
@@ -35,6 +35,15 @@
         height="300px"
       >
       </v-img>
+      <v-img
+        v-if="ghostRoute"
+        alt="productTeardown"
+        contain
+        src="../../assets/product-teardown.png"
+        transition="scale-transition"
+        height="300px"
+      >
+      </v-img>
     </div>
   </empty-page-template>
 </template>
@@ -48,6 +57,9 @@ export default {
     },
     serviceRoute() {
       return this.$route.name === "services";
+    },
+    ghostRoute() {
+      return this.$route.name === "ghosts";
     }
   },
   components: {
