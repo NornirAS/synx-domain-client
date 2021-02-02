@@ -86,13 +86,13 @@
             </v-btn>
           </template>
         </v-data-table>
+        <v-pagination
+          v-if="!noResultsFound && !servicesLengthLessItemsPerPage"
+          v-model="page"
+          :length="pageCount"
+          light
+        ></v-pagination>
       </v-card>
-    </div>
-    <div
-      v-if="!noResultsFound && !servicesLengthLessItemsPerPage"
-      slot="pagination"
-    >
-      <v-pagination v-model="page" :length="pageCount" light></v-pagination>
     </div>
   </page-layout>
 </template>

@@ -5,20 +5,14 @@
       <v-divider></v-divider>
       <slot name="page-search"></slot>
       <v-divider></v-divider>
-      <div class="margin-top">
+      <div class="mt-4">
         <slot name="page-content"></slot>
-      </div>
-      <div class="margin-top">
-        <slot name="pagination"></slot>
       </div>
     </v-col>
   </v-row>
 </template>
 
 <style scoped>
-.margin-top {
-  margin-top: 1em;
-}
 .display-1 {
   color: var(--v-secondary-base);
 }

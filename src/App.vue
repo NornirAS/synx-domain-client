@@ -73,8 +73,9 @@ export default {
   overflow: scroll;
 }
 .v-card {
-  margin: 0 0 1em 0;
-  padding: 1.5em;
+  margin-bottom: 16px;
+  /* padding: 1em 1.5em; */
+  padding: 24px 24px 16px 24px;
   flex-grow: 1;
 }
 .v-card__title {
