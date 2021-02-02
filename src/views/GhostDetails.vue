@@ -33,10 +33,7 @@
           <v-list-item>
             <v-list-item-title>Read access to data</v-list-item-title>
             <v-list-item-subtitle class="text-right font-weight-bold">
-              <v-btn class="text-capitalize" color="primary" text>
-                <v-icon small>{{ mdiPlus }}</v-icon>
-                Add receiver
-              </v-btn>
+              <read-access></read-access>
             </v-list-item-subtitle>
           </v-list-item>
           <v-divider></v-divider>
@@ -102,6 +99,7 @@
 import { mdiPlus } from "@mdi/js";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
+import ReadAccess from "../components/instance/ReadAccess";
 export default {
   data() {
     return {
@@ -174,7 +172,8 @@ export default {
   },
   components: {
     PageLayout,
-    PageTitle
+    PageTitle,
+    ReadAccess
   }
 };
 </script>
