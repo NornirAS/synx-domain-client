@@ -1,9 +1,7 @@
 const state = {
   instances: [],
   dialog: false,
-  selectedDomain: "",
-  selectedService: "",
-  selectedInstance: "",
+  selectedGhost: {},
   dialogTitle: ""
 };
 
@@ -14,14 +12,8 @@ const mutations = {
   toggleDialog(state) {
     state.dialog = !state.dialog;
   },
-  selectDomain(state, payload) {
-    state.selectedDomain = payload;
-  },
-  selectService(state, payload) {
-    state.selectedService = payload;
-  },
-  selectInstance(state, payload) {
-    state.selectedInstance = payload;
+  selectGhost(state, payload) {
+    state.selectedGhost = Object.assign({}, state.selectedGhost, payload);
   },
   dialogTitle(state, payload) {
     state.dialogTitle = payload;

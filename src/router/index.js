@@ -7,7 +7,7 @@ import SideBar from "../components/SideBar";
 import Domains from "../views/Domains";
 import DomainActivation from "../views/DomainActivation";
 import Ghosts from "../views/Ghosts";
-import NewGhosts from "../views/NewGhosts";
+import GhostDetails from "../views/GhostDetails";
 import ServiceForm from "../components/service-form/ServiceForm";
 import Account from "../views/Account";
 import CheckoutSuccess from "../views/CheckoutSuccess";
@@ -121,10 +121,10 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/ghosts/new-ghosts",
-    name: "new-ghosts",
+    path: "/ghosts/:serviceName#:instance",
+    name: "ghostDetails",
     components: {
-      default: NewGhosts,
+      default: GhostDetails,
       "side-bar": SideBar
     },
     beforeEnter: authGuard

@@ -4,17 +4,6 @@
       <div slot="title">
         Ghosts
       </div>
-      <v-btn
-        :to="{ name: 'new-ghosts' }"
-        slot="action"
-        class="text-capitalize"
-        small
-        rounded
-        outlined
-        color="primary"
-      >
-        Look for new ghosts
-      </v-btn>
     </page-title>
     <div slot="page-content">
       <domain-empty v-if="noDomains && noServices"></domain-empty>
@@ -75,8 +64,8 @@
               <span class="font-weight-bold">#{{ item.instance }}</span>
             </div>
           </template>
-          <template v-slot:[`item.edit`]="{ item }">
-            <v-btn @click="serviceToEdit(item)" class="float-right" icon small>
+          <template v-slot:[`item.details`]="{ item }">
+            <v-btn @click="ghostDetails(item)" class="float-right" icon small>
               <v-icon color="primary">
                 {{ mdiChevronRight }}
               </v-icon>
@@ -118,7 +107,7 @@ export default {
           sortable: false
         },
         {
-          value: "edit",
+          value: "details",
           sortable: false
         }
       ],
@@ -132,6 +121,20 @@ export default {
   methods: {
     selectGhosts(item) {
       this.selectedItem = item;
+    },
+    ghostDetails({ domain, service, instance }) {
+      this.$store.commit("instancesModule/selectGhost", {
+        domain,
+        service,
+        instance
+      });
+      this.$router.push({
+        name: "ghostDetails",
+        params: {
+          serviceName: service.toLowerCase(),
+          instance
+        }
+      });
     }
   },
   computed: {
