@@ -1,13 +1,13 @@
 <template>
   <v-card>
-    <div class="title">Add a ghost</div>
+    <div class="title mb-2">Add a ghost</div>
     <div class="body-1">
       Choose the morphic service you want to add the ghost to.
     </div>
     <v-menu offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-          class="text-none domain-dropdown"
+          class="text-none domain-dropdown my-4"
           color="secondary"
           v-bind="attrs"
           v-on="on"
@@ -79,3 +79,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.domain-dropdown {
+  width: 70%;
+}
+</style>
