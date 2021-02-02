@@ -31,10 +31,10 @@
           :disabled="noInstances"
         ></v-text-field>
         <v-data-table
-          v-if="!noDomains && !noServices && !noInstances"
+          v-if="!noInstances"
           @page-count="pageCount = $event"
           :headers="headers"
-          :items="instances"
+          :items="searchFilter"
           :page.sync="page"
           :items-per-page="itemsPerPage"
           hide-default-footer
@@ -123,6 +123,14 @@ export default {
     },
     instancesLengthLessItemsPerPage() {
       return this.instances.length <= this.itemsPerPage;
+    },
+    searchFilter() {
+      return this.instances.filter(
+        instance =>
+          instance.domain.toLowerCase().indexOf(this.search.toLowerCase()) >
+            -1 ||
+          instance.service.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+      );
     },
     successMessage() {
       return this.$store.state.alarmModule.successMessage;
