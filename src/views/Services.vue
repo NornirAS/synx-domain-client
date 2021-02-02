@@ -46,7 +46,7 @@
               </template>
               <v-list>
                 <v-list-item
-                  v-for="(domain, index) in domainArray"
+                  v-for="(domain, index) in domainNamesArray"
                   :key="index"
                 >
                   <v-list-item-title @click="selectedDomain(domain)">
@@ -169,18 +169,21 @@ export default {
       return _.isEmpty(this.searchFilter);
     },
     domains() {
-      return localStorage.getItem("domains");
+      const domains = localStorage.getItem("domains");
+      return JSON.parse(domains);
     },
     noDomains() {
       return _.isEmpty(this.domains);
     },
-    domainArray() {
+    domainNamesArray() {
       if (this.noDomains) {
-        return false;
+        return [];
       } else {
-        const domainsArray = this.domains.split(" ");
-        domainsArray.unshift("All");
-        return domainsArray;
+        const domainNames = this.domains.map(str => {
+          return str.name;
+        });
+        domainNames.unshift("All");
+        return domainNames;
       }
     },
     servicesLengthLessItemsPerPage() {

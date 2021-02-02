@@ -43,7 +43,10 @@
                   </v-btn>
                 </template>
                 <v-list>
-                  <v-list-item v-for="(domain, index) in domains" :key="index">
+                  <v-list-item
+                    v-for="(domain, index) in domainNamesArray"
+                    :key="index"
+                  >
                     <v-list-item-title @click="selectDomain(domain)">
                       {{ domain }}.cioty.com
                     </v-list-item-title>
@@ -155,9 +158,12 @@ export default {
     };
   },
   created() {
-    if (this.hasDomains) {
-      this.selectedDomain = this.domains[0];
-      this.$store.commit("serviceFormModule/addDomain", this.domains[0]);
+    if (!this.noDomains) {
+      this.selectedDomain = this.domainNamesArray[0];
+      this.$store.commit(
+        "serviceFormModule/addDomain",
+        this.domainNamesArray[0]
+      );
     }
     if (this.isServiceUpdate) {
       this.title = "Update Morphic Service";
@@ -172,7 +178,7 @@ export default {
     if (this.isServiceUpdate) {
       this.selectedDomain = this.domain;
     } else {
-      this.selectedDomain = this.domains[0];
+      this.selectedDomain = this.domainNamesArray[0];
     }
   },
   methods: {
@@ -278,14 +284,20 @@ export default {
     },
     domains() {
       const domains = localStorage.getItem("domains");
-      if (!domains) {
+      return JSON.parse(domains);
+    },
+    noDomains() {
+      return _.isEmpty(this.domains);
+    },
+    domainNamesArray() {
+      if (this.noDomains) {
         return [];
       } else {
-        return domains.split(",");
+        const domainNames = this.domains.map(str => {
+          return str.name;
+        });
+        return domainNames;
       }
-    },
-    hasDomains() {
-      return _.isEmpty(this.domains) ? false : true;
     }
   },
   watch: {
