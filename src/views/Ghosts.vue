@@ -21,15 +21,43 @@
       <ghosts-empty v-if="!noDomains && noServices"></ghosts-empty>
       <add-ghosts v-if="!noDomains && !noServices"></add-ghosts>
       <v-card v-if="!noDomains && !noServices">
-        <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify"
-          label="Search for ghosts"
-          hide-details
-          outlined
-          dense
-          :disabled="noInstances"
-        ></v-text-field>
+        <v-row>
+          <v-col md="9">
+            <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search for ghosts"
+              hide-details
+              outlined
+              dense
+              :disabled="noInstances"
+            ></v-text-field>
+          </v-col>
+          <v-col md="3">
+            <v-menu offset-y>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  class="text-none"
+                  color="secondary"
+                  v-bind="attrs"
+                  v-on="on"
+                  outlined
+                  block
+                >
+                  <span class="font-weight-bold">{{ selectedItem }}</span>
+                  <v-icon right large>{{ mdiMenuDown }}</v-icon>
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item v-for="(item, index) in listItems" :key="index">
+                  <v-list-item-title @click="selectGhosts(item)">
+                    {{ item }}
+                  </v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </v-col>
+        </v-row>
         <v-data-table
           v-if="!noInstances"
           @page-count="pageCount = $event"
@@ -68,7 +96,7 @@
 
 <script>
 import _ from "lodash";
-import { mdiChevronRight } from "@mdi/js";
+import { mdiMenuDown, mdiChevronRight } from "@mdi/js";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import DomainEmpty from "../components/empty-page/DomainsEmpty";
@@ -77,6 +105,7 @@ import AddGhosts from "../components/instance/AddGhosts";
 export default {
   data() {
     return {
+      mdiMenuDown,
       mdiChevronRight,
       search: "",
       page: 1,
@@ -92,11 +121,18 @@ export default {
           value: "edit",
           sortable: false
         }
-      ]
+      ],
+      listItems: ["All", "Internal", "External"],
+      selectedItem: "All"
     };
   },
   created() {
     this.$socket.emit("get_all_instances", this.token);
+  },
+  methods: {
+    selectGhosts(item) {
+      this.selectedItem = item;
+    }
   },
   computed: {
     token() {
