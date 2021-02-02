@@ -21,19 +21,74 @@
             <v-list-item-title
               >Make data available for external linking?</v-list-item-title
             >
-            <v-list-item-subtitle class="text-right font-weight-bold">
+            <v-list-item-subtitle class="font-weight-bold">
+              <v-switch
+                class="float-right"
+                v-model="switch1"
+                :label="switch1 === true ? 'Yes' : 'No'"
+              ></v-switch>
             </v-list-item-subtitle>
           </v-list-item>
           <v-divider></v-divider>
           <v-list-item>
             <v-list-item-title>Read access to data</v-list-item-title>
             <v-list-item-subtitle class="text-right font-weight-bold">
+              <v-btn class="text-capitalize" color="primary" text>
+                <v-icon small>{{ mdiPlus }}</v-icon>
+                Add receiver
+              </v-btn>
             </v-list-item-subtitle>
           </v-list-item>
           <v-divider></v-divider>
           <v-list-item>
             <v-list-item-title>Map ID</v-list-item-title>
             <v-list-item-subtitle class="text-right font-weight-bold">
+              <v-btn class="text-capitalize" color="primary" text>
+                <v-icon small>{{ mdiPlus }}</v-icon>
+                Add map ID
+              </v-btn>
+            </v-list-item-subtitle>
+          </v-list-item>
+          <v-divider></v-divider>
+          <v-list-item>
+            <v-list-item-title>Kill Session</v-list-item-title>
+            <v-list-item-subtitle class="text-right font-weight-bold">
+              <v-btn class="text-capitalize" color="primary" text>
+                <v-icon small>{{ mdiPlus }}</v-icon>
+                Kill Session
+              </v-btn>
+            </v-list-item-subtitle>
+          </v-list-item>
+          <v-divider></v-divider>
+          <v-list-item>
+            <v-list-item-title>Change Ownership</v-list-item-title>
+            <v-list-item-subtitle class="text-right font-weight-bold">
+              <v-btn class="text-capitalize" color="primary" text>
+                <v-icon small>{{ mdiPlus }}</v-icon>
+                Add map ID
+              </v-btn>
+            </v-list-item-subtitle>
+          </v-list-item>
+          <v-divider></v-divider>
+          <v-list-item>
+            <v-list-item-title>Remove Ghost</v-list-item-title>
+            <v-list-item-subtitle class="text-right font-weight-bold">
+              <v-btn class="text-capitalize" color="primary" text>
+                <v-icon small>{{ mdiPlus }}</v-icon>
+                Add map ID
+              </v-btn>
+            </v-list-item-subtitle>
+          </v-list-item>
+          <v-divider></v-divider>
+          <v-list-item>
+            <v-list-item-title>
+              Add object to a secondary service
+            </v-list-item-title>
+            <v-list-item-subtitle class="text-right font-weight-bold">
+              <v-btn class="text-capitalize" color="primary" text>
+                <v-icon small>{{ mdiPlus }}</v-icon>
+                Add map ID
+              </v-btn>
             </v-list-item-subtitle>
           </v-list-item>
           <v-divider></v-divider>
@@ -44,15 +99,25 @@
 </template>
 
 <script>
-// import { mdiCheck, mdiClose } from "@mdi/js";
+import { mdiPlus } from "@mdi/js";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 export default {
   data() {
-    return {};
+    return {
+      mdiPlus,
+      switch1: true,
+      usernameForReadAccess: ""
+    };
   },
   created() {
-    this.$socket.emit("look_for_new_instances", this.token, this.username);
+    this.$socket.emit("instance_status", {
+      domain: this.domain,
+      token: this.token,
+      username: this.username,
+      service: this.service,
+      instance: this.instance
+    });
   },
   methods: {
     confirm(item) {

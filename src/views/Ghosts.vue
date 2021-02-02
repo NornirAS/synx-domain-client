@@ -9,7 +9,7 @@
       <domain-empty v-if="noDomains && noServices"></domain-empty>
       <ghosts-empty v-if="!noDomains && noServices"></ghosts-empty>
       <add-ghosts v-if="!noDomains && !noServices"></add-ghosts>
-      <v-card v-if="!noDomains && !noServices">
+      <v-card v-if="!noInstances">
         <v-row>
           <v-col md="9">
             <v-text-field
