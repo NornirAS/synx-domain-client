@@ -27,7 +27,7 @@
         >
           <template v-slot:[`item.domain`]="{ item }">
             <div class="body-1">
-              <strong>{{ item.name }}.cioty.com/</strong>
+              <strong>{{ item.name }}.cioty.com</strong>
             </div>
           </template>
           <template v-slot:[`item.activation`]="{ item }">
@@ -99,13 +99,13 @@ export default {
       return this.$store.state.authModule.username;
     },
     domains() {
-      return this.$store.state.domainsModule.ownedDomains;
-    },
-    domainsLengthLessItemsPerPage() {
-      return this.domains.length <= this.itemsPerPage;
+      return this.$store.state.domainsModule.domains;
     },
     noDomains() {
       return _.isEmpty(this.domains);
+    },
+    domainsLengthLessItemsPerPage() {
+      return this.domains.length <= this.itemsPerPage;
     }
   },
   components: {
