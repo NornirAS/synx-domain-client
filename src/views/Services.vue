@@ -74,7 +74,7 @@
         >
           <template v-slot:[`item.serviceURL`]="{ item }">
             <div class="body-1">
-              https://{{ item.domain }}.cioty.com/
+              {{ item.domain }}.cioty.com/
               <strong>{{ item.serviceName }}</strong>
             </div>
           </template>

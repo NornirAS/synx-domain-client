@@ -27,7 +27,7 @@
         >
           <template v-slot:[`item.domain`]="{ item }">
             <div class="body-1">
-              <strong>https://{{ item.name }}.cioty.com/</strong>
+              <strong>{{ item.name }}.cioty.com/</strong>
             </div>
           </template>
           <template v-slot:[`item.activation`]="{ item }">
