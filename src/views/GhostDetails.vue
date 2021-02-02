@@ -6,6 +6,39 @@
       </div>
     </page-title>
     <div slot="page-content">
+      <v-card>
+        <v-list>
+          <div class="title mb-5">Details</div>
+          <v-divider></v-divider>
+          <v-list-item>
+            <v-list-item-title>URI</v-list-item-title>
+            <v-list-item-subtitle class="text-right font-weight-bold">
+              {{ ghostURI }}
+            </v-list-item-subtitle>
+          </v-list-item>
+          <v-divider></v-divider>
+          <v-list-item>
+            <v-list-item-title
+              >Make data available for external linking?</v-list-item-title
+            >
+            <v-list-item-subtitle class="text-right font-weight-bold">
+            </v-list-item-subtitle>
+          </v-list-item>
+          <v-divider></v-divider>
+          <v-list-item>
+            <v-list-item-title>Read access to data</v-list-item-title>
+            <v-list-item-subtitle class="text-right font-weight-bold">
+            </v-list-item-subtitle>
+          </v-list-item>
+          <v-divider></v-divider>
+          <v-list-item>
+            <v-list-item-title>Map ID</v-list-item-title>
+            <v-list-item-subtitle class="text-right font-weight-bold">
+            </v-list-item-subtitle>
+          </v-list-item>
+          <v-divider></v-divider>
+        </v-list>
+      </v-card>
     </div>
   </page-layout>
 </template>
@@ -52,6 +85,18 @@ export default {
     },
     ghost() {
       return this.$store.state.instancesModule.selectedGhost;
+    },
+    domain() {
+      return this.ghost.domain.toLowerCase();
+    },
+    service() {
+      return this.ghost.service.toLowerCase();
+    },
+    instance() {
+      return this.ghost.instance;
+    },
+    ghostURI() {
+      return `${this.domain}.cioty.com/${this.service}#${this.instance}`;
     },
     successMessage() {
       return this.$store.state.alarmModule.successMessage;
