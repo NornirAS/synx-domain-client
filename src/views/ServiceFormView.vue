@@ -158,13 +158,6 @@ export default {
     };
   },
   created() {
-    if (!this.noDomains) {
-      this.selectedDomain = this.domainNamesArray[0];
-      this.$store.commit(
-        "serviceFormModule/addDomain",
-        this.domainNamesArray[0]
-      );
-    }
     if (this.isServiceUpdate) {
       this.title = "Update Morphic Service";
     } else {
