@@ -58,10 +58,16 @@ export default {
   height: 100vh;
   background-color: var(--v-background-base);
 }
-.body-1 {
+.title {
   color: var(--v-secondary-base);
 }
 .subtitle-2 {
+  color: var(--v-secondary-base);
+}
+.body-1 {
+  color: var(--v-secondary-base);
+}
+.v-expansion-panel-header {
   color: var(--v-secondary-base);
 }
 .v-list-item--active {

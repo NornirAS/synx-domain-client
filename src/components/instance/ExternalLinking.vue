@@ -2,13 +2,14 @@
   <v-simple-table>
     <template v-slot:default>
       <tbody>
-        <tr v-for="(item, index) in links" :key="index">
-          <td>{{ item.link }}</td>
+        <tr v-for="(link, index) in linksURL" :key="index">
+          <td class="body-1 font-weight-bold">{{ link.url }}</td>
           <td>
             <v-switch
+              @change="allowDenyLinking(link.name, link.active)"
+              v-model="link.active"
+              :label="link.active === true ? 'Yes' : 'No'"
               class="float-right"
-              v-model="item.active"
-              :label="item.active === true ? 'Yes' : 'No'"
             ></v-switch>
           </td>
         </tr>
@@ -19,13 +20,33 @@
 
 <script>
 export default {
+  props: ["token", "ghost"],
   data() {
-    return {
-      links: [
-        { link: "narva/blabla", active: true },
-        { link: "tartu/blabla", active: false }
-      ]
-    };
+    return {};
+  },
+  methods: {
+    allowDenyLinking(name, active) {
+      this.$socket.emit("external_linking", {
+        domain: this.ghost.domain,
+        service: this.ghost.service,
+        token: this.token,
+        instance: this.ghost.instance,
+        linkedTo: name,
+        status: active
+      });
+    }
+  },
+  computed: {
+    links() {
+      return this.$store.state.instancesModule.ghostStatus["Linked To"];
+    },
+    linksURL() {
+      return this.links.map(link => {
+        const url = link.name.replace(/\//g, ".cioty.com/");
+        link.url = url.toLowerCase();
+        return link;
+      });
+    }
   }
 };
 </script>
