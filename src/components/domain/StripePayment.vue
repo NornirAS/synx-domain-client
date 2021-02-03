@@ -103,7 +103,7 @@ export default {
       return this.$store.state.stripeModule.selectedPlan;
     },
     domains() {
-      return this.$store.state.domainsModule.ownedDomains;
+      return this.$store.state.domainsModule.domains;
     },
     noDomains() {
       return _.isEmpty(this.domains);
