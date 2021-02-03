@@ -12,3 +12,10 @@
     </v-card-actions>
   </v-card>
 </template>
+
+<style scoped>
+.v-card {
+  margin: 0;
+  padding: 0 0 8px 0;
+}
+</style>

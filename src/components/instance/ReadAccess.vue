@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" width="500">
+  <v-dialog v-model="dialog" persistent width="500">
     <template v-slot:activator="{ on, attrs }">
       <v-btn
         class="text-capitalize"
@@ -17,7 +17,21 @@
       <div slot="title">Give read access</div>
       <div slot="body"></div>
       <div slot="action">
-        <v-btn color="primary" text @click="dialog = false">
+        <v-btn
+          @click="dialog = false"
+          class="text-capitalize"
+          color="secondary"
+          text
+        >
+          Cancel
+        </v-btn>
+        <v-btn
+          @click="dialog = false"
+          class="text-capitalize"
+          color="primary"
+          rounded
+          small
+        >
           I accept
         </v-btn>
       </div>
