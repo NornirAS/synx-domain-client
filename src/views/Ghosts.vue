@@ -149,7 +149,8 @@ export default {
       return _.isEmpty(this.services);
     },
     domains() {
-      return localStorage.getItem("domains");
+      const domains = localStorage.getItem("domains");
+      return JSON.parse(domains);
     },
     noDomains() {
       return _.isEmpty(this.domains);
