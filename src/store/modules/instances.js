@@ -2,6 +2,7 @@ const state = {
   instances: [],
   dialog: false,
   selectedGhost: {},
+  ghostStatus: {},
   dialogTitle: ""
 };
 
@@ -9,20 +10,20 @@ const mutations = {
   allInstances(state, payload) {
     state.instances = payload;
   },
-  toggleDialog(state) {
-    state.dialog = !state.dialog;
-  },
   selectGhost(state, payload) {
     state.selectedGhost = Object.assign({}, state.selectedGhost, payload);
   },
-  dialogTitle(state, payload) {
-    state.dialogTitle = payload;
+  addStatus(state, payload) {
+    state.ghostStatus = Object.assign({}, state.ghostStatus, payload);
   }
 };
 
 const actions = {
   SOCKET_all_instances({ commit }, data) {
     commit("allInstances", data);
+  },
+  SOCKET_ghost_status({ commit }, data) {
+    commit("addStatus", data);
   }
 };
 

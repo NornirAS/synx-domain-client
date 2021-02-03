@@ -65,7 +65,7 @@
                 <v-btn
                   class="text-capitalize"
                   color="primary"
-                  @click="e1 = 2"
+                  @click="selectDomain(selectedDomain)"
                   small
                   rounded
                 >
@@ -176,6 +176,7 @@ export default {
   },
   methods: {
     selectDomain(domain) {
+      this.e1 = 2;
       this.selectedDomain = domain;
       this.$store.commit("serviceFormModule/addDomain", domain);
     },

@@ -26,13 +26,27 @@
               </v-btn>
             </v-list-item-subtitle>
           </v-list-item>
-          <v-divider></v-divider>
+        </v-list>
+      </v-card>
+      <v-expansion-panels>
+        <v-expansion-panel>
+          <v-expansion-panel-header>
+            Make data available for external linking?
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <external-linking></external-linking>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+      <!-- <v-divider></v-divider>
           <v-list-item>
             <v-list-item-title
               >Make data available for external linking?</v-list-item-title
             >
-            <v-list-item-subtitle class="font-weight-bold">
-              <external-linking></external-linking>
+            <v-list-item-subtitle class="text-right font-weight-bold">
+              <v-btn color="primary" icon>
+                <v-icon>{{ mdiChevronDown }}</v-icon>
+              </v-btn>
             </v-list-item-subtitle>
           </v-list-item>
           <v-divider></v-divider>
@@ -84,23 +98,23 @@
               </v-btn>
             </v-list-item-subtitle>
           </v-list-item>
-          <v-divider></v-divider>
-        </v-list>
-      </v-card>
+          <v-divider></v-divider> -->
     </div>
   </page-layout>
 </template>
 
 <script>
-import { mdiPlus } from "@mdi/js";
+import { mdiPlus, mdiChevronDown, mdiChevronUp } from "@mdi/js";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import ExternalLinking from "../components/instance/ExternalLinking";
-import ReadAccess from "../components/instance/ReadAccess";
+// import ReadAccess from "../components/instance/ReadAccess";
 export default {
   data() {
     return {
-      mdiPlus
+      mdiPlus,
+      mdiChevronDown,
+      mdiChevronUp
     };
   },
   created() {
@@ -168,7 +182,7 @@ export default {
   components: {
     PageLayout,
     PageTitle,
-    ReadAccess,
+    // ReadAccess,
     ExternalLinking
   }
 };
