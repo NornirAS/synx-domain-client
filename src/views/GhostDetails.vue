@@ -33,7 +33,7 @@
           <v-list-item>
             <v-list-item-title>Read access to data</v-list-item-title>
             <v-list-item-subtitle class="text-right font-weight-bold">
-              <read-access></read-access>
+              <read-access :token="token" :ghost="ghost"></read-access>
             </v-list-item-subtitle>
           </v-list-item>
           <v-divider></v-divider>

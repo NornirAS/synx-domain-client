@@ -15,7 +15,24 @@
 
     <dialog-card>
       <div slot="title">Give read access</div>
-      <div slot="body"></div>
+      <div slot="body">
+        <v-form
+          id="read-access"
+          ref="readAccess"
+          v-model="valid"
+          @submit.prevent="submitForm"
+          lazy-validation
+        >
+          <v-text-field
+            v-model="username"
+            :rules="usernameRules"
+            label="Email of other user"
+            required
+            outlined
+            dense
+          ></v-text-field>
+        </v-form>
+      </div>
       <div slot="action">
         <v-btn
           @click="dialog = false"
@@ -26,7 +43,8 @@
           Cancel
         </v-btn>
         <v-btn
-          @click="dialog = false"
+          type="submit"
+          form="read-access"
           class="text-capitalize"
           color="primary"
           rounded
@@ -43,11 +61,33 @@
 import { mdiPlus } from "@mdi/js";
 import DialogCard from "../DialogCard";
 export default {
+  props: ["token", "ghost"],
   data() {
     return {
       mdiPlus,
+      username: "",
+      valid: false,
+      usernameRules: [
+        v => !!v || "E-mail is required",
+        v => /.+@.+/.test(v) || "E-mail must be valid"
+      ],
       dialog: false
     };
+  },
+  methods: {
+    submitForm() {
+      const isFormValid = this.$refs.readAccess.validate();
+      if (isFormValid) {
+        this.$socket.emit("give_read_access", {
+          domain: this.ghost.domain,
+          service: this.ghost.service,
+          token: this.token,
+          username: this.username,
+          instance: this.ghost.instance
+        });
+        this.dialog = false;
+      }
+    }
   },
   components: {
     DialogCard
