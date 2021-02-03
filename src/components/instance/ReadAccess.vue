@@ -50,7 +50,7 @@
           rounded
           small
         >
-          I accept
+          Confirm
         </v-btn>
       </div>
     </dialog-card>
