@@ -3,13 +3,14 @@
     <template v-slot:default>
       <tbody>
         <tr v-for="(link, index) in linksURL" :key="index">
-          <td class="body-1 font-weight-bold">{{ link.url }}</td>
+          <td class="body-1">{{ link.url }}</td>
           <td>
             <v-switch
               @change="allowDenyLinking(link.name, link.active)"
               v-model="link.active"
               :label="link.active === true ? 'Yes' : 'No'"
               class="float-right"
+              inset
             ></v-switch>
           </td>
         </tr>
