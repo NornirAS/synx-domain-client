@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import _ from "lodash";
 export default {
   props: ["token", "ghost"],
   data() {
@@ -41,12 +42,19 @@ export default {
     links() {
       return this.$store.state.instancesModule.ghostStatus["Linked To"];
     },
+    noLinks() {
+      return _.isEmpty(this.links);
+    },
     linksURL() {
-      return this.links.map(link => {
-        const url = link.name.replace(/\//g, ".cioty.com/");
-        link.url = url.toLowerCase();
-        return link;
-      });
+      if (!this.noLinks) {
+        return this.links.map(link => {
+          const url = link.name.replace(/\//g, ".cioty.com/");
+          link.url = url.toLowerCase();
+          return link;
+        });
+      } else {
+        return [];
+      }
     }
   }
 };
