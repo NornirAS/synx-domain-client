@@ -37,6 +37,14 @@
             <external-linking :token="token" :ghost="ghost"></external-linking>
           </v-expansion-panel-content>
         </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header class="subtitle-1">
+            Read access
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <read-access :token="token" :ghost="ghost"></read-access>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
       </v-expansion-panels>
       <!-- <v-divider></v-divider>
           <v-list-item>
@@ -108,6 +116,7 @@ import { mdiPlus, mdiChevronDown, mdiChevronUp } from "@mdi/js";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import ExternalLinking from "../components/instance/ExternalLinking";
+import ReadAccess from "../components/instance/ReadAccess";
 // import ReadAccess from "../components/instance/ReadAccess";
 export default {
   data() {
@@ -182,7 +191,7 @@ export default {
   components: {
     PageLayout,
     PageTitle,
-    // ReadAccess,
+    ReadAccess,
     ExternalLinking
   }
 };
