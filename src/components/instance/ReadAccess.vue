@@ -1,61 +1,13 @@
 <template>
   <div>
-    <v-dialog v-model="dialog" persistent width="500">
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          class="text-capitalize"
-          color="primary"
-          v-bind="attrs"
-          v-on="on"
-          text
-        >
-          <v-icon small>{{ mdiPlus }}</v-icon>
+    <v-text-field v-model="username" outlined label="E-mail" type="text" dense>
+      <template v-slot:append-outer>
+        <v-btn class="text-capitalize ml-4" color="primary">
+          <v-icon>{{ mdiPlus }}</v-icon>
           Add receiver
         </v-btn>
       </template>
-
-      <dialog-card>
-        <div slot="title">Give read access</div>
-        <div slot="body">
-          <v-form
-            id="read-access"
-            ref="readAccess"
-            v-model="valid"
-            @submit.prevent="submitForm"
-            lazy-validation
-          >
-            <v-text-field
-              v-model="username"
-              :rules="usernameRules"
-              label="Email of other user"
-              required
-              outlined
-              dense
-            ></v-text-field>
-          </v-form>
-        </div>
-        <div slot="action">
-          <v-btn
-            @click="dialog = false"
-            class="text-capitalize"
-            color="secondary"
-            text
-          >
-            Cancel
-          </v-btn>
-          <v-btn
-            type="submit"
-            form="read-access"
-            class="text-capitalize"
-            color="primary"
-            rounded
-            small
-          >
-            Confirm
-          </v-btn>
-        </div>
-      </dialog-card>
-    </v-dialog>
+    </v-text-field>
     <v-simple-table>
       <template v-slot:default>
         <tbody>
@@ -80,7 +32,6 @@
 
 <script>
 import { mdiPlus, mdiTrashCanOutline } from "@mdi/js";
-import DialogCard from "../DialogCard";
 export default {
   props: ["token", "ghost"],
   data() {
@@ -124,9 +75,6 @@ export default {
     usersWithReadAccess() {
       return this.$store.state.instancesModule.ghostStatus["Read Access"];
     }
-  },
-  components: {
-    DialogCard
   }
 };
 </script>

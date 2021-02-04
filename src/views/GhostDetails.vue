@@ -117,7 +117,6 @@ import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import ExternalLinking from "../components/instance/ExternalLinking";
 import ReadAccess from "../components/instance/ReadAccess";
-// import ReadAccess from "../components/instance/ReadAccess";
 export default {
   data() {
     return {
