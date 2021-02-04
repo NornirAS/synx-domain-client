@@ -42,7 +42,11 @@
             Read access
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <read-access :token="token" :ghost="ghost"></read-access>
+            <add-read-access :token="token" :ghost="ghost"></add-read-access>
+            <remove-read-access
+              :token="token"
+              :ghost="ghost"
+            ></remove-read-access>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -116,7 +120,8 @@ import { mdiPlus, mdiChevronDown, mdiChevronUp } from "@mdi/js";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import ExternalLinking from "../components/instance/ExternalLinking";
-import ReadAccess from "../components/instance/ReadAccess";
+import AddReadAccess from "../components/instance/read-access/AddReadAccess";
+import RemoveReadAccess from "../components/instance/read-access/RemoveReadAccess";
 export default {
   data() {
     return {
@@ -190,7 +195,8 @@ export default {
   components: {
     PageLayout,
     PageTitle,
-    ReadAccess,
+    AddReadAccess,
+    RemoveReadAccess,
     ExternalLinking
   }
 };
