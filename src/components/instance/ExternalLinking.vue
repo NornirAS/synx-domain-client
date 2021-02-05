@@ -2,8 +2,8 @@
   <v-simple-table>
     <template v-slot:default>
       <tbody>
-        <tr v-for="(link, index) in linksURL" :key="index">
-          <td class="body-1">{{ link.url }}</td>
+        <tr v-for="(link, index) in links" :key="index">
+          <td class="body-1">{{ link.uri }}</td>
           <td>
             <v-switch
               @change="allowDenyLinking(link.name, link.active)"
@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import _ from "lodash";
 export default {
   props: ["token", "ghost"],
   data() {
@@ -41,20 +40,6 @@ export default {
   computed: {
     links() {
       return this.$store.state.instancesModule.ghostStatus["Linked To"];
-    },
-    noLinks() {
-      return _.isEmpty(this.links);
-    },
-    linksURL() {
-      if (!this.noLinks) {
-        return this.links.map(link => {
-          const url = link.name.replace(/\//g, ".cioty.com/");
-          link.url = url.toLowerCase();
-          return link;
-        });
-      } else {
-        return [];
-      }
     }
   }
 };
