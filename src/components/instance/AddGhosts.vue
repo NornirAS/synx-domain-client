@@ -13,9 +13,8 @@
           v-on="on"
           outlined
         >
-          <strong>{{ domain }}</strong>
-          .cioty.com/
-          <strong>{{ service }}</strong>
+          <span class="font-weight-bold">{{ domain }}</span
+          >.cioty.com/<span class="font-weight-bold">{{ service }}</span>
           <v-icon right large>{{ mdiMenuDown }}</v-icon>
         </v-btn>
       </template>

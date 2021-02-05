@@ -58,9 +58,10 @@
         >
           <template v-slot:[`item.ghosts`]="{ item }">
             <div class="body-1 text-lowercase">
-              <span class="font-weight-bold">{{ item.domain }}</span>
-              .cioty.com/
-              <span class="font-weight-bold">{{ item.service }}</span>
+              <span class="font-weight-bold">{{ item.domain }}</span
+              >.cioty.com/<span class="font-weight-bold">{{
+                item.service
+              }}</span>
               <span class="font-weight-bold">#{{ item.instance }}</span>
             </div>
           </template>
