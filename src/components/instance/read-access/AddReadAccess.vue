@@ -7,7 +7,14 @@
     lazy-validation
     class="d-flex justify-start"
   >
-    <v-text-field v-model="username" outlined label="E-mail" type="text" dense>
+    <v-text-field
+      v-model="username"
+      :rules="usernameRules"
+      outlined
+      label="E-mail"
+      type="text"
+      dense
+    >
     </v-text-field>
     <v-btn
       class="text-capitalize ml-4"

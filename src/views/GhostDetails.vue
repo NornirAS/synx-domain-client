@@ -73,16 +73,11 @@
         :ghost="ghost"
         :ghostURI="ghostURI"
       ></kill-session>
-      <v-btn
-        class="text-capitalize mt-4"
-        color="primary"
-        rounded
-        outlined
-        block
-        small
-      >
-        Change owner
-      </v-btn>
+      <transfer-ownership
+        :token="token"
+        :ghost="ghost"
+        :ghostURI="ghostURI"
+      ></transfer-ownership>
       <v-btn
         class="text-capitalize mt-4"
         color="primary"
@@ -107,6 +102,7 @@ import RemoveReadAccess from "../components/instance/read-access/RemoveReadAcces
 import AddSecondaryService from "../components/instance/secondary-service/AddSecondaryService";
 import RemoveSecondaryService from "../components/instance/secondary-service/RemoveSecondaryService";
 import KillSession from "../components/instance/KillSession";
+import TransferOwnership from "../components/instance/TransferOwnership";
 export default {
   data() {
     return {
@@ -185,7 +181,8 @@ export default {
     ExternalLinking,
     AddSecondaryService,
     RemoveSecondaryService,
-    KillSession
+    KillSession,
+    TransferOwnership
   }
 };
 </script>
