@@ -68,16 +68,11 @@
     </div>
     <div slot="page-content-right">
       <div class="title">Other Actions</div>
-      <v-btn
-        class="text-capitalize mt-4"
-        color="primary"
-        rounded
-        outlined
-        block
-        small
-      >
-        Kill session
-      </v-btn>
+      <kill-session
+        :token="token"
+        :ghost="ghost"
+        :ghostURI="ghostURI"
+      ></kill-session>
       <v-btn
         class="text-capitalize mt-4"
         color="primary"
@@ -111,6 +106,7 @@ import AddReadAccess from "../components/instance/read-access/AddReadAccess";
 import RemoveReadAccess from "../components/instance/read-access/RemoveReadAccess";
 import AddSecondaryService from "../components/instance/secondary-service/AddSecondaryService";
 import RemoveSecondaryService from "../components/instance/secondary-service/RemoveSecondaryService";
+import KillSession from "../components/instance/KillSession";
 export default {
   data() {
     return {
@@ -188,7 +184,8 @@ export default {
     RemoveReadAccess,
     ExternalLinking,
     AddSecondaryService,
-    RemoveSecondaryService
+    RemoveSecondaryService,
+    KillSession
   }
 };
 </script>

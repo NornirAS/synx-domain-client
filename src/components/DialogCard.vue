@@ -18,4 +18,7 @@
   margin: 0;
   padding: 0 0 8px 0;
 }
+.v-dialog > .v-card > .v-card__text {
+  padding: 8px 24px;
+}
 </style>
