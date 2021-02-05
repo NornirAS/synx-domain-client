@@ -49,6 +49,21 @@
             ></remove-read-access>
           </v-expansion-panel-content>
         </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header class="subtitle-1">
+            Secondary Service
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <add-secondary-service
+              :token="token"
+              :ghost="ghost"
+            ></add-secondary-service>
+            <remove-secondary-service
+              :token="token"
+              :ghost="ghost"
+            ></remove-secondary-service>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
       </v-expansion-panels>
       <!-- <v-divider></v-divider>
           <v-list-item>
@@ -122,6 +137,8 @@ import PageLayout from "../components/PageLayout";
 import ExternalLinking from "../components/instance/ExternalLinking";
 import AddReadAccess from "../components/instance/read-access/AddReadAccess";
 import RemoveReadAccess from "../components/instance/read-access/RemoveReadAccess";
+import AddSecondaryService from "../components/instance/secondary-service/AddSecondaryService";
+import RemoveSecondaryService from "../components/instance/secondary-service/RemoveSecondaryService";
 export default {
   data() {
     return {
@@ -197,7 +214,9 @@ export default {
     PageTitle,
     AddReadAccess,
     RemoveReadAccess,
-    ExternalLinking
+    ExternalLinking,
+    AddSecondaryService,
+    RemoveSecondaryService
   }
 };
 </script>
