@@ -51,6 +51,9 @@ const mutations = {
       state.ghostStatus["Secondary Service"],
       updatedSecondaryServiceObject
     );
+  },
+  resetGhostStatus(state) {
+    state.ghostStatus = {};
   }
 };
 

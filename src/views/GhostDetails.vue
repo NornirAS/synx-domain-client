@@ -116,6 +116,9 @@ export default {
       instance: this.instance
     });
   },
+  beforeDestroy() {
+    this.$store.commit("instancesModule/resetGhostStatus");
+  },
   methods: {
     confirm(item) {
       this.$socket.emit(
