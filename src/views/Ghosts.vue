@@ -8,7 +8,7 @@
     <div slot="page-content">
       <domain-empty v-if="noDomains && noServices"></domain-empty>
       <ghosts-empty v-if="!noDomains && noServices"></ghosts-empty>
-      <add-ghosts v-if="!noDomains && !noServices"></add-ghosts>
+      <add-ghost v-if="!noDomains && !noServices"></add-ghost>
       <v-card v-if="!noInstances">
         <v-row>
           <v-col md="9">
@@ -91,7 +91,7 @@ import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import DomainEmpty from "../components/empty-page/DomainsEmpty";
 import GhostsEmpty from "../components/empty-page/GhostsEmpty";
-import AddGhosts from "../components/ghost/AddGhosts";
+import AddGhost from "../components/ghost/AddGhost";
 export default {
   data() {
     return {
@@ -187,7 +187,7 @@ export default {
     PageTitle,
     DomainEmpty,
     GhostsEmpty,
-    AddGhosts
+    AddGhost
   }
 };
 </script>
