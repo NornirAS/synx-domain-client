@@ -5,9 +5,8 @@
         v-bind="attrs"
         v-on="on"
         class="text-capitalize mt-4"
-        color="primary"
+        color="secondary"
         rounded
-        outlined
         block
         small
       >
