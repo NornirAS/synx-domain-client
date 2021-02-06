@@ -4,8 +4,7 @@ const state = {
   selectedGhost: {},
   ghostLinkedTo: [],
   ghostReadAccess: [],
-  ghostSecondaryService: [],
-  dialogTitle: ""
+  ghostSecondaryService: []
 };
 
 const mutations = {

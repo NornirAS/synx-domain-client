@@ -91,7 +91,7 @@ import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import DomainEmpty from "../components/empty-page/DomainsEmpty";
 import GhostsEmpty from "../components/empty-page/GhostsEmpty";
-import AddGhosts from "../components/instance/AddGhosts";
+import AddGhosts from "../components/ghost/AddGhosts";
 export default {
   data() {
     return {

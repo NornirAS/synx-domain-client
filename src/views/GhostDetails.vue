@@ -108,7 +108,7 @@ export default {
     };
   },
   created() {
-    this.$socket.emit("instance_status", {
+    this.$socket.emit("get_ghost_status", {
       domain: this.domain,
       token: this.token,
       username: this.username,
@@ -168,15 +168,15 @@ export default {
     }
   },
   watch: {
-    successMessage() {
-      this.$socket.emit("instance_status", {
-        domain: this.domain,
-        token: this.token,
-        username: this.username,
-        service: this.service,
-        instance: this.instance
-      });
-    }
+    // successMessage() {
+    //   this.$socket.emit("instance_status", {
+    //     domain: this.domain,
+    //     token: this.token,
+    //     username: this.username,
+    //     service: this.service,
+    //     instance: this.instance
+    //   });
+    // }
   },
   components: {
     PageLayout,
