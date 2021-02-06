@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     usersWithReadAccess() {
-      return this.$store.state.instancesModule.ghostStatus["Read Access"];
+      return this.$store.state.instancesModule.ghostReadAccess;
     }
   }
 };

@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     secondaryServices() {
-      return this.$store.state.instancesModule.ghostStatus["Secondary Service"];
+      return this.$store.state.instancesModule.ghostSecondaryService;
     }
   }
 };

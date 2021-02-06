@@ -169,7 +169,13 @@ export default {
   },
   watch: {
     successMessage() {
-      this.$socket.emit("look_for_new_instances", this.token, this.username);
+      this.$socket.emit("instance_status", {
+        domain: this.domain,
+        token: this.token,
+        username: this.username,
+        service: this.service,
+        instance: this.instance
+      });
     }
   },
   components: {

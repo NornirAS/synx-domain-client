@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     links() {
-      return this.$store.state.instancesModule.ghostStatus["Linked To"];
+      return this.$store.state.instancesModule.ghostLinkedTo;
     }
   }
 };

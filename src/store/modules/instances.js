@@ -2,7 +2,9 @@ const state = {
   instances: [],
   dialog: false,
   selectedGhost: {},
-  ghostStatus: {},
+  ghostLinkedTo: [],
+  ghostReadAccess: [],
+  ghostSecondaryService: [],
   dialogTitle: ""
 };
 
@@ -19,18 +21,10 @@ const mutations = {
       link.uri = linkNameLowerCase.replace(/\//g, ".cioty.com/");
       return link;
     });
-    state.ghostStatus["Linked To"] = Object.assign(
-      {},
-      state.ghostStatus["Linked To"],
-      updatedExternalLinkingObject
-    );
+    state.ghostLinkedTo = updatedExternalLinkingObject;
   },
   addReadAccessToGhostStatus(state, payload) {
-    state.ghostStatus["Read Access"] = Object.assign(
-      {},
-      state.ghostStatus["Read Access"],
-      payload
-    );
+    state.ghostReadAccess = payload;
   },
   addSecondaryServiceToGhostStatus(state, payload) {
     const updatedSecondaryServiceObject = payload.map(service => {
@@ -46,14 +40,12 @@ const mutations = {
       service.uri = `${refDomain[0]}.cioty.com/${refService[0]}#${refObjectID[0]}`.toLowerCase();
       return service;
     });
-    state.ghostStatus["Secondary Service"] = Object.assign(
-      {},
-      state.ghostStatus["Secondary Service"],
-      updatedSecondaryServiceObject
-    );
+    state.ghostSecondaryService = updatedSecondaryServiceObject;
   },
   resetGhostStatus(state) {
-    state.ghostStatus = {};
+    state.ghostLinkedTo = [];
+    state.ghostReadAccess = [];
+    state.ghostSecondaryService = [];
   }
 };
 
