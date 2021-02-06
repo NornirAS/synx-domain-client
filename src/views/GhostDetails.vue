@@ -91,14 +91,14 @@
 import { mdiPlus, mdiChevronDown, mdiChevronUp } from "@mdi/js";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
-import ExternalLinking from "../components/instance/ExternalLinking";
-import AddReadAccess from "../components/instance/read-access/AddReadAccess";
-import RemoveReadAccess from "../components/instance/read-access/RemoveReadAccess";
-import AddSecondaryService from "../components/instance/secondary-service/AddSecondaryService";
-import RemoveSecondaryService from "../components/instance/secondary-service/RemoveSecondaryService";
-import KillSession from "../components/instance/KillSession";
-import TransferOwnership from "../components/instance/TransferOwnership";
-import RemoveGhost from "../components/instance/RemoveGhost";
+import ExternalLinking from "../components/ghost/ExternalLinking";
+import AddReadAccess from "../components/ghost/read-access/AddReadAccess";
+import RemoveReadAccess from "../components/ghost/read-access/RemoveReadAccess";
+import AddSecondaryService from "../components/ghost/secondary-service/AddSecondaryService";
+import RemoveSecondaryService from "../components/ghost/secondary-service/RemoveSecondaryService";
+import KillSession from "../components/ghost/KillSession";
+import TransferOwnership from "../components/ghost/TransferOwnership";
+import RemoveGhost from "../components/ghost/RemoveGhost";
 export default {
   data() {
     return {
