@@ -11,6 +11,7 @@
     </v-col>
     <v-col md="2" class="mt-md-16 pt-md-8">
       <slot name="page-content-right"></slot>
+      <slot name="alert"></slot>
     </v-col>
   </v-row>
 </template>
