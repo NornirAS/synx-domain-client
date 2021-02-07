@@ -50,10 +50,6 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
-.v-application {
-  font-family: "Open Sans", sans-serif !important;
-}
 .v-main {
   height: 100vh;
   background-color: var(--v-background-base);
