@@ -20,7 +20,7 @@
         <v-col cols="12" sm="6">
           <v-text-field
             v-model="search"
-            append-icon="mdi-magnify"
+            :append-icon="mdiMagnify"
             label="Search"
             hide-details
             outlined
@@ -100,7 +100,7 @@
 
 <script>
 import _ from "lodash";
-import { mdiMenuDown, mdiChevronRight } from "@mdi/js";
+import { mdiMagnify, mdiMenuDown, mdiChevronRight } from "@mdi/js";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import ServicesEmpty from "../components/empty-page/ServicesEmpty";
@@ -109,6 +109,7 @@ import NoMatch from "../components/empty-page/NoMatch";
 export default {
   data() {
     return {
+      mdiMagnify,
       mdiMenuDown,
       mdiChevronRight,
       search: "",
