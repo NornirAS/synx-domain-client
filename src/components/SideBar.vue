@@ -3,7 +3,7 @@
     <router-link :to="{ name: 'home' }">
       <v-img
         alt="cioty"
-        src="../assets/CIOTY-final-Logo.png"
+        src="../assets/CIOTY-final-Logo.webp"
         transition="scale-transition"
         class="sidebar-logo"
       />
@@ -45,7 +45,7 @@
         <img
           align="center"
           alt="SynxDomainLogo"
-          src="../assets/synx-domain-logo.png"
+          src="../assets/synx-domain-logo.webp"
           width="20px"
           height="20px"
         />

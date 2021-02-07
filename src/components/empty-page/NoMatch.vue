@@ -5,7 +5,7 @@
       <v-img
         alt="emptyBox"
         contain
-        src="../../assets/blank-canvas.png"
+        src="../../assets/blank-canvas.webp"
         transition="scale-transition"
         height="300px"
       >

@@ -21,7 +21,7 @@
         v-if="domainRoute"
         alt="connectedWorld"
         contain
-        src="../../assets/connected-world.png"
+        src="../../assets/connected-world.webp"
         transition="scale-transition"
         height="300px"
       >
@@ -30,7 +30,7 @@
         v-if="serviceRoute"
         alt="addToCart"
         contain
-        src="../../assets/add-to-cart.png"
+        src="../../assets/add-to-cart.webp"
         transition="scale-transition"
         height="300px"
       >
@@ -39,7 +39,7 @@
         v-if="ghostRoute"
         alt="productTeardown"
         contain
-        src="../../assets/product-teardown.png"
+        src="../../assets/product-teardown.webp"
         transition="scale-transition"
         height="300px"
       >

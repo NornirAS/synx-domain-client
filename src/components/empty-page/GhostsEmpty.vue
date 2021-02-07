@@ -19,7 +19,7 @@
       <v-img
         alt="productTeardown"
         contain
-        src="../../assets/product-teardown.png"
+        src="../../assets/product-teardown.webp"
         transition="scale-transition"
         height="300px"
       >

@@ -3,7 +3,7 @@
     <div align="center">
       <v-img
         alt="cioty"
-        src="../../assets/CIOTY-final-Logo.png"
+        src="../../assets/CIOTY-final-Logo.webp"
         transition="scale-transition"
         class="image-center"
       />
@@ -28,7 +28,7 @@
         <v-img
           alt="runningWild"
           contain
-          src="../../assets/running-wild.png"
+          src="../../assets/running-wild.webp"
           transition="scale-transition"
           height="300px"
         >

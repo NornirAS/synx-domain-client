@@ -17,7 +17,7 @@
       <v-img
         alt="emptyBox"
         contain
-        src="../../assets/empty-box.png"
+        src="../../assets/empty-box.webp"
         transition="scale-transition"
         height="300px"
       >

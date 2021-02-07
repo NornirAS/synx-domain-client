@@ -6,7 +6,7 @@
         alt="Cioty"
         class="shrink mr-2"
         contain
-        src="../assets/cioty-logo-white.png"
+        src="../assets/cioty-logo-white.webp"
         transition="scale-transition"
         width="60"
       />
@@ -54,7 +54,7 @@ p {
   color: #ffffff;
 }
 .bg {
-  background: url("../assets/cioty-background.png") no-repeat center fixed;
+  background: url("../assets/cioty-background.webp") no-repeat center fixed;
   background-size: cover;
   height: 100%;
 }
