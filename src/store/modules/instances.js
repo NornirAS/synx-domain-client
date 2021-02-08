@@ -1,6 +1,6 @@
 const state = {
   instances: [],
-  dialog: false,
+  ghostsToApprove: [],
   selectedGhost: {},
   ghostLinkedTo: [],
   ghostReadAccess: [],
@@ -9,7 +9,14 @@ const state = {
 
 const mutations = {
   allInstances(state, payload) {
-    state.instances = payload;
+    if (payload) {
+      state.instances = payload;
+    }
+  },
+  ghostsToApprove(state, payload) {
+    if (payload) {
+      state.ghostsToApprove = payload;
+    }
   },
   selectGhost(state, payload) {
     state.selectedGhost = Object.assign({}, state.selectedGhost, payload);
@@ -51,6 +58,9 @@ const mutations = {
 const actions = {
   SOCKET_all_instances({ commit }, data) {
     commit("allInstances", data);
+  },
+  SOCKET_ghosts_to_approve({ commit }, data) {
+    commit("ghostsToApprove", data);
   },
   SOCKET_ghost_status({ commit }, data) {
     commit("addExternalLinkingToGhostStatus", data["Linked To"]);

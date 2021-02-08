@@ -118,6 +118,10 @@ export default {
   },
   created() {
     this.$socket.emit("get_all_instances", this.token);
+    this.$socket.emit("look_for_new_ghosts", {
+      token: this.token,
+      username: this.username
+    });
   },
   methods: {
     selectGhosts(item) {
@@ -142,6 +146,9 @@ export default {
     token() {
       return this.$store.state.authModule.idToken;
     },
+    username() {
+      return this.$store.state.authModule.username;
+    },
     services() {
       const services = localStorage.getItem("services");
       return JSON.parse(services);
@@ -155,6 +162,12 @@ export default {
     },
     noDomains() {
       return _.isEmpty(this.domains);
+    },
+    ghostsToApprove() {
+      return this.$store.state.instancesModule.ghostsToApprove;
+    },
+    noGhostsToApprove() {
+      return _.isEmpty(this.ghostsToApprove);
     },
     instances() {
       return this.$store.state.instancesModule.instances;
