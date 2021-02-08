@@ -129,28 +129,6 @@ export default {
   beforeDestroy() {
     this.$store.commit("instancesModule/resetGhostStatus");
   },
-  methods: {
-    confirm(item) {
-      this.$socket.emit(
-        "confirm_instance",
-        item.domain,
-        item.service,
-        this.token,
-        this.username,
-        item.instance
-      );
-    },
-    deny(item) {
-      this.$socket.emit(
-        "deny_instance",
-        item.domain,
-        item.service,
-        this.token,
-        this.username,
-        item.instance
-      );
-    }
-  },
   computed: {
     token() {
       return this.$store.state.authModule.idToken;
@@ -175,17 +153,6 @@ export default {
     },
     alertsSuccess() {
       return this.$store.state.alarmModule.alertsSuccess;
-    }
-  },
-  watch: {
-    giveReadAccessSuccess() {
-      // this.$socket.emit("instance_status", {
-      //   domain: this.domain,
-      //   token: this.token,
-      //   username: this.username,
-      //   service: this.service,
-      //   instance: this.instance
-      // });
     }
   },
   components: {

@@ -15,7 +15,10 @@ const mutations = {
   },
   ghostsToApprove(state, payload) {
     if (payload) {
-      state.ghostsToApprove = payload;
+      state.ghostsToApprove = payload.map(item => {
+        item.approve = true;
+        return item;
+      });
     }
   },
   selectGhost(state, payload) {
@@ -69,9 +72,20 @@ const actions = {
   }
 };
 
+const getters = {
+  mergedGhostArray({ instances, ghostsToApprove }) {
+    if (ghostsToApprove.length >= 1) {
+      return [...ghostsToApprove, ...instances];
+    } else {
+      return instances;
+    }
+  }
+};
+
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
+  getters
 };

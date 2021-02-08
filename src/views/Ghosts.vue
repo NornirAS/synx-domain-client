@@ -9,7 +9,7 @@
       <domain-empty v-if="noDomains && noServices"></domain-empty>
       <ghosts-empty v-if="!noDomains && noServices"></ghosts-empty>
       <add-ghost v-if="!noDomains && !noServices"></add-ghost>
-      <v-card v-if="!noInstances">
+      <v-card v-if="!noGhosts">
         <v-row>
           <v-col md="9">
             <v-text-field
@@ -19,7 +19,7 @@
               hide-details
               outlined
               dense
-              :disabled="noInstances"
+              :disabled="noGhosts"
             ></v-text-field>
           </v-col>
           <v-col md="3">
@@ -48,7 +48,7 @@
           </v-col>
         </v-row>
         <v-data-table
-          v-if="!noInstances"
+          v-if="!noGhosts"
           @page-count="pageCount = $event"
           :headers="headers"
           :items="searchFilter"
@@ -66,15 +66,36 @@
             </div>
           </template>
           <template v-slot:[`item.details`]="{ item }">
-            <v-btn @click="ghostDetails(item)" class="float-right" icon small>
-              <v-icon color="primary">
-                {{ mdiChevronRight }}
-              </v-icon>
-            </v-btn>
+            <div v-if="item.approve" class="float-right">
+              <v-btn
+                @click="decline(item)"
+                class="text-capitalize"
+                color="secondary"
+                text
+                x-small
+                >Decline
+                <v-icon x-small>{{ mdiClose }}</v-icon>
+              </v-btn>
+              <v-btn
+                @click="accept(item)"
+                class="text-capitalize"
+                color="primary"
+                rounded
+                x-small
+                >Accept
+              </v-btn>
+            </div>
+            <div v-else>
+              <v-btn @click="ghostDetails(item)" class="float-right" icon small>
+                <v-icon color="primary">
+                  {{ mdiChevronRight }}
+                </v-icon>
+              </v-btn>
+            </div>
           </template>
         </v-data-table>
         <v-pagination
-          v-if="!noInstances && !instancesLengthLessItemsPerPage"
+          v-if="!noGhosts && !ghostsLengthLessItemsPerPage"
           v-model="page"
           :length="pageCount"
           light
@@ -86,7 +107,7 @@
 
 <script>
 import _ from "lodash";
-import { mdiMenuDown, mdiChevronRight } from "@mdi/js";
+import { mdiMenuDown, mdiChevronRight, mdiClose } from "@mdi/js";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import DomainEmpty from "../components/empty-page/DomainsEmpty";
@@ -97,6 +118,7 @@ export default {
     return {
       mdiMenuDown,
       mdiChevronRight,
+      mdiClose,
       search: "",
       page: 1,
       pageCount: 0,
@@ -140,6 +162,26 @@ export default {
           instance
         }
       });
+    },
+    accept(item) {
+      this.$socket.emit(
+        "accept_ghost",
+        item.domain,
+        item.service,
+        this.token,
+        this.username,
+        item.instance
+      );
+    },
+    decline(item) {
+      this.$socket.emit(
+        "decline_ghost",
+        item.domain,
+        item.service,
+        this.token,
+        this.username,
+        item.instance
+      );
     }
   },
   computed: {
@@ -163,23 +205,20 @@ export default {
     noDomains() {
       return _.isEmpty(this.domains);
     },
-    ghostsToApprove() {
-      return this.$store.state.instancesModule.ghostsToApprove;
-    },
-    noGhostsToApprove() {
-      return _.isEmpty(this.ghostsToApprove);
+    ghosts() {
+      return this.$store.getters["instancesModule/mergedGhostArray"];
     },
     instances() {
       return this.$store.state.instancesModule.instances;
     },
-    noInstances() {
-      return _.isEmpty(this.instances);
+    noGhosts() {
+      return _.isEmpty(this.ghosts);
     },
-    instancesLengthLessItemsPerPage() {
-      return this.instances.length <= this.itemsPerPage;
+    ghostsLengthLessItemsPerPage() {
+      return this.ghosts.length <= this.itemsPerPage;
     },
     searchFilter() {
-      return this.instances.filter(
+      return this.ghosts.filter(
         instance =>
           instance.domain.toLowerCase().indexOf(this.search.toLowerCase()) >
             -1 ||
@@ -188,11 +227,6 @@ export default {
     },
     successMessage() {
       return this.$store.state.alarmModule.successMessage;
-    }
-  },
-  watch: {
-    successMessage() {
-      this.$socket.emit("get_all_instances", this.token);
     }
   },
   components: {
