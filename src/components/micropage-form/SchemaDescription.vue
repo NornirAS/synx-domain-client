@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import InputCard from "../FormInputCard";
 export default {
   data() {
     return {
@@ -64,7 +63,7 @@ export default {
     }
   },
   components: {
-    InputCard
+    InputCard: () => import("../FormInputCard")
   }
 };
 </script>

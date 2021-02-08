@@ -14,10 +14,6 @@
 </template>
 
 <script>
-import MicropageTitle from "./MicropageTitle";
-import ServiceDescription from "./ServiceDescription";
-import SchemaDescription from "./SchemaDescription";
-import ServiceKeywords from "./ServiceKeywords";
 export default {
   data() {
     return {
@@ -30,12 +26,11 @@ export default {
       this.$store.commit("serviceFormModule/isMicropageFormValid", isFormValid);
     }
   },
-  computed: {},
   components: {
-    MicropageTitle,
-    ServiceDescription,
-    SchemaDescription,
-    ServiceKeywords
+    MicropageTitle: () => import("./MicropageTitle"),
+    ServiceDescription: () => import("./ServiceDescription"),
+    SchemaDescription: () => import("./SchemaDescription"),
+    ServiceKeywords: () => import("./ServiceKeywords")
   }
 };
 </script>
