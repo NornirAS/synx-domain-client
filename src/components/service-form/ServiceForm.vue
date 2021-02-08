@@ -19,13 +19,6 @@
 </template>
 
 <script>
-import ServiceName from "./ServiceName";
-import ServiceSchema from "./ServiceSchema";
-import ServiceInlinePreScript from "./ServiceInlinePreScript";
-import ServiceInlinePostScript from "./ServiceInlinePostScript";
-import ServiceCommand from "./ServiceCommand";
-import ServiceWebJs from "./ServiceWebJs";
-import ServiceTimeout from "./ServiceTimeout";
 export default {
   data() {
     return {
@@ -44,13 +37,13 @@ export default {
     }
   },
   components: {
-    ServiceName,
-    ServiceSchema,
-    ServiceInlinePreScript,
-    ServiceInlinePostScript,
-    ServiceCommand,
-    ServiceTimeout,
-    ServiceWebJs
+    ServiceName: () => import("./ServiceName"),
+    ServiceSchema: () => import("./ServiceSchema"),
+    ServiceInlinePreScript: () => import("./ServiceInlinePreScript"),
+    ServiceInlinePostScript: () => import("./ServiceInlinePostScript"),
+    ServiceCommand: () => import("./ServiceCommand"),
+    ServiceTimeout: () => import("./ServiceWebJs"),
+    ServiceWebJs: () => import("./ServiceTimeout")
   }
 };
 </script>

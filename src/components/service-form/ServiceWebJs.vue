@@ -3,7 +3,7 @@
     <div slot="title">Web JS</div>
     <div slot="subtitle">
       Add HTML or JS to dynamically create a web page with data when you do a
-      post reuest(synx-cat).
+      post request(synx-cat).
     </div>
     <v-textarea
       v-model="webJS"
@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import InputCard from "../FormInputCard";
 export default {
   data() {
     return {
@@ -47,7 +46,7 @@ export default {
     }
   },
   components: {
-    InputCard
+    InputCard: () => import("../FormInputCard")
   }
 };
 </script>
