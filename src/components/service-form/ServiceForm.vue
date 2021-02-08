@@ -42,8 +42,8 @@ export default {
     ServiceInlinePreScript: () => import("./ServiceInlinePreScript"),
     ServiceInlinePostScript: () => import("./ServiceInlinePostScript"),
     ServiceCommand: () => import("./ServiceCommand"),
-    ServiceTimeout: () => import("./ServiceWebJs"),
-    ServiceWebJs: () => import("./ServiceTimeout")
+    ServiceWebJs: () => import("./ServiceWebJs"),
+    ServiceTimeout: () => import("./ServiceTimeout")
   }
 };
 </script>

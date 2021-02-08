@@ -143,10 +143,6 @@
 <script>
 import _ from "lodash";
 import { mdiMenuDown } from "@mdi/js";
-import PageTitle from "../components/PageTitle";
-import PageLayout from "../components/PageLayout";
-import ServiceForm from "../components/service-form/ServiceForm";
-import MicropageForm from "../components/micropage-form/MicropageForm";
 export default {
   data() {
     return {
@@ -316,10 +312,10 @@ export default {
     }
   },
   components: {
-    PageLayout,
-    PageTitle,
-    ServiceForm,
-    MicropageForm
+    PageLayout: () => import("../components/PageLayout"),
+    PageTitle: () => import("../components/PageTitle"),
+    ServiceForm: () => import("../components/service-form/ServiceForm"),
+    MicropageForm: () => import("../components/micropage-form/MicropageForm")
   }
 };
 </script>
