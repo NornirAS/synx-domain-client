@@ -80,7 +80,6 @@
 
 <script>
 import { mdiSwapHorizontal } from "@mdi/js";
-import DialogCard from "../DialogCard";
 export default {
   props: ["token", "ghost", "ghostURI"],
   data() {
@@ -118,7 +117,7 @@ export default {
     }
   },
   components: {
-    DialogCard
+    DialogCard: () => import("../DialogCard")
   }
 };
 </script>
