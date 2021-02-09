@@ -1,6 +1,6 @@
 <template>
   <input-card>
-    <div slot="title">Service Description*</div>
+    <div slot="title">Description*</div>
     <div slot="subtitle">
       In order for the service to be found with Draape and used by others, a
       good description is recommended. What kind of data does the service
@@ -40,15 +40,12 @@ export default {
   },
   methods: {
     addDescription() {
-      this.$store.commit(
-        "micropageFormModule/addDescription",
-        this.description
-      );
+      this.$store.commit("serviceFormModule/addDescription", this.description);
     }
   },
   computed: {
     serviceDescription() {
-      return this.$store.state.micropageFormModule.serviceDescription;
+      return this.$store.state.serviceFormModule.description;
     }
   },
   components: {

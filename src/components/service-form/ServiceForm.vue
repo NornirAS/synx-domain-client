@@ -7,6 +7,8 @@
     lazy-validation
   >
     <service-name></service-name>
+    <service-description></service-description>
+    <service-keywords></service-keywords>
     <service-schema></service-schema>
     <service-inline-pre-script v-if="isValidLinks"></service-inline-pre-script>
     <service-inline-post-script
@@ -38,6 +40,8 @@ export default {
   },
   components: {
     ServiceName: () => import("./ServiceName"),
+    ServiceDescription: () => import("./ServiceDescription"),
+    ServiceKeywords: () => import("./ServiceKeywords"),
     ServiceSchema: () => import("./ServiceSchema"),
     ServiceInlinePreScript: () => import("./ServiceInlinePreScript"),
     ServiceInlinePostScript: () => import("./ServiceInlinePostScript"),

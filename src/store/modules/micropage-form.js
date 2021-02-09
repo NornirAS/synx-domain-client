@@ -1,7 +1,8 @@
 const state = {
-  description: "",
+  serviceDescription: "",
   schemaDescription: "",
-  imageUrl: ""
+  imageUrl: "",
+  isMicropageFormValid: false
 };
 
 const mutations = {
@@ -13,6 +14,9 @@ const mutations = {
   },
   addImageUrl(state, imageUrl) {
     state.imageUrl = imageUrl;
+  },
+  isMicropageFormValid(state, payload) {
+    state.isMicropageFormValid = payload;
   }
 };
 

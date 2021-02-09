@@ -40,7 +40,7 @@ export default {
   methods: {
     addDescription() {
       this.$store.commit(
-        "serviceFormModule/addSchemaDescription",
+        "micropageFormModule/addSchemaDescription",
         this.description
       );
     }

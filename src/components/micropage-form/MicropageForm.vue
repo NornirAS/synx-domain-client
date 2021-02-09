@@ -6,10 +6,10 @@
     @submit.prevent="submitMicropageForm"
     lazy-validation
   >
-    <micropage-title></micropage-title>
+    <!-- <micropage-title></micropage-title> -->
+    <service-image></service-image>
     <service-description></service-description>
     <schema-description></schema-description>
-    <service-keywords></service-keywords>
   </v-form>
 </template>
 
@@ -23,14 +23,17 @@ export default {
   methods: {
     submitMicropageForm() {
       const isFormValid = this.$refs.micropageForm.validate();
-      this.$store.commit("serviceFormModule/isMicropageFormValid", isFormValid);
+      this.$store.commit(
+        "micropageFormModule/isMicropageFormValid",
+        isFormValid
+      );
     }
   },
   components: {
-    MicropageTitle: () => import("./MicropageTitle"),
+    // MicropageTitle: () => import("./MicropageTitle"),
+    ServiceImage: () => import("./ServiceImage"),
     ServiceDescription: () => import("./ServiceDescription"),
-    SchemaDescription: () => import("./SchemaDescription"),
-    ServiceKeywords: () => import("./ServiceKeywords")
+    SchemaDescription: () => import("./SchemaDescription")
   }
 };
 </script>

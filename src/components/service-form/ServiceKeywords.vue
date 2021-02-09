@@ -56,7 +56,10 @@ export default {
     };
   },
   mounted() {
-    this.keywords = this.serviceKeywords.split(" ");
+    const isNotEmpty = this.serviceKeywords.length >= 1;
+    if (isNotEmpty) {
+      this.keywords = this.serviceKeywords.split(" ");
+    }
   },
   methods: {
     add() {

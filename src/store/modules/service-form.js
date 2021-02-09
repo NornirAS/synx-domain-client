@@ -2,21 +2,17 @@ const state = {
   // service
   domain: "",
   name: "",
+  description: "",
+  keywords: [],
   schema: "<RTW>\n</RTW>",
   inlinePreScript: "",
   inlinePostScript: "",
   command: "<CMD>\n</CMD>",
   webJS: "",
   timeout: "30",
-  // micropage
-  description: "",
-  schemaDescription: "",
-  imageUrl: "",
-  keywords: "",
   // other
   isValidLinks: false,
-  isServiceFormValid: false,
-  isMicropageFormValid: false
+  isServiceFormValid: false
 };
 
 const mutations = {
@@ -25,6 +21,12 @@ const mutations = {
   },
   addName(state, payload) {
     state.name = payload;
+  },
+  addDescription(state, payload) {
+    state.description = payload;
+  },
+  addKeywords(state, payload) {
+    state.keywords = payload;
   },
   addSchema(state, payload) {
     state.schema = payload;
@@ -44,18 +46,6 @@ const mutations = {
   setTimeout(state, payload) {
     state.timeout = payload;
   },
-  addDescription(state, payload) {
-    state.description = payload;
-  },
-  addSchemaDescription(state, payload) {
-    state.schemaDescription = payload;
-  },
-  addImageUrl(state, payload) {
-    state.imageUrl = payload;
-  },
-  addKeywords(state, payload) {
-    state.keywords = payload;
-  },
   editService(state, service) {
     state.domain = service.domain;
     state.name = service.serviceName;
@@ -72,13 +62,12 @@ const mutations = {
     state.domain = "";
     state.name = "";
     state.description = "";
-    state.keywords = "";
+    state.keywords = [];
     state.schema = "<RTW>\n</RTW>";
     state.command = "<CMD>\n</CMD>";
     state.inlinePreScript = "";
     state.inlinePostScript = "";
     state.webJS = "";
-    state.schemaDescription = "";
     state.timeout = "30";
   },
   isValidLinks(state, payload) {
@@ -86,14 +75,18 @@ const mutations = {
   },
   isServiceFormValid(state, payload) {
     state.isServiceFormValid = payload;
-  },
-  isMicropageFormValid(state, payload) {
-    state.isMicropageFormValid = payload;
+  }
+};
+
+const getters = {
+  keywordsString({ keywords }) {
+    return keywords.join(" ");
   }
 };
 
 export default {
   namespaced: true,
   state,
-  mutations
+  mutations,
+  getters
 };

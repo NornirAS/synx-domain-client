@@ -186,14 +186,16 @@ export default {
           token: this.token,
           username: this.username,
           serviceName: this.serviceName,
+          description: this.description,
+          keywords: this.keywordsString,
           serviceSchema: this.serviceSchema,
           inlinePreScript: this.inlinePreScript,
           inlinePostScript: this.inlinePostScript,
           commandSchema: this.commandSchema,
           webJS: this.webJS,
           timeout: this.timeout,
+          imageUrl: this.imageUrl,
           serviceDescription: this.serviceDescription,
-          keywords: this.keywordsString,
           schemaDescription: this.schemaDescription
         });
       }
@@ -204,14 +206,16 @@ export default {
           domain: this.domain,
           token: this.token,
           serviceName: this.serviceName,
+          description: this.description,
+          keywords: this.keywordsString,
           serviceSchema: this.serviceSchema,
           inlinePreScript: this.inlinePreScript,
           inlinePostScript: this.inlinePostScript,
           commandSchema: this.commandSchema,
           webJS: this.webJS,
           timeout: this.timeout,
+          imageUrl: this.imageUrl,
           serviceDescription: this.serviceDescription,
-          keywords: this.keywordsString,
           schemaDescription: this.schemaDescription
         });
       }
@@ -222,19 +226,25 @@ export default {
       return this.$store.state.serviceFormModule.isServiceFormValid;
     },
     isMicropageFormValid() {
-      return this.$store.state.serviceFormModule.isMicropageFormValid;
-    },
-    username() {
-      return this.$store.state.authModule.username;
-    },
-    token() {
-      return this.$store.state.authModule.idToken;
+      return this.$store.state.micropageFormModule.isMicropageFormValid;
     },
     domain() {
       return this.$store.state.serviceFormModule.domain;
     },
+    token() {
+      return this.$store.state.authModule.idToken;
+    },
+    username() {
+      return this.$store.state.authModule.username;
+    },
     serviceName() {
       return this.$store.state.serviceFormModule.name;
+    },
+    description() {
+      return this.$store.state.serviceFormModule.description;
+    },
+    keywordsString() {
+      return this.$store.getters["serviceFormModule/keywordsString"];
     },
     serviceSchema() {
       return this.$store.state.serviceFormModule.schema;
@@ -254,20 +264,17 @@ export default {
     timeout() {
       return this.$store.state.serviceFormModule.timeout;
     },
+    imageUrl() {
+      return this.$store.state.micropageFormModule.imageUrl;
+    },
     serviceDescription() {
-      return this.$store.state.serviceFormModule.description;
+      return this.$store.state.micropageFormModule.description;
     },
     schemaDescription() {
-      return this.$store.state.serviceFormModule.schemaDescription;
-    },
-    keywords() {
-      return this.$store.state.serviceFormModule.keywords;
-    },
-    keywordsString() {
-      return this.keywords.join(" ");
+      return this.$store.state.micropageFormModule.schemaDescription;
     },
     isServiceUpdate() {
-      return this.$route.name === "serviceUpdate" ? true : false;
+      return this.$route.name === "serviceUpdate";
     },
     successMessage() {
       return this.$store.state.alarmModule.successMessage;
