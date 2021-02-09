@@ -271,7 +271,9 @@ export default {
       return this.$store.state.micropageFormModule.description;
     },
     schemaDescription() {
-      return this.$store.state.micropageFormModule.schemaDescription;
+      return this.$store.getters[
+        "micropageFormModule/makeXmlSchemaVisibleInHtml"
+      ];
     },
     isServiceUpdate() {
       return this.$route.name === "serviceUpdate";

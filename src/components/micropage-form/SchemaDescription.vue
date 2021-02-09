@@ -46,19 +46,12 @@ export default {
     }
   },
   computed: {
-    serviceSchema() {
-      return this.$store.state.serviceFormModule.schema;
-    },
-    commandSchema() {
-      return this.$store.state.serviceFormModule.command;
-    },
     mergeSchemas() {
-      return `Service Schema\n${this.serviceSchema}\nCommand Schema\n${this.commandSchema}`;
+      return this.$store.getters["micropageFormModule/mergeSchemas"];
     }
   },
   watch: {
-    mergeSchemas(newValue) {
-      this.description = newValue;
+    description() {
       this.addDescription();
     }
   },

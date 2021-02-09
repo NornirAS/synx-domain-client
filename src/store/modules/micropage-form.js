@@ -20,8 +20,21 @@ const mutations = {
   }
 };
 
+const getters = {
+  makeXmlSchemaVisibleInHtml({ schemaDescription }) {
+    return `<xmp>${schemaDescription}</xmp>`;
+  },
+  // eslint-disable-next-line no-unused-vars
+  mergeSchemas(state, getters, { serviceFormModule }, rootGetters) {
+    const serviceSchema = serviceFormModule.schema;
+    const commandSchema = serviceFormModule.command;
+    return `Service Schema\n${serviceSchema}\nCommand Schema\n${commandSchema}`;
+  }
+};
+
 export default {
   namespaced: true,
   state,
-  mutations
+  mutations,
+  getters
 };
