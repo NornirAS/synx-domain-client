@@ -20,6 +20,23 @@ const mutations = {
   }
 };
 
+const actions = {
+  // eslint-disable-next-line no-unused-vars
+  async fetchDataFromMicropage({ dispatch, commit, getters, rootGetters }) {
+    try {
+      const serviceUrl = rootGetters["serviceFormModule/serviceUrl"];
+      const fetchMicropage = await fetch(serviceUrl);
+      console.log(fetchMicropage);
+      const microPageAsText = await fetchMicropage.text();
+      const parser = new DOMParser();
+      const textToHtml = parser.parseFromString(microPageAsText, "text/html");
+      console.log(textToHtml);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+};
+
 const getters = {
   makeXmlSchemaVisibleInHtml({ schemaDescription }) {
     return `<xmp>${schemaDescription}</xmp>`;
@@ -36,5 +53,6 @@ export default {
   namespaced: true,
   state,
   mutations,
+  actions,
   getters
 };

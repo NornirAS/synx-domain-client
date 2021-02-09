@@ -81,6 +81,9 @@ const mutations = {
 const getters = {
   keywordsString({ keywords }) {
     return keywords.join(" ");
+  },
+  serviceUrl({ domain, name }) {
+    return `http://${domain}.cioty.com/${name}/`;
   }
 };
 
