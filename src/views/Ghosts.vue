@@ -47,8 +47,9 @@
             </v-menu>
           </v-col>
         </v-row>
+        <no-match v-if="noSearchResult"></no-match>
         <v-data-table
-          v-if="!noGhosts"
+          v-if="!noGhosts && !noSearchResult"
           @page-count="pageCount = $event"
           :headers="headers"
           :items="searchFilter"
@@ -113,6 +114,7 @@ import PageLayout from "../components/PageLayout";
 import DomainEmpty from "../components/empty-page/DomainsEmpty";
 import GhostsEmpty from "../components/empty-page/GhostsEmpty";
 import AddGhost from "../components/ghost/AddGhost";
+import NoMatch from "../components/empty-page/NoMatch";
 export default {
   data() {
     return {
@@ -225,8 +227,8 @@ export default {
           instance.service.toLowerCase().indexOf(this.search.toLowerCase()) > -1
       );
     },
-    successMessage() {
-      return this.$store.state.alarmModule.successMessage;
+    noSearchResult() {
+      return _.isEmpty(this.searchFilter);
     }
   },
   components: {
@@ -234,7 +236,8 @@ export default {
     PageTitle,
     DomainEmpty,
     GhostsEmpty,
-    AddGhost
+    AddGhost,
+    NoMatch
   }
 };
 </script>
