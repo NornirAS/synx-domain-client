@@ -131,7 +131,6 @@
                 >
                   Complete
                 </v-btn>
-                {{ serviceName }}
               </div>
             </v-container>
           </v-stepper-content>

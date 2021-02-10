@@ -13,12 +13,6 @@ const mutations = {
   errorMessage(state, payload) {
     state.alerts.push(payload);
   },
-  resetSuccessMessage(state) {
-    state.successMessage = {};
-  },
-  resetErrorMessage(state) {
-    state.errorMessage = {};
-  },
   registerServiceSuccess(state, payload) {
     state.registerServiceSuccess = payload;
     state.alerts.push(payload);
@@ -40,6 +34,9 @@ const mutations = {
     state.addGhostSuccess = {};
     state.giveReadAccessSuccess = {};
     state.removeReadAccessSuccess = {};
+  },
+  removeAlert(state, payload) {
+    state.alerts.splice(payload, 1);
   }
 };
 
