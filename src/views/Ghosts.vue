@@ -229,6 +229,14 @@ export default {
     },
     noSearchResult() {
       return _.isEmpty(this.searchFilter);
+    },
+    addGhostSuccess() {
+      return this.$store.state.alarmModule.addGhostSuccess;
+    }
+  },
+  watch: {
+    addGhostSuccess() {
+      this.$socket.emit("get_all_instances", this.token);
     }
   },
   components: {

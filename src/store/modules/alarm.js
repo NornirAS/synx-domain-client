@@ -1,6 +1,7 @@
 const state = {
   alerts: [],
   registerServiceSuccess: {},
+  addGhostSuccess: {},
   giveReadAccessSuccess: {},
   removeReadAccessSuccess: {}
 };
@@ -22,6 +23,10 @@ const mutations = {
     state.registerServiceSuccess = payload;
     state.alerts.push(payload);
   },
+  addGhostSuccess(state, payload) {
+    state.addGhostSuccess = payload;
+    state.alerts.push(payload);
+  },
   giveReadAccessSuccess(state, payload) {
     state.giveReadAccessSuccess = payload;
     state.alerts.push(payload);
@@ -32,6 +37,7 @@ const mutations = {
   },
   resetAlerts(state) {
     state.registerServiceSuccess = {};
+    state.addGhostSuccess = {};
     state.giveReadAccessSuccess = {};
     state.removeReadAccessSuccess = {};
   }
@@ -58,6 +64,13 @@ const actions = {
       success: true
     };
     commit("registerServiceSuccess", object);
+  },
+  SOCKET_add_ghost_success({ commit }, data) {
+    const object = {
+      message: data,
+      success: true
+    };
+    commit("addGhostSuccess", object);
   },
   SOCKET_give_read_access_success({ commit }, data) {
     commit("giveReadAccessSuccess", data);
