@@ -131,7 +131,7 @@
                 >
                   Complete
                 </v-btn>
-                {{ errorMessage }}
+                {{ serviceName }}
               </div>
             </v-container>
           </v-stepper-content>
@@ -180,6 +180,10 @@ export default {
     },
     backToServices() {
       this.$router.push({ name: "services" });
+    },
+    resetValidForms() {
+      this.$store.commit("serviceFormModule/isServiceFormValid", false);
+      this.$store.commit("micropageFormModule/isMicropageFormValid", false);
     },
     registerService() {
       if (this.isServiceFormValid && this.isMicropageFormValid) {
