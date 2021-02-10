@@ -1,4 +1,4 @@
-# Synx Domain Service [![Build Status](https://travis-ci.com/NornirAS/synx-domain-client.svg?token=sSwVNsksQEMmZYKRCfyq&branch=main)](https://travis-ci.com/NornirAS/synx-domain-client)[![Netlify Status](https://api.netlify.com/api/v1/badges/19be5de6-6e68-4340-88c6-de0c1f558507/deploy-status)](https://app.netlify.com/sites/vigilant-poincare-b3a683/deploys)
+# Synx Domain Service [![Netlify Status](https://api.netlify.com/api/v1/badges/19be5de6-6e68-4340-88c6-de0c1f558507/deploy-status)](https://app.netlify.com/sites/vigilant-poincare-b3a683/deploys)
 
 ## Project setup
 ```
