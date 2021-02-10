@@ -187,6 +187,7 @@ export default {
     },
     registerService() {
       if (this.isServiceFormValid && this.isMicropageFormValid) {
+        this.resetValidForms();
         this.$socket.emit("register_service", {
           domain: this.domain,
           token: this.token,
@@ -208,6 +209,7 @@ export default {
     },
     updateService() {
       if (this.isServiceFormValid && this.isMicropageFormValid) {
+        this.resetValidForms();
         this.$socket.emit("update_service", {
           domain: this.domain,
           token: this.token,
