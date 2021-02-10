@@ -1,19 +1,15 @@
 const state = {
-  successMessage: {},
-  errorMessage: {},
   alerts: [],
-  registerServiceSuccess: "",
-  giveReadAccessSuccess: "",
-  removeReadAccessSuccess: ""
+  registerServiceSuccess: {},
+  giveReadAccessSuccess: {},
+  removeReadAccessSuccess: {}
 };
 
 const mutations = {
   successMessage(state, payload) {
-    state.successMessage = payload;
     state.alerts.push(payload);
   },
   errorMessage(state, payload) {
-    state.errorMessage = payload;
     state.alerts.push(payload);
   },
   resetSuccessMessage(state) {
@@ -35,8 +31,9 @@ const mutations = {
     state.alerts.push(payload);
   },
   resetAlerts(state) {
-    state.giveReadAccessSuccess = "";
-    state.removeReadAccessSuccess = "";
+    state.registerServiceSuccess = {};
+    state.giveReadAccessSuccess = {};
+    state.removeReadAccessSuccess = {};
   }
 };
 
@@ -46,7 +43,6 @@ const actions = {
       message: data,
       success: true
     };
-    commit("resetSuccessMessage");
     commit("successMessage", object);
   },
   SOCKET_error_message({ commit }, data) {
@@ -54,7 +50,6 @@ const actions = {
       message: data,
       success: false
     };
-    commit("resetErrorMessage");
     commit("errorMessage", object);
   },
   SOCKET_register_service_success({ commit }, data) {
