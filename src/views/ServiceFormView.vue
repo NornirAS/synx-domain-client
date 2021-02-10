@@ -131,6 +131,7 @@
                 >
                   Complete
                 </v-btn>
+                {{ errorMessage }}
               </div>
             </v-container>
           </v-stepper-content>
@@ -279,8 +280,11 @@ export default {
     isServiceUpdate() {
       return this.$route.name === "serviceUpdate";
     },
-    successMessage() {
-      return this.$store.state.alarmModule.successMessage;
+    registerServiceSuccess() {
+      return this.$store.state.alarmModule.registerServiceSuccess;
+    },
+    errorMessage() {
+      return this.$store.state.alarmModule.alerts;
     },
     domains() {
       const domains = localStorage.getItem("domains");
@@ -301,7 +305,7 @@ export default {
     }
   },
   watch: {
-    successMessage() {
+    registerServiceSuccess() {
       this.$router.push({ name: "services" });
     },
     isServiceFormValid(newValue) {

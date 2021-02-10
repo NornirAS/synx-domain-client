@@ -11,7 +11,33 @@
     </v-col>
     <v-col md="2" class="mt-md-16 pt-md-8">
       <slot name="page-content-right"></slot>
-      <slot name="alert"></slot>
+      <v-list class="parent">
+        <v-list-item v-for="(alert, index) in alerts" :key="index" class="pl-0">
+          <alert-message :alert="alert" :index="index"></alert-message>
+        </v-list-item>
+      </v-list>
     </v-col>
   </v-row>
 </template>
+
+<script>
+export default {
+  computed: {
+    alerts() {
+      return this.$store.state.alarmModule.alerts;
+    }
+  },
+  components: {
+    AlertMessage: () => import("./AlertMessage")
+  }
+};
+</script>
+
+<style scoped>
+.parent {
+  flex-direction: column;
+  position: fixed;
+  bottom: 0;
+  background: transparent !important;
+}
+</style>

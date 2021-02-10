@@ -1,18 +1,18 @@
 <template>
-  <v-alert :color="color" type="success" dismissible dense text>
-    {{ message }}
+  <v-alert :color="color" :type="type" dismissible dense text>
+    {{ alert.message }}
   </v-alert>
 </template>
 
 <script>
 export default {
-  props: ["message"],
+  props: ["alert", "index"],
   computed: {
-    isSuccess() {
-      return this.message.includes("Success");
-    },
     color() {
-      return this.isSuccess === true ? "accent" : "error";
+      return this.alert.success === true ? "accent" : "error";
+    },
+    type() {
+      return this.alert.success === true ? "success" : "error";
     }
   }
 };

@@ -84,15 +84,6 @@
         :ghostURI="ghostURI"
       ></remove-ghost>
     </div>
-    <v-list slot="alert" class="parent">
-      <v-list-item
-        v-for="(alert, index) in alertsSuccess"
-        :key="index"
-        class="pl-0"
-      >
-        <alert-message :message="alert"></alert-message>
-      </v-list-item>
-    </v-list>
   </page-layout>
 </template>
 
@@ -108,7 +99,6 @@ import RemoveSecondaryService from "../components/ghost/secondary-service/Remove
 import KillSession from "../components/ghost/KillSession";
 import TransferOwnership from "../components/ghost/TransferOwnership";
 import RemoveGhost from "../components/ghost/RemoveGhost";
-import AlertMessage from "../components/AlertMessage";
 export default {
   data() {
     return {
@@ -150,9 +140,6 @@ export default {
     },
     ghostURI() {
       return `${this.domain}.cioty.com/${this.service}#${this.instance}`;
-    },
-    alertsSuccess() {
-      return this.$store.state.alarmModule.alertsSuccess;
     }
   },
   components: {
@@ -165,17 +152,7 @@ export default {
     RemoveSecondaryService,
     KillSession,
     TransferOwnership,
-    RemoveGhost,
-    AlertMessage
+    RemoveGhost
   }
 };
 </script>
-
-<style scoped>
-.parent {
-  flex-direction: column;
-  position: fixed;
-  bottom: 0;
-  background-color: transparent;
-}
-</style>

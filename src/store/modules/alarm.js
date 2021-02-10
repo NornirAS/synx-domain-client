@@ -1,7 +1,8 @@
 const state = {
-  successMessage: "",
-  errorMessage: "",
-  alertsSuccess: [],
+  successMessage: {},
+  errorMessage: {},
+  alerts: [],
+  registerServiceSuccess: "",
   giveReadAccessSuccess: "",
   removeReadAccessSuccess: ""
 };
@@ -9,23 +10,29 @@ const state = {
 const mutations = {
   successMessage(state, payload) {
     state.successMessage = payload;
+    state.alerts.push(payload);
   },
   errorMessage(state, payload) {
     state.errorMessage = payload;
+    state.alerts.push(payload);
   },
   resetSuccessMessage(state) {
-    state.successMessage = "";
+    state.successMessage = {};
   },
   resetErrorMessage(state) {
-    state.errorMessage = "";
+    state.errorMessage = {};
+  },
+  registerServiceSuccess(state, payload) {
+    state.registerServiceSuccess = payload;
+    state.alerts.push(payload);
   },
   giveReadAccessSuccess(state, payload) {
     state.giveReadAccessSuccess = payload;
-    state.alertsSuccess.push(payload);
+    state.alerts.push(payload);
   },
   removeReadAccessSuccess(state, payload) {
     state.removeReadAccessSuccess = payload;
-    state.alertsSuccess.push(payload);
+    state.alerts.push(payload);
   },
   resetAlerts(state) {
     state.giveReadAccessSuccess = "";
@@ -35,10 +42,27 @@ const mutations = {
 
 const actions = {
   SOCKET_success_message({ commit }, data) {
-    commit("successMessage", data);
+    const object = {
+      message: data,
+      success: true
+    };
+    commit("resetSuccessMessage");
+    commit("successMessage", object);
   },
   SOCKET_error_message({ commit }, data) {
-    commit("errorMessage", data);
+    const object = {
+      message: data,
+      success: false
+    };
+    commit("resetErrorMessage");
+    commit("errorMessage", object);
+  },
+  SOCKET_register_service_success({ commit }, data) {
+    const object = {
+      message: data,
+      success: true
+    };
+    commit("registerServiceSuccess", object);
   },
   SOCKET_give_read_access_success({ commit }, data) {
     commit("giveReadAccessSuccess", data);
