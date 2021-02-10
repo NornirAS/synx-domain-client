@@ -156,7 +156,7 @@ export default {
   created() {
     if (this.isServiceUpdate) {
       this.title = "Update Morphic Service";
-      this.$store.dispatch("micropageFormModule/fetchDataFromMicropage");
+      // this.$store.dispatch("micropageFormModule/fetchDataFromMicropage");
     } else {
       this.title = "New Morphic Service";
     }
