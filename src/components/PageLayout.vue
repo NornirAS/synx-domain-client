@@ -35,6 +35,8 @@ export default {
 
 <style scoped>
 .parent {
+  max-height: 50%;
+  overflow: scroll;
   flex-direction: column;
   position: fixed;
   bottom: 0;
