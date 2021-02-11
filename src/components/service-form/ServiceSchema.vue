@@ -59,9 +59,7 @@ export default {
       return this.schema.replace(/\n/g, "");
     },
     matchXml() {
-      return this.removeNewLine.match(
-        /(?<=<RTW>)<(.*?)>(.*?)<\/(.*?)>(?=<\/RTW)/g
-      );
+      return this.removeNewLine.slice(5, -6);
     },
     containsRtwTag() {
       return this.removeNewLine.match(/<\/?RTW>/g) ? true : false;
@@ -71,7 +69,7 @@ export default {
     },
     schemaContainsOnlyXml() {
       if (this.matchXml) {
-        return this.matchXml.join("") === this.schemaRemoveRtwTag;
+        return this.matchXml === this.schemaRemoveRtwTag;
       } else {
         return false;
       }
@@ -79,7 +77,7 @@ export default {
     getXmlTagNames() {
       if (this.schemaContainsOnlyXml) {
         return this.removeNewLine.match(/<\/?(.*?)>/g).map(str => {
-          return str.replace(/\//g, "").match(/(?<=<)(.*?)(?=>)/g);
+          return str.replace(/\//g, "").slice(1, -1);
         });
       } else {
         return [];
@@ -103,7 +101,7 @@ export default {
     },
     getLinksFromXml() {
       if (this.schemaContainsOnlyXml) {
-        return this.removeNewLine.match(/(?<=<(.*?)>)(.*?)(?=<(.*?)>)/g);
+        return this.removeNewLine.match(/@(.*?)@/g);
       } else {
         return false;
       }

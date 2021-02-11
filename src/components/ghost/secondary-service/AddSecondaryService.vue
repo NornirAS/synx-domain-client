@@ -63,8 +63,7 @@ export default {
   },
   computed: {
     refDomain() {
-      const matchBefore = /(.*?)(?=\.)/;
-      const result = this.uri.match(matchBefore);
+      const result = this.uri.match(/(.*?)(?=\.)/);
       if (result !== null) {
         return result[0];
       } else {
@@ -72,8 +71,7 @@ export default {
       }
     },
     refService() {
-      const matchBetween = /(?<=\/)(.*?)(?=#)/;
-      const result = this.uri.match(matchBetween);
+      const result = this.uri.match(/(\w+)(?=#)/);
       if (result !== null) {
         return result[0];
       } else {
@@ -81,10 +79,9 @@ export default {
       }
     },
     refObjectID() {
-      const matchAfter = /(?<=#)\d+/;
-      const result = this.uri.match(matchAfter);
+      const result = this.uri.match(/#\d+/);
       if (result !== null) {
-        return result[0];
+        return result[0].replace(/#/, "");
       } else {
         return "";
       }

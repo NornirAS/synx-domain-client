@@ -37,16 +37,11 @@ const mutations = {
   },
   addSecondaryServiceToGhostStatus(state, payload) {
     const updatedSecondaryServiceObject = payload.map(service => {
-      const beforeSlash = /(.*?)(?=\/)/;
-      const refDomain = service.name.match(beforeSlash);
-      service.refDomain = refDomain[0];
-      const betweenSlashes = /(?<=\/)(.*?)(?=\/)/;
-      const refService = service.name.match(betweenSlashes);
-      service.refService = refService[0];
-      const afterSlash = /(?<=\/)\d+/;
-      const refObjectID = service.name.match(afterSlash);
-      service.refObjectID = refObjectID[0];
-      service.uri = `${refDomain[0]}.cioty.com/${refService[0]}#${refObjectID[0]}`.toLowerCase();
+      const array = service.split("/");
+      service.refDomain = array[0];
+      service.refService = array[1];
+      service.refObjectID = array[2];
+      service.uri = `${array[0]}.cioty.com/${array[1]}#${array[2]}`.toLowerCase();
       return service;
     });
     state.ghostSecondaryService = updatedSecondaryServiceObject;

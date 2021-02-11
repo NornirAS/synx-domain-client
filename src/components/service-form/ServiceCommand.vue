@@ -58,9 +58,7 @@ export default {
       return this.command.replace(/\n/g, "");
     },
     matchXml() {
-      return this.removeNewLine.match(
-        /(?<=<CMD>)<(.*?)>(.*?)<\/(.*?)>(?=<\/CMD>)/g
-      );
+      return this.removeNewLine.slice(5, -6);
     },
     containsCmdTag() {
       return this.removeNewLine.match(/<\/?CMD>/g) ? true : false;
@@ -70,7 +68,7 @@ export default {
     },
     commandContainsOnlyXml() {
       if (this.matchXml) {
-        return this.matchXml.join("") === this.commandRemoveCmdTag;
+        return this.matchXml === this.commandRemoveCmdTag;
       } else if (this.containsCmdTag) {
         return true;
       } else {
@@ -80,7 +78,7 @@ export default {
     getXmlTagNames() {
       if (this.commandContainsOnlyXml) {
         return this.removeNewLine.match(/<\/?(.*?)>/g).map(str => {
-          return str.replace(/\//g, "").match(/(?<=<)(.*?)(?=>)/g);
+          return str.replace(/\//g, "").slice(1, -1);
         });
       } else {
         return [];
