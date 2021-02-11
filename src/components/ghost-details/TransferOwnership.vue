@@ -18,8 +18,10 @@
     <dialog-card v-if="!transferComplete">
       <div slot="title">Transfer ownership</div>
       <div slot="body">
-        You transfering ownership of the ghost
-        <span class="font-weight-bold">{{ ghostURI }}</span>
+        <div class="body-1 mb-2">
+          You transfering ownership of the ghost
+          <span class="font-weight-bold">{{ ghostURI }}</span>
+        </div>
         <v-form
           id="transfer-ownership"
           ref="transferOwnership"
@@ -60,7 +62,7 @@
     <dialog-card v-else>
       <div slot="title">Transfer has been initiated</div>
       <div slot="body">
-        Before data can flow teh new owner has to accept ownership.
+        Before data can flow the new owner has to accept ownership.
       </div>
       <div slot="action">
         <v-btn

@@ -151,11 +151,12 @@ export default {
     selectGhosts(item) {
       this.selectedItem = item;
     },
-    ghostDetails({ domain, service, instance }) {
+    ghostDetails({ domain, service, instance, mapID }) {
       this.$store.commit("instancesModule/selectGhost", {
         domain,
         service,
-        instance
+        instance,
+        mapID
       });
       this.$router.push({
         name: "ghostDetails",

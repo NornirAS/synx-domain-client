@@ -7,26 +7,21 @@
     </page-title>
     <div slot="page-content">
       <v-card>
-        <v-list>
-          <div class="title mb-5">Details</div>
-          <v-divider></v-divider>
-          <v-list-item>
-            <v-list-item-title>URI</v-list-item-title>
-            <v-list-item-subtitle class="text-right font-weight-bold">
-              {{ ghostURI }}
-            </v-list-item-subtitle>
-          </v-list-item>
-          <v-divider></v-divider>
-          <v-list-item>
-            <v-list-item-title>Map ID</v-list-item-title>
-            <v-list-item-subtitle class="text-right font-weight-bold">
-              <v-btn class="text-capitalize" color="primary" text>
-                <v-icon small>{{ mdiPlus }}</v-icon>
-                Add map ID
-              </v-btn>
-            </v-list-item-subtitle>
-          </v-list-item>
-        </v-list>
+        <div class="title mb-5">Details</div>
+        <v-divider></v-divider>
+        <v-list-item>
+          <v-list-item-title>URI</v-list-item-title>
+          <v-list-item-subtitle class="text-right font-weight-bold">
+            {{ ghostURI }}
+          </v-list-item-subtitle>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list-item>
+          <v-list-item-title>Map ID</v-list-item-title>
+          <v-list-item-subtitle class="text-right font-weight-bold">
+            <map-id :token="token" :ghost="ghost"></map-id>
+          </v-list-item-subtitle>
+        </v-list-item>
       </v-card>
       <v-expansion-panels>
         <v-expansion-panel>
@@ -91,14 +86,15 @@
 import { mdiPlus, mdiChevronDown, mdiChevronUp } from "@mdi/js";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
-import ExternalLinking from "../components/ghost/ExternalLinking";
-import AddReadAccess from "../components/ghost/read-access/AddReadAccess";
-import RemoveReadAccess from "../components/ghost/read-access/RemoveReadAccess";
-import AddSecondaryService from "../components/ghost/secondary-service/AddSecondaryService";
-import RemoveSecondaryService from "../components/ghost/secondary-service/RemoveSecondaryService";
-import KillSession from "../components/ghost/KillSession";
-import TransferOwnership from "../components/ghost/TransferOwnership";
-import RemoveGhost from "../components/ghost/RemoveGhost";
+import ExternalLinking from "../components/ghost-details/ExternalLinking";
+import AddReadAccess from "../components/ghost-details/read-access/AddReadAccess";
+import RemoveReadAccess from "../components/ghost-details/read-access/RemoveReadAccess";
+import AddSecondaryService from "../components/ghost-details/secondary-service/AddSecondaryService";
+import RemoveSecondaryService from "../components/ghost-details/secondary-service/RemoveSecondaryService";
+import KillSession from "../components/ghost-details/KillSession";
+import TransferOwnership from "../components/ghost-details/TransferOwnership";
+import RemoveGhost from "../components/ghost-details/RemoveGhost";
+import MapId from "../components/ghost-details/MapId";
 export default {
   data() {
     return {
@@ -152,7 +148,8 @@ export default {
     RemoveSecondaryService,
     KillSession,
     TransferOwnership,
-    RemoveGhost
+    RemoveGhost,
+    MapId
   }
 };
 </script>
