@@ -6,8 +6,8 @@
       </div>
     </page-title>
     <div slot="page-content">
-      <domain-empty v-if="noDomains && noServices"></domain-empty>
-      <ghosts-empty v-if="!noDomains && noServices"></ghosts-empty>
+      <domain-empty v-if="noDomains && noServices && noGhosts"></domain-empty>
+      <ghosts-empty v-if="!noDomains && noServices && noGhosts"></ghosts-empty>
       <add-ghost v-if="!noDomains && !noServices"></add-ghost>
       <v-card v-if="!noGhosts">
         <v-row>

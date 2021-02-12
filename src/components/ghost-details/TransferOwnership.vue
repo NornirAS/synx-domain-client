@@ -66,7 +66,7 @@
       </div>
       <div slot="action">
         <v-btn
-          @click="(dialog = false), (transferComplete = false)"
+          @click="toGhosts"
           class="text-capitalize"
           color="primary"
           type="submit"
@@ -111,6 +111,11 @@ export default {
         });
         this.transferComplete = true;
       }
+    },
+    toGhosts() {
+      this.$router.push({ name: "ghosts" });
+      this.dialog = false;
+      this.transferComplete = false;
     }
   },
   computed: {
