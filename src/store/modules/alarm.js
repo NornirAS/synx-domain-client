@@ -3,6 +3,9 @@ const state = {
   registerServiceSuccess: {},
   addGhostSuccess: {},
   addMapIdSuccess: {},
+  acceptGhostSuccess: {},
+  declineGhostSuccess: {},
+  tranferOwnershipSuccess: {},
   giveReadAccessSuccess: {},
   removeReadAccessSuccess: {}
 };
@@ -24,6 +27,18 @@ const mutations = {
   },
   addMapIdSuccess(state, payload) {
     state.addMapIdSuccess = payload;
+    state.alerts.push(payload);
+  },
+  acceptGhostSuccess(state, payload) {
+    state.acceptGhostSuccess = payload;
+    state.alerts.push(payload);
+  },
+  declineGhostSuccess(state, payload) {
+    state.declineGhostSuccess = payload;
+    state.alerts.push(payload);
+  },
+  tranferOwnershipSuccess(state, payload) {
+    state.tranferOwnershipSuccess = payload;
     state.alerts.push(payload);
   },
   giveReadAccessSuccess(state, payload) {
@@ -80,6 +95,27 @@ const actions = {
       success: true
     };
     commit("addMapIdSuccess", object);
+  },
+  SOCKET_accept_ghost_success({ commit }, data) {
+    const object = {
+      message: data,
+      success: true
+    };
+    commit("acceptGhostSuccess", object);
+  },
+  SOCKET_decline_ghost_success({ commit }, data) {
+    const object = {
+      message: data,
+      success: true
+    };
+    commit("declineGhostSuccess", object);
+  },
+  SOCKET_transfer_ownership_success({ commit }, data) {
+    const object = {
+      message: data,
+      success: true
+    };
+    commit("tranferOwnershipSuccess", object);
   },
   SOCKET_give_read_access_success({ commit }, data) {
     commit("giveReadAccessSuccess", data);

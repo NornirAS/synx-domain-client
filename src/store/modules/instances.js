@@ -50,6 +50,10 @@ const mutations = {
     state.ghostLinkedTo = [];
     state.ghostReadAccess = [];
     state.ghostSecondaryService = [];
+  },
+  resetGhosts(state) {
+    state.instances = [];
+    state.ghostsToApprove = [];
   }
 };
 
@@ -69,6 +73,8 @@ const actions = {
 
 const getters = {
   mergedGhostArray({ instances, ghostsToApprove }) {
+    console.log(instances);
+    console.log(ghostsToApprove);
     if (ghostsToApprove.length >= 1) {
       return [...ghostsToApprove, ...instances];
     } else {

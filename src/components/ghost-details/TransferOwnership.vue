@@ -121,6 +121,19 @@ export default {
   computed: {
     username() {
       return this.$store.state.authModule.username;
+    },
+    tranferOwnershipSuccess() {
+      return this.$store.state.alarmModule.tranferOwnershipSuccess;
+    }
+  },
+  watch: {
+    tranferOwnershipSuccess() {
+      this.$store.commit("instancesModule/resetGhosts");
+      this.$socket.emit("get_all_instances", this.token);
+      this.$socket.emit("look_for_new_ghosts", {
+        token: this.token,
+        username: this.username
+      });
     }
   },
   components: {

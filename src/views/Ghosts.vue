@@ -243,11 +243,34 @@ export default {
     },
     addGhostSuccess() {
       return this.$store.state.alarmModule.addGhostSuccess;
+    },
+    acceptGhostSuccess() {
+      return this.$store.state.alarmModule.acceptGhostSuccess;
+    },
+    declineGhostSuccess() {
+      return this.$store.state.alarmModule.declineGhostSuccess;
     }
   },
   watch: {
     addGhostSuccess() {
+      this.$store.commit("instancesModule/resetGhosts");
       this.$socket.emit("get_all_instances", this.token);
+    },
+    acceptGhostSuccess() {
+      this.$store.commit("instancesModule/resetGhosts");
+      this.$socket.emit("get_all_instances", this.token);
+      this.$socket.emit("look_for_new_ghosts", {
+        token: this.token,
+        username: this.username
+      });
+    },
+    declineGhostSuccess() {
+      this.$store.commit("instancesModule/resetGhosts");
+      this.$socket.emit("get_all_instances", this.token);
+      this.$socket.emit("look_for_new_ghosts", {
+        token: this.token,
+        username: this.username
+      });
     }
   },
   components: {
