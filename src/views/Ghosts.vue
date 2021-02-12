@@ -103,6 +103,16 @@
         ></v-pagination>
       </v-card>
     </div>
+    <div slot="page-content-right">
+      <div class="title">About URIs</div>
+      <div class="body-1">
+        The URI for ghost consist of domain name, service name and ghostID.
+        Here's an example:
+      </div>
+      <div class="body-1 font-weight-bold">
+        domain.cioty.com/service#ghostID
+      </div>
+    </div>
   </page-layout>
 </template>
 
