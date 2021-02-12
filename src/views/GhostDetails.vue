@@ -11,14 +11,14 @@
         <v-divider></v-divider>
         <v-list-item>
           <v-list-item-title>URI</v-list-item-title>
-          <v-list-item-subtitle class="text-right font-weight-bold">
+          <v-list-item-subtitle class="text-right">
             {{ ghostURI }}
           </v-list-item-subtitle>
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item>
           <v-list-item-title>Map ID</v-list-item-title>
-          <v-list-item-subtitle class="text-right font-weight-bold">
+          <v-list-item-subtitle class="text-right">
             <map-id :token="token" :ghost="ghost"></map-id>
           </v-list-item-subtitle>
         </v-list-item>

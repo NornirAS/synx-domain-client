@@ -37,7 +37,7 @@ const mutations = {
   },
   addSecondaryServiceToGhostStatus(state, payload) {
     const updatedSecondaryServiceObject = payload.map(service => {
-      const array = service.split("/");
+      const array = service.name.split("/");
       service.refDomain = array[0];
       service.refService = array[1];
       service.refObjectID = array[2];
