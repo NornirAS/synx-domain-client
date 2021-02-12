@@ -113,7 +113,7 @@ import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import DomainEmpty from "../components/empty-page/DomainsEmpty";
 import GhostsEmpty from "../components/empty-page/GhostsEmpty";
-import AddGhost from "../components/ghost/AddGhost";
+import AddGhost from "../components/ghosts/AddGhost";
 import NoMatch from "../components/empty-page/NoMatch";
 export default {
   data() {
