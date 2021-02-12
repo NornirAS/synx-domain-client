@@ -19,7 +19,7 @@
     <dialog-card>
       <div slot="title">Add Map ID</div>
       <div slot="body">
-        <div class="body-1">Generate map ID?{{ ghost }}</div>
+        <div class="body-1">Generate map ID?</div>
         <v-form
           id="map-id"
           ref="mapId"
@@ -95,8 +95,9 @@ export default {
           token: this.token,
           instance: this.ghost.instance,
           mapId: this.mapId,
-          generage: this.generate
+          generate: this.generate
         });
+        this.dialog = false;
       }
     }
   },

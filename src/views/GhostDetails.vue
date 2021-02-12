@@ -153,3 +153,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.v-list-item__subtitle {
+  white-space: break-spaces;
+}
+</style>
