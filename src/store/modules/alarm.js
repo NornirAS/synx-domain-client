@@ -2,6 +2,7 @@ const state = {
   alerts: [],
   registerServiceSuccess: {},
   addGhostSuccess: {},
+  addMapIdSuccess: {},
   giveReadAccessSuccess: {},
   removeReadAccessSuccess: {}
 };
@@ -19,6 +20,10 @@ const mutations = {
   },
   addGhostSuccess(state, payload) {
     state.addGhostSuccess = payload;
+    state.alerts.push(payload);
+  },
+  addMapIdSuccess(state, payload) {
+    state.addMapIdSuccess = payload;
     state.alerts.push(payload);
   },
   giveReadAccessSuccess(state, payload) {
@@ -68,6 +73,13 @@ const actions = {
       success: true
     };
     commit("addGhostSuccess", object);
+  },
+  SOCKET_add_mapid_success({ commit }, data) {
+    const object = {
+      message: data,
+      success: true
+    };
+    commit("addMapIdSuccess", object);
   },
   SOCKET_give_read_access_success({ commit }, data) {
     commit("giveReadAccessSuccess", data);

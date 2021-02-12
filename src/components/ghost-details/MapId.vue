@@ -87,7 +87,6 @@ export default {
   methods: {
     submitForm() {
       const isFormValid = this.$refs.mapId.validate();
-      console.log(isFormValid);
       if (isFormValid) {
         this.$socket.emit("add_mapId", {
           domain: this.ghost.domain,
@@ -99,6 +98,16 @@ export default {
         });
         this.dialog = false;
       }
+    }
+  },
+  computed: {
+    addMapIdSuccess() {
+      return this.$store.state.alarmModule.addMapIdSuccess;
+    }
+  },
+  watch: {
+    addMapIdSuccess() {
+      this.$socket.emit("get_all_instances", this.token);
     }
   },
   components: {
