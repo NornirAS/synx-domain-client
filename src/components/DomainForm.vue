@@ -59,7 +59,8 @@ export default {
         this.$socket.emit("create_domain", {
           token: this.token,
           username: this.username,
-          domain: this.domainName
+          domain: this.domainName,
+          feature: "add"
         });
       }
     }

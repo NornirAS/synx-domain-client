@@ -64,8 +64,8 @@ export default {
     }
   },
   computed: {
-    serviceURI() {
-      return `${this.service.domain}.cioty.com/${this.service.serviceName}`;
+    domainURI() {
+      return `${this.domain}.cioty.com/`;
     }
   },
   components: {
