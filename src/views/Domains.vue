@@ -30,6 +30,13 @@
               <strong>{{ item.name }}.cioty.com</strong>
             </div>
           </template>
+          <template v-slot:[`item.delete`]="{ item }">
+            <delete-domain
+              :token="token"
+              :username="username"
+              :domain="item.name"
+            ></delete-domain>
+          </template>
           <template v-slot:[`item.activation`]="{ item }">
             <div align="end">
               <v-btn
@@ -67,6 +74,7 @@ import _ from "lodash";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import DomainsEmpty from "../components/empty-page/DomainsEmpty";
+import DeleteDomain from "../components/domain/DeleteDomain";
 export default {
   data() {
     return {
@@ -77,6 +85,10 @@ export default {
         {
           text: "Domain",
           value: "domain",
+          sortable: false
+        },
+        {
+          value: "delete",
           sortable: false
         },
         {
@@ -106,12 +118,21 @@ export default {
     },
     domainsLengthLessItemsPerPage() {
       return this.domains.length <= this.itemsPerPage;
+    },
+    deleteDomainSuccess() {
+      return this.$store.state.alarmModule.deleteDomainSuccess;
+    }
+  },
+  watch: {
+    deleteDomainSuccess() {
+      this.$socket.emit("get_all_domains", this.token, this.username);
     }
   },
   components: {
     PageTitle,
     PageLayout,
-    DomainsEmpty
+    DomainsEmpty,
+    DeleteDomain
   }
 };
 </script>
