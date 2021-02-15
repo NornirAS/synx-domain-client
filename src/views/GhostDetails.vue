@@ -104,16 +104,21 @@ export default {
     };
   },
   created() {
-    this.$socket.emit("get_ghost_status", {
-      domain: this.domain,
-      token: this.token,
-      username: this.username,
-      service: this.service,
-      instance: this.instance
-    });
+    this.getGhostStatus();
   },
   beforeDestroy() {
     this.$store.commit("instancesModule/resetGhostStatus");
+  },
+  methods: {
+    getGhostStatus() {
+      this.$socket.emit("get_ghost_status", {
+        domain: this.domain,
+        token: this.token,
+        username: this.username,
+        service: this.service,
+        instance: this.instance
+      });
+    }
   },
   computed: {
     token() {
@@ -136,6 +141,14 @@ export default {
     },
     ghostURI() {
       return `${this.domain}.cioty.com/${this.service}#${this.instance}`;
+    },
+    addPrimaryGhostSuccess() {
+      return this.$store.state.alarmModule.addPrimaryGhostSuccess;
+    }
+  },
+  watch: {
+    addPrimaryGhostSuccess() {
+      this.getGhostStatus();
     }
   },
   components: {

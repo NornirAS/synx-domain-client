@@ -9,7 +9,8 @@ const state = {
   tranferOwnershipSuccess: {},
   deleteDomainSuccess: {},
   giveReadAccessSuccess: {},
-  removeReadAccessSuccess: {}
+  removeReadAccessSuccess: {},
+  addPrimaryGhostSuccess: {}
 };
 
 const mutations = {
@@ -57,6 +58,10 @@ const mutations = {
   },
   removeReadAccessSuccess(state, payload) {
     state.removeReadAccessSuccess = payload;
+    state.alerts.push(payload);
+  },
+  addPrimaryGhostSuccess(state, payload) {
+    state.addPrimaryGhostSuccess = payload;
     state.alerts.push(payload);
   },
   resetAlerts(state) {
@@ -145,10 +150,25 @@ const actions = {
     commit("deleteDomainSuccess", object);
   },
   SOCKET_give_read_access_success({ commit }, data) {
-    commit("giveReadAccessSuccess", data);
+    const object = {
+      message: data,
+      success: true
+    };
+    commit("giveReadAccessSuccess", object);
   },
   SOCKET_remove_read_access_success({ commit }, data) {
-    commit("removeReadAccessSuccess", data);
+    const object = {
+      message: data,
+      success: true
+    };
+    commit("removeReadAccessSuccess", object);
+  },
+  SOCKET_add_primary_ghost_success({ commit }, data) {
+    const object = {
+      message: data,
+      success: true
+    };
+    commit("addPrimaryGhostSuccess", object);
   }
 };
 

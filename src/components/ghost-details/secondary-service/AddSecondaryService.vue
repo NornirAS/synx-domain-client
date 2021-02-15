@@ -49,7 +49,7 @@ export default {
     submitForm() {
       const isFormValid = this.$refs.secondaryService.validate();
       if (isFormValid) {
-        this.$socket.emit("add_secondary_service", {
+        this.$socket.emit("add_primary_ghost", {
           domain: this.ghost.domain,
           service: this.ghost.service,
           token: this.token,
