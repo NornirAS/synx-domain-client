@@ -80,6 +80,9 @@ export default {
   padding: 24px 24px 16px 24px;
   flex-grow: 1;
 }
+.theme--light.v-card {
+  color: var(--v-secondary-base) !important;
+}
 .v-card__title {
   text-align: justify !important;
   word-break: keep-all !important;
