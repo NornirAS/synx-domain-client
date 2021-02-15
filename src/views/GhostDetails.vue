@@ -7,7 +7,7 @@
     </page-title>
     <div slot="page-content">
       <v-card>
-        <div class="title mb-5">Details</div>
+        <div class="title mb-5">Ghost Details</div>
         <v-divider></v-divider>
         <v-list-item>
           <v-list-item-title>URI</v-list-item-title>
@@ -46,7 +46,7 @@
         </v-expansion-panel>
         <v-expansion-panel>
           <v-expansion-panel-header class="subtitle-1">
-            Secondary Service
+            Morphed Ghosts
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <add-secondary-service

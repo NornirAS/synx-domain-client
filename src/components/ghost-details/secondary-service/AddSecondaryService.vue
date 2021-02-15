@@ -24,7 +24,7 @@
       type="submit"
     >
       <v-icon>{{ mdiPlus }}</v-icon>
-      Add to Secodary Service
+      Add primary ghost
     </v-btn>
   </v-form>
 </template>
