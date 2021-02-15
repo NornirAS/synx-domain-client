@@ -65,12 +65,15 @@ const mutations = {
     state.giveReadAccessSuccess = {};
     state.removeReadAccessSuccess = {};
   },
-  removeAlert(state, payload) {
-    state.alerts.splice(payload, 1);
+  removeAlert(state) {
+    state.alerts.shift();
   }
 };
 
 const actions = {
+  removeAlert({ commit }) {
+    setTimeout(() => commit("removeAlert"), 5000);
+  },
   SOCKET_success_message({ commit }, data) {
     const object = {
       message: data,

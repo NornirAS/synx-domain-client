@@ -1,5 +1,5 @@
 <template>
-  <v-alert v-model="open" :type="type" dismissible dense text>
+  <v-alert v-model="open" :type="type" dense text>
     {{ alert.message }}
   </v-alert>
 </template>
@@ -12,16 +12,12 @@ export default {
       open: true
     };
   },
+  created() {
+    this.$store.dispatch("alarmModule/removeAlert");
+  },
   computed: {
     type() {
       return this.alert.success === true ? "success" : "error";
-    }
-  },
-  watch: {
-    open(newValue) {
-      if (newValue === false) {
-        this.$store.commit("alarmModule/removeAlert", this.index);
-      }
     }
   }
 };
