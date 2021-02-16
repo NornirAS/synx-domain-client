@@ -69,13 +69,6 @@ const mutations = {
     state.addPrimaryGhostSuccess = payload;
     state.alerts.push(payload);
   },
-  resetAlerts(state) {
-    state.registerServiceSuccess = {};
-    state.updateServiceSuccess = {};
-    state.addGhostSuccess = {};
-    state.giveReadAccessSuccess = {};
-    state.removeReadAccessSuccess = {};
-  },
   removeAlert(state) {
     state.alerts.shift();
   }
