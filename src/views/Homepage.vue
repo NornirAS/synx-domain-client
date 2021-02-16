@@ -24,6 +24,15 @@
         </a>
       </p>
       <SignInForm />
+      <p align="center">
+        <a
+          href="https://www.synxpass.com/reset-password"
+          target="_blank"
+          class="text-decoration-none synxpass-link"
+        >
+          Forgot you password?
+        </a>
+      </p>
     </v-col>
   </v-row>
 </template>
