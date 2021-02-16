@@ -26,7 +26,7 @@
       <v-expansion-panels>
         <v-expansion-panel>
           <v-expansion-panel-header class="subtitle-1">
-            Make data available for external linking?
+            Activate external data distribution
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <external-linking :token="token" :ghost="ghost"></external-linking>
