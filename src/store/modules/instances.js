@@ -73,8 +73,6 @@ const actions = {
 
 const getters = {
   mergedGhostArray({ instances, ghostsToApprove }) {
-    console.log(instances);
-    console.log(ghostsToApprove);
     if (ghostsToApprove.length >= 1) {
       return [...ghostsToApprove, ...instances];
     } else {

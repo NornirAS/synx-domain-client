@@ -54,6 +54,9 @@ export default {
   height: 100vh;
   background-color: var(--v-background-base);
 }
+.display-1 {
+  color: var(--v-secondary-base);
+}
 .title {
   color: var(--v-secondary-base);
 }

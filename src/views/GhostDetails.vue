@@ -2,7 +2,10 @@
   <page-layout>
     <page-title slot="page-title">
       <div slot="title">
-        {{ ghost.service.toLowerCase() }}#{{ ghost.instance }}
+        Ghost details for:
+      </div>
+      <div slot="subtitle">
+        {{ domainURI }}<span class="font-weight-bold">{{ ghostID }}</span>
       </div>
     </page-title>
     <div slot="page-content">
@@ -138,6 +141,12 @@ export default {
     },
     instance() {
       return this.ghost.instance;
+    },
+    domainURI() {
+      return `${this.domain}.cioty.com/`;
+    },
+    ghostID() {
+      return `${this.service}#${this.instance}`;
     },
     ghostURI() {
       return `${this.domain}.cioty.com/${this.service}#${this.instance}`;
