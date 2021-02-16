@@ -80,7 +80,11 @@ const mutations = {
 
 const getters = {
   keywordsString({ keywords }) {
-    return keywords.join(" ");
+    if (keywords.length > 0) {
+      return keywords.join(" ");
+    } else {
+      return "";
+    }
   },
   serviceUrl({ domain, name }) {
     return `http://${domain}.cioty.com/${name}/`;
