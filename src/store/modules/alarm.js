@@ -11,7 +11,8 @@ const state = {
   deleteDomainSuccess: {},
   giveReadAccessSuccess: {},
   removeReadAccessSuccess: {},
-  addPrimaryGhostSuccess: {}
+  addPrimaryGhostSuccess: {},
+  removePrimaryGhostSuccess: {}
 };
 
 const mutations = {
@@ -67,6 +68,10 @@ const mutations = {
   },
   addPrimaryGhostSuccess(state, payload) {
     state.addPrimaryGhostSuccess = payload;
+    state.alerts.push(payload);
+  },
+  removePrimaryGhostSuccess(state, payload) {
+    state.removePrimaryGhostSuccess = payload;
     state.alerts.push(payload);
   },
   removeAlert(state) {
@@ -175,6 +180,13 @@ const actions = {
       success: true
     };
     commit("addPrimaryGhostSuccess", object);
+  },
+  SOCKET_remove_primary_ghost_success({ commit }, data) {
+    const object = {
+      message: data,
+      success: true
+    };
+    commit("removePrimaryGhostSuccess", object);
   }
 };
 

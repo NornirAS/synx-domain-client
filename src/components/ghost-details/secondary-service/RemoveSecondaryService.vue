@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     removeSecondaryService(refDomain, refService, refObjectID) {
-      this.$socket.emit("remove_secondary_service", {
+      this.$socket.emit("remove_primary_ghost", {
         domain: this.ghost.domain,
         service: this.ghost.service,
         token: this.token,

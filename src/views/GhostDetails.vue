@@ -153,10 +153,16 @@ export default {
     },
     addPrimaryGhostSuccess() {
       return this.$store.state.alarmModule.addPrimaryGhostSuccess;
+    },
+    removePrimaryGhostSuccess() {
+      return this.$store.state.alarmModule.removePrimaryGhostSuccess;
     }
   },
   watch: {
     addPrimaryGhostSuccess() {
+      this.getGhostStatus();
+    },
+    removePrimaryGhostSuccess() {
       this.getGhostStatus();
     }
   },
