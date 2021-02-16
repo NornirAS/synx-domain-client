@@ -288,6 +288,9 @@ export default {
     registerServiceSuccess() {
       return this.$store.state.alarmModule.registerServiceSuccess;
     },
+    updateServiceSuccess() {
+      return this.$store.state.alarmModule.updateServiceSuccess;
+    },
     errorMessage() {
       return this.$store.state.alarmModule.alerts;
     },
@@ -311,6 +314,9 @@ export default {
   },
   watch: {
     registerServiceSuccess() {
+      this.$router.push({ name: "services" });
+    },
+    updateServiceSuccess() {
       this.$router.push({ name: "services" });
     },
     isServiceFormValid(newValue) {

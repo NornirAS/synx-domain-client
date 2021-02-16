@@ -1,6 +1,7 @@
 const state = {
   alerts: [],
   registerServiceSuccess: {},
+  updateServiceSuccess: {},
   deleteServiceSuccess: {},
   addGhostSuccess: {},
   addMapIdSuccess: {},
@@ -22,6 +23,10 @@ const mutations = {
   },
   registerServiceSuccess(state, payload) {
     state.registerServiceSuccess = payload;
+    state.alerts.push(payload);
+  },
+  updateServiceSuccess(state, payload) {
+    state.updateServiceSuccess = payload;
     state.alerts.push(payload);
   },
   deleteServiceSuccess(state, payload) {
@@ -66,6 +71,7 @@ const mutations = {
   },
   resetAlerts(state) {
     state.registerServiceSuccess = {};
+    state.updateServiceSuccess = {};
     state.addGhostSuccess = {};
     state.giveReadAccessSuccess = {};
     state.removeReadAccessSuccess = {};
@@ -99,6 +105,13 @@ const actions = {
       success: true
     };
     commit("registerServiceSuccess", object);
+  },
+  SOCKET_update_service_success({ commit }, data) {
+    const object = {
+      message: data,
+      success: true
+    };
+    commit("updateServiceSuccess", object);
   },
   SOCKET_delete_service_success({ commit }, data) {
     const object = {
