@@ -6,6 +6,8 @@
     @submit.prevent="submitServiceForm"
     lazy-validation
   >
+    <div class="title">Service Settings - for Machines</div>
+    <service-domain></service-domain>
     <service-name></service-name>
     <service-description></service-description>
     <service-keywords></service-keywords>
@@ -17,6 +19,26 @@
     <service-command></service-command>
     <service-web-js></service-web-js>
     <service-timeout></service-timeout>
+    <div>
+      <v-btn
+        @click="backToServices"
+        class="text-capitalize"
+        color="secondary"
+        text
+      >
+        Cancel
+      </v-btn>
+      <v-btn
+        class="text-capitalize"
+        color="primary"
+        type="submit"
+        form="service-form"
+        small
+        rounded
+      >
+        Save
+      </v-btn>
+    </div>
   </v-form>
 </template>
 
@@ -30,15 +52,32 @@ export default {
   methods: {
     submitServiceForm() {
       const isFormValid = this.$refs.serviceForm.validate();
-      this.$store.commit("serviceFormModule/isServiceFormValid", isFormValid);
+      if (isFormValid && this.isServiceUpdate) {
+        this.$socket.emit("update_service", this.updateServiceParams);
+      } else {
+        this.$socket.emit("register_service", this.registerServiceParams);
+      }
+    },
+    backToServices() {
+      this.$router.push({ name: "services" });
     }
   },
   computed: {
     isValidLinks() {
       return this.$store.state.serviceFormModule.isValidLinks;
+    },
+    isServiceUpdate() {
+      return this.$route.name === "serviceUpdate";
+    },
+    registerServiceParams() {
+      return this.$store.getters["serviceFormModule/registerServiceParams"];
+    },
+    updateServiceParams() {
+      return this.$store.getters["serviceFormModule/updateServiceParams"];
     }
   },
   components: {
+    ServiceDomain: () => import("./ServiceDomain"),
     ServiceName: () => import("./ServiceName"),
     ServiceDescription: () => import("./ServiceDescription"),
     ServiceKeywords: () => import("./ServiceKeywords"),

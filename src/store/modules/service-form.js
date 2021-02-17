@@ -1,5 +1,4 @@
 const state = {
-  // service
   domain: "",
   name: "",
   description: "",
@@ -9,10 +8,7 @@ const state = {
   inlinePostScript: "",
   command: "<CMD>\n</CMD>",
   webJS: "",
-  timeout: "30",
-  // other
-  isValidLinks: false,
-  isServiceFormValid: false
+  timeout: "30"
 };
 
 const mutations = {
@@ -69,12 +65,6 @@ const mutations = {
     state.inlinePostScript = "";
     state.webJS = "";
     state.timeout = "30";
-  },
-  isValidLinks(state, payload) {
-    state.isValidLinks = payload;
-  },
-  isServiceFormValid(state, payload) {
-    state.isServiceFormValid = payload;
   }
 };
 
@@ -88,6 +78,21 @@ const getters = {
   },
   serviceUrl({ domain, name }) {
     return `http://${domain}.cioty.com/${name}/`;
+  },
+  // eslint-disable-next-line no-unused-vars
+  registerServiceParams(state, getters, rootState) {
+    const { username, idToken } = rootState.authModule;
+    const parameters = state;
+    parameters.username = username;
+    parameters.token = idToken;
+    return parameters;
+  },
+  // eslint-disable-next-line no-unused-vars
+  updateServiceParams(state, getters, rootState) {
+    const { idToken } = rootState.authModule;
+    const parameters = state;
+    parameters.token = idToken;
+    return parameters;
   }
 };
 

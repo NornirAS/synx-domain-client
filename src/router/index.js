@@ -13,6 +13,7 @@ import Account from "../views/Account";
 import CheckoutSuccess from "../views/CheckoutSuccess";
 import CreateDomain from "../views/CreateDomain";
 import PageNotFound from "../components/empty-page/PageNotFound";
+import MicropageForm from "../components/micropage-form/MicropageForm";
 
 Vue.use(VueRouter);
 
@@ -107,6 +108,11 @@ const routes = [
         path: ":serviceName/update",
         name: "serviceUpdate",
         component: ServiceForm
+      },
+      {
+        path: ":serviceName/update/micropage",
+        name: "micropageUpdate",
+        component: MicropageForm
       }
     ],
     beforeEnter: authGuard
