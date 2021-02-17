@@ -44,6 +44,9 @@ export default {
       valid: false
     };
   },
+  created() {
+    this.$store.dispatch("micropageFormModule/fetchDataFromMicropage");
+  },
   methods: {
     submitMicropageForm() {
       const isFormValid = this.$refs.micropageForm.validate();
