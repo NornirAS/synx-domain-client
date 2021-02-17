@@ -33,11 +33,9 @@ export default {
     };
   },
   created() {
-    if (this.isServiceUpdate) {
-      this.title = "Update Morphic Service";
-    } else {
-      this.title = "New Morphic Service";
-    }
+    this.title = this.isServiceUpdate
+      ? "Update Morphic Service"
+      : "New Morphic Service";
   },
   beforeDestroy() {
     this.$store.commit("serviceFormModule/resetServiceForm");
