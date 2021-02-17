@@ -43,10 +43,12 @@ export default {
     };
   },
   created() {
-    this.$store.commit("serviceFormModule/addDomain", this.firstDomain);
-  },
-  mounted() {
-    this.selectedDomain = this.domain;
+    if (this.isServiceUpdate) {
+      this.selectedDomain = this.domain;
+    } else {
+      this.selectedDomain = this.firstDomain;
+      this.$store.commit("serviceFormModule/addDomain", this.firstDomain);
+    }
   },
   methods: {
     selectDomain(domain) {
