@@ -3,6 +3,7 @@ const state = {
   registerServiceSuccess: {},
   updateServiceSuccess: {},
   deleteServiceSuccess: {},
+  updateMicropageSuccess: {},
   addGhostSuccess: {},
   addMapIdSuccess: {},
   acceptGhostSuccess: {},
@@ -32,6 +33,10 @@ const mutations = {
   },
   deleteServiceSuccess(state, payload) {
     state.deleteServiceSuccess = payload;
+    state.alerts.push(payload);
+  },
+  updateMicropageSuccess(state, payload) {
+    state.updateMicropageSuccess = payload;
     state.alerts.push(payload);
   },
   addGhostSuccess(state, payload) {
@@ -117,6 +122,13 @@ const actions = {
       success: true
     };
     commit("deleteServiceSuccess", object);
+  },
+  SOCKET_update_micropage_success({ commit }, data) {
+    const object = {
+      message: data,
+      success: true
+    };
+    commit("updateMicropageSuccess", object);
   },
   SOCKET_add_ghost_success({ commit }, data) {
     const object = {

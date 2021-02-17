@@ -65,6 +65,9 @@ export default {
     },
     deleteServiceSuccess() {
       return this.$store.state.alarmModule.deleteServiceSuccess;
+    },
+    updateMicropageSuccess() {
+      return this.$store.state.alarmModule.updateMicropageSuccess;
     }
   },
   watch: {
@@ -75,6 +78,9 @@ export default {
       this.$router.push({ name: "services" });
     },
     deleteServiceSuccess() {
+      this.$router.push({ name: "services" });
+    },
+    updateMicropageSuccess() {
       this.$router.push({ name: "services" });
     }
   },
