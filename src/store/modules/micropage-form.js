@@ -20,9 +20,9 @@ const actions = {
   // eslint-disable-next-line no-unused-vars
   async fetchDataFromMicropage({ dispatch, commit, getters, rootGetters }) {
     try {
-      const serviceUrl = rootGetters["serviceFormModule/serviceURL"];
-      console.log(serviceUrl);
-      const fetchMicropage = await fetch(serviceUrl);
+      const serviceURL = rootGetters["serviceFormModule/serviceURL"];
+      console.log(serviceURL);
+      const fetchMicropage = await fetch(serviceURL);
       console.log(fetchMicropage);
       const microPageAsText = await fetchMicropage.text();
       const parser = new DOMParser();
