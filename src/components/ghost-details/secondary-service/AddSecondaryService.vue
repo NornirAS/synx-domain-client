@@ -24,7 +24,7 @@
       type="submit"
     >
       <v-icon>{{ mdiPlus }}</v-icon>
-      Add primary ghost
+      Add to primary
     </v-btn>
   </v-form>
 </template>

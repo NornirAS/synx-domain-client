@@ -2,7 +2,7 @@
   <page-layout>
     <page-title slot="page-title">
       <div slot="title">
-        Ghost details for:
+        Ghost Details Overview:
       </div>
       <div slot="subtitle">
         {{ domainURI }}<span class="font-weight-bold">{{ ghostID }}</span>
@@ -29,7 +29,7 @@
       <v-expansion-panels>
         <v-expansion-panel>
           <v-expansion-panel-header class="subtitle-1">
-            Activate external data distribution
+            Make ghost data available for secondary services
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <external-linking :token="token" :ghost="ghost"></external-linking>
@@ -49,7 +49,7 @@
         </v-expansion-panel>
         <v-expansion-panel>
           <v-expansion-panel-header class="subtitle-1">
-            Morphed Ghosts
+            Add Morphed Ghosts
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <add-secondary-service
