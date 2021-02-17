@@ -79,9 +79,6 @@
               }}</span>
             </div>
           </template>
-          <template v-slot:[`item.delete`]="{ item }">
-            <delete-service :token="token" :service="item"></delete-service>
-          </template>
           <template v-slot:[`item.edit`]="{ item }">
             <v-btn @click="serviceToEdit(item)" class="float-right" icon small>
               <v-icon color="primary">
@@ -109,7 +106,6 @@ import PageLayout from "../components/PageLayout";
 import ServicesEmpty from "../components/empty-page/ServicesEmpty";
 import DomainEmpty from "../components/empty-page/DomainsEmpty";
 import NoMatch from "../components/empty-page/NoMatch";
-import DeleteService from "../components/service/DeleteService";
 export default {
   data() {
     return {
@@ -125,10 +121,6 @@ export default {
         {
           text: "ServiceURL",
           value: "serviceURL",
-          sortable: false
-        },
-        {
-          value: "delete",
           sortable: false
         },
         {
@@ -198,14 +190,6 @@ export default {
     },
     servicesLengthLessItemsPerPage() {
       return this.searchFilter.length <= this.itemsPerPage;
-    },
-    deleteServiceSuccess() {
-      return this.$store.state.alarmModule.deleteServiceSuccess;
-    }
-  },
-  watch: {
-    deleteServiceSuccess() {
-      this.$socket.emit("get_all_services", this.token);
     }
   },
   components: {
@@ -213,8 +197,7 @@ export default {
     PageTitle,
     ServicesEmpty,
     DomainEmpty,
-    NoMatch,
-    DeleteService
+    NoMatch
   }
 };
 </script>

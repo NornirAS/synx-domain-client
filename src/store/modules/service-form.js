@@ -1,3 +1,5 @@
+import { rootDomain } from "../../core/config.js";
+
 const state = {
   domain: "",
   name: "",
@@ -76,8 +78,11 @@ const getters = {
       return "";
     }
   },
-  serviceUrl({ domain, name }) {
-    return `http://${domain}.cioty.com/${name}/`;
+  serviceURI({ domain, name }) {
+    return `${domain}${rootDomain}${name}`;
+  },
+  serviceURL(state, { serviceURI }) {
+    return `https://${serviceURI}/`;
   },
   // eslint-disable-next-line no-unused-vars
   registerServiceParams(state, getters, rootState) {
@@ -93,6 +98,17 @@ const getters = {
     const parameters = state;
     parameters.token = idToken;
     return parameters;
+  },
+  deleteServiceParams(state, getters, rootState) {
+    const { idToken } = rootState.authModule;
+    const { domain, name } = state;
+    const instance = "0";
+    return {
+      token: idToken,
+      domain,
+      name,
+      instance
+    };
   }
 };
 

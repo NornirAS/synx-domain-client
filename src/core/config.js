@@ -1,2 +1,2 @@
-const rootDomain = ".cioty.com";
+const rootDomain = ".cioty.com/";
 export { rootDomain };

@@ -6,6 +6,10 @@
     <v-card slot="page-content">
       <router-view></router-view>
     </v-card>
+    <div v-if="isServiceUpdate" slot="page-content-right">
+      <div class="title">Other Actions</div>
+      <delete-service></delete-service>
+    </div>
   </page-layout>
 </template>
 
@@ -13,8 +17,7 @@
 export default {
   data() {
     return {
-      title: "",
-      btnName: ""
+      title: ""
     };
   },
   created() {
@@ -48,8 +51,8 @@ export default {
     updateServiceSuccess() {
       return this.$store.state.alarmModule.updateServiceSuccess;
     },
-    errorMessage() {
-      return this.$store.state.alarmModule.alerts;
+    deleteServiceSuccess() {
+      return this.$store.state.alarmModule.deleteServiceSuccess;
     }
   },
   watch: {
@@ -58,11 +61,15 @@ export default {
     },
     updateServiceSuccess() {
       this.$router.push({ name: "services" });
+    },
+    deleteServiceSuccess() {
+      this.$router.push({ name: "services" });
     }
   },
   components: {
     PageLayout: () => import("../components/PageLayout"),
-    PageTitle: () => import("../components/PageTitle")
+    PageTitle: () => import("../components/PageTitle"),
+    DeleteService: () => import("../components/service/DeleteService")
   }
 };
 </script>

@@ -4,12 +4,13 @@
       <v-btn
         v-bind="attrs"
         v-on="on"
-        class="float-right text-capitalize"
-        color="error"
+        class="text-capitalize"
+        color="secondary"
         small
-        text
+        rounded
+        block
       >
-        Delete
+        Delete Service
         <v-icon small>{{ mdiTrashCanOutline }}</v-icon>
       </v-btn>
     </template>
@@ -45,7 +46,6 @@
 <script>
 import { mdiTrashCanOutline } from "@mdi/js";
 export default {
-  props: ["token", "service"],
   data() {
     return {
       mdiTrashCanOutline,
@@ -54,18 +54,16 @@ export default {
   },
   methods: {
     deleteService() {
-      this.$socket.emit("delete_service", {
-        token: this.token,
-        domain: this.service.domain,
-        service: this.service.serviceName,
-        instance: "0"
-      });
+      this.$socket.emit("delete_service", this.deleteServiceParams);
       this.dialog = false;
     }
   },
   computed: {
     serviceURI() {
-      return `${this.service.domain}.cioty.com/${this.service.serviceName}`;
+      return this.$store.getters["serviceFormModule/serviceURI"];
+    },
+    deleteServiceParams() {
+      return this.$store.getters["serviceFormModule/deleteServiceParams"];
     }
   },
   components: {
