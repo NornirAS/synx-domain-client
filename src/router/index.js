@@ -8,12 +8,12 @@ import Domains from "../views/Domains";
 import DomainActivation from "../views/DomainActivation";
 import Ghosts from "../views/Ghosts";
 import GhostDetails from "../views/GhostDetails";
-import ServiceForm from "../components/service-form/ServiceForm";
+import ServiceForm from "../components/service/service-form/ServiceForm";
 import Account from "../views/Account";
 import CheckoutSuccess from "../views/CheckoutSuccess";
 import CreateDomain from "../views/CreateDomain";
 import PageNotFound from "../components/empty-page/PageNotFound";
-import MicropageForm from "../components/micropage-form/MicropageForm";
+import MicropageForm from "../components/service/micropage-form/MicropageForm";
 
 Vue.use(VueRouter);
 

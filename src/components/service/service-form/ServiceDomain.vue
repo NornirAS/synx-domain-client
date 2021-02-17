@@ -33,7 +33,7 @@
 <script>
 import _ from "lodash";
 import { mdiMenuDown } from "@mdi/js";
-import { rootDomain } from "../../core/config.js";
+import { rootDomain } from "../../../core/config.js";
 export default {
   data() {
     return {
