@@ -34,25 +34,12 @@ export default {
       ]
     };
   },
-  mounted() {
-    this.description = this.mergeSchemas;
-  },
   methods: {
     addDescription() {
       this.$store.commit(
         "micropageFormModule/addSchemaDescription",
         this.description
       );
-    }
-  },
-  computed: {
-    mergeSchemas() {
-      return this.$store.getters["micropageFormModule/mergeSchemas"];
-    }
-  },
-  watch: {
-    description() {
-      this.addDescription();
     }
   },
   components: {

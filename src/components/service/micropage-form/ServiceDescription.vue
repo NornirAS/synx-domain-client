@@ -35,20 +35,12 @@ export default {
       ]
     };
   },
-  mounted() {
-    this.description = this.serviceDescription;
-  },
   methods: {
     addDescription() {
       this.$store.commit(
-        "micropageFormModule/addDescription",
+        "micropageFormModule/addServiceDescription",
         this.description
       );
-    }
-  },
-  computed: {
-    serviceDescription() {
-      return this.$store.state.micropageFormModule.serviceDescription;
     }
   },
   components: {

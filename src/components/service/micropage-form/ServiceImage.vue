@@ -25,17 +25,9 @@ export default {
       image: ""
     };
   },
-  mounted() {
-    this.image = this.imageUrl;
-  },
   methods: {
     addImageUrl() {
       this.$store.commit("micropageFormModule/addImageUrl", this.image);
-    }
-  },
-  computed: {
-    imageUrl() {
-      return this.$store.state.micropageFormModule.imageUrl;
     }
   },
   components: {

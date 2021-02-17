@@ -1,22 +1,18 @@
 const state = {
   serviceDescription: "",
   schemaDescription: "",
-  imageUrl: "",
-  isMicropageFormValid: false
+  imageUrl: ""
 };
 
 const mutations = {
-  addDescription(state, description) {
-    state.description = description;
+  addServiceDescription(state, payload) {
+    state.serviceDescription = payload;
   },
-  addSchemaDescription(state, schemaDescription) {
-    state.schemaDescription = schemaDescription;
+  addSchemaDescription(state, payload) {
+    state.schemaDescription = payload;
   },
-  addImageUrl(state, imageUrl) {
-    state.imageUrl = imageUrl;
-  },
-  isMicropageFormValid(state, payload) {
-    state.isMicropageFormValid = payload;
+  addImageUrl(state, payload) {
+    state.imageUrl = payload;
   }
 };
 
@@ -38,14 +34,14 @@ const actions = {
 };
 
 const getters = {
-  makeXmlSchemaVisibleInHtml({ schemaDescription }) {
-    return `<xmp>${schemaDescription}</xmp>`;
-  },
-  // eslint-disable-next-line no-unused-vars
-  mergeSchemas(state, getters, { serviceFormModule }, rootGetters) {
-    const serviceSchema = serviceFormModule.schema;
-    const commandSchema = serviceFormModule.command;
-    return `Service Schema\n${serviceSchema}\nCommand Schema\n${commandSchema}`;
+  updateMicropageParams(state, getters, rootState) {
+    const { idToken } = rootState.authModule;
+    const { domain, name } = rootState.serviceFormModule;
+    const parameters = state;
+    parameters.domain = domain;
+    parameters.name = name;
+    parameters.token = idToken;
+    return parameters;
   }
 };
 
