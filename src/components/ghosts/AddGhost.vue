@@ -13,8 +13,8 @@
           v-on="on"
           outlined
         >
-          <span class="font-weight-bold">{{ domain }}</span
-          >.cioty.com/<span class="font-weight-bold">{{ service }}</span>
+          {{ domain }}{{ rootDomain
+          }}<span class="font-weight-bold">{{ service }}</span>
           <v-icon right large>{{ mdiMenuDown }}</v-icon>
         </v-btn>
       </template>
@@ -24,7 +24,7 @@
           :key="index"
         >
           <v-list-item-title @click="selectService(domain, serviceName)">
-            {{ domain }}.cioty.com/{{ serviceName }}
+            {{ domain }}{{ rootDomain }}{{ serviceName }}
           </v-list-item-title>
         </v-list-item>
       </v-list>
@@ -37,10 +37,12 @@
 
 <script>
 import { mdiMenuDown } from "@mdi/js";
+import { rootDomain } from "../../core/config";
 export default {
   data() {
     return {
       mdiMenuDown,
+      rootDomain,
       domain: "",
       service: "",
       instanceToAdd: "1"

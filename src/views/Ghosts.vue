@@ -59,11 +59,10 @@
         >
           <template v-slot:[`item.ghosts`]="{ item }">
             <div class="body-1 text-lowercase">
-              <span class="font-weight-bold">{{ item.domain }}</span
-              >.cioty.com/<span class="font-weight-bold">{{
-                item.service
-              }}</span>
-              <span class="font-weight-bold">#{{ item.instance }}</span>
+              {{ item.domain }}{{ rootDomain
+              }}<span class="font-weight-bold"
+                >{{ item.service }}#{{ item.instance }}
+              </span>
             </div>
           </template>
           <template v-slot:[`item.details`]="{ item }">
@@ -110,7 +109,7 @@
         Here's an example:
       </div>
       <div class="body-1 font-weight-bold">
-        domain.cioty.com/service#ghostID
+        domain{{ rootDomain }}service#ghostID
       </div>
     </div>
   </page-layout>
@@ -119,6 +118,7 @@
 <script>
 import _ from "lodash";
 import { mdiMenuDown, mdiChevronRight, mdiClose } from "@mdi/js";
+import { rootDomain } from "../core/config";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import DomainEmpty from "../components/empty-page/DomainsEmpty";
@@ -131,6 +131,7 @@ export default {
       mdiMenuDown,
       mdiChevronRight,
       mdiClose,
+      rootDomain,
       search: "",
       page: 1,
       pageCount: 0,

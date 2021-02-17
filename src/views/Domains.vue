@@ -27,7 +27,8 @@
         >
           <template v-slot:[`item.domain`]="{ item }">
             <div class="body-1">
-              <strong>{{ item.name }}.cioty.com</strong>
+              <span class="font-weight-bold">{{ item.name }}</span
+              >{{ rootDomain }}
             </div>
           </template>
           <template v-slot:[`item.delete`]="{ item }">
@@ -71,6 +72,7 @@
 
 <script>
 import _ from "lodash";
+import { rootDomain } from "../core/config";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import DomainsEmpty from "../components/empty-page/DomainsEmpty";
@@ -78,6 +80,7 @@ import DeleteDomain from "../components/domain/DeleteDomain";
 export default {
   data() {
     return {
+      rootDomain,
       page: 1,
       pageCount: 0,
       itemsPerPage: 25,
