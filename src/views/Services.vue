@@ -72,11 +72,10 @@
           :items-per-page="itemsPerPage"
           hide-default-footer
         >
-          <template v-slot:[`item.serviceURL`]="{ item }">
+          <template v-slot:[`item.serviceURI`]="{ item }">
             <div class="body-1">
-              {{ item.domain }}.cioty.com/<span class="font-weight-bold">{{
-                item.serviceName
-              }}</span>
+              {{ item.domain }}{{ rootDomain
+              }}<span class="font-weight-bold">{{ item.serviceName }}</span>
             </div>
           </template>
           <template v-slot:[`item.edit`]="{ item }">
@@ -101,6 +100,7 @@
 <script>
 import _ from "lodash";
 import { mdiMagnify, mdiMenuDown, mdiChevronRight } from "@mdi/js";
+import { rootDomain } from "../core/config";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import ServicesEmpty from "../components/empty-page/ServicesEmpty";
@@ -112,6 +112,7 @@ export default {
       mdiMagnify,
       mdiMenuDown,
       mdiChevronRight,
+      rootDomain,
       search: "",
       sortByDomain: "All",
       page: 1,
@@ -119,8 +120,8 @@ export default {
       itemsPerPage: 25,
       headers: [
         {
-          text: "ServiceURL",
-          value: "serviceURL",
+          text: "ServiceURI",
+          value: "serviceURI",
           sortable: false
         },
         {
