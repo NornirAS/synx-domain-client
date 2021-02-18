@@ -42,14 +42,14 @@
     </v-list>
     <template v-slot:append>
       <div align="center" class="synx-hive-power subtitle-1">
+        Powered By
         <img
           align="center"
-          alt="SynxDomainLogo"
+          alt="synx-domain-logo"
           src="../assets/synx-domain-logo.webp"
-          width="20px"
           height="20px"
         />
-        Powered By Synx Hive
+        Synx Hive
       </div>
     </template>
   </v-navigation-drawer>
