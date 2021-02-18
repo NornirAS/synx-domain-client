@@ -151,6 +151,12 @@ export default {
     ghostURI() {
       return `${this.domain}.cioty.com/${this.service}#${this.instance}`;
     },
+    giveReadAccessSuccess() {
+      return this.$store.state.alarmModule.giveReadAccessSuccess;
+    },
+    removeReadAccessSuccess() {
+      return this.$store.state.alarmModule.removeReadAccessSuccess;
+    },
     addPrimaryGhostSuccess() {
       return this.$store.state.alarmModule.addPrimaryGhostSuccess;
     },
@@ -159,6 +165,12 @@ export default {
     }
   },
   watch: {
+    giveReadAccessSuccess() {
+      this.getGhostStatus();
+    },
+    removeReadAccessSuccess() {
+      this.getGhostStatus();
+    },
     addPrimaryGhostSuccess() {
       this.getGhostStatus();
     },
