@@ -7,11 +7,10 @@
         class="text-capitalize mt-4"
         color="secondary"
         rounded
-        block
         small
       >
+        <v-icon left small>{{ mdiTrashCanOutline }}</v-icon>
         Remove Ghost
-        <v-icon small right>{{ mdiTrashCanOutline }}</v-icon>
       </v-btn>
     </template>
 

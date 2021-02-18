@@ -7,11 +7,10 @@
         class="text-capitalize mt-4"
         color="secondary"
         rounded
-        block
         small
       >
+        <v-icon left small>{{ mdiSkullCrossbones }}</v-icon>
         Kill Session
-        <v-icon small right>{{ mdiSkullCrossbones }}</v-icon>
       </v-btn>
     </template>
 

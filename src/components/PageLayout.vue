@@ -9,7 +9,7 @@
         <slot name="page-content"></slot>
       </div>
     </v-col>
-    <v-col md="2" class="mt-md-16 pt-md-8">
+    <v-col md="2" lg="4" xl="3" class="mt-md-16 pt-md-8">
       <slot name="page-content-right"></slot>
       <v-list class="parent">
         <v-list-item v-for="(alert, index) in alerts" :key="index" class="pl-0">

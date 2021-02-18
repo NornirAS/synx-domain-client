@@ -4,14 +4,13 @@
       <v-btn
         v-bind="attrs"
         v-on="on"
-        class="text-capitalize"
+        class="text-capitalize mt-4"
         color="secondary"
         small
         rounded
-        block
       >
+        <v-icon left small>{{ mdiTrashCanOutline }}</v-icon>
         Delete Service
-        <v-icon small>{{ mdiTrashCanOutline }}</v-icon>
       </v-btn>
     </template>
 

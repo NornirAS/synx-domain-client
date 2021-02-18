@@ -7,11 +7,10 @@
         class="text-capitalize mt-4"
         color="secondary"
         rounded
-        block
         small
       >
+        <v-icon left small>{{ mdiSwapHorizontal }}</v-icon>
         Transfer ownership
-        <v-icon small right>{{ mdiSwapHorizontal }}</v-icon>
       </v-btn>
     </template>
 
