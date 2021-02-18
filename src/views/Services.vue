@@ -7,7 +7,6 @@
         slot="action"
         class="text-capitalize"
         rounded
-        outlined
         small
         color="primary"
         :disabled="noDomains"

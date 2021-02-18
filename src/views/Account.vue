@@ -6,7 +6,6 @@
         @click="customerPortal"
         slot="action"
         class="text-capitalize"
-        outlined
         rounded
         small
         color="primary"

@@ -8,7 +8,6 @@
         class="text-capitalize"
         small
         rounded
-        outlined
         color="primary"
       >
         Add domain

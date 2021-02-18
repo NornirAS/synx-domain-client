@@ -32,7 +32,6 @@
             class="text-capitalize"
             rounded
             small
-            outlined
             color="primary"
           >
             <v-icon left>{{ mdiLogout }}</v-icon> Log Out
