@@ -57,7 +57,7 @@
           :items-per-page="itemsPerPage"
           hide-default-footer
         >
-          <template v-slot:[`item.ghosts`]="{ item }">
+          <template v-slot:[`item.allGhosts`]="{ item }">
             <div class="body-1 text-lowercase">
               {{ item.domain }}{{ rootDomain
               }}<span class="font-weight-bold"
@@ -95,7 +95,7 @@
           </template>
         </v-data-table>
         <v-pagination
-          v-if="!noGhosts && !ghostsLengthLessItemsPerPage"
+          v-if="!noGhosts && !allGhostsLengthLessItemsPerPage"
           v-model="page"
           :length="pageCount"
           light
@@ -139,7 +139,7 @@ export default {
       headers: [
         {
           text: "Ghosts",
-          value: "ghosts",
+          value: "allGhosts",
           sortable: false
         },
         {
@@ -219,20 +219,20 @@ export default {
     noDomains() {
       return _.isEmpty(this.domains);
     },
-    ghosts() {
+    allGhosts() {
       return this.$store.getters["instancesModule/mergedGhostArray"];
     },
     instances() {
       return this.$store.state.instancesModule.instances;
     },
     noGhosts() {
-      return _.isEmpty(this.ghosts);
+      return _.isEmpty(this.allGhosts);
     },
-    ghostsLengthLessItemsPerPage() {
-      return this.ghosts.length <= this.itemsPerPage;
+    allGhostsLengthLessItemsPerPage() {
+      return this.allGhosts.length <= this.itemsPerPage;
     },
     searchFilter() {
-      return this.ghosts.filter(
+      return this.allGhosts.filter(
         instance =>
           instance.domain.toLowerCase().indexOf(this.search.toLowerCase()) >
             -1 ||
