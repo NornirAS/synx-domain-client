@@ -18,19 +18,10 @@ const mutations = {
 
 const actions = {
   // eslint-disable-next-line no-unused-vars
-  async fetchDataFromMicropage({ dispatch, commit, getters, rootGetters }) {
-    try {
-      const serviceURL = rootGetters["serviceFormModule/serviceURL"];
-      console.log(serviceURL);
-      const fetchMicropage = await fetch(serviceURL);
-      console.log(fetchMicropage);
-      const microPageAsText = await fetchMicropage.text();
-      const parser = new DOMParser();
-      const textToHtml = parser.parseFromString(microPageAsText, "text/html");
-      console.log(textToHtml);
-    } catch (e) {
-      console.error(e);
-    }
+  SOCKET_micropage_data({ commit }, data) {
+    const parser = new DOMParser();
+    const textToHtml = parser.parseFromString(data, "text/html");
+    console.log(textToHtml);
   }
 };
 

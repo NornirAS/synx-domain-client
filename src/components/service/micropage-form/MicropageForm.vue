@@ -45,7 +45,7 @@ export default {
     };
   },
   created() {
-    this.$store.dispatch("micropageFormModule/fetchDataFromMicropage");
+    this.$socket.emit("fetch_micropage", this.micropageURL);
   },
   methods: {
     submitMicropageForm() {
@@ -61,6 +61,9 @@ export default {
   computed: {
     updateMicropageParams() {
       return this.$store.getters["micropageFormModule/updateMicropageParams"];
+    },
+    micropageURL() {
+      return this.$store.getters["serviceFormModule/serviceURL"];
     }
   },
   components: {
