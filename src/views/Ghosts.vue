@@ -61,7 +61,7 @@
             <div class="body-1 text-lowercase">
               {{ item.domain }}{{ rootDomain
               }}<span class="font-weight-bold"
-                >{{ item.service }}#{{ item.instance }}
+                >{{ item.service }}##{{ item.instance }}
               </span>
             </div>
           </template>
@@ -109,7 +109,7 @@
         Here's an example:
       </div>
       <div class="body-1 font-weight-bold">
-        domain{{ rootDomain }}service#ghostID
+        domain{{ rootDomain }}service##ghostID
       </div>
     </div>
   </page-layout>

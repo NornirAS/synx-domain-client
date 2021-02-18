@@ -1,3 +1,5 @@
+import { rootDomain } from "../../core/config";
+
 const state = {
   instances: [],
   ghostsToApprove: [],
@@ -41,7 +43,7 @@ const mutations = {
       service.refDomain = array[0];
       service.refService = array[1];
       service.refObjectID = array[2];
-      service.uri = `${array[0]}.cioty.com/${array[1]}#${array[2]}`.toLowerCase();
+      service.uri = `${array[0]}${rootDomain}${array[1]}##${array[2]}`.toLowerCase();
       return service;
     });
     state.ghostSecondaryService = updatedSecondaryServiceObject;

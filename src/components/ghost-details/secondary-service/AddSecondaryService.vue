@@ -38,7 +38,7 @@ export default {
       mdiPlus,
       uri: "",
       valid: false,
-      ghostURIRegExp: /([a-zA-Z_]+?)(?=\.)\.cioty.com(?=\/)\/([a-zA-Z_]+?)(?=#)#\d+/,
+      ghostURIRegExp: /([a-zA-Z_]+?)(?=\.)\.cioty.com(?=\/)\/([a-zA-Z_]+?)(?=##)##\d+/,
       uriRules: [
         v => !!v || "URI is required",
         v => this.ghostURIRegExp.test(v) || "Ghost URI must be valid"
@@ -79,9 +79,9 @@ export default {
       }
     },
     refObjectID() {
-      const result = this.uri.match(/#\d+/);
+      const result = this.uri.match(/##\d+/);
       if (result !== null) {
-        return result[0].replace(/#/, "");
+        return result[0].replace(/##/, "");
       } else {
         return "";
       }

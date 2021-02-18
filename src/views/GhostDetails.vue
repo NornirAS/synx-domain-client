@@ -87,6 +87,7 @@
 
 <script>
 import { mdiPlus, mdiChevronDown, mdiChevronUp } from "@mdi/js";
+import { rootDomain } from "../core/config";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import ExternalLinking from "../components/ghost-details/ExternalLinking";
@@ -103,7 +104,8 @@ export default {
     return {
       mdiPlus,
       mdiChevronDown,
-      mdiChevronUp
+      mdiChevronUp,
+      rootDomain
     };
   },
   created() {
@@ -143,13 +145,13 @@ export default {
       return this.ghost.instance;
     },
     domainURI() {
-      return `${this.domain}.cioty.com/`;
+      return `${this.domain}${rootDomain}`;
     },
     ghostID() {
-      return `${this.service}#${this.instance}`;
+      return `${this.service}##${this.instance}`;
     },
     ghostURI() {
-      return `${this.domain}.cioty.com/${this.service}#${this.instance}`;
+      return `${this.domainURI}${this.ghostID}`;
     },
     giveReadAccessSuccess() {
       return this.$store.state.alarmModule.giveReadAccessSuccess;
