@@ -4,34 +4,36 @@
     <div class="body-1">
       Choose the morphic service you want to add the ghost to.
     </div>
-    <v-menu offset-y>
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          class="text-none domain-dropdown my-4"
-          color="secondary"
-          v-bind="attrs"
-          v-on="on"
-          outlined
-        >
-          {{ domain }}{{ rootDomain
-          }}<span class="font-weight-bold">{{ service }}</span>
-          <v-icon right large>{{ mdiMenuDown }}</v-icon>
-        </v-btn>
-      </template>
-      <v-list>
-        <v-list-item
-          v-for="({ domain, serviceName }, index) in services"
-          :key="index"
-        >
-          <v-list-item-title @click="selectService(domain, serviceName)">
-            {{ domain }}{{ rootDomain }}{{ serviceName }}
-          </v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-menu>
-    <v-btn @click="addGhost" color="primary" class="text-capitalize ml-4">
-      Add ghost
-    </v-btn>
+    <div class="d-flex justify-start my-4">
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            class="text-none full-wide"
+            color="secondary"
+            v-bind="attrs"
+            v-on="on"
+            outlined
+          >
+            {{ domain }}{{ rootDomain
+            }}<span class="font-weight-bold">{{ service }}</span>
+            <v-icon right large>{{ mdiMenuDown }}</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="({ domain, serviceName }, index) in services"
+            :key="index"
+          >
+            <v-list-item-title @click="selectService(domain, serviceName)">
+              {{ domain }}{{ rootDomain }}{{ serviceName }}
+            </v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+      <v-btn @click="addGhost" color="primary" class="text-capitalize ml-4">
+        Add ghost
+      </v-btn>
+    </div>
   </v-card>
 </template>
 
@@ -82,7 +84,7 @@ export default {
 </script>
 
 <style scoped>
-.domain-dropdown {
-  width: 70%;
+.full-wide {
+  flex: 1 1 auto;
 }
 </style>
