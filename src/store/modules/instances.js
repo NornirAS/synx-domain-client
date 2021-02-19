@@ -29,7 +29,7 @@ const mutations = {
   addExternalLinkingToGhostStatus(state, payload) {
     const updatedExternalLinkingObject = payload.map(link => {
       const linkNameLowerCase = link.name.toLowerCase();
-      link.uri = linkNameLowerCase.replace(/\//g, ".cioty.com/");
+      link.uri = linkNameLowerCase.replace(/\//g, `${rootDomain}`);
       return link;
     });
     state.ghostLinkedTo = updatedExternalLinkingObject;
