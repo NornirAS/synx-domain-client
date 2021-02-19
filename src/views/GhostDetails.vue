@@ -66,21 +66,27 @@
     </div>
     <div slot="page-content-right">
       <div class="title">Other Actions</div>
-      <kill-session
-        :token="token"
-        :ghost="ghost"
-        :ghostURI="ghostURI"
-      ></kill-session>
-      <transfer-ownership
-        :token="token"
-        :ghost="ghost"
-        :ghostURI="ghostURI"
-      ></transfer-ownership>
-      <remove-ghost
-        :token="token"
-        :ghost="ghost"
-        :ghostURI="ghostURI"
-      ></remove-ghost>
+      <div>
+        <kill-session
+          :token="token"
+          :ghost="ghost"
+          :ghostURI="ghostURI"
+        ></kill-session>
+      </div>
+      <div>
+        <transfer-ownership
+          :token="token"
+          :ghost="ghost"
+          :ghostURI="ghostURI"
+        ></transfer-ownership>
+      </div>
+      <div>
+        <remove-ghost
+          :token="token"
+          :ghost="ghost"
+          :ghostURI="ghostURI"
+        ></remove-ghost>
+      </div>
     </div>
   </page-layout>
 </template>
