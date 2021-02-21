@@ -42,6 +42,16 @@ export default {
       );
     }
   },
+  computed: {
+    schemaDescription() {
+      return this.$store.state.micropageFormModule.schemaDescription;
+    }
+  },
+  watch: {
+    schemaDescription(newValue) {
+      this.description = newValue;
+    }
+  },
   components: {
     InputCard: () => import("../FormInputCard")
   }

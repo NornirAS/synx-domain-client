@@ -20,8 +20,20 @@ const actions = {
   // eslint-disable-next-line no-unused-vars
   SOCKET_micropage_data({ commit }, data) {
     const parser = new DOMParser();
-    const textToHtml = parser.parseFromString(data, "text/html");
-    console.log(textToHtml);
+    const htmlDoc = parser.parseFromString(data, "text/html");
+    const serviceDescriptionElement = htmlDoc.querySelector(
+      "#service-description"
+    );
+    const serviceDescription = serviceDescriptionElement.innerHTML.trim();
+    commit("addServiceDescription", serviceDescription);
+    const schemaDescriptionElement = htmlDoc.querySelector(
+      "#schema-description"
+    );
+    const schemaDescription = schemaDescriptionElement.innerHTML;
+    commit("addSchemaDescription", schemaDescription);
+    const serviceImageElement = htmlDoc.querySelector("#service-image");
+    const serviceImage = serviceImageElement.src;
+    commit("addImageUrl", serviceImage);
   }
 };
 

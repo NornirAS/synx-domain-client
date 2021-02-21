@@ -30,6 +30,16 @@ export default {
       this.$store.commit("micropageFormModule/addImageUrl", this.image);
     }
   },
+  computed: {
+    imageUrl() {
+      return this.$store.state.micropageFormModule.imageUrl;
+    }
+  },
+  watch: {
+    imageUrl(newValue) {
+      this.image = newValue;
+    }
+  },
   components: {
     InputCard: () => import("../FormInputCard")
   }
