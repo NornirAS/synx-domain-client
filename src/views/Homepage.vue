@@ -17,7 +17,7 @@
       <p align="center">
         Not registered yet?
         <a
-          href="https://norniras.github.io/synx-pass-client/"
+          href="https://www.synxpass.com/"
           class="text-decoration-none synxpass-link"
           target="_blank"
           >Sign Up!
