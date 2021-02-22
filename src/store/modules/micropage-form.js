@@ -35,16 +35,16 @@ const actions = {
       "#schema-description"
     );
     const schemaDescriptionText = schemaDescriptionElement.innerHTML;
-    const matchElements = schemaDescriptionText.match(/(.+?)(?=#|$)/gm);
-    const removeSpacesAddNewLines = matchElements.map(str => {
-      str.replace(/\s*$/, "");
-      return `${str}\n`;
+    const matchedElementsArray = schemaDescriptionText.match(/(.+?)(?=#|$)/gm);
+    const updatedElementsArray = matchedElementsArray.map(str => {
+      const stringWithNoSpacesAtTheEnd = str.replace(/\s*$/, "");
+      return `${stringWithNoSpacesAtTheEnd}\n`;
     });
-    const schemaDescription = removeSpacesAddNewLines.join("");
+    const schemaDescription = updatedElementsArray.join("");
     commit("addSchemaDescription", schemaDescription);
     const serviceImageElement = htmlDoc.querySelector("#service-image");
-    const serviceImage = serviceImageElement.src;
-    commit("addImageUrl", serviceImage);
+    const serviceImageUrl = serviceImageElement.src;
+    commit("addImageUrl", serviceImageUrl);
   }
 };
 
