@@ -47,6 +47,9 @@ export default {
   created() {
     this.$socket.emit("fetch_micropage", this.micropageURL);
   },
+  beforeDestroy() {
+    this.$store.commit("micropageFormModule/resetState");
+  },
   methods: {
     submitMicropageForm() {
       const isFormValid = this.$refs.micropageForm.validate();
