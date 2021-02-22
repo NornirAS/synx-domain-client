@@ -34,7 +34,13 @@ const actions = {
     const schemaDescriptionElement = htmlDoc.querySelector(
       "#schema-description"
     );
-    const schemaDescription = schemaDescriptionElement.innerHTML;
+    const schemaDescriptionText = schemaDescriptionElement.innerHTML;
+    const matchElements = schemaDescriptionText.match(/(.+?)(?=#|$)/gm);
+    const removeSpacesAddNewLines = matchElements.map(str => {
+      str.replace(/\s*$/, "");
+      return `${str}\n`;
+    });
+    const schemaDescription = removeSpacesAddNewLines.join("");
     commit("addSchemaDescription", schemaDescription);
     const serviceImageElement = htmlDoc.querySelector("#service-image");
     const serviceImage = serviceImageElement.src;
