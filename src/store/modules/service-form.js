@@ -48,7 +48,7 @@ const mutations = {
     state.domain = service.domain;
     state.name = service.serviceName;
     state.description = service.description;
-    state.keywords = service.searchTerms;
+    state.keywords = service.searchTerms.split(" ");
     state.schema = service.schema;
     state.command = service.cmdXML;
     state.inlinePreScript = service.preMasterScript;
@@ -71,13 +71,6 @@ const mutations = {
 };
 
 const getters = {
-  keywordsString({ keywords }) {
-    if (keywords.length > 0) {
-      return keywords.join(" ");
-    } else {
-      return "";
-    }
-  },
   serviceURI({ domain, name }) {
     return `${domain}${rootDomain}${name}`;
   },
@@ -88,6 +81,7 @@ const getters = {
   registerServiceParams(state, getters, rootState) {
     const { username, idToken } = rootState.authModule;
     const parameters = state;
+    parameters.keywords = state.keywords.join(" ");
     parameters.username = username;
     parameters.token = idToken;
     return parameters;

@@ -60,7 +60,7 @@ export default {
   mounted() {
     const isNotEmpty = this.serviceKeywords.length >= 1;
     if (isNotEmpty) {
-      this.keywords = this.serviceKeywords.split(" ");
+      this.keywords = this.serviceKeywords;
     }
   },
   methods: {
