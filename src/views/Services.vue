@@ -66,7 +66,7 @@
         <v-data-table
           @page-count="pageCount = $event"
           :headers="headers"
-          :items="searchFilter"
+          :items="searchResult"
           :page.sync="page"
           :items-per-page="itemsPerPage"
           hide-default-footer
@@ -170,7 +170,7 @@ export default {
         ? this.services
         : this.services.filter(service => service.domain === this.sortByDomain);
     },
-    searchFilter() {
+    searchResult() {
       return this.sortBy.filter(
         service =>
           service.serviceName.toLowerCase().indexOf(this.search.toLowerCase()) >
@@ -178,10 +178,10 @@ export default {
       );
     },
     noResultsFound() {
-      return _.isEmpty(this.searchFilter);
+      return _.isEmpty(this.searchResult);
     },
     servicesLengthLessItemsPerPage() {
-      return this.searchFilter.length <= this.itemsPerPage;
+      return this.searchResult.length <= this.itemsPerPage;
     }
   },
   components: {
