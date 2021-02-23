@@ -131,7 +131,11 @@ export default {
     };
   },
   created() {
-    this.$socket.emit("get_all_services", this.token);
+    if (this.noServices) {
+      this.$socket.emit("get_all_services", this.token);
+    } else {
+      this.$store.dispatch("servicesModule/addServicesFromStorage");
+    }
   },
   methods: {
     selectedDomain(domain) {
@@ -153,7 +157,7 @@ export default {
       return this.$store.state.servicesModule.services;
     },
     noServices() {
-      return _.isEmpty(this.services);
+      return this.$store.getters["servicesModule/noServices"];
     },
     sortBy() {
       return this.sortByDomain === "All"
