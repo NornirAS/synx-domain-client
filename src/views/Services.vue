@@ -45,7 +45,7 @@
               </template>
               <v-list>
                 <v-list-item
-                  v-for="(domain, index) in domainNames"
+                  v-for="(domain, index) in domainSortList"
                   :key="index"
                 >
                   <v-list-item-title @click="selectedDomain(domain)">
@@ -164,6 +164,11 @@ export default {
     },
     domainNames() {
       return this.$store.getters["domainsModule/domainNames"];
+    },
+    domainSortList() {
+      const domainNames = this.domainNames;
+      domainNames.unshift("All");
+      return domainNames;
     },
     sortBy() {
       return this.sortByDomain === "All"
