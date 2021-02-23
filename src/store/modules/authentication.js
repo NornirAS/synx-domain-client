@@ -15,7 +15,6 @@ const mutations = {
   signOut(state) {
     state.idToken = "";
     state.username = "";
-    localStorage.clear();
   },
   resetError(state) {
     state.authError = "";
@@ -24,8 +23,8 @@ const mutations = {
 
 const actions = {
   tryAutoSignIn({ commit }) {
-    const token = localStorage.getItem("token");
-    const username = localStorage.getItem("username");
+    const token = sessionStorage.getItem("token");
+    const username = sessionStorage.getItem("username");
     if (!token) {
       return;
     } else {
@@ -59,12 +58,12 @@ const actions = {
     if (data.ActiveToken) {
       commit("authUser", {
         token: data.ActiveToken,
-        username: localStorage.getItem("username")
+        username: sessionStorage.getItem("username")
       });
       // const now = new Date();
       // const expirationTime = 60 * 60 * 24 * 1000;
       // const expirationDate = new Date(now.getTime() + expirationTime);
-      localStorage.setItem("token", data.ActiveToken);
+      sessionStorage.setItem("token", data.ActiveToken);
       // localStorage.setItem("expirationDate", expirationDate);
     } else {
       commit("authError", {

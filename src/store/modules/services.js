@@ -5,20 +5,17 @@ const state = {
 };
 
 const mutations = {
-  allServices(state, payload) {
+  addServices(state, payload) {
     state.services = payload;
   },
   activeChannelsSuccess(state, { channels, index }) {
     state.services[index].activeChannels = channels;
-  },
-  addServicesFromStorage(state, payload) {
-    state.services = payload;
   }
 };
 
 const actions = {
   SOCKET_all_services({ commit }, data) {
-    localStorage.setItem("services", JSON.stringify(data));
+    sessionStorage.setItem("services", JSON.stringify(data));
     commit("allServices", data);
   },
   SOCKET_show_active_channels_success({ commit }, { channels, index }) {
@@ -26,13 +23,13 @@ const actions = {
   },
   addServicesFromStorage({ commit, getters }) {
     const services = getters.getServicesFromStorage;
-    commit("addServicesFromStorage", services);
+    commit("addServices", services);
   }
 };
 
 const getters = {
   getServicesFromStorage() {
-    const services = localStorage.getItem("services");
+    const services = sessionStorage.getItem("services");
     return JSON.parse(services);
   },
   noServices(state, { getServicesFromStorage }) {

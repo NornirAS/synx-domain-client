@@ -45,7 +45,7 @@
               </template>
               <v-list>
                 <v-list-item
-                  v-for="(domain, index) in domainNamesArray"
+                  v-for="(domain, index) in domainNames"
                   :key="index"
                 >
                   <v-list-item-title @click="selectedDomain(domain)">
@@ -159,6 +159,12 @@ export default {
     noServices() {
       return this.$store.getters["servicesModule/noServices"];
     },
+    noDomains() {
+      return this.$store.getters["domainsModule/noDomains"];
+    },
+    domainNames() {
+      return this.$store.getters["domainsModule/domainNames"];
+    },
     sortBy() {
       return this.sortByDomain === "All"
         ? this.services
@@ -173,24 +179,6 @@ export default {
     },
     noResultsFound() {
       return _.isEmpty(this.searchFilter);
-    },
-    domains() {
-      const domains = localStorage.getItem("domains");
-      return JSON.parse(domains);
-    },
-    noDomains() {
-      return _.isEmpty(this.domains);
-    },
-    domainNamesArray() {
-      if (this.noDomains) {
-        return [];
-      } else {
-        const domainNames = this.domains.map(str => {
-          return str.name;
-        });
-        domainNames.unshift("All");
-        return domainNames;
-      }
     },
     servicesLengthLessItemsPerPage() {
       return this.searchFilter.length <= this.itemsPerPage;
