@@ -5,9 +5,15 @@ const state = {
 };
 
 const mutations = {
-  authUser(state, { token, username }) {
-    state.idToken = token;
-    state.username = username;
+  // authUser(state, { token, username }) {
+  //   state.idToken = token;
+  //   state.username = username;
+  // },
+  addUsename(state, payload) {
+    state.username = payload;
+  },
+  addToken(state, payload) {
+    state.token = payload;
   },
   authError(state, { error }) {
     state.authError = error;
@@ -23,29 +29,6 @@ const mutations = {
 };
 
 const actions = {
-  tryAutoSignIn({ commit }) {
-    const token = sessionStorage.getItem("token");
-    const username = sessionStorage.getItem("username");
-    if (!token) {
-      return;
-    } else {
-      commit("authUser", {
-        token: token,
-        username: username
-      });
-    }
-    // const expirationDate = localStorage.getItem("expirationDate");
-    // const expiredIn = new Date(expirationDate);
-    // const now = new Date();
-    // if (now >= expiredIn) {
-    //   commit("signOut");
-    // } else {
-    //   commit("authUser", {
-    //     token: token,
-    //     username: username
-    //   });
-    // }
-  },
   // setSignOutTimer({ commit }) {
   //   const expirationDate = localStorage.getItem("expirationDate");
   //   const expiredIn = new Date(expirationDate).getTime();

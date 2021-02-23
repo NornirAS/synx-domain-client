@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     submitForm() {
-      localStorage.setItem("username", this.authData.username);
+      sessionStorage.setItem("username", this.authData.username);
       this.$socket.emit("authenticate", this.authData);
     }
   },
