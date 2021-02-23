@@ -7,8 +7,6 @@
     <v-menu offset-y slot="action">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-          :disabled="isServiceUpdate"
-          :dark="!isServiceUpdate"
           class="text-none domain-dropdown"
           color="secondary"
           v-bind="attrs"
@@ -20,7 +18,7 @@
         </v-btn>
       </template>
       <v-list>
-        <v-list-item v-for="(domain, index) in domainNamesArray" :key="index">
+        <v-list-item v-for="(domain, index) in domainNames" :key="index">
           <v-list-item-title @click="selectDomain(domain)">
             {{ domain }}{{ rootDomain }}
           </v-list-item-title>
@@ -31,7 +29,6 @@
 </template>
 
 <script>
-import _ from "lodash";
 import { mdiMenuDown } from "@mdi/js";
 import { rootDomain } from "../../../core/config.js";
 export default {
@@ -43,12 +40,8 @@ export default {
     };
   },
   created() {
-    if (this.isServiceUpdate) {
-      this.selectedDomain = this.domain;
-    } else {
-      this.selectedDomain = this.firstDomain;
-      this.$store.commit("serviceFormModule/addDomain", this.firstDomain);
-    }
+    this.selectedDomain = this.domainNames[0];
+    this.$store.commit("serviceFormModule/addDomain", this.domainNames[0]);
   },
   methods: {
     selectDomain(domain) {
@@ -60,28 +53,14 @@ export default {
     isServiceUpdate() {
       return this.$route.name === "serviceUpdate";
     },
-    domains() {
-      const domains = localStorage.getItem("domains");
-      return JSON.parse(domains);
-    },
-    domain() {
-      return this.$store.state.serviceFormModule.domain;
+    noServices() {
+      return this.$store.getters["servicesModule/noServices"];
     },
     noDomains() {
-      return _.isEmpty(this.domains);
+      return this.$store.getters["domainsModule/noDomains"];
     },
-    domainNamesArray() {
-      if (this.noDomains) {
-        return [];
-      } else {
-        const domainNames = this.domains.map(str => {
-          return str.name;
-        });
-        return domainNames;
-      }
-    },
-    firstDomain() {
-      return this.domainNamesArray[0];
+    domainNames() {
+      return this.$store.getters["domainsModule/domainNames"];
     }
   },
   components: {

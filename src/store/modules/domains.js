@@ -33,11 +33,9 @@ const getters = {
     if (noDomains) {
       return [];
     } else {
-      const domainNames = domainsFromStorage.map(str => {
+      return domainsFromStorage.map(str => {
         return str.name;
       });
-      domainNames.unshift("All");
-      return domainNames;
     }
   }
 };

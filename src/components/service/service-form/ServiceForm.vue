@@ -7,7 +7,7 @@
     lazy-validation
   >
     <div class="title">Service Settings - for Machines</div>
-    <service-domain></service-domain>
+    <service-domain v-if="!isServiceUpdate"></service-domain>
     <service-name></service-name>
     <service-description></service-description>
     <service-keywords></service-keywords>
