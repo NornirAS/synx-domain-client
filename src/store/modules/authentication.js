@@ -5,18 +5,14 @@ const state = {
 };
 
 const mutations = {
-  // authUser(state, { token, username }) {
-  //   state.idToken = token;
-  //   state.username = username;
-  // },
-  addUsename(state, payload) {
+  addUsername(state, payload) {
     state.username = payload;
   },
   addToken(state, payload) {
-    state.token = payload;
+    state.idToken = payload;
   },
-  authError(state, { error }) {
-    state.authError = error;
+  authError(state, payload) {
+    state.authError = payload;
   },
   signOut(state) {
     state.idToken = "";
@@ -38,22 +34,21 @@ const actions = {
   //     commit("signOut");
   //   }, expirationTime);
   // },
-  SOCKET_authentication({ commit }, data) {
-    if (data.ActiveToken) {
-      commit("authUser", {
-        token: data.ActiveToken,
-        username: sessionStorage.getItem("username")
-      });
+  SOCKET_authentication({ commit }, { ActiveToken }) {
+    if (ActiveToken) {
+      sessionStorage.setItem("token", ActiveToken);
+      commit("addToken", ActiveToken);
       // const now = new Date();
       // const expirationTime = 60 * 60 * 24 * 1000;
       // const expirationDate = new Date(now.getTime() + expirationTime);
-      sessionStorage.setItem("token", data.ActiveToken);
       // localStorage.setItem("expirationDate", expirationDate);
     } else {
-      commit("authError", {
-        error: "Wrong username or password!"
-      });
+      commit("authError", "Wrong username or password!");
     }
+  },
+  addUsername({ commit }, data) {
+    sessionStorage.setItem("username", data);
+    commit("addUsername", data);
   }
 };
 

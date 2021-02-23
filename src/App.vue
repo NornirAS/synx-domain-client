@@ -13,7 +13,6 @@
 export default {
   name: "App",
   created() {
-    this.$store.dispatch("authModule/tryAutoSignIn");
     if (localStorage.getItem("expirationDate")) {
       this.$store.dispatch("authModule/setSignOutTimer");
     }
