@@ -70,7 +70,6 @@
 </template>
 
 <script>
-import _ from "lodash";
 import { rootDomain } from "../core/config";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
@@ -103,7 +102,12 @@ export default {
     };
   },
   created() {
-    this.$socket.emit("get_all_domains", this.token, this.username);
+    this.getAllDomains();
+  },
+  methods: {
+    getAllDomains() {
+      this.$socket.emit("get_all_domains", this.token, this.username);
+    }
   },
   computed: {
     token() {
@@ -116,7 +120,7 @@ export default {
       return this.$store.state.domainsModule.domains;
     },
     noDomains() {
-      return _.isEmpty(this.domains);
+      return this.$store.getters["domainsModule/noDomains"];
     },
     domainsLengthLessItemsPerPage() {
       return this.domains.length <= this.itemsPerPage;
@@ -127,7 +131,7 @@ export default {
   },
   watch: {
     deleteDomainSuccess() {
-      this.$socket.emit("get_all_domains", this.token, this.username);
+      this.getAllDomains();
     }
   },
   components: {
