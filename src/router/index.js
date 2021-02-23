@@ -18,7 +18,7 @@ import MicropageForm from "../components/service/micropage-form/MicropageForm";
 Vue.use(VueRouter);
 
 const authGuard = (to, from, next) => {
-  if (localStorage.getItem("token")) {
+  if (sessionStorage.getItem("token")) {
     next();
   } else {
     next("/");
@@ -26,7 +26,7 @@ const authGuard = (to, from, next) => {
 };
 
 const skipHomeIfAuth = (to, from, next) => {
-  if (localStorage.getItem("token")) {
+  if (sessionStorage.getItem("token")) {
     next("/services");
   } else {
     next();

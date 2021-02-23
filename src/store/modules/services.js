@@ -16,7 +16,7 @@ const mutations = {
 const actions = {
   SOCKET_all_services({ commit }, data) {
     sessionStorage.setItem("services", JSON.stringify(data));
-    commit("allServices", data);
+    commit("addServices", data);
   },
   SOCKET_show_active_channels_success({ commit }, { channels, index }) {
     commit("activeChannelsSuccess", { channels, index });

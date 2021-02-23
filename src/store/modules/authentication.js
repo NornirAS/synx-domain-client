@@ -15,6 +15,7 @@ const mutations = {
   signOut(state) {
     state.idToken = "";
     state.username = "";
+    sessionStorage.clear();
   },
   resetError(state) {
     state.authError = "";
