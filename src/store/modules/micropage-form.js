@@ -49,14 +49,11 @@ const actions = {
 };
 
 const getters = {
-  updateMicropageParams(state, getters, rootState) {
-    const { token } = rootState.authModule;
-    const { domain, name } = rootState.serviceFormModule;
-    const parameters = state;
-    parameters.domain = domain;
-    parameters.name = name;
-    parameters.token = token;
-    return parameters;
+  updateMicropageParams(state, getters, { authModule, serviceFormModule }) {
+    state.domain = serviceFormModule.domain;
+    state.name = serviceFormModule.name;
+    state.token = authModule.token;
+    return state;
   }
 };
 
