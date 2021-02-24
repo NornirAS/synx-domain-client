@@ -118,7 +118,7 @@ export default {
     this.getGhostStatus();
   },
   beforeDestroy() {
-    this.$store.commit("instancesModule/resetGhostStatus");
+    this.$store.commit("ghosts/resetGhostStatus");
   },
   methods: {
     getGhostStatus() {
@@ -139,7 +139,7 @@ export default {
       return this.$store.state.authModule.username;
     },
     ghost() {
-      return this.$store.state.instancesModule.selectedGhost;
+      return this.$store.state.ghosts.selectedGhost;
     },
     domain() {
       return this.ghost.domain.toLowerCase();

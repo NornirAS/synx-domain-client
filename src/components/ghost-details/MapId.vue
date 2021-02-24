@@ -107,7 +107,7 @@ export default {
   },
   watch: {
     addMapIdSuccess() {
-      this.$socket.emit("get_all_instances", this.token);
+      this.$socket.emit("get_owned_ghosts", this.token);
     }
   },
   components: {

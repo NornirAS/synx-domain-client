@@ -60,7 +60,7 @@ export default {
     },
     addGhost() {
       this.$socket.emit(
-        "add_instances",
+        "add_ghost",
         this.domain,
         this.service,
         this.token,

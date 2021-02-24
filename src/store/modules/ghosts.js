@@ -2,7 +2,7 @@ import _ from "lodash";
 import { rootDomain } from "../../core/config";
 
 const state = {
-  instances: [],
+  ghosts: [],
   ghostsToApprove: [],
   selectedGhost: {},
   ghostLinkedTo: [],
@@ -11,9 +11,9 @@ const state = {
 };
 
 const mutations = {
-  addInstances(state, payload) {
+  addGhosts(state, payload) {
     if (payload) {
-      state.instances = payload;
+      state.ghosts = payload;
     }
   },
   ghostsToApprove(state, payload) {
@@ -55,7 +55,7 @@ const mutations = {
     state.ghostSecondaryService = [];
   },
   resetGhosts(state) {
-    state.instances = [];
+    state.ghosts = [];
     state.ghostsToApprove = [];
   }
 };
@@ -63,7 +63,7 @@ const mutations = {
 const actions = {
   SOCKET_owned_ghosts({ commit }, data) {
     sessionStorage.setItem("ghosts", JSON.stringify(data));
-    commit("addInstances", data);
+    commit("addGhosts", data);
   },
   SOCKET_ghosts_to_approve({ commit }, data) {
     sessionStorage.setItem("ghostsToApprove", JSON.stringify(data));
@@ -76,16 +76,16 @@ const actions = {
   },
   addGhostsFromStorage({ commit }) {
     const ghosts = sessionStorage.getItem("ghosts");
-    commit("addInstances", JSON.parse(ghosts));
+    commit("addGhosts", JSON.parse(ghosts));
   }
 };
 
 const getters = {
-  allGhosts({ instances, ghostsToApprove }) {
+  allGhosts({ ghosts, ghostsToApprove }) {
     if (ghostsToApprove.length >= 1) {
-      return [...ghostsToApprove, ...instances];
+      return [...ghostsToApprove, ...ghosts];
     } else {
-      return instances;
+      return ghosts;
     }
   },
   noGhosts(state, { allGhosts }) {

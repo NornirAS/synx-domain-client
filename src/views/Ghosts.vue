@@ -155,7 +155,7 @@ export default {
     if (this.noGhosts) {
       this.getOwnedGhosts();
     } else {
-      this.$store.dispatch("instancesModule/addGhostsFromStorage");
+      this.$store.dispatch("ghosts/addGhostsFromStorage");
     }
     this.lookForNewGhosts();
   },
@@ -173,7 +173,7 @@ export default {
       this.selectedItem = item;
     },
     ghostDetails({ domain, service, instance, mapID }) {
-      this.$store.commit("instancesModule/selectGhost", {
+      this.$store.commit("ghosts/selectGhost", {
         domain,
         service,
         instance,
@@ -222,13 +222,13 @@ export default {
       return this.$store.getters["domainsModule/noDomains"];
     },
     allGhosts() {
-      return this.$store.getters["instancesModule/allGhosts"];
+      return this.$store.getters["ghosts/allGhosts"];
     },
-    instances() {
-      return this.$store.state.instancesModule.instances;
+    ghosts() {
+      return this.$store.state.ghosts.ghosts;
     },
     noGhosts() {
-      return this.$store.getters["instancesModule/noGhosts"];
+      return this.$store.getters["ghosts/noGhosts"];
     },
     allGhostsLengthLessItemsPerPage() {
       return this.allGhosts.length <= this.itemsPerPage;
@@ -259,21 +259,21 @@ export default {
   },
   watch: {
     addGhostSuccess() {
-      this.$store.commit("instancesModule/resetGhosts");
+      this.$store.commit("ghosts/resetGhosts");
       this.getOwnedGhosts();
     },
     acceptGhostSuccess() {
-      this.$store.commit("instancesModule/resetGhosts");
+      this.$store.commit("ghosts/resetGhosts");
       this.getOwnedGhosts();
       this.lookForNewGhosts();
     },
     declineGhostSuccess() {
-      this.$store.commit("instancesModule/resetGhosts");
+      this.$store.commit("ghosts/resetGhosts");
       this.getOwnedGhosts();
       this.lookForNewGhosts();
     },
     removeGhostSuccess() {
-      this.$store.commit("instancesModule/resetGhosts");
+      this.$store.commit("ghosts/resetGhosts");
       this.getOwnedGhosts();
     }
   },
