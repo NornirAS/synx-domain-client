@@ -1,13 +1,8 @@
 import _ from "lodash";
-import { rootDomain } from "../../core/config";
 
 const state = {
   ghosts: [],
-  ghostsToApprove: [],
-  selectedGhost: {},
-  ghostLinkedTo: [],
-  ghostReadAccess: [],
-  ghostSecondaryService: []
+  ghostsToApprove: []
 };
 
 const mutations = {
@@ -24,36 +19,6 @@ const mutations = {
       });
     }
   },
-  selectGhost(state, payload) {
-    state.selectedGhost = Object.assign({}, state.selectedGhost, payload);
-  },
-  addExternalLinkingToGhostStatus(state, payload) {
-    const updatedExternalLinkingObject = payload.map(link => {
-      const linkNameLowerCase = link.name.toLowerCase();
-      link.uri = linkNameLowerCase.replace(/\//g, `${rootDomain}`);
-      return link;
-    });
-    state.ghostLinkedTo = updatedExternalLinkingObject;
-  },
-  addReadAccessToGhostStatus(state, payload) {
-    state.ghostReadAccess = payload;
-  },
-  addSecondaryServiceToGhostStatus(state, payload) {
-    const updatedSecondaryServiceObject = payload.map(service => {
-      const array = service.name.split("/");
-      service.refDomain = array[0];
-      service.refService = array[1];
-      service.refObjectID = array[2];
-      service.uri = `${array[0]}${rootDomain}${array[1]}##${array[2]}`.toLowerCase();
-      return service;
-    });
-    state.ghostSecondaryService = updatedSecondaryServiceObject;
-  },
-  resetGhostStatus(state) {
-    state.ghostLinkedTo = [];
-    state.ghostReadAccess = [];
-    state.ghostSecondaryService = [];
-  },
   resetGhosts(state) {
     state.ghosts = [];
     state.ghostsToApprove = [];
@@ -68,11 +33,6 @@ const actions = {
   SOCKET_ghosts_to_approve({ commit }, data) {
     sessionStorage.setItem("ghostsToApprove", JSON.stringify(data));
     commit("ghostsToApprove", data);
-  },
-  SOCKET_ghost_status({ commit }, data) {
-    commit("addExternalLinkingToGhostStatus", data["Linked To"]);
-    commit("addReadAccessToGhostStatus", data["Read Access"]);
-    commit("addSecondaryServiceToGhostStatus", data["Secondary Service"]);
   },
   addGhostsFromStorage({ commit }) {
     const ghosts = sessionStorage.getItem("ghosts");

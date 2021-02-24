@@ -173,7 +173,7 @@ export default {
       this.selectedItem = item;
     },
     ghostDetails({ domain, service, instance, mapID }) {
-      this.$store.commit("ghosts/selectGhost", {
+      this.$store.commit("ghost-details/selectGhost", {
         domain,
         service,
         instance,

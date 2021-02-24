@@ -139,7 +139,7 @@ export default {
       return this.$store.state.authModule.username;
     },
     ghost() {
-      return this.$store.state.ghosts.selectedGhost;
+      return this.$store.state.ghostDetails.selectedGhost;
     },
     domain() {
       return this.ghost.domain.toLowerCase();
