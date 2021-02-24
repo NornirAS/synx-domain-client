@@ -41,6 +41,9 @@ export default {
     this.$store.commit("serviceFormModule/resetServiceForm");
   },
   methods: {
+    getAllServices() {
+      this.$socket.emit("get_all_services", this.token);
+    },
     toServiceUpdate() {
       this.$router.push({ name: "serviceUpdate" });
     },
@@ -49,6 +52,9 @@ export default {
     }
   },
   computed: {
+    token() {
+      return this.$store.state.authModule.idToken;
+    },
     isServiceUpdate() {
       return this.$route.name === "serviceUpdate";
     },
@@ -71,12 +77,15 @@ export default {
   watch: {
     registerServiceSuccess() {
       this.$router.push({ name: "services" });
+      this.getAllServices();
     },
     updateServiceSuccess() {
       this.$router.push({ name: "services" });
+      this.getAllServices();
     },
     deleteServiceSuccess() {
       this.$router.push({ name: "services" });
+      this.getAllServices();
     },
     updateMicropageSuccess() {
       this.$router.push({ name: "services" });

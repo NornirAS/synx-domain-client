@@ -21,17 +21,17 @@ const actions = {
   SOCKET_show_active_channels_success({ commit }, { channels, index }) {
     commit("activeChannelsSuccess", { channels, index });
   },
-  addServicesFromStorage({ commit, getters }) {
-    const services = getters.servicesFromStorage;
-    commit("addServices", services);
+  addServicesFromStorage({ commit }) {
+    const services = sessionStorage.getItem("services");
+    commit("addServices", JSON.parse(services));
   }
 };
 
 const getters = {
-  servicesFromStorage() {
-    const services = sessionStorage.getItem("services");
-    return JSON.parse(services);
-  },
+  // servicesFromStorage() {
+  //   const services = sessionStorage.getItem("services");
+  //   return JSON.parse(services);
+  // },
   noServices({ services }) {
     return _.isEmpty(services);
   }
