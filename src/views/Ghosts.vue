@@ -152,13 +152,23 @@ export default {
     };
   },
   created() {
-    this.$socket.emit("get_all_instances", this.token);
-    this.$socket.emit("look_for_new_ghosts", {
-      token: this.token,
-      username: this.username
-    });
+    if (this.noGhosts) {
+      this.getOwnedGhosts();
+    } else {
+      this.$store.dispatch("instancesModule/addGhostsFromStorage");
+    }
+    this.lookForNewGhosts();
   },
   methods: {
+    getOwnedGhosts() {
+      this.$socket.emit("get_owned_ghosts", this.token);
+    },
+    lookForNewGhosts() {
+      this.$socket.emit("look_for_new_ghosts", {
+        token: this.token,
+        username: this.username
+      });
+    },
     selectGhosts(item) {
       this.selectedItem = item;
     },
@@ -247,23 +257,17 @@ export default {
   watch: {
     addGhostSuccess() {
       this.$store.commit("instancesModule/resetGhosts");
-      this.$socket.emit("get_all_instances", this.token);
+      this.getOwnedGhosts();
     },
     acceptGhostSuccess() {
       this.$store.commit("instancesModule/resetGhosts");
-      this.$socket.emit("get_all_instances", this.token);
-      this.$socket.emit("look_for_new_ghosts", {
-        token: this.token,
-        username: this.username
-      });
+      this.getOwnedGhosts();
+      this.lookForNewGhosts();
     },
     declineGhostSuccess() {
       this.$store.commit("instancesModule/resetGhosts");
-      this.$socket.emit("get_all_instances", this.token);
-      this.$socket.emit("look_for_new_ghosts", {
-        token: this.token,
-        username: this.username
-      });
+      this.getOwnedGhosts();
+      this.lookForNewGhosts();
     }
   },
   components: {

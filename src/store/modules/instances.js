@@ -11,7 +11,7 @@ const state = {
 };
 
 const mutations = {
-  allInstances(state, payload) {
+  addInstances(state, payload) {
     if (payload) {
       state.instances = payload;
     }
@@ -61,16 +61,22 @@ const mutations = {
 };
 
 const actions = {
-  SOCKET_all_instances({ commit }, data) {
-    commit("allInstances", data);
+  SOCKET_owned_ghosts({ commit }, data) {
+    sessionStorage.setItem("ghosts", JSON.stringify(data));
+    commit("addInstances", data);
   },
   SOCKET_ghosts_to_approve({ commit }, data) {
+    sessionStorage.setItem("ghostsToApprove", JSON.stringify(data));
     commit("ghostsToApprove", data);
   },
   SOCKET_ghost_status({ commit }, data) {
     commit("addExternalLinkingToGhostStatus", data["Linked To"]);
     commit("addReadAccessToGhostStatus", data["Read Access"]);
     commit("addSecondaryServiceToGhostStatus", data["Secondary Service"]);
+  },
+  addGhostsFromStorage({ commit }) {
+    const ghosts = sessionStorage.getItem("ghosts");
+    commit("addInstances", JSON.parse(ghosts));
   }
 };
 
