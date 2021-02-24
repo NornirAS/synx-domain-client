@@ -117,9 +117,6 @@ export default {
   created() {
     this.getGhostStatus();
   },
-  beforeDestroy() {
-    this.$store.commit("ghosts/resetGhostStatus");
-  },
   methods: {
     getGhostStatus() {
       this.$socket.emit("get_ghost_status", {

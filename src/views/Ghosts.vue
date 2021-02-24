@@ -172,13 +172,11 @@ export default {
     selectGhosts(item) {
       this.selectedItem = item;
     },
-    ghostDetails({ domain, service, instance, mapID }) {
-      this.$store.commit("ghost-details/selectGhost", {
-        domain,
-        service,
-        instance,
-        mapID
-      });
+    ghostDetails(ghost) {
+      this.$store.commit("ghostDetails/selectGhost", ghost);
+      this.toGhostDetails(ghost);
+    },
+    toGhostDetails({ service, instance }) {
       this.$router.push({
         name: "ghostDetails",
         params: {
