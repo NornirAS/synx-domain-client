@@ -73,7 +73,7 @@ export default {
       return this.$store.state.authModule.idToken;
     },
     services() {
-      return this.$store.getters["servicesModule/servicesFromStorage"];
+      return this.$store.state.servicesModule.services;
     },
     firstService() {
       return this.services[0];

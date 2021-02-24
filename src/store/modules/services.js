@@ -28,10 +28,6 @@ const actions = {
 };
 
 const getters = {
-  // servicesFromStorage() {
-  //   const services = sessionStorage.getItem("services");
-  //   return JSON.parse(services);
-  // },
   noServices({ services }) {
     return _.isEmpty(services);
   }
