@@ -37,6 +37,9 @@ const getters = {
         return str.name;
       });
     }
+  },
+  domainNamesWithAllOption(state, { domainNames }) {
+    return ["All"].concat(domainNames);
   }
 };
 
