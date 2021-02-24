@@ -228,7 +228,7 @@ export default {
       return this.$store.state.instancesModule.instances;
     },
     noGhosts() {
-      return this.$store.getters["instancesModule/nodGhosts"];
+      return this.$store.getters["instancesModule/noGhosts"];
     },
     allGhostsLengthLessItemsPerPage() {
       return this.allGhosts.length <= this.itemsPerPage;
