@@ -19,6 +19,12 @@ export default {
     if (sessionStorage.getItem("username")) {
       this.$store.dispatch("authModule/addUsernameFromStorage");
     }
+    if (sessionStorage.getItem("domains")) {
+      this.$store.dispatch("domainsModule/addDomainsFromStorage");
+    }
+    if (sessionStorage.getItem("services")) {
+      this.$store.dispatch("servicesModule/addServicesFromStorage");
+    }
     if (localStorage.getItem("expirationDate")) {
       this.$store.dispatch("authModule/setSignOutTimer");
     }
