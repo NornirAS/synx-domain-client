@@ -102,7 +102,11 @@ export default {
     };
   },
   created() {
-    this.getAllDomains();
+    if (this.noServices) {
+      this.getAllDomains();
+    } else {
+      this.$store.dispatch("domainsModule/addDomainsFromStorage");
+    }
   },
   methods: {
     getAllDomains() {
