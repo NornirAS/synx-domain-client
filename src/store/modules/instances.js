@@ -81,15 +81,15 @@ const actions = {
 };
 
 const getters = {
-  mergedGhostArray({ instances, ghostsToApprove }) {
+  allGhosts({ instances, ghostsToApprove }) {
     if (ghostsToApprove.length >= 1) {
       return [...ghostsToApprove, ...instances];
     } else {
       return instances;
     }
   },
-  noGhosts(state, { mergedGhostArray }) {
-    return _.isEmpty(mergedGhostArray);
+  noGhosts(state, { allGhosts }) {
+    return _.isEmpty(allGhosts);
   }
 };
 

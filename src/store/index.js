@@ -5,7 +5,6 @@ import servicesModule from "./modules/services";
 import domainsModule from "./modules/domains";
 import instancesModule from "./modules/instances";
 import alarmModule from "./modules/alarm";
-import sidebarsModule from "./modules/sidebars";
 import serviceFormModule from "./modules/service-form";
 import micropageFormModule from "./modules/micropage-form";
 import stripeModule from "./modules/stripe";
@@ -31,7 +30,6 @@ export default new Vuex.Store({
     authModule,
     instancesModule,
     alarmModule,
-    sidebarsModule,
     serviceFormModule,
     micropageFormModule,
     stripeModule

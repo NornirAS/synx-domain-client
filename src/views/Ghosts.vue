@@ -222,7 +222,7 @@ export default {
       return this.$store.getters["domainsModule/noDomains"];
     },
     allGhosts() {
-      return this.$store.getters["instancesModule/mergedGhostArray"];
+      return this.$store.getters["instancesModule/allGhosts"];
     },
     instances() {
       return this.$store.state.instancesModule.instances;
