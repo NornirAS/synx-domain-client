@@ -16,7 +16,7 @@ const actions = {
     commit("allDomains", data);
   },
   addDomainsFromStorage({ commit, getters }) {
-    const domains = getters.getDomainsFromStorage;
+    const domains = getters.domainsFromStorage;
     commit("allDomains", domains);
   }
 };
@@ -26,8 +26,8 @@ const getters = {
     const domains = sessionStorage.getItem("domains");
     return JSON.parse(domains);
   },
-  noDomains(state, { domainsFromStorage }) {
-    return _.isEmpty(domainsFromStorage);
+  noDomains({ domains }) {
+    return _.isEmpty(domains);
   },
   domainNames(state, { noDomains, domainsFromStorage }) {
     if (noDomains) {

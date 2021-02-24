@@ -49,6 +49,14 @@ const actions = {
   addUsername({ commit }, data) {
     sessionStorage.setItem("username", data);
     commit("addUsername", data);
+  },
+  addTokenFromStorage({ commit }) {
+    const token = sessionStorage.getItem("token");
+    commit("addToken", token);
+  },
+  addUsernameFromStorage({ commit }) {
+    const username = sessionStorage.getItem("username");
+    commit("addUsername", username);
   }
 };
 

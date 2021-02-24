@@ -13,6 +13,12 @@
 export default {
   name: "App",
   created() {
+    if (sessionStorage.getItem("token")) {
+      this.$store.dispatch("authModule/addTokenFromStorage");
+    }
+    if (sessionStorage.getItem("username")) {
+      this.$store.dispatch("authModule/addUsernameFromStorage");
+    }
     if (localStorage.getItem("expirationDate")) {
       this.$store.dispatch("authModule/setSignOutTimer");
     }

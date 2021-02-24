@@ -22,18 +22,18 @@ const actions = {
     commit("activeChannelsSuccess", { channels, index });
   },
   addServicesFromStorage({ commit, getters }) {
-    const services = getters.getServicesFromStorage;
+    const services = getters.servicesFromStorage;
     commit("addServices", services);
   }
 };
 
 const getters = {
-  getServicesFromStorage() {
+  servicesFromStorage() {
     const services = sessionStorage.getItem("services");
     return JSON.parse(services);
   },
-  noServices(state, { getServicesFromStorage }) {
-    return _.isEmpty(getServicesFromStorage);
+  noServices({ services }) {
+    return _.isEmpty(services);
   }
 };
 
