@@ -44,17 +44,17 @@ const mutations = {
   setTimeout(state, payload) {
     state.timeout = payload;
   },
-  editService(state, service) {
-    state.domain = service.domain;
-    state.name = service.serviceName;
-    state.description = service.description;
-    state.keywords = service.searchTerms.split(" ");
-    state.schema = service.schema;
-    state.command = service.cmdXML;
-    state.inlinePreScript = service.preMasterScript;
-    state.inlinePostScript = service.masterScript;
-    state.webJS = service.webjs;
-    state.timeout = service.timeout;
+  editService(state, payload) {
+    state.domain = payload.domain;
+    state.name = payload.serviceName;
+    state.description = payload.description;
+    state.keywords = payload.searchTerms.split(" ");
+    state.schema = payload.schema;
+    state.command = payload.cmdXML;
+    state.inlinePreScript = payload.preMasterScript;
+    state.inlinePostScript = payload.masterScript;
+    state.webJS = payload.webjs;
+    state.timeout = payload.timeout;
   },
   resetServiceForm(state) {
     state.domain = "";
@@ -78,30 +78,23 @@ const getters = {
     return `https://${serviceURI}/`;
   },
   // eslint-disable-next-line no-unused-vars
-  registerServiceParams(state, getters, rootState) {
-    const { username, token } = rootState.authModule;
-    const parameters = state;
-    parameters.keywords = state.keywords.join(" ");
-    parameters.username = username;
-    parameters.token = token;
-    return parameters;
+  registerServiceParams(state, getters, { authModule }) {
+    state.keywords = state.keywords.join(" ");
+    state.token = authModule.token;
+    state.username = authModule.username;
+    return state;
   },
   // eslint-disable-next-line no-unused-vars
-  updateServiceParams(state, getters, rootState) {
-    const { token } = rootState.authModule;
-    const parameters = state;
-    parameters.token = token;
-    return parameters;
+  updateServiceParams(state, getters, { authModule }) {
+    state.token = authModule.token;
+    return state;
   },
-  deleteServiceParams(state, getters, rootState) {
-    const { token } = rootState.authModule;
-    const { domain, name } = state;
-    const instance = "0";
+  deleteServiceParams({ domain, name }, getters, { authModule }) {
     return {
-      token: token,
+      token: authModule.token,
       domain,
       name,
-      instance
+      instance: "0"
     };
   }
 };
