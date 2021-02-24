@@ -59,6 +59,10 @@ const getters = {
       service,
       instance
     };
+  },
+  ghostURI({ selectedGhost }) {
+    const { domain, service, instance } = selectedGhost;
+    return `${domain}${rootDomain}${service}##${instance}`.toLowerCase();
   }
 };
 

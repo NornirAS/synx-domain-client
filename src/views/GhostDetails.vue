@@ -145,16 +145,13 @@ export default {
     ghostID() {
       return `${this.service}##${this.instance}`;
     },
-    ghostURI() {
-      return `${this.domainURI}${this.ghostID}`;
-    },
     ...mapState("alarmModule", [
       "giveReadAccessSuccess",
       "removeReadAccessSuccess",
       "addPrimaryGhostSuccess",
       "removePrimaryGhostSuccess"
     ]),
-    ...mapGetters("ghostDetails", ["ghostStatusParams"])
+    ...mapGetters("ghostDetails", ["ghostStatusParams", "ghostURI"])
   },
   watch: {
     giveReadAccessSuccess() {
