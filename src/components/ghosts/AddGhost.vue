@@ -73,8 +73,7 @@ export default {
       return this.$store.state.authModule.idToken;
     },
     services() {
-      const services = localStorage.getItem("services");
-      return JSON.parse(services);
+      return this.$store.getters["servicesModule/servicesFromStorage"];
     },
     firstService() {
       return this.services[0];
