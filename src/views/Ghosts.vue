@@ -252,6 +252,9 @@ export default {
     },
     declineGhostSuccess() {
       return this.$store.state.alarmModule.declineGhostSuccess;
+    },
+    removeGhostSuccess() {
+      return this.$store.state.alarmModule.removeGhostSuccess;
     }
   },
   watch: {
@@ -268,6 +271,10 @@ export default {
       this.$store.commit("instancesModule/resetGhosts");
       this.getOwnedGhosts();
       this.lookForNewGhosts();
+    },
+    removeGhostSuccess() {
+      this.$store.commit("instancesModule/resetGhosts");
+      this.getOwnedGhosts();
     }
   },
   components: {
