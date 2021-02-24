@@ -94,6 +94,7 @@
 <script>
 import { mdiPlus, mdiChevronDown, mdiChevronUp } from "@mdi/js";
 import { rootDomain } from "../core/config";
+import { mapState, mapGetters } from "vuex";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import ExternalLinking from "../components/ghost-details/ExternalLinking";
@@ -119,21 +120,12 @@ export default {
   },
   methods: {
     getGhostStatus() {
-      this.$socket.emit("get_ghost_status", {
-        domain: this.domain,
-        token: this.token,
-        username: this.username,
-        service: this.service,
-        instance: this.instance
-      });
+      this.$socket.emit("get_ghost_status", this.ghostStatusParams);
     }
   },
   computed: {
     token() {
       return this.$store.state.authModule.token;
-    },
-    username() {
-      return this.$store.state.authModule.username;
     },
     ghost() {
       return this.$store.state.ghostDetails.selectedGhost;
@@ -156,18 +148,13 @@ export default {
     ghostURI() {
       return `${this.domainURI}${this.ghostID}`;
     },
-    giveReadAccessSuccess() {
-      return this.$store.state.alarmModule.giveReadAccessSuccess;
-    },
-    removeReadAccessSuccess() {
-      return this.$store.state.alarmModule.removeReadAccessSuccess;
-    },
-    addPrimaryGhostSuccess() {
-      return this.$store.state.alarmModule.addPrimaryGhostSuccess;
-    },
-    removePrimaryGhostSuccess() {
-      return this.$store.state.alarmModule.removePrimaryGhostSuccess;
-    }
+    ...mapState("alarmModule", [
+      "giveReadAccessSuccess",
+      "removeReadAccessSuccess",
+      "addPrimaryGhostSuccess",
+      "removePrimaryGhostSuccess"
+    ]),
+    ...mapGetters("ghostDetails", ["ghostStatusParams"])
   },
   watch: {
     giveReadAccessSuccess() {

@@ -48,7 +48,19 @@ const actions = {
   }
 };
 
-const getters = {};
+const getters = {
+  ghostStatusParams({ selectedGhost }, getters, { authModule }) {
+    const { token, username } = authModule;
+    const { domain, service, instance } = selectedGhost;
+    return {
+      token,
+      username,
+      domain,
+      service,
+      instance
+    };
+  }
+};
 
 export default {
   namespaced: true,
