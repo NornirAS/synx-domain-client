@@ -100,6 +100,7 @@
 import _ from "lodash";
 import { mdiMagnify, mdiMenuDown, mdiChevronRight } from "@mdi/js";
 import { rootDomain } from "../core/config";
+import { mapGetters } from "vuex";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import ServicesEmpty from "../components/empty-page/ServicesEmpty";
@@ -156,15 +157,8 @@ export default {
     services() {
       return this.$store.state.servicesModule.services;
     },
-    noServices() {
-      return this.$store.getters["servicesModule/noServices"];
-    },
-    noDomains() {
-      return this.$store.getters["domainsModule/noDomains"];
-    },
-    domainNamesWithAllOption() {
-      return this.$store.getters["domainsModule/domainNamesWithAllOption"];
-    },
+    ...mapGetters("servicesModule", ["noServices"]),
+    ...mapGetters("domainsModule", ["noDomains", "domainNamesWithAllOption"]),
     sortBy() {
       return this.sortByDomain === "All"
         ? this.services
