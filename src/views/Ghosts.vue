@@ -224,9 +224,6 @@ export default {
     allGhosts() {
       return this.$store.getters["ghosts/allGhosts"];
     },
-    ghosts() {
-      return this.$store.state.ghosts.ghosts;
-    },
     noGhosts() {
       return this.$store.getters["ghosts/noGhosts"];
     },
