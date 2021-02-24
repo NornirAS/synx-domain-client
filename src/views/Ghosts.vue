@@ -205,19 +205,11 @@ export default {
     username() {
       return this.$store.state.authModule.username;
     },
-    services() {
-      const services = localStorage.getItem("services");
-      return JSON.parse(services);
-    },
     noServices() {
-      return _.isEmpty(this.services);
-    },
-    domains() {
-      const domains = localStorage.getItem("domains");
-      return JSON.parse(domains);
+      return this.$store.getters["servicesModule/noServices"];
     },
     noDomains() {
-      return _.isEmpty(this.domains);
+      return this.$store.getters["domainsModule/noDomains"];
     },
     allGhosts() {
       return this.$store.getters["instancesModule/mergedGhostArray"];
