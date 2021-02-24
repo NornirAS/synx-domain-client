@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { rootDomain } from "../../core/config";
 
 const state = {
@@ -80,6 +81,9 @@ const getters = {
     } else {
       return instances;
     }
+  },
+  noGhosts(state, { mergedGhostArray }) {
+    return _.isEmpty(mergedGhostArray);
   }
 };
 
