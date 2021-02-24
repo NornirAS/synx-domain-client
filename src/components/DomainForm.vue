@@ -70,7 +70,7 @@ export default {
       return this.$store.state.authModule.username;
     },
     token() {
-      return this.$store.state.authModule.idToken;
+      return this.$store.state.authModule.token;
     },
     errorMessage() {
       return this.$store.state.alarmModule.errorMessage;

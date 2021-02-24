@@ -152,7 +152,7 @@ export default {
   },
   computed: {
     token() {
-      return this.$store.state.authModule.idToken;
+      return this.$store.state.authModule.token;
     },
     services() {
       return this.$store.state.servicesModule.services;

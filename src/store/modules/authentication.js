@@ -1,6 +1,6 @@
 const state = {
   username: "",
-  idToken: "",
+  token: "",
   authError: ""
 };
 
@@ -9,13 +9,13 @@ const mutations = {
     state.username = payload;
   },
   addToken(state, payload) {
-    state.idToken = payload;
+    state.token = payload;
   },
   authError(state, payload) {
     state.authError = payload;
   },
   signOut(state) {
-    state.idToken = "";
+    state.token = "";
     state.username = "";
     sessionStorage.clear();
   },
@@ -61,8 +61,8 @@ const actions = {
 };
 
 const getters = {
-  isAuthenticated({ idToken }) {
-    return idToken !== "";
+  isAuthenticated({ token }) {
+    return token !== "";
   }
 };
 

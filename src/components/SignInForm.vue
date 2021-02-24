@@ -67,7 +67,7 @@ export default {
   },
   computed: {
     isAuth() {
-      return this.$store.state.authModule.idToken;
+      return this.$store.state.authModule.token;
     },
     authError() {
       return this.$store.state.authModule.authError;

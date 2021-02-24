@@ -79,26 +79,26 @@ const getters = {
   },
   // eslint-disable-next-line no-unused-vars
   registerServiceParams(state, getters, rootState) {
-    const { username, idToken } = rootState.authModule;
+    const { username, token } = rootState.authModule;
     const parameters = state;
     parameters.keywords = state.keywords.join(" ");
     parameters.username = username;
-    parameters.token = idToken;
+    parameters.token = token;
     return parameters;
   },
   // eslint-disable-next-line no-unused-vars
   updateServiceParams(state, getters, rootState) {
-    const { idToken } = rootState.authModule;
+    const { token } = rootState.authModule;
     const parameters = state;
-    parameters.token = idToken;
+    parameters.token = token;
     return parameters;
   },
   deleteServiceParams(state, getters, rootState) {
-    const { idToken } = rootState.authModule;
+    const { token } = rootState.authModule;
     const { domain, name } = state;
     const instance = "0";
     return {
-      token: idToken,
+      token: token,
       domain,
       name,
       instance

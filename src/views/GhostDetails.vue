@@ -133,7 +133,7 @@ export default {
   },
   computed: {
     token() {
-      return this.$store.state.authModule.idToken;
+      return this.$store.state.authModule.token;
     },
     username() {
       return this.$store.state.authModule.username;

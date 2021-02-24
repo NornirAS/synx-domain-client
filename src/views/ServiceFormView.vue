@@ -53,7 +53,7 @@ export default {
   },
   computed: {
     token() {
-      return this.$store.state.authModule.idToken;
+      return this.$store.state.authModule.token;
     },
     isServiceUpdate() {
       return this.$route.name === "serviceUpdate";
