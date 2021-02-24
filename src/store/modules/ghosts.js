@@ -7,17 +7,10 @@ const state = {
 
 const mutations = {
   addGhosts(state, payload) {
-    if (payload) {
-      state.ghosts = payload;
-    }
+    state.ghosts = payload;
   },
   ghostsToApprove(state, payload) {
-    if (payload) {
-      state.ghostsToApprove = payload.map(item => {
-        item.approve = true;
-        return item;
-      });
-    }
+    state.ghostsToApprove = payload;
   },
   resetGhosts(state) {
     state.ghosts = [];
@@ -31,8 +24,15 @@ const actions = {
     commit("addGhosts", data);
   },
   SOCKET_ghosts_to_approve({ commit }, data) {
-    sessionStorage.setItem("ghostsToApprove", JSON.stringify(data));
-    commit("ghostsToApprove", data);
+    if (data) {
+      const ghostsToApprove = data.map(ghost => {
+        ghost.approve = true;
+        return ghost;
+      });
+      commit("ghostsToApprove", ghostsToApprove);
+    } else {
+      commit("ghostsToApprove", []);
+    }
   },
   addGhostsFromStorage({ commit }) {
     const ghosts = sessionStorage.getItem("ghosts");
