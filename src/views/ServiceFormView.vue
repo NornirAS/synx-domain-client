@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   data() {
     return {
@@ -61,18 +62,12 @@ export default {
     isMicropageUpdate() {
       return this.$route.name === "micropageUpdate";
     },
-    registerServiceSuccess() {
-      return this.$store.state.alarmModule.registerServiceSuccess;
-    },
-    updateServiceSuccess() {
-      return this.$store.state.alarmModule.updateServiceSuccess;
-    },
-    deleteServiceSuccess() {
-      return this.$store.state.alarmModule.deleteServiceSuccess;
-    },
-    updateMicropageSuccess() {
-      return this.$store.state.alarmModule.updateMicropageSuccess;
-    }
+    ...mapState("alarmModule", [
+      "registerServiceSuccess",
+      "updateServiceSuccess",
+      "deleteServiceSuccess",
+      "updateMicropageSuccess"
+    ])
   },
   watch: {
     registerServiceSuccess() {
