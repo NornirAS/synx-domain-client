@@ -1,5 +1,5 @@
 <template>
-  <empty-page-template>
+  <image-response-template>
     <div slot="title">You Need a Service</div>
     <div slot="description">
       Ghosts will appear here once you create a morphic service
@@ -25,14 +25,13 @@
       >
       </v-img>
     </div>
-  </empty-page-template>
+  </image-response-template>
 </template>
 
 <script>
-import EmptyPageTemplate from "./EmptyPageTemplate";
 export default {
   components: {
-    EmptyPageTemplate
+    ImageResponseTemplate: () => import("../ImageResponseTemplate")
   }
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <empty-page-template>
+  <image-response-template>
     <div slot="title">You have no services yet</div>
     <div slot="description">Services will appear here once you add them</div>
     <div slot="action">
@@ -23,14 +23,13 @@
       >
       </v-img>
     </div>
-  </empty-page-template>
+  </image-response-template>
 </template>
 
 <script>
-import EmptyPageTemplate from "./EmptyPageTemplate";
 export default {
   components: {
-    EmptyPageTemplate
+    ImageResponseTemplate: () => import("../ImageResponseTemplate")
   }
 };
 </script>

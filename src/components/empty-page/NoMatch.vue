@@ -1,5 +1,5 @@
 <template>
-  <empty-page-template>
+  <image-response-template>
     <div slot="description">Oh snap! No match...</div>
     <div slot="image">
       <v-img
@@ -11,14 +11,13 @@
       >
       </v-img>
     </div>
-  </empty-page-template>
+  </image-response-template>
 </template>
 
 <script>
-import EmptyPageTemplate from "./EmptyPageTemplate";
 export default {
   components: {
-    EmptyPageTemplate
+    ImageResponseTemplate: () => import("../ImageResponseTemplate")
   }
 };
 </script>

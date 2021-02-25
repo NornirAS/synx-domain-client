@@ -1,25 +1,24 @@
 <template>
   <image-response-template>
-    <div slot="title">Can't fetch your data</div>
-    <div slot="description">
-      Please try again later or contact us if theproblem persists.
+    <div slot="title">
+      Congratulations! You are now the owner of {{ domain }}.cioty.com
     </div>
     <div slot="action">
       <v-btn
-        :to="{ name: 'create-domain' }"
-        class="text-capitalize"
-        rounded
-        small
+        :to="{ name: 'domains' }"
         color="primary"
+        class="text-capitalize align-center"
+        rounded
+        dark
       >
-        Write to us
+        Back to your domains
       </v-btn>
     </div>
     <div slot="image">
       <v-img
-        alt="warning"
+        alt="connectedWorld"
         contain
-        src="../../assets/warning.png"
+        src="../../assets/celebration.webp"
         transition="scale-transition"
         height="300px"
       >
@@ -30,6 +29,11 @@
 
 <script>
 export default {
+  computed: {
+    domain() {
+      return this.$route.params.domainName;
+    }
+  },
   components: {
     ImageResponseTemplate: () => import("../ImageResponseTemplate")
   }

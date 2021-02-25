@@ -8,7 +8,7 @@
         class="image-center"
       />
     </div>
-    <empty-page-template>
+    <image-response-template>
       <div slot="title">404</div>
       <div slot="description">
         This page has run away!
@@ -34,15 +34,14 @@
         >
         </v-img>
       </div>
-    </empty-page-template>
+    </image-response-template>
   </div>
 </template>
 
 <script>
-import EmptyPageTemplate from "./EmptyPageTemplate";
 export default {
   components: {
-    EmptyPageTemplate
+    ImageResponseTemplate: () => import("../ImageResponseTemplate")
   }
 };
 </script>

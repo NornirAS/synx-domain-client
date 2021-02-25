@@ -10,7 +10,7 @@ import Ghosts from "../views/Ghosts";
 import GhostDetails from "../views/GhostDetails";
 import ServiceForm from "../components/service/service-form/ServiceForm";
 import Account from "../views/Account";
-import CheckoutSuccess from "../views/CheckoutSuccess";
+import CheckoutSuccess from "../components/domain/CheckoutSuccess";
 import CreateDomain from "../views/CreateDomain";
 import PageNotFound from "../components/empty-page/PageNotFound";
 import MicropageForm from "../components/service/micropage-form/MicropageForm";
@@ -57,12 +57,16 @@ const routes = [
     components: {
       default: CreateDomain,
       "side-bar": SideBar
-    }
+    },
+    beforeEnter: authGuard
   },
   {
     path: "/domains/:domainName/checkout-success",
     name: "checkout-success",
-    component: CheckoutSuccess,
+    components: {
+      default: CheckoutSuccess,
+      "side-bar": SideBar
+    },
     beforeEnter: authGuard
   },
   {

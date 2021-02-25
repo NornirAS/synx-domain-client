@@ -1,5 +1,5 @@
 <template>
-  <empty-page-template>
+  <image-response-template>
     <div slot="title">Welcome to Cioty!</div>
     <div slot="description">
       You need a domain to get started. Get 30 days free trial on your first
@@ -45,11 +45,10 @@
       >
       </v-img>
     </div>
-  </empty-page-template>
+  </image-response-template>
 </template>
 
 <script>
-import EmptyPageTemplate from "./EmptyPageTemplate";
 export default {
   computed: {
     domainRoute() {
@@ -63,7 +62,7 @@ export default {
     }
   },
   components: {
-    EmptyPageTemplate
+    ImageResponseTemplate: () => import("../ImageResponseTemplate")
   }
 };
 </script>
