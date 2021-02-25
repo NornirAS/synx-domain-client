@@ -63,8 +63,7 @@
 </template>
 
 <script>
-import SelectSubscription from "./SelectSubscription.vue";
-import StripePayment from "./StripePayment";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
@@ -86,22 +85,15 @@ export default {
     }
   },
   computed: {
+    ...mapState("authModule", ["token", "username"]),
+    ...mapState("stripeModule", ["selectPlan"]),
     domain() {
       return this.$route.params.domainName;
-    },
-    selectedPlan() {
-      return this.$store.state.stripeModule.selectedPlan;
-    },
-    username() {
-      return this.$store.state.authModule.username;
-    },
-    token() {
-      return this.$store.state.authModule.token;
     }
   },
   components: {
-    SelectSubscription,
-    StripePayment
+    SelectSubscription: () => import("./SelectSubscription.vue"),
+    StripePayment: () => import("./StripePayment.vue")
   }
 };
 </script>
