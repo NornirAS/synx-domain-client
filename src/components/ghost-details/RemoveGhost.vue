@@ -37,6 +37,7 @@
           small
           >Confirm Removal
         </v-btn>
+        {{ ghost }}
       </div>
     </dialog-card>
   </v-dialog>

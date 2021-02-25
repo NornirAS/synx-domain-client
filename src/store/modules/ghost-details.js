@@ -49,20 +49,16 @@ const actions = {
 };
 
 const getters = {
-  ghostStatusParams({ selectedGhost }, getters, { authModule }) {
-    const { token, username } = authModule;
-    const { domain, service, instance } = selectedGhost;
-    return {
-      token,
-      username,
-      domain,
-      service,
-      instance
-    };
+  domainURI({ selectedGhost }) {
+    const { domain } = selectedGhost;
+    return `${domain}${rootDomain}`.toLowerCase();
   },
-  ghostURI({ selectedGhost }) {
-    const { domain, service, instance } = selectedGhost;
-    return `${domain}${rootDomain}${service}##${instance}`.toLowerCase();
+  ghostID({ selectedGhost }) {
+    const { service, instance } = selectedGhost;
+    return `${service}##${instance}`.toLowerCase();
+  },
+  ghostURI(state, { domainURI, ghostID }) {
+    return `${domainURI}${ghostID}`;
   }
 };
 

@@ -22,7 +22,7 @@
         <v-list-item>
           <v-list-item-title>Map ID</v-list-item-title>
           <v-list-item-subtitle class="text-right">
-            <map-id :token="token" :ghost="ghost"></map-id>
+            <map-id :token="token" :ghost="selectedGhost"></map-id>
           </v-list-item-subtitle>
         </v-list-item>
       </v-card>
@@ -32,7 +32,10 @@
             Make ghost data available for secondary services
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <external-linking :token="token" :ghost="ghost"></external-linking>
+            <external-linking
+              :token="token"
+              :ghost="selectedGhost"
+            ></external-linking>
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel>
@@ -40,10 +43,13 @@
             Read access
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <add-read-access :token="token" :ghost="ghost"></add-read-access>
+            <add-read-access
+              :token="token"
+              :ghost="selectedGhost"
+            ></add-read-access>
             <remove-read-access
               :token="token"
-              :ghost="ghost"
+              :ghost="selectedGhost"
             ></remove-read-access>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -54,11 +60,11 @@
           <v-expansion-panel-content>
             <add-secondary-service
               :token="token"
-              :ghost="ghost"
+              :ghost="selectedGhost"
             ></add-secondary-service>
             <remove-secondary-service
               :token="token"
-              :ghost="ghost"
+              :ghost="selectedGhost"
             ></remove-secondary-service>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -69,21 +75,21 @@
       <div>
         <kill-session
           :token="token"
-          :ghost="ghost"
+          :ghost="selectedGhost"
           :ghostURI="ghostURI"
         ></kill-session>
       </div>
       <div>
         <transfer-ownership
           :token="token"
-          :ghost="ghost"
+          :ghost="selectedGhost"
           :ghostURI="ghostURI"
         ></transfer-ownership>
       </div>
       <div>
         <remove-ghost
           :token="token"
-          :ghost="ghost"
+          :ghost="selectedGhost"
           :ghostURI="ghostURI"
         ></remove-ghost>
       </div>
@@ -120,38 +126,30 @@ export default {
   },
   methods: {
     getGhostStatus() {
-      this.$socket.emit("get_ghost_status", this.ghostStatusParams);
+      this.$socket.emit("get_ghost_status", {
+        token: this.token,
+        username: this.username,
+        domain: this.selectedGhost.domain,
+        service: this.selectedGhost.service,
+        instance: this.selectedGhost.instance
+      });
     }
   },
   computed: {
-    token() {
-      return this.$store.state.authModule.token;
-    },
-    ghost() {
-      return this.$store.state.ghostDetails.selectedGhost;
-    },
-    domain() {
-      return this.ghost.domain.toLowerCase();
-    },
-    service() {
-      return this.ghost.service.toLowerCase();
-    },
-    instance() {
-      return this.ghost.instance;
-    },
-    domainURI() {
-      return `${this.domain}${rootDomain}`;
-    },
-    ghostID() {
-      return `${this.service}##${this.instance}`;
-    },
+    ...mapState("authModule", ["token", "username"]),
+    ...mapState("ghostDetails", ["selectedGhost"]),
     ...mapState("alarmModule", [
       "giveReadAccessSuccess",
       "removeReadAccessSuccess",
       "addPrimaryGhostSuccess",
       "removePrimaryGhostSuccess"
     ]),
-    ...mapGetters("ghostDetails", ["ghostStatusParams", "ghostURI"])
+    ...mapGetters("ghostDetails", [
+      "ghostStatusParams",
+      "domainURI",
+      "ghostID",
+      "ghostURI"
+    ])
   },
   watch: {
     giveReadAccessSuccess() {
