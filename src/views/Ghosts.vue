@@ -119,6 +119,7 @@
 import _ from "lodash";
 import { mdiMenuDown, mdiChevronRight, mdiClose } from "@mdi/js";
 import { rootDomain } from "../core/config";
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import DomainEmpty from "../components/empty-page/DomainsEmpty";
@@ -155,11 +156,13 @@ export default {
     if (this.noGhosts) {
       this.getOwnedGhosts();
     } else {
-      this.$store.dispatch("ghosts/addGhostsFromStorage");
+      this.addGhostsFromStorage();
     }
     this.lookForNewGhosts();
   },
   methods: {
+    ...mapMutations("ghostDetails", ["selectGhost"]),
+    ...mapActions("ghosts", ["addGhostsFromStorage"]),
     getOwnedGhosts() {
       this.$socket.emit("get_owned_ghosts", this.token);
     },
@@ -173,7 +176,7 @@ export default {
       this.selectedItem = item;
     },
     ghostDetails(ghost) {
-      this.$store.commit("ghostDetails/selectGhost", ghost);
+      this.selectGhost(ghost);
       this.toGhostDetails(ghost);
     },
     toGhostDetails({ service, instance }) {
@@ -207,24 +210,16 @@ export default {
     }
   },
   computed: {
-    token() {
-      return this.$store.state.authModule.token;
-    },
-    username() {
-      return this.$store.state.authModule.username;
-    },
-    noServices() {
-      return this.$store.getters["servicesModule/noServices"];
-    },
-    noDomains() {
-      return this.$store.getters["domainsModule/noDomains"];
-    },
-    allGhosts() {
-      return this.$store.getters["ghosts/allGhosts"];
-    },
-    noGhosts() {
-      return this.$store.getters["ghosts/noGhosts"];
-    },
+    ...mapState("authModule", ["token", "username"]),
+    ...mapGetters("servicesModule", ["noServices"]),
+    ...mapGetters("domainsModule", ["noDomains"]),
+    ...mapGetters("ghosts", ["allGhosts", "noGhosts"]),
+    ...mapState("alarmModule", [
+      "addGhostSuccess",
+      "acceptGhostSuccess",
+      "declineGhostSuccess",
+      "removeGhostSuccess"
+    ]),
     allGhostsLengthLessItemsPerPage() {
       return this.allGhosts.length <= this.itemsPerPage;
     },
@@ -238,37 +233,21 @@ export default {
     },
     noSearchResult() {
       return _.isEmpty(this.searchFilter);
-    },
-    addGhostSuccess() {
-      return this.$store.state.alarmModule.addGhostSuccess;
-    },
-    acceptGhostSuccess() {
-      return this.$store.state.alarmModule.acceptGhostSuccess;
-    },
-    declineGhostSuccess() {
-      return this.$store.state.alarmModule.declineGhostSuccess;
-    },
-    removeGhostSuccess() {
-      return this.$store.state.alarmModule.removeGhostSuccess;
     }
   },
   watch: {
     addGhostSuccess() {
-      this.$store.commit("ghosts/resetGhosts");
       this.getOwnedGhosts();
     },
     acceptGhostSuccess() {
-      this.$store.commit("ghosts/resetGhosts");
       this.getOwnedGhosts();
       this.lookForNewGhosts();
     },
     declineGhostSuccess() {
-      this.$store.commit("ghosts/resetGhosts");
       this.getOwnedGhosts();
       this.lookForNewGhosts();
     },
     removeGhostSuccess() {
-      this.$store.commit("ghosts/resetGhosts");
       this.getOwnedGhosts();
     }
   },
