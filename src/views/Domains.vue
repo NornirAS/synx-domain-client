@@ -46,7 +46,7 @@
                   params: { domainName: item.name }
                 }"
                 color="secondary"
-                class="text-capitalize activate-btn"
+                class="text-capitalize ma-0"
                 rounded
                 x-small
               >
@@ -71,6 +71,7 @@
 
 <script>
 import { rootDomain } from "../core/config";
+import { mapState, mapGetters, mapActions } from "vuex";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import DomainsEmpty from "../components/empty-page/DomainsEmpty";
@@ -105,32 +106,25 @@ export default {
     if (this.noDomains) {
       this.getAllDomains();
     } else {
-      this.$store.dispatch("domainsModule/addDomainsFromStorage");
+      this.addDomainsFromStorage;
     }
   },
   methods: {
     getAllDomains() {
-      this.$socket.emit("get_all_domains", this.token, this.username);
+      this.$socket.emit("get_all_domains", {
+        token: this.token,
+        username: this.username
+      });
     }
   },
   computed: {
-    token() {
-      return this.$store.state.authModule.token;
-    },
-    username() {
-      return this.$store.state.authModule.username;
-    },
-    domains() {
-      return this.$store.state.domainsModule.domains;
-    },
-    noDomains() {
-      return this.$store.getters["domainsModule/noDomains"];
-    },
+    ...mapState("authModule", ["token", "username"]),
+    ...mapState("domainsModule", ["domains"]),
+    ...mapState("alarmModule", ["deleteDomainSuccess"]),
+    ...mapGetters("domainsModule", ["noDomains"]),
+    ...mapActions("domainsModule", ["addDomainsFromStorage"]),
     domainsLengthLessItemsPerPage() {
       return this.domains.length <= this.itemsPerPage;
-    },
-    deleteDomainSuccess() {
-      return this.$store.state.alarmModule.deleteDomainSuccess;
     }
   },
   watch: {
@@ -146,9 +140,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.activate-btn {
-  margin: 0;
-}
-</style>
