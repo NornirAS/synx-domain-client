@@ -92,8 +92,8 @@ export default {
     }
   },
   components: {
-    SelectSubscription: () => import("./SelectSubscription.vue"),
-    StripePayment: () => import("./StripePayment.vue")
+    SelectSubscription: () => import("./SelectSubscription"),
+    StripePayment: () => import("./StripePayment")
   }
 };
 </script>

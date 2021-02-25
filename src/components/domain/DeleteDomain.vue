@@ -44,7 +44,7 @@
 
 <script>
 import { mdiTrashCanOutline } from "@mdi/js";
-import { rootDomain } from "../core/config";
+import { rootDomain } from "../../core/config";
 export default {
   props: ["token", "username", "domain"],
   data() {
