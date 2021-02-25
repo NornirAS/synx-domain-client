@@ -88,7 +88,10 @@ export default {
   },
   watch: {
     keywords() {
-      this.$store.commit("serviceFormModule/addKeywords", this.keywords);
+      this.$store.commit(
+        "serviceFormModule/addKeywords",
+        this.keywords.join(" ")
+      );
     }
   },
   components: {

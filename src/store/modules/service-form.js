@@ -4,7 +4,7 @@ const state = {
   domain: "",
   name: "",
   description: "",
-  keywords: [],
+  keywords: "",
   schema: "<RTW>\n</RTW>",
   inlinePreScript: "",
   inlinePostScript: "",
@@ -79,7 +79,6 @@ const getters = {
   },
   // eslint-disable-next-line no-unused-vars
   registerServiceParams(state, getters, { authModule }) {
-    state.keywords = state.keywords.join(" ");
     state.token = authModule.token;
     state.username = authModule.username;
     return state;
