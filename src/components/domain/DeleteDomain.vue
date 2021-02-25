@@ -44,11 +44,13 @@
 
 <script>
 import { mdiTrashCanOutline } from "@mdi/js";
+import { rootDomain } from "../core/config";
 export default {
   props: ["token", "username", "domain"],
   data() {
     return {
       mdiTrashCanOutline,
+      rootDomain,
       dialog: false
     };
   },
@@ -65,7 +67,7 @@ export default {
   },
   computed: {
     domainURI() {
-      return `${this.domain}.cioty.com/`;
+      return `${this.domain}${this.rootDomain}`;
     }
   },
   components: {
