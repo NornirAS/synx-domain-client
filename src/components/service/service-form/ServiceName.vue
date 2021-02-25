@@ -7,6 +7,7 @@
       @blur="addName"
       :rules="nameRules"
       :counter="64"
+      :disabled="isServiceUpdate"
       name="name"
       label="Add your service name"
       type="text"
@@ -42,6 +43,9 @@ export default {
     }
   },
   computed: {
+    isServiceUpdate() {
+      return this.$route.name === "serviceUpdate";
+    },
     serviceName() {
       return this.$store.state.serviceFormModule.name;
     }
