@@ -116,6 +116,12 @@ export default {
         token: this.token,
         username: this.username
       });
+    },
+    getAllServices() {
+      this.$socket.emit("get_all_services", this.token);
+    },
+    getOwnedGhosts() {
+      this.$socket.emit("get_owned_ghosts", this.token);
     }
   },
   computed: {
@@ -130,6 +136,8 @@ export default {
   watch: {
     deleteDomainSuccess() {
       this.getAllDomains();
+      this.getAllServices();
+      this.getOwnedGhosts();
     }
   },
   components: {
