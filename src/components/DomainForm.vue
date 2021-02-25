@@ -19,7 +19,6 @@
           prefix="https://"
           suffix=".cioty.com"
         ></v-text-field>
-        <p v-if="error" align="center">{{ error }}</p>
       </v-card-text>
     </v-card>
     <div align="end">
@@ -38,11 +37,11 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   data() {
     return {
       domainName: "",
-      error: "",
       valid: false,
       domainRules: [
         v => (v && v.length) >= 1 || "Domain Name is required",
@@ -66,23 +65,13 @@ export default {
     }
   },
   computed: {
-    username() {
-      return this.$store.state.authModule.username;
-    },
-    token() {
-      return this.$store.state.authModule.token;
-    },
-    errorMessage() {
-      return this.$store.state.alarmModule.errorMessage;
-    }
+    ...mapState("authModule", ["username", "token"]),
+    ...mapState("alarmModule", ["createDomainSuccess"])
   },
   watch: {
-    errorMessage(newValue) {
-      this.error = newValue;
-    },
-    domainName() {
-      this.error = "";
-      this.$store.commit("alarmModule/resetErrorMessage");
+    createDomainSuccess() {
+      this.$router.push({ name: "domains" });
+      this.$socket.emit("get_all_domains", this.token, this.username);
     }
   }
 };

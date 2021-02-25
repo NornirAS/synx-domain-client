@@ -15,25 +15,21 @@ const actions = {
     sessionStorage.setItem("domains", JSON.stringify(data));
     commit("allDomains", data);
   },
-  addDomainsFromStorage({ commit, getters }) {
-    const domains = getters.domainsFromStorage;
-    commit("allDomains", domains);
+  addDomainsFromStorage({ commit }) {
+    const domains = sessionStorage.getItem("domains");
+    commit("allDomains", JSON.parse(domains));
   }
 };
 
 const getters = {
-  domainsFromStorage() {
-    const domains = sessionStorage.getItem("domains");
-    return JSON.parse(domains);
-  },
   noDomains({ domains }) {
     return _.isEmpty(domains);
   },
-  domainNames(state, { noDomains, domainsFromStorage }) {
+  domainNames({ domains }, { noDomains }) {
     if (noDomains) {
       return [];
     } else {
-      return domainsFromStorage.map(str => {
+      return domains.map(str => {
         return str.name;
       });
     }

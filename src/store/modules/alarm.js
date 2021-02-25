@@ -9,6 +9,7 @@ const state = {
   acceptGhostSuccess: {},
   declineGhostSuccess: {},
   tranferOwnershipSuccess: {},
+  createDomainSuccess: {},
   deleteDomainSuccess: {},
   giveReadAccessSuccess: {},
   removeReadAccessSuccess: {},
@@ -58,6 +59,10 @@ const mutations = {
   },
   tranferOwnershipSuccess(state, payload) {
     state.tranferOwnershipSuccess = payload;
+    state.alerts.push(payload);
+  },
+  createDomainSuccess(state, payload) {
+    state.createDomainSuccess = payload;
     state.alerts.push(payload);
   },
   deleteDomainSuccess(state, payload) {
@@ -169,6 +174,13 @@ const actions = {
       success: true
     };
     commit("tranferOwnershipSuccess", object);
+  },
+  SOCKET_create_domain_success({ commit }, data) {
+    const object = {
+      message: data,
+      success: true
+    };
+    commit("createDomainSuccess", object);
   },
   SOCKET_delete_domain_success({ commit }, data) {
     const object = {
