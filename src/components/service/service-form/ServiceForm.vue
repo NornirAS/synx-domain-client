@@ -54,7 +54,7 @@ export default {
       const isFormValid = this.$refs.serviceForm.validate();
       if (isFormValid && this.isServiceUpdate) {
         this.$socket.emit("update_service", this.updateServiceParams);
-      } else {
+      } else if (isFormValid) {
         this.$socket.emit("register_service", this.registerServiceParams);
       }
     },

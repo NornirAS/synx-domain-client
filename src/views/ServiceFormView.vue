@@ -42,7 +42,7 @@ export default {
     this.resetServiceForm();
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["resetServiceFrom"]),
+    ...mapMutations("serviceFormModule", ["resetServiceForm"]),
     getAllServices() {
       this.$socket.emit("get_all_services", this.token);
     },
