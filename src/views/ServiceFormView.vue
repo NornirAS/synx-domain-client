@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -39,9 +39,10 @@ export default {
       : "New Morphic Service";
   },
   beforeDestroy() {
-    this.$store.commit("serviceFormModule/resetServiceForm");
+    this.resetServiceForm();
   },
   methods: {
+    ...mapMutations("serviceFormModule", ["resetServiceFrom"]),
     getAllServices() {
       this.$socket.emit("get_all_services", this.token);
     },
@@ -53,21 +54,19 @@ export default {
     }
   },
   computed: {
-    token() {
-      return this.$store.state.authModule.token;
-    },
-    isServiceUpdate() {
-      return this.$route.name === "serviceUpdate";
-    },
-    isMicropageUpdate() {
-      return this.$route.name === "micropageUpdate";
-    },
+    ...mapState("authModule", ["token"]),
     ...mapState("alarmModule", [
       "registerServiceSuccess",
       "updateServiceSuccess",
       "deleteServiceSuccess",
       "updateMicropageSuccess"
-    ])
+    ]),
+    isServiceUpdate() {
+      return this.$route.name === "serviceUpdate";
+    },
+    isMicropageUpdate() {
+      return this.$route.name === "micropageUpdate";
+    }
   },
   watch: {
     registerServiceSuccess() {
