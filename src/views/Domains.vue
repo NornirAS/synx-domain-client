@@ -110,6 +110,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions("domainsModule", ["addDomainsFromStorage"]),
     getAllDomains() {
       this.$socket.emit("get_all_domains", {
         token: this.token,
@@ -122,7 +123,6 @@ export default {
     ...mapState("domainsModule", ["domains"]),
     ...mapState("alarmModule", ["deleteDomainSuccess"]),
     ...mapGetters("domainsModule", ["noDomains"]),
-    ...mapActions("domainsModule", ["addDomainsFromStorage"]),
     domainsLengthLessItemsPerPage() {
       return this.domains.length <= this.itemsPerPage;
     }
