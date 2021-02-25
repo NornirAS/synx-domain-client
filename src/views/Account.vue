@@ -51,6 +51,7 @@
 
 <script>
 import { mdiEye, mdiEyeOff } from "@mdi/js";
+import { mapState } from "vuex";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 export default {
@@ -63,19 +64,15 @@ export default {
   },
   methods: {
     customerPortal() {
-      this.$socket.emit("customer_portal", this.token, this.username);
+      this.$socket.emit("customer_portal", {
+        token: this.token,
+        username: this.username
+      });
     }
   },
   computed: {
-    token() {
-      return this.$store.state.authModule.token;
-    },
-    username() {
-      return this.$store.state.authModule.username;
-    },
-    customerPortalUrl() {
-      return this.$store.state.stripeModule.customerPortalUrl;
-    }
+    ...mapState("authModule", ["token", "username"]),
+    ...mapState("authModule", ["customerPortalUrl"])
   },
   watch: {
     customerPortalUrl(newValue) {
