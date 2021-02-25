@@ -46,6 +46,9 @@ export default {
     getAllServices() {
       this.$socket.emit("get_all_services", this.token);
     },
+    getOwnedGhosts() {
+      this.$socket.emit("get_owned_ghosts", this.token);
+    },
     toServiceUpdate() {
       this.$router.push({ name: "serviceUpdate" });
     },
@@ -80,6 +83,7 @@ export default {
     deleteServiceSuccess() {
       this.$router.push({ name: "services" });
       this.getAllServices();
+      this.getOwnedGhosts();
     },
     updateMicropageSuccess() {
       this.$router.push({ name: "services" });

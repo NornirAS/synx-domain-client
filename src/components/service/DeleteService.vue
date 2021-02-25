@@ -44,6 +44,7 @@
 
 <script>
 import { mdiTrashCanOutline } from "@mdi/js";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -58,9 +59,7 @@ export default {
     }
   },
   computed: {
-    serviceURI() {
-      return this.$store.getters["serviceFormModule/serviceURI"];
-    },
+    ...mapGetters("serviceFormModule", ["serviceURI"]),
     deleteServiceParams() {
       return this.$store.getters["serviceFormModule/deleteServiceParams"];
     }
