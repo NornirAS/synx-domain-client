@@ -65,14 +65,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("authModule", ["username", "token"]),
-    ...mapState("alarmModule", ["createDomainSuccess"])
-  },
-  watch: {
-    createDomainSuccess() {
-      this.$router.push({ name: "domains" });
-      this.$socket.emit("get_all_domains", this.token, this.username);
-    }
+    ...mapState("authModule", ["username", "token"])
   }
 };
 </script>

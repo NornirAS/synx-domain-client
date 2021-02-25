@@ -8,18 +8,22 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import DomainForm from "../components/DomainForm";
 export default {
   computed: {
-    successMessage() {
-      return this.$store.state.alarmModule.successMessage;
-    }
+    ...mapState("authModule", ["username", "token"]),
+    ...mapState("alarmModule", ["createDomainSuccess"])
   },
   watch: {
-    successMessage() {
+    createDomainSuccess() {
       this.$router.push({ name: "domains" });
+      this.$socket.emit("get_all_domains", {
+        token: this.token,
+        username: this.username
+      });
     }
   },
   components: {
