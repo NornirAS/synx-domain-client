@@ -59,8 +59,8 @@ export default {
           token: this.token,
           domain: this.domain,
           service: this.name,
-          serviceDescription: this.ServiceDescription,
-          schemaDescription: this.SchemaDescription,
+          serviceDescription: this.serviceDescription,
+          schemaDescription: this.schemaDescription,
           imageUrl: this.imageUrl
         });
       }
