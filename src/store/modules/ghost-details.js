@@ -30,7 +30,7 @@ const actions = {
   },
   addExternalLinkingToGhostStatus({ commit }, data) {
     const linkedTo = data.map(link => {
-      link.uri = link.replace(/\//g, `${rootDomain}`).toLowerCase();
+      link.uri = link.name.replace(/\//g, `${rootDomain}`).toLowerCase();
       return link;
     });
     commit("addExternalLinkingToGhostStatus", linkedTo);

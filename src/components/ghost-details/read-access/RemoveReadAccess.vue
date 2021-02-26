@@ -42,7 +42,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("ghosts", ["ghostReadAccess"])
+    ...mapState("ghostDetails", ["ghostReadAccess"])
   }
 };
 </script>

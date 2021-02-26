@@ -4,7 +4,7 @@
       <tbody>
         <tr
           v-for="({ uri, refDomain, refService, refObjectID },
-          index) in ghostSecondaryServices"
+          index) in ghostSecondaryService"
           :key="index"
         >
           <td class="body-1">{{ uri }}</td>
@@ -50,7 +50,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("ghosts", ["ghostSecondaryService"])
+    ...mapState("ghostDetails", ["ghostSecondaryService"])
   }
 };
 </script>

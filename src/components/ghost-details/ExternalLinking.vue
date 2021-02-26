@@ -36,7 +36,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("ghosts", ["ghostLinkedTo"])
+    ...mapState("ghostDetails", ["ghostLinkedTo"])
   }
 };
 </script>
