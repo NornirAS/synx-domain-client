@@ -40,14 +40,14 @@
 <script>
 import { mdiMenuDown } from "@mdi/js";
 import { rootDomain } from "../../core/config";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
       mdiMenuDown,
       rootDomain,
       domain: "",
-      service: "",
-      instanceToAdd: "1"
+      service: ""
     };
   },
   mounted() {
@@ -56,25 +56,21 @@ export default {
   },
   methods: {
     selectService(domain, service) {
-      (this.domain = domain), (this.service = service);
+      this.domain = domain;
+      this.service = service;
     },
     addGhost() {
-      this.$socket.emit(
-        "add_ghost",
-        this.domain,
-        this.service,
-        this.token,
-        this.instanceToAdd
-      );
+      this.$socket.emit("add_ghost", {
+        domain: this.domain,
+        service: this.service,
+        token: this.token,
+        instancesToAdd: "1"
+      });
     }
   },
   computed: {
-    token() {
-      return this.$store.state.authModule.token;
-    },
-    services() {
-      return this.$store.state.servicesModule.services;
-    },
+    ...mapState("authModule", ["token"]),
+    ...mapState("servicesModule", ["services"]),
     firstService() {
       return this.services[0];
     }
