@@ -1,5 +1,5 @@
 <template>
-  <input-card>
+  <form-input-card>
     <div slot="title">Domain*</div>
     <div slot="subtitle">
       Choose which domain you want to add the service to.
@@ -25,12 +25,14 @@
         </v-list-item>
       </v-list>
     </v-menu>
-  </input-card>
+  </form-input-card>
 </template>
 
 <script>
 import { mdiMenuDown } from "@mdi/js";
 import { rootDomain } from "../../../core/config.js";
+import { mapGetters, mapMutations } from "vuex";
+import FormInputCard from "../FormInputCard";
 export default {
   data() {
     return {
@@ -41,30 +43,24 @@ export default {
   },
   created() {
     this.selectedDomain = this.domainNames[0];
-    this.$store.commit("serviceFormModule/addDomain", this.domainNames[0]);
+    this.addDomain(this.domainNames[0]);
   },
   methods: {
+    ...mapMutations("serviceFormModule", ["addDomain"]),
     selectDomain(domain) {
       this.selectedDomain = domain;
-      this.$store.commit("serviceFormModule/addDomain", domain);
+      this.addDomain(domain);
     }
   },
   computed: {
     isServiceUpdate() {
       return this.$route.name === "serviceUpdate";
     },
-    noServices() {
-      return this.$store.getters["servicesModule/noServices"];
-    },
-    noDomains() {
-      return this.$store.getters["domainsModule/noDomains"];
-    },
-    domainNames() {
-      return this.$store.getters["domainsModule/domainNames"];
-    }
+    ...mapGetters("servicesFormModule", ["noServices"]),
+    ...mapGetters("domainsModule", ["noDomains", "domainNames"])
   },
   components: {
-    InputCard: () => import("../FormInputCard")
+    FormInputCard
   }
 };
 </script>

@@ -43,6 +43,17 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+import ServiceDomain from "./ServiceDomain";
+import ServiceName from "./ServiceName";
+import ServiceDescription from "./ServiceDescription";
+import ServiceKeywords from "./ServiceKeywords";
+import ServiceSchema from "./ServiceSchema";
+import ServiceInlinePreScript from "./ServiceInlinePreScript";
+import ServiceInlinePostScript from "./ServiceInlinePostScript";
+import ServiceCommand from "./ServiceCommand";
+import ServiceWebJs from "./ServiceWebJs";
+import ServiceTimeout from "./ServiceTimeout";
 export default {
   data() {
     return {
@@ -53,9 +64,34 @@ export default {
     submitServiceForm() {
       const isFormValid = this.$refs.serviceForm.validate();
       if (isFormValid && this.isServiceUpdate) {
-        this.$socket.emit("update_service", this.updateServiceParams);
+        this.$socket.emit("update_service", {
+          token: this.token,
+          domain: this.domain,
+          service: this.name,
+          description: this.description,
+          keywords: this.keywords,
+          schema: this.schema,
+          inlinePreScript: this.inlinePreScript,
+          inlinePostScript: this.inlinePostScript,
+          command: this.command,
+          webJS: this.webJS,
+          timeout: this.timeout
+        });
       } else if (isFormValid) {
-        this.$socket.emit("register_service", this.registerServiceParams);
+        this.$socket.emit("register_service", {
+          token: this.token,
+          username: this.username,
+          domain: this.domain,
+          service: this.name,
+          description: this.description,
+          keywords: this.keywords,
+          schema: this.schema,
+          inlinePreScript: this.inlinePreScript,
+          inlinePostScript: this.inlinePostScript,
+          command: this.command,
+          webJS: this.webJS,
+          timeout: this.timeout
+        });
       }
     },
     backToServices() {
@@ -63,30 +99,35 @@ export default {
     }
   },
   computed: {
-    isValidLinks() {
-      return this.$store.state.serviceFormModule.isValidLinks;
-    },
+    ...mapState("authModule", ["token", "username"]),
+    ...mapState("serviceFormModule", [
+      "domain",
+      "name",
+      "description",
+      "keywords",
+      "schema",
+      "inlinePreScript",
+      "inlinePostScript",
+      "command",
+      "webJS",
+      "timeout",
+      "isValidLinks"
+    ]),
     isServiceUpdate() {
       return this.$route.name === "serviceUpdate";
-    },
-    registerServiceParams() {
-      return this.$store.getters["serviceFormModule/registerServiceParams"];
-    },
-    updateServiceParams() {
-      return this.$store.getters["serviceFormModule/updateServiceParams"];
     }
   },
   components: {
-    ServiceDomain: () => import("./ServiceDomain"),
-    ServiceName: () => import("./ServiceName"),
-    ServiceDescription: () => import("./ServiceDescription"),
-    ServiceKeywords: () => import("./ServiceKeywords"),
-    ServiceSchema: () => import("./ServiceSchema"),
-    ServiceInlinePreScript: () => import("./ServiceInlinePreScript"),
-    ServiceInlinePostScript: () => import("./ServiceInlinePostScript"),
-    ServiceCommand: () => import("./ServiceCommand"),
-    ServiceWebJs: () => import("./ServiceWebJs"),
-    ServiceTimeout: () => import("./ServiceTimeout")
+    ServiceDomain,
+    ServiceName,
+    ServiceDescription,
+    ServiceKeywords,
+    ServiceSchema,
+    ServiceInlinePreScript,
+    ServiceInlinePostScript,
+    ServiceCommand,
+    ServiceWebJs,
+    ServiceTimeout
   }
 };
 </script>

@@ -1,13 +1,13 @@
 <template>
-  <input-card>
+  <form-input-card>
     <div slot="title">Web JS</div>
     <div slot="subtitle">
       Add HTML or JS to dynamically create a web page with data when you do a
       post request(synx-cat).
     </div>
     <v-textarea
-      v-model="webJS"
-      @blur="addWebJS"
+      v-model="serviceWebJS"
+      @blur="addServiceWebJS"
       :rules="webJSRules"
       :counter="256"
       error-count="1"
@@ -19,34 +19,35 @@
       outlined
       dense
     ></v-textarea>
-  </input-card>
+  </form-input-card>
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
+import FormInputCard from "../FormInputCard";
 export default {
   data() {
     return {
-      webJS: "",
+      serviceWebJS: "",
       webJSRules: [
         v => (v && v.length) <= 256 || "Web JS must be maximum 1024 character"
       ]
     };
   },
   mounted() {
-    this.webJS = this.serviceWebJS;
+    this.serviceWebJS = this.webJS;
   },
   methods: {
-    addWebJS() {
-      this.$store.commit("serviceFormModule/addWebJS", this.webJS);
+    ...mapMutations("serviceFormModule", ["addWebJS"]),
+    addServiceWebJS() {
+      this.addWebJS(this.serviceWebJS);
     }
   },
   computed: {
-    serviceWebJS() {
-      return this.$store.state.serviceFormModule.webJS;
-    }
+    ...mapState("serviceFormModule", ["webJS"])
   },
   components: {
-    InputCard: () => import("../FormInputCard")
+    FormInputCard
   }
 };
 </script>

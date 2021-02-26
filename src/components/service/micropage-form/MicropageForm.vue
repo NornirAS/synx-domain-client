@@ -71,7 +71,7 @@ export default {
   },
   computed: {
     ...mapState("authModule", ["token"]),
-    ...mapState("serviceFromModule", ["domain", "name"]),
+    ...mapState("serviceFormModule", ["domain", "name"]),
     ...mapState("micropageFormModule", [
       "serviceDescription",
       "schemaDescription",

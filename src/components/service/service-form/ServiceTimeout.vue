@@ -1,12 +1,12 @@
 <template>
-  <input-card>
+  <form-input-card>
     <div slot="title">Connection Idle-Timeout</div>
     <div slot="subtitle">
       Specifies the length of time that a connection is idle before the
       connection is eligible for deletion.
     </div>
     <v-text-field
-      v-model="timeout"
+      v-model="serviceTimeout"
       @blur="addTimeout"
       :rules="timeoutRules"
       name="timeout"
@@ -18,32 +18,33 @@
       outlined
       dense
     ></v-text-field>
-  </input-card>
+  </form-input-card>
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
+import FormInputCard from "../FormInputCard";
 export default {
   data() {
     return {
-      timeout: "30",
+      serviceTimeout: "30",
       timeoutRules: [v => /^[\d]+$/.test(v) || "Only numbers are allowed"]
     };
   },
   mounted() {
-    this.timeout = this.serviceTimeout;
+    this.serviceTimeout = this.timeout;
   },
   methods: {
+    ...mapMutations("serviceFormModule", ["setTimeout"]),
     addTimeout() {
-      this.$store.commit("serviceFormModule/setTimeout", this.timeout);
+      this.setTimeout(this.serviceTimeout);
     }
   },
   computed: {
-    serviceTimeout() {
-      return this.$store.state.serviceFormModule.timeout;
-    }
+    ...mapState("serviceFormModule", ["timeout"])
   },
   components: {
-    InputCard: () => import("../FormInputCard")
+    FormInputCard
   }
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <input-card>
+  <form-input-card>
     <div slot="title">Description*</div>
     <div slot="subtitle">
       In order for the service to be found with Draape and used by others, a
@@ -7,8 +7,8 @@
       provide?
     </div>
     <v-textarea
-      v-model="description"
-      @blur="addDescription"
+      v-model="serviceDescription"
+      @blur="addServiceDescription"
       :rules="descriptionRules"
       :counter="512"
       name="description"
@@ -20,14 +20,16 @@
       outlined
       dense
     ></v-textarea>
-  </input-card>
+  </form-input-card>
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
+import FormInputCard from "../FormInputCard";
 export default {
   data() {
     return {
-      description: "",
+      serviceDescription: "",
       descriptionRules: [
         v => !!v || "Description is required",
         v =>
@@ -36,20 +38,19 @@ export default {
     };
   },
   mounted() {
-    this.description = this.serviceDescription;
+    this.serviceDescription = this.description;
   },
   methods: {
-    addDescription() {
-      this.$store.commit("serviceFormModule/addDescription", this.description);
+    ...mapMutations("serviceFormModule", ["addDescription"]),
+    addServiceDescription() {
+      this.addDescription(this.serviceDescription);
     }
   },
   computed: {
-    serviceDescription() {
-      return this.$store.state.serviceFormModule.description;
-    }
+    ...mapState("serviceFormModule", ["description"])
   },
   components: {
-    InputCard: () => import("../FormInputCard")
+    FormInputCard
   }
 };
 </script>

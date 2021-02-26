@@ -1,5 +1,5 @@
 <template>
-  <input-card>
+  <form-input-card>
     <div slot="title">Keywords</div>
     <div slot="subtitle">
       Make it easier for humans to search for your service.
@@ -39,16 +39,18 @@
         {{ keyword }}
       </v-chip>
     </div>
-  </input-card>
+  </form-input-card>
 </template>
 
 <script>
 import _ from "lodash";
+import FormInputCard from "../FormInputCard";
+import { mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {
       keyword: "",
-      keywords: [],
+      serviceKeywords: [],
       keywordsRules: [
         v =>
           !v || this.isUnderKeywordsLimit || "You can add maximum 20 keywords",
@@ -58,26 +60,25 @@ export default {
     };
   },
   mounted() {
-    const isNotEmpty = this.serviceKeywords.length >= 1;
+    const isNotEmpty = this.keywords.length >= 1;
     if (isNotEmpty) {
-      this.keywords = this.serviceKeywords.split(" ");
+      this.serviceKeywords = this.keywords.split(" ");
     }
   },
   methods: {
+    ...mapMutations("serviceFormModule", ["addKeywords"]),
     add() {
-      this.keywords.push(this.keyword);
+      this.serviceKeywords.push(this.keyword);
       this.keyword = "";
     },
     remove(index) {
-      this.keywords.splice(index, 1);
+      this.serviceKeywords.splice(index, 1);
     }
   },
   computed: {
-    serviceKeywords() {
-      return this.$store.state.serviceFormModule.keywords;
-    },
+    ...mapState("serviceFormModule", ["keywords"]),
     sortedUniqKeywords() {
-      return _.uniq(this.keywords);
+      return _.uniq(this.serviceKeywords);
     },
     isUnderKeywordsLimit() {
       return this.sortedUniqKeywords.length <= 20;
@@ -88,20 +89,11 @@ export default {
   },
   watch: {
     keywords() {
-      this.$store.commit(
-        "serviceFormModule/addKeywords",
-        this.keywords.join(" ")
-      );
+      this.addKeywords(this.serviceKeywords.join(" "));
     }
   },
   components: {
-    InputCard: () => import("../FormInputCard")
+    FormInputCard
   }
 };
 </script>
-
-<style scoped>
-.v-btn {
-  margin: 0.12em 0 0 0.5em;
-}
-</style>

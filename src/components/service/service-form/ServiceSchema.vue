@@ -1,12 +1,12 @@
 <template>
-  <input-card>
+  <form-input-card>
     <div slot="title">Service Schema*</div>
     <div slot="subtitle">
       Add key elements to your service schema.
     </div>
     <v-textarea
-      v-model="schema"
-      @blur="addSchema"
+      v-model="serviceSchema"
+      @blur="addServiceSchema"
       :rules="schemaRules"
       :counter="1024"
       name="schema"
@@ -18,15 +18,17 @@
       outlined
       dense
     ></v-textarea>
-  </input-card>
+  </form-input-card>
 </template>
 
 <script>
 import _ from "lodash";
+import { mapState, mapMutations } from "vuex";
+import FormInputCard from "../FormInputCard";
 export default {
   data() {
     return {
-      schema: "<RTW>\n</RTW>",
+      serviceSchema: "<RTW>\n</RTW>",
       schemaRules: [
         v => !!v || "Schema is required",
         v =>
@@ -44,19 +46,18 @@ export default {
     };
   },
   mounted() {
-    this.schema = this.serviceSchema;
+    this.serviceSchema = this.schema;
   },
   methods: {
-    addSchema() {
-      this.$store.commit("serviceFormModule/addSchema", this.schema);
+    ...mapMutations("serviceFormModule", ["addSchema", "addIsValidLinks"]),
+    addServiceSchema() {
+      this.addSchema(this.serviceSchema);
     }
   },
   computed: {
-    serviceSchema() {
-      return this.$store.state.serviceFormModule.schema;
-    },
+    ...mapState("serviceFormModule", ["schema"]),
     removeNewLine() {
-      return this.schema.replace(/\n/g, "");
+      return this.serviceSchema.replace(/\n/g, "");
     },
     matchXml() {
       return this.removeNewLine.slice(5, -6);
@@ -139,11 +140,11 @@ export default {
   },
   watch: {
     validateLinks(newValue) {
-      this.$store.commit("serviceFormModule/isValidLinks", newValue);
+      this.addIsValidLinks(newValue);
     }
   },
   components: {
-    InputCard: () => import("../FormInputCard")
+    FormInputCard
   }
 };
 </script>

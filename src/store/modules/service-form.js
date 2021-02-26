@@ -10,7 +10,8 @@ const state = {
   inlinePostScript: "",
   command: "<CMD>\n</CMD>",
   webJS: "",
-  timeout: "30"
+  timeout: "30",
+  isValidLinks: false
 };
 
 const mutations = {
@@ -44,6 +45,9 @@ const mutations = {
   setTimeout(state, payload) {
     state.timeout = payload;
   },
+  addIsValidLinks(state, payload) {
+    state.isValidLinks = payload;
+  },
   editService(state, payload) {
     state.domain = payload.domain;
     state.name = payload.serviceName;
@@ -76,17 +80,6 @@ const getters = {
   },
   serviceURL(state, { serviceURI }) {
     return `https://${serviceURI}/`;
-  },
-  // eslint-disable-next-line no-unused-vars
-  registerServiceParams(state, getters, { authModule }) {
-    state.token = authModule.token;
-    state.username = authModule.username;
-    return state;
-  },
-  // eslint-disable-next-line no-unused-vars
-  updateServiceParams(state, getters, { authModule }) {
-    state.token = authModule.token;
-    return state;
   },
   deleteServiceParams({ domain, name }, getters, { authModule }) {
     return {

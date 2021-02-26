@@ -1,13 +1,13 @@
 <template>
-  <input-card>
+  <form-input-card>
     <div slot="title">Inline Post-Script</div>
     <div slot="subtitle">
       The script will be executed after it has been sent to primary objects, but
       before the data is shared with the collective.
     </div>
     <v-textarea
-      v-model="inlinePostScript"
-      @blur="addInlinePostScript"
+      v-model="serviceInlinePostScript"
+      @blur="addServiceInlinePostScript"
       :rules="inlinePostScriptRules"
       :counter="1024"
       error-count="1"
@@ -19,14 +19,16 @@
       outlined
       dense
     ></v-textarea>
-  </input-card>
+  </form-input-card>
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
+import FormInputCard from "../FormInputCard";
 export default {
   data() {
     return {
-      inlinePostScript: "",
+      serviceInlinePostScript: "",
       inlinePostScriptRules: [
         v =>
           (v && v.length) <= 1024 ||
@@ -35,26 +37,22 @@ export default {
     };
   },
   mounted() {
-    const base64String = this.serviceInlinePostScript;
+    const base64String = this.inlinePostScript;
     const decodedString = atob(base64String);
-    this.inlinePostScript = decodedString;
+    this.serviceInlinePostScript = decodedString;
   },
   methods: {
-    addInlinePostScript() {
-      const encodedScript = btoa(this.inlinePostScript);
-      this.$store.commit(
-        "serviceFormModule/addInlinePostScript",
-        encodedScript
-      );
+    ...mapMutations("serviceFormModule", ["addInlinePostScript"]),
+    addServiceInlinePostScript() {
+      const encodedScript = btoa(this.serviceInlinePostScript);
+      this.addInlinePostScript(encodedScript);
     }
   },
   computed: {
-    serviceInlinePostScript() {
-      return this.$store.state.serviceFormModule.inlinePostScript;
-    }
+    ...mapState("serviceFormModule", ["inlinePostScript"])
   },
   components: {
-    InputCard: () => import("../FormInputCard")
+    FormInputCard
   }
 };
 </script>

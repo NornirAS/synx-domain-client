@@ -1,13 +1,13 @@
 <template>
-  <input-card>
+  <form-input-card>
     <div slot="title">Inline Pre-Script</div>
     <div slot="subtitle">
       This script will be executed before the data is sent to primary objects
       and services linked to you.
     </div>
     <v-textarea
-      v-model="inlinePreScript"
-      @blur="addinlinePreScript"
+      v-model="serviceInlinePreScript"
+      @blur="addServiceInlinePreScript"
       :rules="inlinePreScriptRules"
       :counter="1024"
       error-count="1"
@@ -19,14 +19,16 @@
       outlined
       dense
     ></v-textarea>
-  </input-card>
+  </form-input-card>
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
+import FormInputCard from "../FormInputCard";
 export default {
   data() {
     return {
-      inlinePreScript: "",
+      serviceInlinePreScript: "",
       inlinePreScriptRules: [
         v =>
           (v && v.length) <= 1024 ||
@@ -35,23 +37,22 @@ export default {
     };
   },
   mounted() {
-    const base64String = this.serviceInlinePreScript;
+    const base64String = this.inlinePreScript;
     const decodedString = atob(base64String);
-    this.inlinePreScript = decodedString;
+    this.serviceInlinePreScript = decodedString;
   },
   methods: {
-    addinlinePreScript() {
-      const encodedScript = btoa(this.inlinePreScript);
-      this.$store.commit("serviceFormModule/addInlinePreScript", encodedScript);
+    ...mapMutations("serviceFormModule", ["addInlinePreScript"]),
+    addServiceInlinePreScript() {
+      const encodedScript = btoa(this.serviceInlinePreScript);
+      this.addInlinePreScript(encodedScript);
     }
   },
   computed: {
-    serviceInlinePreScript() {
-      return this.$store.state.serviceFormModule.inlinePreScript;
-    }
+    ...mapState("serviceFormModule", ["inlinePreScript"])
   },
   components: {
-    InputCard: () => import("../FormInputCard")
+    FormInputCard
   }
 };
 </script>

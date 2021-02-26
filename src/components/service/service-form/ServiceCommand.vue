@@ -1,13 +1,13 @@
 <template>
-  <input-card>
+  <form-input-card>
     <div slot="title">Command Schema</div>
     <div slot="subtitle">
       A command elements to enable services that are linked to you to send you
       commands.
     </div>
     <v-textarea
-      v-model="command"
-      @blur="addCommand"
+      v-model="serviceCommand"
+      @blur="addServiceCommand"
       :rules="commandRules"
       :counter="128"
       name="command"
@@ -18,15 +18,17 @@
       outlined
       dense
     ></v-textarea>
-  </input-card>
+  </form-input-card>
 </template>
 
 <script>
 import _ from "lodash";
+import { mapState, mapMutations } from "vuex";
+import FormInputCard from "../FormInputCard";
 export default {
   data() {
     return {
-      command: "<CMD>\n</CMD>",
+      serviceCommand: "<CMD>\n</CMD>",
       commandRules: [
         v =>
           (v && v.length) <= 128 ||
@@ -43,19 +45,18 @@ export default {
     };
   },
   mounted() {
-    this.command = this.commandSchema;
+    this.serviceCommand = this.command;
   },
   methods: {
-    addCommand() {
-      this.$store.commit("serviceFormModule/addCommand", this.command);
+    ...mapMutations("serviceFormModule", ["addCommand"]),
+    addServiceCommand() {
+      this.addCommand(this.serviceCommand);
     }
   },
   computed: {
-    commandSchema() {
-      return this.$store.state.serviceFormModule.command;
-    },
+    ...mapState("serviceFormModule", ["command"]),
     removeNewLine() {
-      return this.command.replace(/\n/g, "");
+      return this.serviceCommand.replace(/\n/g, "");
     },
     matchXml() {
       return this.removeNewLine.slice(5, -6);
@@ -102,7 +103,7 @@ export default {
     }
   },
   components: {
-    InputCard: () => import("../FormInputCard")
+    FormInputCard
   }
 };
 </script>
