@@ -80,14 +80,6 @@ const getters = {
   },
   serviceURL(state, { serviceURI }) {
     return `https://${serviceURI}/`;
-  },
-  deleteServiceParams({ domain, name }, getters, { authModule }) {
-    return {
-      token: authModule.token,
-      domain,
-      name,
-      instance: "0"
-    };
   }
 };
 

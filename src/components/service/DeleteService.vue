@@ -44,7 +44,8 @@
 
 <script>
 import { mdiTrashCanOutline } from "@mdi/js";
-import { mapGetters } from "vuex";
+import { mapState, mapGetters } from "vuex";
+import DialogCard from "../DialogCard";
 export default {
   data() {
     return {
@@ -54,18 +55,22 @@ export default {
   },
   methods: {
     deleteService() {
-      this.$socket.emit("delete_service", this.deleteServiceParams);
+      this.$socket.emit("delete_service", {
+        token: this.token,
+        domain: this.domain,
+        service: this.name,
+        instance: "0"
+      });
       this.dialog = false;
     }
   },
   computed: {
-    ...mapGetters("serviceFormModule", ["serviceURI"]),
-    deleteServiceParams() {
-      return this.$store.getters["serviceFormModule/deleteServiceParams"];
-    }
+    ...mapState("authModule", ["token"]),
+    ...mapState("serviceFormModule", ["domain", "name"]),
+    ...mapGetters("serviceFormModule", ["serviceURI"])
   },
   components: {
-    DialogCard: () => import("../DialogCard")
+    DialogCard
   }
 };
 </script>
