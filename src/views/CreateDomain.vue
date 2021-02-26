@@ -11,7 +11,7 @@
 import { mapState } from "vuex";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
-import DomainForm from "../components/DomainForm";
+import DomainForm from "../components/domain/DomainForm";
 export default {
   computed: {
     ...mapState("authModule", ["username", "token"]),

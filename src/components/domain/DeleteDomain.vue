@@ -45,6 +45,7 @@
 <script>
 import { mdiTrashCanOutline } from "@mdi/js";
 import { rootDomain } from "../../core/config";
+import DialogCard from "../DialogCard";
 export default {
   props: ["token", "username", "domain"],
   data() {
@@ -71,7 +72,7 @@ export default {
     }
   },
   components: {
-    DialogCard: () => import("../DialogCard")
+    DialogCard
   }
 };
 </script>

@@ -41,14 +41,12 @@
 </template>
 
 <script>
-import _ from "lodash";
+import { mapState, mapGetters } from "vuex";
 export default {
   data() {
     return {
       stripeAPIToken: "",
-      stripe: "",
-      elements: "",
-      card: ""
+      stripe: ""
     };
   },
   created() {
@@ -83,30 +81,17 @@ export default {
       }
       scriptTag.parentNode.insertBefore(object, scriptTag);
     },
-    /*
-      Configures Stripe by setting up the elements and 
-      creating the card element.
-    */
     configureStripe() {
       // eslint-disable-next-line no-undef
       this.stripe = Stripe(this.stripeAPIToken);
     }
   },
   computed: {
+    ...mapState("stripeModule", ["session", "selectedPlan"]),
+    ...mapState("domainsModule", ["domains"]),
+    ...mapGetters("domainsModule", ["noDomains"]),
     domain() {
       return this.$route.params.domainName;
-    },
-    session() {
-      return this.$store.state.stripeModule.session;
-    },
-    selectedPlan() {
-      return this.$store.state.stripeModule.selectedPlan;
-    },
-    domains() {
-      return this.$store.state.domainsModule.domains;
-    },
-    noDomains() {
-      return _.isEmpty(this.domains);
     }
   },
   watch: {

@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import _ from "lodash";
+import { mapState, mapGetters, mapMutations } from "vuex";
 import SubscriptionCard from "./SubscriptionCard";
 export default {
   data() {
@@ -53,22 +53,19 @@ export default {
     };
   },
   created() {
-    this.$store.commit("stripeModule/selectPlan", this.selected);
+    this.selectPlan(this.selected);
+  },
+  methods: {
+    ...mapMutations("stripeModule", ["selectPlan"])
   },
   computed: {
-    subscriptionPlans() {
-      return this.$store.state.stripeModule.subscriptionPlans;
-    },
-    domains() {
-      return this.$store.state.domainsModule.domains;
-    },
-    noDomains() {
-      return _.isEmpty(this.domains);
-    }
+    ...mapState("domainsModule", ["domains"]),
+    ...mapState("stripeModule", ["subscriptionPlans"]),
+    ...mapGetters("domainsModule", ["noDomains"])
   },
   watch: {
     selected(newValue) {
-      this.$store.commit("stripeModule/selectPlan", newValue);
+      this.selectPlan(newValue);
     }
   },
   components: {
@@ -81,12 +78,8 @@ export default {
 .v-card {
   margin-bottom: 1em;
   padding: 0;
-  flex-grow: 1;
-}
-.font-weight-bold {
-  color: var(--v-accent-base);
 }
 .selected-card {
-  background-color: var(--v-background-base);
+  background-color: #ebeff4;
 }
 </style>

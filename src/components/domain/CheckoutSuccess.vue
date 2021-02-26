@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import ImageResponseTemplate from "../ImageResponseTemplate";
 export default {
   computed: {
     domain() {
@@ -35,7 +36,7 @@ export default {
     }
   },
   components: {
-    ImageResponseTemplate: () => import("../ImageResponseTemplate")
+    ImageResponseTemplate
   }
 };
 </script>

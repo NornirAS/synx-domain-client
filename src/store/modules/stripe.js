@@ -4,7 +4,7 @@ const state = {
       title: "Monthly",
       description: "Billed every 30 days",
       annualCost: "Annual cost $60",
-      monthlyCost: "$5/mo",
+      monthlyCost: "$5/m",
       period: "1",
       total: "5"
     },
@@ -12,7 +12,7 @@ const state = {
       title: "Half-yearly",
       description: "Billed twice a year",
       annualCost: "Annual cost $55",
-      monthlyCost: "$4.6/mo",
+      monthlyCost: "$4.6/m",
       period: "6",
       discount: "Save $5",
       total: "22.5"
@@ -21,7 +21,7 @@ const state = {
       title: "Yearly",
       description: "Billed once a year",
       annualCost: "Annual cost $50",
-      monthlyCost: "$4.2/mo",
+      monthlyCost: "$4.2/m",
       period: "12",
       discount: "Save $10",
       total: "50"
