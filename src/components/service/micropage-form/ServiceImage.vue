@@ -1,5 +1,5 @@
 <template>
-  <input-card>
+  <form-input-card>
     <div slot="title">Image</div>
     <div slot="subtitle">
       Upload relevant image you own or have the rights to use. Free images can
@@ -15,10 +15,12 @@
       outlined
       dense
     ></v-text-field>
-  </input-card>
+  </form-input-card>
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
+import FormInputCard from "../FormInputCard";
 export default {
   data() {
     return {
@@ -26,14 +28,13 @@ export default {
     };
   },
   methods: {
+    ...mapMutations("micropageFormModule", ["addImageUrl"]),
     addImageUrl() {
-      this.$store.commit("micropageFormModule/addImageUrl", this.image);
+      this.addImageUrl(this.image);
     }
   },
   computed: {
-    imageUrl() {
-      return this.$store.state.micropageFormModule.imageUrl;
-    }
+    ...mapState("micropageFormModule", ["imageUrl"])
   },
   watch: {
     imageUrl(newValue) {
@@ -41,7 +42,7 @@ export default {
     }
   },
   components: {
-    InputCard: () => import("../FormInputCard")
+    FormInputCard
   }
 };
 </script>

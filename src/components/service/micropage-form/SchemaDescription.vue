@@ -1,5 +1,5 @@
 <template>
-  <input-card>
+  <form-input-card>
     <div slot="title">Schema Description*</div>
     <div slot="subtitle">
       Want other humans to get data from your service? Remember to add
@@ -19,10 +19,12 @@
       outlined
       dense
     ></v-textarea>
-  </input-card>
+  </form-input-card>
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
+import FormInputCard from "../FormInputCard";
 export default {
   data() {
     return {
@@ -35,17 +37,13 @@ export default {
     };
   },
   methods: {
+    ...mapMutations("micropageFormModule", ["addSchemaDescription"]),
     addDescription() {
-      this.$store.commit(
-        "micropageFormModule/addSchemaDescription",
-        this.description
-      );
+      this.addSchemaDescription(this.description);
     }
   },
   computed: {
-    schemaDescription() {
-      return this.$store.state.micropageFormModule.schemaDescription;
-    }
+    ...mapState("micropageFormModule", ["schemaDescription"])
   },
   watch: {
     schemaDescription(newValue) {
@@ -53,7 +51,7 @@ export default {
     }
   },
   components: {
-    InputCard: () => import("../FormInputCard")
+    FormInputCard
   }
 };
 </script>

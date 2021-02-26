@@ -38,6 +38,10 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from "vuex";
+import ServiceImage from "./ServiceImage";
+import ServiceDescription from "./ServiceDescription";
+import SchemaDescription from "./SchemaDescription";
 export default {
   data() {
     return {
@@ -45,16 +49,20 @@ export default {
     };
   },
   created() {
-    this.$socket.emit("fetch_micropage", this.micropageURL);
-  },
-  beforeDestroy() {
-    this.$store.commit("micropageFormModule/resetState");
+    this.$socket.emit("fetch_micropage", this.serviceURL);
   },
   methods: {
     submitMicropageForm() {
       const isFormValid = this.$refs.micropageForm.validate();
       if (isFormValid) {
-        this.$socket.emit("update_micropage", this.updateMicropageParams);
+        this.$socket.emit("update_micropage", {
+          token: this.token,
+          domain: this.domain,
+          service: this.name,
+          serviceDescription: this.ServiceDescription,
+          schemaDescription: this.SchemaDescription,
+          imageUrl: this.imageUrl
+        });
       }
     },
     backToServices() {
@@ -62,17 +70,19 @@ export default {
     }
   },
   computed: {
-    updateMicropageParams() {
-      return this.$store.getters["micropageFormModule/updateMicropageParams"];
-    },
-    micropageURL() {
-      return this.$store.getters["serviceFormModule/serviceURL"];
-    }
+    ...mapState("authModule", ["token"]),
+    ...mapState("serviceFromModule", ["domain", "name"]),
+    ...mapState("micropageFormModule", [
+      "serviceDescription",
+      "schemaDescription",
+      "imageUrl"
+    ]),
+    ...mapGetters("serviceFormModule", ["serviceURL"])
   },
   components: {
-    ServiceImage: () => import("./ServiceImage"),
-    ServiceDescription: () => import("./ServiceDescription"),
-    SchemaDescription: () => import("./SchemaDescription")
+    ServiceImage,
+    ServiceDescription,
+    SchemaDescription
   }
 };
 </script>

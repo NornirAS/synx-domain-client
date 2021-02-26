@@ -13,11 +13,6 @@ const mutations = {
   },
   addImageUrl(state, payload) {
     state.imageUrl = payload;
-  },
-  resetState(state) {
-    state.serviceDescription = "";
-    state.schemaDescription = "";
-    state.imageUrl = "";
   }
 };
 
@@ -48,19 +43,9 @@ const actions = {
   }
 };
 
-const getters = {
-  updateMicropageParams(state, getters, { authModule, serviceFormModule }) {
-    state.domain = serviceFormModule.domain;
-    state.name = serviceFormModule.name;
-    state.token = authModule.token;
-    return state;
-  }
-};
-
 export default {
   namespaced: true,
   state,
   mutations,
-  actions,
-  getters
+  actions
 };

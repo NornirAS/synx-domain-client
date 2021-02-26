@@ -1,5 +1,5 @@
 <template>
-  <input-card>
+  <form-input-card>
     <div slot="title">Service Description*</div>
     <div slot="subtitle">
       In order for the service to be found with Draape and used by others, a
@@ -20,10 +20,12 @@
       outlined
       dense
     ></v-textarea>
-  </input-card>
+  </form-input-card>
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
+import FormInputCard from "../FormInputCard";
 export default {
   data() {
     return {
@@ -36,17 +38,13 @@ export default {
     };
   },
   methods: {
+    ...mapMutations("micropageFormModule", ["addServiceDescription"]),
     addDescription() {
-      this.$store.commit(
-        "micropageFormModule/addServiceDescription",
-        this.description
-      );
+      this.addServiceDescription(this.description);
     }
   },
   computed: {
-    serviceDescription() {
-      return this.$store.state.micropageFormModule.serviceDescription;
-    }
+    ...mapState("micropageFormModule", ["serviceDescription"])
   },
   watch: {
     serviceDescription(newValue) {
@@ -54,7 +52,7 @@ export default {
     }
   },
   components: {
-    InputCard: () => import("../FormInputCard")
+    FormInputCard
   }
 };
 </script>
