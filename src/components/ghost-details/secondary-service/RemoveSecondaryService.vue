@@ -4,7 +4,7 @@
       <tbody>
         <tr
           v-for="({ uri, refDomain, refService, refObjectID },
-          index) in secondaryServices"
+          index) in ghostSecondaryServices"
           :key="index"
         >
           <td class="body-1">{{ uri }}</td>
@@ -28,6 +28,7 @@
 
 <script>
 import { mdiTrashCanOutline } from "@mdi/js";
+import { mapState } from "vuex";
 export default {
   props: ["token", "ghost"],
   data() {
@@ -49,9 +50,7 @@ export default {
     }
   },
   computed: {
-    secondaryServices() {
-      return this.$store.state.ghosts.ghostSecondaryService;
-    }
+    ...mapState("ghosts", ["ghostSecondaryService"])
   }
 };
 </script>

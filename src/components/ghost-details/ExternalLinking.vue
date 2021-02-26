@@ -2,7 +2,7 @@
   <v-simple-table>
     <template v-slot:default>
       <tbody>
-        <tr v-for="(link, index) in links" :key="index">
+        <tr v-for="(link, index) in ghostLinkedTo" :key="index">
           <td class="body-1">{{ link.uri }}</td>
           <td>
             <v-switch
@@ -20,11 +20,9 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   props: ["token", "ghost"],
-  data() {
-    return {};
-  },
   methods: {
     allowDenyLinking(name, active) {
       this.$socket.emit("external_linking", {
@@ -38,9 +36,7 @@ export default {
     }
   },
   computed: {
-    links() {
-      return this.$store.state.ghosts.ghostLinkedTo;
-    }
+    ...mapState("ghosts", ["ghostLinkedTo"])
   }
 };
 </script>

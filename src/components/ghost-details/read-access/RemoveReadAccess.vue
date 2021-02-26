@@ -2,7 +2,7 @@
   <v-simple-table>
     <template v-slot:default>
       <tbody>
-        <tr v-for="(user, index) in usersWithReadAccess" :key="index">
+        <tr v-for="(user, index) in ghostReadAccess" :key="index">
           <td class="body-1">{{ user.name }}</td>
           <td>
             <v-btn
@@ -22,6 +22,7 @@
 
 <script>
 import { mdiTrashCanOutline } from "@mdi/js";
+import { mapState } from "vuex";
 export default {
   props: ["token", "ghost"],
   data() {
@@ -41,9 +42,7 @@ export default {
     }
   },
   computed: {
-    usersWithReadAccess() {
-      return this.$store.state.ghosts.ghostReadAccess;
-    }
+    ...mapState("ghosts", ["ghostReadAccess"])
   }
 };
 </script>

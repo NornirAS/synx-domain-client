@@ -68,6 +68,8 @@
 
 <script>
 import { mdiPlus } from "@mdi/js";
+import { mapState } from "vuex";
+import DialogCard from "../DialogCard";
 export default {
   props: ["token", "ghost"],
   data() {
@@ -101,9 +103,7 @@ export default {
     }
   },
   computed: {
-    addMapIdSuccess() {
-      return this.$store.state.alarmModule.addMapIdSuccess;
-    }
+    ...mapState("alarmModule", ["addMapIdSuccess"])
   },
   watch: {
     addMapIdSuccess() {
@@ -111,7 +111,7 @@ export default {
     }
   },
   components: {
-    DialogCard: () => import("../DialogCard")
+    DialogCard
   }
 };
 </script>

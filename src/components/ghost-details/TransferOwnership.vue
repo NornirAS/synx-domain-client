@@ -81,6 +81,8 @@
 
 <script>
 import { mdiSwapHorizontal } from "@mdi/js";
+import { mapState } from "vuex";
+import DialogCard from "../DialogCard";
 export default {
   props: ["token", "ghost", "ghostURI"],
   data() {
@@ -118,16 +120,11 @@ export default {
     }
   },
   computed: {
-    username() {
-      return this.$store.state.authModule.username;
-    },
-    tranferOwnershipSuccess() {
-      return this.$store.state.alarmModule.tranferOwnershipSuccess;
-    }
+    ...mapState("authModule", ["username"]),
+    ...mapState("alarmModule", ["tranferOwnershipSuccess"])
   },
   watch: {
     tranferOwnershipSuccess() {
-      this.$store.commit("ghosts/resetGhosts");
       this.$socket.emit("get_owned_ghosts", this.token);
       this.$socket.emit("look_for_new_ghosts", {
         token: this.token,
@@ -136,7 +133,7 @@ export default {
     }
   },
   components: {
-    DialogCard: () => import("../DialogCard")
+    DialogCard
   }
 };
 </script>
