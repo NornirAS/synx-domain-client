@@ -39,9 +39,10 @@
 </template>
 
 <script>
+import ImageResponseTemplate from "../ImageResponseTemplate";
 export default {
   components: {
-    ImageResponseTemplate: () => import("../ImageResponseTemplate")
+    ImageResponseTemplate
   }
 };
 </script>

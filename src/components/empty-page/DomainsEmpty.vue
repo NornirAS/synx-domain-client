@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import ImageResponseTemplate from "../ImageResponseTemplate";
 export default {
   computed: {
     domainRoute() {
@@ -62,7 +63,7 @@ export default {
     }
   },
   components: {
-    ImageResponseTemplate: () => import("../ImageResponseTemplate")
+    ImageResponseTemplate
   }
 };
 </script>
