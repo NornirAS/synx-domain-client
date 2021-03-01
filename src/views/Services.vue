@@ -133,7 +133,9 @@ export default {
   },
   created() {
     if (this.noServices) {
-      this.$socket.emit("get_all_services", this.token);
+      this.$socket.emit("get_all_services", {
+        token: this.token
+      });
     } else {
       this.addServicesFromStorage;
     }
