@@ -15,9 +15,9 @@
       </div>
       <div slot="action">
         <v-btn
-          :to="{ name: 'domains' }"
+          @click="toDomains"
           class="text-capitalize"
-          text
+          rounded
           small
           color="primary"
         >
@@ -41,6 +41,11 @@
 <script>
 import ImageResponseTemplate from "../ImageResponseTemplate";
 export default {
+  methods: {
+    toDomains() {
+      this.$router.push({ name: "domains" });
+    }
+  },
   components: {
     ImageResponseTemplate
   }
