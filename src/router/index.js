@@ -3,6 +3,8 @@ import VueRouter from "vue-router";
 import Homepage from "../views/Homepage";
 import Services from "../views/Services";
 import Domains from "../views/Domains";
+import Ghosts from "../views/Ghosts";
+import Account from "../views/Account";
 import ServicesPage from "../components/services/ServicesPage";
 import ServicePage from "../components/service/ServicePage";
 import ServiceForm from "../components/service/service-form/ServiceForm";
@@ -11,10 +13,9 @@ import DomainsPage from "../components/domains/DomainsPage";
 import CreateDomain from "../components/domain/CreateDomain";
 import DomainActivation from "../components/domain/DomainActivation";
 import CheckoutSuccess from "../components/domain/CheckoutSuccess";
+import GhostsPage from "../components/ghosts/GhostsPage";
+import GhostDetailsPage from "../components/ghost-details/GhostDetailsPage";
 import SideBar from "../components/SideBar";
-import Ghosts from "../views/Ghosts";
-import GhostDetails from "../views/GhostDetails";
-import Account from "../views/Account";
 import PageNotFound from "../components/empty-page/PageNotFound";
 
 Vue.use(VueRouter);
@@ -76,15 +77,6 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/account",
-    name: "account",
-    components: {
-      default: Account,
-      "side-bar": SideBar
-    },
-    beforeEnter: authGuard
-  },
-  {
     path: "/services",
     components: {
       default: Services,
@@ -122,18 +114,29 @@ const routes = [
   },
   {
     path: "/ghosts",
-    name: "ghosts",
     components: {
       default: Ghosts,
       "side-bar": SideBar
     },
+    children: [
+      {
+        path: "",
+        name: "ghosts",
+        component: GhostsPage
+      },
+      {
+        path: ":serviceName##:instance",
+        name: "ghostDetails",
+        component: GhostDetailsPage
+      }
+    ],
     beforeEnter: authGuard
   },
   {
-    path: "/ghosts/:serviceName#:instance",
-    name: "ghostDetails",
+    path: "/account",
+    name: "account",
     components: {
-      default: GhostDetails,
+      default: Account,
       "side-bar": SideBar
     },
     beforeEnter: authGuard

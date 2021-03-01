@@ -99,19 +99,19 @@
 
 <script>
 import { mdiPlus, mdiChevronDown, mdiChevronUp } from "@mdi/js";
-import { rootDomain } from "../core/config";
+import { rootDomain } from "../../core/config";
 import { mapState, mapGetters } from "vuex";
-import PageTitle from "../components/PageTitle";
-import PageLayout from "../components/PageLayout";
-import ExternalLinking from "../components/ghost-details/ExternalLinking";
-import AddReadAccess from "../components/ghost-details/read-access/AddReadAccess";
-import RemoveReadAccess from "../components/ghost-details/read-access/RemoveReadAccess";
-import AddSecondaryService from "../components/ghost-details/secondary-service/AddSecondaryService";
-import RemoveSecondaryService from "../components/ghost-details/secondary-service/RemoveSecondaryService";
-import KillSession from "../components/ghost-details/KillSession";
-import TransferOwnership from "../components/ghost-details/TransferOwnership";
-import RemoveGhost from "../components/ghost-details/RemoveGhost";
-import MapId from "../components/ghost-details/MapId";
+import PageTitle from "../PageTitle";
+import PageLayout from "../PageLayout";
+import ExternalLinking from "../ghost-details/ExternalLinking";
+import AddReadAccess from "../ghost-details/read-access/AddReadAccess";
+import RemoveReadAccess from "../ghost-details/read-access/RemoveReadAccess";
+import AddSecondaryService from "../ghost-details/secondary-service/AddSecondaryService";
+import RemoveSecondaryService from "../ghost-details/secondary-service/RemoveSecondaryService";
+import KillSession from "../ghost-details/KillSession";
+import TransferOwnership from "../ghost-details/TransferOwnership";
+import RemoveGhost from "../ghost-details/RemoveGhost";
+import MapId from "../ghost-details/MapId";
 export default {
   data() {
     return {
