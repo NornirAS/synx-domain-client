@@ -5,17 +5,17 @@ import Services from "../views/Services";
 import Domains from "../views/Domains";
 import ServicesPage from "../components/services/ServicesPage";
 import ServicePage from "../components/service/ServicePage";
+import ServiceForm from "../components/service/service-form/ServiceForm";
+import MicropageForm from "../components/service/micropage-form/MicropageForm";
 import DomainsPage from "../components/domains/DomainsPage";
+import CreateDomain from "../components/domain/CreateDomain";
+import DomainActivation from "../components/domain/DomainActivation";
+import CheckoutSuccess from "../components/domain/CheckoutSuccess";
 import SideBar from "../components/SideBar";
-import DomainActivation from "../views/DomainActivation";
 import Ghosts from "../views/Ghosts";
 import GhostDetails from "../views/GhostDetails";
-import ServiceForm from "../components/service/service-form/ServiceForm";
 import Account from "../views/Account";
-import CheckoutSuccess from "../components/domain/CheckoutSuccess";
-import CreateDomain from "../views/CreateDomain";
 import PageNotFound from "../components/empty-page/PageNotFound";
-import MicropageForm from "../components/service/micropage-form/MicropageForm";
 
 Vue.use(VueRouter);
 
@@ -55,26 +55,23 @@ const routes = [
         path: "",
         name: "domains",
         component: DomainsPage
+      },
+      {
+        path: "domain/create-domain",
+        name: "create-domain",
+        component: CreateDomain
+      },
+      {
+        path: "domain/:domainName/activate",
+        name: "domain-activate",
+        component: DomainActivation
+      },
+      {
+        path: "domain/:domainName/checkout-success",
+        name: "checkout-success",
+        component: CheckoutSuccess
       }
     ],
-    beforeEnter: authGuard
-  },
-  {
-    path: "/domains/create-domain",
-    name: "create-domain",
-    components: {
-      default: CreateDomain,
-      "side-bar": SideBar
-    },
-    beforeEnter: authGuard
-  },
-  {
-    path: "/domains/:domainName/checkout-success",
-    name: "checkout-success",
-    components: {
-      default: CheckoutSuccess,
-      "side-bar": SideBar
-    },
     beforeEnter: authGuard
   },
   {
@@ -82,15 +79,6 @@ const routes = [
     name: "account",
     components: {
       default: Account,
-      "side-bar": SideBar
-    },
-    beforeEnter: authGuard
-  },
-  {
-    path: "/domains/:domainName/activate",
-    name: "domain-activate",
-    components: {
-      default: DomainActivation,
       "side-bar": SideBar
     },
     beforeEnter: authGuard

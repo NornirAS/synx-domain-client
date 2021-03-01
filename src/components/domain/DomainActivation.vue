@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import PageTitle from "../components/PageTitle";
-import PageLayout from "../components/PageLayout";
-import PurchaseForm from "../components/domain/PurchaseForm.vue";
+import PageTitle from "../PageTitle";
+import PageLayout from "../PageLayout";
+import PurchaseForm from "./PurchaseForm.vue";
 export default {
   components: {
     PurchaseForm,
