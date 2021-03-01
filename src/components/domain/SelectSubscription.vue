@@ -17,13 +17,13 @@
             <v-radio :value="index" color="primary"></v-radio>
           </div>
           <v-chip
-            v-if="noDomains"
+            v-if="hasTrial"
             slot="trial"
             color="primary"
             class="ml-n6 mt-2"
             small
             label
-            >Free Trial</v-chip
+            >Free 30 days Trial</v-chip
           >
           <div slot="description">{{ description }}</div>
           <div slot="description">{{ annualCost }}</div>
@@ -61,7 +61,13 @@ export default {
   computed: {
     ...mapState("domainsModule", ["domains"]),
     ...mapState("stripeModule", ["subscriptionPlans"]),
-    ...mapGetters("domainsModule", ["noDomains"])
+    ...mapGetters("domainsModule", ["noDomains", "hasInactiveDomain"]),
+    hasSingleDomain() {
+      return this.domains.length === 1;
+    },
+    hasTrial() {
+      return this.hasSingleDomain === this.hasInactiveDomain;
+    }
   },
   watch: {
     selected(newValue) {

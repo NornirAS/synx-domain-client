@@ -25,6 +25,9 @@ const getters = {
   noDomains({ domains }) {
     return _.isEmpty(domains);
   },
+  hasInactiveDomain({ domains }) {
+    return _.some(domains, ["active", false]);
+  },
   domainNames({ domains }, { noDomains }) {
     if (noDomains) {
       return [];
