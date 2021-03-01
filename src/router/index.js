@@ -2,10 +2,11 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Homepage from "../views/Homepage";
 import Services from "../views/Services";
+import Domains from "../views/Domains";
 import ServicesPage from "../components/services/ServicesPage";
 import ServicePage from "../components/service/ServicePage";
+import DomainsPage from "../components/domains/DomainsPage";
 import SideBar from "../components/SideBar";
-import Domains from "../views/Domains";
 import DomainActivation from "../views/DomainActivation";
 import Ghosts from "../views/Ghosts";
 import GhostDetails from "../views/GhostDetails";
@@ -45,11 +46,17 @@ const routes = [
   },
   {
     path: "/domains",
-    name: "domains",
     components: {
       default: Domains,
       "side-bar": SideBar
     },
+    children: [
+      {
+        path: "",
+        name: "domains",
+        component: DomainsPage
+      }
+    ],
     beforeEnter: authGuard
   },
   {
@@ -124,31 +131,6 @@ const routes = [
     ],
     beforeEnter: authGuard
   },
-  // {
-  //   path: "/services/service",
-  //   components: {
-  //     default: ServiceFormView,
-  //     "side-bar": SideBar
-  //   },
-  //   children: [
-  //     {
-  //       path: "create",
-  //       name: "serviceCreate",
-  //       component: ServiceForm
-  //     },
-  //     {
-  //       path: ":serviceName/update",
-  //       name: "serviceUpdate",
-  //       component: ServiceForm
-  //     },
-  //     {
-  //       path: ":serviceName/update/micropage",
-  //       name: "micropageUpdate",
-  //       component: MicropageForm
-  //     }
-  //   ],
-  //   beforeEnter: authGuard
-  // },
   {
     path: "/ghosts",
     name: "ghosts",
