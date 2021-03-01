@@ -164,7 +164,9 @@ export default {
     ...mapMutations("ghostDetails", ["selectGhost"]),
     ...mapActions("ghosts", ["addGhostsFromStorage"]),
     getOwnedGhosts() {
-      this.$socket.emit("get_owned_ghosts", this.token);
+      this.$socket.emit("get_owned_ghosts", {
+        token: this.token
+      });
     },
     lookForNewGhosts() {
       this.$socket.emit("look_for_new_ghosts", {
