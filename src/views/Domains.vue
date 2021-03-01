@@ -118,10 +118,14 @@ export default {
       });
     },
     getAllServices() {
-      this.$socket.emit("get_all_services", this.token);
+      this.$socket.emit("get_all_services", {
+        token: this.token
+      });
     },
     getOwnedGhosts() {
-      this.$socket.emit("get_owned_ghosts", this.token);
+      this.$socket.emit("get_owned_ghosts", {
+        token: this.token
+      });
     }
   },
   computed: {
