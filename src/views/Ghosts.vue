@@ -191,24 +191,22 @@ export default {
       });
     },
     accept(item) {
-      this.$socket.emit(
-        "accept_ghost",
-        item.domain,
-        item.service,
-        this.token,
-        this.username,
-        item.instance
-      );
+      this.$socket.emit("accept_ghost", {
+        domain: item.domain,
+        service: item.service,
+        token: this.token,
+        username: this.username,
+        instance: item.instance
+      });
     },
     decline(item) {
-      this.$socket.emit(
-        "decline_ghost",
-        item.domain,
-        item.service,
-        this.token,
-        this.username,
-        item.instance
-      );
+      this.$socket.emit("decline_ghost", {
+        domain: item.domain,
+        service: item.service,
+        token: this.token,
+        username: this.username,
+        instance: item.instance
+      });
     }
   },
   computed: {
