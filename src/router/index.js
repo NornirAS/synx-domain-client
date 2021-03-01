@@ -65,13 +65,14 @@ const routes = [
         path: "domain/:domainName/activate",
         name: "domain-activate",
         component: DomainActivation
-      },
-      {
-        path: "domain/:domainName/checkout-success",
-        name: "checkout-success",
-        component: CheckoutSuccess
       }
     ],
+    beforeEnter: authGuard
+  },
+  {
+    path: "/domains/domain/:domainName/checkout-success",
+    name: "checkout-success",
+    component: CheckoutSuccess,
     beforeEnter: authGuard
   },
   {
