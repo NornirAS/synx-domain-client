@@ -27,6 +27,9 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
+import PageLayout from "../PageLayout";
+import PageTitle from "../PageTitle";
+import DeleteService from "../service/DeleteService";
 export default {
   data() {
     return {
@@ -90,9 +93,9 @@ export default {
     }
   },
   components: {
-    PageLayout: () => import("../components/PageLayout"),
-    PageTitle: () => import("../components/PageTitle"),
-    DeleteService: () => import("../components/service/DeleteService")
+    PageLayout,
+    PageTitle,
+    DeleteService
   }
 };
 </script>

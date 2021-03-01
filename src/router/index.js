@@ -2,7 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Homepage from "../views/Homepage";
 import Services from "../views/Services";
-import ServiceFormView from "../views/ServiceFormView";
+import ServicesPage from "../components/services/ServicesPage";
+import ServicePage from "../components/service/ServicePage";
 import SideBar from "../components/SideBar";
 import Domains from "../views/Domains";
 import DomainActivation from "../views/DomainActivation";
@@ -89,38 +90,65 @@ const routes = [
   },
   {
     path: "/services",
-    name: "services",
     components: {
       default: Services,
       "side-bar": SideBar
     },
-    beforeEnter: authGuard
-  },
-  {
-    path: "/services/service",
-    components: {
-      default: ServiceFormView,
-      "side-bar": SideBar
-    },
     children: [
       {
-        path: "create",
-        name: "serviceCreate",
-        component: ServiceForm
+        path: "",
+        name: "services",
+        component: ServicesPage
       },
       {
-        path: ":serviceName/update",
-        name: "serviceUpdate",
-        component: ServiceForm
-      },
-      {
-        path: ":serviceName/update/micropage",
-        name: "micropageUpdate",
-        component: MicropageForm
+        path: "service",
+        component: ServicePage,
+        children: [
+          {
+            path: "create",
+            name: "serviceCreate",
+            component: ServiceForm
+          },
+          {
+            path: ":serviceName/update",
+            name: "serviceUpdate",
+            component: ServiceForm
+          },
+          {
+            path: ":serviceName/update/micropage",
+            name: "micropageUpdate",
+            component: MicropageForm
+          }
+        ]
       }
     ],
     beforeEnter: authGuard
   },
+  // {
+  //   path: "/services/service",
+  //   components: {
+  //     default: ServiceFormView,
+  //     "side-bar": SideBar
+  //   },
+  //   children: [
+  //     {
+  //       path: "create",
+  //       name: "serviceCreate",
+  //       component: ServiceForm
+  //     },
+  //     {
+  //       path: ":serviceName/update",
+  //       name: "serviceUpdate",
+  //       component: ServiceForm
+  //     },
+  //     {
+  //       path: ":serviceName/update/micropage",
+  //       name: "micropageUpdate",
+  //       component: MicropageForm
+  //     }
+  //   ],
+  //   beforeEnter: authGuard
+  // },
   {
     path: "/ghosts",
     name: "ghosts",
