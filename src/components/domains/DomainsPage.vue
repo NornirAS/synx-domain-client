@@ -75,7 +75,7 @@ import { mapState, mapGetters, mapActions } from "vuex";
 import PageTitle from "../PageTitle";
 import PageLayout from "../PageLayout";
 import DomainsEmpty from "../empty-page/DomainsEmpty";
-import DeleteDomain from "../domain/DeleteDomain";
+import DeleteDomain from "./DeleteDomain";
 export default {
   data() {
     return {
