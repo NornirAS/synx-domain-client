@@ -5,7 +5,7 @@
     </div>
     <div slot="action">
       <v-btn
-        :to="{ name: 'domains' }"
+        @click="toDomains"
         color="primary"
         class="text-capitalize align-center"
         rounded
@@ -28,9 +28,23 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import ImageResponseTemplate from "../ImageResponseTemplate";
 export default {
+  methods: {
+    toDomains() {
+      this.getAllDomains();
+      this.$router.push({ name: "domains" });
+    },
+    getAllDomains() {
+      this.$socket.emit("get_all_domains", {
+        token: this.token,
+        username: this.username
+      });
+    }
+  },
   computed: {
+    ...mapState("authModule", ["token", "username"]),
     domain() {
       return this.$route.params.domainName;
     }
