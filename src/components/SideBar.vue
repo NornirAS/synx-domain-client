@@ -9,13 +9,7 @@
       />
     </router-link>
     <v-list dense nav>
-      <v-list-item
-        v-for="item in items"
-        :key="item.title"
-        :to="item.path"
-        exact
-        link
-      >
+      <v-list-item v-for="item in items" :key="item.title" :to="item.path" link>
         <v-list-item-icon>
           <v-icon>{{ item.icon }}</v-icon>
         </v-list-item-icon>
