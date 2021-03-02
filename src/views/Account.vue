@@ -72,7 +72,7 @@ export default {
   },
   computed: {
     ...mapState("authModule", ["token", "username"]),
-    ...mapState("authModule", ["customerPortalUrl"])
+    ...mapState("stripeModule", ["customerPortalUrl"])
   },
   watch: {
     customerPortalUrl(newValue) {
