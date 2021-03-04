@@ -132,9 +132,10 @@ export default {
     };
   },
   created() {
-    if (this.noServices) {
+    if (this.noServices && !this.noDomains) {
       this.$socket.emit("get_all_services", {
-        token: this.token
+        token: this.token,
+        domain: this.firstDomain
       });
     } else {
       this.addServicesFromStorage;
@@ -158,7 +159,11 @@ export default {
     ...mapState("authModule", ["token"]),
     ...mapState("servicesModule", ["services"]),
     ...mapGetters("servicesModule", ["noServices"]),
-    ...mapGetters("domainsModule", ["noDomains", "domainNamesWithAllOption"]),
+    ...mapGetters("domainsModule", [
+      "noDomains",
+      "domainNamesWithAllOption",
+      "firstDomain"
+    ]),
     sortBy() {
       return this.sortByDomain === "All"
         ? this.services

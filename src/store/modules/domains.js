@@ -39,6 +39,11 @@ const getters = {
   },
   domainNamesWithAllOption(state, { domainNames }) {
     return ["All"].concat(domainNames);
+  },
+  firstDomain({ domains }, { noDomains }) {
+    if (!noDomains) {
+      return domains[0];
+    }
   }
 };
 
