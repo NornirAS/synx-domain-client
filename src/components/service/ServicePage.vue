@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapGetters, mapMutations } from "vuex";
 import PageLayout from "../PageLayout";
 import PageTitle from "../PageTitle";
 import DeleteService from "../service/DeleteService";
@@ -48,7 +48,8 @@ export default {
     ...mapMutations("serviceFormModule", ["resetServiceForm"]),
     getAllServices() {
       this.$socket.emit("get_all_services", {
-        token: this.token
+        token: this.token,
+        domain: this.firstDomain
       });
     },
     getOwnedGhosts() {
@@ -71,6 +72,7 @@ export default {
       "deleteServiceSuccess",
       "updateMicropageSuccess"
     ]),
+    ...mapGetters("domainsModule", ["firstDomain"]),
     isServiceUpdate() {
       return this.$route.name === "serviceUpdate";
     },
