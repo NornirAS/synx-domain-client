@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   props: ["alert", "index"],
   data() {
@@ -13,7 +14,10 @@ export default {
     };
   },
   created() {
-    this.$store.dispatch("alarmModule/removeAlert");
+    this.removeAlert();
+  },
+  methods: {
+    ...mapActions("alarmModule", ["removeAlert"])
   },
   computed: {
     type() {

@@ -23,7 +23,7 @@
 
 <script>
 import BreadCrumbs from "./globals/BreadCrumbs";
-import AlertMessage from "./AlertMessage";
+import AlertMessage from "./globals/AlertMessage";
 export default {
   computed: {
     alerts() {
