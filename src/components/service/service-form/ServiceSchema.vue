@@ -41,7 +41,7 @@ export default {
           "Schema open and closing tags must match",
         v =>
           (v && this.isValidLinks) ||
-          "You must provide valid links in @domain/service#ghost@ format"
+          "You must provide valid links in @domain/service#elementName@ format"
       ]
     };
   },
