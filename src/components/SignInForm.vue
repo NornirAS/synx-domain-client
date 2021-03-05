@@ -11,6 +11,7 @@
           <v-text-field
             v-model="authData.username"
             :rules="[v => !!v || 'Username is required']"
+            placeholder=" "
             type="email"
             name="email"
             label="Synx ID (email)"
@@ -20,6 +21,7 @@
           <v-text-field
             v-model="authData.password"
             :rules="[v => !!v || 'Password is required']"
+            placeholder=" "
             type="password"
             name="password"
             label="Password"
