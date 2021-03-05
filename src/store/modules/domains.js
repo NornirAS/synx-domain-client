@@ -42,7 +42,7 @@ const getters = {
   },
   firstDomain({ domains }, { noDomains }) {
     if (!noDomains) {
-      return domains[0];
+      return domains[0].name;
     }
   }
 };
