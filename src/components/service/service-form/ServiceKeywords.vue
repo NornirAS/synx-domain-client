@@ -88,7 +88,7 @@ export default {
     }
   },
   watch: {
-    keywords() {
+    serviceKeywords() {
       this.addKeywords(this.serviceKeywords.join(" "));
     }
   },
