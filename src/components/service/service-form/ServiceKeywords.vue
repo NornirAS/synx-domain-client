@@ -6,6 +6,7 @@
     </div>
     <v-text-field
       v-model="keyword"
+      @keydown.enter.prevent="add"
       :rules="keywordsRules"
       :disabled="!isUnderKeywordsLimit"
       slot="action"
