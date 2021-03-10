@@ -56,7 +56,9 @@ export default {
         v =>
           !v || this.isUnderKeywordsLimit || "You can add maximum 20 keywords",
         v =>
-          !v || this.isUsingAllowedCharacters || "You can use only a-z and 0-9"
+          !v ||
+          this.isUsingAllowedCharacters ||
+          "You can use only A-Z, a-z and 0-9"
       ]
     };
   },
@@ -85,7 +87,7 @@ export default {
       return this.sortedUniqKeywords.length <= 20;
     },
     isUsingAllowedCharacters() {
-      return /^[a-z0-9]+$/g.test(this.keyword);
+      return /^[A-Za-z0-9]+$/g.test(this.keyword);
     }
   },
   watch: {
