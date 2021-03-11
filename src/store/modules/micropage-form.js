@@ -13,6 +13,11 @@ const mutations = {
   },
   addImageUrl(state, payload) {
     state.imageUrl = payload;
+  },
+  resetState(state) {
+    state.serviceDescription = "";
+    state.schemaDescription = "";
+    state.imageUrl = "";
   }
 };
 

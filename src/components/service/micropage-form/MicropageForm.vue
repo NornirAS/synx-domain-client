@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapMutations } from "vuex";
 import ServiceImage from "./ServiceImage";
 import ServiceDescription from "./ServiceDescription";
 import SchemaDescription from "./SchemaDescription";
@@ -51,7 +51,11 @@ export default {
   created() {
     this.$socket.emit("fetch_micropage", this.serviceURL);
   },
+  beforeDestroy() {
+    this.resetState();
+  },
   methods: {
+    ...mapMutations("micropageFormModule", ["resetState"]),
     submitMicropageForm() {
       const isFormValid = this.$refs.micropageForm.validate();
       if (isFormValid) {
