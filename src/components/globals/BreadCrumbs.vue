@@ -3,35 +3,26 @@
 </template>
 
 <script>
-import _ from "lodash";
 export default {
-  methods: {
-    // remove slash at the end of route
-    removeSlash(route) {
-      if (route.slice(-1) === "/") {
-        return route.slice(0, -1);
-      } else {
-        return route;
-      }
-    }
-  },
   computed: {
     crumbs() {
-      const crumbs = [];
-      this.$route.matched.forEach(route => {
-        if (route.path !== "" && !_.isEmpty(route.meta)) {
-          const obj = {
-            text: route.meta.breadcrumb,
-            to: route.path + "/",
-            "active-class":
-              this.removeSlash(this.$route.path) !== route.path
-                ? "v-breadcrumbs__item"
-                : "v-breadcrumbs__item--disabled"
-          };
-          crumbs.push(obj);
-        }
+      const routesWithBreadcrumbs = this.$route.matched.filter(route => {
+        return route.meta.breadcrumb !== undefined ? true : false;
       });
-      return crumbs;
+      return routesWithBreadcrumbs.map(route => {
+        const routeNameOrPathIfNoRouteName = !route.name
+          ? route.path
+          : { name: route.name };
+        const currentRouteEqualMatchedRoute = this.$route.name === route.name;
+        const activeClass = currentRouteEqualMatchedRoute
+          ? "v-breadcrumbs__item--disabled"
+          : "v-breadcrumbs__item";
+        return {
+          text: route.meta.breadcrumb,
+          to: routeNameOrPathIfNoRouteName,
+          "active-class": activeClass
+        };
+      });
     }
   }
 };
