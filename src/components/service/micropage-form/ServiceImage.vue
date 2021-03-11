@@ -7,7 +7,7 @@
     </div>
     <v-text-field
       v-model="image"
-      @blur="addImageUrl"
+      @blur="addImageUrl(image)"
       name="imageUrl"
       label="Image URL"
       type="text"
@@ -28,10 +28,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("micropageFormModule", ["addImageUrl"]),
-    addImageUrl() {
-      this.addImageUrl(this.image);
-    }
+    ...mapMutations("micropageFormModule", ["addImageUrl"])
   },
   computed: {
     ...mapState("micropageFormModule", ["imageUrl"])
