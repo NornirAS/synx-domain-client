@@ -10,42 +10,37 @@
       <ghosts-empty v-if="!noDomains && noServices && noGhosts"></ghosts-empty>
       <add-ghost v-if="!noDomains && !noServices"></add-ghost>
       <v-card v-if="!noGhosts">
-        <v-row>
-          <v-col md="9">
-            <v-text-field
-              v-model="search"
-              append-icon="mdi-magnify"
-              label="Search for ghosts"
-              hide-details
-              outlined
-              dense
-              :disabled="noGhosts"
-            ></v-text-field>
-          </v-col>
-          <v-col md="3">
-            <v-menu offset-y>
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  class="text-none"
-                  color="primary"
-                  v-bind="attrs"
-                  v-on="on"
-                  block
-                >
-                  <span class="font-weight-bold">{{ selectedItem }}</span>
-                  <v-icon right large>{{ mdiMenuDown }}</v-icon>
-                </v-btn>
-              </template>
-              <v-list>
-                <v-list-item v-for="(item, index) in listItems" :key="index">
-                  <v-list-item-title @click="selectGhosts(item)">
-                    {{ item }}
-                  </v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-          </v-col>
-        </v-row>
+        <div class="d-flex justify-start my-4">
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search for ghosts"
+            hide-details
+            outlined
+            dense
+            :disabled="noGhosts"
+          ></v-text-field>
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                class="text-none ml-4"
+                color="primary"
+                v-bind="attrs"
+                v-on="on"
+              >
+                <span class="font-weight-bold">{{ selectedItem }}</span>
+                <v-icon right large>{{ mdiMenuDown }}</v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item v-for="(item, index) in listItems" :key="index">
+                <v-list-item-title @click="selectGhosts(item)">
+                  {{ item }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </div>
         <no-match v-if="noSearchResult"></no-match>
         <v-data-table
           v-if="!noGhosts && !noSearchResult"

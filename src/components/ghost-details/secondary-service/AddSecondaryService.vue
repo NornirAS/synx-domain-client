@@ -17,12 +17,7 @@
       dense
     >
     </v-text-field>
-    <v-btn
-      class="text-capitalize ml-4"
-      color="primary"
-      height="40px"
-      type="submit"
-    >
+    <v-btn class="text-capitalize ml-4" color="primary" type="submit">
       <v-icon>{{ mdiPlus }}</v-icon>
       Add to primary
     </v-btn>
