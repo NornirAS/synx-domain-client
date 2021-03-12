@@ -8,7 +8,7 @@
             <v-btn
               @click="removeReadAccess(user.name)"
               class="float-right"
-              color="info"
+              color="error"
               icon
             >
               <v-icon>{{ mdiTrashCanOutline }}</v-icon>

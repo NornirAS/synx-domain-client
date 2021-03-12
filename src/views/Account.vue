@@ -31,7 +31,7 @@
           <v-btn
             @click="showToken = !showToken"
             class="text-capitalize"
-            color="secondary"
+            color="primary"
             rounded
             small
           >

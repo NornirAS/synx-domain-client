@@ -21,7 +21,7 @@
       @click="add"
       :disabled="!isUnderKeywordsLimit || !isUsingAllowedCharacters"
       class="ml-4 mt-0"
-      color="info"
+      color="primary"
       height="40px"
       slot="action"
     >
@@ -35,7 +35,7 @@
         class="ma-1"
         close
         outlined
-        color="secondary"
+        color="primary"
       >
         {{ keyword }}
       </v-chip>

@@ -1,11 +1,11 @@
 <template>
   <v-stepper v-model="e1">
     <v-stepper-header>
-      <v-stepper-step :complete="e1 > 1" step="1">
+      <v-stepper-step color="info" :complete="e1 > 1" step="1">
         Period
       </v-stepper-step>
       <v-divider></v-divider>
-      <v-stepper-step :complete="e1 > 2" step="2">
+      <v-stepper-step color="info" :complete="e1 > 2" step="2">
         Confirm
       </v-stepper-step>
     </v-stepper-header>
@@ -22,7 +22,7 @@
           <v-btn
             @click="backToDomains"
             class="text-capitalize"
-            color="secondary"
+            color="primary"
             text
           >
             Cancel
@@ -43,7 +43,7 @@
         <v-container>
           <div class="title">Confirm your order</div>
           <stripe-payment></stripe-payment>
-          <v-btn @click="e1 = 1" class="text-capitalize" color="secondary" text>
+          <v-btn @click="e1 = 1" class="text-capitalize" color="primary" text>
             Back
           </v-btn>
           <v-btn

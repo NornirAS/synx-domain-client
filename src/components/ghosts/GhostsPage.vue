@@ -27,10 +27,9 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   class="text-none"
-                  color="secondary"
+                  color="primary"
                   v-bind="attrs"
                   v-on="on"
-                  outlined
                   block
                 >
                   <span class="font-weight-bold">{{ selectedItem }}</span>
@@ -70,7 +69,7 @@
               <v-btn
                 @click="decline(item)"
                 class="text-capitalize"
-                color="secondary"
+                color="primary"
                 text
                 x-small
                 >Decline

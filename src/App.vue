@@ -63,25 +63,7 @@ export default {
 <style>
 .v-main {
   height: 100vh;
-  background-color: var(--v-primary-base);
-}
-.display-1 {
-  color: var(--v-secondary-base);
-}
-.title {
-  color: var(--v-secondary-base);
-}
-.subtitle-2 {
-  color: var(--v-secondary-base);
-}
-.body-1 {
-  color: var(--v-secondary-base);
-}
-.v-expansion-panel-header {
-  color: var(--v-secondary-base);
-}
-.v-list-item--active {
-  color: var(--v-secondary-base);
+  background-color: var(--v-secondary-base);
 }
 .container.container--fluid {
   height: 100%;
@@ -94,19 +76,9 @@ export default {
   padding: 24px 24px 16px 24px;
   flex-grow: 1;
 }
-.theme--light.v-card {
-  color: var(--v-secondary-base) !important;
-}
 .v-card__title {
   text-align: justify !important;
   word-break: keep-all !important;
-}
-.theme--light.v-label {
-  color: #58595b;
-  padding-left: 0.3em;
-}
-.theme--light.v-input {
-  color: #58595b !important;
 }
 .theme--dark.v-label {
   font-style: italic;

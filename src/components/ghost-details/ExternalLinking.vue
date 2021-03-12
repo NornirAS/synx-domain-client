@@ -11,6 +11,7 @@
               :label="link.active === true ? 'Yes' : 'No'"
               class="float-right"
               inset
+              color="info"
             ></v-switch>
           </td>
         </tr>

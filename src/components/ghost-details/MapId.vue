@@ -6,7 +6,7 @@
         v-bind="attrs"
         v-on="on"
         class="text-capitalize"
-        color="info"
+        color="primary"
         rounded
         small
       >
@@ -47,7 +47,7 @@
         <v-btn
           @click="dialog = false"
           class="text-capitalize"
-          color="secondary"
+          color="primary"
           text
           small
           >Cancel</v-btn

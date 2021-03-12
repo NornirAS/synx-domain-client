@@ -9,7 +9,7 @@
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             class="text-none full-wide"
-            color="secondary"
+            color="primary"
             v-bind="attrs"
             v-on="on"
             outlined
@@ -30,7 +30,7 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <v-btn @click="addGhost" color="info" class="text-capitalize ml-4">
+      <v-btn @click="addGhost" color="primary" class="text-capitalize ml-4">
         Add ghost
       </v-btn>
     </div>

@@ -23,7 +23,7 @@
       <v-btn
         @click="backToServices"
         class="text-capitalize"
-        color="secondary"
+        color="primary"
         text
       >
         Cancel

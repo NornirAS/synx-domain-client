@@ -13,9 +13,3 @@
     </v-col>
   </v-row>
 </template>
-
-<style scoped>
-/* .display-1 {
-  color: var(--v-secondary-base);
-} */
-</style>

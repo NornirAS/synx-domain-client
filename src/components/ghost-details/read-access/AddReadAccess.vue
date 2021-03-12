@@ -18,7 +18,7 @@
     </v-text-field>
     <v-btn
       class="text-capitalize ml-4"
-      color="info"
+      color="primary"
       height="40px"
       type="submit"
     >

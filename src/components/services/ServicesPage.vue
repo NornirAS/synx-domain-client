@@ -32,7 +32,7 @@
             <v-menu offset-y>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
-                  color="secondary"
+                  color="primary"
                   class="text-capitalize"
                   v-bind="attrs"
                   v-on="on"

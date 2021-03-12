@@ -45,7 +45,7 @@
                   name: 'domain-activate',
                   params: { domainName: item.name }
                 }"
-                color="secondary"
+                color="primary"
                 class="text-capitalize ma-0"
                 rounded
                 x-small

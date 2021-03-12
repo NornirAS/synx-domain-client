@@ -24,7 +24,7 @@
         <v-btn
           @click="dialog = false"
           class="text-capitalize"
-          color="secondary"
+          color="primary"
           text
           small
           >Cancel</v-btn
