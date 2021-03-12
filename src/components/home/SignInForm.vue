@@ -23,11 +23,12 @@
       label="Password"
       required
     ></v-text-field>
-    <div class="body-1 font-italic mt-4" align="center">* Required fields</div>
     <v-expand-transition>
-      <div v-show="expand" class="body-1" align="center">{{ error }}</div>
+      <div v-show="expand" class="body-1" align="center">
+        {{ error }}
+      </div>
     </v-expand-transition>
-    <v-btn class="text-capitalize mt-8" type="submit" rounded outlined dark>
+    <v-btn class="text-capitalize mt-8" type="submit" rounded outlined>
       Sign In
     </v-btn>
   </v-form>
@@ -80,11 +81,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.v-text-field .v-label--active .theme--dark {
-  font-style: italic;
-  padding-left: 0.5em;
-  padding-right: 0.1em;
-}
-</style>

@@ -19,6 +19,12 @@
 <script>
 import SignIn from "../components/home/SignIn.vue";
 export default {
+  created() {
+    this.$vuetify.theme.dark = true;
+  },
+  beforeDestroy() {
+    this.$vuetify.theme.dark = false;
+  },
   components: {
     SignIn
   }
