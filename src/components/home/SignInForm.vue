@@ -12,7 +12,6 @@
       type="email"
       name="email"
       label="Synx ID (email)"
-      dark
       required
     ></v-text-field>
     <v-text-field
@@ -22,7 +21,6 @@
       type="password"
       name="password"
       label="Password"
-      dark
       required
     ></v-text-field>
     <div class="body-1 font-italic mt-4" align="center">* Required fields</div>
@@ -84,7 +82,9 @@ export default {
 </script>
 
 <style scoped>
-.body-1 {
-  color: #ffffff;
+.v-text-field .v-label--active .theme--dark {
+  font-style: italic;
+  padding-left: 0.5em;
+  padding-right: 0.1em;
 }
 </style>

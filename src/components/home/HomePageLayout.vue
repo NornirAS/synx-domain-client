@@ -14,12 +14,3 @@
     </div>
   </div>
 </template>
-
-<style scoped>
-.headline {
-  color: #ffffff;
-}
-.body-1 {
-  color: #ffffff;
-}
-</style>

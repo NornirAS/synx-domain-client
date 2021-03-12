@@ -72,18 +72,7 @@ export default {
 }
 .v-card {
   margin-bottom: 16px;
-  /* padding: 1em 1.5em; */
   padding: 24px 24px 16px 24px;
-  flex-grow: 1;
-}
-.v-card__title {
-  text-align: justify !important;
-  word-break: keep-all !important;
-}
-.theme--dark.v-label {
-  font-style: italic;
-  padding-left: 0.5em;
-  padding-right: 0.1em;
 }
 input:-webkit-autofill,
 textarea:-webkit-autofill,
