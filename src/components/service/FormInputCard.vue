@@ -5,7 +5,7 @@
       <v-icon
         @mouseover="expand = true"
         @mouseleave="expand = false"
-        color="primary"
+        color="info"
       >
         {{ mdiInformationOutline }}
       </v-icon>

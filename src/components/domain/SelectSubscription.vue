@@ -14,12 +14,12 @@
         >
           <div slot="title">{{ title }}</div>
           <div slot="radio-button" class="float-right">
-            <v-radio :value="index" color="primary"></v-radio>
+            <v-radio :value="index" color="info"></v-radio>
           </div>
           <v-chip
             v-if="hasTrial"
             slot="trial"
-            color="primary"
+            color="info"
             class="ml-n6 mt-2"
             small
             label

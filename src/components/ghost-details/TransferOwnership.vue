@@ -49,7 +49,7 @@
         >
         <v-btn
           class="text-capitalize"
-          color="primary"
+          color="info"
           type="submit"
           form="transfer-ownership"
           rounded
@@ -67,7 +67,7 @@
         <v-btn
           @click="toGhosts"
           class="text-capitalize"
-          color="primary"
+          color="info"
           type="submit"
           form="transfer-ownership"
           rounded

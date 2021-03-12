@@ -8,7 +8,7 @@
         class="text-capitalize"
         rounded
         small
-        color="primary"
+        color="info"
       >
         Create Service
       </v-btn>

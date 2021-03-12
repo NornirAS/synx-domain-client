@@ -21,7 +21,7 @@
       @click="add"
       :disabled="!isUnderKeywordsLimit || !isUsingAllowedCharacters"
       class="ml-4 mt-0"
-      color="primary"
+      color="info"
       height="40px"
       slot="action"
     >

@@ -6,7 +6,7 @@
     <div slot="action">
       <v-btn
         @click="toDomains"
-        color="primary"
+        color="info"
         class="text-capitalize align-center"
         rounded
         dark

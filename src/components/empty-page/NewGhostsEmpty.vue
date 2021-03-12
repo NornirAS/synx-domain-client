@@ -7,7 +7,7 @@
         class="text-capitalize"
         rounded
         small
-        color="primary"
+        color="info"
       >
         Back to ghosts
       </v-btn>

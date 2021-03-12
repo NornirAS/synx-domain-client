@@ -24,7 +24,7 @@
     <div align="end">
       <v-btn
         align="end"
-        color="primary"
+        color="info"
         class="text-capitalize"
         type="submit"
         small

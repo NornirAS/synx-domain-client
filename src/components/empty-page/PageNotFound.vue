@@ -19,7 +19,7 @@
           class="text-capitalize"
           rounded
           small
-          color="primary"
+          color="info"
         >
           Go to domains
         </v-btn>

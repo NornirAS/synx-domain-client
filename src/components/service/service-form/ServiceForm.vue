@@ -30,7 +30,7 @@
       </v-btn>
       <v-btn
         class="text-capitalize"
-        color="primary"
+        color="info"
         type="submit"
         form="service-form"
         small

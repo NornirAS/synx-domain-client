@@ -30,7 +30,7 @@
           <v-btn
             @click="e1 = 2"
             class="text-capitalize"
-            color="primary"
+            color="info"
             rounded
             small
           >
@@ -50,7 +50,7 @@
             id="checkout-button"
             @click="checkout"
             class="text-capitalize"
-            color="primary"
+            color="info"
             rounded
             small
           >

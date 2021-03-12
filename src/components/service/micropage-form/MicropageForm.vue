@@ -25,7 +25,7 @@
       </v-btn>
       <v-btn
         class="text-capitalize"
-        color="primary"
+        color="info"
         type="submit"
         form="micropage-form"
         small

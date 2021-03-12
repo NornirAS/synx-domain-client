@@ -8,7 +8,7 @@
         class="text-capitalize"
         small
         rounded
-        color="primary"
+        color="info"
       >
         Add domain
       </v-btn>

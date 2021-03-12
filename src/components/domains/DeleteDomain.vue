@@ -32,7 +32,7 @@
         <v-btn
           @click="deleteDomain"
           class="text-capitalize"
-          color="primary"
+          color="info"
           rounded
           small
           >Confirm

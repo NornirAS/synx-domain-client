@@ -14,7 +14,7 @@
                 removeSecondaryService(refDomain, refService, refObjectID)
               "
               class="float-right"
-              color="primary"
+              color="info"
               icon
             >
               <v-icon>{{ mdiTrashCanOutline }}</v-icon>

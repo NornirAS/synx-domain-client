@@ -32,7 +32,7 @@
         <v-btn
           @click="removeGhost"
           class="text-capitalize"
-          color="primary"
+          color="info"
           rounded
           small
           >Confirm Removal

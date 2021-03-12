@@ -10,7 +10,7 @@
         class="text-capitalize"
         rounded
         small
-        color="primary"
+        color="info"
       >
         Write to us
       </v-btn>

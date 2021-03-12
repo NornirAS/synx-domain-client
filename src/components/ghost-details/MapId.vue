@@ -6,7 +6,7 @@
         v-bind="attrs"
         v-on="on"
         class="text-capitalize"
-        color="primary"
+        color="info"
         rounded
         small
       >
@@ -54,7 +54,7 @@
         >
         <v-btn
           class="text-capitalize"
-          color="primary"
+          color="info"
           type="submit"
           form="map-id"
           rounded

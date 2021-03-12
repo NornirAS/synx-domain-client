@@ -11,7 +11,7 @@
         class="text-capitalize"
         rounded
         small
-        color="primary"
+        color="info"
       >
         Start Free Trial
       </v-btn>

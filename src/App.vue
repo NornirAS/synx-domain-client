@@ -63,7 +63,7 @@ export default {
 <style>
 .v-main {
   height: 100vh;
-  background-color: var(--v-background-base);
+  background-color: var(--v-primary-base);
 }
 .display-1 {
   color: var(--v-secondary-base);

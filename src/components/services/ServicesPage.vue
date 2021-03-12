@@ -8,7 +8,7 @@
         class="text-capitalize"
         rounded
         small
-        color="primary"
+        color="info"
         :disabled="noDomains"
       >
         Add Service
@@ -79,7 +79,7 @@
           </template>
           <template v-slot:[`item.edit`]="{ item }">
             <v-btn @click="serviceToEdit(item)" class="float-right" icon small>
-              <v-icon color="primary">
+              <v-icon color="info">
                 {{ mdiChevronRight }}
               </v-icon>
             </v-btn>
