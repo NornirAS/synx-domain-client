@@ -7,7 +7,8 @@ export default {
   computed: {
     crumbs() {
       const routesWithBreadcrumbs = this.$route.matched.filter(route => {
-        return route.meta.breadcrumb !== undefined ? true : false;
+        const hasBreadcrumb = route.meta.breadcrumb !== undefined;
+        return hasBreadcrumb;
       });
       return routesWithBreadcrumbs.map(route => {
         const routeNameOrPathIfNoRouteName = !route.name
