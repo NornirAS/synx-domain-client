@@ -40,9 +40,15 @@ const getters = {
   domainNamesWithAllOption(state, { domainNames }) {
     return ["All"].concat(domainNames);
   },
-  firstDomain({ domains }, { noDomains }) {
+  activeDomains({ domains }) {
+    const activeDomains = domains.filter(domain => {
+      return domain.active === true;
+    });
+    return activeDomains;
+  },
+  firstDomain(state, { noDomains, activeDomains }) {
     if (!noDomains) {
-      return domains[0].name;
+      return activeDomains[0].name;
     }
   }
 };
