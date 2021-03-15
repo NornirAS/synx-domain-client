@@ -9,7 +9,7 @@
     </div>
     <v-textarea
       v-model="description"
-      @blur="addDescription"
+      @blur="addSchemaDescription(description)"
       :rules="descriptionRules"
       :counter="512"
       name="description"
@@ -39,10 +39,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("micropageFormModule", ["addSchemaDescription"]),
-    addDescription() {
-      this.addSchemaDescription(this.description);
-    }
+    ...mapMutations("micropageFormModule", ["addSchemaDescription"])
   },
   computed: {
     ...mapState("micropageFormModule", ["schemaDescription"])
