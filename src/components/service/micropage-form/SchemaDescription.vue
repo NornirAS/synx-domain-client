@@ -1,6 +1,6 @@
 <template>
   <form-input-card>
-    <div slot="title">Schema Description*</div>
+    <div slot="title">Schema Description</div>
     <div slot="subtitle">
       Want other humans to get data from your service? Remember to add
       information about which elements they must link to.
