@@ -2,8 +2,8 @@
   <form-input-card>
     <div slot="title">Connection Idle-Timeout</div>
     <div slot="subtitle">
-      Specifies the length of time that a connection is idle before the
-      connection is eligible for deletion.
+      Specify the idle time on active connections. Set time in seconds before
+      you want the ghost to disconnect.
     </div>
     <v-text-field
       v-model="serviceTimeout"

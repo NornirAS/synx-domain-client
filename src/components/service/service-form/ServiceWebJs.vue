@@ -2,8 +2,8 @@
   <form-input-card>
     <div slot="title">Web JS</div>
     <div slot="subtitle">
-      Add HTML or JS to dynamically create a web page with data when you do a
-      post request(synx-cat).
+      WebJs is sent to the browser as html fil. Use WebJS to construct and
+      generate web applications. Used when you dont have a webserver.
     </div>
     <v-textarea
       v-model="serviceWebJS"
@@ -13,7 +13,7 @@
       error-count="1"
       name="web-js"
       type="text"
-      label="Type or paste HTML/JS"
+      label="Enter Web JS"
       slot="action"
       required
       outlined

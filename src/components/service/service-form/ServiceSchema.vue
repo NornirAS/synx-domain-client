@@ -2,7 +2,8 @@
   <form-input-card>
     <div slot="title">Service Schema</div>
     <div slot="subtitle">
-      Add key elements to your service schema.
+      Enter you service schema definition using metadata only - Only single
+      elements. Nested XML structure is not supported in this version.
     </div>
     <v-textarea
       v-model="serviceSchema"
@@ -10,7 +11,7 @@
       :rules="schemaRules"
       :counter="1024"
       name="schema"
-      label="Type or paste service schema"
+      label="Enter service schema"
       type="text"
       error-count="1"
       slot="action"

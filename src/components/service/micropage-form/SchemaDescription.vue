@@ -2,8 +2,10 @@
   <form-input-card>
     <div slot="title">Schema Description</div>
     <div slot="subtitle">
-      Want other humans to get data from your service? Remember to add
-      information about which elements they must link to.
+      Enter data elements from you schema and explain to the public what data
+      your schema is offering. Use the format "#elementname" followed by
+      "description", this will automatically generate valid linking path to
+      element when you publish the description.
     </div>
     <v-textarea
       v-model="description"
@@ -11,7 +13,7 @@
       :rules="descriptionRules"
       :counter="512"
       name="description"
-      label="Describe your schema"
+      label="Describe your public schema"
       type="text"
       error-count="1"
       slot="action"

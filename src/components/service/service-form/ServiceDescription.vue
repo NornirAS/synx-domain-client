@@ -2,9 +2,7 @@
   <form-input-card>
     <div slot="title">Description</div>
     <div slot="subtitle">
-      In order for the service to be found with Draape and used by others, a
-      good description is recommended. What kind of data does the service
-      provide?
+      Enter service description so you will remember you services later.
     </div>
     <v-textarea
       v-model="serviceDescription"
@@ -12,7 +10,7 @@
       :rules="descriptionRules"
       :counter="512"
       name="description"
-      label="Describe your service"
+      label="Service description"
       type="text"
       error-count="1"
       slot="action"

@@ -1,7 +1,9 @@
 <template>
   <form-input-card>
     <div slot="title">Name</div>
-    <div slot="subtitle">The name will also be visible in the URL/URI.</div>
+    <div slot="subtitle">
+      Add a unique service name - the name will be part of the URI address.
+    </div>
     <v-text-field
       v-model="serviceName"
       @blur="addServiceName"
@@ -9,7 +11,7 @@
       :counter="64"
       :disabled="isServiceUpdate"
       name="name"
-      label="Add your service name"
+      label="Enter service name"
       type="text"
       error-count="1"
       slot="action"

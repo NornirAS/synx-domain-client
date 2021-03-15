@@ -2,9 +2,9 @@
   <form-input-card>
     <div slot="title">Service Description</div>
     <div slot="subtitle">
-      In order for the service to be found with Draape and used by others, a
-      good description is recommended. What kind of data does the service
-      provide?
+      Enter service description for the public. This description will show on
+      your micropage and become visible online. Make this a good opportunity to
+      explain you service offerings.
     </div>
     <v-textarea
       v-model="description"
@@ -12,7 +12,7 @@
       :rules="descriptionRules"
       :counter="512"
       name="description"
-      label="Describe your service"
+      label="Describe your service for the public"
       type="text"
       error-count="1"
       slot="action"

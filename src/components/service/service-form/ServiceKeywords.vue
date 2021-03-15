@@ -2,7 +2,7 @@
   <form-input-card>
     <div slot="title">Keywords</div>
     <div slot="subtitle">
-      Make it easier for humans to search for your service.
+      Enter keywords to make your service searchable.
     </div>
     <v-text-field
       v-model="keyword"
@@ -11,7 +11,7 @@
       :disabled="!isUnderKeywordsLimit"
       slot="action"
       name="keywords"
-      label="Add up to 20 keywords"
+      label="Enter keyword"
       type="text"
       dense
       outlined

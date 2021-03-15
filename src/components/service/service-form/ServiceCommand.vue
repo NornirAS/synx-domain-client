@@ -2,8 +2,9 @@
   <form-input-card>
     <div slot="title">Command Schema</div>
     <div slot="subtitle">
-      A command elements to enable services that are linked to you to send you
-      commands.
+      Enter your command schema definition. This schema is only used by
+      secondary service providers to send action commands to your service. The
+      commands need to be handled by your software agent.
     </div>
     <v-textarea
       v-model="serviceCommand"
@@ -11,7 +12,7 @@
       :rules="commandRules"
       :counter="128"
       name="command"
-      label="Type or paste service command"
+      label="Enter command schema"
       type="text"
       error-count="1"
       slot="action"
