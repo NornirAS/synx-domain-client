@@ -8,7 +8,7 @@
     </div>
     <v-textarea
       v-model="serviceCommand"
-      @blur="addServiceCommand"
+      @blur="addCommand(serviceCommand)"
       :rules="commandRules"
       :counter="128"
       name="command"
@@ -49,10 +49,7 @@ export default {
     this.serviceCommand = this.command;
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["addCommand"]),
-    addServiceCommand() {
-      this.addCommand(this.serviceCommand);
-    }
+    ...mapMutations("serviceFormModule", ["addCommand"])
   },
   computed: {
     ...mapState("serviceFormModule", ["command"]),

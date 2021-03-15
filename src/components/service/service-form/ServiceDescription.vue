@@ -6,7 +6,7 @@
     </div>
     <v-textarea
       v-model="serviceDescription"
-      @blur="addServiceDescription"
+      @blur="addDescription(serviceDescription)"
       :rules="descriptionRules"
       :counter="512"
       name="description"
@@ -39,10 +39,7 @@ export default {
     this.serviceDescription = this.description;
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["addDescription"]),
-    addServiceDescription() {
-      this.addDescription(this.serviceDescription);
-    }
+    ...mapMutations("serviceFormModule", ["addDescription"])
   },
   computed: {
     ...mapState("serviceFormModule", ["description"])

@@ -6,7 +6,7 @@
     </div>
     <v-text-field
       v-model="serviceName"
-      @blur="addServiceName"
+      @blur="addName(serviceName)"
       :rules="nameRules"
       :counter="64"
       :disabled="isServiceUpdate"
@@ -42,10 +42,7 @@ export default {
     this.serviceName = this.name;
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["addName"]),
-    addServiceName() {
-      this.addName(this.serviceName);
-    }
+    ...mapMutations("serviceFormModule", ["addName"])
   },
   computed: {
     ...mapState("serviceFormModule", ["name"]),

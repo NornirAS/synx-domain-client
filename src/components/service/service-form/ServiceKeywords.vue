@@ -62,9 +62,8 @@ export default {
     };
   },
   mounted() {
-    const isNotEmpty = this.keywords.length >= 1;
-    if (isNotEmpty) {
-      this.serviceKeywords = this.keywords.split(" ");
+    if (this.hasKeywords) {
+      this.serviceKeywords = this.keywordsArray;
     }
   },
   methods: {
@@ -79,6 +78,15 @@ export default {
   },
   computed: {
     ...mapState("serviceFormModule", ["keywords"]),
+    keywordsArray() {
+      return this.keywords.split(" ");
+    },
+    keywordsString() {
+      return this.serviceKeywords.join(" ");
+    },
+    hasKeywords() {
+      return this.keywords !== "";
+    },
     sortedUniqKeywords() {
       return _.uniq(this.serviceKeywords);
     },
@@ -91,7 +99,7 @@ export default {
   },
   watch: {
     serviceKeywords() {
-      this.addKeywords(this.serviceKeywords.join(" "));
+      this.addKeywords(this.keywordsString);
     }
   },
   components: {

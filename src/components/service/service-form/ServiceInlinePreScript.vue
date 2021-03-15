@@ -7,7 +7,7 @@
     </div>
     <v-textarea
       v-model="serviceInlinePreScript"
-      @blur="addServiceInlinePreScript"
+      @blur="addInlinePreScript(encodedInlinePreScript)"
       :rules="inlinePreScriptRules"
       :counter="1024"
       error-count="1"
@@ -37,19 +37,19 @@ export default {
     };
   },
   mounted() {
-    const base64String = this.inlinePreScript;
-    const decodedString = atob(base64String);
-    this.serviceInlinePreScript = decodedString;
+    this.serviceInlinePreScript = this.decodedInlinePreScript;
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["addInlinePreScript"]),
-    addServiceInlinePreScript() {
-      const encodedScript = btoa(this.serviceInlinePreScript);
-      this.addInlinePreScript(encodedScript);
-    }
+    ...mapMutations("serviceFormModule", ["addInlinePreScript"])
   },
   computed: {
-    ...mapState("serviceFormModule", ["inlinePreScript"])
+    ...mapState("serviceFormModule", ["inlinePreScript"]),
+    encodedInlinePreScript() {
+      return btoa(this.serviceInlinePreScript);
+    },
+    decodedInlinePreScript() {
+      return atob(this.inlinePreScript);
+    }
   },
   components: {
     FormInputCard

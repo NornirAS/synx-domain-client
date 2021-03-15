@@ -7,7 +7,7 @@
     </div>
     <v-textarea
       v-model="serviceWebJS"
-      @blur="addServiceWebJS"
+      @blur="addWebJS(serviceWebJS)"
       :rules="webJSRules"
       :counter="256"
       error-count="1"
@@ -38,10 +38,7 @@ export default {
     this.serviceWebJS = this.webJS;
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["addWebJS"]),
-    addServiceWebJS() {
-      this.addWebJS(this.serviceWebJS);
-    }
+    ...mapMutations("serviceFormModule", ["addWebJS"])
   },
   computed: {
     ...mapState("serviceFormModule", ["webJS"])

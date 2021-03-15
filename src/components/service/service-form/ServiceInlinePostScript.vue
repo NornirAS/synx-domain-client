@@ -7,7 +7,7 @@
     </div>
     <v-textarea
       v-model="serviceInlinePostScript"
-      @blur="addServiceInlinePostScript"
+      @blur="addInlinePostScript(encodedInlinePostScript)"
       :rules="inlinePostScriptRules"
       :counter="1024"
       error-count="1"
@@ -37,19 +37,19 @@ export default {
     };
   },
   mounted() {
-    const base64String = this.inlinePostScript;
-    const decodedString = atob(base64String);
-    this.serviceInlinePostScript = decodedString;
+    this.serviceInlinePostScript = this.decodedInlinePostScript;
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["addInlinePostScript"]),
-    addServiceInlinePostScript() {
-      const encodedScript = btoa(this.serviceInlinePostScript);
-      this.addInlinePostScript(encodedScript);
-    }
+    ...mapMutations("serviceFormModule", ["addInlinePostScript"])
   },
   computed: {
-    ...mapState("serviceFormModule", ["inlinePostScript"])
+    ...mapState("serviceFormModule", ["inlinePostScript"]),
+    encodedInlinePostScript() {
+      return btoa(this.serviceInlinePostScript);
+    },
+    decodedInlinePostScript() {
+      return atob(this.inlinePostScript);
+    }
   },
   components: {
     FormInputCard

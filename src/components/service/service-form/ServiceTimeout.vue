@@ -7,7 +7,7 @@
     </div>
     <v-text-field
       v-model="serviceTimeout"
-      @blur="addTimeout"
+      @blur="setTimeout(serviceTimeout)"
       :rules="timeoutRules"
       name="timeout"
       label="Set timeout"
@@ -35,10 +35,7 @@ export default {
     this.serviceTimeout = this.timeout;
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["setTimeout"]),
-    addTimeout() {
-      this.setTimeout(this.serviceTimeout);
-    }
+    ...mapMutations("serviceFormModule", ["setTimeout"])
   },
   computed: {
     ...mapState("serviceFormModule", ["timeout"])

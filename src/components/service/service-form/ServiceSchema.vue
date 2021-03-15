@@ -7,7 +7,7 @@
     </div>
     <v-textarea
       v-model="serviceSchema"
-      @blur="addServiceSchema"
+      @blur="addSchema(serviceSchema)"
       :rules="schemaRules"
       :counter="1024"
       name="schema"
@@ -36,7 +36,7 @@ export default {
           (v && v.length) <= 1024 || "Schema must be maximum 1024 characters",
         v =>
           (v && this.schemaContainsOnlyXml) ||
-          "You need to provide valid XML schema between <rtw></rtw>",
+          "You need to provide valid XML schema between <RTW></RTW>",
         v =>
           (v && this.isElementsMatch) ||
           "Schema open and closing tags must match",
@@ -50,10 +50,7 @@ export default {
     this.serviceSchema = this.schema;
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["addSchema", "addIsValidLinks"]),
-    addServiceSchema() {
-      this.addSchema(this.serviceSchema);
-    }
+    ...mapMutations("serviceFormModule", ["addSchema", "addIsValidLinks"])
   },
   computed: {
     ...mapState("serviceFormModule", ["schema"]),
