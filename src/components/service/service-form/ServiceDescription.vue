@@ -1,6 +1,6 @@
 <template>
   <form-input-card>
-    <div slot="title">Description*</div>
+    <div slot="title">Description</div>
     <div slot="subtitle">
       In order for the service to be found with Draape and used by others, a
       good description is recommended. What kind of data does the service

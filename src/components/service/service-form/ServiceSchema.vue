@@ -1,6 +1,6 @@
 <template>
   <form-input-card>
-    <div slot="title">Service Schema*</div>
+    <div slot="title">Service Schema</div>
     <div slot="subtitle">
       Add key elements to your service schema.
     </div>
