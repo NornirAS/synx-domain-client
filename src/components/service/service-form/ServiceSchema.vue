@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import _ from "lodash";
 import { mapState, mapMutations } from "vuex";
 import FormInputCard from "../FormInputCard";
 export default {
@@ -34,12 +33,16 @@ export default {
         v => !!v || "Schema is required",
         v =>
           (v && v.length) <= 1024 || "Schema must be maximum 1024 characters",
+        v => (v && this.hasRtwTags) || "You need to have <RTW></RTW>",
         v =>
-          (v && this.schemaContainsOnlyXml) ||
+          (v &&
+            this.schemaHasValidXmlElements &&
+            this.contentProvidedInsideRtwTags) ||
           "You need to provide valid XML schema between <RTW></RTW>",
+        // v =>
+        //   (v && !this.hasDuplicateElement) || "Open and closing tags must match",
         v =>
-          (v && this.isElementsMatch) ||
-          "Schema open and closing tags must match",
+          (v && this.noDuplicateElement) || "Schema contain duplicate element",
         v =>
           (v && this.isValidLinks) ||
           "You must provide valid links in @domain/service#elementName@ format"
@@ -54,53 +57,97 @@ export default {
   },
   computed: {
     ...mapState("serviceFormModule", ["schema"]),
-    removeNewLine() {
+    serviceSchemaSingleLineString() {
       return this.serviceSchema.replace(/\n/g, "");
     },
-    matchXml() {
-      return this.removeNewLine.slice(5, -6);
+    hasOpenRtwTag() {
+      return this.serviceSchemaSingleLineString.match(/<rtw>/gi) ? true : false;
     },
-    containsRtwTag() {
-      return this.removeNewLine.match(/<\/?RTW>/g) ? true : false;
+    hasClosingRtwTag() {
+      return this.serviceSchemaSingleLineString.match(/<\/rtw>/gi)
+        ? true
+        : false;
     },
-    schemaRemoveRtwTag() {
-      return this.removeNewLine.replace(/<\/?RTW>/gi, "");
-    },
-    schemaContainsOnlyXml() {
-      if (this.matchXml) {
-        return this.matchXml === this.schemaRemoveRtwTag;
+    hasRtwTags() {
+      if (this.hasOpenRtwTag && this.hasClosingRtwTag) {
+        return this.hasOpenRtwTag === this.hasClosingRtwTag;
       } else {
         return false;
       }
     },
-    getXmlTagNames() {
-      if (this.schemaContainsOnlyXml) {
-        return this.removeNewLine.match(/<\/?(.*?)>/g).map(str => {
-          return str.replace(/\//g, "").slice(1, -1);
-        });
+    schemaWithRtwTags() {
+      if (this.hasRtwTags) {
+        return this.serviceSchemaSingleLineString.match(/<rtw>(.*?)<\/rtw>/gi);
       } else {
-        return [];
+        return null;
       }
     },
-    mergeXmlTagNamesInSingleArray() {
-      return _.flattenDeep(this.getXmlTagNames);
-    },
-    removeDuplicateNames() {
-      return _.uniq(this.mergeXmlTagNamesInSingleArray);
-    },
-    isElementsMatch() {
-      if (this.schemaContainsOnlyXml) {
-        return this.mergeXmlTagNamesInSingleArray.length / 2 ===
-          this.removeDuplicateNames.length
-          ? true
-          : false;
+    contentProvidedInsideRtwTags() {
+      if (this.schemaWithRtwTags !== null) {
+        return (
+          this.serviceSchemaSingleLineString === this.schemaWithRtwTags.join("")
+        );
       } else {
         return false;
+      }
+    },
+    contentInsideRtwTags() {
+      if (this.schemaWithRtwTags !== null) {
+        return this.schemaWithRtwTags.join("").replace(/<\/?RTW>/gi, "");
+      } else {
+        return null;
+      }
+    },
+    schemaElements() {
+      if (this.contentInsideRtwTags !== null) {
+        return this.contentInsideRtwTags.match(/<(.*?)>(.*?)<\/(.*?)>/g);
+      } else {
+        return null;
+      }
+    },
+    schemaHasValidXmlElements() {
+      if (this.schemaElements !== null && this.contentInsideRtwTags !== null) {
+        return this.contentInsideRtwTags === this.schemaElements.join("");
+      } else {
+        return false;
+      }
+    },
+    schemaElementsNames() {
+      if (this.schemaHasValidXmlElements) {
+        return this.schemaElements
+          .join("")
+          .match(/<\/?(.*?)>/gi)
+          .map(str => {
+            return str.replace(/\/|<|>/g, "").toLowerCase();
+          });
+      } else {
+        return null;
+      }
+    },
+    uniqSchemaElementsNames() {
+      if (this.schemaElementsNames !== null) {
+        return this.schemaElementsNames.filter(
+          (item, pos, array) => array.indexOf(item) === pos
+        );
+      } else {
+        return null;
+      }
+    },
+    noDuplicateElement() {
+      if (this.uniqSchemaElementsNames !== null) {
+        return (
+          this.schemaElementsNames.length / 2 ===
+          this.uniqSchemaElementsNames.length
+        );
+      } else {
+        return true;
       }
     },
     getLinksFromXml() {
+      console.log(this.noDuplicateElement);
+      console.log(this.uniqSchemaElementsNames);
       if (this.schemaContainsOnlyXml) {
-        return this.removeNewLine.match(/@(.*?)@/g);
+        return this.serviceSchemaSingleLineString.match(/@(.*?)@/g);
       } else {
         return false;
       }
