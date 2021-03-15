@@ -39,8 +39,9 @@ export default {
             this.schemaHasValidXmlElements &&
             this.contentProvidedInsideRtwTags) ||
           "You need to provide valid XML schema between <RTW></RTW>",
-        // v =>
-        //   (v && !this.hasDuplicateElement) || "Open and closing tags must match",
+        v =>
+          (v && this.matchOpenClosingTags) ||
+          "Open and closing tags must match",
         v =>
           (v && this.noDuplicateElement) || "Schema contain duplicate element",
         v =>
@@ -105,6 +106,33 @@ export default {
         return null;
       }
     },
+    schemaElementsTags() {
+      if (this.schemaElements !== null) {
+        return this.schemaElements.map(element => {
+          return element.match(/<\/?(.*?)>/gi);
+        });
+      } else {
+        return null;
+      }
+    },
+    schemaElementsTagNames() {
+      if (this.schemaElementsTags !== null) {
+        return this.schemaElementsTags.map(item => {
+          item[0] = item[0].replace(/\/|<|>/g, "").toLowerCase();
+          item[1] = item[1].replace(/\/|<|>/g, "").toLowerCase();
+          return item;
+        });
+      } else {
+        return null;
+      }
+    },
+    matchOpenClosingTags() {
+      if (this.schemaElementsTagNames !== null) {
+        return this.schemaElementsTagNames.every(item => item[0] === item[1]);
+      } else {
+        return true;
+      }
+    },
     schemaHasValidXmlElements() {
       if (this.schemaElements !== null && this.contentInsideRtwTags !== null) {
         return this.contentInsideRtwTags === this.schemaElements.join("");
@@ -112,21 +140,16 @@ export default {
         return false;
       }
     },
-    schemaElementsNames() {
+    schemaElementsTagsNamesSingleArray() {
       if (this.schemaHasValidXmlElements) {
-        return this.schemaElements
-          .join("")
-          .match(/<\/?(.*?)>/gi)
-          .map(str => {
-            return str.replace(/\/|<|>/g, "").toLowerCase();
-          });
+        return [].concat.apply([], this.schemaElementsTagNames);
       } else {
         return null;
       }
     },
     uniqSchemaElementsNames() {
-      if (this.schemaElementsNames !== null) {
-        return this.schemaElementsNames.filter(
+      if (this.schemaElementsTagsNamesSingleArray !== null) {
+        return this.schemaElementsTagsNamesSingleArray.filter(
           (item, pos, array) => array.indexOf(item) === pos
         );
       } else {
@@ -136,7 +159,7 @@ export default {
     noDuplicateElement() {
       if (this.uniqSchemaElementsNames !== null) {
         return (
-          this.schemaElementsNames.length / 2 ===
+          this.schemaElementsTagsNamesSingleArray.length / 2 ===
           this.uniqSchemaElementsNames.length
         );
       } else {
@@ -144,8 +167,6 @@ export default {
       }
     },
     getLinksFromXml() {
-      console.log(this.noDuplicateElement);
-      console.log(this.uniqSchemaElementsNames);
       if (this.schemaContainsOnlyXml) {
         return this.serviceSchemaSingleLineString.match(/@(.*?)@/g);
       } else {
