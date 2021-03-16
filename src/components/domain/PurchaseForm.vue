@@ -15,7 +15,7 @@
         <v-container>
           <div class="title">Choose subscription plan</div>
           <select-subscription></select-subscription>
-          <div class="body-1 mb-6">
+          <div v-if="hasTrial" class="body-1 mb-6">
             30 days free trial for all subscription plans. Payment will be done
             after trial. Cancel anytime.
           </div>
@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 import SelectSubscription from "./SelectSubscription";
 import StripePayment from "./StripePayment";
 export default {
@@ -89,6 +89,7 @@ export default {
   computed: {
     ...mapState("authModule", ["token", "username"]),
     ...mapState("stripeModule", ["selectedPlan"]),
+    ...mapGetters("domainsModule", ["hasTrial"]),
     domain() {
       return this.$route.params.domainName;
     }

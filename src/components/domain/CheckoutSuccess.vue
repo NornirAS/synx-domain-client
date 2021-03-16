@@ -1,7 +1,7 @@
 <template>
   <image-response-template>
     <div slot="title">
-      Congratulations! You are now the owner of {{ domain }}.cioty.com
+      Congratulations! You are now the owner of {{ domain }}{{ rootDomain }}
     </div>
     <div slot="action">
       <v-btn
@@ -28,9 +28,15 @@
 </template>
 
 <script>
+import { rootDomain } from "../../core/config";
 import { mapState } from "vuex";
 import ImageResponseTemplate from "../ImageResponseTemplate";
 export default {
+  data() {
+    return {
+      rootDomain
+    };
+  },
   methods: {
     toDomains() {
       this.getAllDomains();

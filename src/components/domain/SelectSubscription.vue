@@ -61,13 +61,7 @@ export default {
   computed: {
     ...mapState("domainsModule", ["domains"]),
     ...mapState("stripeModule", ["subscriptionPlans"]),
-    ...mapGetters("domainsModule", ["noDomains", "hasInactiveDomain"]),
-    hasSingleDomain() {
-      return this.domains.length === 1;
-    },
-    hasTrial() {
-      return this.hasSingleDomain === this.hasInactiveDomain;
-    }
+    ...mapGetters("domainsModule", ["noDomains", "hasTrial"])
   },
   watch: {
     selected(newValue) {

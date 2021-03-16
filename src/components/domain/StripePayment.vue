@@ -3,7 +3,7 @@
     <v-list-item>
       <v-list-item-title>Domain</v-list-item-title>
       <v-list-item-subtitle class="text-right font-weight-bold">
-        {{ domain }}.cioty.com
+        {{ domain }}{{ rootDomain }}
       </v-list-item-subtitle>
     </v-list-item>
     <v-list-item>
@@ -18,7 +18,7 @@
         {{ selectedPlan.description }}
       </v-list-item-subtitle>
     </v-list-item>
-    <v-list-item v-if="!noDomains">
+    <v-list-item v-if="hasTrial">
       <v-list-item-title>Trial period</v-list-item-title>
       <v-list-item-subtitle class="text-right font-weight-bold">
         30 days free
@@ -41,10 +41,12 @@
 </template>
 
 <script>
+import { rootDomain } from "../../core/config";
 import { mapState, mapGetters } from "vuex";
 export default {
   data() {
     return {
+      rootDomain,
       stripeAPIToken: "",
       stripe: ""
     };
@@ -89,7 +91,7 @@ export default {
   computed: {
     ...mapState("stripeModule", ["session", "selectedPlan"]),
     ...mapState("domainsModule", ["domains"]),
-    ...mapGetters("domainsModule", ["noDomains"]),
+    ...mapGetters("domainsModule", ["noDomains", "hasTrial"]),
     domain() {
       return this.$route.params.domainName;
     }
