@@ -178,7 +178,7 @@ export default {
       }
     },
     validLinks() {
-      if (this.getLinksFromXml !== null) {
+      if (this.getLinksFromXml !== null && this.getLinksFromXml !== "") {
         return this.getLinksFromXml
           .match(
             /@([a-zA-Z0-9_]+?)(?=\/)\/([a-zA-Z0-9_]+?)(?=#)#([a-zA-Z0-9_]+?)@/g
@@ -192,7 +192,7 @@ export default {
       if (this.validLinks !== null) {
         return this.getLinksFromXml.length === this.validLinks.length;
       } else {
-        return false;
+        return true;
       }
     }
   },
