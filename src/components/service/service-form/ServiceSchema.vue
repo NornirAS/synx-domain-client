@@ -150,7 +150,7 @@ export default {
     uniqSchemaElementsNames() {
       if (this.schemaElementsTagsNamesSingleArray !== null) {
         return this.schemaElementsTagsNamesSingleArray.filter(
-          (item, pos, array) => array.indexOf(item) === pos
+          (item, index, array) => array.indexOf(item) === index
         );
       } else {
         return null;
