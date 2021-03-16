@@ -167,45 +167,37 @@ export default {
       }
     },
     getLinksFromXml() {
-      if (this.schemaContainsOnlyXml) {
-        return this.serviceSchemaSingleLineString.match(/@(.*?)@/g);
+      if (this.schemaElements !== null) {
+        return this.schemaElements
+          .map(item => {
+            return item.replace(/<\/?(.*?)>/g, "");
+          })
+          .join("");
       } else {
-        return false;
+        return null;
       }
     },
-    isLinks() {
-      if (this.getLinksFromXml) {
-        return this.getLinksFromXml.join("") !== "";
-      } else {
-        return false;
-      }
-    },
-    validateLinks() {
-      if (this.isLinks) {
+    validLinks() {
+      if (this.getLinksFromXml !== null) {
         return this.getLinksFromXml
-          .join("")
           .match(
-            /@([a-zA-Z0-9_]+?)(?=\/)\/([a-zA-Z0-9_]+?)(?=#)#([a-zA-Z0-9_]+?)@/g ||
-              false
-          );
+            /@([a-zA-Z0-9_]+?)(?=\/)\/([a-zA-Z0-9_]+?)(?=#)#([a-zA-Z0-9_]+?)@/g
+          )
+          .join("");
       } else {
-        return false;
+        return null;
       }
     },
     isValidLinks() {
-      if (this.validateLinks) {
-        const notValidLinksString = this.getLinksFromXml.join("");
-        const validLinksString = this.validateLinks.join("");
-        return notValidLinksString.length === validLinksString.length;
-      } else if (!this.isLinks) {
-        return true;
+      if (this.validLinks !== null) {
+        return this.getLinksFromXml.length === this.validLinks.length;
       } else {
         return false;
       }
     }
   },
   watch: {
-    validateLinks(newValue) {
+    isValidLinks(newValue) {
       this.addIsValidLinks(newValue);
     }
   },
