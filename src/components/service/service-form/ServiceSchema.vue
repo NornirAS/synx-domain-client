@@ -179,20 +179,20 @@ export default {
     },
     validLinks() {
       if (this.getLinksFromXml !== null && this.getLinksFromXml !== "") {
-        return this.getLinksFromXml
-          .match(
-            /@([a-zA-Z0-9_]+?)(?=\/)\/([a-zA-Z0-9_]+?)(?=#)#([a-zA-Z0-9_]+?)@/g
-          )
-          .join("");
+        return this.getLinksFromXml.match(
+          /@([a-zA-Z0-9_]+?)(?=\/)\/([a-zA-Z0-9_]+?)(?=#)#([a-zA-Z0-9_]+?)@/g
+        );
       } else {
         return null;
       }
     },
     isValidLinks() {
       if (this.validLinks !== null) {
-        return this.getLinksFromXml.length === this.validLinks.length;
-      } else {
+        return this.getLinksFromXml.length === this.validLinks.join("").length;
+      } else if (this.getLinksFromXml === "") {
         return true;
+      } else {
+        return false;
       }
     }
   },
