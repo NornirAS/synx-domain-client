@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card v-if="!noServices">
     <div class="d-flex justify-start my-4">
       <v-text-field
         v-model="search"

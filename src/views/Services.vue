@@ -29,7 +29,7 @@
     <div slot="page-content">
       <services-empty v-if="!noDomains && noServices"></services-empty>
       <domain-empty v-if="noDomains && noServices"></domain-empty>
-      <router-view v-if="!noDomains && !noServices"></router-view>
+      <router-view></router-view>
     </div>
   </page-layout>
 </template>
