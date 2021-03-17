@@ -49,11 +49,14 @@ const getters = {
   activeDomains({ domains }) {
     return domains.filter(domain => domain.active === true);
   },
+  hasActiveDomains(state, { activeDomains }) {
+    return activeDomains.length > 0;
+  },
   activeDomainNames(state, { activeDomains }) {
     return activeDomains.map(domain => domain.name);
   },
-  firstDomain(state, { noDomains, activeDomains }) {
-    if (!noDomains) {
+  firstDomain(state, { hasActiveDomains, activeDomains }) {
+    if (hasActiveDomains) {
       return activeDomains[0].name;
     }
   }

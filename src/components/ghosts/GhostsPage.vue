@@ -8,7 +8,7 @@
     <div slot="page-content">
       <domain-empty v-if="noDomains && noServices && noGhosts"></domain-empty>
       <ghosts-empty v-if="!noDomains && noServices && noGhosts"></ghosts-empty>
-      <add-ghost v-if="!noDomains && !noServices"></add-ghost>
+      <add-ghost v-if="hasActiveDomains && !noServices"></add-ghost>
       <v-card v-if="!noGhosts">
         <div class="d-flex justify-start my-4">
           <v-text-field
@@ -206,7 +206,7 @@ export default {
   computed: {
     ...mapState("authModule", ["token", "username"]),
     ...mapGetters("servicesModule", ["noServices"]),
-    ...mapGetters("domainsModule", ["noDomains"]),
+    ...mapGetters("domainsModule", ["noDomains", "hasActiveDomains"]),
     ...mapGetters("ghosts", ["allGhosts", "noGhosts"]),
     ...mapState("alarmModule", [
       "addGhostSuccess",

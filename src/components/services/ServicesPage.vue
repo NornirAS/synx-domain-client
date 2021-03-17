@@ -9,7 +9,7 @@
         rounded
         small
         color="info"
-        :disabled="noDomains"
+        :disabled="!hasActiveDomains"
       >
         Add Service
       </v-btn>
@@ -132,7 +132,7 @@ export default {
     };
   },
   created() {
-    if (this.noServices && !this.noDomains) {
+    if (this.noServices && this.hasActiveDomains) {
       this.$socket.emit("get_all_services", {
         token: this.token,
         domain: this.firstDomain
@@ -161,6 +161,7 @@ export default {
     ...mapGetters("servicesModule", ["noServices"]),
     ...mapGetters("domainsModule", [
       "noDomains",
+      "hasActiveDomains",
       "domainNamesWithAllOption",
       "firstDomain"
     ]),
