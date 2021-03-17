@@ -8,6 +8,7 @@ import Account from "../views/Account";
 import ServicesTable from "../components/services/ServicesTable";
 import ServiceForm from "../components/service/service-form/ServiceForm";
 import MicropageForm from "../components/service/micropage-form/MicropageForm";
+import SwitchTabs from "../components/service/SwitchTabs";
 import DomainsPage from "../components/domains/DomainsPage";
 import CreateDomain from "../components/domain/CreateDomain";
 import DomainActivation from "../components/domain/DomainActivation";
@@ -101,7 +102,10 @@ const routes = [
       {
         path: ":serviceName/update",
         name: "serviceUpdate",
-        component: ServiceForm,
+        components: {
+          default: ServiceForm,
+          "switch-tabs": SwitchTabs
+        },
         meta: {
           title: "Update Morphic Service"
         }
@@ -109,7 +113,10 @@ const routes = [
       {
         path: ":serviceName/update/micropage",
         name: "micropageUpdate",
-        component: MicropageForm,
+        components: {
+          default: MicropageForm,
+          "switch-tabs": SwitchTabs
+        },
         meta: {
           title: "Update Micropage"
         }
