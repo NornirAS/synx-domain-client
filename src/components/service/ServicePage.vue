@@ -2,6 +2,17 @@
   <page-layout>
     <page-title slot="page-title">
       <div slot="title">{{ title }}</div>
+      <div v-if="isServiceUpdate" slot="subtitle">{{ serviceURI }}</div>
+      <a
+        v-if="isMicropageUpdate"
+        slot="subtitle"
+        :href="serviceURL"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-decoration-none"
+      >
+        {{ serviceURI }}
+      </a>
     </page-title>
     <v-tabs
       v-if="isServiceUpdate || isMicropageUpdate"
@@ -73,6 +84,7 @@ export default {
       "updateMicropageSuccess"
     ]),
     ...mapGetters("domainsModule", ["firstDomain"]),
+    ...mapGetters("serviceFormModule", ["serviceURI", "serviceURL"]),
     isServiceUpdate() {
       return this.$route.name === "serviceUpdate";
     },
