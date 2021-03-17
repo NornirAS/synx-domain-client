@@ -1,7 +1,6 @@
 <template>
   <v-row justify="start" class="mt-md-10 mx-md-10">
     <v-col cols="12" md="10" lg="8" xl="5">
-      <bread-crumbs></bread-crumbs>
       <slot name="page-title"></slot>
       <v-divider></v-divider>
       <slot name="page-search"></slot>
@@ -22,7 +21,6 @@
 </template>
 
 <script>
-import BreadCrumbs from "./globals/BreadCrumbs";
 import AlertMessage from "./globals/AlertMessage";
 export default {
   computed: {
@@ -31,8 +29,7 @@ export default {
     }
   },
   components: {
-    AlertMessage,
-    BreadCrumbs
+    AlertMessage
   }
 };
 </script>

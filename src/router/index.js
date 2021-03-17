@@ -51,9 +51,6 @@ const routes = [
       default: Domains,
       "side-bar": SideBar
     },
-    meta: {
-      breadcrumb: "Domains"
-    },
     children: [
       {
         path: "",
@@ -63,18 +60,12 @@ const routes = [
       {
         path: "domain/create-domain",
         name: "create-domain",
-        component: CreateDomain,
-        meta: {
-          breadcrumb: "Create Domain"
-        }
+        component: CreateDomain
       },
       {
         path: "domain/:domainName/activate",
         name: "domain-activate",
-        component: DomainActivation,
-        meta: {
-          breadcrumb: "Activate Domain"
-        }
+        component: DomainActivation
       }
     ],
     beforeEnter: authGuard
@@ -91,9 +82,6 @@ const routes = [
       default: Services,
       "side-bar": SideBar
     },
-    meta: {
-      breadcrumb: "Services"
-    },
     children: [
       {
         path: "",
@@ -107,26 +95,17 @@ const routes = [
           {
             path: "create",
             name: "serviceCreate",
-            component: ServiceForm,
-            meta: {
-              breadcrumb: "Create Service"
-            }
+            component: ServiceForm
           },
           {
             path: ":serviceName/update",
             name: "serviceUpdate",
-            component: ServiceForm,
-            meta: {
-              breadcrumb: "Service Update"
-            }
+            component: ServiceForm
           },
           {
             path: ":serviceName/update/micropage",
             name: "micropageUpdate",
-            component: MicropageForm,
-            meta: {
-              breadcrumb: "Micropage"
-            }
+            component: MicropageForm
           }
         ]
       }
@@ -139,9 +118,6 @@ const routes = [
       default: Ghosts,
       "side-bar": SideBar
     },
-    meta: {
-      breadcrumb: "Ghosts"
-    },
     children: [
       {
         path: "",
@@ -151,10 +127,7 @@ const routes = [
       {
         path: ":serviceName##:instance",
         name: "ghostDetails",
-        component: GhostDetailsPage,
-        meta: {
-          breadcrumb: "Ghosts Details"
-        }
+        component: GhostDetailsPage
       }
     ],
     beforeEnter: authGuard
