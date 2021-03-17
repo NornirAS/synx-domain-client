@@ -14,9 +14,11 @@
         Add Service
       </v-btn>
     </page-title>
-    <div slot="page-search">
-      <v-row align="center">
-        <v-col cols="12" sm="6">
+    <div slot="page-content">
+      <services-empty v-if="!noDomains && noServices"></services-empty>
+      <domain-empty v-if="noDomains && noServices"></domain-empty>
+      <v-card v-if="!noDomains && !noServices">
+        <div class="d-flex justify-start my-4">
           <v-text-field
             v-model="search"
             :append-icon="mdiMagnify"
@@ -26,44 +28,34 @@
             dense
             :disabled="noDomains && noServices"
           ></v-text-field>
-        </v-col>
-        <v-col cols="12" sm="6">
-          <div class="text-center">
-            <v-menu offset-y>
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  color="primary"
-                  class="text-capitalize"
-                  v-bind="attrs"
-                  v-on="on"
-                  block
-                  :disabled="noDomains && noServices"
-                >
-                  Sort By: {{ sortByDomain }}
-                  <v-icon left large>{{ mdiMenuDown }}</v-icon>
-                </v-btn>
-              </template>
-              <v-list>
-                <v-list-item
-                  v-for="(domain, index) in domainNamesWithAllOption"
-                  :key="index"
-                >
-                  <v-list-item-title @click="selectedDomain(domain)">
-                    {{ domain }}
-                  </v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-          </div>
-        </v-col>
-      </v-row>
-    </div>
-    <div slot="page-content">
-      <services-empty v-if="!noDomains && noServices"></services-empty>
-      <domain-empty v-if="noDomains && noServices"></domain-empty>
-      <no-match v-if="noResultsFound && !noServices"></no-match>
-      <v-card v-if="!noResultsFound">
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                color="primary"
+                class="text-none ml-4"
+                v-bind="attrs"
+                v-on="on"
+                :disabled="noDomains && noServices"
+              >
+                Sort By: {{ sortByDomain }}
+                <v-icon left large>{{ mdiMenuDown }}</v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item
+                v-for="(domain, index) in domainNamesWithAllOption"
+                :key="index"
+              >
+                <v-list-item-title @click="selectedDomain(domain)">
+                  {{ domain }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </div>
+        <no-match v-if="noResultsFound"></no-match>
         <v-data-table
+          v-else
           @page-count="pageCount = $event"
           :headers="headers"
           :items="searchResult"

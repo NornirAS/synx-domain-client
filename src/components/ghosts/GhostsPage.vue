@@ -13,7 +13,7 @@
         <div class="d-flex justify-start my-4">
           <v-text-field
             v-model="search"
-            append-icon="mdi-magnify"
+            :append-icon="mdiMagnify"
             label="Search for ghosts"
             hide-details
             outlined
@@ -110,7 +110,7 @@
 </template>
 
 <script>
-import { mdiMenuDown, mdiChevronRight, mdiClose } from "@mdi/js";
+import { mdiMagnify, mdiMenuDown, mdiChevronRight, mdiClose } from "@mdi/js";
 import { rootDomain } from "../../core/config";
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 import PageTitle from "../PageTitle";
@@ -122,6 +122,7 @@ import NoMatch from "../empty-page/NoMatch";
 export default {
   data() {
     return {
+      mdiMagnify,
       mdiMenuDown,
       mdiChevronRight,
       mdiClose,
