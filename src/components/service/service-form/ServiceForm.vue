@@ -64,8 +64,10 @@ export default {
       valid: false
     };
   },
-  beforeDestroy() {
-    this.resetServiceForm();
+  created() {
+    if (this.isServiceCreate) {
+      this.resetServiceForm();
+    }
   },
   methods: {
     ...mapMutations("serviceFormModule", ["resetServiceForm"]),
@@ -121,6 +123,9 @@ export default {
       "timeout",
       "isValidLinks"
     ]),
+    isServiceCreate() {
+      return this.$route.name === "serviceCreate";
+    },
     isServiceUpdate() {
       return this.$route.name === "serviceUpdate";
     }

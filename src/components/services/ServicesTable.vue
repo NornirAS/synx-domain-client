@@ -71,7 +71,7 @@
 <script>
 import { mdiMagnify, mdiMenuDown, mdiChevronRight } from "@mdi/js";
 import { rootDomain } from "../../core/config";
-import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
+import { mapState, mapGetters, mapMutations } from "vuex";
 import NoMatch from "../empty-page/NoMatch";
 export default {
   data() {
@@ -98,19 +98,8 @@ export default {
       ]
     };
   },
-  created() {
-    if (this.noServices && this.hasActiveDomains) {
-      this.$socket.emit("get_all_services", {
-        token: this.token,
-        domain: this.firstDomain
-      });
-    } else {
-      this.addServicesFromStorage;
-    }
-  },
   methods: {
     ...mapMutations("serviceFormModule", ["editService"]),
-    ...mapActions("servicesModule", ["addServicesFromStorage"]),
     selectedDomain(domain) {
       this.sortByDomain = domain;
     },
@@ -123,15 +112,9 @@ export default {
     }
   },
   computed: {
-    ...mapState("authModule", ["token"]),
     ...mapState("servicesModule", ["services"]),
     ...mapGetters("servicesModule", ["noServices"]),
-    ...mapGetters("domainsModule", [
-      "noDomains",
-      "hasActiveDomains",
-      "domainNamesWithAllOption",
-      "firstDomain"
-    ]),
+    ...mapGetters("domainsModule", ["noDomains", "domainNamesWithAllOption"]),
     sortBy() {
       return this.sortByDomain === "All"
         ? this.services

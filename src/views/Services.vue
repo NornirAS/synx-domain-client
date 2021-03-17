@@ -32,19 +32,54 @@
       <router-view name="switch-tabs"></router-view>
       <router-view></router-view>
     </div>
+    <div slot="page-content-right">
+      <router-view name="other-actions"></router-view>
+    </div>
   </page-layout>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import ServicesEmpty from "../components/empty-page/ServicesEmpty";
 import DomainEmpty from "../components/empty-page/DomainsEmpty";
 export default {
+  created() {
+    if (this.noServices && this.hasActiveDomains) {
+      this.getAllServices();
+    } else {
+      this.addServicesFromStorage;
+    }
+  },
+  methods: {
+    ...mapActions("servicesModule", ["addServicesFromStorage"]),
+    getAllServices() {
+      this.$socket.emit("get_all_services", {
+        token: this.token,
+        domain: this.firstDomain
+      });
+    },
+    getOwnedGhosts() {
+      this.$socket.emit("get_owned_ghosts", {
+        token: this.token
+      });
+    }
+  },
   computed: {
+    ...mapState("authModule", ["token"]),
+    ...mapState("alarmModule", [
+      "registerServiceSuccess",
+      "updateServiceSuccess",
+      "deleteServiceSuccess",
+      "updateMicropageSuccess"
+    ]),
     ...mapGetters("servicesModule", ["noServices"]),
-    ...mapGetters("domainsModule", ["noDomains", "hasActiveDomains"]),
+    ...mapGetters("domainsModule", [
+      "noDomains",
+      "hasActiveDomains",
+      "firstDomain"
+    ]),
     ...mapGetters("serviceFormModule", ["serviceURI", "serviceURL"]),
     title() {
       return this.$route.meta.title;
@@ -57,6 +92,24 @@ export default {
     },
     isMicropageUpdate() {
       return this.$route.name === "micropageUpdate";
+    }
+  },
+  watch: {
+    registerServiceSuccess() {
+      this.$router.push({ name: "services" });
+      this.getAllServices();
+    },
+    updateServiceSuccess() {
+      this.$router.push({ name: "services" });
+      this.getAllServices();
+    },
+    deleteServiceSuccess() {
+      this.$router.push({ name: "services" });
+      this.getAllServices();
+      this.getOwnedGhosts();
+    },
+    updateMicropageSuccess() {
+      this.$router.push({ name: "services" });
     }
   },
   components: {
