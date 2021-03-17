@@ -1,31 +1,5 @@
 <template>
   <page-layout>
-    <page-title slot="page-title">
-      <div slot="title">{{ title }}</div>
-      <div v-if="isServiceUpdate" slot="subtitle">{{ serviceURI }}</div>
-      <a
-        v-if="isMicropageUpdate"
-        slot="subtitle"
-        :href="serviceURL"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-decoration-none"
-      >
-        {{ serviceURI }}
-      </a>
-    </page-title>
-    <v-tabs
-      v-if="isServiceUpdate || isMicropageUpdate"
-      slot="page-search"
-      fixed-tabs
-    >
-      <v-tab @click="isMicropageUpdate ? toServiceUpdate() : false">
-        Service
-      </v-tab>
-      <v-tab @click="isServiceUpdate ? toMicropageUpdate() : false">
-        Micropage
-      </v-tab>
-    </v-tabs>
     <v-card slot="page-content">
       <router-view></router-view>
     </v-card>
@@ -37,32 +11,11 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import PageLayout from "../PageLayout";
-import PageTitle from "../PageTitle";
 import DeleteService from "../service/DeleteService";
 export default {
-  data() {
-    return {
-      title: ""
-    };
-  },
-  created() {
-    this.title = this.isServiceUpdate
-      ? "Update Morphic Service"
-      : "New Morphic Service";
-  },
-  beforeDestroy() {
-    this.resetServiceForm();
-  },
   methods: {
-    ...mapMutations("serviceFormModule", ["resetServiceForm"]),
-    getAllServices() {
-      this.$socket.emit("get_all_services", {
-        token: this.token,
-        domain: this.firstDomain
-      });
-    },
     getOwnedGhosts() {
       this.$socket.emit("get_owned_ghosts", {
         token: this.token
@@ -112,15 +65,7 @@ export default {
   },
   components: {
     PageLayout,
-    PageTitle,
     DeleteService
   }
 };
 </script>
-
-<style scoped>
-.v-tabs {
-  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
-    0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
-}
-</style>

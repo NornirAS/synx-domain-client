@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import ServiceDomain from "./ServiceDomain";
 import ServiceName from "./ServiceName";
 import ServiceDescription from "./ServiceDescription";
@@ -64,7 +64,11 @@ export default {
       valid: false
     };
   },
+  beforeDestroy() {
+    this.resetServiceForm();
+  },
   methods: {
+    ...mapMutations("serviceFormModule", ["resetServiceForm"]),
     submitServiceForm() {
       const isFormValid = this.$refs.serviceForm.validate();
       if (isFormValid && this.isServiceUpdate) {
