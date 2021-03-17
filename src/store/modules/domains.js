@@ -47,10 +47,10 @@ const getters = {
     return ["All"].concat(domainNames);
   },
   activeDomains({ domains }) {
-    const activeDomains = domains.filter(domain => {
-      return domain.active === true;
-    });
-    return activeDomains;
+    return domains.filter(domain => domain.active === true);
+  },
+  activeDomainNames(state, { activeDomains }) {
+    return activeDomains.map(domain => domain.name);
   },
   firstDomain(state, { noDomains, activeDomains }) {
     if (!noDomains) {

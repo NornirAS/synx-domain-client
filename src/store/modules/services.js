@@ -30,6 +30,12 @@ const actions = {
 const getters = {
   noServices({ services }) {
     return _.isEmpty(services);
+  },
+  servicesUnderActiveDomain({ services }, getters, rootState, rootGetters) {
+    const test = services.filter(service =>
+      rootGetters["domainsModule/activeDomainNames"].includes(service.domain)
+    );
+    return test;
   }
 };
 

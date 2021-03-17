@@ -21,7 +21,8 @@
         </template>
         <v-list>
           <v-list-item
-            v-for="({ domain, serviceName }, index) in services"
+            v-for="({ domain, serviceName },
+            index) in servicesUnderActiveDomain"
             :key="index"
           >
             <v-list-item-title @click="selectService(domain, serviceName)">
@@ -40,7 +41,7 @@
 <script>
 import { mdiMenuDown } from "@mdi/js";
 import { rootDomain } from "../../core/config";
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -70,9 +71,9 @@ export default {
   },
   computed: {
     ...mapState("authModule", ["token"]),
-    ...mapState("servicesModule", ["services"]),
+    ...mapGetters("servicesModule", ["servicesUnderActiveDomain"]),
     firstService() {
-      return this.services[0];
+      return this.servicesUnderActiveDomain[0];
     }
   }
 };
