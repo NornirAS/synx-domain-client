@@ -97,7 +97,6 @@
 </template>
 
 <script>
-import _ from "lodash";
 import { mdiMagnify, mdiMenuDown, mdiChevronRight } from "@mdi/js";
 import { rootDomain } from "../../core/config";
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
@@ -178,7 +177,7 @@ export default {
       );
     },
     noResultsFound() {
-      return _.isEmpty(this.searchResult);
+      return this.searchResult.length === 0;
     },
     servicesLengthLessItemsPerPage() {
       return this.searchResult.length <= this.itemsPerPage;

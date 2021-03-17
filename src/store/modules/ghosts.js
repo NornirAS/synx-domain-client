@@ -1,5 +1,3 @@
-import _ from "lodash";
-
 const state = {
   ghosts: [],
   ghostsToApprove: []
@@ -45,7 +43,7 @@ const getters = {
     }
   },
   noGhosts(state, { allGhosts }) {
-    return _.isEmpty(allGhosts);
+    return allGhosts.length === 0;
   }
 };
 

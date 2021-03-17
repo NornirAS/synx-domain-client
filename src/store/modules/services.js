@@ -1,5 +1,3 @@
-import _ from "lodash";
-
 const state = {
   services: []
 };
@@ -29,7 +27,7 @@ const actions = {
 
 const getters = {
   noServices({ services }) {
-    return _.isEmpty(services);
+    return services.length === 0;
   },
   servicesUnderActiveDomain({ services }, getters, rootState, rootGetters) {
     const test = services.filter(service =>

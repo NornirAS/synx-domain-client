@@ -1,5 +1,3 @@
-import _ from "lodash";
-
 const state = {
   domains: []
 };
@@ -23,7 +21,7 @@ const actions = {
 
 const getters = {
   noDomains({ domains }) {
-    return _.isEmpty(domains);
+    return domains.length === 0;
   },
   hasInactiveDomain({ domains }) {
     return domains.some(domain => domain.active === true);

@@ -110,7 +110,6 @@
 </template>
 
 <script>
-import _ from "lodash";
 import { mdiMenuDown, mdiChevronRight, mdiClose } from "@mdi/js";
 import { rootDomain } from "../../core/config";
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
@@ -226,7 +225,7 @@ export default {
       );
     },
     noSearchResult() {
-      return _.isEmpty(this.searchFilter);
+      return this.searchFilter.length === 0;
     }
   },
   watch: {
