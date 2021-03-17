@@ -5,7 +5,7 @@ import Services from "../views/Services";
 import Domains from "../views/Domains";
 import Ghosts from "../views/Ghosts";
 import Account from "../views/Account";
-import ServicesPage from "../components/services/ServicesPage";
+import ServicesTable from "../components/services/ServicesTable";
 import ServicePage from "../components/service/ServicePage";
 import ServiceForm from "../components/service/service-form/ServiceForm";
 import MicropageForm from "../components/service/micropage-form/MicropageForm";
@@ -86,7 +86,7 @@ const routes = [
       {
         path: "",
         name: "services",
-        component: ServicesPage
+        component: ServicesTable
       },
       {
         path: "service",
