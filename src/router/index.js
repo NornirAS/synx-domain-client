@@ -6,7 +6,6 @@ import Domains from "../views/Domains";
 import Ghosts from "../views/Ghosts";
 import Account from "../views/Account";
 import ServicesTable from "../components/services/ServicesTable";
-import ServicePage from "../components/service/ServicePage";
 import ServiceForm from "../components/service/service-form/ServiceForm";
 import MicropageForm from "../components/service/micropage-form/MicropageForm";
 import DomainsPage from "../components/domains/DomainsPage";
@@ -86,28 +85,34 @@ const routes = [
       {
         path: "",
         name: "services",
-        component: ServicesTable
+        component: ServicesTable,
+        meta: {
+          title: "Morphic Services"
+        }
       },
       {
-        path: "service",
-        component: ServicePage,
-        children: [
-          {
-            path: "create",
-            name: "serviceCreate",
-            component: ServiceForm
-          },
-          {
-            path: ":serviceName/update",
-            name: "serviceUpdate",
-            component: ServiceForm
-          },
-          {
-            path: ":serviceName/update/micropage",
-            name: "micropageUpdate",
-            component: MicropageForm
-          }
-        ]
+        path: "service-create",
+        name: "serviceCreate",
+        component: ServiceForm,
+        meta: {
+          title: "New Morphic Service"
+        }
+      },
+      {
+        path: ":serviceName/update",
+        name: "serviceUpdate",
+        component: ServiceForm,
+        meta: {
+          title: "Update Morphic Service"
+        }
+      },
+      {
+        path: ":serviceName/update/micropage",
+        name: "micropageUpdate",
+        component: MicropageForm,
+        meta: {
+          title: "Update Micropage"
+        }
       }
     ],
     beforeEnter: authGuard

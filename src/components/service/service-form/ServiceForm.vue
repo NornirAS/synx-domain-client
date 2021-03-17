@@ -1,45 +1,49 @@
 <template>
-  <v-form
-    id="service-form"
-    ref="serviceForm"
-    v-model="valid"
-    @submit.prevent="submitServiceForm"
-    lazy-validation
-  >
-    <div class="title">Service Settings - for Machines</div>
-    <service-domain v-if="!isServiceUpdate"></service-domain>
-    <service-name></service-name>
-    <service-description></service-description>
-    <service-keywords></service-keywords>
-    <service-schema></service-schema>
-    <service-inline-pre-script v-if="isValidLinks"></service-inline-pre-script>
-    <service-inline-post-script
-      v-if="isValidLinks"
-    ></service-inline-post-script>
-    <service-command></service-command>
-    <service-web-js></service-web-js>
-    <service-timeout></service-timeout>
-    <div>
-      <v-btn
-        @click="backToServices"
-        class="text-capitalize"
-        color="primary"
-        text
-      >
-        Cancel
-      </v-btn>
-      <v-btn
-        class="text-capitalize"
-        color="info"
-        type="submit"
-        form="service-form"
-        small
-        rounded
-      >
-        Save
-      </v-btn>
-    </div>
-  </v-form>
+  <v-card>
+    <v-form
+      id="service-form"
+      ref="serviceForm"
+      v-model="valid"
+      @submit.prevent="submitServiceForm"
+      lazy-validation
+    >
+      <div class="title">Service Settings - for Machines</div>
+      <service-domain v-if="!isServiceUpdate"></service-domain>
+      <service-name></service-name>
+      <service-description></service-description>
+      <service-keywords></service-keywords>
+      <service-schema></service-schema>
+      <service-inline-pre-script
+        v-if="isValidLinks"
+      ></service-inline-pre-script>
+      <service-inline-post-script
+        v-if="isValidLinks"
+      ></service-inline-post-script>
+      <service-command></service-command>
+      <service-web-js></service-web-js>
+      <service-timeout></service-timeout>
+      <div>
+        <v-btn
+          @click="backToServices"
+          class="text-capitalize"
+          color="primary"
+          text
+        >
+          Cancel
+        </v-btn>
+        <v-btn
+          class="text-capitalize"
+          color="info"
+          type="submit"
+          form="service-form"
+          small
+          rounded
+        >
+          Save
+        </v-btn>
+      </div>
+    </v-form>
+  </v-card>
 </template>
 
 <script>
