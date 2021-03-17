@@ -18,9 +18,9 @@
         </v-btn>
       </template>
       <v-list>
-        <v-list-item v-for="(domain, index) in domainNames" :key="index">
-          <v-list-item-title @click="selectDomain(domain)">
-            {{ domain }}{{ rootDomain }}
+        <v-list-item v-for="({ name }, index) in activeDomains" :key="index">
+          <v-list-item-title @click="selectDomain(name)">
+            {{ name }}{{ rootDomain }}
           </v-list-item-title>
         </v-list-item>
       </v-list>
@@ -42,8 +42,8 @@ export default {
     };
   },
   created() {
-    this.selectedDomain = this.domainNames[0];
-    this.addDomain(this.domainNames[0]);
+    this.selectedDomain = this.firstActiveDomain;
+    this.addDomain(this.firstActiveDomain);
   },
   methods: {
     ...mapMutations("serviceFormModule", ["addDomain"]),
@@ -57,7 +57,10 @@ export default {
       return this.$route.name === "serviceUpdate";
     },
     ...mapGetters("servicesFormModule", ["noServices"]),
-    ...mapGetters("domainsModule", ["noDomains", "domainNames"])
+    ...mapGetters("domainsModule", ["noDomains", "activeDomains"]),
+    firstActiveDomain() {
+      return this.activeDomains[0].name;
+    }
   },
   components: {
     FormInputCard
