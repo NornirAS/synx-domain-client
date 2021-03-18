@@ -115,7 +115,8 @@ export default {
         domain: this.domain,
         token: this.token,
         username: this.username,
-        subscription: this.selectedPlan
+        subscription: this.selectedPlan,
+        isNewDomain: this.isNewDomain
       });
     },
     deleteDomain() {
