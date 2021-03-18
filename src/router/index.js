@@ -68,6 +68,14 @@ const routes = [
         meta: {
           title: "New Domain"
         }
+      },
+      {
+        path: "activate-domain",
+        name: "activate-domain",
+        component: NewDomain,
+        meta: {
+          title: "Activate Domain"
+        }
       }
     ],
     beforeEnter: authGuard

@@ -25,10 +25,7 @@
         <div align="end">
           <v-btn
             v-if="!item.active"
-            :to="{
-              name: 'domain-activate',
-              params: { domainName: item.name }
-            }"
+            @click="toActivateDomain(item.name)"
             color="primary"
             class="text-capitalize ma-0"
             rounded
@@ -53,7 +50,7 @@
 
 <script>
 import { rootDomain } from "../../core/config";
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapMutations } from "vuex";
 import DeleteDomain from "./DeleteDomain";
 export default {
   data() {
@@ -80,6 +77,13 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    ...mapMutations("stripeModule", ["addDomain"]),
+    toActivateDomain(domain) {
+      this.addDomain(domain);
+      this.$router.push({ name: "activate-domain" });
+    }
   },
   computed: {
     ...mapState("authModule", ["token", "username"]),

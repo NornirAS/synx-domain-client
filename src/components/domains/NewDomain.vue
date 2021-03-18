@@ -1,21 +1,26 @@
 <template>
   <v-stepper v-model="e1">
     <v-stepper-header>
-      <v-stepper-step color="info" :complete="e1 > 1" step="1">
+      <v-stepper-step
+        v-if="isNewDomain"
+        color="info"
+        :complete="e1 > 1"
+        step="1"
+      >
         Domain
       </v-stepper-step>
-      <v-divider></v-divider>
-      <v-stepper-step color="info" :complete="e1 > 2" step="2">
+      <v-divider v-if="isNewDomain"></v-divider>
+      <v-stepper-step color="info" :complete="e1 > stepTwo" :step="stepTwo">
         Period
       </v-stepper-step>
       <v-divider></v-divider>
-      <v-stepper-step color="info" :complete="e1 > 3" step="3">
+      <v-stepper-step color="info" :complete="e1 > stepThree" :step="stepThree">
         Confirm
       </v-stepper-step>
     </v-stepper-header>
 
     <v-stepper-items>
-      <v-stepper-content step="1">
+      <v-stepper-content v-if="isNewDomain" step="1">
         <div class="title">Enter domain name</div>
         <domain-form class="mb-4"></domain-form>
         <v-btn
@@ -38,7 +43,7 @@
         </v-btn>
       </v-stepper-content>
 
-      <v-stepper-content step="2">
+      <v-stepper-content :step="stepTwo">
         <div class="title">Choose subscription plan</div>
         <select-subscription></select-subscription>
         <div v-if="hasTrial" class="body-1 mb-4">
@@ -46,7 +51,9 @@
           after trial. Cancel anytime.
         </div>
         <v-btn
-          @click="deleteDomainAndSendToDomains"
+          @click="
+            isNewDomain ? deleteDomainAndSendToDomains() : backToDomains()
+          "
           class="text-capitalize"
           color="primary"
           text
@@ -54,7 +61,7 @@
           Cancel
         </v-btn>
         <v-btn
-          @click="e1 = 3"
+          @click="e1 = stepThree"
           class="text-capitalize"
           color="info"
           rounded
@@ -64,10 +71,15 @@
         </v-btn>
       </v-stepper-content>
 
-      <v-stepper-content step="3">
+      <v-stepper-content :step="stepThree">
         <div class="title">Confirm your order</div>
         <confirm-order class="mb-4"></confirm-order>
-        <v-btn @click="e1 = 1" class="text-capitalize" color="primary" text>
+        <v-btn
+          @click="e1 = stepTwo"
+          class="text-capitalize"
+          color="primary"
+          text
+        >
           Back
         </v-btn>
         <v-btn
@@ -127,7 +139,16 @@ export default {
     ...mapState("authModule", ["token", "username"]),
     ...mapState("stripeModule", ["selectedPlan", "domain"]),
     ...mapState("alarmModule", ["createDomainSuccess"]),
-    ...mapGetters("domainsModule", ["hasTrial"])
+    ...mapGetters("domainsModule", ["hasTrial"]),
+    isNewDomain() {
+      return this.$route.name === "create-domain";
+    },
+    stepTwo() {
+      return this.isNewDomain ? 2 : 1;
+    },
+    stepThree() {
+      return this.isNewDomain ? 3 : 2;
+    }
   },
   watch: {
     createDomainSuccess() {
