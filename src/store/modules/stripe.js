@@ -1,4 +1,5 @@
 const state = {
+  domain: "",
   subscriptionPlans: [
     {
       title: "Monthly",
@@ -34,6 +35,9 @@ const state = {
 };
 
 const mutations = {
+  addDomain(state, payload) {
+    state.domain = payload;
+  },
   selectPlan(state, index) {
     const plan = state.subscriptionPlans[index];
     state.selectedPlan = Object.assign({}, state.selectPlan, plan);

@@ -89,12 +89,8 @@ export default {
     }
   },
   computed: {
-    ...mapState("stripeModule", ["session", "selectedPlan"]),
-    ...mapState("domainsModule", ["domains"]),
-    ...mapGetters("domainsModule", ["noDomains", "hasTrial"]),
-    domain() {
-      return this.$route.params.domainName;
-    }
+    ...mapState("stripeModule", ["session", "selectedPlan", "domain"]),
+    ...mapGetters("domainsModule", ["noDomains", "hasTrial"])
   },
   watch: {
     session(newValue) {

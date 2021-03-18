@@ -44,7 +44,8 @@ export default {
     },
     getAllServices() {
       this.$socket.emit("get_all_services", {
-        token: this.token
+        token: this.token,
+        domain: this.firstDomain
       });
     },
     getOwnedGhosts() {
@@ -56,7 +57,7 @@ export default {
   computed: {
     ...mapState("authModule", ["token", "username"]),
     ...mapState("alarmModule", ["deleteDomainSuccess"]),
-    ...mapGetters("domainsModule", ["noDomains"]),
+    ...mapGetters("domainsModule", ["noDomains", "firstDomain"]),
     title() {
       return this.$route.meta.title;
     },

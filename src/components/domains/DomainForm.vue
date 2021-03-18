@@ -6,38 +6,19 @@
     @submit.prevent="submitDomainForm"
     lazy-validation
   >
-    <v-card>
-      <v-card-title>
-        Choose name for you domain
-      </v-card-title>
-      <v-card-text>
-        <v-text-field
-          v-model="domainName"
-          :rules="domainRules"
-          :counter="64"
-          label="Domain Name"
-          prefix="https://"
-          suffix=".cioty.com"
-        ></v-text-field>
-      </v-card-text>
-    </v-card>
-    <div align="end">
-      <v-btn
-        align="end"
-        color="info"
-        class="text-capitalize"
-        type="submit"
-        small
-        rounded
-      >
-        Create
-      </v-btn>
-    </div>
+    <v-text-field
+      v-model="domainName"
+      :rules="domainRules"
+      :counter="64"
+      label="Domain Name"
+      prefix="https://"
+      suffix=".cioty.com"
+    ></v-text-field>
   </v-form>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -52,6 +33,7 @@ export default {
     };
   },
   methods: {
+    ...mapMutations("stripeModule", ["addDomain"]),
     submitDomainForm() {
       const isValid = this.$refs.domainForm.validate();
       if (isValid) {
@@ -65,7 +47,13 @@ export default {
     }
   },
   computed: {
-    ...mapState("authModule", ["username", "token"])
+    ...mapState("authModule", ["username", "token"]),
+    ...mapState("alarmModule", ["createDomainSuccess"])
+  },
+  watch: {
+    createDomainSuccess() {
+      this.addDomain(this.domainName);
+    }
   }
 };
 </script>

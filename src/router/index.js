@@ -11,9 +11,8 @@ import MicropageForm from "../components/service/micropage-form/MicropageForm";
 import SwitchTabs from "../components/service/SwitchTabs";
 import OtherActions from "../components/service/OtherActions";
 import DomainsTable from "../components/domains/DomainsTable";
-import CreateDomain from "../components/domain/CreateDomain";
-import DomainActivation from "../components/domain/DomainActivation";
-import CheckoutSuccess from "../components/domain/CheckoutSuccess";
+import NewDomain from "../components/domains/NewDomain";
+import CheckoutSuccess from "../components/domains/CheckoutSuccess";
 import GhostsPage from "../components/ghosts/GhostsPage";
 import GhostDetailsPage from "../components/ghost-details/GhostDetailsPage";
 import SideBar from "../components/SideBar";
@@ -64,15 +63,10 @@ const routes = [
       {
         path: "create-domain",
         name: "create-domain",
-        component: CreateDomain,
+        component: NewDomain,
         meta: {
           title: "New Domain"
         }
-      },
-      {
-        path: ":domainName/activate",
-        name: "domain-activate",
-        component: DomainActivation
       }
     ],
     beforeEnter: authGuard
