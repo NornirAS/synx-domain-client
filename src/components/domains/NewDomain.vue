@@ -17,7 +17,7 @@
     <v-stepper-items>
       <v-stepper-content step="1">
         <div class="title">Enter domain name</div>
-        <domain-form class="mb-6"></domain-form>
+        <domain-form class="mb-4"></domain-form>
         <v-btn
           @click="backToDomains"
           class="text-capitalize"
@@ -41,7 +41,7 @@
       <v-stepper-content step="2">
         <div class="title">Choose subscription plan</div>
         <select-subscription></select-subscription>
-        <div v-if="hasTrial" class="body-1 mb-6">
+        <div v-if="hasTrial" class="body-1 mb-4">
           30 days free trial for all subscription plans. Payment will be done
           after trial. Cancel anytime.
         </div>
@@ -66,7 +66,7 @@
 
       <v-stepper-content step="3">
         <div class="title">Confirm your order</div>
-        <confirm-order class="mb-6"></confirm-order>
+        <confirm-order class="mb-4"></confirm-order>
         <v-btn @click="e1 = 1" class="text-capitalize" color="primary" text>
           Back
         </v-btn>

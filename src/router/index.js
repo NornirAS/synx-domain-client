@@ -13,6 +13,7 @@ import OtherActions from "../components/service/OtherActions";
 import DomainsTable from "../components/domains/DomainsTable";
 import NewDomain from "../components/domains/NewDomain";
 import CheckoutSuccess from "../components/domains/CheckoutSuccess";
+import CheckoutCancel from "../components/domains/CheckoutCancel";
 import GhostsPage from "../components/ghosts/GhostsPage";
 import GhostDetailsPage from "../components/ghost-details/GhostDetailsPage";
 import SideBar from "../components/SideBar";
@@ -72,9 +73,13 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: "/domains/domain/:domainName/checkout-success",
-    name: "checkout-success",
+    path: "/domains/:domainName/checkout-success",
     component: CheckoutSuccess,
+    beforeEnter: authGuard
+  },
+  {
+    path: "/domains/:domainName/checkout-cancel",
+    component: CheckoutCancel,
     beforeEnter: authGuard
   },
   {

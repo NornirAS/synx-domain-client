@@ -57,6 +57,7 @@ export default {
   computed: {
     ...mapState("authModule", ["token", "username"]),
     ...mapState("alarmModule", ["deleteDomainSuccess"]),
+    ...mapState("stripeModule", ["domain"]),
     ...mapGetters("domainsModule", ["noDomains", "firstDomain"]),
     title() {
       return this.$route.meta.title;
