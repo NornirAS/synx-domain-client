@@ -53,7 +53,7 @@
 
 <script>
 import { rootDomain } from "../../core/config";
-import { mapState, mapGetters, mapActions } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import DeleteDomain from "./DeleteDomain";
 export default {
   data() {
@@ -81,46 +81,11 @@ export default {
       ]
     };
   },
-  created() {
-    if (this.noDomains) {
-      this.getAllDomains();
-    } else {
-      this.addDomainsFromStorage;
-    }
-  },
-  methods: {
-    ...mapActions("domainsModule", ["addDomainsFromStorage"]),
-    getAllDomains() {
-      this.$socket.emit("get_all_domains", {
-        token: this.token,
-        username: this.username
-      });
-    },
-    getAllServices() {
-      this.$socket.emit("get_all_services", {
-        token: this.token
-      });
-    },
-    getOwnedGhosts() {
-      this.$socket.emit("get_owned_ghosts", {
-        token: this.token
-      });
-    }
-  },
   computed: {
-    ...mapState("authModule", ["token", "username"]),
     ...mapState("domainsModule", ["domains"]),
-    ...mapState("alarmModule", ["deleteDomainSuccess"]),
     ...mapGetters("domainsModule", ["noDomains"]),
     domainsLengthLessItemsPerPage() {
       return this.domains.length <= this.itemsPerPage;
-    }
-  },
-  watch: {
-    deleteDomainSuccess() {
-      this.getAllDomains();
-      this.getAllServices();
-      this.getOwnedGhosts();
     }
   },
   components: {
