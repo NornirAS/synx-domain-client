@@ -10,7 +10,7 @@ import ServiceForm from "../components/service/service-form/ServiceForm";
 import MicropageForm from "../components/service/micropage-form/MicropageForm";
 import SwitchTabs from "../components/service/SwitchTabs";
 import OtherActions from "../components/service/OtherActions";
-import DomainsPage from "../components/domains/DomainsPage";
+import DomainsTable from "../components/domains/DomainsTable";
 import CreateDomain from "../components/domain/CreateDomain";
 import DomainActivation from "../components/domain/DomainActivation";
 import CheckoutSuccess from "../components/domain/CheckoutSuccess";
@@ -56,15 +56,21 @@ const routes = [
       {
         path: "",
         name: "domains",
-        component: DomainsPage
+        component: DomainsTable,
+        meta: {
+          title: "Domains"
+        }
       },
       {
-        path: "domain/create-domain",
+        path: "create-domain",
         name: "create-domain",
-        component: CreateDomain
+        component: CreateDomain,
+        meta: {
+          title: "New Domain"
+        }
       },
       {
-        path: "domain/:domainName/activate",
+        path: ":domainName/activate",
         name: "domain-activate",
         component: DomainActivation
       }
