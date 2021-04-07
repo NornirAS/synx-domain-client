@@ -57,7 +57,7 @@ export default {
     this.resetState();
   },
   methods: {
-    ...mapMutations("micropageFormModule", ["resetState"]),
+    ...mapMutations("micropageForm", ["resetState"]),
     submitMicropageForm() {
       const isFormValid = this.$refs.micropageForm.validate();
       if (isFormValid) {
@@ -78,7 +78,7 @@ export default {
   computed: {
     ...mapState("authentication", ["token"]),
     ...mapState("serviceForm", ["domain", "name"]),
-    ...mapState("micropageFormModule", [
+    ...mapState("micropageForm", [
       "serviceDescription",
       "schemaDescription",
       "imageUrl"

@@ -39,10 +39,10 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("micropageFormModule", ["addSchemaDescription"])
+    ...mapMutations("micropageForm", ["addSchemaDescription"])
   },
   computed: {
-    ...mapState("micropageFormModule", ["schemaDescription"])
+    ...mapState("micropageForm", ["schemaDescription"])
   },
   watch: {
     schemaDescription(newValue) {

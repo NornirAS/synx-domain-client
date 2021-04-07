@@ -38,10 +38,10 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("micropageFormModule", ["addServiceDescription"])
+    ...mapMutations("micropageForm", ["addServiceDescription"])
   },
   computed: {
-    ...mapState("micropageFormModule", ["serviceDescription"])
+    ...mapState("micropageForm", ["serviceDescription"])
   },
   watch: {
     serviceDescription(newValue) {

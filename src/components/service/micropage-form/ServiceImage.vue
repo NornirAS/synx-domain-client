@@ -28,10 +28,10 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("micropageFormModule", ["addImageUrl"])
+    ...mapMutations("micropageForm", ["addImageUrl"])
   },
   computed: {
-    ...mapState("micropageFormModule", ["imageUrl"])
+    ...mapState("micropageForm", ["imageUrl"])
   },
   watch: {
     imageUrl(newValue) {
