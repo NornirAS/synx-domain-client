@@ -54,10 +54,10 @@ export default {
     this.serviceSchema = this.schema;
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["addSchema", "addIsValidLinks"])
+    ...mapMutations("serviceForm", ["addSchema", "addIsValidLinks"])
   },
   computed: {
-    ...mapState("serviceFormModule", ["schema"]),
+    ...mapState("serviceForm", ["schema"]),
     serviceSchemaSingleLineString() {
       return this.serviceSchema.replace(/\n/g, "");
     },

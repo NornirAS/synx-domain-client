@@ -67,7 +67,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["addKeywords"]),
+    ...mapMutations("serviceForm", ["addKeywords"]),
     add() {
       this.serviceKeywords.push(this.keyword);
       this.keyword = "";
@@ -77,7 +77,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("serviceFormModule", ["keywords"]),
+    ...mapState("serviceForm", ["keywords"]),
     keywordsArray() {
       return this.keywords.split(" ");
     },

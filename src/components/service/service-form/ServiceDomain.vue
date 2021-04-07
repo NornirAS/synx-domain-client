@@ -46,7 +46,7 @@ export default {
     this.addDomain(this.firstActiveDomain);
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["addDomain"]),
+    ...mapMutations("serviceForm", ["addDomain"]),
     selectDomain(domain) {
       this.selectedDomain = domain;
       this.addDomain(domain);

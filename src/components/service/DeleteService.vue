@@ -66,8 +66,8 @@ export default {
   },
   computed: {
     ...mapState("authentication", ["token"]),
-    ...mapState("serviceFormModule", ["domain", "name"]),
-    ...mapGetters("serviceFormModule", ["serviceURI"])
+    ...mapState("serviceForm", ["domain", "name"]),
+    ...mapGetters("serviceForm", ["serviceURI"])
   },
   components: {
     DialogCard

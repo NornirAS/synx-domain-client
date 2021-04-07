@@ -35,10 +35,10 @@ export default {
     this.serviceTimeout = this.timeout;
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["setTimeout"])
+    ...mapMutations("serviceForm", ["setTimeout"])
   },
   computed: {
-    ...mapState("serviceFormModule", ["timeout"])
+    ...mapState("serviceForm", ["timeout"])
   },
   components: {
     FormInputCard

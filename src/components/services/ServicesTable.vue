@@ -99,7 +99,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["editService"]),
+    ...mapMutations("serviceForm", ["editService"]),
     selectedDomain(domain) {
       this.sortByDomain = domain;
     },

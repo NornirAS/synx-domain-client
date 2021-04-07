@@ -40,10 +40,10 @@ export default {
     this.serviceInlinePostScript = this.decodedInlinePostScript;
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["addInlinePostScript"])
+    ...mapMutations("serviceForm", ["addInlinePostScript"])
   },
   computed: {
-    ...mapState("serviceFormModule", ["inlinePostScript"]),
+    ...mapState("serviceForm", ["inlinePostScript"]),
     encodedInlinePostScript() {
       return btoa(this.serviceInlinePostScript);
     },

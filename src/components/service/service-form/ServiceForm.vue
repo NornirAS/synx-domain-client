@@ -70,7 +70,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["resetServiceForm"]),
+    ...mapMutations("serviceForm", ["resetServiceForm"]),
     submitServiceForm() {
       const isFormValid = this.$refs.serviceForm.validate();
       if (isFormValid && this.isServiceUpdate) {
@@ -110,7 +110,7 @@ export default {
   },
   computed: {
     ...mapState("authentication", ["token", "username"]),
-    ...mapState("serviceFormModule", [
+    ...mapState("serviceForm", [
       "domain",
       "name",
       "description",

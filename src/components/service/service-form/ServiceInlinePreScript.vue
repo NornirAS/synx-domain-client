@@ -40,10 +40,10 @@ export default {
     this.serviceInlinePreScript = this.decodedInlinePreScript;
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["addInlinePreScript"])
+    ...mapMutations("serviceForm", ["addInlinePreScript"])
   },
   computed: {
-    ...mapState("serviceFormModule", ["inlinePreScript"]),
+    ...mapState("serviceForm", ["inlinePreScript"]),
     encodedInlinePreScript() {
       return btoa(this.serviceInlinePreScript);
     },

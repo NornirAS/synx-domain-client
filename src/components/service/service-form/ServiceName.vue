@@ -42,10 +42,10 @@ export default {
     this.serviceName = this.name;
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["addName"])
+    ...mapMutations("serviceForm", ["addName"])
   },
   computed: {
-    ...mapState("serviceFormModule", ["name"]),
+    ...mapState("serviceForm", ["name"]),
     isServiceUpdate() {
       return this.$route.name === "serviceUpdate";
     }

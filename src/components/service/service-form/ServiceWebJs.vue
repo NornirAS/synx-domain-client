@@ -38,10 +38,10 @@ export default {
     this.serviceWebJS = this.webJS;
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["addWebJS"])
+    ...mapMutations("serviceForm", ["addWebJS"])
   },
   computed: {
-    ...mapState("serviceFormModule", ["webJS"])
+    ...mapState("serviceForm", ["webJS"])
   },
   components: {
     FormInputCard

@@ -49,10 +49,10 @@ export default {
     this.serviceCommand = this.command;
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["addCommand"])
+    ...mapMutations("serviceForm", ["addCommand"])
   },
   computed: {
-    ...mapState("serviceFormModule", ["command"]),
+    ...mapState("serviceForm", ["command"]),
     removeNewLine() {
       return this.serviceCommand.replace(/\n/g, "");
     },

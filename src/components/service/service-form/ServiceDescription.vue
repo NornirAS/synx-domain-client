@@ -39,10 +39,10 @@ export default {
     this.serviceDescription = this.description;
   },
   methods: {
-    ...mapMutations("serviceFormModule", ["addDescription"])
+    ...mapMutations("serviceForm", ["addDescription"])
   },
   computed: {
-    ...mapState("serviceFormModule", ["description"])
+    ...mapState("serviceForm", ["description"])
   },
   components: {
     FormInputCard

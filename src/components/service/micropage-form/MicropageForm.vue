@@ -77,13 +77,13 @@ export default {
   },
   computed: {
     ...mapState("authentication", ["token"]),
-    ...mapState("serviceFormModule", ["domain", "name"]),
+    ...mapState("serviceForm", ["domain", "name"]),
     ...mapState("micropageFormModule", [
       "serviceDescription",
       "schemaDescription",
       "imageUrl"
     ]),
-    ...mapGetters("serviceFormModule", ["serviceURL"])
+    ...mapGetters("serviceForm", ["serviceURL"])
   },
   components: {
     ServiceImage,

@@ -78,7 +78,7 @@ export default {
     ]),
     ...mapGetters("services", ["noServices"]),
     ...mapGetters("domains", ["noDomains", "hasActiveDomains", "firstDomain"]),
-    ...mapGetters("serviceFormModule", ["serviceURI", "serviceURL"]),
+    ...mapGetters("serviceForm", ["serviceURI", "serviceURL"]),
     title() {
       return this.$route.meta.title;
     },
