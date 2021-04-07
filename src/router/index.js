@@ -16,7 +16,8 @@ import NewDomain from "../components/domains/NewDomain";
 import AddGhosts from "../components/ghosts/AddGhost";
 import GhostsTable from "../components/ghosts/GhostsTable";
 import AboutUri from "../components/ghosts/AboutUri";
-import GhostDetailsPage from "../components/ghost-details/GhostDetailsPage";
+import GhostDetails from "../components/ghost-details/GhostDetails";
+import GhostActions from "../components/ghost-details/GhostActions";
 import SideBar from "../components/SideBar";
 import PageNotFound from "../components/empty-page/PageNotFound";
 
@@ -145,7 +146,13 @@ const routes = [
       {
         path: ":serviceName##:instance",
         name: "ghostDetails",
-        component: GhostDetailsPage
+        components: {
+          default: GhostDetails,
+          "side-right": GhostActions
+        },
+        meta: {
+          title: "Ghost Details Overview:"
+        }
       }
     ],
     beforeEnter: authGuard
@@ -156,9 +163,6 @@ const routes = [
     components: {
       default: Account,
       "side-bar": SideBar
-    },
-    meta: {
-      breadcrumb: "Account"
     },
     beforeEnter: authGuard
   },

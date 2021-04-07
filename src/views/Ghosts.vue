@@ -4,6 +4,9 @@
       <div slot="title">
         {{ title }}
       </div>
+      <div v-if="isGhostDetails" slot="subtitle">
+        {{ domainURI }}<span class="font-weight-bold">{{ ghostID }}</span>
+      </div>
     </page-title>
     <div slot="page-content">
       <domain-empty v-if="noDomains && noServices && noGhosts"></domain-empty>
@@ -28,6 +31,9 @@ export default {
     if (this.noGhosts) {
       this.getOwnedGhosts();
     }
+    if (this.isGhostDetails) {
+      this.getGhostStatus();
+    }
     this.lookForNewGhosts();
   },
   methods: {
@@ -41,6 +47,15 @@ export default {
         token: this.token,
         username: this.username
       });
+    },
+    getGhostStatus() {
+      this.$socket.emit("get_ghost_status", {
+        token: this.token,
+        username: this.username,
+        domain: this.selectedGhost.domain,
+        service: this.selectedGhost.service,
+        instance: this.selectedGhost.instance
+      });
     }
   },
   computed: {
@@ -48,14 +63,22 @@ export default {
     ...mapGetters("services", ["noServices"]),
     ...mapGetters("domains", ["noDomains"]),
     ...mapGetters("ghosts", ["noGhosts"]),
+    ...mapGetters("ghostDetails", ["domainURI", "ghostID"]),
     ...mapState("alert", [
       "addGhostSuccess",
       "acceptGhostSuccess",
       "declineGhostSuccess",
-      "removeGhostSuccess"
+      "removeGhostSuccess",
+      "giveReadAccessSuccess",
+      "removeReadAccessSuccess",
+      "addPrimaryGhostSuccess",
+      "removePrimaryGhostSuccess"
     ]),
     title() {
       return this.$route.meta.title;
+    },
+    isGhostDetails() {
+      return this.$route.name === "ghostDetails";
     }
   },
   watch: {
@@ -72,6 +95,18 @@ export default {
     },
     removeGhostSuccess() {
       this.getOwnedGhosts();
+    },
+    giveReadAccessSuccess() {
+      this.getGhostStatus();
+    },
+    removeReadAccessSuccess() {
+      this.getGhostStatus();
+    },
+    addPrimaryGhostSuccess() {
+      this.getGhostStatus();
+    },
+    removePrimaryGhostSuccess() {
+      this.getGhostStatus();
     }
   },
   components: {
