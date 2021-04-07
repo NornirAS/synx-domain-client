@@ -23,15 +23,6 @@ const getters = {
   noDomains({ domains }) {
     return domains.length === 0;
   },
-  hasInactiveDomain({ domains }) {
-    return domains.some(domain => domain.active === true);
-  },
-  hasSingleDomain({ domains }) {
-    return domains.length === 1;
-  },
-  hasTrial(state, { hasSingleDomain, hasInactiveDomain }) {
-    return hasSingleDomain === hasInactiveDomain;
-  },
   domainNames({ domains }, { noDomains }) {
     if (noDomains) {
       return [];

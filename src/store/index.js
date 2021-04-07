@@ -8,7 +8,6 @@ import ghostDetails from "./modules/ghost-details";
 import alarmModule from "./modules/alarm";
 import serviceFormModule from "./modules/service-form";
 import micropageFormModule from "./modules/micropage-form";
-import stripeModule from "./modules/stripe";
 
 Vue.use(Vuex);
 
@@ -33,7 +32,6 @@ export default new Vuex.Store({
     ghostDetails,
     alarmModule,
     serviceFormModule,
-    micropageFormModule,
-    stripeModule
+    micropageFormModule
   }
 });

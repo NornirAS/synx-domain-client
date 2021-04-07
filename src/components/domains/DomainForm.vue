@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
@@ -33,7 +33,6 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("stripeModule", ["addDomain"]),
     submitDomainForm() {
       const isValid = this.$refs.domainForm.validate();
       if (isValid) {
@@ -49,11 +48,6 @@ export default {
   computed: {
     ...mapState("authModule", ["username", "token"]),
     ...mapState("alarmModule", ["createDomainSuccess"])
-  },
-  watch: {
-    createDomainSuccess() {
-      this.addDomain(this.domainName);
-    }
   }
 };
 </script>

@@ -15,7 +15,7 @@
       </v-btn>
     </page-title>
     <div slot="page-content">
-      <domains-empty v-if="noDomains"></domains-empty>
+      <domains-empty v-if="noDomains && isDomainsPage"></domains-empty>
       <router-view></router-view>
     </div>
   </page-layout>
@@ -56,8 +56,7 @@ export default {
   },
   computed: {
     ...mapState("authModule", ["token", "username"]),
-    ...mapState("alarmModule", ["deleteDomainSuccess"]),
-    ...mapState("stripeModule", ["domain"]),
+    ...mapState("alarmModule", ["createDomainSuccess", "deleteDomainSuccess"]),
     ...mapGetters("domainsModule", ["noDomains", "firstDomain"]),
     title() {
       return this.$route.meta.title;
@@ -67,6 +66,9 @@ export default {
     }
   },
   watch: {
+    createDomainSuccess() {
+      this.getAllDomains();
+    },
     deleteDomainSuccess() {
       this.getAllDomains();
       this.getAllServices();

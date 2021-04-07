@@ -2,16 +2,6 @@
   <page-layout>
     <page-title slot="page-title">
       <div slot="title">My Account</div>
-      <v-btn
-        @click="customerPortal"
-        slot="action"
-        class="text-capitalize"
-        rounded
-        small
-        color="info"
-      >
-        Manage Subscriptions
-      </v-btn>
     </page-title>
     <v-card slot="page-content" class="body-1">
       <v-row>
@@ -62,22 +52,8 @@ export default {
       showToken: false
     };
   },
-  methods: {
-    customerPortal() {
-      this.$socket.emit("customer_portal", {
-        token: this.token,
-        username: this.username
-      });
-    }
-  },
   computed: {
-    ...mapState("authModule", ["token", "username"]),
-    ...mapState("stripeModule", ["customerPortalUrl"])
-  },
-  watch: {
-    customerPortalUrl(newValue) {
-      window.location.href = newValue;
-    }
+    ...mapState("authModule", ["token", "username"])
   },
   components: {
     PageTitle,

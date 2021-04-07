@@ -23,18 +23,8 @@
       </template>
       <template v-slot:[`item.activation`]="{ item }">
         <div align="end">
-          <v-btn
-            v-if="!item.active"
-            @click="toActivateDomain(item.name)"
-            color="primary"
-            class="text-capitalize ma-0"
-            rounded
-            x-small
-          >
-            Activate
-          </v-btn>
-          <v-chip v-else color="accent" x-small>
-            Active
+          <v-chip color="accent" x-small>
+            {{ item.active ? "Active" : "Inactive" }}
           </v-chip>
         </div>
       </template>
@@ -50,7 +40,7 @@
 
 <script>
 import { rootDomain } from "../../core/config";
-import { mapState, mapGetters, mapMutations } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import DeleteDomain from "./DeleteDomain";
 export default {
   data() {
@@ -77,13 +67,6 @@ export default {
         }
       ]
     };
-  },
-  methods: {
-    ...mapMutations("stripeModule", ["addDomain"]),
-    toActivateDomain(domain) {
-      this.addDomain(domain);
-      this.$router.push({ name: "activate-domain" });
-    }
   },
   computed: {
     ...mapState("authModule", ["token", "username"]),
