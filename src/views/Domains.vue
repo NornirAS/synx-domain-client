@@ -35,7 +35,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("domainsModule", ["addDomainsFromStorage"]),
+    ...mapActions("domains", ["addDomainsFromStorage"]),
     getAllDomains() {
       this.$socket.emit("get_all_domains", {
         token: this.token,
@@ -57,7 +57,7 @@ export default {
   computed: {
     ...mapState("authModule", ["token", "username"]),
     ...mapState("alarmModule", ["createDomainSuccess", "deleteDomainSuccess"]),
-    ...mapGetters("domainsModule", ["noDomains", "firstDomain"]),
+    ...mapGetters("domains", ["noDomains", "firstDomain"]),
     title() {
       return this.$route.meta.title;
     },

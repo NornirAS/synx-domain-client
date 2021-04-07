@@ -70,8 +70,8 @@ export default {
   },
   computed: {
     ...mapState("authModule", ["token", "username"]),
-    ...mapState("domainsModule", ["domains"]),
-    ...mapGetters("domainsModule", ["noDomains"]),
+    ...mapState("domains", ["domains"]),
+    ...mapGetters("domains", ["noDomains"]),
     domainsLengthLessItemsPerPage() {
       return this.domains.length <= this.itemsPerPage;
     }

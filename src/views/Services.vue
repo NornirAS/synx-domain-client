@@ -75,11 +75,7 @@ export default {
       "updateMicropageSuccess"
     ]),
     ...mapGetters("servicesModule", ["noServices"]),
-    ...mapGetters("domainsModule", [
-      "noDomains",
-      "hasActiveDomains",
-      "firstDomain"
-    ]),
+    ...mapGetters("domains", ["noDomains", "hasActiveDomains", "firstDomain"]),
     ...mapGetters("serviceFormModule", ["serviceURI", "serviceURL"]),
     title() {
       return this.$route.meta.title;

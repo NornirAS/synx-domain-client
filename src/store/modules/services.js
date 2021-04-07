@@ -31,7 +31,7 @@ const getters = {
   },
   servicesUnderActiveDomain({ services }, getters, rootState, rootGetters) {
     const test = services.filter(service =>
-      rootGetters["domainsModule/activeDomainNames"].includes(service.domain)
+      rootGetters["domains/activeDomainNames"].includes(service.domain)
     );
     return test;
   }

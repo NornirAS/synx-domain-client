@@ -206,7 +206,7 @@ export default {
   computed: {
     ...mapState("authModule", ["token", "username"]),
     ...mapGetters("servicesModule", ["noServices"]),
-    ...mapGetters("domainsModule", ["noDomains", "hasActiveDomains"]),
+    ...mapGetters("domains", ["noDomains", "hasActiveDomains"]),
     ...mapGetters("ghosts", ["allGhosts", "noGhosts"]),
     ...mapState("alarmModule", [
       "addGhostSuccess",

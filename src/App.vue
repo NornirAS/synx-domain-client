@@ -20,7 +20,7 @@ export default {
       this.$store.dispatch("authModule/addUsernameFromStorage");
     }
     if (sessionStorage.getItem("domains")) {
-      this.$store.dispatch("domainsModule/addDomainsFromStorage");
+      this.$store.dispatch("domains/addDomainsFromStorage");
     }
     if (sessionStorage.getItem("services")) {
       this.$store.dispatch("servicesModule/addServicesFromStorage");
