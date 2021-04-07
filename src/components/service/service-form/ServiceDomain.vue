@@ -57,7 +57,7 @@ export default {
       return this.$route.name === "serviceUpdate";
     },
     ...mapGetters("servicesFormModule", ["noServices"]),
-    ...mapGetters("domainsModule", ["noDomains", "activeDomains"]),
+    ...mapGetters("domains", ["noDomains", "activeDomains"]),
     firstActiveDomain() {
       return this.activeDomains[0].name;
     }

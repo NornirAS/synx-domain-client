@@ -23,7 +23,7 @@ export default {
       this.$store.dispatch("domains/addDomainsFromStorage");
     }
     if (sessionStorage.getItem("services")) {
-      this.$store.dispatch("servicesModule/addServicesFromStorage");
+      this.$store.dispatch("services/addServicesFromStorage");
     }
     if (localStorage.getItem("expirationDate")) {
       this.$store.dispatch("authModule/setSignOutTimer");

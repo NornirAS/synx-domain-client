@@ -27,8 +27,10 @@
       </v-btn>
     </page-title>
     <div slot="page-content">
-      <services-empty v-if="!noDomains && noServices"></services-empty>
-      <domain-empty v-if="noDomains && noServices"></domain-empty>
+      <services-empty
+        v-if="!noDomains && noServices && isServices"
+      ></services-empty>
+      <domain-empty v-if="noDomains && noServices && isServices"></domain-empty>
       <router-view name="switch-tabs"></router-view>
       <router-view></router-view>
     </div>
@@ -53,7 +55,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("servicesModule", ["addServicesFromStorage"]),
+    ...mapActions("services", ["addServicesFromStorage"]),
     getAllServices() {
       this.$socket.emit("get_all_services", {
         token: this.token,
@@ -74,7 +76,7 @@ export default {
       "deleteServiceSuccess",
       "updateMicropageSuccess"
     ]),
-    ...mapGetters("servicesModule", ["noServices"]),
+    ...mapGetters("services", ["noServices"]),
     ...mapGetters("domains", ["noDomains", "hasActiveDomains", "firstDomain"]),
     ...mapGetters("serviceFormModule", ["serviceURI", "serviceURL"]),
     title() {

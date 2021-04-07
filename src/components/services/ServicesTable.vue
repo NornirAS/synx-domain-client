@@ -112,8 +112,8 @@ export default {
     }
   },
   computed: {
-    ...mapState("servicesModule", ["services"]),
-    ...mapGetters("servicesModule", ["noServices"]),
+    ...mapState("services", ["services"]),
+    ...mapGetters("services", ["noServices"]),
     ...mapGetters("domains", ["noDomains", "domainNamesWithAllOption"]),
     sortBy() {
       return this.sortByDomain === "All"

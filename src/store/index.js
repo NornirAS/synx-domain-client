@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import authModule from "./modules/authentication";
-import servicesModule from "./modules/services";
+import services from "./modules/services";
 import domains from "./modules/domains";
 import ghosts from "./modules/ghosts";
 import ghostDetails from "./modules/ghost-details";
@@ -25,7 +25,7 @@ export default new Vuex.Store({
     }
   },
   modules: {
-    servicesModule,
+    services,
     domains,
     authModule,
     ghosts,
