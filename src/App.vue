@@ -10,50 +10,39 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "App",
   created() {
     if (sessionStorage.getItem("token")) {
-      this.$store.dispatch("authentication/addTokenFromStorage");
+      this.addTokenFromStorage();
     }
     if (sessionStorage.getItem("username")) {
-      this.$store.dispatch("authentication/addUsernameFromStorage");
+      this.addUsernameFromStorage();
     }
     if (sessionStorage.getItem("domains")) {
-      this.$store.dispatch("domains/addDomainsFromStorage");
+      this.addDomainsFromStorage();
     }
     if (sessionStorage.getItem("services")) {
-      this.$store.dispatch("services/addServicesFromStorage");
+      this.addServicesFromStorage();
     }
-    if (localStorage.getItem("expirationDate")) {
-      this.$store.dispatch("authentication/setSignOutTimer");
-    }
-    this.$store.commit("isMobile", this.isMobile);
+  },
+  methods: {
+    ...mapActions("authentication", [
+      "addTokenFromStorage",
+      "addUsernameFromStorage"
+    ]),
+    ...mapActions("domains", ["addDomainsFromStorage"]),
+    ...mapActions("services", ["addServicesFromStorage"])
   },
   computed: {
-    isAuth() {
-      return this.$store.getters["authentication/isAuthenticated"];
-    },
-    isMobile() {
-      return this.$vuetify.breakpoint.smAndDown;
-    },
-    successMessage() {
-      return this.$store.state.alert.successMessage;
-    }
+    ...mapGetters("authentication", ["isAuthenticated"])
   },
   watch: {
-    isAuth(newValue) {
+    isAuthenticated(newValue) {
       const isHome = this.$route.name === "home";
       if (newValue === false && !isHome) {
         this.$router.push({ name: "home" });
-      }
-    },
-    isMobile() {
-      this.$store.commit("isMobile", this.isMobile);
-    },
-    successMessage(newValue) {
-      if (newValue !== "") {
-        console.log(newValue);
       }
     }
   }

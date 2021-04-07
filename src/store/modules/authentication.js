@@ -1,7 +1,7 @@
 const state = {
-  username: "",
-  token: "",
-  authError: ""
+  username: null,
+  token: null,
+  authError: null
 };
 
 const mutations = {
@@ -15,40 +15,27 @@ const mutations = {
     state.authError = payload;
   },
   signOut(state) {
-    state.token = "";
-    state.username = "";
+    state.token = null;
+    state.username = null;
     sessionStorage.clear();
   },
   resetError(state) {
-    state.authError = "";
+    state.authError = null;
   }
 };
 
 const actions = {
-  // setSignOutTimer({ commit }) {
-  //   const expirationDate = localStorage.getItem("expirationDate");
-  //   const expiredIn = new Date(expirationDate).getTime();
-  //   const now = new Date().getTime();
-  //   const expirationTime = expiredIn - now;
-  //   setTimeout(() => {
-  //     commit("signOut");
-  //   }, expirationTime);
-  // },
   SOCKET_authentication({ commit }, { ActiveToken }) {
     if (ActiveToken) {
       sessionStorage.setItem("token", ActiveToken);
       commit("addToken", ActiveToken);
-      // const now = new Date();
-      // const expirationTime = 60 * 60 * 24 * 1000;
-      // const expirationDate = new Date(now.getTime() + expirationTime);
-      // localStorage.setItem("expirationDate", expirationDate);
     } else {
       commit("authError", "Wrong username or password!");
     }
   },
-  addUsername({ commit }, data) {
+  addUsername({ dispatch }, data) {
     sessionStorage.setItem("username", data);
-    commit("addUsername", data);
+    dispatch("addUsernameFromStorage", data);
   },
   addTokenFromStorage({ commit }) {
     const token = sessionStorage.getItem("token");
@@ -62,7 +49,7 @@ const actions = {
 
 const getters = {
   isAuthenticated({ token }) {
-    return token !== "";
+    return token !== null;
   }
 };
 

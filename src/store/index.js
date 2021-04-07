@@ -12,18 +12,6 @@ import micropageForm from "./modules/micropage-form";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    showDrawerOnMobile: false,
-    isMobile: false
-  },
-  mutations: {
-    isMobile(state, payload) {
-      state.isMobile = payload;
-    },
-    showDrawerOnMobile(state, payload) {
-      state.showDrawerOnMobile = payload;
-    }
-  },
   modules: {
     services,
     domains,
