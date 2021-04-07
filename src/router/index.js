@@ -13,7 +13,9 @@ import SwitchTabs from "../components/service/SwitchTabs";
 import OtherActions from "../components/service/OtherActions";
 import DomainsTable from "../components/domains/DomainsTable";
 import NewDomain from "../components/domains/NewDomain";
-import GhostsPage from "../components/ghosts/GhostsPage";
+import AddGhosts from "../components/ghosts/AddGhost";
+import GhostsTable from "../components/ghosts/GhostsTable";
+import AboutUri from "../components/ghosts/AboutUri";
 import GhostDetailsPage from "../components/ghost-details/GhostDetailsPage";
 import SideBar from "../components/SideBar";
 import PageNotFound from "../components/empty-page/PageNotFound";
@@ -131,7 +133,14 @@ const routes = [
       {
         path: "",
         name: "ghosts",
-        component: GhostsPage
+        components: {
+          default: AddGhosts,
+          secondary: GhostsTable,
+          "side-right": AboutUri
+        },
+        meta: {
+          title: "Ghosts"
+        }
       },
       {
         path: ":serviceName##:instance",
