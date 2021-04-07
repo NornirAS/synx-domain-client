@@ -27,23 +27,13 @@ const mutations = {
 const actions = {
   SOCKET_authentication({ commit }, { ActiveToken }) {
     if (ActiveToken) {
-      sessionStorage.setItem("token", ActiveToken);
       commit("addToken", ActiveToken);
     } else {
       commit("authError", "Wrong username or password!");
     }
   },
-  addUsername({ dispatch }, data) {
-    sessionStorage.setItem("username", data);
-    dispatch("addUsernameFromStorage", data);
-  },
-  addTokenFromStorage({ commit }) {
-    const token = sessionStorage.getItem("token");
-    commit("addToken", token);
-  },
-  addUsernameFromStorage({ commit }) {
-    const username = sessionStorage.getItem("username");
-    commit("addUsername", username);
+  addUsername({ commit }, data) {
+    commit("addUsername", data);
   }
 };
 

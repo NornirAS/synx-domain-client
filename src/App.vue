@@ -10,42 +10,8 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "App",
-  created() {
-    if (sessionStorage.getItem("token")) {
-      this.addTokenFromStorage();
-    }
-    if (sessionStorage.getItem("username")) {
-      this.addUsernameFromStorage();
-    }
-    if (sessionStorage.getItem("domains")) {
-      this.addDomainsFromStorage();
-    }
-    if (sessionStorage.getItem("services")) {
-      this.addServicesFromStorage();
-    }
-  },
-  methods: {
-    ...mapActions("authentication", [
-      "addTokenFromStorage",
-      "addUsernameFromStorage"
-    ]),
-    ...mapActions("domains", ["addDomainsFromStorage"]),
-    ...mapActions("services", ["addServicesFromStorage"])
-  },
-  computed: {
-    ...mapGetters("authentication", ["isAuthenticated"])
-  },
-  watch: {
-    isAuthenticated(newValue) {
-      const isHome = this.$route.name === "home";
-      if (newValue === false && !isHome) {
-        this.$router.push({ name: "home" });
-      }
-    }
-  }
+  name: "App"
 };
 </script>
 

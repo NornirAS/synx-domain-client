@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import createPersistedState from "vuex-persistedstate";
 import authentication from "./modules/authentication";
 import services from "./modules/services";
 import domains from "./modules/domains";
@@ -12,6 +13,11 @@ import micropageForm from "./modules/micropage-form";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  plugins: [
+    createPersistedState({
+      storage: window.sessionStorage
+    })
+  ],
   modules: {
     services,
     domains,

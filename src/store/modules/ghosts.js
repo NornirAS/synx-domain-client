@@ -14,7 +14,6 @@ const mutations = {
 
 const actions = {
   SOCKET_owned_ghosts({ commit }, data) {
-    sessionStorage.setItem("ghosts", JSON.stringify(data));
     commit("addGhosts", data);
   },
   SOCKET_ghosts_to_approve({ commit }, data) {
@@ -27,10 +26,6 @@ const actions = {
     } else {
       commit("ghostsToApprove", []);
     }
-  },
-  addGhostsFromStorage({ commit }) {
-    const ghosts = sessionStorage.getItem("ghosts");
-    commit("addGhosts", JSON.parse(ghosts));
   }
 };
 

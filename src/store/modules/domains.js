@@ -10,12 +10,7 @@ const mutations = {
 
 const actions = {
   SOCKET_all_domains({ commit }, data) {
-    sessionStorage.setItem("domains", JSON.stringify(data));
     commit("allDomains", data);
-  },
-  addDomainsFromStorage({ commit }) {
-    const domains = sessionStorage.getItem("domains");
-    commit("allDomains", JSON.parse(domains));
   }
 };
 

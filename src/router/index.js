@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import store from "../store";
 import Homepage from "../views/Homepage";
 import Services from "../views/Services";
 import Domains from "../views/Domains";
@@ -18,9 +19,9 @@ import SideBar from "../components/SideBar";
 import PageNotFound from "../components/empty-page/PageNotFound";
 
 Vue.use(VueRouter);
-
 const authGuard = (to, from, next) => {
-  if (sessionStorage.getItem("token")) {
+  const isAuthenticated = store.getters["authentication/isAuthenticated"];
+  if (isAuthenticated) {
     next();
   } else {
     next("/");
@@ -28,7 +29,8 @@ const authGuard = (to, from, next) => {
 };
 
 const skipHomeIfAuth = (to, from, next) => {
-  if (sessionStorage.getItem("token")) {
+  const isAuthenticated = store.getters["authentication/isAuthenticated"];
+  if (isAuthenticated) {
     next("/services");
   } else {
     next();
