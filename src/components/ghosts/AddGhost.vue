@@ -70,7 +70,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("authModule", ["token"]),
+    ...mapState("authentication", ["token"]),
     ...mapGetters("services", ["servicesUnderActiveDomain"]),
     firstService() {
       return this.servicesUnderActiveDomain[0];

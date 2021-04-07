@@ -69,7 +69,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("authModule", ["token"]),
+    ...mapState("authentication", ["token"]),
     ...mapState("alarmModule", [
       "registerServiceSuccess",
       "updateServiceSuccess",

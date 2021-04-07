@@ -55,7 +55,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("authModule", ["token", "username"]),
+    ...mapState("authentication", ["token", "username"]),
     ...mapState("alarmModule", ["createDomainSuccess", "deleteDomainSuccess"]),
     ...mapGetters("domains", ["noDomains", "firstDomain"]),
     title() {

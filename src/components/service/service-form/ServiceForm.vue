@@ -109,7 +109,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("authModule", ["token", "username"]),
+    ...mapState("authentication", ["token", "username"]),
     ...mapState("serviceFormModule", [
       "domain",
       "name",

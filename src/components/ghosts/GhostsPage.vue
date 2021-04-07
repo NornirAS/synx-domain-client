@@ -204,7 +204,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("authModule", ["token", "username"]),
+    ...mapState("authentication", ["token", "username"]),
     ...mapGetters("services", ["noServices"]),
     ...mapGetters("domains", ["noDomains", "hasActiveDomains"]),
     ...mapGetters("ghosts", ["allGhosts", "noGhosts"]),

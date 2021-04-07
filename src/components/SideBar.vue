@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     signOut() {
-      this.$store.commit("authModule/signOut");
+      this.$store.commit("authentication/signOut");
       this.$router.push({ name: "home" });
     }
   },

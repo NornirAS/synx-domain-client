@@ -69,7 +69,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("authModule", ["token", "username"]),
+    ...mapState("authentication", ["token", "username"]),
     ...mapState("domains", ["domains"]),
     ...mapGetters("domains", ["noDomains"]),
     domainsLengthLessItemsPerPage() {

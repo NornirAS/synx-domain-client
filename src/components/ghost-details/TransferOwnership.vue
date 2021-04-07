@@ -120,7 +120,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("authModule", ["username"]),
+    ...mapState("authentication", ["username"]),
     ...mapState("alarmModule", ["tranferOwnershipSuccess"])
   },
   watch: {

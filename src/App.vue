@@ -14,10 +14,10 @@ export default {
   name: "App",
   created() {
     if (sessionStorage.getItem("token")) {
-      this.$store.dispatch("authModule/addTokenFromStorage");
+      this.$store.dispatch("authentication/addTokenFromStorage");
     }
     if (sessionStorage.getItem("username")) {
-      this.$store.dispatch("authModule/addUsernameFromStorage");
+      this.$store.dispatch("authentication/addUsernameFromStorage");
     }
     if (sessionStorage.getItem("domains")) {
       this.$store.dispatch("domains/addDomainsFromStorage");
@@ -26,13 +26,13 @@ export default {
       this.$store.dispatch("services/addServicesFromStorage");
     }
     if (localStorage.getItem("expirationDate")) {
-      this.$store.dispatch("authModule/setSignOutTimer");
+      this.$store.dispatch("authentication/setSignOutTimer");
     }
     this.$store.commit("isMobile", this.isMobile);
   },
   computed: {
     isAuth() {
-      return this.$store.getters["authModule/isAuthenticated"];
+      return this.$store.getters["authentication/isAuthenticated"];
     },
     isMobile() {
       return this.$vuetify.breakpoint.smAndDown;

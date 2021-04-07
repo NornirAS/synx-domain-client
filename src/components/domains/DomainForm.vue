@@ -46,7 +46,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("authModule", ["username", "token"]),
+    ...mapState("authentication", ["username", "token"]),
     ...mapState("alarmModule", ["createDomainSuccess"])
   }
 };

@@ -47,8 +47,8 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("authModule", ["resetError"]),
-    ...mapActions("authModule", ["addUsername"]),
+    ...mapMutations("authentication", ["resetError"]),
+    ...mapActions("authentication", ["addUsername"]),
     submitForm() {
       this.$socket.emit("authenticate", {
         username: this.username,
@@ -57,8 +57,8 @@ export default {
     }
   },
   computed: {
-    ...mapState("authModule", ["authError"]),
-    ...mapGetters("authModule", ["isAuthenticated"])
+    ...mapState("authentication", ["authError"]),
+    ...mapGetters("authentication", ["isAuthenticated"])
   },
   watch: {
     isAuthenticated() {
