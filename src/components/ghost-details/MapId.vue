@@ -103,7 +103,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("alarmModule", ["addMapIdSuccess"])
+    ...mapState("alert", ["addMapIdSuccess"])
   },
   watch: {
     addMapIdSuccess() {

@@ -208,7 +208,7 @@ export default {
     ...mapGetters("services", ["noServices"]),
     ...mapGetters("domains", ["noDomains", "hasActiveDomains"]),
     ...mapGetters("ghosts", ["allGhosts", "noGhosts"]),
-    ...mapState("alarmModule", [
+    ...mapState("alert", [
       "addGhostSuccess",
       "acceptGhostSuccess",
       "declineGhostSuccess",

@@ -24,7 +24,7 @@ import AlertMessage from "./globals/AlertMessage";
 export default {
   computed: {
     alerts() {
-      return this.$store.state.alarmModule.alerts;
+      return this.$store.state.alert.alerts;
     }
   },
   components: {

@@ -138,7 +138,7 @@ export default {
   computed: {
     ...mapState("authentication", ["token", "username"]),
     ...mapState("ghostDetails", ["selectedGhost"]),
-    ...mapState("alarmModule", [
+    ...mapState("alert", [
       "giveReadAccessSuccess",
       "removeReadAccessSuccess",
       "addPrimaryGhostSuccess",

@@ -17,7 +17,7 @@ export default {
     this.removeAlert();
   },
   methods: {
-    ...mapActions("alarmModule", ["removeAlert"])
+    ...mapActions("alert", ["removeAlert"])
   },
   computed: {
     type() {

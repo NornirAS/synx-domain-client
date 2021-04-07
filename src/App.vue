@@ -38,7 +38,7 @@ export default {
       return this.$vuetify.breakpoint.smAndDown;
     },
     successMessage() {
-      return this.$store.state.alarmModule.successMessage;
+      return this.$store.state.alert.successMessage;
     }
   },
   watch: {

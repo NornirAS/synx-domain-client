@@ -5,7 +5,7 @@ import services from "./modules/services";
 import domains from "./modules/domains";
 import ghosts from "./modules/ghosts";
 import ghostDetails from "./modules/ghost-details";
-import alarmModule from "./modules/alarm";
+import alert from "./modules/alert";
 import serviceFormModule from "./modules/service-form";
 import micropageFormModule from "./modules/micropage-form";
 
@@ -30,7 +30,7 @@ export default new Vuex.Store({
     authentication,
     ghosts,
     ghostDetails,
-    alarmModule,
+    alert,
     serviceFormModule,
     micropageFormModule
   }

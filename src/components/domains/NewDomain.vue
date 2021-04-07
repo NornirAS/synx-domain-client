@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     ...mapState("authentication", ["token", "username"]),
-    ...mapState("alarmModule", ["createDomainSuccess"])
+    ...mapState("alert", ["createDomainSuccess"])
   },
   watch: {
     createDomainSuccess() {

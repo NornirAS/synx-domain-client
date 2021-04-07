@@ -121,7 +121,7 @@ export default {
   },
   computed: {
     ...mapState("authentication", ["username"]),
-    ...mapState("alarmModule", ["tranferOwnershipSuccess"])
+    ...mapState("alert", ["tranferOwnershipSuccess"])
   },
   watch: {
     tranferOwnershipSuccess() {
