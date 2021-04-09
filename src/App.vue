@@ -16,9 +16,16 @@ export default {
 </script>
 
 <style>
+.theme--light.v-application {
+  color: rgba(0, 0, 0, 0.87) !important;
+  background: #ebeff4 !important;
+}
+.theme--dark.v-application {
+  color: rgb(255, 255, 255, 0.87) !important;
+  background: #000000 !important;
+}
 .v-main {
   height: 100vh;
-  background-color: var(--v-secondary-base);
 }
 .container.container--fluid {
   height: 100%;
