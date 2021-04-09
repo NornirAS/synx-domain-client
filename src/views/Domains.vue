@@ -22,20 +22,15 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import DomainsEmpty from "../components/empty-page/DomainsEmpty";
 export default {
   created() {
-    if (this.noDomains) {
-      this.getAllDomains();
-    } else {
-      this.addDomainsFromStorage;
-    }
+    if (this.noDomains) this.getAllDomains();
   },
   methods: {
-    ...mapActions("domains", ["addDomainsFromStorage"]),
     getAllDomains() {
       this.$socket.emit("get_all_domains", {
         token: this.token,
