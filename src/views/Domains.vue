@@ -3,7 +3,7 @@
     <page-title slot="page-title">
       <div slot="title">{{ title }}</div>
       <v-btn
-        v-if="isDomainsPage && isDomainLimit"
+        v-if="isDomainsPage && isDomainLimit && !noDomains"
         :to="{ name: 'create-domain' }"
         slot="action"
         class="text-capitalize"

@@ -14,23 +14,24 @@
         {{ serviceURI }}
       </a>
       <v-btn
-        v-if="isServices && isServiceLimit"
+        v-if="isServicesPage && isServiceLimit && !noDomains"
         :to="{ name: 'serviceCreate' }"
         slot="action"
         class="text-capitalize"
         rounded
         small
         color="info"
-        :disabled="!hasActiveDomains"
       >
         Add Service
       </v-btn>
     </page-title>
     <div slot="page-content">
       <services-empty
-        v-if="!noDomains && noServices && isServices"
+        v-if="!noDomains && noServices && isServicesPage"
       ></services-empty>
-      <domain-empty v-if="noDomains && noServices && isServices"></domain-empty>
+      <domain-empty
+        v-if="noDomains && noServices && isServicesPage"
+      ></domain-empty>
       <router-view name="switch-tabs"></router-view>
       <router-view></router-view>
     </div>
@@ -82,7 +83,7 @@ export default {
     title() {
       return this.$route.meta.title;
     },
-    isServices() {
+    isServicesPage() {
       return this.$route.name === "services";
     },
     isServiceUpdate() {
