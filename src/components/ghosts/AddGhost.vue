@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card v-if="!noServices">
     <div class="title mb-2">Add a ghost</div>
     <div class="body-1">
       Choose the morphic service you want to add the ghost to.
@@ -13,7 +13,6 @@
             v-bind="attrs"
             v-on="on"
             outlined
-            :disabled="!isGhostLimit || noServices"
           >
             {{ domain }}{{ rootDomain
             }}<span class="font-weight-bold">{{ service }}</span>
@@ -31,12 +30,7 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <v-btn
-        @click="addGhost"
-        :disabled="!isGhostLimit || noServices"
-        color="primary"
-        class="text-capitalize ml-4"
-      >
+      <v-btn @click="addGhost" color="primary" class="text-capitalize ml-4">
         Add ghost
       </v-btn>
     </div>

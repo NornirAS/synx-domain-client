@@ -1,5 +1,5 @@
 <template>
-  <v-card v-if="!noGhosts">
+  <v-card v-if="!noServices">
     <div class="d-flex justify-start my-4">
       <v-text-field
         v-model="search"
@@ -8,7 +8,6 @@
         hide-details
         outlined
         dense
-        :disabled="noGhosts"
       ></v-text-field>
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
@@ -24,16 +23,16 @@
         </template>
         <v-list>
           <v-list-item v-for="(item, index) in listItems" :key="index">
-            <v-list-item-title @click="selectGhosts(item)">
+            <v-list-item-title @click="selectGhostsByType(item)">
               {{ item }}
             </v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
     </div>
-    <no-match v-if="noSearchResult"></no-match>
+    <no-match v-if="noSearchResult && !noGhosts && !noServices"></no-match>
     <v-data-table
-      v-if="!noGhosts && !noSearchResult"
+      v-if="!noSearchResult"
       @page-count="pageCount = $event"
       :headers="headers"
       :items="searchFilter"
@@ -121,7 +120,7 @@ export default {
   },
   methods: {
     ...mapMutations("ghostDetails", ["selectGhost"]),
-    selectGhosts(item) {
+    selectGhostsByType(item) {
       this.selectedItem = item;
     },
     ghostDetails(ghost) {
@@ -158,6 +157,7 @@ export default {
   },
   computed: {
     ...mapGetters("ghosts", ["allGhosts", "noGhosts"]),
+    ...mapGetters("services", ["noServices"]),
     allGhostsLengthLessItemsPerPage() {
       return this.allGhosts.length <= this.itemsPerPage;
     },

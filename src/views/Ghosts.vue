@@ -4,7 +4,7 @@
       <div slot="title">
         {{ title }}
       </div>
-      <div v-if="isGhostDetails" slot="subtitle">
+      <div v-if="isGhostDetailsPage" slot="subtitle">
         {{ domainURI }}<span class="font-weight-bold">{{ ghostID }}</span>
       </div>
     </page-title>
@@ -28,13 +28,11 @@ import DomainEmpty from "../components/empty-page/DomainsEmpty";
 import GhostsEmpty from "../components/empty-page/GhostsEmpty";
 export default {
   created() {
-    if (this.noGhosts) {
+    if (!this.noServices && this.noGhosts) {
       this.getOwnedGhosts();
+      this.lookForNewGhosts();
     }
-    if (this.isGhostDetails) {
-      this.getGhostStatus();
-    }
-    this.lookForNewGhosts();
+    if (this.isGhostDetailsPage) this.getGhostStatus();
   },
   methods: {
     getOwnedGhosts() {
@@ -77,7 +75,7 @@ export default {
     title() {
       return this.$route.meta.title;
     },
-    isGhostDetails() {
+    isGhostDetailsPage() {
       return this.$route.name === "ghostDetails";
     }
   },
