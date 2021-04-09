@@ -9,10 +9,10 @@
       </div>
     </page-title>
     <div slot="page-content">
-      <domain-empty v-if="noDomains && noServices && noGhosts"></domain-empty>
-      <ghosts-empty v-if="!noDomains && noServices && noGhosts"></ghosts-empty>
       <router-view></router-view>
       <router-view name="secondary"></router-view>
+      <domain-empty v-if="noDomains && noServices && noGhosts"></domain-empty>
+      <ghosts-empty v-if="!noDomains && noServices && noGhosts"></ghosts-empty>
     </div>
     <div slot="page-content-right">
       <router-view name="side-right"></router-view>

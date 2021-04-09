@@ -2,8 +2,7 @@
   <image-response-template>
     <div slot="title">Welcome to Cioty!</div>
     <div slot="description">
-      You need a domain to get started. Get 30 days free trial on your first
-      domain!
+      You need a domain to get started.
     </div>
     <div slot="action">
       <v-btn
@@ -13,33 +12,14 @@
         small
         color="info"
       >
-        Start Free Trial
+        Create your first domain
       </v-btn>
     </div>
     <div slot="image">
       <v-img
-        v-if="domainRoute"
         alt="connectedWorld"
         contain
         src="../../assets/connected-world.webp"
-        transition="scale-transition"
-        height="300px"
-      >
-      </v-img>
-      <v-img
-        v-if="serviceRoute"
-        alt="addToCart"
-        contain
-        src="../../assets/add-to-cart.webp"
-        transition="scale-transition"
-        height="300px"
-      >
-      </v-img>
-      <v-img
-        v-if="ghostRoute"
-        alt="productTeardown"
-        contain
-        src="../../assets/product-teardown.webp"
         transition="scale-transition"
         height="300px"
       >

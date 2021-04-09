@@ -13,7 +13,7 @@
             v-bind="attrs"
             v-on="on"
             outlined
-            :disabled="!isGhostLimit"
+            :disabled="!isGhostLimit || noServices"
           >
             {{ domain }}{{ rootDomain
             }}<span class="font-weight-bold">{{ service }}</span>
@@ -22,8 +22,7 @@
         </template>
         <v-list>
           <v-list-item
-            v-for="({ domain, serviceName },
-            index) in servicesUnderActiveDomain"
+            v-for="({ domain, serviceName }, index) in services"
             :key="index"
           >
             <v-list-item-title @click="selectService(domain, serviceName)">
@@ -34,7 +33,7 @@
       </v-menu>
       <v-btn
         @click="addGhost"
-        :disabled="!isGhostLimit"
+        :disabled="!isGhostLimit || noServices"
         color="primary"
         class="text-capitalize ml-4"
       >
@@ -58,8 +57,10 @@ export default {
     };
   },
   mounted() {
-    this.domain = this.firstService.domain;
-    this.service = this.firstService.serviceName;
+    if (!this.noServices) {
+      this.domain = this.firstService.domain;
+      this.service = this.firstService.serviceName;
+    }
   },
   methods: {
     selectService(domain, service) {
@@ -77,10 +78,11 @@ export default {
   },
   computed: {
     ...mapState("authentication", ["token"]),
-    ...mapGetters("services", ["servicesUnderActiveDomain"]),
+    ...mapState("services", ["services"]),
+    ...mapGetters("services", ["noServices"]),
     ...mapGetters("ghosts", ["isGhostLimit"]),
     firstService() {
-      return this.servicesUnderActiveDomain[0];
+      return this.services[0];
     }
   }
 };
