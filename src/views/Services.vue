@@ -14,7 +14,7 @@
         {{ serviceURI }}
       </a>
       <v-btn
-        v-if="isServices"
+        v-if="isServices && isServiceLimit"
         :to="{ name: 'serviceCreate' }"
         slot="action"
         class="text-capitalize"
@@ -76,7 +76,7 @@ export default {
       "deleteServiceSuccess",
       "updateMicropageSuccess"
     ]),
-    ...mapGetters("services", ["noServices"]),
+    ...mapGetters("services", ["noServices", "isServiceLimit"]),
     ...mapGetters("domains", ["noDomains", "hasActiveDomains", "firstDomain"]),
     ...mapGetters("serviceForm", ["serviceURI", "serviceURL"]),
     title() {

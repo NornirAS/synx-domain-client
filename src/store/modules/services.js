@@ -24,6 +24,9 @@ const getters = {
   noServices({ services }) {
     return services.length === 0;
   },
+  isServiceLimit({ services }) {
+    return services.length < 5;
+  },
   servicesUnderActiveDomain({ services }, getters, rootState, rootGetters) {
     const test = services.filter(service =>
       rootGetters["domains/activeDomainNames"].includes(service.domain)

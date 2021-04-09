@@ -3,7 +3,7 @@
     <page-title slot="page-title">
       <div slot="title">{{ title }}</div>
       <v-btn
-        v-if="isDomainsPage"
+        v-if="isDomainsPage && isDomainLimit"
         :to="{ name: 'create-domain' }"
         slot="action"
         class="text-capitalize"
@@ -57,7 +57,7 @@ export default {
   computed: {
     ...mapState("authentication", ["token", "username"]),
     ...mapState("alert", ["createDomainSuccess", "deleteDomainSuccess"]),
-    ...mapGetters("domains", ["noDomains", "firstDomain"]),
+    ...mapGetters("domains", ["noDomains", "isDomainLimit", "firstDomain"]),
     title() {
       return this.$route.meta.title;
     },

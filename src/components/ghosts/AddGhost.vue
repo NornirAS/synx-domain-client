@@ -13,6 +13,7 @@
             v-bind="attrs"
             v-on="on"
             outlined
+            :disabled="!isGhostLimit"
           >
             {{ domain }}{{ rootDomain
             }}<span class="font-weight-bold">{{ service }}</span>
@@ -31,7 +32,12 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <v-btn @click="addGhost" color="primary" class="text-capitalize ml-4">
+      <v-btn
+        @click="addGhost"
+        :disabled="!isGhostLimit"
+        color="primary"
+        class="text-capitalize ml-4"
+      >
         Add ghost
       </v-btn>
     </div>
@@ -72,6 +78,7 @@ export default {
   computed: {
     ...mapState("authentication", ["token"]),
     ...mapGetters("services", ["servicesUnderActiveDomain"]),
+    ...mapGetters("ghosts", ["isGhostLimit"]),
     firstService() {
       return this.servicesUnderActiveDomain[0];
     }
