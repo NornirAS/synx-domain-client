@@ -30,7 +30,12 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <v-btn @click="addGhost" color="primary" class="text-capitalize ml-4">
+      <v-btn
+        @click="addGhost"
+        color="primary"
+        class="text-capitalize ml-4"
+        :disabled="isGhostLimit"
+      >
         Add ghost
       </v-btn>
     </div>

@@ -3,6 +3,7 @@
     <v-col cols="12" md="10" lg="8" xl="5">
       <slot name="page-title"></slot>
       <v-divider></v-divider>
+      <slot name="alert"></slot>
       <slot name="page-search"></slot>
       <div class="mt-4">
         <slot name="page-content"></slot>

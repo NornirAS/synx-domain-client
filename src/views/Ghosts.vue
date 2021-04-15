@@ -8,6 +8,9 @@
         {{ domainURI }}<span class="font-weight-bold">{{ ghostID }}</span>
       </div>
     </page-title>
+    <div slot="alert">
+      <alert-limit v-if="isGhostsPage && isGhostLimit"></alert-limit>
+    </div>
     <div slot="page-content">
       <router-view></router-view>
       <router-view name="secondary"></router-view>
@@ -26,6 +29,7 @@ import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import DomainEmpty from "../components/empty-page/DomainsEmpty";
 import GhostsEmpty from "../components/empty-page/GhostsEmpty";
+import AlertLimit from "../components/globals/AlertLimit";
 export default {
   created() {
     if (!this.noServices && this.noGhosts) {
@@ -60,7 +64,7 @@ export default {
     ...mapState("authentication", ["token", "username"]),
     ...mapGetters("services", ["noServices"]),
     ...mapGetters("domains", ["noDomains"]),
-    ...mapGetters("ghosts", ["noGhosts"]),
+    ...mapGetters("ghosts", ["noGhosts", "isGhostLimit"]),
     ...mapGetters("ghostDetails", ["domainURI", "ghostID"]),
     ...mapState("alert", [
       "addGhostSuccess",
@@ -74,6 +78,9 @@ export default {
     ]),
     title() {
       return this.$route.meta.title;
+    },
+    isGhostsPage() {
+      return this.$route.name === "ghosts";
     },
     isGhostDetailsPage() {
       return this.$route.name === "ghostDetails";
@@ -111,7 +118,8 @@ export default {
     PageLayout,
     PageTitle,
     DomainEmpty,
-    GhostsEmpty
+    GhostsEmpty,
+    AlertLimit
   }
 };
 </script>

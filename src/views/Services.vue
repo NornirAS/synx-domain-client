@@ -25,6 +25,9 @@
         Add Service
       </v-btn>
     </page-title>
+    <div slot="alert">
+      <alert-limit v-if="isServicesPage && isServiceLimit"></alert-limit>
+    </div>
     <div slot="page-content">
       <services-empty
         v-if="!noDomains && noServices && isServicesPage"
@@ -47,6 +50,7 @@ import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import ServicesEmpty from "../components/empty-page/ServicesEmpty";
 import DomainEmpty from "../components/empty-page/DomainsEmpty";
+import AlertLimit from "../components/globals/AlertLimit";
 export default {
   created() {
     if (this.noServices && this.hasActiveDomains) {
@@ -115,7 +119,8 @@ export default {
     PageLayout,
     PageTitle,
     ServicesEmpty,
-    DomainEmpty
+    DomainEmpty,
+    AlertLimit
   }
 };
 </script>

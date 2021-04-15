@@ -3,7 +3,7 @@
     <page-title slot="page-title">
       <div slot="title">{{ title }}</div>
       <v-btn
-        v-if="isDomainsPage && isDomainLimit && !noDomains"
+        v-if="isDomainsPage && !isDomainLimit && !noDomains"
         :to="{ name: 'create-domain' }"
         slot="action"
         class="text-capitalize"
@@ -14,6 +14,9 @@
         Add domain
       </v-btn>
     </page-title>
+    <div slot="alert">
+      <alert-limit v-if="isDomainsPage && isDomainLimit"></alert-limit>
+    </div>
     <div slot="page-content">
       <domains-empty v-if="noDomains && isDomainsPage"></domains-empty>
       <router-view></router-view>
@@ -26,6 +29,7 @@ import { mapState, mapGetters } from "vuex";
 import PageTitle from "../components/PageTitle";
 import PageLayout from "../components/PageLayout";
 import DomainsEmpty from "../components/empty-page/DomainsEmpty";
+import AlertLimit from "../components/globals/AlertLimit";
 export default {
   created() {
     if (this.noDomains) this.getAllDomains();
@@ -73,7 +77,8 @@ export default {
   components: {
     PageTitle,
     PageLayout,
-    DomainsEmpty
+    DomainsEmpty,
+    AlertLimit
   }
 };
 </script>
