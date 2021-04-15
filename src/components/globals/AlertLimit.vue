@@ -1,39 +1,36 @@
 <template>
   <v-alert class="mt-4" border="left" text dense type="warning">
     <div v-if="isDomainsPage" class="body-1">
-      You have reached the domain limit on cioty.com makerspace. Cioty only
-      allows 2 domains per user. If you want unlimited access to domains or
-      creating your own private Hive network, please contact one of our sales
-      representatives at
+      Dear user, you have reached the limit of domains you can have on CIoTY
+      makerspace. Please contact support or purchase a full version of Synx Hive
+      to create your own
       <a
         href="https://nornir.io/our-team/"
         target="_blank"
         rel="noopener noreferrer"
-        >Nornir</a
+        >"Synx Collective"</a
       >
     </div>
     <div v-if="isServicesPage" class="body-1">
-      You have reached the service limit on cioty.com makerspace. Cioty only
-      allows 5 services per user. If you want unlimited access to services or
-      creating your own private Hive network, please contact one of our sales
-      representatives at
+      Dear user, you have reached the limit of services you can have on CIoTY
+      makerspace. Please contact support or purchase a full version of Synx Hive
+      to create your own
       <a
         href="https://nornir.io/our-team/"
         target="_blank"
         rel="noopener noreferrer"
-        >Nornir</a
+        >"Synx Collective"</a
       >
     </div>
     <div v-if="isGhostsPage" class="body-1">
-      You have reached the ghost limit on cioty.com makerspace. Cioty only
-      allows 10 ghosts per user. If you want unlimited access to ghosts or
-      creating your own private Hive network, please contact one of our sales
-      representatives at
+      Dear user, you have reached the limit of ghosts you can have on CIoTY
+      makerspace. Please contact support or purchase a full version of Synx Hive
+      to create your own
       <a
         href="https://nornir.io/our-team/"
         target="_blank"
         rel="noopener noreferrer"
-        >Nornir</a
+        >"Synx Collective"</a
       >
     </div>
   </v-alert>
