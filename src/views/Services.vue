@@ -14,7 +14,7 @@
         {{ serviceURI }}
       </a>
       <v-btn
-        v-if="isServicesPage && isServiceLimit && !noDomains && !noServices"
+        v-if="isServicesPage && !isServiceLimit && !noDomains && !noServices"
         :to="{ name: 'serviceCreate' }"
         slot="action"
         class="text-capitalize"
