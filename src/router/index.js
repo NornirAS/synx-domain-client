@@ -140,7 +140,7 @@ const routes = [
         name: "ghosts",
         components: {
           default: AddGhosts,
-          secondary: GhostsTable,
+          "ghosts-list": GhostsTable,
           "side-right": AboutUri
         },
         meta: {

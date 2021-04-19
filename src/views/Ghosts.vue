@@ -13,7 +13,7 @@
     </div>
     <div slot="page-content">
       <router-view></router-view>
-      <router-view name="secondary"></router-view>
+      <router-view name="ghosts-list"></router-view>
       <domain-empty v-if="noDomains && noServices && noGhosts"></domain-empty>
       <ghosts-empty v-if="!noDomains && noServices && noGhosts"></ghosts-empty>
     </div>
