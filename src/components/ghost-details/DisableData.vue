@@ -13,9 +13,9 @@
     </template>
 
     <dialog-card>
-      <div slot="title">Kill Connection</div>
+      <div slot="title">Disable Data</div>
       <div slot="body">
-        Are you sure you want to kill connection to
+        Are you sure you want to disable data to
         <span class="font-weight-bold">{{ ghostURI }}?</span>
       </div>
       <div slot="action">
@@ -33,7 +33,7 @@
           color="info"
           rounded
           small
-          >Confirm Kill
+          >Confirm
         </v-btn>
       </div>
     </dialog-card>

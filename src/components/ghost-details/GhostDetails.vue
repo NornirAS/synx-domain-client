@@ -43,11 +43,11 @@
     <v-list-item>
       <v-list-item-title>Kill Session</v-list-item-title>
       <v-list-item-subtitle class="text-right">
-        <kill-session
+        <disable-data
           :token="token"
           :ghost="selectedGhost"
           :ghostURI="ghostURI"
-        ></kill-session>
+        ></disable-data>
       </v-list-item-subtitle>
     </v-list-item>
   </v-card>
@@ -57,7 +57,7 @@
 import { mdiEye, mdiEyeOff } from "@mdi/js";
 import { mapState, mapGetters } from "vuex";
 import MapId from "../ghost-details/MapId";
-import KillSession from "../ghost-details/KillSession";
+import DisableData from "../ghost-details/DisableData";
 import TransferOwnership from "../ghost-details/TransferOwnership";
 export default {
   data() {
@@ -77,7 +77,7 @@ export default {
   },
   components: {
     MapId,
-    KillSession,
+    DisableData,
     TransferOwnership
   }
 };
