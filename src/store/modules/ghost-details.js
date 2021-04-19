@@ -53,6 +53,10 @@ const getters = {
     const { domain } = selectedGhost;
     return `${domain}${rootDomain}`.toLowerCase();
   },
+  serviceURL({ selectedGhost }, { domainURI }) {
+    const { service } = selectedGhost;
+    return `https://${domainURI}${service}`.toLowerCase();
+  },
   ghostID({ selectedGhost }) {
     const { service, instance } = selectedGhost;
     return `${service}##${instance}`.toLowerCase();
