@@ -80,7 +80,7 @@
 <script>
 import { mdiSwapHorizontal } from "@mdi/js";
 import { mapState } from "vuex";
-import DialogCard from "../DialogCard";
+import DialogCard from "../globals/DialogCard";
 export default {
   props: ["token", "ghost", "ghostURI"],
   data() {

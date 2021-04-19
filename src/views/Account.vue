@@ -42,8 +42,8 @@
 <script>
 import { mdiEye, mdiEyeOff } from "@mdi/js";
 import { mapState } from "vuex";
-import PageTitle from "../components/PageTitle";
-import PageLayout from "../components/PageLayout";
+import PageTitle from "../components/globals/PageTitle";
+import PageLayout from "../components/globals/PageLayout";
 export default {
   data() {
     return {

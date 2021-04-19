@@ -54,7 +54,7 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import { mdiTrashCanOutline } from "@mdi/js";
-import DialogCard from "../DialogCard";
+import DialogCard from "../globals/DialogCard";
 export default {
   data() {
     return {

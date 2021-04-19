@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import AlertMessage from "./globals/AlertMessage";
+import AlertMessage from "./AlertMessage";
 export default {
   computed: {
     alerts() {

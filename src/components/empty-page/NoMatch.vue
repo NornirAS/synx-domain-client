@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import ImageResponseTemplate from "../ImageResponseTemplate";
+import ImageResponseTemplate from "../globals/ImageResponseTemplate";
 export default {
   components: {
     ImageResponseTemplate

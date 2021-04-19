@@ -26,8 +26,8 @@
 
 <script>
 import { mapState, mapGetters } from "vuex";
-import PageTitle from "../components/PageTitle";
-import PageLayout from "../components/PageLayout";
+import PageTitle from "../components/globals/PageTitle";
+import PageLayout from "../components/globals/PageLayout";
 import DomainsEmpty from "../components/empty-page/DomainsEmpty";
 import AlertLimit from "../components/globals/AlertLimit";
 export default {

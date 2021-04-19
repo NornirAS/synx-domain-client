@@ -20,7 +20,7 @@ import AboutUri from "../components/ghosts/AboutUri";
 import GhostDetails from "../components/ghost-details/GhostDetails";
 import GhostStatus from "../components/ghost-details/GhostStatus";
 import RemoveGhost from "../components/ghost-details/RemoveGhost";
-import SideBar from "../components/SideBar";
+import SideBar from "../components/globals/SideBar";
 import PageNotFound from "../components/empty-page/PageNotFound";
 
 Vue.use(VueRouter);

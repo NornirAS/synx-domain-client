@@ -42,7 +42,7 @@
 
 <script>
 import { mdiSkullCrossbones } from "@mdi/js";
-import DialogCard from "../DialogCard";
+import DialogCard from "../globals/DialogCard";
 export default {
   props: ["token", "ghost", "ghostURI"],
   data() {
