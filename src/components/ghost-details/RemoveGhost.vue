@@ -7,14 +7,7 @@
       <v-col class="shrink">
         <v-dialog v-model="dialog" width="500">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              v-bind="attrs"
-              v-on="on"
-              class="text-capitalize"
-              color="error"
-              rounded
-              small
-            >
+            <v-btn v-bind="attrs" v-on="on" color="error" small>
               <v-icon left small>{{ mdiTrashCanOutline }}</v-icon>
               Remove Ghost
             </v-btn>
@@ -27,22 +20,8 @@
               <span class="font-weight-bold">{{ ghostURI }}?</span>
             </div>
             <div slot="action">
-              <v-btn
-                @click="dialog = false"
-                class="text-capitalize"
-                color="primary"
-                text
-                small
-                >Cancel</v-btn
-              >
-              <v-btn
-                @click="removeGhost"
-                class="text-capitalize"
-                color="info"
-                rounded
-                small
-                >Confirm Removal
-              </v-btn>
+              <v-btn @click="dialog = false" color="primary" text>Cancel</v-btn>
+              <v-btn @click="removeGhost" color="primary">Confirm </v-btn>
             </div>
           </dialog-card>
         </v-dialog>

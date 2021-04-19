@@ -1,5 +1,5 @@
 <template>
-  <v-alert v-model="open" :type="type" dense text>
+  <v-alert v-model="open" :type="type" color="accent" dense text>
     {{ alert.message }}
   </v-alert>
 </template>

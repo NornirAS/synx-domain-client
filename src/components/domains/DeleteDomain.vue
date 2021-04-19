@@ -4,7 +4,7 @@
       <v-btn
         v-bind="attrs"
         v-on="on"
-        class="float-right text-capitalize"
+        class="float-right"
         color="error"
         small
         text
@@ -21,20 +21,8 @@
         <span class="font-weight-bold">{{ domainURI }}?</span>
       </div>
       <div slot="action">
-        <v-btn
-          @click="dialog = false"
-          class="text-capitalize"
-          color="primary"
-          text
-          small
-          >Cancel</v-btn
-        >
-        <v-btn
-          @click="deleteDomain"
-          class="text-capitalize"
-          color="info"
-          rounded
-          small
+        <v-btn @click="dialog = false" color="primary" text>Cancel</v-btn>
+        <v-btn @click="deleteDomain" style="float: right" color="primary"
           >Confirm
         </v-btn>
       </div>

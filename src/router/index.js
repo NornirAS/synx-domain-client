@@ -11,7 +11,6 @@ import ServiceForm from "../components/service/service-form/ServiceForm";
 import MicropageForm from "../components/service/micropage-form/MicropageForm";
 import SwitchTabs from "../components/service/SwitchTabs";
 import DeleteService from "../components/service/DeleteService";
-import CreateServiceHints from "../components/service/CreateServiceHints";
 import DomainsTable from "../components/domains/DomainsTable";
 import NewDomain from "../components/domains/NewDomain";
 import AddGhosts from "../components/ghosts/AddGhost";
@@ -96,8 +95,7 @@ const routes = [
         path: "service-create",
         name: "serviceCreate",
         components: {
-          default: ServiceForm,
-          "other-actions": CreateServiceHints
+          default: ServiceForm
         },
         meta: {
           title: "New Morphic Service"

@@ -1,13 +1,7 @@
 <template>
   <v-dialog v-model="dialog" width="500">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn
-        v-bind="attrs"
-        v-on="on"
-        class="text-capitalize"
-        color="primary"
-        small
-      >
+      <v-btn v-bind="attrs" v-on="on" color="primary" small>
         <v-icon>{{ mdiSwapHorizontal }}</v-icon>
       </v-btn>
     </template>
@@ -37,22 +31,9 @@
         </v-form>
       </div>
       <div slot="action">
-        <v-btn
-          @click="dialog = false"
-          class="text-capitalize"
-          color="primary"
-          text
-          small
-          >Cancel</v-btn
-        >
-        <v-btn
-          class="text-capitalize"
-          color="info"
-          type="submit"
-          form="transfer-ownership"
-          rounded
-          small
-          >Confirm transfer
+        <v-btn @click="dialog = false" color="primary" text>Cancel</v-btn>
+        <v-btn color="primary" type="submit" form="transfer-ownership"
+          >Confirm
         </v-btn>
       </div>
     </dialog-card>

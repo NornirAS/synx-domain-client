@@ -5,13 +5,7 @@
       Please try again later or contact us if theproblem persists.
     </div>
     <div slot="action">
-      <v-btn
-        :to="{ name: 'create-domain' }"
-        class="text-capitalize"
-        rounded
-        small
-        color="info"
-      >
+      <v-btn :to="{ name: 'create-domain' }" color="primary">
         Write to us
       </v-btn>
     </div>

@@ -2,13 +2,7 @@
   <image-response-template>
     <div slot="title">You have no ghosts to approve or deny</div>
     <div slot="action">
-      <v-btn
-        :to="{ name: 'ghosts' }"
-        class="text-capitalize"
-        rounded
-        small
-        color="info"
-      >
+      <v-btn :to="{ name: 'ghosts' }" color="primary">
         Back to ghosts
       </v-btn>
     </div>

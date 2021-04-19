@@ -1,13 +1,7 @@
 <template>
   <v-dialog v-model="dialog" width="500">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn
-        v-bind="attrs"
-        v-on="on"
-        class="text-capitalize"
-        color="primary"
-        small
-      >
+      <v-btn v-bind="attrs" v-on="on" color="primary" small>
         <v-icon>{{ mdiSkullCrossbones }}</v-icon>
       </v-btn>
     </template>
@@ -19,22 +13,8 @@
         <span class="font-weight-bold">{{ ghostURI }}?</span>
       </div>
       <div slot="action">
-        <v-btn
-          @click="dialog = false"
-          class="text-capitalize"
-          color="primary"
-          text
-          small
-          >Cancel</v-btn
-        >
-        <v-btn
-          @click="killSession"
-          class="text-capitalize"
-          color="info"
-          rounded
-          small
-          >Confirm
-        </v-btn>
+        <v-btn @click="dialog = false" color="primary" text>Cancel</v-btn>
+        <v-btn @click="killSession" color="primary">Confirm </v-btn>
       </div>
     </dialog-card>
   </v-dialog>

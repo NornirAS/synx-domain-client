@@ -13,13 +13,13 @@
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
-            color="primary"
-            class="text-none ml-4"
+            color="secondary"
+            class=" ml-4"
             v-bind="attrs"
             v-on="on"
             :disabled="noDomains && noServices"
           >
-            Sort By: {{ sortByDomain }}
+            Sort By: <strong>{{ sortByDomain }}</strong>
             <v-icon left large>{{ mdiMenuDown }}</v-icon>
           </v-btn>
         </template>

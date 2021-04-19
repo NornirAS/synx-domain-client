@@ -16,21 +16,14 @@
       <schema-description></schema-description>
       <service-image></service-image>
       <div>
-        <v-btn
-          @click="backToServices"
-          class="text-capitalize"
-          color="primary"
-          text
-        >
+        <v-btn @click="backToServices" color="primary" text>
           Cancel
         </v-btn>
         <v-btn
-          class="text-capitalize"
-          color="info"
+          style="float: right"
+          color="primary"
           type="submit"
           form="micropage-form"
-          small
-          rounded
         >
           Save
         </v-btn>

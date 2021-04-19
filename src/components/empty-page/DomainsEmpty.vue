@@ -5,13 +5,7 @@
       You need a domain to get started.
     </div>
     <div slot="action">
-      <v-btn
-        :to="{ name: 'create-domain' }"
-        class="text-capitalize"
-        rounded
-        small
-        color="info"
-      >
+      <v-btn :to="{ name: 'create-domain' }" color="primary">
         Create your first domain
       </v-btn>
     </div>

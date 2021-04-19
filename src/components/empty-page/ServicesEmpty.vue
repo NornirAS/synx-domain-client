@@ -3,13 +3,7 @@
     <div slot="title">You have no services yet</div>
     <div slot="description">Services will appear here once you add them</div>
     <div slot="action">
-      <v-btn
-        :to="{ name: 'serviceCreate' }"
-        class="text-capitalize"
-        rounded
-        small
-        color="info"
-      >
+      <v-btn :to="{ name: 'serviceCreate' }" color="primary">
         Create Service
       </v-btn>
     </div>

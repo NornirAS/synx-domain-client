@@ -5,13 +5,7 @@
       Ghosts will appear here once you create a morphic service
     </div>
     <div slot="action">
-      <v-btn
-        :to="{ name: 'serviceCreate' }"
-        class="text-capitalize"
-        rounded
-        small
-        color="info"
-      >
+      <v-btn :to="{ name: 'serviceCreate' }" color="primary">
         Create Service
       </v-btn>
     </div>

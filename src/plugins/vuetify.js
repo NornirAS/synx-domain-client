@@ -8,12 +8,13 @@ export default new Vuetify({
     options: { customProperties: true },
     themes: {
       light: {
-        anchor: "#27aae1",
-        primary: "#404b5f",
-        secondary: "#ebeff4",
-        accent: "#71b663",
-        error: "#ff6666",
-        info: "#27aae1"
+        anchor: "#4f5f9c",
+        primary: "#4f4c9c",
+        secondary: "#4f5f9c",
+        accent: "#4f9c3d",
+        warning: "#9c4f4c",
+        error: "#9c174f",
+        info: "#9c4fff"
       },
       dark: {
         anchor: "#03dac6",

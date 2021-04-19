@@ -21,13 +21,7 @@
       </v-list-item>
       <v-list-item>
         <v-list-item-content>
-          <v-btn
-            @click="signOut"
-            class="text-capitalize"
-            rounded
-            small
-            color="info"
-          >
+          <v-btn @click="signOut" rounded color="primary">
             <v-icon left>{{ mdiLogout }}</v-icon> Log Out
           </v-btn>
         </v-list-item-content>

@@ -6,10 +6,7 @@
         v-if="isDomainsPage && !isDomainLimit && !noDomains"
         :to="{ name: 'create-domain' }"
         slot="action"
-        class="text-capitalize"
-        small
-        rounded
-        color="info"
+        color="primary"
       >
         Add domain
       </v-btn>

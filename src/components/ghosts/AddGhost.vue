@@ -9,10 +9,9 @@
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             class="text-none full-wide"
-            color="primary"
+            color="secondary"
             v-bind="attrs"
             v-on="on"
-            outlined
           >
             {{ domain }}{{ rootDomain
             }}<span class="font-weight-bold">{{ service }}</span>
@@ -33,7 +32,7 @@
       <v-btn
         @click="addGhost"
         color="primary"
-        class="text-capitalize ml-4"
+        class="ml-4"
         :disabled="isGhostLimit"
       >
         Add ghost

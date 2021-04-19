@@ -17,10 +17,7 @@
         v-if="isServicesPage && !isServiceLimit && !noDomains && !noServices"
         :to="{ name: 'serviceCreate' }"
         slot="action"
-        class="text-capitalize"
-        rounded
-        small
-        color="info"
+        color="primary"
       >
         Add Service
       </v-btn>

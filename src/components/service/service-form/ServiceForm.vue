@@ -23,21 +23,14 @@
       <service-web-js></service-web-js>
       <service-timeout></service-timeout>
       <div>
-        <v-btn
-          @click="backToServices"
-          class="text-capitalize"
-          color="primary"
-          text
-        >
+        <v-btn @click="backToServices" color="primary" text>
           Cancel
         </v-btn>
         <v-btn
-          class="text-capitalize"
-          color="info"
+          style="float: right"
+          color="primary"
           type="submit"
           form="service-form"
-          small
-          rounded
         >
           Save
         </v-btn>

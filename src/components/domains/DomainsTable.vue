@@ -23,7 +23,7 @@
       </template>
       <template v-slot:[`item.activation`]="{ item }">
         <div align="end">
-          <v-chip color="accent" x-small>
+          <v-chip color="accent" small>
             {{ item.active ? "Active" : "Inactive" }}
           </v-chip>
         </div>

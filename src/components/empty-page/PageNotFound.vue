@@ -14,13 +14,7 @@
         This page has run away!
       </div>
       <div slot="action">
-        <v-btn
-          @click="toDomains"
-          class="text-capitalize"
-          rounded
-          small
-          color="info"
-        >
+        <v-btn @click="toDomains" color="primary">
           Go to domains
         </v-btn>
       </div>

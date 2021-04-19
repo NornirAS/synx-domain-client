@@ -18,13 +18,7 @@
           <div class="font-weight-bold">Token</div>
         </v-col>
         <v-col cols="10" align="end">
-          <v-btn
-            @click="showToken = !showToken"
-            class="text-capitalize"
-            color="primary"
-            rounded
-            small
-          >
+          <v-btn @click="showToken = !showToken" color="primary" small>
             <v-icon left>{{ showToken ? mdiEyeOff : mdiEye }}</v-icon>
             {{ showToken ? "Hide" : "Show" }}
           </v-btn>

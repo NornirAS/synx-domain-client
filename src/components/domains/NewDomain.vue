@@ -2,16 +2,14 @@
   <v-card>
     <div class="title">Enter domain name</div>
     <domain-form class="mb-4"></domain-form>
-    <v-btn @click="backToDomains" class="text-capitalize" color="primary" text>
+    <v-btn @click="backToDomains" color="primary" text>
       Back
     </v-btn>
     <v-btn
+      style="float: right"
       form="domain-form"
       type="submit"
-      class="text-capitalize"
-      color="info"
-      rounded
-      small
+      color="primary"
     >
       Create
     </v-btn>

@@ -33,7 +33,6 @@
         @click:close="remove(index)"
         class="ma-1"
         close
-        outlined
         color="primary"
       >
         {{ keyword }}

@@ -8,7 +8,7 @@
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           class="text-none domain-dropdown"
-          color="primary"
+          color="secondary"
           v-bind="attrs"
           v-on="on"
         >
