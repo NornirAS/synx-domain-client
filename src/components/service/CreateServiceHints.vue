@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="title">Morphic service tips</div>
+  <v-card>
+    <div class="title text-capitalize">Morphic service hints</div>
     <div class="body-1">
       In this section you will set your Morphic Service statement.
     </div>
@@ -13,5 +13,5 @@
       2. The next step you will need to allocate a ghost in the ghost section
       for this service.
     </div>
-  </div>
+  </v-card>
 </template>
