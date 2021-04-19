@@ -4,13 +4,11 @@
       <v-btn
         v-bind="attrs"
         v-on="on"
-        class="text-capitalize mt-4"
+        class="text-capitalize"
         color="primary"
-        rounded
         small
       >
-        <v-icon left small>{{ mdiSwapHorizontal }}</v-icon>
-        Transfer ownership
+        <v-icon>{{ mdiSwapHorizontal }}</v-icon>
       </v-btn>
     </template>
 
@@ -120,17 +118,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("authentication", ["username"]),
-    ...mapState("alert", ["tranferOwnershipSuccess"])
-  },
-  watch: {
-    tranferOwnershipSuccess() {
-      this.$socket.emit("get_owned_ghosts", this.token);
-      this.$socket.emit("look_for_new_ghosts", {
-        token: this.token,
-        username: this.username
-      });
-    }
+    ...mapState("authentication", ["username"])
   },
   components: {
     DialogCard

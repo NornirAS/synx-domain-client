@@ -14,11 +14,10 @@
     <div slot="page-content">
       <router-view></router-view>
       <router-view name="ghosts-list"></router-view>
+      <router-view name="ghost-status"></router-view>
+      <router-view name="remove-ghost"></router-view>
       <domain-empty v-if="noDomains && noServices && noGhosts"></domain-empty>
       <ghosts-empty v-if="!noDomains && noServices && noGhosts"></ghosts-empty>
-    </div>
-    <div slot="page-content-right">
-      <router-view name="side-right"></router-view>
     </div>
   </page-layout>
 </template>
@@ -74,7 +73,9 @@ export default {
       "giveReadAccessSuccess",
       "removeReadAccessSuccess",
       "addPrimaryGhostSuccess",
-      "removePrimaryGhostSuccess"
+      "removePrimaryGhostSuccess",
+      "addMapIdSuccess",
+      "tranferOwnershipSuccess"
     ]),
     title() {
       return this.$route.meta.title;
@@ -112,6 +113,12 @@ export default {
     },
     removePrimaryGhostSuccess() {
       this.getGhostStatus();
+    },
+    addMapIdSuccess() {
+      this.getOwnedGhosts();
+    },
+    tranferOwnershipSuccess() {
+      this.getOwnedGhosts();
     }
   },
   components: {

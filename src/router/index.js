@@ -18,7 +18,8 @@ import AddGhosts from "../components/ghosts/AddGhost";
 import GhostsTable from "../components/ghosts/GhostsTable";
 import AboutUri from "../components/ghosts/AboutUri";
 import GhostDetails from "../components/ghost-details/GhostDetails";
-import GhostActions from "../components/ghost-details/GhostActions";
+import GhostStatus from "../components/ghost-details/GhostStatus";
+import RemoveGhost from "../components/ghost-details/RemoveGhost";
 import SideBar from "../components/SideBar";
 import PageNotFound from "../components/empty-page/PageNotFound";
 
@@ -152,7 +153,8 @@ const routes = [
         name: "ghostDetails",
         components: {
           default: GhostDetails,
-          "side-right": GhostActions
+          "ghost-status": GhostStatus,
+          "remove-ghost": RemoveGhost
         },
         meta: {
           title: "Ghost Details Overview:"

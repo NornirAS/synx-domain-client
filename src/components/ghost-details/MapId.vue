@@ -2,18 +2,15 @@
   <v-dialog v-model="dialog" width="500">
     <template v-slot:activator="{ on, attrs }">
       <v-btn
-        v-if="!ghost.mapID"
         v-bind="attrs"
         v-on="on"
         class="text-capitalize"
         color="primary"
-        rounded
         small
       >
-        <v-icon small>{{ mdiPlus }}</v-icon>
-        Add map ID
+        <v-icon v-if="hasMapId">{{ mdiPencil }}</v-icon>
+        <v-icon v-else>{{ mdiPlus }}</v-icon>
       </v-btn>
-      <div v-else>{{ ghost.mapID }}</div>
     </template>
 
     <dialog-card>
@@ -67,14 +64,14 @@
 </template>
 
 <script>
-import { mdiPlus } from "@mdi/js";
-import { mapState } from "vuex";
+import { mdiPlus, mdiPencil } from "@mdi/js";
 import DialogCard from "../DialogCard";
 export default {
   props: ["token", "ghost"],
   data() {
     return {
       mdiPlus,
+      mdiPencil,
       dialog: false,
       generate: false,
       valid: false,
@@ -85,6 +82,11 @@ export default {
         v => /[A-Za-z0-9-_]/.test(v) || "Should contain only A-z 0-9 - and _"
       ]
     };
+  },
+  mounted() {
+    if (this.hasMapId) {
+      this.mapId = this.ghost.mapID;
+    }
   },
   methods: {
     submitForm() {
@@ -103,11 +105,8 @@ export default {
     }
   },
   computed: {
-    ...mapState("alert", ["addMapIdSuccess"])
-  },
-  watch: {
-    addMapIdSuccess() {
-      this.$socket.emit("get_owned_ghosts", this.token);
+    hasMapId() {
+      return this.ghost.mapID !== null;
     }
   },
   components: {
