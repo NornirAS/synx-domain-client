@@ -1,45 +1,54 @@
 <template>
-  <v-dialog v-model="dialog" width="500">
-    <template v-slot:activator="{ on, attrs }">
-      <v-btn
-        v-bind="attrs"
-        v-on="on"
-        class="text-capitalize mt-4"
-        color="primary"
-        small
-        rounded
-      >
-        <v-icon left small>{{ mdiTrashCanOutline }}</v-icon>
-        Delete Service
-      </v-btn>
-    </template>
+  <v-alert prominent dense text type="error">
+    <v-row align="center">
+      <v-col class="grow">
+        <div class="title text-capitalize">Danger zone</div>
+      </v-col>
+      <v-col class="shrink">
+        <v-dialog v-model="dialog" width="500">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              v-bind="attrs"
+              v-on="on"
+              class="text-capitalize"
+              color="error"
+              small
+              rounded
+            >
+              <v-icon left small>{{ mdiTrashCanOutline }}</v-icon>
+              Delete Service
+            </v-btn>
+          </template>
 
-    <dialog-card>
-      <div slot="title">Delete Service</div>
-      <div slot="body">
-        Are you sure you want to delete service
-        <span class="font-weight-bold">{{ serviceURI }}?</span>
-      </div>
-      <div slot="action">
-        <v-btn
-          @click="dialog = false"
-          class="text-capitalize"
-          color="primary"
-          text
-          small
-          >Cancel</v-btn
-        >
-        <v-btn
-          @click="deleteService"
-          class="text-capitalize"
-          color="info"
-          rounded
-          small
-          >Confirm
-        </v-btn>
-      </div>
-    </dialog-card>
-  </v-dialog>
+          <dialog-card>
+            <div slot="title">Delete Service</div>
+            <div slot="body">
+              Are you sure you want to delete service
+              <span class="font-weight-bold">{{ serviceURI }}?</span>
+            </div>
+            <div slot="action">
+              <v-btn
+                @click="dialog = false"
+                class="text-capitalize"
+                color="primary"
+                text
+                small
+                >Cancel</v-btn
+              >
+              <v-btn
+                @click="deleteService"
+                class="text-capitalize"
+                color="info"
+                rounded
+                small
+                >Confirm
+              </v-btn>
+            </div>
+          </dialog-card>
+        </v-dialog>
+      </v-col>
+    </v-row>
+  </v-alert>
 </template>
 
 <script>

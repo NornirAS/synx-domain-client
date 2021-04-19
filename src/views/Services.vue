@@ -37,9 +37,7 @@
       ></domain-empty>
       <router-view name="switch-tabs"></router-view>
       <router-view></router-view>
-    </div>
-    <div slot="page-content-right">
-      <router-view name="other-actions"></router-view>
+      <router-view name="delete-service"></router-view>
     </div>
   </page-layout>
 </template>

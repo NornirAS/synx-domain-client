@@ -10,7 +10,7 @@ import ServicesTable from "../components/services/ServicesTable";
 import ServiceForm from "../components/service/service-form/ServiceForm";
 import MicropageForm from "../components/service/micropage-form/MicropageForm";
 import SwitchTabs from "../components/service/SwitchTabs";
-import OtherActions from "../components/service/OtherActions";
+import DeleteService from "../components/service/DeleteService";
 import CreateServiceHints from "../components/service/CreateServiceHints";
 import DomainsTable from "../components/domains/DomainsTable";
 import NewDomain from "../components/domains/NewDomain";
@@ -108,7 +108,7 @@ const routes = [
         components: {
           default: ServiceForm,
           "switch-tabs": SwitchTabs,
-          "other-actions": OtherActions
+          "delete-service": DeleteService
         },
         meta: {
           title: "Update Morphic Service"
