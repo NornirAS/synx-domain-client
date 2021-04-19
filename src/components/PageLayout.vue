@@ -4,7 +4,6 @@
       <slot name="page-title"></slot>
       <v-divider></v-divider>
       <slot name="alert"></slot>
-      <slot name="page-search"></slot>
       <div class="mt-4">
         <slot name="page-content"></slot>
       </div>
