@@ -48,7 +48,7 @@
           <v-btn
             @click="decline(item)"
             class="text-capitalize"
-            color="primary"
+            color="error"
             text
             x-small
             >Decline
@@ -57,7 +57,7 @@
           <v-btn
             @click="accept(item)"
             class="text-capitalize"
-            color="info"
+            color="accent"
             rounded
             x-small
             >Accept
@@ -65,7 +65,7 @@
         </div>
         <div v-else>
           <v-btn @click="ghostDetails(item)" class="float-right" icon small>
-            <v-icon color="info">
+            <v-icon color="primary">
               {{ mdiChevronRight }}
             </v-icon>
           </v-btn>

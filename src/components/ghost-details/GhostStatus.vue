@@ -2,6 +2,9 @@
   <v-expansion-panels>
     <v-expansion-panel>
       <v-expansion-panel-header class="subtitle-1">
+        <template v-slot:actions>
+          <v-icon color="primary" class="icon">$expand</v-icon>
+        </template>
         Make ghost data available for secondary services
       </v-expansion-panel-header>
       <v-expansion-panel-content>
@@ -13,6 +16,9 @@
     </v-expansion-panel>
     <v-expansion-panel>
       <v-expansion-panel-header class="subtitle-1">
+        <template v-slot:actions>
+          <v-icon color="primary" class="icon">$expand</v-icon>
+        </template>
         Read access
       </v-expansion-panel-header>
       <v-expansion-panel-content>
@@ -28,6 +34,9 @@
     </v-expansion-panel>
     <v-expansion-panel>
       <v-expansion-panel-header class="subtitle-1">
+        <template v-slot:actions>
+          <v-icon color="primary" class="icon">$expand</v-icon>
+        </template>
         Add Morphed Ghosts
       </v-expansion-panel-header>
       <v-expansion-panel-content>

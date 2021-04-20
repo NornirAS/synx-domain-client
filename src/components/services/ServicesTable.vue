@@ -53,7 +53,7 @@
       </template>
       <template v-slot:[`item.edit`]="{ item }">
         <v-btn @click="serviceToEdit(item)" class="float-right" icon small>
-          <v-icon color="info">
+          <v-icon color="primary">
             {{ mdiChevronRight }}
           </v-icon>
         </v-btn>
