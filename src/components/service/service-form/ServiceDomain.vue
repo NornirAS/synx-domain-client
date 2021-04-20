@@ -1,6 +1,6 @@
 <template>
   <form-input-card>
-    <div slot="title">Domain*</div>
+    <div slot="title">Domain</div>
     <div slot="subtitle">
       Choose which domain you want to add the service to.
     </div>

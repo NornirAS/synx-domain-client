@@ -1,26 +1,47 @@
 <template>
-  <v-form
-    id="domain-form"
-    ref="domainForm"
-    v-model="valid"
-    @submit.prevent="submitDomainForm"
-    lazy-validation
-  >
-    <v-text-field
-      v-model="domainName"
-      :rules="domainRules"
-      :counter="64"
-      label="Domain Name"
-      prefix="https://"
-      suffix=".cioty.com"
-      outlined
-      dense
-    ></v-text-field>
-  </v-form>
+  <v-card>
+    <v-form
+      id="domain-form"
+      ref="domainForm"
+      v-model="valid"
+      @submit.prevent="submitDomainForm"
+      lazy-validation
+    >
+      <form-input-card>
+        <div slot="title">Domain name</div>
+        <div slot="subtitle">
+          Add a unique domain name - the name will be part of the URI address.
+        </div>
+        <v-text-field
+          v-model="domainName"
+          :rules="domainRules"
+          :counter="64"
+          slot="action"
+          label="Domain Name"
+          prefix="https://"
+          suffix=".cioty.com"
+          outlined
+          dense
+        ></v-text-field>
+      </form-input-card>
+      <v-btn @click="backToDomains" color="primary" text>
+        Back
+      </v-btn>
+      <v-btn
+        class="float-right"
+        form="domain-form"
+        type="submit"
+        color="primary"
+      >
+        Create
+      </v-btn>
+    </v-form>
+  </v-card>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import FormInputCard from "../globals/FormInputCard";
 export default {
   data() {
     return {
@@ -45,11 +66,22 @@ export default {
           feature: "add"
         });
       }
+    },
+    backToDomains() {
+      this.$router.push({ name: "domains" });
     }
   },
   computed: {
     ...mapState("authentication", ["username", "token"]),
     ...mapState("alert", ["createDomainSuccess"])
+  },
+  watch: {
+    createDomainSuccess() {
+      this.$router.push({ name: "domains" });
+    }
+  },
+  components: {
+    FormInputCard
   }
 };
 </script>

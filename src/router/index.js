@@ -12,7 +12,7 @@ import MicropageForm from "../components/service/micropage-form/MicropageForm";
 import SwitchTabs from "../components/service/SwitchTabs";
 import DeleteService from "../components/service/DeleteService";
 import DomainsTable from "../components/domains/DomainsTable";
-import NewDomain from "../components/domains/NewDomain";
+import DomainForm from "../components/domains/DomainForm";
 import AddGhosts from "../components/ghosts/AddGhost";
 import GhostsTable from "../components/ghosts/GhostsTable";
 import AboutUri from "../components/ghosts/AboutUri";
@@ -68,7 +68,7 @@ const routes = [
       {
         path: "create-domain",
         name: "create-domain",
-        component: NewDomain,
+        component: DomainForm,
         meta: {
           title: "New Domain"
         }
