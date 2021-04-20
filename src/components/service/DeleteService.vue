@@ -1,23 +1,28 @@
 <template>
-  <v-alert prominent dense text type="error">
+  <v-card class="py-0">
     <v-row align="center">
       <v-col class="grow">
-        <div class="title text-capitalize">Danger zone</div>
+        <div class="body-1 text-capitalize">Delete Service</div>
       </v-col>
       <v-col class="shrink">
         <v-dialog v-model="dialog" width="500">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn v-bind="attrs" v-on="on" color="error" small>
-              <v-icon left small>{{ mdiTrashCanOutline }}</v-icon>
-              Delete Service
+            <v-btn v-bind="attrs" v-on="on" color="primary" small>
+              <v-icon>{{ mdiTrashCanOutline }}</v-icon>
             </v-btn>
           </template>
 
           <dialog-card>
             <div slot="title">Delete Service</div>
             <div slot="body">
-              Are you sure you want to delete service
-              <span class="font-weight-bold">{{ serviceURI }}?</span>
+              <v-alert prominent text type="error">
+                Are you sure you want to delete service
+                <span class="font-weight-bold">{{ serviceURI }}?</span>
+              </v-alert>
+              <v-switch
+                v-model="deleteApprove"
+                :label="deleteApprove === true ? 'Yes' : 'No'"
+              ></v-switch>
             </div>
             <v-btn
               slot="cancel-btn"
@@ -30,6 +35,7 @@
             <v-btn
               slot="confirm-btn"
               @click="deleteService"
+              :disabled="!deleteApprove"
               color="primary"
               small
               >Confirm
@@ -38,7 +44,7 @@
         </v-dialog>
       </v-col>
     </v-row>
-  </v-alert>
+  </v-card>
 </template>
 
 <script>
@@ -49,7 +55,8 @@ export default {
   data() {
     return {
       mdiTrashCanOutline,
-      dialog: false
+      dialog: false,
+      deleteApprove: false
     };
   },
   methods: {

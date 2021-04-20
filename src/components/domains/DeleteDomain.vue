@@ -17,8 +17,14 @@
     <dialog-card>
       <div slot="title">Delete Domain</div>
       <div slot="body">
-        Are you sure you want to delete domain
-        <span class="font-weight-bold">{{ domainURI }}?</span>
+        <v-alert prominent text type="error">
+          Are you sure you want to delete domain
+          <span class="font-weight-bold">{{ domainURI }}?</span>
+        </v-alert>
+        <v-switch
+          v-model="deleteApprove"
+          :label="deleteApprove === true ? 'Yes' : 'No'"
+        ></v-switch>
       </div>
       <v-btn
         slot="cancel-btn"
@@ -28,7 +34,12 @@
         small
         >Cancel</v-btn
       >
-      <v-btn slot="confirm-btn" @click="deleteDomain" color="primary" small
+      <v-btn
+        slot="confirm-btn"
+        @click="deleteDomain"
+        :disabled="!deleteApprove"
+        color="primary"
+        small
         >Confirm
       </v-btn>
     </dialog-card>
@@ -45,7 +56,8 @@ export default {
     return {
       mdiTrashCanOutline,
       rootDomain,
-      dialog: false
+      dialog: false,
+      deleteApprove: false
     };
   },
   methods: {

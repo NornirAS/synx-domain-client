@@ -20,7 +20,7 @@
           Cancel
         </v-btn>
         <v-btn
-          style="float: right"
+          class="float-right"
           color="primary"
           type="submit"
           form="micropage-form"
