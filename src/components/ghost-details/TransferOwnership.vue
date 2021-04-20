@@ -30,28 +30,37 @@
           ></v-text-field>
         </v-form>
       </div>
-      <div slot="action">
-        <v-btn @click="dialog = false" color="primary" text small>Cancel</v-btn>
-        <v-btn color="primary" type="submit" form="transfer-ownership" small
-          >Confirm
-        </v-btn>
-      </div>
+      <v-btn
+        slot="cancel-btn"
+        @click="dialog = false"
+        color="primary"
+        text
+        small
+        >Cancel</v-btn
+      >
+      <v-btn
+        slot="confirm-btn"
+        color="primary"
+        type="submit"
+        form="transfer-ownership"
+        small
+        >Confirm
+      </v-btn>
     </dialog-card>
     <dialog-card v-else>
       <div slot="title">Transfer has been initiated</div>
       <div slot="body">
         Before data can flow the new owner has to accept ownership.
       </div>
-      <div slot="action">
-        <v-btn
-          @click="toGhosts"
-          color="primary"
-          type="submit"
-          form="transfer-ownership"
-          small
-          >Let's rock!
-        </v-btn>
-      </div>
+      <v-btn
+        slot="confirm-btn"
+        @click="toGhosts"
+        color="primary"
+        type="submit"
+        form="transfer-ownership"
+        small
+        >Let's rock!
+      </v-btn>
     </dialog-card>
   </v-dialog>
 </template>

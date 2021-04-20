@@ -11,7 +11,7 @@
       ></v-text-field>
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
-          <v-btn class="ml-4" color="secondary" v-bind="attrs" v-on="on">
+          <v-btn class="ml-4" color="primary" v-bind="attrs" v-on="on">
             <span class="font-weight-bold">{{ selectedItem }}</span>
             <v-icon right large>{{ mdiMenuDown }}</v-icon>
           </v-btn>

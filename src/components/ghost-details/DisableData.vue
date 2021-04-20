@@ -12,10 +12,17 @@
         Are you sure you want to disable data to
         <span class="font-weight-bold">{{ ghostURI }}?</span>
       </div>
-      <div slot="action">
-        <v-btn @click="dialog = false" color="primary" text small>Cancel</v-btn>
-        <v-btn @click="killSession" color="primary" small>Confirm </v-btn>
-      </div>
+      <v-btn
+        slot="cancel-btn"
+        @click="dialog = false"
+        color="primary"
+        text
+        small
+        >Cancel</v-btn
+      >
+      <v-btn slot="confirm-btn" @click="killSession" color="primary" small
+        >Confirm
+      </v-btn>
     </dialog-card>
   </v-dialog>
 </template>

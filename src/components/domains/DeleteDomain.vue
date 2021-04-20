@@ -20,10 +20,17 @@
         Are you sure you want to delete domain
         <span class="font-weight-bold">{{ domainURI }}?</span>
       </div>
-      <div slot="action">
-        <v-btn @click="dialog = false" color="primary" text small>Cancel</v-btn>
-        <v-btn @click="deleteDomain" color="primary" small>Confirm </v-btn>
-      </div>
+      <v-btn
+        slot="cancel-btn"
+        @click="dialog = false"
+        color="primary"
+        text
+        small
+        >Cancel</v-btn
+      >
+      <v-btn slot="confirm-btn" @click="deleteDomain" color="primary" small
+        >Confirm
+      </v-btn>
     </dialog-card>
   </v-dialog>
 </template>

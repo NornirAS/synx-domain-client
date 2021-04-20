@@ -7,13 +7,7 @@
       <v-col class="shrink">
         <v-dialog v-model="dialog" width="500">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              v-bind="attrs"
-              v-on="on"
-              class="text-capitalize"
-              color="error"
-              small
-            >
+            <v-btn v-bind="attrs" v-on="on" color="error" small>
               <v-icon left small>{{ mdiTrashCanOutline }}</v-icon>
               Delete Service
             </v-btn>
@@ -25,19 +19,21 @@
               Are you sure you want to delete service
               <span class="font-weight-bold">{{ serviceURI }}?</span>
             </div>
-            <div slot="action">
-              <v-btn
-                @click="dialog = false"
-                class="text-capitalize"
-                color="primary"
-                text
-                small
-                >Cancel</v-btn
-              >
-              <v-btn @click="deleteService" color="primary" small
-                >Confirm
-              </v-btn>
-            </div>
+            <v-btn
+              slot="cancel-btn"
+              @click="dialog = false"
+              color="primary"
+              text
+              small
+              >Cancel</v-btn
+            >
+            <v-btn
+              slot="confirm-btn"
+              @click="deleteService"
+              color="primary"
+              small
+              >Confirm
+            </v-btn>
           </dialog-card>
         </v-dialog>
       </v-col>
