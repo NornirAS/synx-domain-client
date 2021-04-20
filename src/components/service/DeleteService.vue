@@ -11,22 +11,22 @@
               <v-icon>{{ mdiTrashCanOutline }}</v-icon>
             </v-btn>
           </template>
-
           <dialog-card>
             <div slot="title">Delete Service</div>
-            <div slot="body">
-              <v-alert prominent text type="error">
-                Are you sure you want to delete service
-                <span class="font-weight-bold">{{ serviceURI }}?</span>
-              </v-alert>
-              <v-switch
-                v-model="deleteApprove"
-                :label="deleteApprove === true ? 'Yes' : 'No'"
-              ></v-switch>
-            </div>
+            <v-alert slot="text" prominent text type="error">
+              Are you sure you want to delete service
+              <span class="font-weight-bold">{{ serviceURI }}?</span>
+            </v-alert>
+            <v-switch
+              slot="input"
+              class="mt-0 pt-0"
+              v-model="deleteApprove"
+              :label="deleteApprove === true ? 'Yes' : 'No'"
+              inset
+            ></v-switch>
             <v-btn
               slot="cancel-btn"
-              @click="dialog = false"
+              @click="cancel()"
               color="primary"
               text
               small
@@ -68,6 +68,10 @@ export default {
         instance: "0"
       });
       this.dialog = false;
+    },
+    cancel() {
+      this.dialog = false;
+      this.deleteApprove = false;
     }
   },
   computed: {

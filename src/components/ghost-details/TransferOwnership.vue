@@ -8,28 +8,27 @@
 
     <dialog-card v-if="!transferComplete">
       <div slot="title">Transfer ownership</div>
-      <div slot="body">
-        <div class="body-1 mb-2">
-          You transfering ownership of the ghost
-          <span class="font-weight-bold">{{ ghostURI }}</span>
-        </div>
-        <v-form
-          id="transfer-ownership"
-          ref="transferOwnership"
-          v-model="valid"
-          @submit.prevent="submitForm"
-          lazy-validation
-        >
-          <v-text-field
-            v-model="newOwnerUsername"
-            :rules="usernameRules"
-            label="E-mail of new owner"
-            type="text"
-            outlined
-            dense
-          ></v-text-field>
-        </v-form>
+      <div slot="text" class="body-1">
+        You transfering ownership of the ghost
+        <span class="font-weight-bold">{{ ghostURI }}</span>
       </div>
+      <v-form
+        id="transfer-ownership"
+        ref="transferOwnership"
+        v-model="valid"
+        @submit.prevent="submitForm"
+        slot="input"
+        lazy-validation
+      >
+        <v-text-field
+          v-model="newOwnerUsername"
+          :rules="usernameRules"
+          label="E-mail of new owner"
+          type="text"
+          outlined
+          dense
+        ></v-text-field>
+      </v-form>
       <v-btn
         slot="cancel-btn"
         @click="dialog = false"
@@ -49,7 +48,7 @@
     </dialog-card>
     <dialog-card v-else>
       <div slot="title">Transfer has been initiated</div>
-      <div slot="body">
+      <div slot="text">
         Before data can flow the new owner has to accept ownership.
       </div>
       <v-btn

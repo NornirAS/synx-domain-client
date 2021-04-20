@@ -16,22 +16,18 @@
 
     <dialog-card>
       <div slot="title">Delete Domain</div>
-      <div slot="body">
-        <v-alert prominent text type="error">
-          Are you sure you want to delete domain
-          <span class="font-weight-bold">{{ domainURI }}?</span>
-        </v-alert>
-        <v-switch
-          v-model="deleteApprove"
-          :label="deleteApprove === true ? 'Yes' : 'No'"
-        ></v-switch>
-      </div>
-      <v-btn
-        slot="cancel-btn"
-        @click="dialog = false"
-        color="primary"
-        text
-        small
+      <v-alert slot="text" prominent text type="error">
+        Are you sure you want to delete domain
+        <span class="font-weight-bold">{{ domainURI }}?</span>
+      </v-alert>
+      <v-switch
+        slot="input"
+        class="mt-0 pt-0"
+        v-model="deleteApprove"
+        :label="deleteApprove === true ? 'Yes' : 'No'"
+        inset
+      ></v-switch>
+      <v-btn slot="cancel-btn" @click="cancel()" color="primary" text small
         >Cancel</v-btn
       >
       <v-btn
@@ -69,6 +65,10 @@ export default {
         feature: "remove"
       });
       this.dialog = false;
+    },
+    cancel() {
+      this.dialog = false;
+      this.deleteApprove = false;
     }
   },
   computed: {

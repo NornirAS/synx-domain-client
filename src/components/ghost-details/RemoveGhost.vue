@@ -14,19 +14,20 @@
 
           <dialog-card>
             <div slot="title">Remove Ghost</div>
-            <div slot="body">
-              <v-alert prominent text type="error">
-                Are you sure you want to remove ghost for
-                <span class="font-weight-bold">{{ ghostURI }}?</span>
-              </v-alert>
-              <v-switch
-                v-model="removeApprove"
-                :label="removeApprove === true ? 'Yes' : 'No'"
-              ></v-switch>
-            </div>
+            <v-alert slot="text" prominent text type="error">
+              Are you sure you want to remove ghost for
+              <span class="font-weight-bold">{{ ghostURI }}?</span>
+            </v-alert>
+            <v-switch
+              slot="input"
+              class="mt-0 pt-0"
+              v-model="removeApprove"
+              :label="removeApprove === true ? 'Yes' : 'No'"
+              inset
+            ></v-switch>
             <v-btn
               slot="cancel-btn"
-              @click="dialog = false"
+              @click="cancel()"
               color="primary"
               text
               small
@@ -69,6 +70,10 @@ export default {
       });
       this.dialog = false;
       this.$router.push({ name: "ghosts" });
+    },
+    cancel() {
+      this.dialog = false;
+      this.removeApprove = false;
     }
   },
   computed: {

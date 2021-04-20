@@ -8,7 +8,7 @@
 
     <dialog-card>
       <div slot="title">Disable Data</div>
-      <div slot="body">
+      <div slot="text">
         Are you sure you want to disable data to
         <span class="font-weight-bold">{{ ghostURI }}?</span>
       </div>

@@ -9,37 +9,32 @@
 
     <dialog-card>
       <div slot="title">Add Map ID</div>
-      <div slot="body">
-        <div class="body-1">Generate map ID?</div>
-        <v-form
-          id="map-id"
-          ref="mapId"
-          v-model="valid"
-          @submit.prevent="submitForm"
-          lazy-validation
-        >
-          <v-switch
-            v-model="generate"
-            :label="generate === true ? 'Yes' : 'No'"
-            inset
-          ></v-switch>
-          <v-text-field
-            v-if="generate === false"
-            v-model="mapId"
-            :rules="mapIdRules"
-            label="Custom map ID"
-            type="text"
-            outlined
-            dense
-          ></v-text-field>
-        </v-form>
-      </div>
-      <v-btn
-        slot="cancel-btn"
-        @click="dialog = false"
-        color="primary"
-        text
-        small
+      <div slot="text" class="body-1">Generate map ID?</div>
+      <v-form
+        slot="input"
+        id="map-id"
+        ref="mapId"
+        v-model="valid"
+        @submit.prevent="submitForm"
+        lazy-validation
+      >
+        <v-switch
+          class="mt-0 pt-0"
+          v-model="generate"
+          :label="generate === true ? 'Yes' : 'No'"
+          inset
+        ></v-switch>
+        <v-text-field
+          v-if="generate === false"
+          v-model="mapId"
+          :rules="mapIdRules"
+          label="Custom map ID"
+          type="text"
+          outlined
+          dense
+        ></v-text-field>
+      </v-form>
+      <v-btn slot="cancel-btn" @click="cancel()" color="primary" text small
         >Cancel</v-btn
       >
       <v-btn
@@ -93,6 +88,10 @@ export default {
         });
         this.dialog = false;
       }
+    },
+    cancel() {
+      this.dialog = false;
+      this.generate = false;
     }
   },
   computed: {

@@ -4,10 +4,13 @@
       <slot name="title"></slot>
     </v-card-title>
     <v-divider></v-divider>
-    <v-card-text class="py-2 px-6">
-      <slot name="body"></slot>
+    <v-card-text class="py-4 px-6">
+      <slot name="text"></slot>
     </v-card-text>
-    <v-card-actions class="pb-4 px-6">
+    <v-card-text class="py-0 px-6">
+      <slot name="input"></slot>
+    </v-card-text>
+    <v-card-actions class="pt-0 pb-4 px-6">
       <slot name="cancel-btn"></slot>
       <v-spacer></v-spacer>
       <slot name="confirm-btn"></slot>
