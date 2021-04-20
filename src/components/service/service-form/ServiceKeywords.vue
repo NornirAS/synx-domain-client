@@ -43,7 +43,7 @@
 
 <script>
 import _ from "lodash";
-import FormInputCard from "../FormInputCard";
+import FormInputCard from "../../globals/FormInputCard";
 import { mapState, mapMutations } from "vuex";
 export default {
   data() {

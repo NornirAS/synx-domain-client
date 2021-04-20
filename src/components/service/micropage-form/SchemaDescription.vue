@@ -26,7 +26,7 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
-import FormInputCard from "../FormInputCard";
+import FormInputCard from "../../globals/FormInputCard";
 export default {
   data() {
     return {
