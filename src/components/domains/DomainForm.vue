@@ -13,6 +13,8 @@
       label="Domain Name"
       prefix="https://"
       suffix=".cioty.com"
+      outlined
+      dense
     ></v-text-field>
   </v-form>
 </template>

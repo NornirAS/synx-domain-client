@@ -41,7 +41,7 @@
     </v-list-item>
     <v-divider></v-divider>
     <v-list-item>
-      <v-list-item-title>Kill Session</v-list-item-title>
+      <v-list-item-title>Disable Data</v-list-item-title>
       <v-list-item-subtitle class="text-right">
         <disable-data
           :token="token"

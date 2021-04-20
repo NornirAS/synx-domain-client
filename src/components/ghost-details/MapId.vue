@@ -35,8 +35,10 @@
         </v-form>
       </div>
       <div slot="action">
-        <v-btn @click="dialog = false" color="primary" text>Cancel</v-btn>
-        <v-btn color="primary" type="submit" form="map-id">Confirm </v-btn>
+        <v-btn @click="dialog = false" color="primary" text small>Cancel</v-btn>
+        <v-btn color="primary" type="submit" form="map-id" small
+          >Confirm
+        </v-btn>
       </div>
     </dialog-card>
   </v-dialog>

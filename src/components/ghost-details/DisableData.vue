@@ -13,8 +13,8 @@
         <span class="font-weight-bold">{{ ghostURI }}?</span>
       </div>
       <div slot="action">
-        <v-btn @click="dialog = false" color="primary" text>Cancel</v-btn>
-        <v-btn @click="killSession" color="primary">Confirm </v-btn>
+        <v-btn @click="dialog = false" color="primary" text small>Cancel</v-btn>
+        <v-btn @click="killSession" color="primary" small>Confirm </v-btn>
       </div>
     </dialog-card>
   </v-dialog>

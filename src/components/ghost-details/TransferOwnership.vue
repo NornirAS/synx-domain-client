@@ -31,8 +31,8 @@
         </v-form>
       </div>
       <div slot="action">
-        <v-btn @click="dialog = false" color="primary" text>Cancel</v-btn>
-        <v-btn color="primary" type="submit" form="transfer-ownership"
+        <v-btn @click="dialog = false" color="primary" text small>Cancel</v-btn>
+        <v-btn color="primary" type="submit" form="transfer-ownership" small
           >Confirm
         </v-btn>
       </div>
@@ -45,11 +45,9 @@
       <div slot="action">
         <v-btn
           @click="toGhosts"
-          class="text-capitalize"
-          color="info"
+          color="primary"
           type="submit"
           form="transfer-ownership"
-          rounded
           small
           >Let's rock!
         </v-btn>

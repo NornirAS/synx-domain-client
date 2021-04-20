@@ -13,7 +13,6 @@
               class="text-capitalize"
               color="error"
               small
-              rounded
             >
               <v-icon left small>{{ mdiTrashCanOutline }}</v-icon>
               Delete Service
@@ -35,12 +34,7 @@
                 small
                 >Cancel</v-btn
               >
-              <v-btn
-                @click="deleteService"
-                class="text-capitalize"
-                color="info"
-                rounded
-                small
+              <v-btn @click="deleteService" color="primary" small
                 >Confirm
               </v-btn>
             </div>
