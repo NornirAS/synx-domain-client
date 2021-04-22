@@ -12,13 +12,13 @@
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn class="ml-4" color="primary" v-bind="attrs" v-on="on">
-            <span class="font-weight-bold">{{ selectedItem }}</span>
+            <span class="font-weight-bold">{{ ghostOrigin }}</span>
             <v-icon right large>{{ mdiMenuDown }}</v-icon>
           </v-btn>
         </template>
         <v-list>
-          <v-list-item v-for="(item, index) in listItems" :key="index">
-            <v-list-item-title @click="selectGhostsByType(item)">
+          <v-list-item v-for="(item, index) in ghostOrigins" :key="index">
+            <v-list-item-title @click="selectGhostOrigin(item)">
               {{ item }}
             </v-list-item-title>
           </v-list-item>
@@ -109,14 +109,14 @@ export default {
           sortable: false
         }
       ],
-      listItems: ["All", "Internal", "External"],
-      selectedItem: "All"
+      ghostOrigins: ["All", "Internal", "External"],
+      ghostOrigin: "All"
     };
   },
   methods: {
     ...mapMutations("ghostDetails", ["selectGhost"]),
-    selectGhostsByType(item) {
-      this.selectedItem = item;
+    selectGhostOrigin(item) {
+      this.ghostOrigin = item;
     },
     ghostDetails(ghost) {
       this.selectGhost(ghost);
@@ -153,11 +153,22 @@ export default {
   computed: {
     ...mapGetters("ghosts", ["allGhosts", "noGhosts"]),
     ...mapGetters("services", ["noServices"]),
-    allGhostsLengthLessItemsPerPage() {
-      return this.allGhosts.length <= this.itemsPerPage;
+    ...mapGetters("domains", ["domainNames"]),
+    sortedGhostsByOrigin() {
+      if (this.ghostOrigin === "Internal") {
+        return this.allGhosts.filter(ghost =>
+          this.domainNames.includes(ghost.domain.toLowerCase())
+        );
+      } else if (this.ghostOrigin === "External") {
+        return this.allGhosts.filter(
+          ghost => !this.domainNames.includes(ghost.domain.toLowerCase())
+        );
+      } else {
+        return this.allGhosts;
+      }
     },
     searchFilter() {
-      return this.allGhosts.filter(
+      return this.sortedGhostsByOrigin.filter(
         instance =>
           instance.domain.toLowerCase().indexOf(this.search.toLowerCase()) >
             -1 ||
@@ -166,6 +177,9 @@ export default {
     },
     noSearchResult() {
       return this.searchFilter.length === 0;
+    },
+    allGhostsLengthLessItemsPerPage() {
+      return this.sortedGhostsByOrigin.length <= this.itemsPerPage;
     }
   },
   components: {
