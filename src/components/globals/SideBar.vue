@@ -5,11 +5,11 @@
         alt="cioty"
         src="../../assets/CIOTY-final-Logo.webp"
         transition="scale-transition"
-        class="sidebar-logo"
+        class="ma-12"
       />
     </router-link>
-    <v-list dense nav>
-      <v-list-item v-for="item in items" :key="item.title" :to="item.path" link>
+    <v-list class="pa-0" nav>
+      <v-list-item v-for="item in items" :key="item.title" :to="item.path">
         <v-list-item-icon>
           <v-icon>{{ item.icon }}</v-icon>
         </v-list-item-icon>
@@ -21,14 +21,14 @@
       </v-list-item>
       <v-list-item>
         <v-list-item-content>
-          <v-btn @click="signOut" rounded color="primary">
+          <v-btn @click="signOut" color="primary">
             <v-icon left>{{ mdiLogout }}</v-icon> Log Out
           </v-btn>
         </v-list-item-content>
       </v-list-item>
     </v-list>
     <template v-slot:append>
-      <div align="center" class="synx-hive-power subtitle-1">
+      <div align="center" class="mb-12 subtitle-1">
         Powered By
         <img
           align="center"
@@ -98,17 +98,14 @@ export default {
 </script>
 
 <style scoped>
-.v-list {
-  padding: 0;
+a {
+  color: var(--v-primary-base) !important;
 }
 .v-list-item {
-  padding: 0 2em;
+  padding: 0 24px;
 }
-.sidebar-logo {
-  width: 100px;
-  margin: 3em;
-}
-.synx-hive-power {
-  margin-bottom: 3em;
+.v-list-item--active {
+  border-left: 8px solid;
+  border-radius: 0;
 }
 </style>
