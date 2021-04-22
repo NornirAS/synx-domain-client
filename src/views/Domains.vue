@@ -69,6 +69,9 @@ export default {
       this.getAllDomains();
       this.getAllServices();
       this.getOwnedGhosts();
+    },
+    firstDomain() {
+      this.getAllServices();
     }
   },
   components: {
