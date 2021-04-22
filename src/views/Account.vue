@@ -5,19 +5,19 @@
     </page-title>
     <v-card slot="page-content" class="body-1">
       <v-row>
-        <v-col cols="2">
+        <v-col class="grow">
           <div class="font-weight-bold">Email</div>
         </v-col>
-        <v-col cols="10" align="end">
+        <v-col class="shrink">
           <div>{{ username }}</div>
         </v-col>
       </v-row>
       <v-divider></v-divider>
       <v-row>
-        <v-col cols="2">
+        <v-col class="grow">
           <div class="font-weight-bold">Token</div>
         </v-col>
-        <v-col cols="10" align="end">
+        <v-col class="shrink">
           <v-btn @click="showToken = !showToken" color="primary" small>
             <v-icon left>{{ showToken ? mdiEyeOff : mdiEye }}</v-icon>
             {{ showToken ? "Hide" : "Show" }}
@@ -25,8 +25,24 @@
         </v-col>
       </v-row>
       <v-row v-if="showToken">
-        <v-col cols="12" align="end">
-          <div>{{ token }}</div>
+        <v-col class="shrink">
+          <v-tooltip v-model="show" left>
+            <template v-slot:activator="{}">
+              <v-btn @click="copyToClipboard(userToken)" color="primary">
+                <v-icon class="align-center">{{ mdiContentCopy }}</v-icon>
+              </v-btn>
+            </template>
+            <span>Copied!</span>
+          </v-tooltip>
+        </v-col>
+        <v-col class="grow">
+          <v-text-field
+            v-model="userToken"
+            dense
+            outlined
+            hide-details
+            readonly
+          ></v-text-field>
         </v-col>
       </v-row>
     </v-card>
@@ -34,7 +50,7 @@
 </template>
 
 <script>
-import { mdiEye, mdiEyeOff } from "@mdi/js";
+import { mdiEye, mdiEyeOff, mdiContentCopy, mdiCheck } from "@mdi/js";
 import { mapState } from "vuex";
 import PageTitle from "../components/globals/PageTitle";
 import PageLayout from "../components/globals/PageLayout";
@@ -43,8 +59,24 @@ export default {
     return {
       mdiEye,
       mdiEyeOff,
-      showToken: false
+      mdiContentCopy,
+      mdiCheck,
+      userToken: null,
+      showToken: false,
+      show: false
     };
+  },
+  mounted() {
+    this.userToken = this.token;
+  },
+  methods: {
+    copyToClipboard(s) {
+      navigator.clipboard.writeText(s);
+      this.show = true;
+      setTimeout(() => {
+        this.show = false;
+      }, 3000);
+    }
   },
   computed: {
     ...mapState("authentication", ["token", "username"])
