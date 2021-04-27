@@ -6,7 +6,7 @@
     <v-card slot="page-content" class="body-1">
       <v-row>
         <v-col class="grow">
-          <div class="font-weight-bold">Email</div>
+          <div>Email</div>
         </v-col>
         <v-col class="shrink">
           <div>{{ username }}</div>
@@ -15,7 +15,7 @@
       <v-divider></v-divider>
       <v-row>
         <v-col class="grow">
-          <div class="font-weight-bold">Token</div>
+          <div>Token</div>
         </v-col>
         <v-col class="shrink">
           <v-btn @click="showToken = !showToken" color="primary" small>
@@ -27,11 +27,7 @@
       <v-expand-transition>
         <v-row v-if="showToken">
           <v-col class="shrink">
-            <copy-content
-              :content="userToken"
-              color="primary"
-              left
-            ></copy-content>
+            <copy-content :content="userToken"></copy-content>
           </v-col>
           <v-col class="grow">
             <v-text-field
