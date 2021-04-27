@@ -24,30 +24,32 @@
           </v-btn>
         </v-col>
       </v-row>
-      <v-row v-if="showToken">
-        <v-col class="shrink">
-          <copy-content
-            :content="userToken"
-            color="primary"
-            left
-          ></copy-content>
-        </v-col>
-        <v-col class="grow">
-          <v-text-field
-            v-model="userToken"
-            dense
-            outlined
-            hide-details
-            readonly
-          ></v-text-field>
-        </v-col>
-      </v-row>
+      <v-expand-transition>
+        <v-row v-if="showToken">
+          <v-col class="shrink">
+            <copy-content
+              :content="userToken"
+              color="primary"
+              left
+            ></copy-content>
+          </v-col>
+          <v-col class="grow">
+            <v-text-field
+              v-model="userToken"
+              dense
+              outlined
+              hide-details
+              readonly
+            ></v-text-field>
+          </v-col>
+        </v-row>
+      </v-expand-transition>
     </v-card>
   </page-layout>
 </template>
 
 <script>
-import { mdiEye, mdiEyeOff, mdiContentCopy, mdiCheck } from "@mdi/js";
+import { mdiEye, mdiEyeOff } from "@mdi/js";
 import { mapState } from "vuex";
 import PageTitle from "../components/globals/PageTitle";
 import PageLayout from "../components/globals/PageLayout";
@@ -57,24 +59,12 @@ export default {
     return {
       mdiEye,
       mdiEyeOff,
-      mdiContentCopy,
-      mdiCheck,
       userToken: null,
-      showToken: false,
-      show: false
+      showToken: false
     };
   },
   mounted() {
     this.userToken = this.token;
-  },
-  methods: {
-    copyToClipboard(s) {
-      navigator.clipboard.writeText(s);
-      this.show = true;
-      setTimeout(() => {
-        this.show = false;
-      }, 3000);
-    }
   },
   computed: {
     ...mapState("authentication", ["token", "username"])
