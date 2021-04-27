@@ -26,14 +26,11 @@
       </v-row>
       <v-row v-if="showToken">
         <v-col class="shrink">
-          <v-tooltip v-model="show" left>
-            <template v-slot:activator="{}">
-              <v-btn @click="copyToClipboard(userToken)" color="primary">
-                <v-icon class="align-center">{{ mdiContentCopy }}</v-icon>
-              </v-btn>
-            </template>
-            <span>Copied!</span>
-          </v-tooltip>
+          <copy-content
+            :content="userToken"
+            color="primary"
+            left
+          ></copy-content>
         </v-col>
         <v-col class="grow">
           <v-text-field
@@ -54,6 +51,7 @@ import { mdiEye, mdiEyeOff, mdiContentCopy, mdiCheck } from "@mdi/js";
 import { mapState } from "vuex";
 import PageTitle from "../components/globals/PageTitle";
 import PageLayout from "../components/globals/PageLayout";
+import CopyContent from "../components/globals/CopyContent";
 export default {
   data() {
     return {
@@ -83,7 +81,8 @@ export default {
   },
   components: {
     PageTitle,
-    PageLayout
+    PageLayout,
+    CopyContent
   }
 };
 </script>
