@@ -1,6 +1,6 @@
 <template>
-  <v-row justify="start" align="center">
-    <v-col lg="9">
+  <v-row align="center">
+    <v-col class="grow">
       <div class="display-1">
         <slot name="title"></slot>
       </div>
@@ -8,7 +8,7 @@
         <slot name="subtitle"></slot>
       </div>
     </v-col>
-    <v-col lg="3" align="end">
+    <v-col class="shrink">
       <slot name="action"></slot>
     </v-col>
   </v-row>
