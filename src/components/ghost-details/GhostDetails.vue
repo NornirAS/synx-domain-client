@@ -26,12 +26,20 @@
       </v-col>
     </v-row>
     <v-expand-transition>
-      <div v-if="showMapId">
-        <v-divider></v-divider>
-        <v-row>
-          <v-col>{{ selectedGhost.mapID }}</v-col>
-        </v-row>
-      </div>
+      <v-row v-if="showMapId">
+        <v-col class="shrink">
+          <copy-content :content="mapId"></copy-content>
+        </v-col>
+        <v-col class="grow">
+          <v-text-field
+            v-model="mapId"
+            dense
+            outlined
+            hide-details
+            readonly
+          ></v-text-field>
+        </v-col>
+      </v-row>
     </v-expand-transition>
     <v-divider></v-divider>
     <v-row>
@@ -64,13 +72,18 @@ import { mapState, mapGetters } from "vuex";
 import MapId from "../ghost-details/MapId";
 import DisableData from "../ghost-details/DisableData";
 import TransferOwnership from "../ghost-details/TransferOwnership";
+import CopyContent from "../globals/CopyContent";
 export default {
   data() {
     return {
       mdiEye,
       mdiEyeOff,
-      showMapId: false
+      showMapId: false,
+      mapId: null
     };
+  },
+  mounted() {
+    this.mapId = this.selectedGhost.mapID;
   },
   computed: {
     ...mapState("authentication", ["token"]),
@@ -83,7 +96,8 @@ export default {
   components: {
     MapId,
     DisableData,
-    TransferOwnership
+    TransferOwnership,
+    CopyContent
   }
 };
 </script>
