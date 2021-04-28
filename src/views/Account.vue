@@ -3,72 +3,19 @@
     <page-title slot="page-title">
       <div slot="title">My Account</div>
     </page-title>
-    <v-card slot="page-content" class="body-1">
-      <v-row>
-        <v-col class="grow">
-          <div>Email</div>
-        </v-col>
-        <v-col class="shrink">
-          <div>{{ username }}</div>
-        </v-col>
-      </v-row>
-      <v-divider></v-divider>
-      <v-row>
-        <v-col class="grow">
-          <div>Token</div>
-        </v-col>
-        <v-col class="shrink">
-          <v-btn @click="showToken = !showToken" color="primary" small>
-            <v-icon left>{{ showToken ? mdiEyeOff : mdiEye }}</v-icon>
-            {{ showToken ? "Hide" : "Show" }}
-          </v-btn>
-        </v-col>
-      </v-row>
-      <v-expand-transition>
-        <v-row v-if="showToken">
-          <v-col class="shrink">
-            <copy-content :content="userToken"></copy-content>
-          </v-col>
-          <v-col class="grow">
-            <v-text-field
-              v-model="userToken"
-              dense
-              outlined
-              hide-details
-              readonly
-            ></v-text-field>
-          </v-col>
-        </v-row>
-      </v-expand-transition>
-    </v-card>
+    <account-details slot="page-content"></account-details>
   </page-layout>
 </template>
 
 <script>
-import { mdiEye, mdiEyeOff } from "@mdi/js";
-import { mapState } from "vuex";
 import PageTitle from "../components/globals/PageTitle";
 import PageLayout from "../components/globals/PageLayout";
-import CopyContent from "../components/globals/CopyContent";
+import AccountDetails from "../components/account/AccountDetails";
 export default {
-  data() {
-    return {
-      mdiEye,
-      mdiEyeOff,
-      userToken: null,
-      showToken: false
-    };
-  },
-  mounted() {
-    this.userToken = this.token;
-  },
-  computed: {
-    ...mapState("authentication", ["token", "username"])
-  },
   components: {
     PageTitle,
     PageLayout,
-    CopyContent
+    AccountDetails
   }
 };
 </script>
