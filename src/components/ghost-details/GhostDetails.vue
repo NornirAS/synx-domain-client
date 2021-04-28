@@ -2,58 +2,59 @@
   <v-card>
     <div class="title mb-5">Ghost Details</div>
     <v-divider></v-divider>
-    <v-list-item>
-      <v-list-item-title>URI</v-list-item-title>
-      <v-list-item-subtitle class="text-right">
+    <v-row>
+      <v-col class="grow">URI</v-col>
+      <v-col class="shrink">
         {{ ghostURI }}
-      </v-list-item-subtitle>
-    </v-list-item>
+      </v-col>
+    </v-row>
     <v-divider></v-divider>
-    <v-list-item>
-      <v-list-item-title>Map ID</v-list-item-title>
-      <v-list-item-subtitle class="text-right">
+    <v-row>
+      <v-col class="grow">Map ID</v-col>
+      <v-col class="shrink">
         <v-btn
           v-if="hasMapId"
           @click="showMapId = !showMapId"
           small
           color="primary"
-          class="mr-4"
         >
           <v-icon>{{ showMapId ? mdiEyeOff : mdiEye }}</v-icon>
         </v-btn>
+      </v-col>
+      <v-col class="shrink">
         <map-id :token="token" :ghost="selectedGhost"></map-id>
-      </v-list-item-subtitle>
-    </v-list-item>
+      </v-col>
+    </v-row>
     <v-expand-transition>
       <div v-if="showMapId">
         <v-divider></v-divider>
-        <v-list-item>
-          <v-list-item-subtitle>{{ selectedGhost.mapID }}</v-list-item-subtitle>
-        </v-list-item>
+        <v-row>
+          <v-col>{{ selectedGhost.mapID }}</v-col>
+        </v-row>
       </div>
     </v-expand-transition>
     <v-divider></v-divider>
-    <v-list-item>
-      <v-list-item-title>Transfer Ownership</v-list-item-title>
-      <v-list-item-subtitle class="text-right">
+    <v-row>
+      <v-col class="grow">Transfer Ownership</v-col>
+      <v-col class="shrink">
         <transfer-ownership
           :token="token"
           :ghost="selectedGhost"
           :ghostURI="ghostURI"
         ></transfer-ownership>
-      </v-list-item-subtitle>
-    </v-list-item>
+      </v-col>
+    </v-row>
     <v-divider></v-divider>
-    <v-list-item>
-      <v-list-item-title>Disable Data</v-list-item-title>
-      <v-list-item-subtitle class="text-right">
+    <v-row>
+      <v-col class="grow">Disable Data</v-col>
+      <v-col class="shrink">
         <disable-data
           :token="token"
           :ghost="selectedGhost"
           :ghostURI="ghostURI"
         ></disable-data>
-      </v-list-item-subtitle>
-    </v-list-item>
+      </v-col>
+    </v-row>
   </v-card>
 </template>
 
