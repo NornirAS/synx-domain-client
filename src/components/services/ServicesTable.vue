@@ -63,7 +63,6 @@
       v-if="!noResultsFound && !servicesLengthLessItemsPerPage"
       v-model="page"
       :length="pageCount"
-      light
     ></v-pagination>
   </v-card>
 </template>

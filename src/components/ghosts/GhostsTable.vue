@@ -76,7 +76,6 @@
       v-if="!noGhosts && !allGhostsLengthLessItemsPerPage"
       v-model="page"
       :length="pageCount"
-      light
     ></v-pagination>
   </v-card>
 </template>

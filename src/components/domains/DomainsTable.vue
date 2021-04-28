@@ -33,7 +33,6 @@
       v-if="!noDomains && !domainsLengthLessItemsPerPage"
       v-model="page"
       :length="pageCount"
-      light
     ></v-pagination>
   </v-card>
 </template>
