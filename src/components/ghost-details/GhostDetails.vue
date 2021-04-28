@@ -24,10 +24,14 @@
         <map-id :token="token" :ghost="selectedGhost"></map-id>
       </v-list-item-subtitle>
     </v-list-item>
-    <v-divider v-if="showMapId"></v-divider>
-    <v-list-item v-if="showMapId">
-      <v-list-item-subtitle>{{ selectedGhost.mapID }}</v-list-item-subtitle>
-    </v-list-item>
+    <v-expand-transition>
+      <div v-if="showMapId">
+        <v-divider></v-divider>
+        <v-list-item>
+          <v-list-item-subtitle>{{ selectedGhost.mapID }}</v-list-item-subtitle>
+        </v-list-item>
+      </div>
+    </v-expand-transition>
     <v-divider></v-divider>
     <v-list-item>
       <v-list-item-title>Transfer Ownership</v-list-item-title>
