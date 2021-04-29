@@ -1,6 +1,7 @@
 const state = {
   serviceDescription: "",
   schemaDescription: "",
+  commandDescription: "",
   imageUrl: ""
 };
 
@@ -11,12 +12,16 @@ const mutations = {
   addSchemaDescription(state, payload) {
     state.schemaDescription = payload;
   },
+  addCommandDescription(state, payload) {
+    state.commandDescription = payload;
+  },
   addImageUrl(state, payload) {
     state.imageUrl = payload;
   },
   resetState(state) {
     state.serviceDescription = "";
     state.schemaDescription = "";
+    state.commandDescription = "";
     state.imageUrl = "";
   }
 };
@@ -36,12 +41,31 @@ const actions = {
     );
     const schemaDescriptionText = schemaDescriptionElement.innerHTML;
     const matchedElementsArray = schemaDescriptionText.match(/(.+?)(?=#|$)/gm);
-    const updatedElementsArray = matchedElementsArray.map(str => {
-      const stringWithNoSpacesAtTheEnd = str.replace(/\s*$/, "");
-      return `${stringWithNoSpacesAtTheEnd}\n`;
-    });
-    const schemaDescription = updatedElementsArray.join("");
-    commit("addSchemaDescription", schemaDescription);
+    if (matchedElementsArray) {
+      const updatedElementsArray = matchedElementsArray.map(str => {
+        const stringWithNoSpacesAtTheEnd = str.replace(/\s*$/, "");
+        return `${stringWithNoSpacesAtTheEnd}\n`;
+      });
+      const schemaDescription = updatedElementsArray.join("");
+      commit("addSchemaDescription", schemaDescription);
+    }
+    const commandDescriptionElement = htmlDoc.querySelector(
+      "#command-description"
+    );
+    const commandDescriptionText = commandDescriptionElement.innerHTML;
+    const matchedElementsArrayCommand = commandDescriptionText.match(
+      /(.+?)(?=#|$)/gm
+    );
+    if (matchedElementsArrayCommand) {
+      const updatedElementsArrayCommand = matchedElementsArrayCommand.map(
+        str => {
+          const stringWithNoSpacesAtTheEnd = str.replace(/\s*$/, "");
+          return `${stringWithNoSpacesAtTheEnd}\n`;
+        }
+      );
+      const commandDescription = updatedElementsArrayCommand.join("");
+      commit("addCommandDescription", commandDescription);
+    }
     const serviceImageElement = htmlDoc.querySelector(".bg-image");
     const serviceImageUrl = serviceImageElement.style.backgroundImage;
     const reg = new RegExp(/url\("(.*)"\)/gim);

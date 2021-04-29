@@ -14,6 +14,7 @@
       </div>
       <service-description></service-description>
       <schema-description></schema-description>
+      <command-description></command-description>
       <service-image></service-image>
       <div>
         <v-btn @click="backToServices" color="primary" text>
@@ -37,6 +38,7 @@ import { mapState, mapGetters, mapMutations } from "vuex";
 import ServiceImage from "./ServiceImage";
 import ServiceDescription from "./ServiceDescription";
 import SchemaDescription from "./SchemaDescription";
+import CommandDescription from "./CommandDescription";
 export default {
   data() {
     return {
@@ -60,6 +62,7 @@ export default {
           service: this.name,
           serviceDescription: this.serviceDescription,
           schemaDescription: this.schemaDescription,
+          commandDescription: this.commandDescription,
           imageUrl: this.imageUrl
         });
       }
@@ -74,6 +77,7 @@ export default {
     ...mapState("micropageForm", [
       "serviceDescription",
       "schemaDescription",
+      "commandDescription",
       "imageUrl"
     ]),
     ...mapGetters("serviceForm", ["serviceURL"])
@@ -81,7 +85,8 @@ export default {
   components: {
     ServiceImage,
     ServiceDescription,
-    SchemaDescription
+    SchemaDescription,
+    CommandDescription
   }
 };
 </script>
