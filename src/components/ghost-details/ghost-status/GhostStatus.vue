@@ -54,15 +54,50 @@
 </template>
 <script>
 import { mapState } from "vuex";
-import ExternalLinking from "../ghost-details/ExternalLinking";
-import AddReadAccess from "../ghost-details/read-access/AddReadAccess";
-import RemoveReadAccess from "../ghost-details/read-access/RemoveReadAccess";
-import AddSecondaryService from "../ghost-details/secondary-service/AddSecondaryService";
-import RemoveSecondaryService from "../ghost-details/secondary-service/RemoveSecondaryService";
+import ExternalLinking from "./ExternalLinking";
+import AddReadAccess from "./read-access/AddReadAccess";
+import RemoveReadAccess from "./read-access/RemoveReadAccess";
+import AddSecondaryService from "./secondary-service/AddSecondaryService";
+import RemoveSecondaryService from "./secondary-service/RemoveSecondaryService";
 export default {
+  created() {
+    this.getGhostStatus();
+  },
+  methods: {
+    getGhostStatus() {
+      this.$socket.emit("get_ghost_status", {
+        token: this.token,
+        username: this.username,
+        domain: this.selectedGhost.domain,
+        service: this.selectedGhost.service,
+        instance: this.selectedGhost.instance
+      });
+    }
+  },
   computed: {
-    ...mapState("authentication", ["token"]),
-    ...mapState("ghostDetails", ["selectedGhost"])
+    ...mapState("authentication", ["token", "username"]),
+    ...mapState("ghostDetails", ["selectedGhost"]),
+    ...mapState("alert", [
+      "tranferOwnershipSuccess",
+      "giveReadAccessSuccess",
+      "removeReadAccessSuccess",
+      "addPrimaryGhostSuccess",
+      "removePrimaryGhostSuccess"
+    ])
+  },
+  watch: {
+    giveReadAccessSuccess() {
+      this.getGhostStatus();
+    },
+    removeReadAccessSuccess() {
+      this.getGhostStatus();
+    },
+    addPrimaryGhostSuccess() {
+      this.getGhostStatus();
+    },
+    removePrimaryGhostSuccess() {
+      this.getGhostStatus();
+    }
   },
   components: {
     AddReadAccess,

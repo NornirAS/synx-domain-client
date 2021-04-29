@@ -12,12 +12,10 @@
       <alert-limit v-if="isGhostsPage && isGhostLimit"></alert-limit>
     </div>
     <div slot="page-content">
-      <router-view></router-view>
-      <router-view name="ghosts-list"></router-view>
-      <router-view name="ghost-status"></router-view>
-      <router-view name="remove-ghost"></router-view>
       <domain-empty v-if="noDomains && noServices && noGhosts"></domain-empty>
       <ghosts-empty v-if="!noDomains && noServices && noGhosts"></ghosts-empty>
+      <router-view></router-view>
+      <router-view name="ghosts-list"></router-view>
     </div>
   </page-layout>
 </template>
@@ -35,7 +33,6 @@ export default {
       this.getOwnedGhosts();
       this.lookForNewGhosts();
     }
-    if (this.isGhostDetailsPage) this.getGhostStatus();
   },
   methods: {
     getOwnedGhosts() {
@@ -47,15 +44,6 @@ export default {
       this.$socket.emit("look_for_new_ghosts", {
         token: this.token,
         username: this.username
-      });
-    },
-    getGhostStatus() {
-      this.$socket.emit("get_ghost_status", {
-        token: this.token,
-        username: this.username,
-        domain: this.selectedGhost.domain,
-        service: this.selectedGhost.service,
-        instance: this.selectedGhost.instance
       });
     }
   },
@@ -69,11 +57,6 @@ export default {
       "addGhostSuccess",
       "acceptGhostSuccess",
       "declineGhostSuccess",
-      "removeGhostSuccess",
-      "giveReadAccessSuccess",
-      "removeReadAccessSuccess",
-      "addPrimaryGhostSuccess",
-      "removePrimaryGhostSuccess",
       "addMapIdSuccess",
       "tranferOwnershipSuccess"
     ]),
@@ -101,18 +84,6 @@ export default {
     },
     removeGhostSuccess() {
       this.getOwnedGhosts();
-    },
-    giveReadAccessSuccess() {
-      this.getGhostStatus();
-    },
-    removeReadAccessSuccess() {
-      this.getGhostStatus();
-    },
-    addPrimaryGhostSuccess() {
-      this.getGhostStatus();
-    },
-    removePrimaryGhostSuccess() {
-      this.getGhostStatus();
     },
     addMapIdSuccess() {
       this.getOwnedGhosts();

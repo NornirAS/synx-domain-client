@@ -16,7 +16,7 @@
       dense
     >
     </v-text-field>
-    <v-btn class="text-capitalize ml-4" color="primary" type="submit">
+    <v-btn class="ml-4" color="primary" type="submit">
       <v-icon>{{ mdiPlus }}</v-icon>
       Add receiver
     </v-btn>
