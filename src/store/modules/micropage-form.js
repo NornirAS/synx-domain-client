@@ -42,9 +42,11 @@ const actions = {
     });
     const schemaDescription = updatedElementsArray.join("");
     commit("addSchemaDescription", schemaDescription);
-    const serviceImageElement = htmlDoc.querySelector("#service-image");
-    const serviceImageUrl = serviceImageElement.src;
-    commit("addImageUrl", serviceImageUrl);
+    const serviceImageElement = htmlDoc.querySelector(".bg-image");
+    const serviceImageUrl = serviceImageElement.style.backgroundImage;
+    const reg = new RegExp(/url\("(.*)"\)/gim);
+    const url = reg.exec(serviceImageUrl);
+    if (url) commit("addImageUrl", url[1]);
   }
 };
 
