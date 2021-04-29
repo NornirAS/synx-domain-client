@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import GhostDetails from "../components/ghost-details/GhostDetails";
-import GhostStatus from "../components/ghost-details/ghost-status/GhostStatus";
-import RemoveGhost from "../components/ghost-details/RemoveGhost";
+import GhostDetails from "../components/ghost-overview/ghost-details/GhostDetails";
+import GhostStatus from "../components/ghost-overview/ghost-status/GhostStatus";
+import RemoveGhost from "../components/ghost-overview/RemoveGhost";
 export default {
   components: {
     GhostDetails,

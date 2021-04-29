@@ -69,10 +69,10 @@
 <script>
 import { mdiEye, mdiEyeOff } from "@mdi/js";
 import { mapState, mapGetters } from "vuex";
-import MapId from "../ghost-details/MapId";
-import DisableData from "../ghost-details/DisableData";
-import TransferOwnership from "../ghost-details/TransferOwnership";
-import CopyContent from "../globals/CopyContent";
+import MapId from "./MapId";
+import DisableData from "./DisableData";
+import TransferOwnership from "./TransferOwnership";
+import CopyContent from "../../globals/CopyContent";
 export default {
   data() {
     return {

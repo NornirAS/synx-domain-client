@@ -4,7 +4,7 @@
       <div slot="title">
         {{ title }}
       </div>
-      <div v-if="isGhostDetailsPage" slot="subtitle">
+      <div v-if="isGhostOverviewPage" slot="subtitle">
         {{ domainURI }}<span class="font-weight-bold">{{ ghostID }}</span>
       </div>
     </page-title>
@@ -66,8 +66,8 @@ export default {
     isGhostsPage() {
       return this.$route.name === "ghosts";
     },
-    isGhostDetailsPage() {
-      return this.$route.name === "ghostDetails";
+    isGhostOverviewPage() {
+      return this.$route.name === "ghostOverview";
     }
   },
   watch: {

@@ -123,7 +123,7 @@ export default {
     },
     toGhostDetails({ domain, service, instance }) {
       this.$router.push({
-        name: "ghostDetails",
+        name: "ghostOverview",
         params: {
           domain: domain.toLowerCase(),
           service: service.toLowerCase(),

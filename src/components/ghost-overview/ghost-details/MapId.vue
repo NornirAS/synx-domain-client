@@ -2,8 +2,7 @@
   <v-dialog v-model="dialog" width="500">
     <template v-slot:activator="{ on, attrs }">
       <v-btn v-bind="attrs" v-on="on" color="primary" small>
-        <v-icon v-if="hasMapId">{{ mdiPencil }}</v-icon>
-        <v-icon v-else>{{ mdiPlus }}</v-icon>
+        <v-icon>{{ hasMapId ? mdiPencil : mdiPlus }}</v-icon>
       </v-btn>
     </template>
 
@@ -51,7 +50,7 @@
 
 <script>
 import { mdiPlus, mdiPencil } from "@mdi/js";
-import DialogCard from "../globals/DialogCard";
+import DialogCard from "../../globals/DialogCard";
 export default {
   props: ["token", "ghost"],
   data() {

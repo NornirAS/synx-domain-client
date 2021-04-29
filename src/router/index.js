@@ -16,7 +16,7 @@ import DomainForm from "../components/domains/DomainForm";
 import AddGhosts from "../components/ghosts/AddGhost";
 import GhostsTable from "../components/ghosts/GhostsTable";
 import AboutUri from "../components/ghosts/AboutUri";
-import GhostDetails from "../views/GhostDetails";
+import GhostOverview from "../views/GhostOverview";
 import SideBar from "../components/globals/SideBar";
 import PageNotFound from "../components/empty-page/PageNotFound";
 
@@ -146,8 +146,8 @@ const routes = [
       },
       {
         path: ":domain/:service##:instance",
-        name: "ghostDetails",
-        component: GhostDetails,
+        name: "ghostOverview",
+        component: GhostOverview,
         meta: {
           title: "Ghost Details Overview:"
         }
