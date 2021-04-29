@@ -147,7 +147,7 @@ const routes = [
         }
       },
       {
-        path: ":serviceName##:instance",
+        path: ":domain/:service##:instance",
         name: "ghostDetails",
         components: {
           default: GhostDetails,

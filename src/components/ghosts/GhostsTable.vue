@@ -121,11 +121,12 @@ export default {
       this.selectGhost(ghost);
       this.toGhostDetails(ghost);
     },
-    toGhostDetails({ service, instance }) {
+    toGhostDetails({ domain, service, instance }) {
       this.$router.push({
         name: "ghostDetails",
         params: {
-          serviceName: service.toLowerCase(),
+          domain: domain.toLowerCase(),
+          service: service.toLowerCase(),
           instance
         }
       });
