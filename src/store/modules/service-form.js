@@ -2,13 +2,14 @@ import { rootDomain } from "../../core/config.js";
 
 const state = {
   domain: "",
-  name: "",
-  description: "",
+  name: "example",
+  description:
+    "This service is an example of how to easily set up communication with the Hive Collective 'Cioty'. Replace this text with your own description of what you offer of data and intelligence to the Collective.",
   keywords: "",
-  schema: "<RTW>\n</RTW>",
+  schema: "<RTW>\n<TXT></TXT>\n</RTW>",
   inlinePreScript: "",
   inlinePostScript: "",
-  command: "<CMD>\n</CMD>",
+  command: "<CMD>\n<ACTION></ACTION>\n<PARAM></PARAM>\n</CMD>",
   webJS: "",
   timeout: "30",
   isValidLinks: false
@@ -62,11 +63,12 @@ const mutations = {
   },
   resetServiceForm(state) {
     state.domain = "";
-    state.name = "";
-    state.description = "";
+    state.name = "example";
+    state.description =
+      "This service is an example of how to easily set up communication with the Hive Collective 'Cioty'. Replace this text with your own description of what you offer of data and intelligence to the Collective.";
     state.keywords = "";
-    state.schema = "<RTW>\n</RTW>";
-    state.command = "<CMD>\n</CMD>";
+    state.schema = "<RTW>\n<TXT></TXT>\n</RTW>";
+    state.command = "<CMD>\n<ACTION></ACTION>\n<PARAM></PARAM>\n</CMD>";
     state.inlinePreScript = "";
     state.inlinePostScript = "";
     state.webJS = "";
