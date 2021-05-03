@@ -2,8 +2,10 @@
   <form-input-card>
     <div slot="title">Inline Pre-Script</div>
     <div slot="subtitle">
-      This script will be executed before the data is sent to primary objects
-      and services linked to you.
+      This predicate script is executed before data distribution. Use this
+      script to transform targeted (linked) service data format into your own
+      data structure format. Always keep your data structure intact and
+      transform external data sources into your data structure.
     </div>
     <v-textarea
       v-model="serviceInlinePreScript"

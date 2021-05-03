@@ -2,9 +2,9 @@
   <form-input-card>
     <div slot="title">Service Description</div>
     <div slot="subtitle">
-      Enter service description for the public. This description will show on
-      your micropage and become visible online. Make this a good opportunity to
-      explain you service offerings.
+      Enter your description of your service {{ service }}. This information
+      will be available for service engines and will be visible at
+      {{ url }} when someone does a normal get request.
     </div>
     <v-textarea
       v-model="description"
@@ -27,6 +27,7 @@
 import { mapState, mapMutations } from "vuex";
 import FormInputCard from "../../globals/FormInputCard";
 export default {
+  props: ["service", "url"],
   data() {
     return {
       description: "",

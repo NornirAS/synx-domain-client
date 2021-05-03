@@ -2,14 +2,8 @@
   <form-input-card>
     <div slot="title">Command Description</div>
     <div slot="subtitle">
-      Use this space to tell the secondary service provider about your commands
-      and parameters that you support. Only secondary service providers that are
-      linking to your service schema are allowed to send you commands. When you
-      have an active command service you need to develop a software agent to
-      handle incoming commands. Command schema is not linkable. If you like help
-      to create a software agent to handle incoming commands, please visit
-      nornir.academy and post for help. There will be a lot of examples
-      available in different programming languages to get you started.
+      Describe your command and which option the secondary service provider with
+      an active link can perform on your service.
     </div>
     <v-textarea
       v-model="description"

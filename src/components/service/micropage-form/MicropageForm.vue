@@ -12,7 +12,10 @@
         The micropage tells yourself and other humans what your service is all
         about. The page will be visible to everyone entering the URL.
       </div>
-      <service-description></service-description>
+      <service-description
+        :service="name"
+        :url="serviceURL"
+      ></service-description>
       <schema-description></schema-description>
       <command-description></command-description>
       <service-image></service-image>

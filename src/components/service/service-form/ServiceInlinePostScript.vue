@@ -2,8 +2,12 @@
   <form-input-card>
     <div slot="title">Inline Post-Script</div>
     <div slot="subtitle">
-      The script will be executed after it has been sent to primary objects, but
-      before the data is shared with the collective.
+      This predicate noun script is executed after data distribution and before
+      secondary service with an active link gets it. Use this script to
+      transform your own data structure format into what you want the secondary
+      service to receive. Remember to describe the resulting data model in the
+      micropage section or it would be difficult for others to understand your
+      data structure.
     </div>
     <v-textarea
       v-model="serviceInlinePostScript"

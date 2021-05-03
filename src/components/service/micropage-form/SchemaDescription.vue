@@ -2,10 +2,9 @@
   <form-input-card>
     <div slot="title">Schema Description</div>
     <div slot="subtitle">
-      Enter data elements from you schema and explain to the public what data
-      your schema is offering. Use the format "#elementname" followed by
-      "description", this will automatically generate valid linking path to
-      element when you publish the description.
+      Enter a description of your data structure that you want to be linkable.
+      Please describe each data element and what's behind the data source
+      generator.
     </div>
     <v-textarea
       v-model="description"
