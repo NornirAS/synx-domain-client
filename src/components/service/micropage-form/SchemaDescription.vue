@@ -41,11 +41,11 @@ export default {
     ...mapMutations("micropageForm", ["addSchemaDescription"])
   },
   computed: {
-    ...mapState("micropageForm", ["schemaDescription"])
+    ...mapState("micropageForm", ["schemaOverview"])
   },
   watch: {
-    schemaDescription(newValue) {
-      this.description = newValue;
+    schemaOverview(newValue) {
+      this.description = newValue.description;
     }
   },
   components: {

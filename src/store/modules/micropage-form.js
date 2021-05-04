@@ -1,6 +1,9 @@
 const state = {
   serviceDescription: "",
-  schemaDescription: "",
+  schemaOverview: {
+    description: "",
+    elements: []
+  },
   commandDescription: "",
   imageUrl: ""
 };
@@ -9,8 +12,11 @@ const mutations = {
   addServiceDescription(state, payload) {
     state.serviceDescription = payload;
   },
+  addSchemaOverview(state, payload) {
+    state.schemaOverview = Object.assign({}, state.schemaOverview, payload);
+  },
   addSchemaDescription(state, payload) {
-    state.schemaDescription = payload;
+    state.schemaOverview.description = payload;
   },
   addCommandDescription(state, payload) {
     state.commandDescription = payload;
@@ -20,7 +26,7 @@ const mutations = {
   },
   resetState(state) {
     state.serviceDescription = "";
-    state.schemaDescription = "";
+    state.schemaOverview = {};
     state.commandDescription = "";
     state.imageUrl = "";
   }
@@ -39,16 +45,9 @@ const actions = {
     const schemaDescriptionElement = htmlDoc.querySelector(
       "#schema-description"
     );
-    const schemaDescriptionText = schemaDescriptionElement.innerHTML;
-    const matchedElementsArray = schemaDescriptionText.match(/(.+?)(?=#|$)/gm);
-    if (matchedElementsArray) {
-      const updatedElementsArray = matchedElementsArray.map(str => {
-        const stringWithNoSpacesAtTheEnd = str.replace(/\s*$/, "");
-        return `${stringWithNoSpacesAtTheEnd}\n`;
-      });
-      const schemaDescription = updatedElementsArray.join("");
-      commit("addSchemaDescription", schemaDescription);
-    }
+    const schemaDescriptionString = schemaDescriptionElement.innerHTML;
+    const schemaDescriptionJson = JSON.parse(schemaDescriptionString);
+    commit("addSchemaOverview", schemaDescriptionJson);
     const commandDescriptionElement = htmlDoc.querySelector(
       "#command-description"
     );

@@ -64,7 +64,7 @@ export default {
           domain: this.domain,
           service: this.name,
           serviceDescription: this.serviceDescription,
-          schemaDescription: this.schemaDescription,
+          schemaDescription: JSON.stringify(this.schemaOverview),
           commandDescription: this.commandDescription,
           imageUrl: this.imageUrl
         });
@@ -79,7 +79,7 @@ export default {
     ...mapState("serviceForm", ["domain", "name"]),
     ...mapState("micropageForm", [
       "serviceDescription",
-      "schemaDescription",
+      "schemaOverview",
       "commandDescription",
       "imageUrl"
     ]),
