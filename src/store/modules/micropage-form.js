@@ -18,6 +18,12 @@ const mutations = {
   addSchemaDescription(state, payload) {
     state.schemaOverview.description = payload;
   },
+  addElement(state, payload) {
+    state.schemaOverview.elements.push(payload);
+  },
+  removeElement(state, payload) {
+    state.schemaOverview.elements.splice(payload, 1);
+  },
   addCommandDescription(state, payload) {
     state.commandDescription = payload;
   },
@@ -26,7 +32,7 @@ const mutations = {
   },
   resetState(state) {
     state.serviceDescription = "";
-    state.schemaOverview = {};
+    state.schemaOverview = Object.assign({}, state.schemaOverview, {});
     state.commandDescription = "";
     state.imageUrl = "";
   }
@@ -42,6 +48,7 @@ const actions = {
     );
     const serviceDescription = serviceDescriptionElement.innerHTML.trim();
     commit("addServiceDescription", serviceDescription);
+    // Get json string from html element and parse it to json object.
     const schemaDescriptionElement = htmlDoc.querySelector(
       "#schema-description"
     );

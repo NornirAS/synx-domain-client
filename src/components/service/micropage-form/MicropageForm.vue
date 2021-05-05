@@ -17,6 +17,7 @@
         :url="serviceURL"
       ></service-description>
       <schema-description></schema-description>
+      <display-elements></display-elements>
       <command-description></command-description>
       <service-image></service-image>
       <div>
@@ -42,6 +43,7 @@ import ServiceImage from "./ServiceImage";
 import ServiceDescription from "./ServiceDescription";
 import SchemaDescription from "./SchemaDescription";
 import CommandDescription from "./CommandDescription";
+import DisplayElements from "./SchemaElementDescription/DisplayElements";
 export default {
   data() {
     return {
@@ -89,7 +91,8 @@ export default {
     ServiceImage,
     ServiceDescription,
     SchemaDescription,
-    CommandDescription
+    CommandDescription,
+    DisplayElements
   }
 };
 </script>
