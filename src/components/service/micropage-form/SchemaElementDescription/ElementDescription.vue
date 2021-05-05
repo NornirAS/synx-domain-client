@@ -10,7 +10,7 @@
     <v-textarea
       v-model="description"
       class="grow"
-      label="Description"
+      label="Element Description"
       rows="1"
       outlined
       auto-grow

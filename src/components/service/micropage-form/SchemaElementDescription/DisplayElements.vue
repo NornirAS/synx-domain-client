@@ -5,7 +5,7 @@
         <template v-slot:actions>
           <v-icon color="primary" class="icon">$expand</v-icon>
         </template>
-        Schema Elements
+        Schema Details
       </v-expansion-panel-header>
       <v-expansion-panel-content>
         <element-description
