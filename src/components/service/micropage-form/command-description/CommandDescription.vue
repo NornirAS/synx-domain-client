@@ -19,12 +19,14 @@
       outlined
       dense
     ></v-textarea>
+    <command-details slot="helper" class="mb-6"></command-details>
   </form-input-card>
 </template>
 
 <script>
 import { mapState, mapMutations } from "vuex";
-import FormInputCard from "../../globals/FormInputCard";
+import FormInputCard from "../../../globals/FormInputCard";
+import CommandDetails from "./CommandDetails";
 export default {
   data() {
     return {
@@ -48,7 +50,8 @@ export default {
     }
   },
   components: {
-    FormInputCard
+    FormInputCard,
+    CommandDetails
   }
 };
 </script>

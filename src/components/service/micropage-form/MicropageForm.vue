@@ -41,7 +41,7 @@ import { mapState, mapGetters, mapMutations } from "vuex";
 import ServiceImage from "./ServiceImage";
 import ServiceDescription from "./ServiceDescription";
 import SchemaDescription from "./schema-description/SchemaDescription";
-import CommandDescription from "./CommandDescription";
+import CommandDescription from "./command-description/CommandDescription";
 export default {
   data() {
     return {

@@ -9,7 +9,7 @@ const state = {
   commandOverview: {
     description: null,
     headers: [],
-    command: []
+    commands: []
   },
   imageUrl: null
 };
