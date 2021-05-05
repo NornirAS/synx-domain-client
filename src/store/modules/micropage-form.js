@@ -1,11 +1,17 @@
+import { _isJsonString } from "../../utils";
+
 const state = {
-  serviceDescription: "",
+  serviceDescription: null,
   schemaOverview: {
-    description: "",
+    description: null,
     elements: []
   },
-  commandDescription: "",
-  imageUrl: ""
+  commandOverview: {
+    description: null,
+    headers: [],
+    command: []
+  },
+  imageUrl: null
 };
 
 const mutations = {
@@ -16,7 +22,9 @@ const mutations = {
     state.schemaOverview = Object.assign({}, state.schemaOverview, payload);
   },
   addSchemaDescription(state, payload) {
-    state.schemaOverview.description = payload;
+    state.schemaOverview = Object.assign({}, state.schemaOverview, {
+      description: payload
+    });
   },
   addElement(state, payload) {
     state.schemaOverview.elements.push(payload);
@@ -24,58 +32,76 @@ const mutations = {
   removeElement(state, payload) {
     state.schemaOverview.elements.splice(payload, 1);
   },
+  addCommandOverview(state, payload) {
+    state.commandOverview = Object.assign({}, state.commandOverview, payload);
+  },
   addCommandDescription(state, payload) {
-    state.commandDescription = payload;
+    state.commandOverview = Object.assign({}, state.commandOverview, {
+      description: payload
+    });
   },
   addImageUrl(state, payload) {
     state.imageUrl = payload;
   },
   resetState(state) {
-    state.serviceDescription = "";
+    state.serviceDescription = null;
     state.schemaOverview = Object.assign({}, state.schemaOverview, {});
-    state.commandDescription = "";
-    state.imageUrl = "";
+    state.commandOverview = Object.assign({}, state.commandOverview, {});
+    state.imageUrl = null;
   }
 };
 
 const actions = {
-  // eslint-disable-next-line no-unused-vars
   SOCKET_micropage_data({ commit }, data) {
+    /**
+     * Parse micropage and update state with received data.
+     * For schemaOverview and commandOverview we check if data is JSON string.
+     * We get JSON string when micropage is updated from GUI, because it has more
+     * complex structure. Micropage can be simply updated with curl and it can
+     * be just a regular string in this case we will use it as description inside
+     * schemaOverview and commandOverview.
+     */
     const parser = new DOMParser();
     const htmlDoc = parser.parseFromString(data, "text/html");
+    // Get serviceDescription
     const serviceDescriptionElement = htmlDoc.querySelector(
       "#service-description"
     );
     const serviceDescription = serviceDescriptionElement.innerHTML.trim();
     commit("addServiceDescription", serviceDescription);
-    // Get json string from html element and parse it to json object.
+    // Get schemaOverview
     const schemaDescriptionElement = htmlDoc.querySelector(
       "#schema-description"
     );
     const schemaDescriptionString = schemaDescriptionElement.innerHTML;
-    const schemaDescriptionJson = JSON.parse(schemaDescriptionString);
-    commit("addSchemaOverview", schemaDescriptionJson);
+    const schemaDescriptionIsJsonString = _isJsonString(
+      schemaDescriptionString
+    );
+    if (schemaDescriptionIsJsonString) {
+      const schemaDescriptionJson = JSON.parse(schemaDescriptionString);
+      commit("addSchemaOverview", schemaDescriptionJson);
+    } else {
+      commit("addSchemaDescription", schemaDescriptionString);
+    }
+    // Get commandOverview
     const commandDescriptionElement = htmlDoc.querySelector(
       "#command-description"
     );
-    const commandDescriptionText = commandDescriptionElement.innerHTML;
-    const matchedElementsArrayCommand = commandDescriptionText.match(
-      /(.+?)(?=#|$)/gm
+    const commandDescriptionString = commandDescriptionElement.innerHTML;
+    const commandDescriptionIsJsonString = _isJsonString(
+      commandDescriptionString
     );
-    if (matchedElementsArrayCommand) {
-      const updatedElementsArrayCommand = matchedElementsArrayCommand.map(
-        str => {
-          const stringWithNoSpacesAtTheEnd = str.replace(/\s*$/, "");
-          return `${stringWithNoSpacesAtTheEnd}\n`;
-        }
-      );
-      const commandDescription = updatedElementsArrayCommand.join("");
-      commit("addCommandDescription", commandDescription);
+    if (commandDescriptionIsJsonString) {
+      const commandDescriptionJson = JSON.parse(commandDescriptionString);
+      commit("addCommandOverview", commandDescriptionJson);
+    } else {
+      commit("addCommandDescription", commandDescriptionString);
     }
-    const serviceImageElement = htmlDoc.querySelector(".bg-image");
-    const serviceImageUrl = serviceImageElement.style.backgroundImage;
+    // Get imageUrl
+    const imageElement = htmlDoc.querySelector(".bg-image");
+    const imageUrl = imageElement.style.backgroundImage;
     const reg = new RegExp(/url\("(.*)"\)/gim);
-    const url = reg.exec(serviceImageUrl);
+    const url = reg.exec(imageUrl);
     if (url) commit("addImageUrl", url[1]);
   }
 };

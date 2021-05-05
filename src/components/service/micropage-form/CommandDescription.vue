@@ -40,11 +40,11 @@ export default {
     ...mapMutations("micropageForm", ["addCommandDescription"])
   },
   computed: {
-    ...mapState("micropageForm", ["commandDescription"])
+    ...mapState("micropageForm", ["commandOverview"])
   },
   watch: {
-    commandDescription(newValue) {
-      this.description = newValue;
+    commandOverview(newValue) {
+      this.description = newValue.description;
     }
   },
   components: {
