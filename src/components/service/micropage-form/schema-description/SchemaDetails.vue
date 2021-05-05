@@ -1,5 +1,5 @@
 <template>
-  <v-expansion-panels slot="action" class="mt-4 mb-6" accordion>
+  <v-expansion-panels slot="action" accordion>
     <v-expansion-panel>
       <v-expansion-panel-header>
         <template v-slot:actions>

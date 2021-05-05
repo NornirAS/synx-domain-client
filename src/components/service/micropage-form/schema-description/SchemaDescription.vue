@@ -20,12 +20,14 @@
       outlined
       dense
     ></v-textarea>
+    <schema-details slot="helper" class="mb-6"></schema-details>
   </form-input-card>
 </template>
 
 <script>
 import { mapState, mapMutations } from "vuex";
-import FormInputCard from "../../globals/FormInputCard";
+import FormInputCard from "../../../globals/FormInputCard";
+import SchemaDetails from "./SchemaDetails";
 export default {
   data() {
     return {
@@ -49,7 +51,8 @@ export default {
     }
   },
   components: {
-    FormInputCard
+    FormInputCard,
+    SchemaDetails
   }
 };
 </script>

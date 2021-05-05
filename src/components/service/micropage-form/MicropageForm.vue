@@ -17,7 +17,6 @@
         :url="serviceURL"
       ></service-description>
       <schema-description></schema-description>
-      <display-elements></display-elements>
       <command-description></command-description>
       <service-image></service-image>
       <div>
@@ -41,9 +40,8 @@
 import { mapState, mapGetters, mapMutations } from "vuex";
 import ServiceImage from "./ServiceImage";
 import ServiceDescription from "./ServiceDescription";
-import SchemaDescription from "./SchemaDescription";
+import SchemaDescription from "./schema-description/SchemaDescription";
 import CommandDescription from "./CommandDescription";
-import DisplayElements from "./SchemaElementDescription/DisplayElements";
 export default {
   data() {
     return {
@@ -91,8 +89,7 @@ export default {
     ServiceImage,
     ServiceDescription,
     SchemaDescription,
-    CommandDescription,
-    DisplayElements
+    CommandDescription
   }
 };
 </script>
