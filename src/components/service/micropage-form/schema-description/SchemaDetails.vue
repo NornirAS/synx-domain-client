@@ -14,7 +14,7 @@
           :element="element"
           :index="index"
         ></element-description>
-        <element-description></element-description>
+        <add-element></add-element>
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
@@ -23,6 +23,7 @@
 <script>
 import { mapState } from "vuex";
 import ElementDescription from "./ElementDescription";
+import AddElement from "./AddElement";
 export default {
   computed: {
     ...mapState("micropageForm", ["schemaOverview"]),
@@ -31,7 +32,8 @@ export default {
     }
   },
   components: {
-    ElementDescription
+    ElementDescription,
+    AddElement
   }
 };
 </script>

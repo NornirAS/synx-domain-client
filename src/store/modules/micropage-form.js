@@ -29,6 +29,9 @@ const mutations = {
   addElement(state, payload) {
     state.schemaOverview.elements.push(payload);
   },
+  updateElement(state, { index, element }) {
+    state.schemaOverview.elements.splice(index, 1, element);
+  },
   removeElement(state, payload) {
     state.schemaOverview.elements.splice(payload, 1);
   },
@@ -54,8 +57,15 @@ const mutations = {
   },
   resetState(state) {
     state.serviceDescription = null;
-    state.schemaOverview = Object.assign({}, state.schemaOverview, {});
-    state.commandOverview = Object.assign({}, state.commandOverview, {});
+    state.schemaOverview = Object.assign({}, state.schemaOverview, {
+      description: null,
+      elements: []
+    });
+    state.commandOverview = Object.assign({}, state.commandOverview, {
+      description: null,
+      headers: [],
+      commands: []
+    });
     state.imageUrl = null;
   }
 };

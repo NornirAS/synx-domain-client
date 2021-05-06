@@ -111,38 +111,40 @@ import { mapState, mapMutations } from "vuex";
 import { mdiPencil, mdiTrashCanOutline } from "@mdi/js";
 import DialogCard from "../../../globals/DialogCard";
 export default {
-  data: () => ({
-    mdiPencil,
-    mdiTrashCanOutline,
-    dialog: false,
-    dialogDelete: false,
-    headers: [
-      {
-        text: "CMD",
-        align: "start",
-        sortable: false,
-        value: "command"
+  data() {
+    return {
+      mdiPencil,
+      mdiTrashCanOutline,
+      dialog: false,
+      dialogDelete: false,
+      headers: [
+        {
+          text: "CMD",
+          align: "start",
+          sortable: false,
+          value: "command"
+        },
+        { text: "PARAM1", value: "param1", sortable: false },
+        { text: "PARAM2", value: "param2", sortable: false },
+        { text: "Description", value: "description", sortable: false },
+        { text: "Actions", value: "actions", sortable: false, align: "end" }
+      ],
+      commands: [],
+      editedIndex: -1,
+      editedItem: {
+        command: "",
+        param1: "",
+        param2: "",
+        description: ""
       },
-      { text: "PARAM1", value: "param1", sortable: false },
-      { text: "PARAM2", value: "param2", sortable: false },
-      { text: "Description", value: "description", sortable: false },
-      { text: "Actions", value: "actions", sortable: false, align: "end" }
-    ],
-    commands: [],
-    editedIndex: -1,
-    editedItem: {
-      command: "",
-      param1: "",
-      param2: "",
-      description: ""
-    },
-    defaultItem: {
-      command: "",
-      param1: "",
-      param2: "",
-      description: ""
-    }
-  }),
+      defaultItem: {
+        command: "",
+        param1: "",
+        param2: "",
+        description: ""
+      }
+    };
+  },
 
   computed: {
     ...mapState("micropageForm", ["commandOverview"]),
