@@ -40,6 +40,15 @@ const mutations = {
       description: payload
     });
   },
+  addCommand(state, payload) {
+    state.commandOverview.commands.push(payload);
+  },
+  updateCommand(state, { index, command }) {
+    state.commandOverview.commands.splice(index, 1, command);
+  },
+  removeCommand(state, payload) {
+    state.commandOverview.commands.splice(payload, 1);
+  },
   addImageUrl(state, payload) {
     state.imageUrl = payload;
   },

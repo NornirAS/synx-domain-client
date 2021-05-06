@@ -99,6 +99,7 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
 import { mdiPencil, mdiTrashCanOutline } from "@mdi/js";
 import DialogCard from "../../../globals/DialogCard";
 export default {
@@ -109,13 +110,13 @@ export default {
     dialogDelete: false,
     headers: [
       {
-        text: "Action",
+        text: "CMD",
         align: "start",
         sortable: false,
         value: "command"
       },
-      { text: "Param1", value: "param1", sortable: false },
-      { text: "Param2", value: "param2", sortable: false },
+      { text: "PARAM1", value: "param1", sortable: false },
+      { text: "PARAM2", value: "param2", sortable: false },
       { text: "Description", value: "description", sortable: false },
       { text: "Actions", value: "actions", sortable: false, align: "end" }
     ],
@@ -136,12 +137,16 @@ export default {
   }),
 
   computed: {
+    ...mapState("micropageForm", ["commandOverview"]),
     formTitle() {
-      return this.editedIndex === -1 ? "New Item" : "Edit Item";
+      return this.editedIndex === -1 ? "New Command" : "Edit Command";
     }
   },
 
   watch: {
+    commandOverview(newValue) {
+      this.commands = newValue.commands;
+    },
     dialog(val) {
       val || this.close();
     },
@@ -151,6 +156,12 @@ export default {
   },
 
   methods: {
+    ...mapMutations("micropageForm", [
+      "addCommand",
+      "updateCommand",
+      "removeCommand"
+    ]),
+
     editItem(item) {
       this.editedIndex = this.commands.indexOf(item);
       this.editedItem = Object.assign({}, item);
@@ -164,7 +175,7 @@ export default {
     },
 
     deleteItemConfirm() {
-      this.commands.splice(this.editedIndex, 1);
+      this.removeCommand(this.editedIndex);
       this.closeDelete();
     },
 
@@ -186,9 +197,12 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.commands[this.editedIndex], this.editedItem);
+        this.updateCommand({
+          index: this.editedIndex,
+          command: this.editedItem
+        });
       } else {
-        this.commands.push(this.editedItem);
+        this.addCommand(this.editedItem);
       }
       this.close();
     }
