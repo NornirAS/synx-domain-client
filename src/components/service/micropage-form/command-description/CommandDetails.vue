@@ -54,10 +54,16 @@
                   ></v-textarea>
                 </div>
 
-                <v-btn slot="cancel-btn" color="primary" text @click="close">
+                <v-btn
+                  slot="cancel-btn"
+                  color="primary"
+                  text
+                  @click="close"
+                  small
+                >
                   Cancel
                 </v-btn>
-                <v-btn slot="confirm-btn" color="primary" @click="save">
+                <v-btn slot="confirm-btn" color="primary" @click="save" small>
                   Save
                 </v-btn>
               </dialog-card>
@@ -73,12 +79,14 @@
                   color="primary"
                   text
                   @click="closeDelete"
+                  small
                   >Cancel</v-btn
                 >
                 <v-btn
                   slot="confirm-btn"
                   color="primary"
                   @click="deleteItemConfirm"
+                  small
                   >Confirm</v-btn
                 >
               </dialog-card>
