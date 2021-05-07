@@ -107,7 +107,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapGetters } from "vuex";
 import { mdiPencil, mdiTrashCanOutline } from "@mdi/js";
 import DialogCard from "../../../globals/DialogCard";
 export default {
@@ -119,13 +119,13 @@ export default {
       dialogDelete: false,
       headers: [
         {
-          text: "CMD",
+          text: "",
           align: "start",
           sortable: false,
           value: "command"
         },
-        { text: "PARAM1", value: "param1", sortable: false },
-        { text: "PARAM2", value: "param2", sortable: false },
+        { text: "", value: "param1", sortable: false },
+        { text: "", value: "param2", sortable: false },
         { text: "Description", value: "description", sortable: false },
         { text: "Actions", value: "actions", sortable: false, align: "end" }
       ],
@@ -146,8 +146,17 @@ export default {
     };
   },
 
+  mounted() {
+    this.commands = this.commandOverview.commands;
+    // Dinamically add command elements to header of a table
+    for (let i = 0; i < this.commandElements.length; i++) {
+      this.headers[i].text = this.commandElements[i];
+    }
+  },
+
   computed: {
     ...mapState("micropageForm", ["commandOverview"]),
+    ...mapGetters("serviceForm", ["commandElements"]),
     formTitle() {
       return this.editedIndex === -1 ? "New Command" : "Edit Command";
     }
@@ -156,6 +165,7 @@ export default {
   watch: {
     commandOverview(newValue) {
       this.commands = newValue.commands;
+      this.addHeaders(this.commandElements);
     },
     dialog(val) {
       val || this.close();
@@ -169,7 +179,8 @@ export default {
     ...mapMutations("micropageForm", [
       "addCommand",
       "updateCommand",
-      "removeCommand"
+      "removeCommand",
+      "addHeaders"
     ]),
 
     editItem(item) {

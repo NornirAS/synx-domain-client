@@ -43,6 +43,9 @@ const mutations = {
       description: payload
     });
   },
+  addHeaders(state, payload) {
+    state.commandOverview.headers = payload;
+  },
   addCommand(state, payload) {
     state.commandOverview.commands.push(payload);
   },

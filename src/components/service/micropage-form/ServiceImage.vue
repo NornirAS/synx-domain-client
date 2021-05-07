@@ -27,17 +27,25 @@ export default {
       image: ""
     };
   },
+
+  mounted() {
+    this.image = this.imageUrl;
+  },
+
   methods: {
     ...mapMutations("micropageForm", ["addImageUrl"])
   },
+
   computed: {
     ...mapState("micropageForm", ["imageUrl"])
   },
+
   watch: {
     imageUrl(newValue) {
       this.image = newValue;
     }
   },
+
   components: {
     FormInputCard
   }

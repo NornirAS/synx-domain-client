@@ -38,17 +38,25 @@ export default {
       ]
     };
   },
+
+  mounted() {
+    this.description = this.serviceDescription;
+  },
+
   methods: {
     ...mapMutations("micropageForm", ["addServiceDescription"])
   },
+
   computed: {
     ...mapState("micropageForm", ["serviceDescription"])
   },
+
   watch: {
     serviceDescription(newValue) {
       this.description = newValue;
     }
   },
+
   components: {
     FormInputCard
   }

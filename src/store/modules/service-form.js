@@ -86,6 +86,9 @@ const getters = {
   },
   schemaElements({ schema }) {
     return getXmlElementNames(schema);
+  },
+  commandElements({ command }) {
+    return getXmlElementNames(command);
   }
 };
 
