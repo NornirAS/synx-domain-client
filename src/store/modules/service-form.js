@@ -1,4 +1,5 @@
 import { rootDomain } from "../../core/config.js";
+import { xmlElementNames } from "../../utils";
 
 const state = {
   domain: "",
@@ -9,7 +10,7 @@ const state = {
   schema: "<RTW>\n<TXT></TXT>\n</RTW>",
   inlinePreScript: "",
   inlinePostScript: "",
-  command: "<CMD>\n<ACTION></ACTION>\n<PARAM></PARAM>\n</CMD>",
+  command: null,
   webJS: "",
   timeout: "30",
   isValidLinks: false
@@ -68,7 +69,7 @@ const mutations = {
       "This service is an example of how to easily set up communication with the Hive Collective 'Cioty'. Replace this text with your own description of what you offer of data and intelligence to the Collective.";
     state.keywords = "";
     state.schema = "<RTW>\n<TXT></TXT>\n</RTW>";
-    state.command = "<CMD>\n<ACTION></ACTION>\n<PARAM></PARAM>\n</CMD>";
+    state.command = null;
     state.inlinePreScript = "";
     state.inlinePostScript = "";
     state.webJS = "";
@@ -84,8 +85,7 @@ const getters = {
     return `https://${serviceURI}/`;
   },
   schemaElements({ schema }) {
-    // Return array of XML element names, RTW excluded.
-    return schema.replace(/\/?RTW|<\/(.*?)>|<|>/g, "").match(/\w+/g);
+    return xmlElementNames(schema);
   }
 };
 

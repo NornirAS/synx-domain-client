@@ -1,4 +1,4 @@
-import { _isJsonString, _arrayUniqValues } from "../../utils";
+import { isJsonString, arrayUniqValues } from "../../utils";
 
 const state = {
   serviceDescription: null,
@@ -93,9 +93,7 @@ const actions = {
       "#schema-description"
     );
     const schemaDescriptionString = schemaDescriptionElement.innerHTML;
-    const schemaDescriptionIsJsonString = _isJsonString(
-      schemaDescriptionString
-    );
+    const schemaDescriptionIsJsonString = isJsonString(schemaDescriptionString);
     if (schemaDescriptionIsJsonString) {
       const schemaDescriptionJson = JSON.parse(schemaDescriptionString);
       commit("addSchemaOverview", schemaDescriptionJson);
@@ -107,7 +105,7 @@ const actions = {
       "#command-description"
     );
     const commandDescriptionString = commandDescriptionElement.innerHTML;
-    const commandDescriptionIsJsonString = _isJsonString(
+    const commandDescriptionIsJsonString = isJsonString(
       commandDescriptionString
     );
     if (commandDescriptionIsJsonString) {
@@ -136,13 +134,13 @@ const getters = {
   // Not displayed on Micropage
   privateElements(state, { publicElements }, rootState, rootGetters) {
     const schemaElements = rootGetters["serviceForm/schemaElements"];
-    return _arrayUniqValues(schemaElements, publicElements);
+    return arrayUniqValues(schemaElements, publicElements);
   },
 
   // Displayed on Micropage but not in service schema
   publicElementsNotInSchema(state, { publicElements }, rootState, rootGetters) {
     const schemaElements = rootGetters["serviceForm/schemaElements"];
-    return _arrayUniqValues(publicElements, schemaElements);
+    return arrayUniqValues(publicElements, schemaElements);
   }
 };
 
