@@ -1,5 +1,5 @@
 import { rootDomain } from "../../core/config.js";
-import { xmlElementNames } from "../../utils";
+import { getXmlElementNames } from "../../utils";
 
 const state = {
   domain: "",
@@ -85,7 +85,7 @@ const getters = {
     return `https://${serviceURI}/`;
   },
   schemaElements({ schema }) {
-    return xmlElementNames(schema);
+    return getXmlElementNames(schema);
   }
 };
 
