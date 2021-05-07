@@ -82,6 +82,10 @@ const getters = {
   },
   serviceURL(state, { serviceURI }) {
     return `https://${serviceURI}/`;
+  },
+  schemaElements({ schema }) {
+    // Return array of XML element names, RTW excluded.
+    return schema.replace(/\/?RTW|<\/(.*?)>|<|>/g, "").match(/\w+/g);
   }
 };
 

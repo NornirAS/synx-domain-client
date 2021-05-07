@@ -1,4 +1,4 @@
-import { _isJsonString } from "../../utils";
+import { _isJsonString, _arrayUniqValues } from "../../utils";
 
 const state = {
   serviceDescription: null,
@@ -125,9 +125,31 @@ const actions = {
   }
 };
 
+const getters = {
+  // Displayed on Micropage
+  publicElements({ schemaOverview }) {
+    return schemaOverview.elements.map(item => {
+      return item.name;
+    });
+  },
+
+  // Not displayed on Micropage
+  privateElements(state, { publicElements }, rootState, rootGetters) {
+    const schemaElements = rootGetters["serviceForm/schemaElements"];
+    return _arrayUniqValues(schemaElements, publicElements);
+  },
+
+  // Displayed on Micropage but not in service schema
+  publicElementsNotInSchema(state, { publicElements }, rootState, rootGetters) {
+    const schemaElements = rootGetters["serviceForm/schemaElements"];
+    return _arrayUniqValues(publicElements, schemaElements);
+  }
+};
+
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
+  getters
 };

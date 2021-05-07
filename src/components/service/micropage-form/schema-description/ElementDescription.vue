@@ -6,7 +6,8 @@
       label="Element"
       outlined
       dense
-      :readonly="!isEditItem"
+      readonly
+      :rules="[!elementNotInSchema || 'Missing in service schema']"
     ></v-text-field>
     <v-textarea
       v-model="editedItem.description"
@@ -47,7 +48,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 import { mdiTrashCanOutline, mdiPencil, mdiCheck } from "@mdi/js";
 import DialogCard from "../../../globals/DialogCard";
 export default {
@@ -102,6 +103,13 @@ export default {
     deleteItemConfirm() {
       this.removeElement(this.index);
       this.closeDelete();
+    }
+  },
+
+  computed: {
+    ...mapGetters("micropageForm", ["publicElementsNotInSchema"]),
+    elementNotInSchema() {
+      return this.publicElementsNotInSchema.includes(this.editedItem.name);
     }
   },
 

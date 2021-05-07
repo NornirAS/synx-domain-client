@@ -1,49 +1,61 @@
 <template>
   <div class="d-flex">
-    <v-text-field
-      v-model="editedItem.name"
-      class="shrink mr-4"
-      label="Element"
-      outlined
-      dense
-    ></v-text-field>
-    <v-textarea
-      v-model="editedItem.description"
-      class="grow"
-      label="Element Description"
-      rows="1"
-      outlined
-      dense
-    ></v-textarea>
-    <v-btn @click="addItem(editedItem)" color="accent" icon>
-      <v-icon>{{ mdiPlus }}</v-icon>
-    </v-btn>
+    <v-menu offset-y>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="primary"
+          v-bind="attrs"
+          v-on="on"
+          small
+          :disabled="!hasPrivateElements"
+        >
+          {{ hasPrivateElements ? "Add Element" : "No more elements to add" }}
+          <v-icon right>{{ mdiMenuDown }}</v-icon>
+        </v-btn>
+      </template>
+      <v-list>
+        <v-list-item v-for="(item, index) in privateElements" :key="index">
+          <v-list-item-title @click="selectItem(item)">{{
+            item
+          }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
   </div>
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-import { mdiPlus } from "@mdi/js";
+import { mapMutations, mapGetters } from "vuex";
+import { mdiPlus, mdiMenuDown } from "@mdi/js";
 export default {
   data() {
     return {
       mdiPlus,
+      mdiMenuDown,
       defaultItem: {
-        name: "",
-        description: ""
+        name: ""
       },
       editedItem: {
-        name: "",
-        description: ""
+        name: ""
       }
     };
   },
 
   methods: {
     ...mapMutations("micropageForm", ["addElement"]),
-    addItem(item) {
-      this.addElement(item);
+
+    selectItem(item) {
+      this.editedItem.name = item;
+      this.addElement(this.editedItem);
       this.editedItem = Object.assign({}, this.defaultItem);
+    }
+  },
+
+  computed: {
+    ...mapGetters("micropageForm", ["privateElements"]),
+
+    hasPrivateElements() {
+      return this.privateElements.length > 0;
     }
   }
 };

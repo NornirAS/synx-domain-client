@@ -8,13 +8,13 @@
         Schema Details
       </v-expansion-panel-header>
       <v-expansion-panel-content>
+        <add-element class="pb-6"></add-element>
         <element-description
           v-for="(element, index) in elements"
           :key="index"
           :element="element"
           :index="index"
         ></element-description>
-        <add-element></add-element>
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
