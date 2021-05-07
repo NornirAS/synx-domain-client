@@ -28,6 +28,6 @@ export const getXml = (obj, main) => {
 };
 
 // Return array of schema elements names
-export const xmlElementNames = xml => {
+export const getXmlElementNames = xml => {
   return xml.replace(/RTW|CMD|<\/(.*?)>|<|>/g, "").match(/\w+/g);
 };
