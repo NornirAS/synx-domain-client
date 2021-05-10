@@ -10,7 +10,8 @@ const state = {
   schema: "<RTW>\n<TXT></TXT>\n</RTW>",
   inlinePreScript: "",
   inlinePostScript: "",
-  command: "",
+  command:
+    "<CMD>\n<ACTION></ACTION>\n<PARAM1></PARAM1>\n<PARAM2></PARAM2>\n</CMD>",
   webJS: "",
   timeout: "30",
   isValidLinks: false
@@ -69,7 +70,8 @@ const mutations = {
       "This service is an example of how to easily set up communication with the Hive Collective 'Cioty'. Replace this text with your own description of what you offer of data and intelligence to the Collective.";
     state.keywords = "";
     state.schema = "<RTW>\n<TXT></TXT>\n</RTW>";
-    state.command = "";
+    state.command =
+      "<CMD>\n<ACTION></ACTION>\n<PARAM1></PARAM1>\n<PARAM2></PARAM2>\n</CMD>";
     state.inlinePreScript = "";
     state.inlinePostScript = "";
     state.webJS = "";
