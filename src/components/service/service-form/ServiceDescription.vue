@@ -6,7 +6,7 @@
     </div>
     <v-textarea
       v-model="serviceDescription"
-      @blur="addDescription(encodedDescription)"
+      @blur="addDescription(serviceDescription)"
       :rules="descriptionRules"
       :counter="maxLen"
       name="description"
@@ -43,10 +43,7 @@ export default {
     ...mapMutations("serviceForm", ["addDescription"])
   },
   computed: {
-    ...mapState("serviceForm", ["description"]),
-    encodedDescription() {
-      return btoa(this.serviceDescription);
-    }
+    ...mapState("serviceForm", ["description"])
   },
   components: {
     FormInputCard
