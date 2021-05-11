@@ -36,7 +36,7 @@ export default {
     };
   },
   mounted() {
-    this.serviceDescription = this.decodedDescription;
+    this.serviceDescription = this.description;
   },
   methods: {
     ...mapMutations("serviceForm", ["addDescription"])
@@ -45,9 +45,6 @@ export default {
     ...mapState("serviceForm", ["description"]),
     encodedDescription() {
       return btoa(this.serviceDescription);
-    },
-    decodedDescription() {
-      return atob(this.description);
     }
   },
   components: {

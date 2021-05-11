@@ -54,7 +54,7 @@ const mutations = {
   editService(state, payload) {
     state.domain = payload.domain;
     state.name = payload.serviceName;
-    state.description = payload.description;
+    state.description = atob(payload.description);
     state.keywords = payload.searchTerms;
     state.schema = payload.schema;
     state.command = payload.cmdXML;
