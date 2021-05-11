@@ -9,6 +9,17 @@ export const lengthRule = (v, fieldName, maxLen) => {
   );
 };
 
+export const smallerOrEqualRule = (v, fieldName, maxNum) => {
+  return (
+    parseInt(v) <= maxNum ||
+    `The ${fieldName} value cannot be more than ${maxNum}.`
+  );
+};
+
+export const numberRule = (v, fieldName) => {
+  return /^[\d]+$/.test(v) || `The ${fieldName} can contain only number.`;
+};
+
 export const subDomainRule = (v, fieldName) => {
   return (
     /^[a-zA-Z0-9]{0,1}[a-zA-Z0-9-]{0,62}[a-zA-Z0-9]$/.test(v) ||
