@@ -15,3 +15,11 @@ export const subDomainRule = (v, fieldName) => {
     `The ${fieldName} can contain only alphanumeric characters and hyphen(-).`
   );
 };
+
+export const emptyOrAlphanumericRule = (v, fieldName) => {
+  return (
+    !v ||
+    /^[A-Za-z0-9]+$/g.test(v) ||
+    `The ${fieldName} can contain only alphanumeric characters`
+  );
+};

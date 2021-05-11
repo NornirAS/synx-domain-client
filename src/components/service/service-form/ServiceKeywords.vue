@@ -1,6 +1,6 @@
 <template>
   <form-input-card>
-    <div slot="title">Keywords</div>
+    <div slot="title">{{ title }}</div>
     <div slot="subtitle">
       Enter keywords to make your service searchable.
     </div>
@@ -8,7 +8,8 @@
       v-model="keyword"
       @keydown.enter.prevent="add"
       :rules="keywordsRules"
-      :disabled="!isUnderKeywordsLimit"
+      :disabled="isKeywordsLimit"
+      :error-messages="errorMsg"
       slot="action"
       name="keywords"
       label="Enter keyword"
@@ -19,7 +20,7 @@
     </v-text-field>
     <v-btn
       @click="add"
-      :disabled="!isUnderKeywordsLimit || !isUsingAllowedCharacters"
+      :disabled="isKeywordsLimit || !isUsingAllowedCharacters"
       class="ml-4 mt-0"
       color="primary"
       slot="action"
@@ -28,7 +29,7 @@
     </v-btn>
     <div slot="helper">
       <v-chip
-        v-for="(keyword, index) in sortedUniqKeywords"
+        v-for="(keyword, index) in uniqKeywords"
         :key="index"
         @click:close="remove(index)"
         class="ma-1"
@@ -42,22 +43,17 @@
 </template>
 
 <script>
-import _ from "lodash";
-import FormInputCard from "../../globals/FormInputCard";
 import { mapState, mapMutations } from "vuex";
+import { emptyOrAlphanumericRule } from "../../../input-rules";
+import FormInputCard from "../../globals/FormInputCard";
 export default {
   data() {
     return {
+      title: "Keywords",
       keyword: "",
       serviceKeywords: [],
-      keywordsRules: [
-        v =>
-          !v || this.isUnderKeywordsLimit || "You can add maximum 20 keywords",
-        v =>
-          !v ||
-          this.isUsingAllowedCharacters ||
-          "You can use only A-Z, a-z and 0-9"
-      ]
+      keywordsLimit: 20,
+      keywordsRules: [v => emptyOrAlphanumericRule(v, this.title)]
     };
   },
   mounted() {
@@ -77,27 +73,32 @@ export default {
   },
   computed: {
     ...mapState("serviceForm", ["keywords"]),
+    hasKeywords() {
+      return this.keywords.length > 0;
+    },
     keywordsArray() {
       return this.keywords.split(" ");
     },
     keywordsString() {
-      return this.serviceKeywords.join(" ");
+      return this.uniqKeywords.join(" ");
     },
-    hasKeywords() {
-      return this.keywords !== "";
+    uniqKeywords() {
+      return [...new Set(this.serviceKeywords)];
     },
-    sortedUniqKeywords() {
-      return _.uniq(this.serviceKeywords);
-    },
-    isUnderKeywordsLimit() {
-      return this.sortedUniqKeywords.length <= 20;
+    isKeywordsLimit() {
+      return this.uniqKeywords.length >= this.keywordsLimit;
     },
     isUsingAllowedCharacters() {
       return /^[A-Za-z0-9]+$/g.test(this.keyword);
+    },
+    errorMsg() {
+      return this.isKeywordsLimit
+        ? `You can have maximum ${this.keywordsLimit} keywords`
+        : "";
     }
   },
   watch: {
-    serviceKeywords() {
+    uniqKeywords() {
       this.addKeywords(this.keywordsString);
     }
   },
