@@ -1,6 +1,6 @@
 <template>
   <form-input-card>
-    <div slot="title">Description</div>
+    <div slot="title">{{ title }}</div>
     <div slot="subtitle">
       Enter service description so you will remember you services later.
     </div>
@@ -8,13 +8,12 @@
       v-model="serviceDescription"
       @blur="addDescription(encodedDescription)"
       :rules="descriptionRules"
-      :counter="512"
+      :counter="maxLen"
       name="description"
       label="Service description"
       type="text"
       error-count="1"
       slot="action"
-      required
       outlined
       dense
     ></v-textarea>
@@ -23,15 +22,17 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
+import { requiredRule, lengthRule } from "../../../input-rules";
 import FormInputCard from "../../globals/FormInputCard";
 export default {
   data() {
     return {
+      title: "Description",
+      maxLen: 512,
       serviceDescription: "",
       descriptionRules: [
-        v => !!v || "Description is required",
-        v =>
-          (v && v.length) <= 512 || "Description must be maximum 512 character"
+        v => requiredRule(v, this.title),
+        v => lengthRule(v, this.title, this.maxLen)
       ]
     };
   },

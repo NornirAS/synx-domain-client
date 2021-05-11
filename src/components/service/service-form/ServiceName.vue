@@ -23,7 +23,7 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
-import { required, length, subDomain } from "../../../input-rules";
+import { requiredRule, lengthRule, subDomainRule } from "../../../input-rules";
 import FormInputCard from "../../globals/FormInputCard";
 export default {
   data() {
@@ -32,9 +32,9 @@ export default {
       maxLen: 63,
       serviceName: "",
       nameRules: [
-        v => required(v, this.title),
-        v => length(v, this.title, this.maxLen),
-        v => subDomain(v, this.title)
+        v => requiredRule(v, this.title),
+        v => lengthRule(v, this.title, this.maxLen),
+        v => subDomainRule(v, this.title)
       ]
     };
   },
