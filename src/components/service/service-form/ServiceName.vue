@@ -1,6 +1,6 @@
 <template>
   <form-input-card>
-    <div slot="title">Name</div>
+    <div slot="title">{{ title }}</div>
     <div slot="subtitle">
       Add a unique service name - the name will be part of the URI address.
     </div>
@@ -8,14 +8,13 @@
       v-model="serviceName"
       @blur="addName(serviceName)"
       :rules="nameRules"
-      :counter="64"
+      :counter="maxLen"
       :disabled="isServiceUpdate"
       name="name"
       label="Enter service name"
       type="text"
       error-count="1"
       slot="action"
-      required
       outlined
       dense
     ></v-text-field>
@@ -24,17 +23,18 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
+import { required, length, subDomain } from "../../../input-rules";
 import FormInputCard from "../../globals/FormInputCard";
 export default {
   data() {
     return {
+      title: "Service Name",
+      maxLen: 63,
       serviceName: "",
       nameRules: [
-        v => !!v || "Name is required",
-        v => (v && v.length) <= 64 || "Name must be maximum 64 character",
-        v =>
-          /^[A-Za-z\d-]+$/.test(v) ||
-          "Only alphabet characters, numbers and '-' are allowed"
+        v => required(v, this.title),
+        v => length(v, this.title, this.maxLen),
+        v => subDomain(v, this.title)
       ]
     };
   },
