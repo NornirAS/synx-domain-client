@@ -16,8 +16,11 @@ export const smallerOrEqualRule = (v, fieldName, maxNum) => {
   );
 };
 
-export const numberRule = (v, fieldName) => {
-  return /^[\d]+$/.test(v) || `The ${fieldName} can contain only number.`;
+export const biggerOrEqualRule = (v, fieldName, minNum) => {
+  return (
+    parseInt(v) >= minNum ||
+    `The ${fieldName} value cannot be less than ${minNum}.`
+  );
 };
 
 export const subDomainRule = (v, fieldName) => {
