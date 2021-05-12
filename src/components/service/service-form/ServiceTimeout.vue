@@ -38,7 +38,7 @@ export default {
       serviceTimeout: "30",
       timeoutRules: [
         v => requiredRule(v, this.title),
-        v => smallerOrEqualRule(v, this.title, 86400),
+        v => smallerOrEqualRule(v, this.title, this.maxTimeout),
         v => numberRule(v, this.title)
       ]
     };
