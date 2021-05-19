@@ -74,7 +74,7 @@ const mutations = {
 };
 
 const actions = {
-  SOCKET_micropage_data({ commit }, data) {
+  SOCKET_micropage_data({ commit, dispatch }, data) {
     /**
      * Parse micropage and update state with received data.
      * For schemaOverview and commandOverview we check if data is JSON string.
@@ -85,44 +85,56 @@ const actions = {
      */
     const parser = new DOMParser();
     const htmlDoc = parser.parseFromString(data, "text/html");
+
     // Get serviceDescription
     const serviceDescriptionElement = htmlDoc.querySelector(
       "#service-description"
     );
     const serviceDescription = serviceDescriptionElement.innerHTML.trim();
     commit("addServiceDescription", serviceDescription);
+
     // Get schemaOverview
     const schemaDescriptionElement = htmlDoc.querySelector(
       "#schema-description"
     );
     const schemaDescriptionString = schemaDescriptionElement.innerHTML;
-    const schemaDescriptionIsJsonString = isJsonString(schemaDescriptionString);
-    if (schemaDescriptionIsJsonString) {
-      const schemaDescriptionJson = JSON.parse(schemaDescriptionString);
-      commit("addSchemaOverview", schemaDescriptionJson);
-    } else {
-      commit("addSchemaDescription", schemaDescriptionString);
-    }
+    dispatch("schemaDescription", schemaDescriptionString);
+
     // Get commandOverview
     const commandDescriptionElement = htmlDoc.querySelector(
       "#command-description"
     );
     const commandDescriptionString = commandDescriptionElement.innerHTML;
-    const commandDescriptionIsJsonString = isJsonString(
-      commandDescriptionString
-    );
-    if (commandDescriptionIsJsonString) {
-      const commandDescriptionJson = JSON.parse(commandDescriptionString);
-      commit("addCommandOverview", commandDescriptionJson);
-    } else {
-      commit("addCommandDescription", commandDescriptionString);
-    }
+    dispatch("commandDescription", commandDescriptionString);
+
     // Get imageUrl
     const imageElement = htmlDoc.querySelector(".bg-image");
     const imageUrl = imageElement.style.backgroundImage;
     const reg = new RegExp(/url\("(.*)"\)/gim);
     const url = reg.exec(imageUrl);
     if (url) commit("addImageUrl", url[1]);
+  },
+
+  schemaDescription({ commit }, data) {
+    const isJson = isJsonString(data);
+
+    if (isJson) {
+      const json = JSON.parse(data);
+      commit("addSchemaOverview", json);
+    } else {
+      commit("addSchemaDescription", data);
+    }
+  },
+
+  commandDescription({ commit }, data) {
+    const isJson = isJsonString(data);
+
+    if (isJson) {
+      const json = JSON.parse(data);
+      commit("addCommandOverview", json);
+    } else {
+      commit("addCommandDescription", data);
+    }
   }
 };
 

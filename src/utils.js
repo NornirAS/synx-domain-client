@@ -8,6 +8,16 @@ export const isJsonString = str => {
   return true;
 };
 
+// Check if Base64 string
+export const isBase64String = encoded => {
+  try {
+    atob(encoded);
+  } catch (e) {
+    return false;
+  }
+  return true;
+};
+
 // Return array of unique values from two arrays
 export const arrayUniqValues = (arr1, arr2) => {
   return arr1.filter(obj => {

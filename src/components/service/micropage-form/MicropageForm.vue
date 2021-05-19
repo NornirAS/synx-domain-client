@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import { encode } from "html-entities";
 import { mapState, mapGetters, mapMutations } from "vuex";
 import ServiceImage from "./ServiceImage";
 import ServiceDescription from "./ServiceDescription";
@@ -63,9 +64,9 @@ export default {
           token: this.token,
           domain: this.domain,
           service: this.name,
-          serviceDescription: this.serviceDescription,
-          schemaDescription: JSON.stringify(this.schemaOverview),
-          commandDescription: JSON.stringify(this.commandOverview),
+          serviceDescription: this.b64EncodedServiceDescription,
+          schemaDescription: this.b64EncodedSchemaDescription,
+          commandDescription: this.b64EncodedCommandDescription,
           imageUrl: this.imageUrl
         });
       }
@@ -83,7 +84,56 @@ export default {
       "commandOverview",
       "imageUrl"
     ]),
-    ...mapGetters("serviceForm", ["serviceURL"])
+    ...mapGetters("serviceForm", ["serviceURL"]),
+    b64EncodedServiceDescription() {
+      let str = this.serviceDescription;
+      str = str.replace(/"/g, "'");
+      const encodedDescription = encode(str, {
+        mode: "nonAsciiPrintable"
+      });
+      const b64Encoded = btoa(encodedDescription);
+      return b64Encoded;
+    },
+    b64EncodedSchemaDescription() {
+      const string = JSON.stringify(this.encodedSchemaDescription);
+      const b64Encoded = btoa(string);
+      return b64Encoded;
+    },
+    b64EncodedCommandDescription() {
+      const string = JSON.stringify(this.encodedCommandDescription);
+      const b64Encoded = btoa(string);
+      return b64Encoded;
+    },
+    encodedSchemaDescription() {
+      let obj = this.schemaOverview;
+      obj.description = obj.description.replace(/"/g, "'");
+      obj.description = encode(obj.description, {
+        mode: "nonAsciiPrintable"
+      });
+      obj.elements = obj.elements.map(el => {
+        el.description = el.description.replace(/"/g, "'");
+        el.description = encode(el.description, {
+          mode: "nonAsciiPrintable"
+        });
+        return el;
+      });
+      return obj;
+    },
+    encodedCommandDescription() {
+      let obj = this.commandOverview;
+      obj.description = obj.description.replace(/"/g, "'");
+      obj.description = encode(obj.description, {
+        mode: "nonAsciiPrintable"
+      });
+      obj.commands = obj.commands.map(cmd => {
+        cmd.description = cmd.description.replace(/"/g, "'");
+        cmd.description = encode(cmd.description, {
+          mode: "nonAsciiPrintable"
+        });
+        return cmd;
+      });
+      return obj;
+    }
   },
   components: {
     ServiceImage,
