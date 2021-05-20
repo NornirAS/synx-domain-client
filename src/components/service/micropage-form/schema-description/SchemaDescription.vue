@@ -10,13 +10,12 @@
       v-model="description"
       @blur="addSchemaDescription(description)"
       :rules="descriptionRules"
-      :counter="512"
+      :counter="maxLen"
       name="description"
       label="Describe your public schema"
       type="text"
       error-count="1"
       slot="action"
-      required
       outlined
       dense
     ></v-textarea>
@@ -26,16 +25,18 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
+import { requiredRule, lengthRule } from "../../../../input-rules";
 import FormInputCard from "../../../globals/FormInputCard";
 import SchemaDetails from "./SchemaDetails";
 export default {
   data() {
     return {
+      title: "Schema Description",
+      maxLen: 512,
       description: "",
       descriptionRules: [
-        v => !!v || "Description is required",
-        v =>
-          (v && v.length) <= 512 || "Description must be maximum 512 character"
+        v => requiredRule(v, this.title),
+        v => lengthRule(v, this.title, this.maxLen)
       ]
     };
   },

@@ -1,6 +1,6 @@
 <template>
   <form-input-card>
-    <div slot="title">Command Description</div>
+    <div slot="title">{{ title }}</div>
     <div slot="subtitle">
       Describe your command and which option the secondary service provider with
       an active link can perform on your service.
@@ -9,13 +9,12 @@
       v-model="description"
       @blur="addCommandDescription(description)"
       :rules="descriptionRules"
-      :counter="512"
+      :counter="maxLen"
       name="description"
       label="Describe your public commands"
       type="text"
       error-count="1"
       slot="action"
-      required
       outlined
       dense
     ></v-textarea>
@@ -25,16 +24,18 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
+import { requiredRule, lengthRule } from "../../../../input-rules";
 import FormInputCard from "../../../globals/FormInputCard";
 import CommandDetails from "./CommandDetails";
 export default {
   data() {
     return {
+      title: "Command Description",
+      maxLen: 512,
       description: "",
       descriptionRules: [
-        v => !!v || "Description is required",
-        v =>
-          (v && v.length) <= 512 || "Description must be maximum 512 character"
+        v => requiredRule(v, this.title),
+        v => lengthRule(v, this.title, this.maxLen)
       ]
     };
   },

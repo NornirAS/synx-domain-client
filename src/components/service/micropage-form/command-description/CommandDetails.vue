@@ -25,33 +25,47 @@
               <dialog-card>
                 <div slot="title">{{ formTitle }}</div>
                 <div slot="input">
-                  <v-text-field
-                    v-model="editedItem.command"
-                    label="Command"
-                    outlined
-                    dense
-                  ></v-text-field>
+                  <v-form
+                    id="form"
+                    ref="form"
+                    v-model="valid"
+                    @submit.prevent="save"
+                    lazy-validation
+                  >
+                    <v-text-field
+                      v-model="editedItem.command"
+                      :rules="commandRules"
+                      :label="commandLabel"
+                      outlined
+                      dense
+                      validate-on-blur
+                    ></v-text-field>
 
-                  <v-text-field
-                    v-model="editedItem.param1"
-                    label="Param1"
-                    outlined
-                    dense
-                  ></v-text-field>
+                    <v-text-field
+                      v-model="editedItem.param1"
+                      :rules="param1Rules"
+                      :label="param1Label"
+                      outlined
+                      dense
+                    ></v-text-field>
 
-                  <v-text-field
-                    v-model="editedItem.param2"
-                    label="Param2"
-                    outlined
-                    dense
-                  ></v-text-field>
+                    <v-text-field
+                      v-model="editedItem.param2"
+                      :rules="param2Rules"
+                      :label="param2Label"
+                      outlined
+                      dense
+                    ></v-text-field>
 
-                  <v-textarea
-                    v-model="editedItem.description"
-                    label="Command Description"
-                    outlined
-                    dense
-                  ></v-textarea>
+                    <v-textarea
+                      v-model="editedItem.description"
+                      :rules="descriptionRules"
+                      :label="descriptionLabel"
+                      :counter="descriptionMaxLen"
+                      outlined
+                      dense
+                    ></v-textarea>
+                  </v-form>
                 </div>
 
                 <v-btn
@@ -63,7 +77,13 @@
                 >
                   Cancel
                 </v-btn>
-                <v-btn slot="confirm-btn" color="primary" @click="save" small>
+                <v-btn
+                  slot="confirm-btn"
+                  color="primary"
+                  type="submit"
+                  form="form"
+                  small
+                >
                   Save
                 </v-btn>
               </dialog-card>
@@ -108,6 +128,7 @@
 
 <script>
 import { mapState, mapMutations, mapGetters } from "vuex";
+import { requiredRule, lengthRule } from "../../../../input-rules";
 import { mdiPencil, mdiTrashCanOutline } from "@mdi/js";
 import DialogCard from "../../../globals/DialogCard";
 export default {
@@ -115,6 +136,7 @@ export default {
     return {
       mdiPencil,
       mdiTrashCanOutline,
+      valid: false,
       dialog: false,
       dialogDelete: false,
       headers: [
@@ -142,7 +164,24 @@ export default {
         param1: "",
         param2: "",
         description: ""
-      }
+      },
+      commandLabel: "Command",
+      commandMaxLen: 16,
+      commandRules: [
+        v => requiredRule(v, this.commandLabel),
+        v => lengthRule(v, this.commandLabel, this.commandMaxLen)
+      ],
+      param1Label: "Param1",
+      param1MaxLen: 16,
+      param1Rules: [v => lengthRule(v, this.param1Label, this.param1MaxLen)],
+      param2Label: "Param2",
+      param2MaxLen: 16,
+      param2Rules: [v => lengthRule(v, this.param2Label, this.param2MaxLen)],
+      descriptionLabel: "Command Description",
+      descriptionMaxLen: 512,
+      descriptionRules: [
+        v => lengthRule(v, this.descriptionLabel, this.descriptionMaxLen)
+      ]
     };
   },
 
@@ -217,15 +256,18 @@ export default {
     },
 
     save() {
-      if (this.editedIndex > -1) {
-        this.updateCommand({
-          index: this.editedIndex,
-          command: this.editedItem
-        });
-      } else {
-        this.addCommand(this.editedItem);
+      const isValid = this.$refs.form.validate();
+      if (isValid) {
+        if (this.editedIndex > -1) {
+          this.updateCommand({
+            index: this.editedIndex,
+            command: this.editedItem
+          });
+        } else {
+          this.addCommand(this.editedItem);
+        }
+        this.close();
       }
-      this.close();
     }
   },
   components: {

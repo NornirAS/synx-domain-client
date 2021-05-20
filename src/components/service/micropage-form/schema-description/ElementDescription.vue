@@ -11,6 +11,8 @@
     ></v-text-field>
     <v-textarea
       v-model="editedItem.description"
+      :rules="descriptionRules"
+      :counter="descriptionMaxLen"
       class="grow"
       label="Element Description"
       rows="1"
@@ -58,6 +60,7 @@ export default {
       mdiTrashCanOutline,
       mdiPencil,
       mdiCheck,
+      descriptionMaxLen: 512,
       defaultItem: {
         name: "",
         description: ""
@@ -67,7 +70,8 @@ export default {
         description: ""
       },
       dialogDelete: false,
-      isEditItem: false
+      isEditItem: false,
+      descriptionRules: [v => (v && v.length) <= this.descriptionMaxLen]
     };
   },
 
