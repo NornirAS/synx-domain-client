@@ -1,6 +1,6 @@
 <template>
   <form-input-card>
-    <div slot="title">Inline Pre-Script</div>
+    <div slot="title">{{ title }}</div>
     <div slot="subtitle">
       This predicate script is executed before data distribution. Use this
       script to transform targeted (linked) service data format into your own
@@ -11,13 +11,12 @@
       v-model="serviceInlinePreScript"
       @blur="addInlinePreScript(encodedInlinePreScript)"
       :rules="inlinePreScriptRules"
-      :counter="1024"
+      :counter="maxLen"
       error-count="1"
       name="inline-pre-script"
       type="text"
       label="Type or paste JS"
       slot="action"
-      required
       outlined
       dense
     ></v-textarea>
@@ -26,16 +25,15 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
+import { lengthRule } from "../../../input-rules";
 import FormInputCard from "../../globals/FormInputCard";
 export default {
   data() {
     return {
+      title: "Inline Pre-Script",
+      maxLen: 1024,
       serviceInlinePreScript: "",
-      inlinePreScriptRules: [
-        v =>
-          (v && v.length) <= 1024 ||
-          "Inline Pre-Script must be maximum 1024 character"
-      ]
+      inlinePreScriptRules: [v => lengthRule(v, this.title, this.maxLen)]
     };
   },
   mounted() {

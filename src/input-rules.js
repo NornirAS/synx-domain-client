@@ -23,10 +23,11 @@ export const biggerOrEqualRule = (v, fieldName, minNum) => {
   );
 };
 
-export const subDomainRule = (v, fieldName) => {
+// Rule for {{subdomain}}.cioty.com or cioty.com/{{service}}
+export const urlPartRule = (v, fieldName) => {
   return (
-    /^[a-zA-Z0-9]{0,1}[a-zA-Z0-9-]{0,62}[a-zA-Z0-9]$/.test(v) ||
-    `The ${fieldName} can contain only alphanumeric characters and hyphen(-).`
+    /^[a-zA-Z0-9]{0,1}[a-zA-Z0-9-_~]{0,62}[a-zA-Z0-9]$/.test(v) ||
+    `The ${fieldName} can contain only alphanumeric characters and (- _ ~).`
   );
 };
 
@@ -34,6 +35,6 @@ export const emptyOrAlphanumericRule = (v, fieldName) => {
   return (
     !v ||
     /^[A-Za-z0-9]+$/g.test(v) ||
-    `The ${fieldName} can contain only alphanumeric characters`
+    `The ${fieldName} can contain only alphanumeric characters.`
   );
 };

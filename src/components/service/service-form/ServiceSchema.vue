@@ -1,6 +1,6 @@
 <template>
   <form-input-card>
-    <div slot="title">Service Schema</div>
+    <div slot="title">{{ title }}</div>
     <div slot="subtitle">
       Enter you service schema definition using metadata only - Only single
       elements. Nested XML structure is not supported in this version.
@@ -9,13 +9,12 @@
       v-model="serviceSchema"
       @blur="addSchema(serviceSchema)"
       :rules="schemaRules"
-      :counter="1024"
+      :counter="maxLen"
       name="schema"
       label="Enter service schema"
       type="text"
       error-count="1"
       slot="action"
-      required
       outlined
       dense
     ></v-textarea>
@@ -24,20 +23,20 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
+import { requiredRule, lengthRule } from "../../../input-rules";
 import FormInputCard from "../../globals/FormInputCard";
 export default {
   data() {
     return {
+      title: "Service Schema",
+      maxLen: 1024,
       serviceSchema: "<RTW>\n</RTW>",
       schemaRules: [
-        v => !!v || "Schema is required",
-        v =>
-          (v && v.length) <= 1024 || "Schema must be maximum 1024 characters",
+        v => requiredRule(v, this.title),
+        v => lengthRule(v, this.title, this.maxLen),
         v => (v && this.hasRtwTags) || "You need to have <RTW></RTW>",
         v =>
-          (v &&
-            this.schemaHasValidXmlElements &&
-            this.contentProvidedInsideRtwTags) ||
+          (v && this.schemaHasValidXmlElements && this.isValidSchema) ||
           "You need to provide valid XML schema between <RTW></RTW>",
         v =>
           (v && this.matchOpenClosingTags) ||
@@ -58,47 +57,38 @@ export default {
   },
   computed: {
     ...mapState("serviceForm", ["schema"]),
-    serviceSchemaSingleLineString() {
-      return this.serviceSchema.replace(/\n/g, "");
+
+    schemaString() {
+      return this.serviceSchema.replace(/\n/g, "").toLowerCase();
     },
-    hasOpenRtwTag() {
-      return this.serviceSchemaSingleLineString.match(/<rtw>/gi) ? true : false;
-    },
-    hasClosingRtwTag() {
-      return this.serviceSchemaSingleLineString.match(/<\/rtw>/gi)
-        ? true
-        : false;
-    },
+
     hasRtwTags() {
-      if (this.hasOpenRtwTag && this.hasClosingRtwTag) {
-        return this.hasOpenRtwTag === this.hasClosingRtwTag;
+      return (
+        this.schemaString.includes("<rtw>") &&
+        this.schemaString.includes("</rtw>")
+      );
+    },
+
+    validSchema() {
+      return this.schemaString.match(/<rtw>(.*?)<\/rtw>/gi);
+    },
+
+    isValidSchema() {
+      if (this.validSchema) {
+        return this.schemaString === this.validSchema.join("");
       } else {
         return false;
       }
     },
-    schemaWithRtwTags() {
-      if (this.hasRtwTags) {
-        return this.serviceSchemaSingleLineString.match(/<rtw>(.*?)<\/rtw>/gi);
-      } else {
-        return null;
-      }
-    },
-    contentProvidedInsideRtwTags() {
-      if (this.schemaWithRtwTags !== null) {
-        return (
-          this.serviceSchemaSingleLineString === this.schemaWithRtwTags.join("")
-        );
-      } else {
-        return false;
-      }
-    },
+
     contentInsideRtwTags() {
-      if (this.schemaWithRtwTags !== null) {
-        return this.schemaWithRtwTags.join("").replace(/<\/?RTW>/gi, "");
+      if (this.validSchema) {
+        return this.validSchema.join("").replace(/<\/?RTW>/gi, "");
       } else {
         return null;
       }
     },
+
     schemaElements() {
       if (this.contentInsideRtwTags !== null) {
         return this.contentInsideRtwTags.match(/<(.*?)>(.*?)<\/(.*?)>/g);
@@ -106,6 +96,7 @@ export default {
         return null;
       }
     },
+
     schemaElementsTags() {
       if (this.schemaElements !== null) {
         return this.schemaElements.map(element => {
@@ -115,6 +106,7 @@ export default {
         return null;
       }
     },
+
     schemaElementsTagNames() {
       if (this.schemaElementsTags !== null) {
         return this.schemaElementsTags.map(item => {
@@ -126,6 +118,7 @@ export default {
         return null;
       }
     },
+
     matchOpenClosingTags() {
       if (this.schemaElementsTagNames !== null) {
         return this.schemaElementsTagNames.every(item => item[0] === item[1]);
@@ -133,6 +126,7 @@ export default {
         return true;
       }
     },
+
     schemaHasValidXmlElements() {
       if (this.schemaElements !== null && this.contentInsideRtwTags !== null) {
         return this.contentInsideRtwTags === this.schemaElements.join("");
@@ -140,6 +134,7 @@ export default {
         return false;
       }
     },
+
     schemaElementsTagsNamesSingleArray() {
       if (this.schemaHasValidXmlElements) {
         return [].concat.apply([], this.schemaElementsTagNames);
@@ -147,6 +142,7 @@ export default {
         return null;
       }
     },
+
     uniqSchemaElementsNames() {
       if (this.schemaElementsTagsNamesSingleArray !== null) {
         return this.schemaElementsTagsNamesSingleArray.filter(
@@ -156,6 +152,7 @@ export default {
         return null;
       }
     },
+
     noDuplicateElement() {
       if (this.uniqSchemaElementsNames !== null) {
         return (
@@ -166,6 +163,7 @@ export default {
         return true;
       }
     },
+
     getLinksFromXml() {
       if (this.schemaElements !== null) {
         return this.schemaElements
@@ -177,15 +175,17 @@ export default {
         return null;
       }
     },
+
     validLinks() {
       if (this.getLinksFromXml !== null && this.getLinksFromXml !== "") {
         return this.getLinksFromXml.match(
-          /@([a-zA-Z0-9_]+?)(?=\/)\/([a-zA-Z0-9_]+?)(?=#)#([a-zA-Z0-9_]+?)@/g
+          /@([a-zA-Z0-9-_~]+?)(?=\/)\/([a-zA-Z0-9-_~]+?)(?=#)#([a-zA-Z0-9-_~]+?)@/g
         );
       } else {
         return null;
       }
     },
+
     isValidLinks() {
       if (this.validLinks !== null) {
         return this.getLinksFromXml.length === this.validLinks.join("").length;
