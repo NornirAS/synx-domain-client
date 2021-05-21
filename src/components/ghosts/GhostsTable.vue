@@ -82,7 +82,7 @@
 
 <script>
 import { mdiMagnify, mdiMenuDown, mdiChevronRight, mdiClose } from "@mdi/js";
-import { mapGetters, mapMutations } from "vuex";
+import { mapState, mapGetters, mapMutations } from "vuex";
 import { rootDomain } from "../../core/config";
 import NoMatch from "../empty-page/NoMatch";
 export default {
@@ -151,6 +151,7 @@ export default {
     }
   },
   computed: {
+    ...mapState("authentication", ["username", "token"]),
     ...mapGetters("ghosts", ["allGhosts", "noGhosts"]),
     ...mapGetters("services", ["noServices"]),
     ...mapGetters("domains", ["domainNames"]),
