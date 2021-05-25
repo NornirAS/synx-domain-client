@@ -84,7 +84,7 @@ const getters = {
     return `${domain}${rootDomain}${name}`;
   },
   serviceURL(state, { serviceURI }) {
-    return `https://${serviceURI}/`;
+    return `https://${serviceURI}`;
   },
   schemaElements({ schema }) {
     return getXmlElementNames(schema);

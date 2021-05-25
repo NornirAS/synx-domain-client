@@ -12,7 +12,7 @@
     <v-textarea
       v-model="editedItem.description"
       :rules="descriptionRules"
-      :counter="descriptionMaxLen"
+      :counter="maxLen"
       class="grow"
       label="Element Description"
       rows="1"
@@ -52,6 +52,7 @@
 <script>
 import { mapMutations, mapGetters } from "vuex";
 import { mdiTrashCanOutline, mdiPencil, mdiCheck } from "@mdi/js";
+import { lengthRule } from "../../../../input-rules";
 import DialogCard from "../../../globals/DialogCard";
 export default {
   props: ["element", "index"],
@@ -60,7 +61,8 @@ export default {
       mdiTrashCanOutline,
       mdiPencil,
       mdiCheck,
-      descriptionMaxLen: 512,
+      descLabel: "Element Description",
+      maxLen: 512,
       defaultItem: {
         name: "",
         description: ""
@@ -71,7 +73,7 @@ export default {
       },
       dialogDelete: false,
       isEditItem: false,
-      descriptionRules: [v => (v && v.length) <= this.descriptionMaxLen]
+      descriptionRules: [v => lengthRule(v, this.descLabel, this.maxLen)]
     };
   },
 

@@ -4,7 +4,8 @@ export const requiredRule = (v, fieldName) => {
 
 export const lengthRule = (v, fieldName, maxLen) => {
   return (
-    (v && v.length) <= maxLen ||
+    !v ||
+    v.length <= maxLen ||
     `The length of ${fieldName} must be ${maxLen} characters or fewer.`
   );
 };
