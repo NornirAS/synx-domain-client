@@ -117,6 +117,12 @@ export default {
     }
   },
 
+  watch: {
+    element(newValue) {
+      this.editedItem = Object.assign({}, newValue);
+    }
+  },
+
   components: {
     DialogCard
   }
