@@ -58,7 +58,8 @@ export default {
       "acceptGhostSuccess",
       "declineGhostSuccess",
       "addMapIdSuccess",
-      "tranferOwnershipSuccess"
+      "tranferOwnershipSuccess",
+      "removeGhostSuccess"
     ]),
     title() {
       return this.$route.meta.title;
