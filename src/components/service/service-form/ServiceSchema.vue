@@ -197,8 +197,12 @@ export default {
     }
   },
   watch: {
-    isValidLinks(newValue) {
-      this.addIsValidLinks(newValue);
+    isValidLinks() {
+      if (this.validLinks) {
+        this.addIsValidLinks(true);
+      } else {
+        this.addIsValidLinks(false);
+      }
     }
   },
   components: {
