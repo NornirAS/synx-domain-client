@@ -36,11 +36,32 @@
       <router-view></router-view>
       <router-view name="delete-service"></router-view>
     </div>
+    <div slot="page-content-right">
+      <v-row v-for="(videoUrl, index) in tutorialVideos" :key="index">
+        <v-col>
+          <iframe
+            width="50%"
+            height="150px"
+            :src="videoUrl"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </v-col>
+      </v-row>
+    </div>
   </page-layout>
 </template>
 
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
+import {
+  howToCreateMorphicService,
+  howToUseInlineScript,
+  howToLinkTwoServices,
+  howToCreateMicropage
+} from "../core/tutorial-videos";
 import PageTitle from "../components/globals/PageTitle";
 import PageLayout from "../components/globals/PageLayout";
 import ServicesEmpty from "../components/empty-page/ServicesEmpty";
@@ -90,6 +111,17 @@ export default {
     },
     isMicropageUpdate() {
       return this.$route.name === "micropageUpdate";
+    },
+    tutorialVideos() {
+      if (this.isServicesPage) {
+        return [howToCreateMorphicService];
+      } else if (this.isServiceUpdate) {
+        return [howToLinkTwoServices, howToUseInlineScript];
+      } else if (this.isMicropageUpdate) {
+        return [howToCreateMicropage];
+      } else {
+        return [];
+      }
     }
   },
   watch: {

@@ -2,13 +2,14 @@
   <v-row justify="start" class="mt-md-10 mx-md-10">
     <v-col cols="12" md="10" lg="8" xl="5">
       <slot name="page-title"></slot>
-      <v-divider></v-divider>
+    </v-col>
+    <v-col cols="12" md="10" lg="8" xl="5">
       <slot name="alert"></slot>
-      <div class="mt-4">
+      <div>
         <slot name="page-content"></slot>
       </div>
     </v-col>
-    <v-col md="2" lg="4" xl="3" class="mt-md-16 pt-md-8">
+    <v-col md="2" lg="4" xl="3">
       <slot name="page-content-right"></slot>
       <v-list class="parent">
         <v-list-item v-for="(alert, index) in alerts" :key="index" class="pl-0">

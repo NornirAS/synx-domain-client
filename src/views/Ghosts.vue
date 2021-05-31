@@ -17,11 +17,27 @@
       <router-view></router-view>
       <router-view name="ghosts-list"></router-view>
     </div>
+    <div slot="page-content-right">
+      <v-row v-for="(videoUrl, index) in tutorialVideos" :key="index">
+        <v-col>
+          <iframe
+            width="50%"
+            height="150px"
+            :src="videoUrl"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </v-col>
+      </v-row>
+    </div>
   </page-layout>
 </template>
 
 <script>
 import { mapState, mapGetters } from "vuex";
+import { howToCreateGhost } from "../core/tutorial-videos";
 import PageTitle from "../components/globals/PageTitle";
 import PageLayout from "../components/globals/PageLayout";
 import DomainEmpty from "../components/empty-page/DomainsEmpty";
@@ -69,6 +85,13 @@ export default {
     },
     isGhostOverviewPage() {
       return this.$route.name === "ghostOverview";
+    },
+    tutorialVideos() {
+      if (this.isGhostsPage) {
+        return [howToCreateGhost];
+      } else {
+        return [];
+      }
     }
   },
   watch: {
