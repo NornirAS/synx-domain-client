@@ -2,7 +2,7 @@ import { rootDomain } from "../../core/config";
 
 const state = {
   selectedGhost: {},
-  ghostLinkedTo: [],
+  ghostLinkedFrom: [],
   ghostReadAccess: [],
   ghostSecondaryService: []
 };
@@ -12,7 +12,7 @@ const mutations = {
     state.selectedGhost = Object.assign({}, state.selectedGhost, payload);
   },
   addExternalLinkingToGhostStatus(state, payload) {
-    state.ghostLinkedTo = payload;
+    state.ghostLinkedFrom = payload;
   },
   addReadAccessToGhostStatus(state, payload) {
     state.ghostReadAccess = payload;
@@ -24,16 +24,16 @@ const mutations = {
 
 const actions = {
   SOCKET_ghost_status({ commit, dispatch }, data) {
-    dispatch("addExternalLinkingToGhostStatus", data["Linked To"]);
+    dispatch("addExternalLinkingToGhostStatus", data["Linked From"]);
     commit("addReadAccessToGhostStatus", data["Read Access"]);
     dispatch("addSecondaryServiceToGhostStatus", data["Secondary Service"]);
   },
   addExternalLinkingToGhostStatus({ commit }, data) {
-    const linkedTo = data.map(link => {
+    const linkedFrom = data.map(link => {
       link.uri = link.name.replace(/\//g, `${rootDomain}`).toLowerCase();
       return link;
     });
-    commit("addExternalLinkingToGhostStatus", linkedTo);
+    commit("addExternalLinkingToGhostStatus", linkedFrom);
   },
   addSecondaryServiceToGhostStatus({ commit }, data) {
     const secondaryService = data.map(service => {

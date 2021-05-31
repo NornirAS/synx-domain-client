@@ -1,6 +1,6 @@
 <template>
   <v-expansion-panels>
-    <!-- <v-expansion-panel>
+    <v-expansion-panel>
       <v-expansion-panel-header class="subtitle-1">
         <template v-slot:actions>
           <v-icon color="primary" class="icon">$expand</v-icon>
@@ -13,7 +13,7 @@
           :ghost="selectedGhost"
         ></external-linking>
       </v-expansion-panel-content>
-    </v-expansion-panel> -->
+    </v-expansion-panel>
     <v-expansion-panel>
       <v-expansion-panel-header class="subtitle-1">
         <template v-slot:actions>
@@ -54,7 +54,7 @@
 </template>
 <script>
 import { mapState } from "vuex";
-// import ExternalLinking from "./ExternalLinking";
+import ExternalLinking from "./ExternalLinking";
 import AddReadAccess from "./read-access/AddReadAccess";
 import RemoveReadAccess from "./read-access/RemoveReadAccess";
 import AddSecondaryService from "./secondary-service/AddSecondaryService";
@@ -102,7 +102,7 @@ export default {
   components: {
     AddReadAccess,
     RemoveReadAccess,
-    // ExternalLinking,
+    ExternalLinking,
     AddSecondaryService,
     RemoveSecondaryService
   }

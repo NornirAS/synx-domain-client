@@ -2,7 +2,7 @@
   <v-simple-table>
     <template v-slot:default>
       <tbody>
-        <tr v-for="(link, index) in ghostLinkedTo" :key="index">
+        <tr v-for="(link, index) in ghostLinkedFrom" :key="index">
           <td class="body-1">{{ link.uri }}</td>
           <td>
             <v-switch
@@ -37,7 +37,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("ghostDetails", ["ghostLinkedTo"])
+    ...mapState("ghostDetails", ["ghostLinkedFrom"])
   }
 };
 </script>
