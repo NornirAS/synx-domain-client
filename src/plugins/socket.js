@@ -7,7 +7,7 @@ export default Vue.use(
     debug: process.env.NODE_ENV === "production" ? false : true,
     connection:
       process.env.NODE_ENV === "production"
-        ? "https://synx-domain-server.herokuapp.com"
+        ? process.env.VUE_APP_RTW_PROXY
         : "http://localhost:3000",
     vuex: {
       store,
