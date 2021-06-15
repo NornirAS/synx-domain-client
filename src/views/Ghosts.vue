@@ -31,6 +31,11 @@
           ></iframe>
         </v-col>
       </v-row>
+      <curl-connection
+        v-if="isGhostOverviewPage && isExampleService"
+        :curlReceive="curlReceive"
+        :curlSend="curlSend"
+      ></curl-connection>
     </div>
   </page-layout>
 </template>
@@ -43,6 +48,7 @@ import PageLayout from "../components/globals/PageLayout";
 import DomainEmpty from "../components/empty-page/DomainsEmpty";
 import GhostsEmpty from "../components/empty-page/GhostsEmpty";
 import AlertLimit from "../components/globals/AlertLimit";
+import CurlConnection from "../components/globals/CurlConnection";
 export default {
   created() {
     if (!this.noServices && this.noGhosts) {
@@ -65,6 +71,7 @@ export default {
   },
   computed: {
     ...mapState("authentication", ["token", "username"]),
+    ...mapState("ghostDetails", ["selectedGhost"]),
     ...mapGetters("services", ["noServices"]),
     ...mapGetters("domains", ["noDomains"]),
     ...mapGetters("ghosts", ["noGhosts", "isGhostLimit"]),
@@ -92,6 +99,21 @@ export default {
       } else {
         return [];
       }
+    },
+    service() {
+      return this.selectedGhost.service.toLowerCase();
+    },
+    serviceURL() {
+      return `https://${this.domainURI}${this.service}`;
+    },
+    isExampleService() {
+      return this.service === "example";
+    },
+    curlReceive() {
+      return `curl -k ${this.serviceURL} -H "Synx-Cat: 4" -d "token=${this.token}&objectID=${this.selectedGhost.instance}"`;
+    },
+    curlSend() {
+      return `curl -k ${this.serviceURL} -H "Synx-Cat: 1" -d "token=${this.token}&objectID=${this.selectedGhost.instance}&txt=Test connection"`;
     }
   },
   watch: {
@@ -121,7 +143,8 @@ export default {
     PageTitle,
     DomainEmpty,
     GhostsEmpty,
-    AlertLimit
+    AlertLimit,
+    CurlConnection
   }
 };
 </script>

@@ -50,6 +50,11 @@
           ></iframe>
         </v-col>
       </v-row>
+      <curl-connection
+        v-if="isServiceUpdate && isExampleService"
+        :curlReceive="curlReceive"
+        :curlSend="curlSend"
+      ></curl-connection>
     </div>
   </page-layout>
 </template>
@@ -67,6 +72,7 @@ import PageLayout from "../components/globals/PageLayout";
 import ServicesEmpty from "../components/empty-page/ServicesEmpty";
 import DomainEmpty from "../components/empty-page/DomainsEmpty";
 import AlertLimit from "../components/globals/AlertLimit";
+import CurlConnection from "../components/globals/CurlConnection";
 export default {
   created() {
     if (this.noServices && this.hasActiveDomains) {
@@ -97,6 +103,7 @@ export default {
       "deleteServiceSuccess",
       "updateMicropageSuccess"
     ]),
+    ...mapState("serviceForm", ["name"]),
     ...mapGetters("services", ["noServices", "isServiceLimit"]),
     ...mapGetters("domains", ["noDomains", "hasActiveDomains", "firstDomain"]),
     ...mapGetters("serviceForm", ["serviceURI", "serviceURL"]),
@@ -111,6 +118,15 @@ export default {
     },
     isMicropageUpdate() {
       return this.$route.name === "micropageUpdate";
+    },
+    isExampleService() {
+      return this.name === "example";
+    },
+    curlReceive() {
+      return `curl -k ${this.serviceURL} -H "Synx-Cat: 4" -d "token=${this.token}&objectID=0"`;
+    },
+    curlSend() {
+      return `curl -k ${this.serviceURL} -H "Synx-Cat: 1" -d "token=${this.token}&objectID=0&txt=Test connection"`;
     },
     tutorialVideos() {
       if (this.isServicesPage) {
@@ -147,7 +163,8 @@ export default {
     PageTitle,
     ServicesEmpty,
     DomainEmpty,
-    AlertLimit
+    AlertLimit,
+    CurlConnection
   }
 };
 </script>
