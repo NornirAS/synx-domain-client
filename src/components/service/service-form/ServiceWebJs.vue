@@ -7,7 +7,7 @@
     </div>
     <v-textarea
       v-model="serviceWebJS"
-      @blur="addWebJS(serviceWebJS)"
+      @blur="addWebJS(encodedInlinePreScript)"
       :rules="webJSRules"
       :counter="maxLen"
       error-count="1"
@@ -29,19 +29,25 @@ export default {
   data() {
     return {
       title: "Web JS",
-      maxLen: 256,
+      maxLen: 2048,
       serviceWebJS: "",
       webJSRules: [v => lengthRule(v, this.title, this.maxLen)]
     };
   },
   mounted() {
-    this.serviceWebJS = this.webJS;
+    this.serviceWebJS = this.decodedInlinePreScript;
   },
   methods: {
     ...mapMutations("serviceForm", ["addWebJS"])
   },
   computed: {
-    ...mapState("serviceForm", ["webJS"])
+    ...mapState("serviceForm", ["webJS"]),
+    encodedInlinePreScript() {
+      return btoa(this.serviceWebJS);
+    },
+    decodedInlinePreScript() {
+      return atob(this.webJS);
+    }
   },
   components: {
     FormInputCard
