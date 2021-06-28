@@ -25,7 +25,7 @@ const getters = {
     return services.length === 0;
   },
   isServiceLimit({ services }) {
-    return services.length >= 5;
+    return services.length >= 10;
   }
 };
 
