@@ -27,8 +27,16 @@ export const biggerOrEqualRule = (v, fieldName, minNum) => {
 // Rule for {{subdomain}}.cioty.com or cioty.com/{{service}}
 export const urlPartRule = (v, fieldName) => {
   return (
-    /^[a-zA-Z0-9]{0,1}[a-zA-Z0-9-_~]{0,62}[a-zA-Z0-9]$/.test(v) ||
-    `The ${fieldName} can contain only alphanumeric characters and (- _ ~).`
+    /^[a-zA-Z0-9]{0,1}[a-zA-Z0-9-]{0,62}[a-zA-Z0-9]$/.test(v) ||
+    `The ${fieldName} can contain only alphanumeric characters and hyphen(-).`
+  );
+};
+
+export const ghostUriRule = (v, fieldName) => {
+  return (
+    /^([a-zA-Z0-9-]+?)(?=\.)\.cioty.com(?=\/)\/([a-zA-Z0-9-]+?)(?=##)##\d+$/.test(
+      v
+    ) || `The ${fieldName} is not valid.`
   );
 };
 

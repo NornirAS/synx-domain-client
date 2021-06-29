@@ -26,17 +26,18 @@
 
 <script>
 import { mdiPlus } from "@mdi/js";
+import { requiredRule, ghostUriRule } from "../../../../input-rules";
 export default {
   props: ["token", "ghost"],
   data() {
     return {
       mdiPlus,
+      title: "Ghost URI",
       uri: "",
       valid: false,
-      ghostURIRegExp: /([a-zA-Z_]+?)(?=\.)\.cioty.com(?=\/)\/([a-zA-Z_]+?)(?=##)##\d+/,
       uriRules: [
-        v => !!v || "URI is required",
-        v => this.ghostURIRegExp.test(v) || "Ghost URI must be valid"
+        v => requiredRule(v, this.title),
+        v => ghostUriRule(v, this.title)
       ]
     };
   },
