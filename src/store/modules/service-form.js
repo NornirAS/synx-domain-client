@@ -63,7 +63,7 @@ const mutations = {
     state.webJS = payload.webjs;
     state.timeout = payload.timeout;
   },
-  resetServiceForm(state) {
+  resetState(state) {
     state.domain = "";
     state.name = "example";
     state.description =

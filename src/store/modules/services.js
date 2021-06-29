@@ -8,6 +8,9 @@ const mutations = {
   },
   activeChannelsSuccess(state, { channels, index }) {
     state.services[index].activeChannels = channels;
+  },
+  resetState(state) {
+    state.services = [];
   }
 };
 

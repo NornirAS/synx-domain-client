@@ -17,9 +17,13 @@ const mutations = {
   signOut(state) {
     state.token = null;
     state.username = null;
-    sessionStorage.clear();
   },
   resetError(state) {
+    state.authError = null;
+  },
+  resetState(state) {
+    state.username = null;
+    state.token = null;
     state.authError = null;
   }
 };
@@ -34,6 +38,16 @@ const actions = {
   },
   addUsername({ commit }, data) {
     commit("addUsername", data);
+  },
+  signOut({ commit }) {
+    commit("resetState");
+    commit("alert/resetState", null, { root: true });
+    commit("domains/resetState", null, { root: true });
+    commit("ghostDetails/resetState", null, { root: true });
+    commit("ghosts/resetState", null, { root: true });
+    commit("micropageForm/resetState", null, { root: true });
+    commit("serviceForm/resetState", null, { root: true });
+    commit("services/resetState", null, { root: true });
   }
 };
 

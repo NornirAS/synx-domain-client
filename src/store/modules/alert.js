@@ -91,6 +91,25 @@ const mutations = {
   },
   removeAlert(state) {
     state.alerts.shift();
+  },
+  resetState(state) {
+    state.alerts = [];
+    state.registerServiceSuccess = {};
+    state.updateServiceSuccess = {};
+    state.deleteServiceSuccess = {};
+    state.updateMicropageSuccess = {};
+    state.addGhostSuccess = {};
+    state.addMapIdSuccess = {};
+    state.acceptGhostSuccess = {};
+    state.declineGhostSuccess = {};
+    state.tranferOwnershipSuccess = {};
+    state.createDomainSuccess = {};
+    state.deleteDomainSuccess = {};
+    state.giveReadAccessSuccess = {};
+    state.removeReadAccessSuccess = {};
+    state.addPrimaryGhostSuccess = {};
+    state.removePrimaryGhostSuccess = {};
+    state.removeGhostSuccess = {};
   }
 };
 

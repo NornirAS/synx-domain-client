@@ -19,6 +19,12 @@ const mutations = {
   },
   addSecondaryServiceToGhostStatus(state, payload) {
     state.ghostSecondaryService = payload;
+  },
+  resetState(state) {
+    state.selectedGhost = {};
+    state.ghostLinkedFrom = [];
+    state.ghostReadAccess = [];
+    state.ghostSecondaryService = [];
   }
 };
 

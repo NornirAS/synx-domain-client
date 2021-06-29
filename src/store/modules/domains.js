@@ -5,6 +5,9 @@ const state = {
 const mutations = {
   allDomains(state, payload) {
     state.domains = payload;
+  },
+  resetState(state) {
+    state.domains = [];
   }
 };
 

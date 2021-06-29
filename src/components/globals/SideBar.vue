@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     signOut() {
-      this.$store.commit("authentication/signOut");
+      this.$store.dispatch("authentication/signOut");
       this.$router.push({ name: "home" });
     }
   },

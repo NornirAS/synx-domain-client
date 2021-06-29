@@ -9,6 +9,10 @@ const mutations = {
   },
   ghostsToApprove(state, payload) {
     state.ghostsToApprove = payload;
+  },
+  resetState(state) {
+    state.ghosts = [];
+    state.ghostsToApprove = [];
   }
 };
 
