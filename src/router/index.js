@@ -19,7 +19,7 @@ import VueRouter from "vue-router";
 // import GhostOverview from "../views/GhostOverview";
 // import SideBar from "../components/globals/SideBar";
 // import PageNotFound from "../components/empty-page/PageNotFound";
-import MaintananceWork from "../components/empty-page/MaintananceWork";
+import MaintenanceWork from "../components/empty-page/MaintenanceWork";
 
 Vue.use(VueRouter);
 // const authGuard = (to, from, next) => {
@@ -165,7 +165,7 @@ const routes = [
   //   },
   //   beforeEnter: authGuard
   // },
-  { path: "*", component: MaintananceWork }
+  { path: "*", component: MaintenanceWork }
 ];
 
 const router = new VueRouter({

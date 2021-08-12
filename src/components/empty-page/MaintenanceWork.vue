@@ -9,7 +9,7 @@
       />
     </div>
     <image-response-template>
-      <div slot="title">We are down for sheduled maintanance!</div>
+      <div slot="title">We are down for sheduled maintenance!</div>
       <div slot="description">
         Will be back soon!
       </div>
