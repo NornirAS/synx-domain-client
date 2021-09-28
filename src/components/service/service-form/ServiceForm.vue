@@ -59,11 +59,11 @@ export default {
   },
   created() {
     if (this.isServiceCreate) {
-      this.resetServiceForm();
+      this.resetState();
     }
   },
   methods: {
-    ...mapMutations("serviceForm", ["resetServiceForm"]),
+    ...mapMutations("serviceForm", ["resetState"]),
     submitServiceForm() {
       const isFormValid = this.$refs.serviceForm.validate();
       if (isFormValid && this.isServiceUpdate) {
