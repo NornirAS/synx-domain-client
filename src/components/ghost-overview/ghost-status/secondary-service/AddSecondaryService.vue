@@ -67,7 +67,7 @@ export default {
       }
     },
     refService() {
-      const result = this.uri.match(/(\w+)(?=#)/);
+      const result = this.uri.match(/([a-zA-Z0-9-]+)(?=#)/);
       if (result !== null) {
         return result[0];
       } else {
