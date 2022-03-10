@@ -3,14 +3,13 @@ import { assert } from "chai";
 import { XMLSchema } from "./xmlSchema.js";
 
 describe("XMLSchema", () => {
-
   describe("isValid", () => {
     it("return false if XML is not valid", () => {
       const xml = "";
       const xmlSchema = new XMLSchema({ xml, type: "RTW" });
       assert.isFalse(xmlSchema.isValid);
     });
-  })
+  });
 
   describe("parsedXML", () => {
     it("return empty object if xml is not valid", () => {
@@ -18,7 +17,7 @@ describe("XMLSchema", () => {
       const xmlSchema = new XMLSchema({ xml, type: "rtw" });
       assert.isEmpty(xmlSchema.parsedXML);
     });
-  })
+  });
 
   describe("hasRootTags", () => {
     it("return false if RTW root tags are missing", () => {
@@ -26,8 +25,7 @@ describe("XMLSchema", () => {
       const xmlSchema = new XMLSchema({ xml, type: "rtw" });
       assert.isFalse(xmlSchema.hasRootTags);
     });
-    
-  })
+  });
 
   describe("hasDuplicates", () => {
     it("return false if duplicates are missing", () => {
@@ -36,7 +34,7 @@ describe("XMLSchema", () => {
       xmlSchema.findDuplicates();
       assert.isFalse(xmlSchema.hasDuplicates);
     });
-  })
+  });
 
   describe("findDuplicates", () => {
     it("return true if duplicates added into array", () => {
@@ -45,5 +43,5 @@ describe("XMLSchema", () => {
       xmlSchema.findDuplicates();
       assert.isTrue(xmlSchema.hasDuplicates);
     });
-  })
+  });
 });

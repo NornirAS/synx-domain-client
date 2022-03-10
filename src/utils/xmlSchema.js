@@ -3,16 +3,14 @@
  * Morphic Service DATA and COMMAND schemas.
  */
 
-
 import { XMLValidator, XMLParser } from "fast-xml-parser";
 
 export class XMLSchema {
-
   duplicates = [];
 
   constructor({ xml, type }) {
-    this.xml = typeof xml === "string" ? xml.toLowerCase() : "",
-    this.type = typeof type === "string" ? type.toLowerCase() : "" // RTW or CMD
+    (this.xml = typeof xml === "string" ? xml.toLowerCase() : ""),
+      (this.type = typeof type === "string" ? type.toLowerCase() : ""); // RTW or CMD
   }
 
   get isValid() {
@@ -29,7 +27,7 @@ export class XMLSchema {
   }
 
   get hasRootTags() {
-    return this.parsedXML.hasOwnProperty(this.type);
+    return Object.prototype.hasOwnProperty.call(this.parsedXML, this.type);
   }
 
   get hasDuplicates() {
@@ -40,10 +38,9 @@ export class XMLSchema {
     try {
       for (const [key, value] of Object.entries(this.parsedXML[this.type])) {
         if (Array.isArray(value)) this.duplicates.push(key);
-      };
+      }
     } catch {
       return;
     }
   }
-  
-};
+}
