@@ -2,12 +2,11 @@
   "name": "synx-domain",
   "version": "0.1.0",
   "private": true,
-  "type":"module",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "mocha  \"./src/**/*.spec.js\""
+    "test": "mocha \"./src/**/*.spec.mjs\""
   },
   "dependencies": {
     "core-js": "^3.6.5",

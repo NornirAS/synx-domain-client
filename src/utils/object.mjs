@@ -25,3 +25,13 @@ export const isJsonString = obj => {
     return false;
   }
 };
+
+/**
+ * Removes all spaces, tabs, and line breaks from the string
+ * @param {String} obj
+ * @returns
+ */
+export const cleanString = obj => {
+  if (!obj && typeof obj !== "string") return;
+  return obj.replace(/\s+/g, "");
+};

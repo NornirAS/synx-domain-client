@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { assert } from "chai";
-import { isEmpty, isJsonString } from "./object.js";
+import { isEmpty, isJsonString, cleanString } from "./object.mjs";
 
 const objects = ["string", 7, { a: 1 }, ["a", "b"]];
 const emptyObjects = [null, undefined, "", {}, []];
@@ -27,5 +27,12 @@ describe("isJsonString", () => {
     objects.forEach(obj => {
       assert.isFalse(isJsonString(obj));
     });
+  });
+});
+
+describe("cleanString", () => {
+  it("return true when clened string length is 4", () => {
+    const str = " a\nb c\td";
+    assert.strictEqual(cleanString(str).length, 4);
   });
 });

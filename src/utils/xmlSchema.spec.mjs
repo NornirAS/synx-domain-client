@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { assert } from "chai";
-import { XMLSchema } from "./xmlSchema.js";
+import { XMLSchema } from "./xmlSchema.mjs";
 
 describe("XMLSchema", () => {
   describe("isValid", () => {
@@ -15,7 +15,7 @@ describe("XMLSchema", () => {
     it("return empty object if xml is not valid", () => {
       const xml = "";
       const xmlSchema = new XMLSchema({ xml, type: "rtw" });
-      assert.isEmpty(xmlSchema.parsedXML);
+      assert.isEmpty(xmlSchema.parsed);
     });
   });
 
@@ -42,6 +42,22 @@ describe("XMLSchema", () => {
       const xmlSchema = new XMLSchema({ xml, type: "cmd" });
       xmlSchema.findDuplicates();
       assert.isTrue(xmlSchema.hasDuplicates);
+    });
+  });
+
+  describe("singleLineXML", () => {
+    it("equal to initial xml to lower case", () => {
+      const xml = "<CMD><TXT></TXT></CMD>";
+      const xmlSchema = new XMLSchema({ xml, type: "cmd" });
+      assert.strictEqual(xml.toLowerCase(), xmlSchema.singleLine);
+    });
+  });
+
+  describe("formatedXML", () => {
+    it("not equal to initial xml to lower case", () => {
+      const xml = "<CMD><TXT></TXT></CMD>";
+      const xmlSchema = new XMLSchema({ xml, type: "cmd" });
+      assert.notEqual(xml.toLowerCase(), xmlSchema.formated);
     });
   });
 });

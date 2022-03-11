@@ -25,7 +25,6 @@
 import { mapState, mapMutations } from "vuex";
 import { requiredRule, lengthRule } from "../../../input-rules";
 import FormInputCard from "../../globals/FormInputCard";
-import { XMLSchema } from "../../../utils/xmlSchema";
 export default {
   data() {
     return {

@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { assert } from "chai";
-import { getDuplicateFreeArray } from "./array.js";
+import { getDuplicateFreeArray } from "./array.mjs";
 
 describe("getDuplicateFreeArray", () => {
   it("return array with no duplicates", () => {
