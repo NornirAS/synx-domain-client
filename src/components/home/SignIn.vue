@@ -4,13 +4,22 @@
       Sign In to CIOTY domain service
     </div>
     <div slot="description">
-      Not registered yet?
+      <!-- Not registered yet?
       <a
         href="https://www.synxpass.com/"
         class="text-decoration-none"
         target="_blank"
         rel="noopener noreferrer"
         >Sign Up!
+      </a> -->
+      Access only for partners. To get access get in touch at nornir.io
+      <a
+        href="https://nornir.io"
+        class="text-decoration-none"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        nornir.io
       </a>
     </div>
     <div slot="form">
