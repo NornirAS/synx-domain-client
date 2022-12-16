@@ -8,9 +8,6 @@
         {{ domainURI }}<span class="font-weight-bold">{{ ghostID }}</span>
       </div>
     </page-title>
-    <div slot="alert">
-      <alert-limit v-if="isGhostsPage && isGhostLimit"></alert-limit>
-    </div>
     <div slot="page-content">
       <domain-empty v-if="noDomains && noServices && noGhosts"></domain-empty>
       <ghosts-empty v-if="!noDomains && noServices && noGhosts"></ghosts-empty>
@@ -47,7 +44,6 @@ import PageTitle from "../components/globals/PageTitle";
 import PageLayout from "../components/globals/PageLayout";
 import DomainEmpty from "../components/empty-page/DomainsEmpty";
 import GhostsEmpty from "../components/empty-page/GhostsEmpty";
-import AlertLimit from "../components/globals/AlertLimit";
 import CurlConnection from "../components/globals/CurlConnection";
 export default {
   created() {
@@ -143,7 +139,6 @@ export default {
     PageTitle,
     DomainEmpty,
     GhostsEmpty,
-    AlertLimit,
     CurlConnection
   }
 };

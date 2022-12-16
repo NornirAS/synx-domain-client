@@ -14,7 +14,7 @@
         {{ serviceURI }}
       </a>
       <v-btn
-        v-if="isServicesPage && !isServiceLimit && !noDomains && !noServices"
+        v-if="isServicesPage && !noDomains && !noServices"
         :to="{ name: 'serviceCreate' }"
         slot="action"
         color="primary"
@@ -22,9 +22,6 @@
         Add Service
       </v-btn>
     </page-title>
-    <div slot="alert">
-      <alert-limit v-if="isServicesPage && isServiceLimit"></alert-limit>
-    </div>
     <div slot="page-content">
       <services-empty
         v-if="!noDomains && noServices && isServicesPage"
@@ -71,7 +68,6 @@ import PageTitle from "../components/globals/PageTitle";
 import PageLayout from "../components/globals/PageLayout";
 import ServicesEmpty from "../components/empty-page/ServicesEmpty";
 import DomainEmpty from "../components/empty-page/DomainsEmpty";
-import AlertLimit from "../components/globals/AlertLimit";
 import CurlConnection from "../components/globals/CurlConnection";
 export default {
   created() {
@@ -104,7 +100,7 @@ export default {
       "updateMicropageSuccess"
     ]),
     ...mapState("serviceForm", ["name"]),
-    ...mapGetters("services", ["noServices", "isServiceLimit"]),
+    ...mapGetters("services", ["noServices"]),
     ...mapGetters("domains", ["noDomains", "hasActiveDomains", "firstDomain"]),
     ...mapGetters("serviceForm", ["serviceURI", "serviceURL"]),
     title() {
@@ -163,7 +159,6 @@ export default {
     PageTitle,
     ServicesEmpty,
     DomainEmpty,
-    AlertLimit,
     CurlConnection
   }
 };

@@ -43,9 +43,6 @@ const getters = {
   },
   noGhosts(state, { allGhosts }) {
     return allGhosts.length === 0;
-  },
-  isGhostLimit({ ghosts }) {
-    return ghosts.length >= 100;
   }
 };
 

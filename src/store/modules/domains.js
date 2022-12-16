@@ -21,9 +21,6 @@ const getters = {
   noDomains({ domains }) {
     return domains.length === 0;
   },
-  isDomainLimit({ domains }) {
-    return domains.length >= 2;
-  },
   domainNames({ domains }, { noDomains }) {
     if (noDomains) {
       return [];
