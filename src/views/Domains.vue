@@ -3,7 +3,7 @@
     <page-title slot="page-title">
       <div slot="title">{{ title }}</div>
       <v-btn
-        v-if="isDomainsPage && !isDomainLimit && !noDomains"
+        v-if="isDomainsPage && !noDomains"
         :to="{ name: 'create-domain' }"
         slot="action"
         color="primary"
@@ -11,9 +11,6 @@
         Add domain
       </v-btn>
     </page-title>
-    <div slot="alert">
-      <alert-limit v-if="isDomainsPage && isDomainLimit"></alert-limit>
-    </div>
     <div slot="page-content">
       <domains-empty v-if="noDomains && isDomainsPage"></domains-empty>
       <router-view></router-view>
@@ -26,7 +23,6 @@ import { mapState, mapGetters } from "vuex";
 import PageTitle from "../components/globals/PageTitle";
 import PageLayout from "../components/globals/PageLayout";
 import DomainsEmpty from "../components/empty-page/DomainsEmpty";
-import AlertLimit from "../components/globals/AlertLimit";
 export default {
   created() {
     if (this.noDomains) this.getAllDomains();
@@ -53,7 +49,7 @@ export default {
   computed: {
     ...mapState("authentication", ["token", "username"]),
     ...mapState("alert", ["createDomainSuccess", "deleteDomainSuccess"]),
-    ...mapGetters("domains", ["noDomains", "isDomainLimit", "firstDomain"]),
+    ...mapGetters("domains", ["noDomains", "firstDomain"]),
     title() {
       return this.$route.meta.title;
     },
@@ -77,8 +73,7 @@ export default {
   components: {
     PageTitle,
     PageLayout,
-    DomainsEmpty,
-    AlertLimit
+    DomainsEmpty
   }
 };
 </script>

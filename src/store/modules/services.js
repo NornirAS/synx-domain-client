@@ -26,9 +26,6 @@ const actions = {
 const getters = {
   noServices({ services }) {
     return services.length === 0;
-  },
-  isServiceLimit({ services }) {
-    return services.length >= 10;
   }
 };
 

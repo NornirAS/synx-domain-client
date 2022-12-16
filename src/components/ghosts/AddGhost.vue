@@ -29,12 +29,7 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <v-btn
-        @click="addGhost"
-        color="primary"
-        class="ml-4"
-        :disabled="isGhostLimit"
-      >
+      <v-btn @click="addGhost" color="primary" class="ml-4">
         Add ghost
       </v-btn>
     </div>
@@ -78,7 +73,6 @@ export default {
     ...mapState("authentication", ["token"]),
     ...mapState("services", ["services"]),
     ...mapGetters("services", ["noServices"]),
-    ...mapGetters("ghosts", ["isGhostLimit"]),
     firstService() {
       return this.services[0];
     }
