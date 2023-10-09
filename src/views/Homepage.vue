@@ -5,7 +5,7 @@
         alt="cioty-logo"
         class="mt-4"
         contain
-        src="../assets/cioty-logo-white.webp"
+        src="../assets/logo-white.webp"
         transition="scale-transition"
         width="60"
       />

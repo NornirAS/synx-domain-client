@@ -1,5 +1,7 @@
 export const rootDomain = ".cioty.com/";
 
+export const MAIN_DOMAIN = "www.synxpass.com";
+
 export const systemParameters = [
   "token",
   "username",

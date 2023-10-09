@@ -3,7 +3,7 @@
     <router-link :to="{ name: 'home' }">
       <v-img
         alt="cioty"
-        src="../../assets/CIOTY-final-Logo.webp"
+        src="../../assets/main-logo.webp"
         transition="scale-transition"
         class="ma-12"
       />

@@ -27,7 +27,7 @@
     </div>
     <div slot="helper">
       <a
-        href="https://www.synxpass.com/reset-password"
+        :href="`https://${MAIN_DOMAIN}/reset-password`"
         target="_blank"
         rel="noopener noreferrer"
         class="text-decoration-none"
@@ -41,7 +41,13 @@
 <script>
 import HomePageLayout from "./HomePageLayout";
 import SignInForm from "./SignInForm";
+import { MAIN_DOMAIN } from '@/core/config';
 export default {
+  methods: {
+    MAIN_DOMAIN() {
+      return MAIN_DOMAIN
+    }
+  },
   components: {
     HomePageLayout,
     SignInForm
